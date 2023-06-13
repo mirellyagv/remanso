@@ -178,12 +178,6 @@
     //     });
     // });
 </script>
-    {{session('dsc_usuario')}}<br/>
-    {{session('cod_usuario')}}<br/>
-    {{session('cod_trabajador')}}<br/>
-    VENDEDOR: {{session('flg_vendedor')}}<br/>
-    ADMIN/JEFE: {{session('flg_jefe')}}<br/>
-    SUPERVISOR: {{session('flg_supervisor')}}<br/>
 
 </body>
 </html>
