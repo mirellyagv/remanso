@@ -630,14 +630,14 @@
                         </div>
                         <div class="col-md-4 mb-3">
                           <div class="custom-file">
-                            <input class="form-control form-remanso form-control-sm" id="doc1" type="file" multiple>
+                            <input class="form-control form-remanso form-control-sm" id="docAdj1" type="file" multiple>
                           </div>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Documento 2: </label>
                         </div>
                         <div class="col-md-4 mb-3">
-                          <input class="form-control form-remanso form-control-sm" id="doc2" type="file" multiple>
+                          <input class="form-control form-remanso form-control-sm" id="docAdj2" type="file" multiple>
                         </div>
                       </div>
                     </div>
@@ -825,5 +825,89 @@
         document.getElementById("formRegVenta").reset();
       }
     });
+
+    flgJuridico = '';
+    flgJuridico2 = '';
+    if(document.getElementById("tipoDocRegVta").value == 'DI004'){
+      flgJuridico = 'SI';
+      dscTitular = document.getElementById("razonSocRegVta").value;
+    }else{
+      flgJuridico = 'NO';
+      dscTitular = document.getElementById("nombresRegVta").value+' '+document.getElementById("apellPRegVta").value+' '+document.getElementById("apellMRegVta").value;
+    }
+    if(document.getElementById("tipoDoc2doRegVta").value ==  'DI004'){
+      flgJuridico2 = 'SI';
+      
+    }else{
+      flgJuridico2 = 'NO';
+    }
+    var prospecto = {
+    'cod_prospecto': '',
+    'dsc_prospecto': dscTitular,
+    'dsc_razon_social': document.getElementById("razonSocRegVta").value,
+    'dsc_apellido_paterno': document.getElementById("apellPRegVta").value,
+    'dsc_apellido_materno': document.getElementById("apellMRegVta").value,
+    'dsc_nombre': document.getElementById("nombresRegVta").value,
+    'flg_juridico': flgJuridico,
+    'cod_tipo_documento': document.getElementById("tipoDocRegVta").value,
+    'dsc_documento': document.getElementById("numDocRegVta").value,
+    'cod_pais': document.getElementById("paisRegVta").value,
+    'cod_departamento': document.getElementById("dptoRegVta").value,
+    'cod_provincia': document.getElementById("provRegVta").value,
+    'cod_distrito': document.getElementById("dttoRegVta").value,
+    'dsc_direccion':  document.getElementById("direccRegVta").value,
+    'dsc_telefono_1': document.getElementById("telf1RegVta").value,
+    'dsc_telefono_2': document.getElementById("telf2RegVta").value,
+    'cod_origen': 'CV001',
+    'cod_calificacion': 'CP001',
+    'dsc_observaciones':  '',
+    'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
+    'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
+    'cod_grupo': 'GV007',
+    'cod_supervisor': 'TRA00297',
+    'cod_jefeventas': 'TRA00058',
+    'cod_estado': 'VTA',
+    'imp_monto':document.getElementById("impTotal").value,
+    'dsc_correo': document.getElementById("correoRegVta").value,
+    'flg_sincronizado_crm': 'NO',
+    'cod_localidad_p': 'LC001',
+    'dsc_apellido_paterno_2do': document.getElementById("apellP2doRegVta").value,
+    'dsc_apellido_materno_2do': document.getElementById("apellM2doRegVta").value,
+    'dsc_nombre_2do': document.getElementById("nombres2doRegVta").value,
+    'flg_juridico_2do': flgJuridico2,
+    'cod_tipo_documento_2do': document.getElementById("tipoDoc2doRegVta").value,
+    'dsc_documento_2do': document.getElementById("numDoc2doRegVta").value,
+    'dsc_prospecto_2do': document.getElementById("nombres2doRegVta").value+' '+document.getElementById("apellP2doRegVta").value+' '+document.getElementById("apellM2doRegVta").value,
+    'cod_pais_2do': document.getElementById("pais2doRegVta").value,
+    'cod_departamento_2do': document.getElementById("dpto2doRegVta").value,
+    'cod_provincia_2do': document.getElementById("prov2doRegVta").value,
+    'cod_distrito_2do': document.getElementById("dtto2doRegVta").value,
+    'dsc_direccion_2do': document.getElementById("direcc2doRegVta").value,
+    'dsc_telefono_1_2do': document.getElementById("telf12doRegVta").value,
+    'dsc_telefono_2_2do': document.getElementById("telf22doRegVta").value,
+    'dsc_correo_2do': document.getElementById("correo2doRegVta").value,
+    'dsc_apellido_paterno_aval': document.getElementById("apellPAval").value,
+    'dsc_apellido_materno_aval': document.getElementById("apellMAval").value,
+    'dsc_nombre_aval': document.getElementById("nombresAval").value,
+    'cod_tipo_documento_aval': document.getElementById("tipoDocAval").value,
+    'dsc_documento_aval': document.getElementById("numDocAval").value,
+    'dsc_prospecto_aval':  document.getElementById("nombresAval").value+' '+document.getElementById("apellPAval").value+' '+document.getElementById("apellMAval").value,
+    'cod_pais_aval': document.getElementById("paisAval").value,
+    'cod_departamento_aval': document.getElementById("dptoAval").value,
+    'cod_provincia_aval': document.getElementById("provAval").value,
+    'cod_distrito_aval': document.getElementById("dttoAval").value,
+    'dsc_telefono_1_aval': document.getElementById("telef1Aval").value,
+    'dsc_telefono_2_aval': document.getElementById("telef2Aval").value,
+    'dsc_correo_aval': document.getElementById("correoAval").value,
+    'cod_camposanto': document.getElementById("camposanto").value,
+    'cod_plataforma': document.getElementById("correoAval").value,
+    'cod_area_plataforma': document.getElementById("nombrePlat").value,
+    'cod_eje_horizontal': document.getElementById("ejeX").value,
+    'cod_eje_vertical': document.getElementById("ejeY").value,
+    'cod_espacio': document.getElementById("espacio").value,
+    'cod_tipo_espacio': document.getElementById("correoAval").value,
+    'num_nivel': 0,
+    'cod_tipo_necesidad': ''
+  };
 
 </script>
