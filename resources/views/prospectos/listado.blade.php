@@ -150,11 +150,26 @@ $(document).ready(function () {
 
   // const flatpickr = require("flatpickr");
         // flatpickr.localize(flatpickr.l10ns.es);
-        flatpickr("#fchIni",{
-          locale:"es",
-        });
         flatpickr("#fchFin",{
-          locale:"es",
+          locale: "es"
+        });
+        flatpickr("#fchIni", {
+          locale: "es",
+          onChange: function(selectedDates, dateStr) {
+            // Habilitar fchFin cuando se seleccione una fecha en fchIni
+            document.getElementById("fchFin").disabled = false;
+            
+            // Actualizar la opción de deshabilitar en fchFin
+            flatpickr("#fchFin", {
+              locale: "es",
+              disable: [
+                {
+                  from: "2005-01-01",
+                  to: dateStr
+                }
+              ]
+            });
+          }
         });
   
     $.ajax({
