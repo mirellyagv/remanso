@@ -24,27 +24,30 @@
                       <label for="inputText" class="col-form-label">Fecha Inicio: </label>
                     </div>
                     <div class="col-md-2 mb-3">
-                      <input type="datetime-local" class="form-control form-remanso" name="fchIni" id="fchIni">
+                      <input type="date" class="form-control form-remanso" name="fchIni" id="fchIni" value="2021-06-01">
                     </div>
                     <div class="col-md-1 mb-3">
                       <label for="inputText" class="col-form-label">Fecha Fin: </label>
                     </div>
                     <div class="col-md-2 mb-3">
-                      <input type="datetime-local" class="form-control form-remanso" name="fchFin" id="fchFin">
+                      <input type="date" class="form-control form-remanso" name="fchFin" id="fchFin" value="2021-06-30">
                     </div>
                     <div class="col-md-1 mb-3">
                       <label for="inputText" class="col-form-label">Estado: </label>
                     </div>
                     <div class="col-md-2 mb-3">
-                      <select name="tipoDoc" id="tipoDoc" class="form-control form-remanso">
+                      <select name="EstDoc" id="EstDoc" class="form-control form-remanso">
                         <option value="0">Todos</option>
-                        <option value="1">Activo</option>
-                        <option value="2">Trunco</option>
-                        <option value="3">Caduco</option>
+                        <option value="ACT">ACTIVO</option>
+                        <option value="VTA">CIERRE</option>
+                        <option value="CAD">CADUCO</option>
+                        <option value="TRU">TRUNCO</option>
+                        <option value="REC">RECHAZADO</option>
+                        <option value="ANU">ANULADO</option>
                       </select>
                     </div>
                     <div class="col-2 mb-3 d-none d-md-block" style="text-align: end">
-                      <button class="btn btn-secondary form-remanso" id="excelBtn1">Buscar &nbsp;<span
+                      <button class="btn btn-secondary form-remanso" id="excelBtn1" onclick="BuscarProspecto()">Buscar &nbsp;<span
                           class="bi bi-search"></span></button>
                     </div>
                   </div>
@@ -87,7 +90,7 @@
             </div>
           </div>
   
-  
+          
           <div class="table-responsive">
             <table class="table table-striped" id="listaProsp" style="width:100%">
               <thead style="background-color: #35B44A; color: white;">
@@ -123,64 +126,28 @@
   @endpush
   
   <script type="text/javascript">
-   $(document).ready(function () {
+
+
+     
+
+
+
+
+//
+$(document).ready(function () {
     $.ajax({
       url: '../lista/ListaProspectos', 
       method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{'cod_trabajador':'TRA00245'},
+      data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val()},
       success: function(respuesta){
           fila='';
           respuesta['response'].forEach(function(word){
             
           dias =  '{{ \Carbon\Carbon::now ()  }}' ;
           var fchRegistro = '{{ \Carbon\Carbon::now ()  }}' ;
-          var tipoDoc = '';
-          switch (word['cod_tipo_documento']) {
-            case 'DI001':
-              tipoDoc = 'DNI'
-              break;
-            case 'DI002':
-              tipoDoc = 'C.E'
-              break;
-            case 'DI003':
-              tipoDoc = 'PASAPORTE'
-              break;
-            case 'DI004':
-              tipoDoc = 'RUC'
-              break;
-            case 'DI005':
-              tipoDoc = 'OTROS'
-              break;
-            case 'DI006':
-              tipoDoc = 'L.E.'
-              break;
-            default:
-            tipoDoc = '';
-              break;
-          }
-          
-          var edoProsp = '';
-          
-          switch (word['cod_estado']) {
-            case 'TRU':
-              edoProsp = 'TRUNCO'
-              break;
-            case 'ACT':
-              edoProsp = 'ACTIVO'
-              break;
-            case 'VTA':
-              edoProsp = 'VENTA'
-              break;
-            case 'CAD':
-              edoProsp = 'CADUCO'
-              break;
-            default:
-            edoProsp = '';
-              break;
-          }
-
+         
           var today = new Date(word['fch_registro']);
           // obtener la fecha de hoy en formato `MM/DD/YYYY`
           var dia = today.toLocaleDateString('en-GB');
@@ -189,12 +156,12 @@
                     '<button class="btn btn-success BtnverdeRemanso form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-cash-stack"></span></button>'+
                     '<button class="btn btn-warning form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button></td>'+
                 '<td>'+word['cod_prospecto']+'</td>'+
-                '<td>'+tipoDoc+'-'+word['dsc_documento']+'</td>'+
+                '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_prospecto']+'</td>'+
                 '<td>'+dia+'</td>'+
-                '<td>60</td>'+
+                '<td>'+word['num_dias']+'</td>'+
                 '<td>'+word['dsc_origen']+'</td>'+
-                '<td>'+edoProsp+'</td>'+
+                '<td>'+word['dsc_estado']+'</td>'+
               '</tr>';
   
           });
@@ -243,4 +210,84 @@
             processing: true,
           });
       });
+
+
+    function BuscarProspecto() {
+    $.ajax({
+      url: '../lista/ListaProspectos', 
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'cod_trabajador':'TRA00245','fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val()},
+      success: function(respuesta){
+          fila='';
+          respuesta['response'].forEach(function(word){
+            
+          dias =  '{{ \Carbon\Carbon::now ()  }}' ;
+          var fchRegistro = '{{ \Carbon\Carbon::now ()  }}' ;
+          
+
+          var today = new Date(word['fch_registro']);
+          // obtener la fecha de hoy en formato `MM/DD/YYYY`
+          var dia = today.toLocaleDateString('en-GB');
+            fila += '<tr><td>'+
+                  '<button class="btn btn-secondary form-remanso" id="buscarDoc"onclick="window.location.href=">'+
+                      '<span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></button>'+
+                    '<button class="btn btn-success BtnverdeRemanso form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-cash-stack"></span></button>'+
+                    '<button class="btn btn-warning form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button></td>'+
+                '<td>'+word['cod_prospecto']+'</td>'+
+                '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
+                '<td>'+word['dsc_prospecto']+'</td>'+
+                '<td>'+dia+'</td>'+
+                '<td>'+word['num_dias']+'</td>'+
+                '<td>'+word['dsc_origen']+'</td>'+
+                '<td>'+word['dsc_estado']+'</td>'+
+              '</tr>';
+  
+          });
+          console.log(fila);
+          $('#bodyListado').html(fila);
+  
+      },//success
+      error(e){
+          console.log(e.message);
+      }//error
+    });
+  
+        if ($.fn.dataTable.isDataTable('#listaProsp')) {
+            $('#listaProsp').DataTable().clear();
+            $('#listaProsp').DataTable().destroy();        
+        }
+  
+      $('#listaProsp').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+            },
+            dom: 'Btrip',
+            buttons: [
+              {
+                extend: "excel",                    // Extend the excel button
+                text: 'Excel',
+                className: 'btn btn-success',
+                excelStyles: {                      // Add an excelStyles definition
+                  cells: "2",                     // to row 2
+                  style: {                        // The style block
+                      font: {                     // Style the font
+                          name: "Arial",          // Font name
+                          size: "14",             // Font size
+                          color: "FFFFFF",        // Font Color
+                          b: false,               // Remove bolding from header row
+                      },
+                      fill: {                     // Style the cell fill (background)
+                          pattern: {              // Type of fill (pattern or gradient)
+                              color: "457B9D",    // Fill color
+                          }
+                      }
+                  }
+                },
+              },
+            ],
+            processing: true,
+          });
+      };
   </script>
