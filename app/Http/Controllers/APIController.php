@@ -112,38 +112,33 @@ class APIController extends Controller
     public function guardaBeneficiario(Request $request)
     {
         $client = new Client();
-        // return $request;
-        // $codigoProspecto = APIController::obtenerUltimoProspecto();
         $headers = [
             'Content-Type' => 'application/json',
         ];
-        foreach ($request->all() as $persona) {
-            foreach ($persona as $key) {
-
-
-                foreach ($request->all() as $persona) {
-                    foreach ($persona as $key) {
-                        try {
-                            $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoBeneficiario/20396900719/';
-                            $body = json_encode($key);
-
-                            $httpRequest = new GuzzleRequest('PUT', $url, $headers, $body);
-                            $response = $client->send($httpRequest);
-
-                            $code = $response->getStatusCode();
-                            $responseData = json_decode($response->getBody(), true);
-
-                            if ($code == 200 && $responseData['mensaje'] == 'OK') {
-                                $message = 'guardados';
-                            }
-
-                            return response()->json(['status' => $code, 'data' => $responseData, 'message' => $message ?? null]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => $e->getMessage()], 500);
+        try {
+            foreach ($request->all() as $persona) {
+                foreach ($persona as $key) {
+                    try {
+                        $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoBeneficiario/20396900719/';
+                        $body = json_encode($key);
+    
+                        $httpRequest = new GuzzleRequest('PUT', $url, $headers, $body);
+                        $response = $client->send($httpRequest);
+    
+                        $code = $response->getStatusCode();
+                        $responseData = json_decode($response->getBody(), true);
+    
+                        if ($code == 200 && $responseData['mensaje'] == 'Guardado') {
+                            $message = 'guardado con exito!';
                         }
+                    } catch (\Exception $e) {
+                        return response()->json(['error' => $e->getMessage()], 500);
                     }
                 }
             }
+            echo response()->json(['status' => $code, 'data' => $responseData, 'message' => $message ?? null]);
+        } catch (\Throwable $th) {
+            throw $th;
         }
     }
 

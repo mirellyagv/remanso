@@ -40,13 +40,15 @@
                           <label for="inputText" class="col-form-label">Nombres:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" required name="nombreProsp" id="nombreProsp">
+                          <input type="text" class="form-control form-remanso" required name="nombreProsp"
+                            id="nombreProsp">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Apellido Paterno: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" required name="apellPProsp" id="apellPProsp">
+                          <input type="text" class="form-control form-remanso" required name="apellPProsp"
+                            id="apellPProsp">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Apellido Materno: </label>
@@ -80,7 +82,7 @@
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="paisProspecto" id="paisProspecto" class="form-control form-remanso" required>
-                          
+
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
@@ -88,7 +90,7 @@
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="dptoProsp" id="dptoProsp" class="form-control form-remanso" required>
-                          
+
                         </select>
                       </div>
                     </div>
@@ -98,7 +100,7 @@
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="provinProsp" id="provinProsp" class="form-control form-remanso" required>
-                          
+
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
@@ -106,7 +108,7 @@
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="dttoProsp" id="dttoProsp" class="form-control form-remanso" required>
-                          
+
                         </select>
                       </div>
                     </div>
@@ -129,7 +131,8 @@
                         <label for="inputText" class="col-form-label">Correo:</label>
                       </div>
                       <div class="col-md-9 mb-3">
-                        <input type="text" class="form-control form-remanso" name="correoProsp" id="correoProsp" required>
+                        <input type="text" class="form-control form-remanso" name="correoProsp" id="correoProsp"
+                          required>
                       </div>
                     </div>
                     <hr>
@@ -416,7 +419,8 @@
             <br>
             <div class="row">
               <div class="col-md-3 offset-md-2 mb-3">
-                <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnGuarda" style="width: -webkit-fill-available;">Guardar</a>
+                <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnGuarda"
+                  style="width: -webkit-fill-available;">Guardar</a>
               </div>
               <div class="col-md-3 mb-3">
                 <a href="registroVenta.php" class="btn btn-primary form-remanso BtnAzulORemanso"
@@ -564,8 +568,8 @@
 </x-layouts.app>
 
 <script src="{{asset('js/registroProspecto.js')}}"></script>
-<script type="text/javascript">          
-//--------------Guardar Prospecto--------------
+<script type="text/javascript">
+  //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
 
@@ -662,14 +666,12 @@ boton.addEventListener("click",function(){
     success: function(respuesta){
       console.log(respuesta);
 
-      filasArray.forEach(element => { 
-        console.log(element);
         $.ajax({
             url: '../api/guardaBeneficiario', 
             method: "PUT",
             crossDomain: true,
             dataType: 'json',
-            data:{'beneficiarios':element},
+            data:{'beneficiarios':filasArray},
             success: function(respuesta){
                 console.log(respuesta);
                 
@@ -677,9 +679,7 @@ boton.addEventListener("click",function(){
             error(e){
                 console.log(e.message);
             }//error
-
         });
-      });
         
     },//success
     error(e){
