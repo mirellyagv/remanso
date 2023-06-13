@@ -530,7 +530,7 @@
                         <div class="col-md-3 offset-md-9">
                           <div class="form-group form-remanso">
                             <h5><button class="btn btn-primary BtnverdeRemanso form-remanso" data-bs-toggle="modal"
-                              data-bs-target="#ModalServicio" type="button" style="width: -webkit-fill-available;">Añadir servicio</button></h5>
+                              data-bs-target="#ModalServicio" id="btnAddServicio" type="button" style="width: -webkit-fill-available;">Añadir servicio</button></h5>
                           </div>
                         </div>
                       </div>
