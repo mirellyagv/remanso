@@ -335,6 +335,8 @@ $( document ).ready(function() {
     //-----------------muestra select tipo plataforma-----------
     var codcampo = document.getElementById("camposanto");
     codcampo.addEventListener("change",function(){
+        var options = document.querySelectorAll('#tipoPlat option');
+            options.forEach(o => o.remove());
         codCamposanto = document.getElementById("camposanto").value;
         $.ajax({
             url: '../lista/MuestraTipoPlataforma', 
@@ -347,6 +349,163 @@ $( document ).ready(function() {
                 respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#tipoPlat").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select plataforma-----------
+    var codcampo = document.getElementById("tipoPlat");
+    codcampo.addEventListener("change",function(){
+        var options = document.querySelectorAll('#nombrePlat option');
+            options.forEach(o => o.remove());
+        codCamposanto = document.getElementById("camposanto").value;
+        codTipoplat = document.getElementById("tipoPlat").value;
+        $.ajax({
+            url: '../lista/MuestraPlataforma', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'cod_camposanto': codCamposanto,'cod_tipo_plataforma':codTipoplat},
+            success: function(respuesta){
+                $("#nombrePlat").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#nombrePlat").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select area-----------
+    var codcampo = document.getElementById("nombrePlat");
+    codcampo.addEventListener("change",function(){
+        var options = document.querySelectorAll('#nombreArea option');
+            options.forEach(o => o.remove());
+        codCamposanto = document.getElementById("camposanto").value;
+        codPlataforma = document.getElementById("nombrePlat").value;
+        $.ajax({
+            url: '../lista/MuestraArea', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma},
+            success: function(respuesta){
+                $("#nombreArea").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#nombreArea").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select Eje Horizontal-----------
+    var codcampo = document.getElementById("nombreArea");
+    codcampo.addEventListener("change",function(){
+        var options = document.querySelectorAll('#ejeX option');
+            options.forEach(o => o.remove());
+        codCamposanto = document.getElementById("camposanto").value;
+        codPlataforma = document.getElementById("nombrePlat").value;
+        codArea = document.getElementById("nombreArea").value;
+        $.ajax({
+            url: '../lista/MuestraEjeX', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea},
+            success: function(respuesta){
+                $("#ejeX").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#ejeX").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select Eje Vertical-----------
+    var codcampo = document.getElementById("ejeX");
+    codcampo.addEventListener("change",function(){
+        var options = document.querySelectorAll('#ejeY option');
+            options.forEach(o => o.remove());
+        codCamposanto = document.getElementById("camposanto").value;
+        codPlataforma = document.getElementById("nombrePlat").value;
+        codArea = document.getElementById("nombreArea").value;
+        ejeX = document.getElementById("ejeX").value;
+        $.ajax({
+            url: '../lista/MuestraEjeY', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX},
+            success: function(respuesta){
+                $("#ejeY").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#ejeY").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select Espacio-----------
+    var codcampo = document.getElementById("ejeY");
+    codcampo.addEventListener("change",function(){
+        var options = document.querySelectorAll('#espacio option');
+            options.forEach(o => o.remove());
+        codCamposanto = document.getElementById("camposanto").value;
+        codPlataforma = document.getElementById("nombrePlat").value;
+        codArea = document.getElementById("nombreArea").value;
+        ejeX = document.getElementById("ejeX").value;
+        ejeY = document.getElementById("ejeY").value;
+        $.ajax({
+            url: '../lista/MuestraEspacio', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX},
+            success: function(respuesta){
+                $("#espacio").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#espacio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+
+    //-----------------muestra select Camposanto-----------
+    $( document ).ready(function() {
+        $.ajax({
+            url: '../lista/MuestraListaCuota', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            success: function(respuesta){
+                $("#codCuotaServ").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
                 });
             },//success
             error(e){

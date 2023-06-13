@@ -622,7 +622,7 @@
                           <input type="text" class="form-control form-remanso" name="impFoma" id="impFoma">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Cotas servicio: </label>
+                          <label for="inputText" class="col-form-label">Cuotas servicio: </label>
                         </div>
                         <div class="col-md-2 mb-3">
                           <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso">
@@ -676,12 +676,6 @@
                 </div>
               </div>
               <br>
-              <div class="row">
-                <div class="col-md-3 offset-md-4 mb-3">
-                  <a href="" class="btn btn-success form-remanso BtnverdeRemanso"
-                    style="width: -webkit-fill-available;">Guardar</a>
-                </div>
-              </div>
             </div>
           </form>
         </div>
