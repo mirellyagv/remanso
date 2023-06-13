@@ -23,15 +23,20 @@
           <span class="item-menu">Registro de Ventas</span>
         </a>
       </li><br>
-      <li class="nav-item">
-        <a href="#">
-          <span class="item-menu">Autorizar Ventas</span>
-        </a>
-      </li>
+      @if (session('flg_jefe')==='SI')
+      
+        <li class="nav-item">
+          <a href="#">
+            <span class="item-menu">Autorizar Ventas</span>
+          </a>
+        </li>
+        
+      @endif
+
       <br>
       <li class="nav-item">
         <a class="nav-link collapsed" href="">
-          <a href="{{route('home')}}" class="btn btn-success form-remanso BtnverdeRemanso" style="width: -webkit-fill-available;"
+          <a href="{{route('login')}}" class="btn btn-success form-remanso BtnverdeRemanso" style="width: -webkit-fill-available;"
             id="loginBtn">Salir</a>
         </a>
       </li>

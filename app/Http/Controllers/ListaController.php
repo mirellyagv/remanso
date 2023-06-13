@@ -14,7 +14,7 @@ class ListaController extends Controller
     public function ListaProspectos(Request $request)
     {   
         $client = new Client();
-        $cod_trabajador = $request['cod_trabajador'];
+        $cod_trabajador = 'TRA00245'; //$request['cod_trabajador'];
         $fchInicio = '01-01-2023';//$request['fch_inicio'];
         $fchFin = '06-30-2023';//$request['fch_fin'];
         try {
