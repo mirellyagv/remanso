@@ -28,6 +28,6 @@ class VerifyCsrfToken extends Middleware
         'lista/MuestraEdoCivil',
         'lista/Muestra',
         'lista/MuestraCamposanto',
-        
+        'lista/MuestraTipoPlataforma',        
     ];
 }
