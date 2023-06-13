@@ -28,7 +28,7 @@ class ListaController extends Controller
         if($dsc_prospecto==null || $dsc_prospecto==''){$dsc_prospecto='0';}
 
         try {
-                         
+                          
             $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspecto/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_estado.'/'.$dsc_documento.'/'.$dsc_prospecto);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
@@ -282,10 +282,167 @@ class ListaController extends Controller
     public function MuestraTipoPlataforma(Request $request)
     {   
         $client = new Client();
-        $cod_camposanto = $request['cod_camposanto'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarPlataforma/20396900719/'.$cod_camposanto);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoPlataforma/20396900719/');
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function MuestraPlataforma(Request $request)
+    {   
+        $client = new Client();
+        $cod_camposanto = $request['cod_camposanto'];
+        $cod_tipo_plataforma = $request['cod_tipo_plataforma'];
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarPlataforma/20396900719/'.$cod_camposanto.'/'.$cod_tipo_plataforma);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function MuestraArea(Request $request)
+    {   
+        $client = new Client();
+        $cod_camposanto = $request['cod_camposanto'];
+        $cod_plataforma = $request['cod_plataforma'];
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarAreaPlataforma/20396900719/'.$cod_camposanto.'/'.$cod_plataforma);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function MuestraEjeX(Request $request)
+    {   
+        $client = new Client();
+        $cod_camposanto = $request['cod_camposanto'];
+        $cod_plataforma = $request['cod_plataforma'];
+        $cod_area = $request['cod_area'];
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEjeHorizontal/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function MuestraEjeY(Request $request)
+    {   
+        $client = new Client();
+        $cod_camposanto = $request['cod_camposanto'];
+        $cod_plataforma = $request['cod_plataforma'];
+        $cod_area = $request['cod_area'];
+        $ejeX = $request['ejeX'];
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEjeVertical/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeX);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function MuestraEspacio(Request $request)
+    {   
+        $client = new Client();
+        $cod_camposanto = $request['cod_camposanto'];
+        $cod_plataforma = $request['cod_plataforma'];
+        $cod_area = $request['cod_area'];
+        $ejeX = $request['ejeX'];
+        $ejeY = $request['ejeY'];
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Espacio/ListarEspacio/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeX.'/'.$ejeY);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+
+
+
+    public function MuestraListaCuota(Request $request)
+    {   
+        $client = new Client();
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCuota/20396900719');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

@@ -511,18 +511,6 @@
                           <select name="espacio"  id="espacio" class="form-select form-remanso">
                           </select>
                         </div>
-                        <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Tipo: </label>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="tipoEspacio" id="tipoEspacio">
-                        </div>
-                        <div class="col-md-1 mb-3">
-                          <label for="inputText" class="col-form-label">Nivel: </label>
-                        </div>
-                        <div class="col-md-1 mb-3">
-                          <input type="text" class="form-control form-remanso" name="nivelEspacio" id="nivelEspacio">
-                        </div>
                       </div>
                       <hr>
                       <br>
@@ -535,12 +523,6 @@
                         </div>
                         <div class="col-md-1 mb-1">
                           <input type="text" class="form-control form-remanso" name="numServBase" id="numServBase">
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Programa: </label>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                          <input type="text" class="form-control form-remanso" name="tipoProgBase" id="tipoProgBase">
                         </div>
                       </div>
                       <hr>
@@ -596,13 +578,6 @@
                           <input type="text" class="form-control form-remanso" name="impSaldo" id="impSaldo">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso">
-                          </select>
-                        </div>
-                        <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
                         </div>
                         <div class="col-md-2 mb-3">
@@ -622,7 +597,7 @@
                           <input type="text" class="form-control form-remanso" name="impFoma" id="impFoma">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Cotas servicio: </label>
+                          <label for="inputText" class="col-form-label">Cuotas servicio: </label>
                         </div>
                         <div class="col-md-2 mb-3">
                           <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso">
@@ -650,19 +625,19 @@
                     <div class="accordion-body">
                       <br>
                       <div class="row">
-                        <div class="col-md-1 mb-3">
-                          <label for="inputText" class="col-form-label">DNI: </label>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Documento 1: </label>
                         </div>
-                        <div class="col-md-5 mb-3">
+                        <div class="col-md-4 mb-3">
                           <div class="custom-file">
-                            <input class="form-control form-remanso form-control-sm" id="dniFile" type="file" multiple>
+                            <input class="form-control form-remanso form-control-sm" id="doc1" type="file" multiple>
                           </div>
                         </div>
-                        <div class="col-md-1 mb-3">
-                          <label for="inputText" class="col-form-label">Adicional: </label>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Documento 2: </label>
                         </div>
-                        <div class="col-md-5 mb-3">
-                          <input class="form-control form-remanso form-control-sm" id="adicionalFile" type="file" multiple>
+                        <div class="col-md-4 mb-3">
+                          <input class="form-control form-remanso form-control-sm" id="doc2" type="file" multiple>
                         </div>
                       </div>
                     </div>
@@ -676,12 +651,6 @@
                 </div>
               </div>
               <br>
-              <div class="row">
-                <div class="col-md-3 offset-md-4 mb-3">
-                  <a href="" class="btn btn-success form-remanso BtnverdeRemanso"
-                    style="width: -webkit-fill-available;">Guardar</a>
-                </div>
-              </div>
             </div>
           </form>
         </div>
