@@ -197,20 +197,21 @@ flatpickr("#fchFin", {
       dataType: 'json',
       data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
       success: function(respuesta){
+        console.log('parado',respuesta)
           fila='';
           respuesta['response'].forEach(function(word){
             
-          dias =  '{{ \Carbon\Carbon::now ()  }}' ;
-          var fchRegistro = '{{ \Carbon\Carbon::now ()  }}' ;
+          // dias =  '{{ \Carbon\Carbon::now ()  }}' ;
+          // var fchRegistro = '{{ \Carbon\Carbon::now ()  }}' ;
          
           var today = new Date(word['fch_registro']);
           // obtener la fecha de hoy en formato `MM/DD/YYYY`
-          var dia = today.toLocaleDateString('en-GB');
+          var dia = today.toLocaleDateString('es-ES');
             fila += '<tr><td>'+
             '<a class="btn btn-secondary form-remanso"  href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
-                    '<button class="btn btn-success BtnverdeRemanso form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-cash-stack"></span></button>'+
+                    '<button class="btn btn-success BtnverdeRemanso form-remanso" onclick="" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-cash-stack"></span></button>'+
                     '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
-                    <button class="btn btn-warning form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
+                    <button class="btn btn-warning form-remanso" onclick="" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
                 '<td>'+word['cod_prospecto']+'</td>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_prospecto']+'</td>'+
@@ -223,7 +224,46 @@ flatpickr("#fchFin", {
           });
           //console.log(fila);
           $('#bodyListado').html(fila);
+          var totalRegistros = respuesta['response'].length;
+          $('#totalRegistros').text(totalRegistros); // Actualiza el contador de totales en la tabla
   
+          if ($.fn.dataTable.isDataTable('#listaProsp')) {
+            $('#listaProsp').DataTable().clear();
+            $('#listaProsp').DataTable().destroy();        
+        }
+  
+        $('#listaProsp').DataTable({
+              paging: true,
+              language: {
+                  url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+              },
+              dom: 'Btrip',
+              buttons: [
+                {
+                  extend: "excel",                    // Extend the excel button
+                  text: 'Excel',
+                  className: 'btn btn-success',
+                  excelStyles: {                      // Add an excelStyles definition
+                    cells: "2",                     // to row 2
+                    style: {                        // The style block
+                        font: {                     // Style the font
+                            name: "Arial",          // Font name
+                            size: "14",             // Font size
+                            color: "FFFFFF",        // Font Color
+                            b: false,               // Remove bolding from header row
+                        },
+                        fill: {                     // Style the cell fill (background)
+                            pattern: {              // Type of fill (pattern or gradient)
+                                color: "457B9D",    // Fill color
+                            }
+                        }
+                    }
+                  },
+                },
+              ],
+              processing: true,
+            });
+
       },//success
       error(e){
           console.log(e.message);
@@ -231,45 +271,13 @@ flatpickr("#fchFin", {
     });
   
     
-        if ($.fn.dataTable.isDataTable('#listaProsp')) {
-            $('#listaProsp').DataTable().clear();
-            $('#listaProsp').DataTable().destroy();        
-        }
-  
-      $('#listaProsp').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-            },
-            dom: 'Btrip',
-            buttons: [
-              {
-                extend: "excel",                    // Extend the excel button
-                text: 'Excel',
-                className: 'btn btn-success',
-                excelStyles: {                      // Add an excelStyles definition
-                  cells: "2",                     // to row 2
-                  style: {                        // The style block
-                      font: {                     // Style the font
-                          name: "Arial",          // Font name
-                          size: "14",             // Font size
-                          color: "FFFFFF",        // Font Color
-                          b: false,               // Remove bolding from header row
-                      },
-                      fill: {                     // Style the cell fill (background)
-                          pattern: {              // Type of fill (pattern or gradient)
-                              color: "457B9D",    // Fill color
-                          }
-                      }
-                  }
-                },
-              },
-            ],
-            processing: true,
-          });
+        
       });
 
 
     function BuscarProspecto() {
+      $('#listaProsp').DataTable().clear();
+      $('#listaProsp').DataTable().destroy();
     $.ajax({
       url: '../lista/ListaProspectos', 
       method: "GET",
@@ -277,21 +285,18 @@ flatpickr("#fchFin", {
       dataType: 'json',
       data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
       success: function(respuesta){
+        console.log('de funcion',respuesta)
           fila='';
-          respuesta['response'].forEach(function(word){
-            
-          dias =  '{{ \Carbon\Carbon::now ()  }}' ;
-          var fchRegistro = '{{ \Carbon\Carbon::now ()  }}' ;
-          
+          respuesta['response'].forEach(function(word){          
 
           var today = new Date(word['fch_registro']);
           // obtener la fecha de hoy en formato `MM/DD/YYYY`
-          var dia = today.toLocaleDateString('en-GB');
+          var dia = today.toLocaleDateString('es-ES');
             fila += '<tr><td>'+
-                  '<button class="btn btn-secondary form-remanso" id="buscarDoc"onclick="window.location.href=">'+
+                  '<button class="btn btn-secondary form-remanso" id="buscarDoc"onclick="">'+
                       '<span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></button>'+
-                    '<button class="btn btn-success BtnverdeRemanso form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-cash-stack"></span></button>'+
-                    '<button class="btn btn-warning form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button></td>'+
+                    '<button class="btn btn-success BtnverdeRemanso form-remanso" onclick="" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-cash-stack"></span></button>'+'@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                    <button class="btn btn-warning form-remanso" onclick="" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
                 '<td>'+word['cod_prospecto']+'</td>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_prospecto']+'</td>'+
@@ -302,49 +307,44 @@ flatpickr("#fchFin", {
               '</tr>';
   
           });
-          console.log(fila);
+          // console.log(fila);
           $('#bodyListado').html(fila);
-  
-      },//success
+          var totalRegistros = respuesta['response'].length;
+          $('#totalRegistros').text(totalRegistros); // Actualiza el contador de totales en la tabla
+          // Inicializar DataTable dentro del bloque success
+                $('#listaProsp').DataTable({
+                  paging: true,
+                  language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                  },
+                  dom: 'Btrip',
+                  buttons: [{
+                    extend: "excel",
+                    text: 'Excel',
+                    className: 'btn btn-success',
+                    excelStyles: {
+                      cells: "2",
+                      style: {
+                        font: {
+                          name: "Arial",
+                          size: "14",
+                          color: "FFFFFF",
+                          b: false,
+                        },
+                        fill: {
+                          pattern: {
+                            color: "457B9D",
+                          }
+                        }
+                      }
+                    },
+                  }],
+                  processing: true,
+                });
+              },//success
       error(e){
           console.log(e.message);
       }//error
     });
-  
-        if ($.fn.dataTable.isDataTable('#listaProsp')) {
-            $('#listaProsp').DataTable().clear();
-            $('#listaProsp').DataTable().destroy();        
-        }
-  
-      $('#listaProsp').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-            },
-            dom: 'Btrip',
-            buttons: [
-              {
-                extend: "excel",                    // Extend the excel button
-                text: 'Excel',
-                className: 'btn btn-success',
-                excelStyles: {                      // Add an excelStyles definition
-                  cells: "2",                     // to row 2
-                  style: {                        // The style block
-                      font: {                     // Style the font
-                          name: "Arial",          // Font name
-                          size: "14",             // Font size
-                          color: "FFFFFF",        // Font Color
-                          b: false,               // Remove bolding from header row
-                      },
-                      fill: {                     // Style the cell fill (background)
-                          pattern: {              // Type of fill (pattern or gradient)
-                              color: "457B9D",    // Fill color
-                          }
-                      }
-                  }
-                },
-              },
-            ],
-            processing: true,
-          });
-      };
+    };
 </script>
