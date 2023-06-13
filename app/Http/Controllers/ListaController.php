@@ -15,15 +15,19 @@ class ListaController extends Controller
     {   
         $client = new Client();
         $cod_trabajador = 'TRA00245';
-        //$fchInicio = '01-01-2023';//$request['fch_inicio'];
-        //$fchFin = '06-30-2023';//$request['fch_fin'];
         //$cod_trabajador = session('cod_trabajador'); 
         $fchInicio = $request['fch_inicio'];
         $fchFin = $request['fch_fin'];
+        $cod_estado= $request['cod_estado'];
+        $dsc_documento = $request['dsc_documento'];
+        $dsc_prospecto = $request['dsc_prospecto'];
+
+        if($dsc_documento==null || $dsc_documento==''){$dsc_documento='0';}
+        if($dsc_prospecto==null || $dsc_prospecto==''){$dsc_prospecto='0';}
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspecto/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspecto/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_estado.'/'.$dsc_documento.'/'.$dsc_prospecto);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
