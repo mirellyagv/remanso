@@ -1,437 +1,480 @@
 <x-layouts.app title="Registro" meta-description="Registro de prospectos meta description">
-
-  <main class="main" id="main">
-    <div class="pagetitle">
-      <h1>Registro del prospecto</h1>
-    </div>
-    <div class="section dashboard">
-      <div class="row">
-        <div class="col-md-10 offset-md-1">
-          <div class="card ">
-            <div class="accordion accordion-flush" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <h4>Información del prospecto</h4>
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <br>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label" required>Tipo de Documento: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="tipoDocProsp" id="tipoDocProsp" required class="form-control form-remanso">
-                        </select>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Núm. de Documento: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" required name="numDocPros" id="numDocPros">
-                      </div>
-                    </div>
-                    <div id="nombre">
+  <form action="" method="GET" id="myForm">
+    @csrf
+    <main class="main" id="main">
+      <div class="pagetitle">
+        <h1>Registro del prospecto</h1>
+      </div>
+      <div class="section dashboard">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <div class="card ">
+              <div class="accordion accordion-flush" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <h4>Información del prospecto</h4>
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <br>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Nombres:</label>
+                          <label for="inputText" class="col-form-label" required>Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" required name="nombreProsp"
-                            id="nombreProsp">
+                          <select name="tipoDocProsp" id="tipoDocProsp" required class="form-control form-remanso"
+                            required>
+                          </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                          <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" required name="apellPProsp"
-                            id="apellPProsp">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Apellido Materno: </label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="apellMProsp" id="apellMProsp">
+                          <input type="text" class="form-control form-remanso" required name="numDocPros"
+                            id="numDocPros" min="9" max="9" maxlength="9">
+                          <div class="a invalid-feedback">
+                            Debe tener 9 números.
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div id="razonSoc" style="display: none;">
-                      <div class="row">
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Razón social:</label>
-                        </div>
-                        <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="rucProsp" id="rucProsp">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Dirección:</label>
-                      </div>
-                      <div class="col-md-9 mb-3">
-                        <input type="text" class="form-control form-remanso" required name="direccPros" id="direccPros">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">País: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="paisProspecto" id="paisProspecto" class="form-control form-remanso" required>
-
-                        </select>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Departamento: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="dptoProsp" id="dptoProsp" class="form-control form-remanso" required>
-
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Provincia: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="provinProsp" id="provinProsp" class="form-control form-remanso" required>
-
-                        </select>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Distrito: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="dttoProsp" id="dttoProsp" class="form-control form-remanso" required>
-
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Teléfono 1:</label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp" required>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Teléfono 2: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="telf2Prosp" id="telf2Prosp">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Correo:</label>
-                      </div>
-                      <div class="col-md-9 mb-3">
-                        <input type="text" class="form-control form-remanso" name="correoProsp" id="correoProsp"
-                          required>
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Canal de venta:</label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="canalProsp" id="canalProsp" class="form-control form-remanso">
-                        </select>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Calificación: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="califProsp" id="califProsp" class="form-control form-remanso">
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Importe:</label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="impProsp" id="impProsp">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Observaciones:</label>
-                      </div>
-                      <div class="col-md-9 mb-3">
-                        <textarea class="form-control form-remanso" name="obsvProsp" id="obsvProsp" rows="5"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <h4>2do Titular</h4>
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <br>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Tipo de Documento: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="tipoDoc2tit" id="tipoDoc2tit" class="form-control form-remanso">
-                        </select>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Núm. de Documento: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="numDoc2tit" id="numDoc2tit">
-                      </div>
-                    </div>
-                    <div id="cajaNombre2Tit">
-                      <div class="row">
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Nombres:</label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="nombre2Tit" id="nombre2Tit">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Apellido Paterno: </label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="apelP2tit" id="apelP2tit">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Apellido Materno: </label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="apelM2tit" id="apelM2tit">
-                        </div>
-                      </div>
-                    </div>
-                    <div id="cajaRazonSoc2Tit" style="display: none;">
-                      <div class="row">
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Razón social:</label>
-                        </div>
-                        <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="ruc2Tit" id="ruc2Tit">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Dirección:</label>
-                      </div>
-                      <div class="col-md-9 mb-3">
-                        <input type="text" class="form-control form-remanso" name="dir2Tit" id="dir2Tit">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">País: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="pais2Tit" id="pais2Tit" class="form-control form-remanso">
-
-                        </select>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Departamento: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="dpto2Tit" id="dpto2Tit" class="form-control form-remanso">
-
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Provincia: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="prov2Tit" id="prov2Tit" class="form-control form-remanso">
-
-                        </select>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Distrito: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <select name="dtto2Tit" id="dtto2Tit" class="form-control form-remanso">
-
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Teléfono 1:</label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="telf1_2Tit" id="telf1_2Tit">
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Teléfono 2: </label>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="telf2_2Tit" id="telf2_2Tit">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Correo:</label>
-                      </div>
-                      <div class="col-md-9 mb-3">
-                        <input type="text" class="form-control form-remanso" name="correo2Tit" id="correo2Tit">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <h4>Beneficiarios</h4>
-                  </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <br>
-                    <div class="row">
-                      <div class="col-md-3 offset-md-9">
-                        <div class="form-group form-remanso">
-                          <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
-                              data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;">Añadir
-                              Beneficiario</button></h5>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table table-striped" id="tablaBeneficiarios" style="width:100%">
-                        <thead style="background-color: #181C35; color: white;">
-                          <tr>
-                            <th style="text-align: center;" width="15%">Tipo Documento</th>
-                            <th style="text-align: center;" width="30%">Beneficiario</th>
-                            <th style="text-align: center;" width="15%">Fecha de nacimiento</th>
-                            <th style="text-align: center;" width="10%">Parentesco</th>
-                            <th style="text-align: center;" width="5%">Sexo</th>
-                            <th style="text-align: center;" width="10%">Edo Civil</th>
-                            <th style="text-align: center;" width="15%"></th>
-                          </tr>
-                        </thead>
-                        <tbody style="text-align: center;">
-                        </tbody>
-                      </table>
-                    </div>
-
-
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    <h4>Registro de Contactos</h4>
-                  </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <br>
-                    <div class="row">
-                      <div class="col-md-12">
+                      <div id="nombre">
                         <div class="row">
-                          <div class="col-md-3 offset-md-9">
-                            <div class="form-group form-remanso">
-                              <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
-                                  data-bs-target="#ModalRegistro" style="width: -webkit-fill-available;">Añadir
-                                  Contacto</button></h5>
+                          <div class="col-md-3 mb-3">
+                            <label for="inputText" class="col-form-label">Nombres:</label>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control form-remanso" required name="nombreProsp"
+                              id="nombreProsp" required>
+                            <div class="b invalid-feedback">
+                              El nombre no puede estar vacío.
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control form-remanso" required name="apellPProsp"
+                              id="apellPProsp" required>
+                            <div class="c invalid-feedback">
+                              El apellido no puede estar vacío.
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control form-remanso" name="apellMProsp" id="apellMProsp"
+                              required>
+                            <div class="d invalid-feedback">
+                              El apellido no puede estar vacío.
                             </div>
                           </div>
                         </div>
-                        <div class="table-responsive">
-                          <table class="table table-striped" id="example" style="width:100%">
-                            <thead style="background-color: #181C35; color: white;">
-                              <tr>
-                                <th style="text-align: center;" width="5%"></th>
-                                <th style="text-align: center;" width="15%">Fec. Contacto</th>
-                                <th style="text-align: center;" width="5%">Calificación</th>
-                                <th style="text-align: center;">Observaciones</th>
-                                <th style="text-align: center;" width="10%"></th>
-                              </tr>
-                            </thead>
-                            <tbody style="text-align: center;">
-                              <tr>
-                                <td>1</td>
-                                <td>05/03/2023</td>
-                                <td>A</td>
-                                <td style="text-align: left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                  Pellentesque eget nibh lectus. Vestibulum purus lectus, porttitor a suscipit in,
-                                  sodales ac sapien. Suspendisse fringilla vestibulum enim, eu tempus mi laoreet ac.
-                                </td>
-                                <td>
-                                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
-                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button>
-                                  @endif
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>15/03/2023</td>
-                                <td>A</td>
-                                <td style="text-align: left;">Phasellus molestie ultrices rhoncus. Vivamus at nisl
-                                  vehicula, condimentum erat in, dignissim orci.</td>
-                                <td>
-                                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
-                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button>
-                                  @endif
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>20/03/2023</td>
-                                <td>B</td>
-                                <td style="text-align: left;">Vivamus vulputate, magna a mattis bibendum, nisi tortor
-                                  blandit ipsum, vel varius ligula quam eu leo. Aenean vestibulum lorem sed eros
-                                  fermentum, sit amet dapibus sapien elementum.</td>
-                                <td>
-                                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
-                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button>
-                                  @endif
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                      </div>
+                      <div id="razonSoc" style="display: none;">
+                        <div class="row">
+                          <div class="col-md-3 mb-3">
+                            <label for="inputText" class="col-form-label">Razón social:</label>
+                          </div>
+                          <div class="col-md-9 mb-3">
+                            <input type="text" class="form-control form-remanso" name="rucProsp" id="rucProsp">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Dirección:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <input type="text" class="form-control form-remanso" required name="direccPros"
+                            id="direccPros" required>
+                          <div class="e invalid-feedback">
+                            La dirección no puede estar vacía.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">País: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="paisProspecto" id="paisProspecto" class="form-control form-remanso" required>
+
+                          </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Departamento: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="dptoProsp" id="dptoProsp" class="form-control form-remanso" required>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Provincia: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="provinProsp" id="provinProsp" class="form-control form-remanso" required>
+
+                          </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Distrito: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="dttoProsp" id="dttoProsp" class="form-control form-remanso" required>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Teléfono 1:</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp"  min="9" max="9" maxlength="9"
+                            required>
+                          <div class="f invalid-feedback">
+                            El telefono 1 no puede estar vacío.
+                          </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Teléfono 2: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" name="telf2Prosp" id="telf2Prosp">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Correo:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <input type="mail" class="form-control form-remanso" name="correoProsp" id="correoProsp"
+                            required>
+                          <div class="g invalid-feedback">
+                            El correo no puede estar vacío.
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Canal de venta:</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="canalProsp" id="canalProsp" class="form-control form-remanso" required>
+                          </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Calificación: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="califProsp" id="califProsp" class="form-control form-remanso" required>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Importe:</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" name="impProsp" id="impProsp" required>
+                          <div class="h invalid-feedback">
+                            El importe no puede estar vacío.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Observaciones:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <textarea class="form-control form-remanso" name="obsvProsp" id="obsvProsp"
+                            rows="5"></textarea>
+                          <div class="i invalid-feedback">
+                            Las observaciones no puede estar vacías.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <h4>2do Titular</h4>
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <br>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Tipo de Documento: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="tipoDoc2tit" id="tipoDoc2tit" class="form-control form-remanso">
+                          </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Núm. de Documento: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" name="numDoc2tit" id="numDoc2tit">
+                        </div>
+                      </div>
+                      <div id="cajaNombre2Tit">
+                        <div class="row">
+                          <div class="col-md-3 mb-3">
+                            <label for="inputText" class="col-form-label">Nombres:</label>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control form-remanso" name="nombre2Tit" id="nombre2Tit">
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control form-remanso" name="apelP2tit" id="apelP2tit">
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <input type="text" class="form-control form-remanso" name="apelM2tit" id="apelM2tit">
+                          </div>
+                        </div>
+                      </div>
+                      <div id="cajaRazonSoc2Tit" style="display: none;">
+                        <div class="row">
+                          <div class="col-md-3 mb-3">
+                            <label for="inputText" class="col-form-label">Razón social:</label>
+                          </div>
+                          <div class="col-md-9 mb-3">
+                            <input type="text" class="form-control form-remanso" name="ruc2Tit" id="ruc2Tit">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Dirección:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <input type="text" class="form-control form-remanso" name="dir2Tit" id="dir2Tit">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">País: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="pais2Tit" id="pais2Tit" class="form-control form-remanso">
+
+                          </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Departamento: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="dpto2Tit" id="dpto2Tit" class="form-control form-remanso">
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Provincia: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="prov2Tit" id="prov2Tit" class="form-control form-remanso">
+
+                          </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Distrito: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="dtto2Tit" id="dtto2Tit" class="form-control form-remanso">
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Teléfono 1:</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" name="telf1_2Tit" id="telf1_2Tit">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Teléfono 2: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" name="telf2_2Tit" id="telf2_2Tit">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Correo:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <input type="text" class="form-control form-remanso" name="correo2Tit" id="correo2Tit">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      <h4>Beneficiarios</h4>
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <br>
+                      <div class="row">
+                        <div class="col-md-3 offset-md-9">
+                          <div class="form-group form-remanso">
+                            <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
+                                data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;">Añadir
+                                Beneficiario</button></h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-striped" id="tablaBeneficiarios" style="width:100%">
+                          <thead style="background-color: #181C35; color: white;">
+                            <tr>
+                              <th style="text-align: center;" width="15%">Tipo Documento</th>
+                              <th style="text-align: center;" width="30%">Beneficiario</th>
+                              <th style="text-align: center;" width="15%">Fecha de nacimiento</th>
+                              <th style="text-align: center;" width="10%">Parentesco</th>
+                              <th style="text-align: center;" width="5%">Sexo</th>
+                              <th style="text-align: center;" width="10%">Edo Civil</th>
+                              <th style="text-align: center;" width="15%"></th>
+                            </tr>
+                          </thead>
+                          <tbody style="text-align: center;">
+                          </tbody>
+                        </table>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      <h4>Registro de Contactos</h4>
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <br>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-3 offset-md-9">
+                              <div class="form-group form-remanso">
+                                <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
+                                    data-bs-target="#ModalRegistro" style="width: -webkit-fill-available;">Añadir
+                                    Contacto</button></h5>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="table-responsive">
+                            <table class="table table-striped" id="example" style="width:100%">
+                              <thead style="background-color: #181C35; color: white;">
+                                <tr>
+                                  <th style="text-align: center;" width="5%"></th>
+                                  <th style="text-align: center;" width="15%">Fec. Contacto</th>
+                                  <th style="text-align: center;" width="5%">Calificación</th>
+                                  <th style="text-align: center;">Observaciones</th>
+                                  <th style="text-align: center;" width="10%"></th>
+                                </tr>
+                              </thead>
+                              <tbody style="text-align: center;">
+                                <tr>
+                                  <td>1</td>
+                                  <td>05/03/2023</td>
+                                  <td>A</td>
+                                  <td style="text-align: left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Pellentesque eget nibh lectus. Vestibulum purus lectus, porttitor a suscipit in,
+                                    sodales ac sapien. Suspendisse fringilla vestibulum enim, eu tempus mi laoreet ac.
+                                  </td>
+                                  <td>
+                                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
+                                    session('cod_usuario')==='ADMINISTRATOR')
+                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
+                                        class="bi bi-pencil"></span></button>
+                                    @endif
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td>15/03/2023</td>
+                                  <td>A</td>
+                                  <td style="text-align: left;">Phasellus molestie ultrices rhoncus. Vivamus at nisl
+                                    vehicula, condimentum erat in, dignissim orci.</td>
+                                  <td>
+                                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
+                                    session('cod_usuario')==='ADMINISTRATOR')
+                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
+                                        class="bi bi-pencil"></span></button>
+                                    @endif
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>20/03/2023</td>
+                                  <td>B</td>
+                                  <td style="text-align: left;">Vivamus vulputate, magna a mattis bibendum, nisi tortor
+                                    blandit ipsum, vel varius ligula quam eu leo. Aenean vestibulum lorem sed eros
+                                    fermentum, sit amet dapibus sapien elementum.</td>
+                                  <td>
+                                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
+                                    session('cod_usuario')==='ADMINISTRATOR')
+                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
+                                        class="bi bi-pencil"></span></button>
+                                    @endif
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-3 offset-md-4 mb-3">
-                <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnGuarda"
-                  style="width: -webkit-fill-available;">Guardar</a>
+              <br>
+              <div class="row">
+                <div class="col-md-3 offset-md-4 mb-3">
+                  <button class="btn btn-success form-remanso BtnverdeRemanso" id="btnGuarda"
+                    style="width: -webkit-fill-available;" type="submit">
+                    Guardar
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-  </main>
+    </main>
+  </form>
 
   <!-- -------------------Modal Beneficiarios------------------------------- -->
 
@@ -488,7 +531,8 @@
               <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="fchNacAddBenef" id="fchNacAddBenef">
+              <input type="text" class="form-control form-remanso" name="fchNacAddBenef" id="fchNacAddBenef"
+                placeholder="seleccione..">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Parentesco: </label>
@@ -568,9 +612,168 @@
 
 <script src="{{asset('js/registroProspecto.js')}}"></script>
 <script type="text/javascript">
+
+var form = document.getElementById("myForm");
+
+form.addEventListener("submit", function(event) {
+  // Detener el envío del formulario
+  event.preventDefault();
+  
+  // Realizar la pausa de 2 segundos
+  // setTimeout(function() {
+  //   // Continuar con el envío del formulario después de 2 segundos
+  //   form.submit();
+  // }, 2000);
+});
+
+
+  flatpickr("#fchNacAddBenef",{
+      locale:"es",
+    });
+
+    var emailInput = document.getElementById("correoProsp");
+
+      emailInput.addEventListener("input", function(event) {
+        var email = event.target.value;
+        
+        // Expresión regular para validar el formato de correo electrónico
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!emailRegex.test(email)) {
+          // El correo electrónico no cumple con el formato válido
+          emailInput.setCustomValidity("Ingrese un correo electrónico válido");
+        } else {
+          // El correo electrónico tiene un formato válido
+          emailInput.setCustomValidity("");
+        }
+      });
+
+    var numDocProsInput = document.getElementById("numDocPros");
+
+      numDocProsInput.addEventListener("input", function() {
+        var inputValue = numDocProsInput.value;
+      
+        // Eliminar caracteres no numéricos
+        inputValue = inputValue.replace(/\D/g, '');
+        
+        // Limitar la longitud del valor a 9 caracteres
+        if (inputValue.length > 9) {
+          inputValue = inputValue.slice(0, 9);
+        }
+        
+        // Actualizar el valor del campo
+        numDocProsInput.value = inputValue;
+      });
+    
+      var phoneInput = document.getElementById("telf1Prosp");
+
+      phoneInput.addEventListener("input", function(event) {
+        var phone = event.target.value;
+        
+        // Eliminar cualquier carácter que no sea un número
+        phone = phone.replace(/\D/g, '');
+        
+        if (phone.length !== 9) {
+          // El número de teléfono no tiene 9 dígitos
+          phoneInput.setCustomValidity("Ingrese un número de teléfono válido con 9 dígitos");
+        } else {
+          // El número de teléfono tiene 9 dígitos
+          phoneInput.setCustomValidity("");
+        }
+      });
+
   //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
+
+  var numDocInput = document.getElementById("numDocPros");
+  var numDocValue = numDocInput.value.trim();
+  var collapseOne = document.getElementById("collapseOne");
+  
+  var nombreProspInput = document.getElementById("nombreProsp");
+  var nombreProspValue = nombreProspInput.value.trim();
+
+  var apellPProspInput = document.getElementById("apellPProsp");
+  var apellPProspValue = apellPProspInput.value.trim();
+
+  var apellMProspInput = document.getElementById("apellMProsp");
+  var apellMProspValue = apellMProspInput.value.trim();
+
+  var direccProsInput = document.getElementById("direccPros");
+  var direccProsValue = direccProsInput.value.trim();
+
+  var telf1ProspInput = document.getElementById("telf1Prosp");
+  var telf1ProspValue = telf1ProspInput.value.trim();
+  
+  // Validación para el campo "Núm. de Documento"
+  var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
+  if (!numDocRegex.test(numDocValue)) {
+    var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");
+    collapseOne.classList.add("show");
+    numDocInput.focus();
+    invalidFeedbackNumDoc.style.display = "block";
+    return;
+  }
+  if (numDocRegex.test(numDocValue)){var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");invalidFeedbackNumDoc.style.display = "none";}
+  // Validación para el campo "nombreProsp"
+  if (nombreProspValue === "") {
+    var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
+    collapseOne.classList.add("show");
+    nombreProspInput.focus();
+    invalidFeedbackNombreProsp.style.display = "block";
+    return;
+  }
+  if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
+
+  // Validación para el campo "apellPProsp"
+  if (apellPProspValue === "") {
+    var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
+    collapseOne.classList.add("show");
+    apellPProspInput.focus();
+    invalidFeedbackapellPProsp.style.display = "block";
+    return;
+  }
+  if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
+
+  // Validación para el campo "apellMProsp"
+  if (apellMProspValue === "") {
+    var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
+    collapseOne.classList.add("show");
+    apellMProspInput.focus();
+    invalidFeedbackapellMProsp.style.display = "block";
+    return;
+  }
+  if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
+
+  // Validación para el campo "direccPros"
+  if (direccProsValue === "") {
+    var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
+    collapseOne.classList.add("show");
+    direccProsInput.focus();
+    invalidFeedbackdireccPros.style.display = "block";
+    return;
+  }
+  if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
+
+  // Validación para el campo "telf1Prosp"
+  if (telf1ProspValue === "") {
+    collapseTelf1Prosp.classList.add("show");
+    telf1ProspInput.focus();
+    invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+
+  // // Validación de longitud y formato
+  // if (telf1ProspValue.length !== 9 || !/^\d{9}$/.test(telf1ProspValue)) {
+  //   collapseTelf1Prosp.classList.add("show");
+  //   telf1ProspInput.focus();
+  //   invalidFeedbackTelf1Prosp.style.display = "block";
+  //   return;
+  // }
+  // if (telf1ProspValue.length === 9 || /^\d{9}$/.test(telf1ProspValue)){var invalidFeedbacktelf1Prosp = document.querySelector("#collapseOne .f.invalid-feedback");invalidFeedbacktelf1Prosp.style.display = "none";}
+
+
+
 
   var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
     flgJuridico = '';

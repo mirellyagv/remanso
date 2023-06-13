@@ -11,6 +11,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "bootstrap5-toggle": "^5.0.4"
+        "bootstrap5-toggle": "^5.0.4",
+        "flatpickr": "^4.6.13"
     }
 }
