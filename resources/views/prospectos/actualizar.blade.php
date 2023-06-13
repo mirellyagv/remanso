@@ -322,11 +322,11 @@
                             <th style="text-align: center;" width="15%">Fecha de nacimiento</th>
                             <th style="text-align: center;" width="10%">Parentesco</th>
                             <th style="text-align: center;" width="5%">Sexo</th>
-                            <th style="text-align: center;" width="10%">Edo Civil</th>
+                            <th style="text-align: center;" width="10%">Estado Civil</th>
                             <th style="text-align: center;" width="15%"></th>
                           </tr>
                         </thead>
-                        <tbody style="text-align: center;">
+                        <tbody style="text-align: center;" id="bodyListadoBen">
                         </tbody>
                       </table>
                     </div>
@@ -367,7 +367,7 @@
                                 <th style="text-align: center;" width="10%"></th>
                               </tr>
                             </thead>
-                            <tbody style="text-align: center;">
+                            <tbody style="text-align: center;"  id="bodyListadoCon">
                               <tr>
                                 <td>1</td>
                                 <td>05/03/2023</td>
@@ -566,7 +566,9 @@
 <script src="{{asset('js/registroProspecto.js')}}"></script>
 <script type="text/javascript">  
 
-$(document).ready(function () {
+
+
+window.onload= function () {
           var cod_prospecto=document.getElementById("numDocPros").value;
           $.ajax({
                     type : "GET",
@@ -575,9 +577,12 @@ $(document).ready(function () {
                     success: function(result) {
                         document.getElementById("rucProsp").value=result["response"]["dsc_razon_social"];
                         document.getElementById("apellPProsp").value=result["response"]["dsc_apellido_paterno"];
-                        document.getElementById("apellPProsp").value=result["response"]["dsc_apellido_paterno"];
+                        document.getElementById("apellMProsp").value=result["response"]["dsc_apellido_materno"];
                         document.getElementById("nombreProsp").value=result["response"]["dsc_nombre"];
-                        document.getElementById("tipoDocProsp").value=result["response"]["cod_tipo_documento"];
+                        //document.getElementById("tipoDocProsp").value=result["response"]["cod_tipo_documento"];
+                        var tipoDocPros=document.getElementById("tipoDocProsp") ;
+                        tipoDocPros.value=result["response"]["cod_tipo_documento"];
+
                         document.getElementById("numDocPros").value=result["response"]["dsc_documento"];
                         document.getElementById("paisProspecto").value=result["response"]["cod_pais"];
                         document.getElementById("dptoProsp").value=result["response"]["cod_departamento"];
@@ -586,7 +591,8 @@ $(document).ready(function () {
                         document.getElementById("direccPros").value=result["response"]["dsc_direccion"];
                         document.getElementById("telf1Prosp").value=result["response"]["dsc_telefono_1"];
                         document.getElementById("telf2Prosp").value=result["response"]["dsc_telefono_2"];
-                        document.getElementById("canalProsp").value=result["response"]["cod_origen"];
+                        var canalProsp=document.getElementById("canalProsp") ;
+                        canalProsp.value=result["response"]["cod_origen"];
                         document.getElementById("califProsp").value=result["response"]["cod_calificacion"];
                         document.getElementById("obsvProsp").value=result["response"]["dsc_observaciones"];
                         document.getElementById("impProsp").value=result["response"]["imp_monto"];
@@ -607,8 +613,63 @@ $(document).ready(function () {
                        
                         console.log(result);
                         }
+
+
+                        
           });
-})
+
+          
+          $.ajax({
+                      
+                      type: "GET",
+                      url: 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoBeneficiario/20396900719/LC001/'+cod_prospecto, 
+                      dataType: 'json',
+                      success: function(result){
+                              var fila='';
+                              result['response'].forEach(function(word){
+                                fila += '<tr>'+
+                                '<td>'+word['dsc_tipo_documento']+'</td>'+
+                                '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
+                                '<td>'+word['fch_nacimiento']+'</td>'+
+                                '<td>'+word['dsc_parentesco']+'</td>'+
+                                '<td>'+word['dsc_sexo']+'</td>'+
+                                '<td>'+word['dsc_estado_civil']+'</td>'+
+                              '</tr>';
+                          });
+                          $('#bodyListadoBen').html(fila);
+                  
+                      }
+
+      });
+
+
+
+      $.ajax({
+                      
+                      type: "GET",
+                      url: 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoContacto/20396900719/LC001/PVT0000001'+cod_prospecto, 
+                      dataType: 'json',
+                      success: function(result){
+                              var fila='';
+                              var item=1;
+                              result['response'].forEach(function(word){
+                                fila += '<tr>'+
+                                '<td>'+item+'</td>'+
+                                '<td>'+word['fch_contacto']+'</td>'+
+                                '<td>'+word['dsc_calificacion']+'</td>'+
+                                '<td>'+word['dsc_observaciones']+'</td>'+
+                              '</tr>';
+                              item=item+1;
+                          });
+                          $('#bodyListadoCon').html(fila);
+                  
+                      }
+
+      });
+         
+}
+
+     
 //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
