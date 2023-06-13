@@ -11,12 +11,12 @@
             <div class="accordion accordion-flush" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTitular"
+                    aria-expanded="true" aria-controls="collapseTitular">
                     <h4>Datos del Titular</h4>
                   </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div id="collapseTitular" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <br>
                     <div class="row">
@@ -24,7 +24,7 @@
                         <label for="inputText" class="col-form-label">Tipo de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" id="tipoDoc" disabled class="form-control form-remanso">
+                        <select name="tipoDoc" id="tipoDoc" disabled class="form-select form-remanso">
                           <option value="0">DNI</option>
                           <option value="1">RUC</option>
                           <option value="2">Pasaporte</option>
@@ -88,7 +88,7 @@
                         <label for="inputText" class="col-form-label">País: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" id="tipoDoc" disabled class="form-control form-remanso">
+                        <select name="tipoDoc" id="tipoDoc" disabled class="form-select form-remanso">
                           <option value="0">Perú</option>
                           <option value="1">Polonia</option>
                           <option value="2">Portugal</option>
@@ -99,7 +99,7 @@
                         <label for="inputText" class="col-form-label">Departamento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" id="tipoDoc" disabled class="form-control form-remanso">
+                        <select name="tipoDoc" id="tipoDoc" disabled class="form-select form-remanso">
                           <option value="0">La Libertad</option>
                           <option value="1">Lambayeque</option>
                           <option value="2">Lima</option>
@@ -113,7 +113,7 @@
                         <label for="inputText" class="col-form-label">Provincia: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" id="tipoDoc" disabled class="form-control form-remanso">
+                        <select name="tipoDoc" id="tipoDoc" disabled class="form-select form-remanso">
                           <option value="0">Trujillo</option>
                           <option value="1">Viru</option>
                         </select>
@@ -122,7 +122,7 @@
                         <label for="inputText" class="col-form-label">Distrito: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" id="tipoDoc" disabled class="form-control form-remanso">
+                        <select name="tipoDoc" id="tipoDoc" disabled class="form-select form-remanso">
                           <option value="0">El Porvenir</option>
                           <option value="1">Florencia de Mora</option>
                           <option value="2">Huanchaco</option>
@@ -157,14 +157,15 @@
                   </div>
                 </div>
               </div>
+
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    data-bs-target="#collapse2do" aria-expanded="false" aria-controls="collapse2do">
                     <h4>2do Titular</h4>
                   </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="collapse2do" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <br>
                     <div class="row">
@@ -172,7 +173,7 @@
                         <label for="inputText" class="col-form-label">Tipo de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc1" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc1" class="form-select form-remanso">
                           <option value="0">DNI</option>
                           <option value="1">RUC</option>
                           <option value="2">Pasaporte</option>
@@ -231,7 +232,7 @@
                         <label for="inputText" class="col-form-label">País: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc" class="form-select form-remanso">
                           <option value="0">Perú</option>
                           <option value="1">Polonia</option>
                           <option value="2">Portugal</option>
@@ -242,7 +243,7 @@
                         <label for="inputText" class="col-form-label">Departamento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc" class="form-select form-remanso">
                           <option value="0">La Libertad</option>
                           <option value="1">Lambayeque</option>
                           <option value="2">Lima</option>
@@ -256,7 +257,7 @@
                         <label for="inputText" class="col-form-label">Provincia: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc" class="form-select form-remanso">
                           <option value="0">Trujillo</option>
                           <option value="1">Viru</option>
                         </select>
@@ -265,7 +266,7 @@
                         <label for="inputText" class="col-form-label">Distrito: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">El Porvenir</option>
                           <option value="1">Florencia de Mora</option>
@@ -300,14 +301,15 @@
                   </div>
                 </div>
               </div>
+
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    data-bs-target="#collapseAval" aria-expanded="false" aria-controls="collapseAval">
                     <h4>Aval</h4>
                   </button>
                 </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="collapseAval" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <br>
                     <div class="row">
@@ -315,7 +317,7 @@
                         <label for="inputText" class="col-form-label">Tipo de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc1" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc1" class="form-select form-remanso">
                           <option value="0">DNI</option>
                           <option value="1">RUC</option>
                           <option value="2">Pasaporte</option>
@@ -374,7 +376,7 @@
                         <label for="inputText" class="col-form-label">País: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc" class="form-select form-remanso">
                           <option value="0">Perú</option>
                           <option value="1">Polonia</option>
                           <option value="2">Portugal</option>
@@ -385,7 +387,7 @@
                         <label for="inputText" class="col-form-label">Departamento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc" class="form-select form-remanso">
                           <option value="0">La Libertad</option>
                           <option value="1">Lambayeque</option>
                           <option value="2">Lima</option>
@@ -399,7 +401,7 @@
                         <label for="inputText" class="col-form-label">Provincia: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc" class="form-select form-remanso">
                           <option value="0">Trujillo</option>
                           <option value="1">Viru</option>
                         </select>
@@ -408,7 +410,7 @@
                         <label for="inputText" class="col-form-label">Distrito: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <select name="tipoDoc" disabled id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc" disabled id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">El Porvenir</option>
                           <option value="1">Florencia de Mora</option>
@@ -443,14 +445,15 @@
                   </div>
                 </div>
               </div>
+
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    data-bs-target="#collapseBeneficiario" aria-expanded="false" aria-controls="collapseBeneficiario">
                     <h4>Beneficiarios</h4>
                   </button>
                 </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="collapseBeneficiario" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <br>
                     <div class="row">
@@ -504,27 +507,65 @@
                         </tbody>
                       </table>
                     </div>
-
-
                   </div>
                 </div>
               </div>
+
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                    <h4>Espacio</h4>
+                    data-bs-target="#collapseServicios" aria-expanded="false" aria-controls="collapseServicios">
+                    <h4>Registro de Servicios</h4>
                   </button>
                 </h2>
-                <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="collapseServicios" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
+                    <br>
+                    <div class="row">
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Tipo programa: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
+                          <option value="0"></option>
+                          <option value="0">El Remanso</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Tipo Servicio: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
+                          <option value="0"></option>
+                          <option value="0">El Porvenir</option>
+                          <option value="1">Florencia de Mora</option>
+                          <option value="2">Huanchaco</option>
+                          <option value="3">La Esperanza</option>
+                          <option value="3">Laredo</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Subtipo: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
+                          <option value="0"></option>
+                          <option value="0">El Porvenir</option>
+                          <option value="1">Florencia de Mora</option>
+                          <option value="2">Huanchaco</option>
+                          <option value="3">La Esperanza</option>
+                          <option value="3">Laredo</option>
+                        </select>
+                      </div>
+                    </div>
+                    <hr>
                     <br>
                     <div class="row">
                       <div class="col-md-2 mb-3">
                         <label for="inputText" class="col-form-label">Camposanto: </label>
                       </div>
                       <div class="col-md-2 mb-3">
-                        <select name="tipoDoc"  id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">El Remanso</option>
                         </select>
@@ -533,7 +574,7 @@
                         <label for="inputText" class="col-form-label">Tipo Plataforma: </label>
                       </div>
                       <div class="col-md-2 mb-3">
-                        <select name="tipoDoc"  id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">El Porvenir</option>
                           <option value="1">Florencia de Mora</option>
@@ -546,7 +587,7 @@
                         <label for="inputText" class="col-form-label">Plataforma: </label>
                       </div>
                       <div class="col-md-2 mb-3">
-                        <select name="tipoDoc"  id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">El Porvenir</option>
                           <option value="1">Florencia de Mora</option>
@@ -559,7 +600,7 @@
                         <label for="inputText" class="col-form-label">Área: </label>
                       </div>
                       <div class="col-md-2 mb-3">
-                        <select name="tipoDoc"  id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">El Porvenir</option>
                           <option value="1">Florencia de Mora</option>
@@ -572,7 +613,7 @@
                         <label for="inputText" class="col-form-label">Eje Horiz.: </label>
                       </div>
                       <div class="col-md-1 mb-3">
-                        <select name="tipoDoc"  id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">A</option>
                           <option value="1">B</option>
@@ -585,7 +626,7 @@
                         <label for="inputText" class="col-form-label">Eje Vert.: </label>
                       </div>
                       <div class="col-md-1 mb-3">
-                        <select name="tipoDoc"  id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">1</option>
                           <option value="1">2</option>
@@ -598,7 +639,7 @@
                         <label for="inputText" class="col-form-label">Espacio: </label>
                       </div>
                       <div class="col-md-2 mb-3">
-                        <select name="tipoDoc"  id="tipoDoc" class="form-control form-remanso">
+                        <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
                           <option value="0"></option>
                           <option value="0">El Porvenir</option>
                           <option value="1">Florencia de Mora</option>
@@ -620,24 +661,36 @@
                         <input type="text" disabled class="form-control form-remanso" value="IV" name="numDoc" id="numDoc">
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    <h4>Registro de Servicios</h4>
-                  </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
+                    <hr>
                     <br>
+                    <div class="row">
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Contrato (Base): </label>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Programa: </label>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-md-3 offset-md-9">
+                        <div class="form-group form-remanso">
+                          <h5><button class="btn btn-primary BtnverdeRemanso form-remanso" data-bs-toggle="modal"
+                            data-bs-target="#ModalServicio" style="width: -webkit-fill-available;">Añadir servicio</button></h5>
+                        </div>
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="table-responsive">
                           <table class="table table-striped" id="example" style="width:100%">
-                            <thead style="background-color: #35B44A; color: white;">
+                            <thead style="background-color: #181C35;; color: white;">
                               <tr>
                                 <th style="text-align: center;" width="5%"></th>
                                 <th style="text-align: center;" width="45%">Servicio</th>
@@ -645,10 +698,7 @@
                                 <th style="text-align: center;" width="5%">Precio Venta</th>
                                 <th style="text-align: center;" width="5%">Descuento</th>
                                 <th style="text-align: center;" width="5%">Precio Final</th>
-                                <th style="text-align: center;" width="10%">
-                                  <button class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-toggle="modal"
-                                    data-bs-target="#ModalServicio" style="width: -webkit-fill-available;">Añadir </button>
-                                </th>
+                                <th style="text-align: center;" width="10%"></th>
                               </tr>
                             </thead>
                             <tbody style="text-align: center;">
@@ -662,6 +712,88 @@
                             </tbody>
                           </table>
                         </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Precio Total: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Saldo: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">CUOI: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">FOMA: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Cotas servicio: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <label for="inputText" class="col-form-label">Fch. 1er vencimiento: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseDocumentos" aria-expanded="false" aria-controls="collapseDocumentos">
+                    <h4>Documentos</h4>
+                  </button>
+                </h2>
+                <div id="collapseDocumentos" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <br>
+                    <div class="row">
+                      <div class="col-md-1 mb-3">
+                        <label for="inputText" class="col-form-label">DNI: </label>
+                      </div>
+                      <div class="col-md-5 mb-3">
+                        <div class="custom-file">
+                          <input class="form-control form-remanso form-control-sm" id="dniFile" type="file" multiple>
+                        </div>
+                      </div>
+                      <div class="col-md-1 mb-3">
+                        <label for="inputText" class="col-form-label">Adicional: </label>
+                      </div>
+                      <div class="col-md-5 mb-3">
+                        <input class="form-control form-remanso form-control-sm" id="adicionalFile" type="file" multiple>
                       </div>
                     </div>
                   </div>
@@ -698,7 +830,7 @@
               <label for="inputText" class="col-form-label">Tipo de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="tipoDoc" id="" class="form-control form-remanso">
+              <select name="tipoDoc" id="" class="form-select form-remanso">
                 <option value="0">DNI</option>
                 <option value="2">Pasaporte</option>
                 <option value="3">Carnet de extranjería</option>
