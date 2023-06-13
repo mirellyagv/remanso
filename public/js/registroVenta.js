@@ -331,5 +331,28 @@ $( document ).ready(function() {
             }//error
         });
     });
+
+    //-----------------muestra select tipo plataforma-----------
+    var codcampo = document.getElementById("camposanto");
+    codcampo.addEventListener("change",function(){
+        codCamposanto = document.getElementById("camposanto").value;
+        $.ajax({
+            url: '../lista/MuestraTipoPlataforma', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'cod_camposanto': codCamposanto},
+            success: function(respuesta){
+                $("#tipoPlat").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#tipoPlat").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
     
   

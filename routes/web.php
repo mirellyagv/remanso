@@ -51,3 +51,4 @@ Route::get('lista/MuestraParentesco', [ListaController::class, 'MuestraParentesc
 Route::get('lista/MuestraSexo', [ListaController::class, 'MuestraSexo'])->name('lista.MuestraSexo');
 Route::get('lista/MuestraEdoCivil', [ListaController::class, 'MuestraEdoCivil'])->name('lista.MuestraEdoCivil');
 Route::get('lista/MuestraCamposanto', [ListaController::class, 'MuestraCamposanto'])->name('lista.MuestraCamposanto');
+Route::get('lista/MuestraTipoPlataforma', [ListaController::class, 'MuestraTipoPlataforma'])->name('lista.MuestraTipoPlataforma');
