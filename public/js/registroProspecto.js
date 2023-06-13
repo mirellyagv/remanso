@@ -440,41 +440,34 @@ function eliminarFila(index) {
 }
 
 //-----------------Añade Contacto--------------------
-
-var filasArray = []; // Array para almacenar las filas
-
+var codCalif = '';
+var obsvContacto = '';
 var addContacto = document.getElementById("btnAddContacto");
 addContacto.addEventListener("click",function (){
   
-  var codCalif = document.getElementById("califAddContacto").value;
+  codCalif = document.getElementById("califAddContacto").value;
   var calificacion = document.getElementById("califAddContacto");
-  var dscCalif = calificacion.options[doc.selectedIndex].text;
-  var obsvContacto = document.getElementById("obsvAddContacto").value;
+  var dscCalif = calificacion.options[calificacion.selectedIndex].text;
+  obsvContacto = document.getElementById("obsvAddContacto").value;
+  var today = new Date();
+  // obtener la fecha de hoy en formato `MM/DD/YYYY`
+  var dia = today.toLocaleDateString('en-US');
 
-    var tabla = document.getElementById('tablaBeneficiarios');
+    var tabla = document.getElementById('tablaObsv');
     var tbody = tabla.getElementsByTagName('tbody')[0];
     
-    var nuevaFila = tbody.insertRow();
+    var nuevaFilaO = tbody.insertRow();
+
+    var fechaCelda = nuevaFilaO.insertCell();
+    fechaCelda.textContent = dia;
     
-    var dniCelda = nuevaFila.insertCell();
-    dniCelda.textContent = tipoDoc+'-'+dscDoc;
-    
-    var nombreCelda = nuevaFila.insertCell();
-    nombreCelda.textContent = nombre+' '+apellP+' '+apellM;
+    var califCelda = nuevaFilaO.insertCell();
+    califCelda.textContent = dscCalif;
 
-    var fchNacCelda = nuevaFila.insertCell();
-    fchNacCelda.textContent = fechNac;
+    var califCelda = nuevaFilaO.insertCell();
+    califCelda.textContent = obsvContacto;
 
-    var parentescoCelda = nuevaFila.insertCell();
-    parentescoCelda.textContent = parentesco;
-
-    var sexoCelda = nuevaFila.insertCell();
-    sexoCelda.textContent = sexo;
-
-    var edoCivilCelda = nuevaFila.insertCell();
-    edoCivilCelda.textContent = edoCivil;
-
-    var accionesCelda = nuevaFila.insertCell();
+    var accionesCelda = nuevaFilaO.insertCell();
     
     var accionesDiv = document.createElement('div'); // Contenedor para los botones
     accionesDiv.classList.add('acciones'); // Clase CSS opcional para estilizar el contenedor
@@ -484,16 +477,9 @@ addContacto.addEventListener("click",function (){
     editarBoton.classList.add('btn-success');
     editarBoton.classList.add('BtnverdeRemanso');
     editarBoton.innerHTML  = '<span class="bi bi-pencil"></span>';
-    editarBoton.id = 'botonEditar' + nuevaFila.rowIndex;
-    
-    var eliminarBoton = document.createElement('button');
-    eliminarBoton.classList.add('btn');
-    eliminarBoton.classList.add('btn-danger');
-    eliminarBoton.innerHTML  = '<span class="bi bi-x-lg"></span>';
-    eliminarBoton.id = 'botonEliminar' + nuevaFila.rowIndex;
+    editarBoton.id = 'botonEditarO' + nuevaFilaO.rowIndex;
     
     accionesDiv.appendChild(editarBoton);
-    accionesDiv.appendChild(eliminarBoton);
     
     accionesCelda.appendChild(accionesDiv);
 
@@ -501,33 +487,6 @@ addContacto.addEventListener("click",function (){
       var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
       editarFila(filaIndex);
     });
-    
-    eliminarBoton.addEventListener('click', function() {
-      var filaIndex = this.id.replace('botonEliminar', ''); // Obtiene el índice de la fila desde el ID del botón
-      eliminarFila(filaIndex);
-    });
-
-    var today = new Date();
-    // obtener la fecha de hoy en formato `MM/DD/YYYY`
-    var dia = today.toLocaleDateString('en-US');
-
-    var filaData = {
-      cod_localidad_p: 'LC001',
-      cod_prospecto: 'PVT0034978',
-      num_linea: '0',
-      cod_tipo_documento: codtipoDoc,
-      dsc_documento: dscDoc,
-      dsc_apellido_paterno: apellP,
-      dsc_apellido_materno: apellM,
-      dsc_nombres: nombre,
-      fch_nacimiento: '2023-02-01',
-      cod_estado_civil: codEdoCivil,
-      cod_sexo: sexo,
-      cod_parentesco: codParentesco
-    };
-    
-    filasArray.push(filaData); // Agregar la fila al array
-    console.log(filasArray);
 
 });
 

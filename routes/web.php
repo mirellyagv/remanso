@@ -39,6 +39,7 @@ Route::get('api/logueo', [APIController::class, 'logueo'])->name('api.logueo');
 Route::put('api/guardaProspecto', [APIController::class, 'guardaProspecto'])->name('api.guardaProspecto');
 Route::put('api/guardaBeneficiario', [APIController::class, 'guardaBeneficiario'])->name('api.guardaBeneficiario');
 Route::get('lista/ListaProspectos', [ListaController::class, 'ListaProspectos'])->name('api.ListaProspectos');
+Route::put('api/guardaObservacion', [APIController::class, 'guardaObservacion'])->name('api.guardaObservacion');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');

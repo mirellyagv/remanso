@@ -25,7 +25,7 @@
                           <label for="inputText" class="col-form-label" required>Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="tipoDocProsp" id="tipoDocProsp" required class="form-control form-remanso"
+                          <select name="tipoDocProsp" id="tipoDocProsp" required class="form-select form-remanso"
                             required>
                           </select>
                         </div>
@@ -101,7 +101,7 @@
                           <label for="inputText" class="col-form-label">País: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="paisProspecto" id="paisProspecto" class="form-control form-remanso" required>
+                          <select name="paisProspecto" id="paisProspecto" class="form-select form-remanso" required>
 
                           </select>
                         </div>
@@ -109,7 +109,7 @@
                           <label for="inputText" class="col-form-label">Departamento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="dptoProsp" id="dptoProsp" class="form-control form-remanso" required>
+                          <select name="dptoProsp" id="dptoProsp" class="form-select form-remanso" required>
 
                           </select>
                         </div>
@@ -119,7 +119,7 @@
                           <label for="inputText" class="col-form-label">Provincia: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="provinProsp" id="provinProsp" class="form-control form-remanso" required>
+                          <select name="provinProsp" id="provinProsp" class="form-select form-remanso" required>
 
                           </select>
                         </div>
@@ -127,7 +127,7 @@
                           <label for="inputText" class="col-form-label">Distrito: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="dttoProsp" id="dttoProsp" class="form-control form-remanso" required>
+                          <select name="dttoProsp" id="dttoProsp" class="form-select form-remanso" required>
 
                           </select>
                         </div>
@@ -168,14 +168,14 @@
                           <label for="inputText" class="col-form-label">Canal de venta:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="canalProsp" id="canalProsp" class="form-control form-remanso" required>
+                          <select name="canalProsp" id="canalProsp" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Calificación: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="califProsp" id="califProsp" class="form-control form-remanso" required>
+                          <select name="califProsp" id="califProsp" class="form-select form-remanso" required>
                           </select>
                         </div>
                       </div>
@@ -220,7 +220,7 @@
                           <label for="inputText" class="col-form-label">Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="tipoDoc2tit" id="tipoDoc2tit" class="form-control form-remanso">
+                          <select name="tipoDoc2tit" id="tipoDoc2tit" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
@@ -275,7 +275,7 @@
                           <label for="inputText" class="col-form-label">País: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="pais2Tit" id="pais2Tit" class="form-control form-remanso">
+                          <select name="pais2Tit" id="pais2Tit" class="form-select form-remanso">
 
                           </select>
                         </div>
@@ -283,7 +283,7 @@
                           <label for="inputText" class="col-form-label">Departamento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="dpto2Tit" id="dpto2Tit" class="form-control form-remanso">
+                          <select name="dpto2Tit" id="dpto2Tit" class="form-select form-remanso">
 
                           </select>
                         </div>
@@ -293,7 +293,7 @@
                           <label for="inputText" class="col-form-label">Provincia: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="prov2Tit" id="prov2Tit" class="form-control form-remanso">
+                          <select name="prov2Tit" id="prov2Tit" class="form-select form-remanso">
 
                           </select>
                         </div>
@@ -301,7 +301,7 @@
                           <label for="inputText" class="col-form-label">Distrito: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="dtto2Tit" id="dtto2Tit" class="form-control form-remanso">
+                          <select name="dtto2Tit" id="dtto2Tit" class="form-select form-remanso">
 
                           </select>
                         </div>
@@ -394,62 +394,16 @@
                             </div>
                           </div>
                           <div class="table-responsive">
-                            <table class="table table-striped" id="example" style="width:100%">
+                            <table class="table table-striped" id="tablaObsv" style="width:100%">
                               <thead style="background-color: #181C35; color: white;">
                                 <tr>
-                                  <th style="text-align: center;" width="5%"></th>
                                   <th style="text-align: center;" width="15%">Fec. Contacto</th>
-                                  <th style="text-align: center;" width="5%">Calificación</th>
+                                  <th style="text-align: center;" width="15%">Calificación</th>
                                   <th style="text-align: center;">Observaciones</th>
                                   <th style="text-align: center;" width="10%"></th>
                                 </tr>
                               </thead>
                               <tbody style="text-align: center;">
-                                <tr>
-                                  <td>1</td>
-                                  <td>05/03/2023</td>
-                                  <td>A</td>
-                                  <td style="text-align: left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Pellentesque eget nibh lectus. Vestibulum purus lectus, porttitor a suscipit in,
-                                    sodales ac sapien. Suspendisse fringilla vestibulum enim, eu tempus mi laoreet ac.
-                                  </td>
-                                  <td>
-                                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
-                                    session('cod_usuario')==='ADMINISTRATOR')
-                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                        class="bi bi-pencil"></span></button>
-                                    @endif
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>15/03/2023</td>
-                                  <td>A</td>
-                                  <td style="text-align: left;">Phasellus molestie ultrices rhoncus. Vivamus at nisl
-                                    vehicula, condimentum erat in, dignissim orci.</td>
-                                  <td>
-                                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
-                                    session('cod_usuario')==='ADMINISTRATOR')
-                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                        class="bi bi-pencil"></span></button>
-                                    @endif
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>20/03/2023</td>
-                                  <td>B</td>
-                                  <td style="text-align: left;">Vivamus vulputate, magna a mattis bibendum, nisi tortor
-                                    blandit ipsum, vel varius ligula quam eu leo. Aenean vestibulum lorem sed eros
-                                    fermentum, sit amet dapibus sapien elementum.</td>
-                                  <td>
-                                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
-                                    session('cod_usuario')==='ADMINISTRATOR')
-                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                        class="bi bi-pencil"></span></button>
-                                    @endif
-                                  </td>
-                                </tr>
                               </tbody>
                             </table>
                           </div>
@@ -492,7 +446,7 @@
               <label for="inputText" class="col-form-label">Tipo de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="tipoDocAddBenef" id="tipoDocAddBenef" class="form-control form-remanso">
+              <select name="tipoDocAddBenef" id="tipoDocAddBenef" class="form-select form-remanso">
                 <option value="" selected="" disabled="">SELECCIONE...</option>
                 <option value="DI002">C.E</option>
                 <option value="DI001">DNI</option>
@@ -538,21 +492,21 @@
               <label for="inputText" class="col-form-label">Parentesco: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="parentescoAddBenef" id="parentescoAddBenef" class="form-control form-remanso">
+              <select name="parentescoAddBenef" id="parentescoAddBenef" class="form-select form-remanso">
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Sexo: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="sexoAddBenef" id="sexoAddBenef" class="form-control form-remanso">
+              <select name="sexoAddBenef" id="sexoAddBenef" class="form-select form-remanso">
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Estado Civil: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="edoCivilAddBenef" id="edoCivilAddBenef" class="form-control form-remanso">
+              <select name="edoCivilAddBenef" id="edoCivilAddBenef" class="form-select form-remanso">
               </select>
             </div>
           </div>
@@ -587,7 +541,7 @@
               <label for="inputText" class="col-form-label">Calificación: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="califAddContacto" id="califAddContacto" class="form-control form-remanso">
+              <select name="califAddContacto" id="califAddContacto" class="form-select form-remanso">
               </select>
             </div>
           </div>
@@ -811,7 +765,7 @@ boton.addEventListener("click",function(){
     'cod_calificacion': document.getElementById("califProsp").value,
     'dsc_observaciones':  document.getElementById("obsvProsp").value,
     'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
-    'cod_consejero':'TRA00426',
+    'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
     'cod_grupo': 'GV007',
     'cod_supervisor': 'TRA00297',
     'cod_jefeventas': 'TRA00058',
@@ -875,8 +829,21 @@ boton.addEventListener("click",function(){
             dataType: 'json',
             data:{'beneficiarios':filasArray},
             success: function(respuesta){
-                console.log(respuesta);
-                
+                console.log(respuesta);   
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+
+        $.ajax({
+            url: '../api/guardaObservacion', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'cod_prospecto':'PVT0034978','cod_calificacion': codCalif,'dsc_observacion':obsvContacto},
+            success: function(respuesta){
+                console.log(respuesta);   
             },//success
             error(e){
                 console.log(e.message);
