@@ -675,6 +675,13 @@
                   <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="registrarVenta" style="width: -webkit-fill-available;">Guardar</a>
                 </div>
               </div>
+              <br>
+              <div class="row">
+                <div class="col-md-3 offset-md-4 mb-3">
+                  <a href="" class="btn btn-success form-remanso BtnverdeRemanso"
+                    style="width: -webkit-fill-available;">Guardar</a>
+                </div>
+              </div>
             </div>
           </form>
         </div>
