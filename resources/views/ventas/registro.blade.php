@@ -10,13 +10,11 @@
           <form action="#" id="formRegVenta" method="post">
             <div class="card ">
               <div class="row">
-                <div class="col-md-3 offset-md-9">
+                <div class="col-1 col-md-1 offset-9 offset-md-11">
                   <div class="form-group form-remanso">
                     <h5>
-                      <div class="form-check form-switch">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">NI</label>
-                        <input class="form-check-input bg-success border border-success " type="checkbox" id="flexSwitchCheckDefault" checked>
-                      </div>
+                      <input type="checkbox" data-toggle="toggle" id="tipoNec" data-onlabel="NI" data-offlabel = "NF" data-onstyle ="success" checked>
+                      
                     </h5>
                   </div>
                 </div>
@@ -680,7 +678,10 @@
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Contrato (Base): </label>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                        </div>
+                        <div class="col-md-1 mb-1">
                           <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
                         </div>
                         <div class="col-md-2 mb-3">
@@ -746,13 +747,27 @@
                           <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                          <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
+                            <option value="0"></option>
+                            <option value="0">1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                            <option value="3">5</option>
+                          </select>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                          <select name="tipoDoc"  id="tipoDoc" class="form-select form-remanso">
+                            <option value="0"></option>
+                            <option value="0">1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                            <option value="3">5</option>
+                          </select>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">CUOI: </label>
@@ -987,4 +1002,12 @@
         }
         
     });
+    var boton = document.getElementById("tipoNec");
+    boton.addEventListener("change",function(){
+      console.log(this.checked);
+      if(this.checked == true){
+        document.getElementById("formRegVenta").reset();
+      }
+    });
+
 </script>

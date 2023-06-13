@@ -379,10 +379,7 @@
                                   Pellentesque eget nibh lectus. Vestibulum purus lectus, porttitor a suscipit in,
                                   sodales ac sapien. Suspendisse fringilla vestibulum enim, eu tempus mi laoreet ac.
                                 </td>
-                                <td><button class="btn btn-danger " id="buscarDoc"><span
-                                      class="bi bi-x-lg"></span></button> <button
-                                    class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                      class="bi bi-pencil"></span></button></td>
+                                <td></button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button></td>
                               </tr>
                               <tr>
                                 <td>2</td>
@@ -390,10 +387,7 @@
                                 <td>A</td>
                                 <td style="text-align: left;">Phasellus molestie ultrices rhoncus. Vivamus at nisl
                                   vehicula, condimentum erat in, dignissim orci.</td>
-                                <td><button class="btn btn-danger " id="buscarDoc"><span
-                                      class="bi bi-x-lg"></span></button> <button
-                                    class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                      class="bi bi-pencil"></span></button></td>
+                                <td><button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button></td>
                               </tr>
                               <tr>
                                 <td>3</td>
@@ -402,10 +396,7 @@
                                 <td style="text-align: left;">Vivamus vulputate, magna a mattis bibendum, nisi tortor
                                   blandit ipsum, vel varius ligula quam eu leo. Aenean vestibulum lorem sed eros
                                   fermentum, sit amet dapibus sapien elementum.</td>
-                                <td><button class="btn btn-danger " id="buscarDoc"><span
-                                      class="bi bi-x-lg"></span></button> <button
-                                    class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                      class="bi bi-pencil"></span></button></td>
+                                <td><button class="btn btn-success BtnverdeRemanso" id="buscarDoc"><span class="bi bi-pencil"></span></button></td>
                               </tr>
                             </tbody>
                           </table>
@@ -418,13 +409,9 @@
             </div>
             <br>
             <div class="row">
-              <div class="col-md-3 offset-md-2 mb-3">
+              <div class="col-md-3 offset-md-4 mb-3">
                 <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnGuarda"
                   style="width: -webkit-fill-available;">Guardar</a>
-              </div>
-              <div class="col-md-3 mb-3">
-                <a href="registroVenta.php" class="btn btn-primary form-remanso BtnAzulORemanso"
-                  style="width: -webkit-fill-available;">Guardar y Registrar venta</a>
               </div>
             </div>
           </div>
