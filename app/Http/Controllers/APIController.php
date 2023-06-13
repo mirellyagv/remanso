@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Client\Request as HttpClientRequest;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
+
 class APIController extends Controller
 {
     public function logueo(Request $request)
@@ -22,6 +23,7 @@ class APIController extends Controller
         try {
 
             $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Logueo/LogueoUsuario/20396900719/' . $cod_usuario . '/' . $dsc_clave);
+            // return $request;
             $promise = $client->sendAsync($request)->then(function ($response) {
                 // echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -36,6 +38,10 @@ class APIController extends Controller
                     session(['cod_usuario' => $responseData['response']['cod_usuario']]);
                     session(['dsc_usuario' => $responseData['response']['dsc_usuario']]);
                     session(['cod_trabajador' => $responseData['response']['cod_trabajador']]);
+                    session(['flg_vendedor' => $responseData['response']['flg_vendedor']]);
+                    session(['flg_jefe' => $responseData['response']['flg_jefe']]);
+                    session(['flg_supervisor' => $responseData['response']['flg_supervisor']]);
+
                 }
 
                 return response()->json(['status' => $code, 'data' => $responseData]);

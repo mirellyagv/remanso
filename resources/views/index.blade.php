@@ -59,7 +59,7 @@
                     <input type="password" class="form-control form-remanso" id="password" placeholder="Contraseña">
                 </div>
                 <div class="mb-3">
-                    <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnIngresar" style="width: -webkit-fill-available;" id="loginBtn">Ingresar</a>
+                    <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnIngresar" style="width: -webkit-fill-available;">Ingresar</a>
                 </div>
                 <div class="mb-3" style="text-align: end">
                     <a class="verdeRemanso" href="#"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">Olvide mi contraseña</a>
@@ -178,7 +178,6 @@
     //     });
     // });
 </script>
-    {{session('dsc_usuario')}}<br/>
-    {{session('cod_usuario')}}
+
 </body>
 </html>

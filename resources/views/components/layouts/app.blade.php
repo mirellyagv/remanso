@@ -39,10 +39,12 @@
       integrity="sha512-oXqkIy/+iqrHrpoTwFkSLZJpNwoYn9e77QtCNzBi+Jb6uJgTtcdHVy0C+nEpeUfC3fxSbydPxLG+ndikNVvrdQ=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/css/bootstrap5-toggle.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      
       
   <!-- Template Main CSS File -->
   <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
-  @stack('style')
+  
 
 </head>
 <body>
@@ -71,8 +73,8 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
   <!-- Template Main JS File -->
-  @stack('script')
-  
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/es.js"></script>
   <script src="{{asset('js/main.js')}}"></script>
   
     

@@ -1,7 +1,4 @@
 <x-layouts.app title="Listado" meta-description="Listado de prospectos meta description">
-  @push('style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  @endpush
   
     <main class="main" id="main">
       <div class="pagetitle">
@@ -24,13 +21,13 @@
                       <label for="inputText" class="col-form-label">Fecha Inicio: </label>
                     </div>
                     <div class="col-md-2 mb-3">
-                      <input type="date" class="form-control form-remanso" name="fchIni" id="fchIni" value="2021-06-01">
+                      <input type="text" class="form-control form-remanso" name="fchIni" id="fchIni" placeholder="seleccione..">
                     </div>
                     <div class="col-md-1 mb-3">
                       <label for="inputText" class="col-form-label">Fecha Fin: </label>
                     </div>
                     <div class="col-md-2 mb-3">
-                      <input type="date" class="form-control form-remanso" name="fchFin" id="fchFin" value="2021-06-30">
+                      <input type="date" class="form-control form-remanso" name="fchFin" id="fchFin" placeholder="seleccione..">
                     </div>
                     <div class="col-md-1 mb-3">
                       <label for="inputText" class="col-form-label">Estado: </label>
@@ -55,27 +52,47 @@
                     <div class="col-md-2 mb-3">
                       <label for="inputText" class="col-form-label">Documento identidad: </label>
                     </div>
-                    <div class="col-md-2 mb-3">
+                    <div class="
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                      col-md-2 mb-3
+                    @else
+                      col-md-3 mb-3
+                    @endif 
+                    ">
                       <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
                     </div>
-                    <div class="col-md-1 mb-3">
+                    <div class="
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                      col-md-1 mb-3
+                    @else
+                      col-md-2 mb-3
+                    @endif 
+                    ">
                       <label for="inputText" class="col-form-label">Prospecto: </label>
                     </div>
-                    <div class="col-md-2 mb-3">
+                    <div class="
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                      col-md-2 mb-3
+                    @else
+                      col-md-3 mb-3
+                    @endif 
+                    ">
                       <input type="text" class="form-control form-remanso" name="nombreProspecto" id="nombreProspecto">
                     </div>
-                    <div class="col-md-1 mb-3">
-                      <label for="inputText" class="col-form-label">Vendedor: </label>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                      <select name="tipoDoc" id="tipoDoc" class="form-control form-remanso">
-                        <option value="0">Todos</option>
-                        <option value="0">Ana Martinez</option>
-                        <option value="1">Juan Hernandez</option>
-                        <option value="2">Lilian Huaman</option>
-                        <option value="3">Mario Gonzalez</option>
-                      </select>
-                    </div>
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                      <div class="col-md-1 mb-3">
+                        <label for="inputText" class="col-form-label">Vendedor: </label>
+                      </div>
+                      <div class="col-md-2 mb-3">
+                        <select name="tipoDoc" id="tipoDoc" class="form-control form-remanso">
+                          <option value="0">Todos</option>
+                          <option value="0">Ana Martinez</option>
+                          <option value="1">Juan Hernandez</option>
+                          <option value="2">Lilian Huaman</option>
+                          <option value="3">Mario Gonzalez</option>
+                        </select>
+                      </div>
+                    @endif
                     <div class="col-1 mb-3 d-md-none d-block">
                       <button class="btn btn-secondary form-remanso" id="excelBtn1">Buscar &nbsp;<span
                           class="bi bi-search"></span></button>
@@ -118,23 +135,28 @@
   
   </x-layouts.app>
   
-  @push('script')
+  {{-- @push('script')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        flatpickr("input[type=datetime-local]");
+      const flatpickr = require("flatpickr");
+        flatpickr("",{});
     </script>
-  @endpush
+  @endpush --}}
   
   <script type="text/javascript">
 
-
-     
-
-
-
-
 //
 $(document).ready(function () {
+
+  // const flatpickr = require("flatpickr");
+        // flatpickr.localize(flatpickr.l10ns.es);
+        flatpickr("#fchIni",{
+          locale:"es",
+        });
+        flatpickr("#fchFin",{
+          locale:"es",
+        });
+  
     $.ajax({
       url: '../lista/ListaProspectos', 
       method: "GET",
@@ -154,7 +176,8 @@ $(document).ready(function () {
             fila += '<tr><td>'+
             '<a class="btn btn-secondary form-remanso"  href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
                     '<button class="btn btn-success BtnverdeRemanso form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-cash-stack"></span></button>'+
-                    '<button class="btn btn-warning form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button></td>'+
+                    '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                    <button class="btn btn-warning form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
                 '<td>'+word['cod_prospecto']+'</td>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_prospecto']+'</td>'+
@@ -165,7 +188,7 @@ $(document).ready(function () {
               '</tr>';
   
           });
-          console.log(fila);
+          //console.log(fila);
           $('#bodyListado').html(fila);
   
       },//success
@@ -174,6 +197,7 @@ $(document).ready(function () {
       }//error
     });
   
+    
         if ($.fn.dataTable.isDataTable('#listaProsp')) {
             $('#listaProsp').DataTable().clear();
             $('#listaProsp').DataTable().destroy();        

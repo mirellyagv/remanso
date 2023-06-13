@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\ListaController;
+use App\Http\Controllers\prospectoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::view('home', 'home')->name('home');
 
 Route::name('prospectos.')->prefix('/prospectos')->group(function(){
     Route::view('registro', 'prospectos.registro')->name('registro');
+    Route::get('actualizar' ,[prospectoController::class,'editaProspecto'] , 'prospectos.actualizar')->name('actualizar');
     Route::view('listado', 'prospectos.listado')->name('listado');
     Route::view('actualizar', 'prospectos.actualizar')->name('actualizar');
 });
@@ -49,3 +51,12 @@ Route::get('lista/MuestraCalificacion', [ListaController::class, 'MuestraCalific
 Route::get('lista/MuestraParentesco', [ListaController::class, 'MuestraParentesco'])->name('lista.MuestraParentesco');
 Route::get('lista/MuestraSexo', [ListaController::class, 'MuestraSexo'])->name('lista.MuestraSexo');
 Route::get('lista/MuestraEdoCivil', [ListaController::class, 'MuestraEdoCivil'])->name('lista.MuestraEdoCivil');
+Route::get('lista/MuestraCamposanto', [ListaController::class, 'MuestraCamposanto'])->name('lista.MuestraCamposanto');
+Route::get('lista/MuestraTipoPlataforma', [ListaController::class, 'MuestraTipoPlataforma'])->name('lista.MuestraTipoPlataforma');
+Route::get('lista/MuestraPlataforma', [ListaController::class, 'MuestraPlataforma'])->name('lista.MuestraPlataforma');
+Route::get('lista/MuestraArea', [ListaController::class, 'MuestraArea'])->name('lista.MuestraArea');
+Route::get('lista/MuestraEjeX', [ListaController::class, 'MuestraEjeX'])->name('lista.MuestraEjeX');
+Route::get('lista/MuestraEjeY', [ListaController::class, 'MuestraEjeY'])->name('lista.MuestraEjeY');
+Route::get('lista/MuestraEspacio', [ListaController::class, 'MuestraEspacio'])->name('lista.MuestraEspacio');
+
+Route::get('lista/MuestraListaCuota', [ListaController::class, 'MuestraListaCuota'])->name('lista.MuestraListaCuota');
