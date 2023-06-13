@@ -14,9 +14,13 @@ class ListaController extends Controller
     public function ListaProspectos(Request $request)
     {   
         $client = new Client();
-        $cod_trabajador = $request['cod_trabajador'];
-        $fchInicio = '01-01-2023';//$request['fch_inicio'];
-        $fchFin = '06-30-2023';//$request['fch_fin'];
+        $cod_trabajador = 'TRA00245';
+        //$fchInicio = '01-01-2023';//$request['fch_inicio'];
+        //$fchFin = '06-30-2023';//$request['fch_fin'];
+        //$cod_trabajador = session('cod_trabajador'); 
+        $fchInicio = $request['fch_inicio'];
+        $fchFin = $request['fch_fin'];
+
         try {
                           
             $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspecto/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin);
