@@ -416,10 +416,7 @@ addBeneficiario.addEventListener("click",function (){
       fch_nacimiento: '2023-02-01',
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
-      cod_parentesco: codParentesco,
-      dsc_correo: '',
-      dsc_telefono: '',
-      fch_alta: '2023-06-01'
+      cod_parentesco: codParentesco
     };
     
     filasArray.push(filaData); // Agregar la fila al array
