@@ -312,6 +312,71 @@ $( document ).ready(function() {
     
     });
 
+    //-----------------muestra select Tipo Recaudacion-----------
+    $( document ).ready(function() {
+        $.ajax({
+            url: '../lista/MuestraTipoRecaudacion', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            success: function(respuesta){
+                $("#tipoPrograma").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select Tipo Servicio-----------
+    $( document ).ready(function() {
+        $.ajax({
+            url: '../lista/MuestraTipoServicio', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            success: function(respuesta){
+                $("#tipoServicio").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#tipoServicio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select Subtipo servicio-----------
+    var codcampo = document.getElementById("tipoServicio");
+    codcampo.addEventListener("change",function(){
+        var options = document.querySelectorAll('#subtipoServ option');
+            options.forEach(o => o.remove());
+        tipoServicio = document.getElementById("tipoServicio").value;
+        $.ajax({
+            url: '../lista/MuestraSubtipoServicio', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'tipo_servicio': tipoServicio},
+            success: function(respuesta){
+                $("#subtipoServ").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#subtipoServ").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
     //-----------------muestra select Camposanto-----------
     $( document ).ready(function() {
         $.ajax({
@@ -479,13 +544,41 @@ $( document ).ready(function() {
             method: "GET",
             crossDomain: true,
             dataType: 'json',
-            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX},
+            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY},
             success: function(respuesta){
                 $("#espacio").append('<option value="" selected disabled>SELECCIONE...</option>');
                 respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#espacio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
                 });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select Subtipo servicio-----------
+    var codcampo = document.getElementById("btnAddServicio");
+    codcampo.addEventListener("click",function(){
+        codCamposanto = document.getElementById("camposanto").value;
+        codPlataforma = document.getElementById("nombrePlat").value;
+        cod_tipo_recaudacion = document.getElementById("tipoPrograma").value;
+        var boton = document.getElementById("tipoNec");
+        if(boton.checked == true){
+            tipo_nec = 'NI';
+        }else{
+            tipo_nec = 'NF';
+        }
+        cod_subtipo_servicio = document.getElementById("subtipoServ").value;
+        $.ajax({
+            url: '../lista/MuestraServicio', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_tipo_recaudacion': cod_tipo_recaudacion,'cod_subtipo_servicio':cod_subtipo_servicio,'tipo_nec':tipo_nec},
+            success: function(respuesta){
+                console.log(respuesta);
             },//success
             error(e){
                 console.log(e.message);
@@ -506,6 +599,26 @@ $( document ).ready(function() {
                 respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    //-----------------muestra select Interes-----------
+    $( document ).ready(function() {
+        $.ajax({
+            url: '../lista/MuestraListaInteres', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            success: function(respuesta){
+                $("#codTasa").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
                 });
             },//success
             error(e){

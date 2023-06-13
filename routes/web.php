@@ -51,6 +51,9 @@ Route::get('lista/MuestraCalificacion', [ListaController::class, 'MuestraCalific
 Route::get('lista/MuestraParentesco', [ListaController::class, 'MuestraParentesco'])->name('lista.MuestraParentesco');
 Route::get('lista/MuestraSexo', [ListaController::class, 'MuestraSexo'])->name('lista.MuestraSexo');
 Route::get('lista/MuestraEdoCivil', [ListaController::class, 'MuestraEdoCivil'])->name('lista.MuestraEdoCivil');
+Route::get('lista/MuestraTipoRecaudacion', [ListaController::class, 'MuestraTipoRecaudacion'])->name('lista.MuestraTipoRecaudacion');
+Route::get('lista/MuestraTipoServicio', [ListaController::class, 'MuestraTipoServicio'])->name('lista.MuestraTipoServicio');
+Route::get('lista/MuestraSubtipoServicio', [ListaController::class, 'MuestraSubtipoServicio'])->name('lista.MuestraSubtipoServicio');
 Route::get('lista/MuestraCamposanto', [ListaController::class, 'MuestraCamposanto'])->name('lista.MuestraCamposanto');
 Route::get('lista/MuestraTipoPlataforma', [ListaController::class, 'MuestraTipoPlataforma'])->name('lista.MuestraTipoPlataforma');
 Route::get('lista/MuestraPlataforma', [ListaController::class, 'MuestraPlataforma'])->name('lista.MuestraPlataforma');
@@ -58,5 +61,6 @@ Route::get('lista/MuestraArea', [ListaController::class, 'MuestraArea'])->name('
 Route::get('lista/MuestraEjeX', [ListaController::class, 'MuestraEjeX'])->name('lista.MuestraEjeX');
 Route::get('lista/MuestraEjeY', [ListaController::class, 'MuestraEjeY'])->name('lista.MuestraEjeY');
 Route::get('lista/MuestraEspacio', [ListaController::class, 'MuestraEspacio'])->name('lista.MuestraEspacio');
-
+Route::get('lista/MuestraServicio', [ListaController::class, 'MuestraServicio'])->name('lista.MuestraServicio');
 Route::get('lista/MuestraListaCuota', [ListaController::class, 'MuestraListaCuota'])->name('lista.MuestraListaCuota');
+Route::get('lista/MuestraListaInteres', [ListaController::class, 'MuestraListaInteres'])->name('lista.MuestraListaInteres');

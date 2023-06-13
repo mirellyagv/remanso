@@ -26,7 +26,9 @@ class VerifyCsrfToken extends Middleware
         'lista/MuestraParentesco',
         'lista/MuestraSexo',
         'lista/MuestraEdoCivil',
-        'lista/Muestra',
+        'lista/MuestraTipoRecaudacion',
+        'lista/MuestraTipoServicio',
+        'lista/MuestraSubtipoServicio',
         'lista/MuestraCamposanto',
         'lista/MuestraTipoPlataforma', 
         'lista/MuestraPlataforma', 
@@ -34,7 +36,9 @@ class VerifyCsrfToken extends Middleware
         'lista/MuestraEjeX',
         'lista/MuestraEjeY',
         'lista/MuestraEspacio',
+        'lista/MuestraServicio',
         'lista/MuestraListaCuota',
+        'lista/MuestraListaInteres',
 
     ];
 }
