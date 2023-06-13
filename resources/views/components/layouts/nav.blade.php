@@ -23,7 +23,8 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Nombre de Usuario</h6>
+              <p style="font-size:1em">
+                {{session('dsc_usuario')}}</h3>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -32,7 +33,7 @@
               <hr class="dropdown-divider">
             </li>
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{route('login')}}">
+              <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Salir</span>
               </a>
