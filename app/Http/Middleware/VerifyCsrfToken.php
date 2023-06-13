@@ -27,6 +27,7 @@ class VerifyCsrfToken extends Middleware
         'lista/MuestraSexo',
         'lista/MuestraEdoCivil',
         'lista/Muestra',
+        'lista/MuestraCamposanto',
         
     ];
 }
