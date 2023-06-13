@@ -1,4 +1,4 @@
-<x-layouts.app title="Registro" meta-description="Registro de prospectos meta description">
+<x-layouts.app title="Informacion" meta-description="Información de prospectos meta description">
 
   <main class="main" id="main">
     <div class="pagetitle">
@@ -31,7 +31,7 @@
                         <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" value="{{codProspecto}}" required name="numDocPros" id="numDocPros">
+                        <input type="text" class="form-control form-remanso" value="<?php echo $_GET["CodProspecto"]; ?>" required name="numDocPros" id="numDocPros">
                       </div>
                     </div>
                     <div id="nombre">
@@ -564,7 +564,51 @@
 </x-layouts.app>
 
 <script src="{{asset('js/registroProspecto.js')}}"></script>
-<script type="text/javascript">          
+<script type="text/javascript">  
+
+$(document).ready(function () {
+          var cod_prospecto=document.getElementById("numDocPros").value;
+          $.ajax({
+                    type : "GET",
+                    url:"https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspecto/20396900719/LC001/"+cod_prospecto,
+                    dataType: 'json',
+                    success: function(result) {
+                        document.getElementById("rucProsp").value=result["response"]["dsc_razon_social"];
+                        document.getElementById("apellPProsp").value=result["response"]["dsc_apellido_paterno"];
+                        document.getElementById("apellPProsp").value=result["response"]["dsc_apellido_paterno"];
+                        document.getElementById("nombreProsp").value=result["response"]["dsc_nombre"];
+                        document.getElementById("tipoDocProsp").value=result["response"]["cod_tipo_documento"];
+                        document.getElementById("numDocPros").value=result["response"]["dsc_documento"];
+                        document.getElementById("paisProspecto").value=result["response"]["cod_pais"];
+                        document.getElementById("dptoProsp").value=result["response"]["cod_departamento"];
+                        document.getElementById("provinProsp").value=result["response"]["cod_provincia"];
+                        document.getElementById("dttoProsp").value=result["response"]["cod_distrito"];
+                        document.getElementById("direccPros").value=result["response"]["dsc_direccion"];
+                        document.getElementById("telf1Prosp").value=result["response"]["dsc_telefono_1"];
+                        document.getElementById("telf2Prosp").value=result["response"]["dsc_telefono_2"];
+                        document.getElementById("canalProsp").value=result["response"]["cod_origen"];
+                        document.getElementById("califProsp").value=result["response"]["cod_calificacion"];
+                        document.getElementById("obsvProsp").value=result["response"]["dsc_observaciones"];
+                        document.getElementById("impProsp").value=result["response"]["imp_monto"];
+
+                        document.getElementById("apelP2tit").value=result["response"]["dsc_apellido_paterno_2do"];
+                        document.getElementById("apelM2tit").value=result["response"]["dsc_apellido_materno_2do"];
+                        document.getElementById("nombre2Tit").value=result["response"]["dsc_nombre_2do"];
+                        document.getElementById("tipoDoc2tit").value=result["response"]["cod_tipo_documento_2do"];
+                        document.getElementById("numDoc2tit").value=result["response"]["dsc_documento_2do"];
+                        document.getElementById("pais2Tit").value=result["response"]["cod_pais_2do"];
+                        document.getElementById("dpto2Tit").value=result["response"]["cod_departamento_2do"];
+                        document.getElementById("prov2Tit").value=result["response"]["cod_provincia_2do"];
+                        document.getElementById("dtto2Tit").value=result["response"]["cod_distrito_2do"];
+                        document.getElementById("dir2Tit").value=result["response"]["dsc_direccion_2do"];
+                        document.getElementById("telf1_2Tit").value=result["response"]["dsc_telefono_1_2do"];
+                        document.getElementById("telf2_2Tit").value=result["response"]["dsc_telefono_2_2do"];
+                        document.getElementById("correo2Tit").value=result["response"]["dsc_correo_2do"];
+                       
+                        console.log(result);
+                        }
+          });
+})
 //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
