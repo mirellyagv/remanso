@@ -379,7 +379,11 @@
                                   Pellentesque eget nibh lectus. Vestibulum purus lectus, porttitor a suscipit in,
                                   sodales ac sapien. Suspendisse fringilla vestibulum enim, eu tempus mi laoreet ac.
                                 </td>
-                                <td></button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button></td>
+                                <td>
+                                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button>
+                                  @endif
+                                </td>
                               </tr>
                               <tr>
                                 <td>2</td>
@@ -387,7 +391,11 @@
                                 <td>A</td>
                                 <td style="text-align: left;">Phasellus molestie ultrices rhoncus. Vivamus at nisl
                                   vehicula, condimentum erat in, dignissim orci.</td>
-                                <td><button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button></td>
+                                <td>
+                                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button>
+                                  @endif
+                                </td>
                               </tr>
                               <tr>
                                 <td>3</td>
@@ -396,7 +404,11 @@
                                 <td style="text-align: left;">Vivamus vulputate, magna a mattis bibendum, nisi tortor
                                   blandit ipsum, vel varius ligula quam eu leo. Aenean vestibulum lorem sed eros
                                   fermentum, sit amet dapibus sapien elementum.</td>
-                                <td><button class="btn btn-success BtnverdeRemanso" id="buscarDoc"><span class="bi bi-pencil"></span></button></td>
+                                <td>
+                                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                                    </button> <button class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span class="bi bi-pencil"></span></button>
+                                  @endif
+                                </td>
                               </tr>
                             </tbody>
                           </table>
