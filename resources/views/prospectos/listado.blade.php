@@ -1,7 +1,4 @@
 <x-layouts.app title="Listado" meta-description="Listado de prospectos meta description">
-  @push('style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  @endpush
   
     <main class="main" id="main">
       <div class="pagetitle">
@@ -24,13 +21,13 @@
                       <label for="inputText" class="col-form-label">Fecha Inicio: </label>
                     </div>
                     <div class="col-md-2 mb-3">
-                      <input type="date" class="form-control form-remanso" name="fchIni" id="fchIni" value="2021-06-01">
+                      <input type="text" class="form-control form-remanso" name="fchIni" id="fchIni" placeholder="seleccione..">
                     </div>
                     <div class="col-md-1 mb-3">
                       <label for="inputText" class="col-form-label">Fecha Fin: </label>
                     </div>
                     <div class="col-md-2 mb-3">
-                      <input type="date" class="form-control form-remanso" name="fchFin" id="fchFin" value="2021-06-30">
+                      <input type="date" class="form-control form-remanso" name="fchFin" id="fchFin" placeholder="seleccione..">
                     </div>
                     <div class="col-md-1 mb-3">
                       <label for="inputText" class="col-form-label">Estado: </label>
@@ -138,17 +135,27 @@
   
   </x-layouts.app>
   
-  @push('script')
+  {{-- @push('script')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        flatpickr("input[type=datetime-local]");
+      const flatpickr = require("flatpickr");
+        flatpickr("",{});
     </script>
-  @endpush
+  @endpush --}}
   
   <script type="text/javascript">
 
 //
 $(document).ready(function () {
+
+  // const flatpickr = require("flatpickr");
+        // flatpickr.localize(flatpickr.l10ns.es);
+        flatpickr("#fchIni",{
+          locale:"es",
+        });
+        flatpickr("#fchFin",{
+          locale:"es",
+        });
   
     $.ajax({
       url: '../lista/ListaProspectos', 
