@@ -260,4 +260,23 @@ class ListaController extends Controller
         }
     }
 
+    public function MuestraCamposanto(Request $request)
+    {   
+        $client = new Client();
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCamposanto/20396900719');
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }
