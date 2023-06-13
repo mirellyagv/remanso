@@ -12,8 +12,12 @@
               <div class="row">
                 <div class="col-md-3 offset-md-9">
                   <div class="form-group form-remanso">
-                    <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
-                        data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;">NI</button></h5>
+                    <h5>
+                      <div class="form-check form-switch">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">NI</label>
+                        <input class="form-check-input bg-success border border-success " type="checkbox" id="flexSwitchCheckDefault" checked>
+                      </div>
+                    </h5>
                   </div>
                 </div>
               </div>
