@@ -24,6 +24,7 @@ Route::view('home', 'home')->name('home');
 Route::name('prospectos.')->prefix('/prospectos')->group(function(){
     Route::view('registro', 'prospectos.registro')->name('registro');
     Route::view('listado', 'prospectos.listado')->name('listado');
+    Route::view('actualizar', 'prospectos.actualizar')->name('actualizar');
 });
 
 Route::name('ventas.')->prefix('/ventas')->group(function(){
