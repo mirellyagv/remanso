@@ -197,7 +197,7 @@ flatpickr("#fchFin", {
       dataType: 'json',
       data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
       success: function(respuesta){
-        console.log('parado',respuesta)
+        // console.log('parado',respuesta)
           fila='';
           respuesta['response'].forEach(function(word){
             
@@ -285,7 +285,7 @@ flatpickr("#fchFin", {
       dataType: 'json',
       data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
       success: function(respuesta){
-        console.log('de funcion',respuesta)
+        // console.log('de funcion',respuesta)
           fila='';
           respuesta['response'].forEach(function(word){          
 
