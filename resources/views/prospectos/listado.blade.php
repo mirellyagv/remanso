@@ -1,176 +1,194 @@
 <x-layouts.app title="Listado" meta-description="Listado de prospectos meta description">
-  
-    <main class="main" id="main">
-      <div class="pagetitle">
-        <h1>Listado de prospectos</h1>
-      </div>
-      <div class="section dashboard">
-        <div class="card">
-          <div class="accordion accordion-flush modified-accordion" id="accordionFlushExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header d-md-none d-block">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  Filtros
-                </button>
-              </h2>
-              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                  <div class="row">
-                    <div class="col-md-2 mb-3">
-                      <label for="inputText" class="col-form-label">Fecha Inicio: </label>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                      <input type="text" class="form-control form-remanso" name="fchIni" id="fchIni" placeholder="seleccione..">
-                    </div>
-                    <div class="col-md-1 mb-3">
-                      <label for="inputText" class="col-form-label">Fecha Fin: </label>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                      <input type="date" class="form-control form-remanso" name="fchFin" id="fchFin" placeholder="seleccione..">
-                    </div>
-                    <div class="col-md-1 mb-3">
-                      <label for="inputText" class="col-form-label">Estado: </label>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                      <select name="EstDoc" id="EstDoc" class="form-control form-remanso">
-                        <option value="0">Todos</option>
-                        <option value="ACT">ACTIVO</option>
-                        <option value="VTA">CIERRE</option>
-                        <option value="CAD">CADUCO</option>
-                        <option value="TRU">TRUNCO</option>
-                        <option value="REC">RECHAZADO</option>
-                        <option value="ANU">ANULADO</option>
-                      </select>
-                    </div>
-                    <div class="col-2 mb-3 d-none d-md-block" style="text-align: end">
-                      <button class="btn btn-secondary form-remanso" id="excelBtn1" onclick="BuscarProspecto()">Buscar &nbsp;<span
-                          class="bi bi-search"></span></button>
-                    </div>
+
+  <main class="main" id="main">
+    <div class="pagetitle">
+      <h1>Listado de prospectos</h1>
+    </div>
+    <div class="section dashboard">
+      <div class="card">
+        <div class="accordion accordion-flush modified-accordion" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header d-md-none d-block">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Filtros
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="col-md-2 mb-3">
+                    <label for="inputText" class="col-form-label">Fecha Inicio: </label>
                   </div>
-                  <div class="row">
-                    <div class="col-md-2 mb-3">
-                      <label for="inputText" class="col-form-label">Documento identidad: </label>
-                    </div>
-                    <div class="
+                  <div class="col-md-2 mb-3">
+                    <input type="text" class="form-control form-remanso" name="fchIni" id="fchIni"
+                      placeholder="seleccione..">
+                  </div>
+                  <div class="col-md-1 mb-3">
+                    <label for="inputText" class="col-form-label">Fecha Fin: </label>
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <input type="date" class="form-control form-remanso" name="fchFin" id="fchFin"
+                      placeholder="seleccione..">
+                  </div>
+                  <div class="col-md-1 mb-3">
+                    <label for="inputText" class="col-form-label">Estado: </label>
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <select name="EstDoc" id="EstDoc" class="form-control form-remanso">
+                      <option value="0">Todos</option>
+                      <option value="ACT">ACTIVO</option>
+                      <option value="VTA">CIERRE</option>
+                      <option value="CAD">CADUCO</option>
+                      <option value="TRU">TRUNCO</option>
+                      <option value="REC">RECHAZADO</option>
+                      <option value="ANU">ANULADO</option>
+                    </select>
+                  </div>
+                  <div class="col-2 mb-3 d-none d-md-block" style="text-align: end">
+                    <button class="btn btn-secondary form-remanso" id="excelBtn1" onclick="BuscarProspecto()">Buscar
+                      &nbsp;<span class="bi bi-search"></span></button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2 mb-3">
+                    <label for="inputText" class="col-form-label">Documento identidad: </label>
+                  </div>
+                  <div class="
                     @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
                       col-md-2 mb-3
                     @else
                       col-md-3 mb-3
                     @endif 
                     ">
-                      <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
-                    </div>
-                    <div class="
+                    <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                  </div>
+                  <div class="
                     @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
                       col-md-1 mb-3
                     @else
                       col-md-2 mb-3
                     @endif 
                     ">
-                      <label for="inputText" class="col-form-label">Prospecto: </label>
-                    </div>
-                    <div class="
+                    <label for="inputText" class="col-form-label">Prospecto: </label>
+                  </div>
+                  <div class="
                     @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
                       col-md-2 mb-3
                     @else
                       col-md-3 mb-3
                     @endif 
                     ">
-                      <input type="text" class="form-control form-remanso" name="nombreProspecto" id="nombreProspecto">
-                    </div>
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
-                      <div class="col-md-1 mb-3">
-                        <label for="inputText" class="col-form-label">Vendedor: </label>
-                      </div>
-                      <div class="col-md-2 mb-3">
-                        <select name="tipoDoc" id="tipoDoc" class="form-control form-remanso">
-                          <option value="0">Todos</option>
-                          <option value="0">Ana Martinez</option>
-                          <option value="1">Juan Hernandez</option>
-                          <option value="2">Lilian Huaman</option>
-                          <option value="3">Mario Gonzalez</option>
-                        </select>
-                      </div>
-                    @endif
-                    <div class="col-1 mb-3 d-md-none d-block">
-                      <button class="btn btn-secondary form-remanso" id="excelBtn1">Buscar &nbsp;<span
-                          class="bi bi-search"></span></button>
-                    </div>
-                    <div class="col-md-2 mb-3 d-none d-md-block" style="text-align: end">
-                      <button class="btn btn-success BtnverdeRemanso form-remanso" id="excelBtn1"><img
-                          src="{{asset('images/icon-excel.svg')}}" alt="Bootstrap" width="20" height="20"></button>
-                    </div>
+                    <input type="text" class="form-control form-remanso" name="nombreProspecto" id="nombreProspecto">
+                  </div>
+                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
+                  session('cod_usuario')==='ADMINISTRATOR')
+                  <div class="col-md-1 mb-3">
+                    <label for="inputText" class="col-form-label">Vendedor: </label>
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <select name="tipoDoc" id="tipoDoc" class="form-control form-remanso">
+                      <option value="0">Todos</option>
+                      <option value="0">Ana Martinez</option>
+                      <option value="1">Juan Hernandez</option>
+                      <option value="2">Lilian Huaman</option>
+                      <option value="3">Mario Gonzalez</option>
+                    </select>
+                  </div>
+                  @endif
+                  <div class="col-1 mb-3 d-md-none d-block">
+                    <button class="btn btn-secondary form-remanso" id="excelBtn1">Buscar &nbsp;<span
+                        class="bi bi-search"></span></button>
+                  </div>
+                  <div class="col-md-2 mb-3 d-none d-md-block" style="text-align: end">
+                    <button class="btn btn-success BtnverdeRemanso form-remanso" id="excelBtn1"><img
+                        src="{{asset('images/icon-excel.svg')}}" alt="Bootstrap" width="20" height="20"></button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-  
-          
-          <div class="table-responsive">
-            <table class="table table-striped" id="listaProsp" style="width:100%">
-              <thead style="background-color: #35B44A; color: white;">
-                <tr>
-                  <th style="text-align: center;">Acciones</th>
-                  <th style="text-align: center;" width="15%">Código</th>
-                  <th style="text-align: center;" width="15%">Documento</th>
-                  <th style="text-align: center;">Prospecto</th>
-                  <th style="text-align: center;" width="15%">Fch. de Registro</th>
-                  <th style="text-align: center;" width="5%">Días</th>
-                  <th style="text-align: center;">Canal</th>
-                  <th style="text-align: center;" width="15%">Estado</th>
-  
-                </tr>
-              </thead>
-              <tbody style="text-align: center;font-size:0.7em;" id="bodyListado">
-                
-              </tbody>
-            </table>
-          </div>
+        </div>
+
+
+        <div class="table-responsive">
+          <table class="table table-striped" id="listaProsp" style="width:100%">
+            <thead style="background-color: #35B44A; color: white;">
+              <tr>
+                <th style="text-align: center;">Acciones</th>
+                <th style="text-align: center;" width="15%">Código</th>
+                <th style="text-align: center;" width="15%">Documento</th>
+                <th style="text-align: center;">Prospecto</th>
+                <th style="text-align: center;" width="15%">Fch. de Registro</th>
+                <th style="text-align: center;" width="5%">Días</th>
+                <th style="text-align: center;">Canal</th>
+                <th style="text-align: center;" width="15%">Estado</th>
+
+              </tr>
+            </thead>
+            <tbody style="text-align: center;font-size:0.7em;" id="bodyListado">
+
+            </tbody>
+          </table>
         </div>
       </div>
-  
-    </main>
-  
-  </x-layouts.app>
-  
-  {{-- @push('script')
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-      const flatpickr = require("flatpickr");
-        flatpickr("",{});
-    </script>
-  @endpush --}}
-  
-  <script type="text/javascript">
+    </div>
 
-//
+  </main>
+
+</x-layouts.app>
+
+{{-- @push('script')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  const flatpickr = require("flatpickr");
+        flatpickr("",{});
+</script>
+@endpush --}}
+
+<script type="text/javascript">
+  //
 $(document).ready(function () {
 
-  // const flatpickr = require("flatpickr");
-        // flatpickr.localize(flatpickr.l10ns.es);
-        flatpickr("#fchFin",{
-          locale: "es"
-        });
-        flatpickr("#fchIni", {
-          locale: "es",
-          onChange: function(selectedDates, dateStr) {
-            // Habilitar fchFin cuando se seleccione una fecha en fchIni
-            document.getElementById("fchFin").disabled = false;
-            
-            // Actualizar la opción de deshabilitar en fchFin
-            flatpickr("#fchFin", {
-              locale: "es",
-              disable: [
-                {
-                  from: "2005-01-01",
-                  to: dateStr
-                }
-              ]
-            });
-          }
-        });
+        // Obtener la fecha actual
+var currentDate = new Date();
+
+// Crear las fechas de inicio y fin del mes actual
+var firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+var lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+// Formatear las fechas como cadenas en formato "YYYY-MM-DD"
+var firstDayOfMonthStr = firstDayOfMonth.toISOString().split('T')[0];
+var lastDayOfMonthStr = lastDayOfMonth.toISOString().split('T')[0];
+
+// Configurar Flatpickr para fchIni
+flatpickr("#fchIni", {
+  locale: "es",
+  defaultDate: firstDayOfMonthStr,
+  onChange: function(selectedDates, dateStr) {
+    // Habilitar fchFin cuando se seleccione una fecha en fchIni
+    document.getElementById("fchFin").disabled = false;
+    
+    // Actualizar la opción de deshabilitar en fchFin
+    flatpickr("#fchFin", {
+      locale: "es",
+      defaultDate: lastDayOfMonthStr,
+      disable: [
+        {
+          from: "2005-01-01",
+          to: dateStr
+        }
+      ]
+    });
+  }
+});
+
+// Configurar Flatpickr para fchFin
+flatpickr("#fchFin", {
+  locale: "es",
+  defaultDate: lastDayOfMonthStr
+});
+
   
     $.ajax({
       url: '../lista/ListaProspectos', 
@@ -329,4 +347,4 @@ $(document).ready(function () {
             processing: true,
           });
       };
-  </script>
+</script>
