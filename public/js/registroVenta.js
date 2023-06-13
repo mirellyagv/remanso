@@ -494,7 +494,7 @@ $( document ).ready(function() {
     });
 
 
-    //-----------------muestra select Camposanto-----------
+    //-----------------muestra select Cuota-----------
     $( document ).ready(function() {
         $.ajax({
             url: '../lista/MuestraListaCuota', 
