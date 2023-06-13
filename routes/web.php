@@ -5,6 +5,10 @@ use App\Http\Controllers\APIController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\prospectoController;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +25,17 @@ use App\Http\Controllers\prospectoController;
 // });
 Route::view('/', 'index')->name('login');
 Route::view('home', 'home')->name('home');
+Route::get('/adios', function (Request $request): RedirectResponse {
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect('/');
+    
+})->name('logout');
+
 
 Route::name('prospectos.')->prefix('/prospectos')->group(function(){
     Route::view('registro', 'prospectos.registro')->name('registro');

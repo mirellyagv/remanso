@@ -36,7 +36,7 @@
       <br>
       <li class="nav-item">
         <a class="nav-link collapsed" href="">
-          <a href="{{route('login')}}" class="btn btn-success form-remanso BtnverdeRemanso" style="width: -webkit-fill-available;"
+          <a href="{{route('logout')}}" class="btn btn-success form-remanso BtnverdeRemanso" style="width: -webkit-fill-available;"
             id="loginBtn">Salir</a>
         </a>
       </li>
