@@ -127,20 +127,15 @@
   
   <script type="text/javascript">
 
-
-     
-
-
-
-
 //
 $(document).ready(function () {
+  
     $.ajax({
       url: '../lista/ListaProspectos', 
       method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val()},
+      data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
       success: function(respuesta){
           fila='';
           respuesta['response'].forEach(function(word){
@@ -174,6 +169,7 @@ $(document).ready(function () {
       }//error
     });
   
+    
         if ($.fn.dataTable.isDataTable('#listaProsp')) {
             $('#listaProsp').DataTable().clear();
             $('#listaProsp').DataTable().destroy();        
@@ -218,7 +214,7 @@ $(document).ready(function () {
       method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{'cod_trabajador':'TRA00245','fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val()},
+      data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
       success: function(respuesta){
           fila='';
           respuesta['response'].forEach(function(word){
