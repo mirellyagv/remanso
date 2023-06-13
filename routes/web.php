@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\ListaController;
-use App\Http\Controllers\prospectoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +23,6 @@ Route::view('home', 'home')->name('home');
 
 Route::name('prospectos.')->prefix('/prospectos')->group(function(){
     Route::view('registro', 'prospectos.registro')->name('registro');
-    Route::get('actualizar' ,[prospectoController::class,'editaProspecto'] , 'prospectos.actualizar')->name('actualizar');
     Route::view('listado', 'prospectos.listado')->name('listado');
 });
 
