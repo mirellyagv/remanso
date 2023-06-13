@@ -152,7 +152,7 @@ $(document).ready(function () {
           // obtener la fecha de hoy en formato `MM/DD/YYYY`
           var dia = today.toLocaleDateString('en-GB');
             fila += '<tr><td>'+
-            <a class="btn btn-secondary form-remanso" href="{{route('prospectos.actualizar')}}/'+word['cod_prospecto']+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>+
+            '<a class="btn btn-secondary form-remanso"  href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
                     '<button class="btn btn-success BtnverdeRemanso form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-cash-stack"></span></button>'+
                     '<button class="btn btn-warning form-remanso" onclick="window.location.href=" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button></td>'+
                 '<td>'+word['cod_prospecto']+'</td>'+
