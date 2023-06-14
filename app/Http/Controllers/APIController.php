@@ -210,16 +210,16 @@ class APIController extends Controller
         $cod_prospecto = $request['cod_prospecto'];
         $cod_calificacion = $request['cod_calificacion'];
         $dsc_observacion = $request['dsc_observacion'];
+        $fecha = $request['fch_contacto'];
         $data1 = [
             "cod_prospecto"=> $cod_prospecto,
             "num_linea"=> 0,
-            "fch_contacto"=> "2023-06-06T22:12:46.750Z",
+            "fch_contacto"=> $fecha,
             "cod_calificacion"=>  $cod_calificacion,
             "flg_presentacion"=> "NO",
             "cod_consejero"=> session('cod_trabajador'),
             "dsc_observaciones"=> $dsc_observacion,
             "cod_usuario_registro"=> session('cod_trabajador'),
-            "flg_indicador"=> "NO",
             "cod_localidad_p"=> "LC001"
         ];
         $data = json_encode($data1);

@@ -406,7 +406,7 @@ addBeneficiario.addEventListener("click",function (){
 
     var filaData = {
       cod_localidad_p: 'LC001',
-      cod_prospecto: 'PVT0034978',
+      cod_prospecto: '',
       num_linea: '0',
       cod_tipo_documento: codtipoDoc,
       dsc_documento: dscDoc,

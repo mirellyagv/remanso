@@ -535,7 +535,7 @@
             </div>
             <div class="col-md-3 mb-3">
               <input type="text" class="form-control form-remanso" name="fechaContacto" id="fechaContacto"
-                disabled>
+                readonly>
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Calificación: </label>
@@ -581,15 +581,16 @@ form.addEventListener("submit", function(event) {
 });
 
 var fechaActual = new Date();
+console.log(fechaActual);
 document.getElementById("fechaContacto").value = fechaActual;
   flatpickr("#fchNacAddBenef",{
       locale:"es",
       dateFormat: "d-m-Y"
     });
-    flatpickr("#fechaContacto",{
-      locale:"es",
-      dateFormat: "d-m-Y"
-    });
+  flatpickr("#fechaContacto",{
+    locale:"es",
+    dateFormat: "d-m-Y"
+  });
 
     var emailInput = document.getElementById("correoProsp");
 
@@ -827,6 +828,7 @@ boton.addEventListener("click",function(){
     data:{'prospecto':prospecto},
     success: function(respuesta){
       var codProspecto = respuesta['response']['cod_prospecto'];
+      var fchContacto = document.getElementById("fch_contacto");
       filasArray.forEach(function (fila) {
         fila['cod_prospecto'] = codProspecto;
       });
@@ -850,7 +852,7 @@ boton.addEventListener("click",function(){
             method: "PUT",
             crossDomain: true,
             dataType: 'json',
-            data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto},
+            data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
             success: function(respuesta){
                 console.log(respuesta);   
             },//success

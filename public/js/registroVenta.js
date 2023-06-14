@@ -716,8 +716,9 @@ $( document ).ready(function() {
 
         document.getElementById("impTotal").value=datos['imp_precio'];
         document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
+        cuoi =datos['imp_precio_cuoi'];
         document.getElementById("impFoma").value=datos['imp_precio_foma'];
-        document.getElementById("impSaldo").value=saldo;
+        document.getElementById("impSaldo").value=saldo-cuoi;
         document.getElementById("codServicio").value=datos['cod_servicio'];
         document.getElementById("impPrecioLista").value=datos['imp_precio_lista'];
 
@@ -878,14 +879,14 @@ addBeneficiario.addEventListener("click",function (){
 
     var filaData = {
       cod_localidad_p: 'LC001',
-      cod_prospecto: 'PVT0034978',
+      cod_prospecto: '',
       num_linea: '0',
       cod_tipo_documento: codtipoDoc,
       dsc_documento: dscDoc,
       dsc_apellido_paterno: apellP,
       dsc_apellido_materno: apellM,
       dsc_nombres: nombre,
-      fch_nacimiento: '2023-02-01',
+      fch_nacimiento: '',
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
       cod_parentesco: codParentesco

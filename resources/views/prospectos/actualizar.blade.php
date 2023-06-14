@@ -388,10 +388,6 @@
               <div class="col-md-3 offset-md-2 mb-3">
                 <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnGuarda" style="width: -webkit-fill-available;">Guardar</a>
               </div>
-              <div class="col-md-3 mb-3">
-                <a href="registroVenta.php" class="btn btn-primary form-remanso BtnAzulORemanso"
-                  style="width: -webkit-fill-available;">Guardar y Registrar venta</a>
-              </div>
             </div>
           </div>
         </div>
@@ -579,6 +575,7 @@ window.onload= function () {
         document.getElementById("direccPros").value=result["response"]["dsc_direccion"];
         document.getElementById("telf1Prosp").value=result["response"]["dsc_telefono_1"];
         document.getElementById("telf2Prosp").value=result["response"]["dsc_telefono_2"];
+        document.getElementById("correoProsp").value=result["response"]["dsc_correo"];
         
         var canalProsp=document.getElementById("canalProsp") ;
         canalProsp.value=result["response"]["cod_origen"];
@@ -632,10 +629,11 @@ window.onload= function () {
             console.log(resultBenef['response']);
               var fila='';
               resultBenef['response'].forEach(function(word){
+                  fecha = word['fch_nacimiento'].split("T");
                   fila += '<tr>'+
                   '<td>'+word['dsc_tipo_documento']+'</td>'+
                   '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
-                  '<td>'+word['fch_nacimiento']+'</td>'+
+                  '<td>'+fecha[0]+'</td>'+
                   '<td>'+word['dsc_parentesco']+'</td>'+
                   '<td>'+word['dsc_sexo']+'</td>'+
                   '<td>'+word['dsc_estado_civil']+'</td>'+
