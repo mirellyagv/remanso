@@ -35,10 +35,6 @@
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="tipoDocRegVta" id="tipoDocRegVta" class="form-select form-remanso">
-                            <option value="0">DNI</option>
-                            <option value="1">RUC</option>
-                            <option value="2">Pasaporte</option>
-                            <option value="3">Carnet de extranjería</option>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
@@ -544,26 +540,18 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="table-responsive">
-                            <table class="table table-striped" id="example" style="width:100%">
+                            <table class="table table-striped" id="tablaServiciosAdded" style="width:100%">
                               <thead style="background-color: #181C35;; color: white;">
                                 <tr>
-                                  <th style="text-align: center;" width="5%"></th>
                                   <th style="text-align: center;" width="45%">Servicio</th>
+                                  <th style="text-align: center;" width="5%">Cantidad</th>
                                   <th style="text-align: center;" width="5%">Precio Lista</th>
                                   <th style="text-align: center;" width="5%">Precio Venta</th>
                                   <th style="text-align: center;" width="5%">Descuento</th>
                                   <th style="text-align: center;" width="5%">Precio Final</th>
-                                  <th style="text-align: center;" width="10%"></th>
                                 </tr>
                               </thead>
                               <tbody style="text-align: center;">
-                                <td>1</td>
-                                <td>DU00043 POR DERECHO DE USO PERPETUO SEPULTURA TRIPLE</td>
-                                <td>13.900,00</td>
-                                <td>12.600,00</td>
-                                <td>1.000,00</td>
-                                <td>10.710,00</td>
-                                <td></td>
                               </tbody>
                             </table>
                           </div>
@@ -579,37 +567,19 @@
                           <input type="text" class="form-control form-remanso" name="impTotal" id="impTotal">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Saldo: </label>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impSaldo" id="impSaldo">
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <select name="codTasa"  id="codTasa" class="form-select form-remanso">
-                          </select>
-                        </div>
-                        <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">CUOI: </label>
                         </div>
                         <div class="col-md-2 mb-3">
                           <input type="text" class="form-control form-remanso" name="impCuoi" id="impCuoi">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
+                          <label for="inputText" class="col-form-label">Saldo: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso">
-                            <option value="068">1</option>
-                          </select>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">FOMA: </label>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impFoma" id="impFoma">
+                          <input type="text" class="form-control form-remanso" name="impSaldo" id="impSaldo">
+                          <input type="hidden" name="impDscto" id="impDscto">
+                          <input type="hidden" name="codServicio" id="codServicio">
+                          <input type="hidden" name="impPrecioLista" id="impPrecioLista">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
@@ -619,11 +589,33 @@
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <select name="codTasa"  id="codTasa" class="form-select form-remanso">
+                          </select>
+                        </div>
+                        <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Fch. 1er vencimiento: </label>
                         </div>
                         <div class="col-md-2 mb-3">
                           <input type="text" class="form-control form-remanso" name="fch1erVcto" id="fch1erVcto">
                         </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">FOMA: </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <input type="text" class="form-control form-remanso" name="impFoma" id="impFoma">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso">
+                            <option value="068">1</option>
+                          </select>
+                        </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -674,10 +666,10 @@
 
   </main>
 
-  <!-- -------------------Modal Beneficiarios------------------------------- -->
+    <!-- -------------------Modal Beneficiarios------------------------------- -->
 
   <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel"
-    aria-hidden="true">
+  aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content form-remanso">
         <div class="modal-header">
@@ -690,68 +682,73 @@
               <label for="inputText" class="col-form-label">Tipo de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="tipoDocBenef" id="tipoDocBenef" class="form-select form-remanso">
+              <select name="tipoDocAddBenef" id="tipoDocAddBenef" class="form-select form-remanso">
+                <option value="" selected="" disabled="">SELECCIONE...</option>
+                <option value="DI002">C.E</option>
+                <option value="DI001">DNI</option>
+                <option value="DI006">L.E.</option>
+                <option value="DI005">OTROS</option>
+                <option value="DI003">PASAPORTE</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Núm. de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="numDocBenef" id="numDocBenef">
+              <input type="text" class="form-control form-remanso" name="numDocAddBenef" id="numDocAddBenef">
             </div>
           </div>
-          <div id="nombre">
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Nombres:</label>
-              </div>
-              <div class="col-md-9 mb-3">
-                <input type="text" class="form-control form-remanso" name="nombresBenef" id="nombresBenef">
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Apellido Paterno: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <input type="text" class="form-control form-remanso" name="apellPBenef" id="apellPBenef">
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Apellido Materno: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <input type="text" class="form-control form-remanso" name="apellMBenef" id="apellMBenef">
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <input type="text" class="form-control form-remanso" name="fchNacBenef" id="fchNacBenef">
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Parentesco: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <select name="parentBenef" id="parentBenef" class="form-select form-remanso">
-                </select>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Sexo: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <select name="sexoBenef" id="sexoBenef" class="form-select form-remanso">
-                </select>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Estado Civil: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <select name="edoCivilBenef" id="edoCivilBenef" class="form-select form-remanso">
-                </select>
-              </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Nombres:</label>
+            </div>
+            <div class="col-md-9 mb-3">
+              <input type="text" class="form-control form-remanso" name="nombresAddBenef" id="nombresAddBenef">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="text" class="form-control form-remanso" name="apellPAddBenef" id="apellPAddBenef">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Apellido Materno: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="text" class="form-control form-remanso" name="apellMAddBenef" id="apellMAddBenef">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="text" class="form-control form-remanso" name="fchNacAddBenef" id="fchNacAddBenef"
+                placeholder="seleccione..">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Parentesco: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <select name="parentescoAddBenef" id="parentescoAddBenef" class="form-select form-remanso">
+              </select>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Sexo: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <select name="sexoAddBenef" id="sexoAddBenef" class="form-select form-remanso">
+              </select>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Estado Civil: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <select name="edoCivilAddBenef" id="edoCivilAddBenef" class="form-select form-remanso">
+              </select>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso"
+          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso"
             data-bs-dismiss="modal">Aceptar</button>
         </div>
       </div>
@@ -815,6 +812,15 @@
       }
     });
 
+var boton = document.getElementById("registrarVenta");
+boton.addEventListener("click",function(){
+
+    var boton = document.getElementById("tipoNec");
+    if(boton.checked == true){
+        tipo_nec = 'NI';
+    }else{
+        tipo_nec = 'NF';
+    }
     flgJuridico = '';
     flgJuridico2 = '';
     if(document.getElementById("tipoDocRegVta").value == 'DI004'){
@@ -831,7 +837,7 @@
       flgJuridico2 = 'NO';
     }
     var prospecto = {
-    'cod_prospecto': '',
+    'cod_prospecto': 'PVT0047847',
     'dsc_prospecto': dscTitular,
     'dsc_razon_social': document.getElementById("razonSocRegVta").value,
     'dsc_apellido_paterno': document.getElementById("apellPRegVta").value,
@@ -855,7 +861,7 @@
     'cod_grupo': 'GV007',
     'cod_supervisor': 'TRA00297',
     'cod_jefeventas': 'TRA00058',
-    'cod_estado': 'VTA',
+    'cod_estado': 'VEN',
     'imp_monto':document.getElementById("impTotal").value,
     'dsc_correo': document.getElementById("correoRegVta").value,
     'flg_sincronizado_crm': 'NO',
@@ -889,14 +895,80 @@
     'dsc_telefono_2_aval': document.getElementById("telef2Aval").value,
     'dsc_correo_aval': document.getElementById("correoAval").value,
     'cod_camposanto': document.getElementById("camposanto").value,
-    'cod_plataforma': document.getElementById("correoAval").value,
-    'cod_area_plataforma': document.getElementById("nombrePlat").value,
+    'cod_plataforma': document.getElementById("nombrePlat").value,
+    'cod_area_plataforma': document.getElementById("nombreArea").value,
     'cod_eje_horizontal': document.getElementById("ejeX").value,
     'cod_eje_vertical': document.getElementById("ejeY").value,
     'cod_espacio': document.getElementById("espacio").value,
-    'cod_tipo_espacio': document.getElementById("correoAval").value,
+    'cod_tipo_espacio': document.getElementById("tipoEspacio").value,
     'num_nivel': 0,
-    'cod_tipo_necesidad': ''
+    'cod_tipo_necesidad': tipo_nec
   };
+
+  var servicioArray ={
+    'cod_localidad_p': 'LC001',
+    'cod_prospecto': 'PVT0047848',
+    'num_linea': 0,
+    'cod_servicio': document.getElementById("codServicio").value,
+    'num_ctd': 0,
+    'imp_precio_lista': document.getElementById("impPrecioLista").value,
+    'imp_precio_venta': document.getElementById("impTotal").value,
+    'imp_dscto': document.getElementById("impDscto").value,
+    'imp_total': document.getElementById("impTotal").value,
+    'imp_foma': document.getElementById("impFoma").value,
+    'imp_cui': document.getElementById("impCuoi").value,
+    'imp_saldo': document.getElementById("impSaldo").value,
+    'cod_localidad_base': 'LC001',
+    'cod_contrato_base': document.getElementById("cttoBase").value,
+    'num_servicio_base': document.getElementById("numServBase").value,
+    'cod_cuota_foma': document.getElementById("codCuotaFoma").value,
+    'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
+    'cod_tasa': document.getElementById("codTasa").value,
+    'fch_1er_vencimiento': '2023-06-14T16:12:06.400Z'
+  };
+
+  $.ajax({
+    url: '../api/guardaProspecto', 
+    method: "PUT",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'prospecto':prospecto},
+    success: function(respuesta){
+      console.log(respuesta);
+
+        $.ajax({
+            url: '../api/guardaBeneficiario', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'beneficiarios':filasArray},
+            success: function(respuesta){
+                console.log(respuesta);   
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+
+        $.ajax({
+            url: '../api/InsertarProspectoServicio', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'datosServicios':servicioArray},
+            success: function(respuesta){
+                console.log(respuesta);   
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+ 
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error
+  });
+});
 
 </script>

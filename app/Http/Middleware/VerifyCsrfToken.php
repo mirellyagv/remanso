@@ -17,6 +17,8 @@ class VerifyCsrfToken extends Middleware
         '/api/guardaProspecto',
         'api/guardaBeneficiario',
         'api/guardaObservacion',
+        'api/InsertarProspectoServicio',
+        'api/editarProspecto',
         '/lista/ListaProspectos',
         'lista/MuestraPais',
         'lista/MuestraDpto',
@@ -37,9 +39,13 @@ class VerifyCsrfToken extends Middleware
         'lista/MuestraEjeX',
         'lista/MuestraEjeY',
         'lista/MuestraEspacio',
+        'lista/MuestraTipoEspacio',
         'lista/MuestraServicio',
         'lista/MuestraListaCuota',
         'lista/MuestraListaInteres',
+        'api/ObtenerProspecto',
+        'api/ListarProspectoBeneficiario',
+        'api/ListarProspectoContacto',
 
     ];
 }
