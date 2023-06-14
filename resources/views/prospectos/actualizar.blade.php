@@ -1,8 +1,8 @@
 <x-layouts.app title="Informacion" meta-description="Información de prospectos meta description">
-
+ 
   <main class="main" id="main">
     <div class="pagetitle">
-      <h1>Actualizar prospecto</h1>
+      <h1>Actualizar Prospecto Código : <?php echo $_GET["CodProspecto"]; ?></h1>
     </div>
     <div class="section dashboard">
       <div class="row">
@@ -566,10 +566,10 @@
 <script src="{{asset('js/registroProspecto.js')}}"></script>
 <script type="text/javascript">  
 
-
+var cod_prospecto="";
 
 window.onload= function () {
-          var cod_prospecto=document.getElementById("numDocPros").value;
+         cod_prospecto=document.getElementById("numDocPros").value;
           $.ajax({
                     type : "GET",
                     url:"https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspecto/20396900719/LC001/"+cod_prospecto,
@@ -669,7 +669,6 @@ window.onload= function () {
          
 }
 
-     
 //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
@@ -690,7 +689,8 @@ boton.addEventListener("click",function(){
     flgJuridico2 = 'NO';
   }
   var prospecto = {
-    'cod_prospecto': '',
+    //'cod_prospecto': 'PVT0035047',
+    'cod_prospecto': cod_prospecto,
     'dsc_prospecto': nombres,
     'dsc_razon_social': document.getElementById("rucProsp").value,
     'dsc_apellido_paterno': document.getElementById("apellPProsp").value,
@@ -710,7 +710,7 @@ boton.addEventListener("click",function(){
     'cod_calificacion': document.getElementById("califProsp").value,
     'dsc_observaciones':  document.getElementById("obsvProsp").value,
     'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
-    'cod_consejero':'TRA00426',
+    'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
     'cod_grupo': 'GV007',
     'cod_supervisor': 'TRA00297',
     'cod_jefeventas': 'TRA00058',
@@ -760,9 +760,8 @@ boton.addEventListener("click",function(){
 
 
 
-
   $.ajax({
-    url: '../api/guardaProspecto', 
+    url: '../api/editarProspecto', 
     method: "PUT",
     crossDomain: true,
     dataType: 'json',
@@ -770,26 +769,14 @@ boton.addEventListener("click",function(){
     success: function(respuesta){
       console.log(respuesta);
 
-        $.ajax({
-            url: '../api/guardaBeneficiario', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'beneficiarios':filasArray},
-            success: function(respuesta){
-                console.log(respuesta);
-                
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
+       
         
     },//success
     error(e){
         console.log(e.message);
     }//error
   });
+
 
 
 });
