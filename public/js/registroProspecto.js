@@ -413,14 +413,13 @@ addBeneficiario.addEventListener("click",function (){
       dsc_apellido_paterno: apellP,
       dsc_apellido_materno: apellM,
       dsc_nombres: nombre,
-      fch_nacimiento: '2023-02-01',
+      fch_nacimiento: fechNac,
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
       cod_parentesco: codParentesco
     };
     
     filasArray.push(filaData); // Agregar la fila al array
-    console.log(filasArray);
 
 });
 

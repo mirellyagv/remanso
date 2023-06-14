@@ -374,42 +374,6 @@
                               </tr>
                             </thead>
                             <tbody style="text-align: center;"  id="bodyListadoCon">
-                              <tr>
-                                <td>1</td>
-                                <td>05/03/2023</td>
-                                <td>A</td>
-                                <td style="text-align: left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                  Pellentesque eget nibh lectus. Vestibulum purus lectus, porttitor a suscipit in,
-                                  sodales ac sapien. Suspendisse fringilla vestibulum enim, eu tempus mi laoreet ac.
-                                </td>
-                                <td><button class="btn btn-danger " id="buscarDoc"><span
-                                      class="bi bi-x-lg"></span></button> <button
-                                    class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                      class="bi bi-pencil"></span></button></td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>15/03/2023</td>
-                                <td>A</td>
-                                <td style="text-align: left;">Phasellus molestie ultrices rhoncus. Vivamus at nisl
-                                  vehicula, condimentum erat in, dignissim orci.</td>
-                                <td><button class="btn btn-danger " id="buscarDoc"><span
-                                      class="bi bi-x-lg"></span></button> <button
-                                    class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                      class="bi bi-pencil"></span></button></td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>20/03/2023</td>
-                                <td>B</td>
-                                <td style="text-align: left;">Vivamus vulputate, magna a mattis bibendum, nisi tortor
-                                  blandit ipsum, vel varius ligula quam eu leo. Aenean vestibulum lorem sed eros
-                                  fermentum, sit amet dapibus sapien elementum.</td>
-                                <td><button class="btn btn-danger " id="buscarDoc"><span
-                                      class="bi bi-x-lg"></span></button> <button
-                                    class="btn btn-success BtnverdeRemanso " id="buscarDoc"><span
-                                      class="bi bi-pencil"></span></button></td>
-                              </tr>
                             </tbody>
                           </table>
                         </div>

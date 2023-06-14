@@ -534,7 +534,7 @@
               <label for="inputText" class="col-form-label">Fecha del contacto: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" value="29/05/2023" name="numDoc" id="numDoc"
+              <input type="text" class="form-control form-remanso" name="fechaContacto" id="fechaContacto"
                 disabled>
             </div>
             <div class="col-md-3 mb-3">
@@ -580,9 +580,15 @@ form.addEventListener("submit", function(event) {
   // }, 2000);
 });
 
-
+var fechaActual = new Date();
+document.getElementById("fechaContacto").value = fechaActual;
   flatpickr("#fchNacAddBenef",{
       locale:"es",
+      dateFormat: "d-m-Y"
+    });
+    flatpickr("#fechaContacto",{
+      locale:"es",
+      dateFormat: "d-m-Y"
     });
 
     var emailInput = document.getElementById("correoProsp");
@@ -820,7 +826,10 @@ boton.addEventListener("click",function(){
     dataType: 'json',
     data:{'prospecto':prospecto},
     success: function(respuesta){
-      console.log(respuesta);
+      var codProspecto = respuesta['response']['cod_prospecto'];
+      filasArray.forEach(function (fila) {
+        fila['cod_prospecto'] = codProspecto;
+      });
 
         $.ajax({
             url: '../api/guardaBeneficiario', 
@@ -841,7 +850,7 @@ boton.addEventListener("click",function(){
             method: "PUT",
             crossDomain: true,
             dataType: 'json',
-            data:{'cod_prospecto':'PVT0034978','cod_calificacion': codCalif,'dsc_observacion':obsvContacto},
+            data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto},
             success: function(respuesta){
                 console.log(respuesta);   
             },//success

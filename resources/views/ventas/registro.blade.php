@@ -921,7 +921,7 @@ boton.addEventListener("click",function(){
 
   var servicioArray ={
     'cod_localidad_p': 'LC001',
-    'cod_prospecto': 'PVT0047848',
+    'cod_prospecto': '',
     'num_linea': 0,
     'cod_servicio': document.getElementById("codServicio").value,
     'num_ctd': document.getElementById("ctdServ").value,
@@ -947,8 +947,11 @@ boton.addEventListener("click",function(){
     crossDomain: true,
     dataType: 'json',
     data:{'prospecto':prospecto},
-    success: function(respuesta){
-      console.log(respuesta);
+    success: function(respuesta['response']['cod_prospecto']){
+      var codProspecto = respuesta['response']['cod_prospecto'];
+      filasArray.forEach(function (fila) {
+        fila['cod_prospecto'] = codProspecto;
+      });
 
         $.ajax({
             url: '../api/guardaBeneficiario', 
@@ -963,6 +966,8 @@ boton.addEventListener("click",function(){
                 console.log(e.message);
             }//error
         });
+
+        servicioArray['cod_prospecto'] = codProspecto;
 
         $.ajax({
             url: '../api/InsertarProspectoServicio', 
