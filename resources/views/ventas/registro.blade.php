@@ -14,7 +14,7 @@
                   <div class="form-group form-remanso">
                     <h5>
                       <input type="checkbox" data-toggle="toggle" id="tipoNec" data-onlabel="NI" data-offlabel = "NF" data-onstyle ="success" checked>
-                      
+                      <input type="hidden" name="codProsp" id="codProsp" value="{{$_GET['CodProspecto']}}">
                     </h5>
                   </div>
                 </div>
@@ -825,6 +825,150 @@ flatpickr("#fch1erVcto",{
         document.getElementById("formRegVenta").reset();
       }
     });
+//-----------------------------------recuperar beneficiario-------------------------------------------------
+
+
+var cod_prospecto="";
+
+window.onload= function () {
+    cod_prospecto=document.getElementById("codProsp").value;
+    
+    $.ajax({
+      type : "GET",
+      url:"../api/ObtenerProspecto",
+      dataType: 'json',
+      data:{'cod_prospecto':cod_prospecto},
+      success: function(result) {
+        console.log(result);
+        // document.getElementById("rucProsp").value=result["response"]["dsc_razon_social"];
+        // document.getElementById("apellPProsp").value=result["response"]["dsc_apellido_paterno"];
+        // document.getElementById("apellMProsp").value=result["response"]["dsc_apellido_materno"];
+        // document.getElementById("nombreProsp").value=result["response"]["dsc_nombre"];
+        // var tipoDocPros=document.getElementById("tipoDocProsp") ;
+        // tipoDocPros.value=result["response"]["cod_tipo_documento"];
+
+        // document.getElementById("numDocPros").value=result["response"]["dsc_documento"];
+
+        // var paisProspecto=document.getElementById("paisProspecto") ;
+        // paisProspecto.value=result["response"]["cod_pais"];
+       
+        // var dptoProsp=document.getElementById("dptoProsp") ;
+        // dptoProsp.value=result["response"]["cod_departamento"];
+        // var changeEvent = new Event('change');   // Crea un evento "change"
+        // dptoProsp.dispatchEvent(changeEvent); // Desencadena el evento "change"
+       
+        // var provinProsp=document.getElementById("provinProsp") ;
+        // var dttoProsp=document.getElementById("dttoProsp") ;
+        // setTimeout(function() { 
+        //   provinProsp.value=result["response"]["cod_provincia"];
+        //   provinProsp.dispatchEvent(changeEvent);
+        //   setTimeout(function() { 
+        //     dttoProsp.value=result["response"]["cod_distrito"];
+        //     dttoProsp.dispatchEvent(changeEvent);
+        //   }, 2000);
+        // }, 2000);       
+        
+        // document.getElementById("direccPros").value=result["response"]["dsc_direccion"];
+        // document.getElementById("telf1Prosp").value=result["response"]["dsc_telefono_1"];
+        // document.getElementById("telf2Prosp").value=result["response"]["dsc_telefono_2"];
+        // document.getElementById("correoProsp").value=result["response"]["dsc_correo"];
+        
+        // var canalProsp=document.getElementById("canalProsp") ;
+        // canalProsp.value=result["response"]["cod_origen"];
+       
+        // var califProsp=document.getElementById("califProsp") ;
+        // califProsp.value=result["response"]["cod_calificacion"];
+
+        // document.getElementById("obsvProsp").value=result["response"]["dsc_observaciones"];
+        // document.getElementById("impProsp").value=result["response"]["imp_monto"];
+        // document.getElementById("apelP2tit").value=result["response"]["dsc_apellido_paterno_2do"];
+        // document.getElementById("apelM2tit").value=result["response"]["dsc_apellido_materno_2do"];
+        // document.getElementById("nombre2Tit").value=result["response"]["dsc_nombre_2do"];
+
+        // var tipoDoc2tit=document.getElementById("tipoDoc2tit") ;
+        // tipoDoc2tit.value=result["response"]["cod_tipo_documento_2do"];
+
+        // document.getElementById("numDoc2tit").value=result["response"]["dsc_documento_2do"];
+
+        // var pais2Tit=document.getElementById("pais2Tit") ;
+        // pais2Tit.value=result["response"]["cod_pais_2do"];
+
+        // var dpto2Tit=document.getElementById("dpto2Tit") ;
+        // dpto2Tit.value=result["response"]["cod_departamento_2do"];
+        // dpto2Tit.dispatchEvent(changeEvent); 
+
+        // var prov2Tit=document.getElementById("prov2Tit");
+        // var dtto2Tit=document.getElementById("dtto2Tit");
+        // setTimeout(function() { 
+        //   prov2Tit.value=result["response"]["cod_provincia_2do"];
+        //   prov2Tit.dispatchEvent(changeEvent);
+        //   setTimeout(function() { 
+        //     dtto2Tit.value=result["response"]["cod_distrito_2do"];
+        //     dtto2Tit.dispatchEvent(changeEvent);
+        //   }, 2000);
+        // }, 2000);   
+
+        // document.getElementById("dir2Tit").value=result["response"]["dsc_direccion_2do"];
+        // document.getElementById("telf1_2Tit").value=result["response"]["dsc_telefono_1_2do"];
+        // document.getElementById("telf2_2Tit").value=result["response"]["dsc_telefono_2_2do"];
+        // document.getElementById("correo2Tit").value=result["response"]["dsc_correo_2do"];
+
+      }                  
+    });
+ 
+      // $.ajax({         
+      //     type: "GET",
+      //     url: '../api/ListarProspectoBeneficiario', 
+      //     dataType: 'json',
+      //     data:{'cod_prospecto':cod_prospecto},
+      //     success: function(resultBenef){
+      //       console.log(resultBenef['response']);
+      //         var fila='';
+      //         resultBenef['response'].forEach(function(word){
+      //             fecha = word['fch_nacimiento'].split("T");
+      //             fila += '<tr>'+
+      //             '<td>'+word['dsc_tipo_documento']+'</td>'+
+      //             '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
+      //             '<td>'+fecha[0]+'</td>'+
+      //             '<td>'+word['dsc_parentesco']+'</td>'+
+      //             '<td>'+word['dsc_sexo']+'</td>'+
+      //             '<td>'+word['dsc_estado_civil']+'</td>'+
+      //             '<td></td>'+
+      //           '</tr>';
+      //         });
+      //       $('#bodyListadoBen').html(fila);
+      
+      //     }
+      // });
+
+      // $.ajax({              
+      //       type: "GET",
+      //       url: '../api/ListarProspectoContacto', 
+      //       dataType: 'json',
+      //       data:{'cod_prospecto':cod_prospecto},
+      //       success: function(result){
+      //               var fila='';
+      //               var item=1;
+      //               result['response'].forEach(function(word){
+      //                 fila += '<tr>'+
+      //                 '<td>'+item+'</td>'+
+      //                 '<td>'+word['fch_contacto']+'</td>'+
+      //                 '<td>'+word['dsc_calificacion']+'</td>'+
+      //                 '<td class="justificado">'+word['dsc_observaciones']+'</td>'+
+      //                 '<td></td>'+
+      //               '</tr>';
+      //               item=item+1;
+      //           });
+      //           $('#bodyListadoCon').html(fila);
+        
+      //       }
+      // });
+         
+}
+
+
+
+  //-----------------------------------Registrar venta---------------------------------------------------
 
 var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
@@ -982,6 +1126,18 @@ boton.addEventListener("click",function(){
                 console.log(e.message);
             }//error
         });
+
+        Swal.fire({
+          title: 'Guardado',
+          text: codProspecto,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            @php route{{'prospectos.listado'}} @endphp
+          } 
+        })
  
     },//success
     error(e){

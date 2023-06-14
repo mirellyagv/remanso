@@ -645,8 +645,6 @@ window.onload= function () {
           }
       });
 
-
-
       $.ajax({              
             type: "GET",
             url: '../api/ListarProspectoContacto', 
@@ -805,7 +803,17 @@ boton.addEventListener("click",function(){
     data:{'prospecto':prospecto},
     success: function(respuesta){
       console.log(respuesta);
-
+      Swal.fire({
+          title: 'Actualizado',
+          text: codProspecto,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            @php route{{'prospectos.listado'}} @endphp
+          } 
+        })
        
         
     },//success

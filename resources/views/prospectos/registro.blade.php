@@ -861,6 +861,18 @@ boton.addEventListener("click",function(){
             }//error
         });
         
+        Swal.fire({
+          title: 'Guardado',
+          text: codProspecto,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            @php route{{'prospectos.listado'}} @endphp
+          } 
+        })
+
     },//success
     error(e){
         console.log(e.message);
