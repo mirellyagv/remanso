@@ -86,7 +86,7 @@
                     <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" style="width: -webkit-fill-available;" id="loginBtn1">Ingresar</a>
                 </div>
                 <div class="mb-3" style="text-align: end">
-                    <a class="verdeRemanso" href="#"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">Olvide mi contraseña</a>
+                    <a class="verdeRemanso" href="#"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Comuniquese con su area de soporte técnico">Olvide mi contraseña</a>
                 </div>
             </div>
         </div>
@@ -109,17 +109,6 @@
   <script src="{{asset('js/main.js')}}"></script>
 
 <script type="text/javascript">
-    // to enable tooltips with the default configuration
-    // $('[data-bs-toggle="tooltip"]').tooltip()
-
-    // // to initialize tooltips with given configuration
-    // $('[data-bs-toggle="tooltip"]').tooltip({
-    // boundary: 'clippingParents',
-    // customClass: 'myClass'
-    // })
-
-    // // to trigger the `show` method
-    // $('#myTooltip').tooltip('show')
     
     var boton = document.getElementById("btnIngresar");
     
@@ -157,26 +146,43 @@
         });
     });
 
-    // var boton1 = document.getElementById("loginBtn1");
+    var boton2 = document.getElementById("loginBtn1");
     
-    // boton1.addEventListener("click",function(){
-    //     var usuario = document.getElementById("userM").value;
-    //     var password = document.getElementById("passwordM").value;
-    //     $.ajax({
-    //         url: 'api/logueo', 
-    //         method: "GET",
-    //         crossDomain: true,
-    //         dataType: 'json',
-    //         data:{'usuario':usuario,'password':password},
-    //         success: function(respuesta){
-    //             console.log(respuesta);
-    //             //window.location.href = "home";
-    //         },//success
-    //         error(e){
-    //             console.log(e.message);
-    //         }//error
-    //     });
-    // });
+    boton2.addEventListener("click",function(){
+        var usuario = document.getElementById("user").value;
+        var password = document.getElementById("password").value;
+        $.ajax({
+            url: 'api/logueo', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'usuario':usuario,'password':password},
+            success: function(respuesta){
+                console.log(respuesta['data']['mensaje']);
+                
+                if(respuesta['data']['mensaje'] == 'OK'){
+                    // alert("en OKKKKK");
+                    // console.log('ok',respuesta);                    
+                    //document.getElementById('message2').style.display = "none";
+                    window.location.href = "home";
+                    
+                }else{
+                    console.log('no',respuesta);
+                    alert("tiene usuario o clave incorrectos");
+                    window.location.href = "/";
+                    //document.getElementById('message2').style.display = "block";
+                }
+               
+            },//success
+            error(e){
+                console.log('error',respuesta);
+                alert("area de error");
+                console.log(e.message);
+            }//error
+        });
+    });
+
+    
 </script>
 </body>
 </html>
