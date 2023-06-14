@@ -806,7 +806,7 @@ var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() +
 flatpickr("#fch1erVcto",{
   locale:"es",
   defaultDate: fechaMasUnMes,
-  dateFormat: "d-m-Y"
+  dateFormat: "Y-m-d"
 });
   $("#tipoDoc").change(function(){
         if(this.value==1){
@@ -926,7 +926,7 @@ boton.addEventListener("click",function(){
     'cod_servicio': document.getElementById("codServicio").value,
     'num_ctd': document.getElementById("ctdServ").value,
     'imp_precio_lista': document.getElementById("impPrecioLista").value,
-    'imp_precio_venta': document.getElementById("impTotal").value,
+    'imp_precio_venta': document.getElementById("impPrecioLista").value,
     'imp_dscto': document.getElementById("impDscto").value,
     'imp_total': document.getElementById("impTotal").value,
     'imp_foma': document.getElementById("impFoma").value,

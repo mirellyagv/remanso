@@ -699,6 +699,7 @@ $( document ).ready(function() {
         nombreInput.type = 'number';
         nombreInput.value = 0;
         var saldo = datos['imp_precio'];
+        cuoi = datos['imp_precio_cuoi'];
         
         
         descuentoCelda.appendChild(nombreInput);
@@ -706,19 +707,25 @@ $( document ).ready(function() {
         var precioFinalCelda = nuevaFila.insertCell();
         precioFinalCelda.textContent = saldo;
 
+        var changeEvent = new Event('input');   // Crea un evento "change"
+        inputCOUI = document.getElementById('impCuoi');
+
         nombreInput.addEventListener('change', function() {
             calculaSaldo(cantInput.value,nombreInput.value,datos['imp_precio']);
+            document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
+            inputCOUI.dispatchEvent(changeEvent);
+
          });
 
          cantInput.addEventListener('change', function() {
             calculaSaldo(cantInput.value,nombreInput.value,datos['imp_precio']);
+            document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
+            inputCOUI.dispatchEvent(changeEvent);
          });
 
         document.getElementById("impTotal").value=datos['imp_precio'];
         document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
-        cuoi =datos['imp_precio_cuoi'];
-        document.getElementById("impFoma").value=datos['imp_precio_foma'];
-        document.getElementById("impSaldo").value=saldo-cuoi;
+        document.getElementById("impFoma").value=datos['imp_precio_foma'];    
         document.getElementById("codServicio").value=datos['cod_servicio'];
         document.getElementById("impPrecioLista").value=datos['imp_precio_lista'];
 
@@ -735,13 +742,16 @@ $( document ).ready(function() {
             document.getElementById("impTotal").value=saldo;  
         }
         
+        document.getElementById("impSaldo").value=saldo-cuoi;
     }
 //-----------------cambia saldo menos CUOI
 
 var campoCuoi = document.getElementById("impCuoi");
-campoCuoi.addEventListener("change",function(){
+campoCuoi.addEventListener("input",function(){
     var total = document.getElementById("impTotal").value;
-    var cuoi = this.value;
+    var cuoi = parseFloat(this.value);
+    console.log('cuoi ',cuoi,' total ',total)
+    total = parseFloat(total);
     if(cuoi > total){
         saldo = 0;
         document.getElementById("impCuoi").value = total;
