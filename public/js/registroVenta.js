@@ -896,7 +896,7 @@ addBeneficiario.addEventListener("click",function (){
       dsc_apellido_paterno: apellP,
       dsc_apellido_materno: apellM,
       dsc_nombres: nombre,
-      fch_nacimiento: '',
+      fch_nacimiento: fechNac,
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
       cod_parentesco: codParentesco
