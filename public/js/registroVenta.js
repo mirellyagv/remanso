@@ -665,7 +665,7 @@ $( document ).ready(function() {
         });
     });
 
-
+//---------------------llena tabla servicios--------------------------
     function muestraserviciosFormulario(datos) {
         
         var tabla = document.getElementById('tablaServiciosAdded');
@@ -682,6 +682,7 @@ $( document ).ready(function() {
 
         var cantidadCelda = nuevaFila.insertCell();
         var cantInput = document.createElement('input');
+        cantInput.setAttribute('style', 'width: 3em;');
         cantInput.type = 'number';
         cantInput.value = 1;
 
@@ -706,17 +707,11 @@ $( document ).ready(function() {
         precioFinalCelda.textContent = saldo;
 
         nombreInput.addEventListener('change', function() {
-            saldo = datos['imp_precio'] - nombreInput.value;
-            precioFinalCelda.textContent = saldo;
-            document.getElementById("impDscto").value=nombreInput.value;
-            document.getElementById("impSaldo").value=saldo;
+            calculaSaldo(cantInput.value,nombreInput.value,datos['imp_precio']);
          });
 
-         cantidadCelda.addEventListener('change', function() {
-            saldo = datos['imp_precio'] - nombreInput.value;
-            precioFinalCelda.textContent = saldo;
-            document.getElementById("impDscto").value=nombreInput.value;
-            document.getElementById("impSaldo").value=saldo;
+         cantInput.addEventListener('change', function() {
+            calculaSaldo(cantInput.value,nombreInput.value,datos['imp_precio']);
          });
 
         document.getElementById("impTotal").value=datos['imp_precio'];
@@ -725,8 +720,36 @@ $( document ).ready(function() {
         document.getElementById("impSaldo").value=saldo;
         document.getElementById("codServicio").value=datos['cod_servicio'];
         document.getElementById("impPrecioLista").value=datos['imp_precio_lista'];
+
+        function calculaSaldo(ctd,dscto,precio) {
+            if(ctd < 1){
+                ctd = 1;
+            }
+            saldo = (ctd*precio)-dscto;
+
+            precioFinalCelda.textContent = saldo;
+            document.getElementById("impDscto").value=dscto;
+            document.getElementById("impSaldo").value=saldo;
+            document.getElementById("ctdServ").value=ctd;
+            document.getElementById("impTotal").value=saldo;  
+        }
         
     }
+//-----------------cambia saldo menos CUOI
+
+var campoCuoi = document.getElementById("impCuoi");
+campoCuoi.addEventListener("change",function(){
+    var total = document.getElementById("impTotal").value;
+    var cuoi = this.value;
+    if(cuoi > total){
+        saldo = 0;
+        document.getElementById("impCuoi").value = total;
+    }else{
+        saldo = total - cuoi;
+    }
+    document.getElementById("impSaldo").value=saldo;
+});
+
     
 
 

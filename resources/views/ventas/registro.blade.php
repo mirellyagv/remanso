@@ -545,10 +545,10 @@
                                 <tr>
                                   <th style="text-align: center;" width="45%">Servicio</th>
                                   <th style="text-align: center;" width="5%">Cantidad</th>
-                                  <th style="text-align: center;" width="5%">Precio Lista</th>
-                                  <th style="text-align: center;" width="5%">Precio Venta</th>
+                                  <th style="text-align: center;" width="10%">Precio Lista</th>
+                                  <th style="text-align: center;" width="10%">Precio Venta</th>
                                   <th style="text-align: center;" width="5%">Descuento</th>
-                                  <th style="text-align: center;" width="5%">Precio Final</th>
+                                  <th style="text-align: center;" width="10%">Precio Final</th>
                                 </tr>
                               </thead>
                               <tbody style="text-align: center;">
@@ -564,7 +564,7 @@
                           <label for="inputText" class="col-form-label">Precio Total: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impTotal" id="impTotal">
+                          <input type="text" class="form-control form-remanso" readonly name="impTotal" id="impTotal">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">CUOI: </label>
@@ -576,10 +576,11 @@
                           <label for="inputText" class="col-form-label">Saldo: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impSaldo" id="impSaldo">
+                          <input type="text" readonly class="form-control form-remanso" name="impSaldo" id="impSaldo">
                           <input type="hidden" name="impDscto" id="impDscto">
                           <input type="hidden" name="codServicio" id="codServicio">
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
+                          <input type="hidden" name="ctdServ" id="ctdServ">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
@@ -794,6 +795,19 @@
 </x-layouts.app>
 <script src="{{asset('js/registroVenta.js')}}"></script>
 <script type="text/javascript">
+
+flatpickr("#fchNacAddBenef",{
+  locale:"es",
+  dateFormat: "d-m-Y"
+});
+var fechaActual = new Date();
+var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
+
+flatpickr("#fch1erVcto",{
+  locale:"es",
+  defaultDate: fechaMasUnMes,
+  dateFormat: "d-m-Y"
+});
   $("#tipoDoc").change(function(){
         if(this.value==1){
             $("#nombre").css("display", "none");
@@ -910,7 +924,7 @@ boton.addEventListener("click",function(){
     'cod_prospecto': 'PVT0047848',
     'num_linea': 0,
     'cod_servicio': document.getElementById("codServicio").value,
-    'num_ctd': 0,
+    'num_ctd': document.getElementById("ctdServ").value,
     'imp_precio_lista': document.getElementById("impPrecioLista").value,
     'imp_precio_venta': document.getElementById("impTotal").value,
     'imp_dscto': document.getElementById("impDscto").value,
@@ -924,7 +938,7 @@ boton.addEventListener("click",function(){
     'cod_cuota_foma': document.getElementById("codCuotaFoma").value,
     'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
     'cod_tasa': document.getElementById("codTasa").value,
-    'fch_1er_vencimiento': '2023-06-14T16:12:06.400Z'
+    'fch_1er_vencimiento': document.getElementById("fch1erVcto").value
   };
 
   $.ajax({
