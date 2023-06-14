@@ -61,7 +61,7 @@ class APIController extends Controller
     public function datosGrupoVenta(Request $request)
     {
         $client = new Client();
-        $codigoTrabajador = APIController::obtenerUltimoProspecto();
+        
         try {
 
             $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20396900719/' . session('cod_usuario'));
@@ -166,8 +166,10 @@ class APIController extends Controller
 
                 return response()->json(['status' => $code, 'mensaje' => $reason]);
             });
-
+            
             $promise->wait();
+            $codProspecto = APIController::obtenerUltimoProspecto();
+            return $codProspecto;
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);

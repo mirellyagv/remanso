@@ -437,24 +437,24 @@
                     <div class="accordion-body">
                       <br>
                       <div class="row">
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Tipo programa: </label>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="tipoPrograma"  id="tipoPrograma" class="form-select form-remanso">
                           </select>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Tipo Servicio: </label>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="tipoServicio"  id="tipoServicio" class="form-select form-remanso">
                           </select>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Subtipo: </label>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="subtipoServ"  id="subtipoServ" class="form-select form-remanso">
                           </select>
                         </div>
@@ -462,31 +462,31 @@
                       <hr>
                       <br>
                       <div class="row">
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Camposanto: </label>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="camposanto"  id="camposanto" class="form-select form-remanso">
                           </select>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Tipo Plataforma: </label>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="tipoPlat"  id="tipoPlat" class="form-select form-remanso">
                           </select>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Plataforma: </label>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="nombrePlat"  id="nombrePlat" class="form-select form-remanso">
                           </select>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Área: </label>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="nombreArea"  id="nombreArea" class="form-select form-remanso">
                           </select>
                         </div>
@@ -504,11 +504,18 @@
                           <select name="ejeY"  id="ejeY" class="form-select form-remanso">
                           </select>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Espacio: </label>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="espacio"  id="espacio" class="form-select form-remanso">
+                          </select>
+                        </div>
+                        <div class="col-md-1 mb-3">
+                          <label for="inputText" class="col-form-label">Tipo espacio: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="tipoEspacio"  id="tipoEspacio" class="form-select form-remanso">
                           </select>
                         </div>
                       </div>
@@ -589,6 +596,14 @@
                         </div>
                         <div class="col-md-2 mb-3">
                           <input type="text" class="form-control form-remanso" name="impCuoi" id="impCuoi">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso">
+                            <option value="068">1</option>
+                          </select>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">FOMA: </label>
@@ -755,7 +770,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="table-responsive">
-              <table class="table table-striped" id="example" style="width:100%">
+              <table class="table table-striped" id="tablaServicios" style="width:100%">
                 <thead style="background-color: #35B44A; color: white;">
                   <tr>
                     <th style="text-align: center;" width="5%">Código</th>
@@ -768,33 +783,7 @@
                   </tr>
                 </thead>
                 <tbody style="text-align: center;">
-                  <tr>
-                    <td>DU00043</td>
-                    <td>POR DERECHO DE USO PERPETUO SEPULTURA TRIPLE</td>
-                    <td>/S.</td>
-                    <td>12.600,00</td>
-                    <td><button class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-toggle="modal"
-                      data-bs-target="#" style="width: -webkit-fill-available;">Seleccionar</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>DU00044</td>
-                    <td>POR DERECHO DE USO PERPETUO SEPULTURA TRIPLE PREFERENCIAL</td>
-                    <td>/S.</td>
-                    <td>18.600,00</td>
-                    <td><button class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-toggle="modal"
-                      data-bs-target="#" style="width: -webkit-fill-available;">Seleccionar</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>DU00044</td>
-                    <td>POR DERECHO DE USO PERPETUO SEPULTURA TRIPLE VIP</td>
-                    <td>/S.</td>
-                    <td>32.600,00</td>
-                    <td><button class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-toggle="modal"
-                      data-bs-target="#" style="width: -webkit-fill-available;">Seleccionar</button>
-                    </td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>

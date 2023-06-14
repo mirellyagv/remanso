@@ -71,6 +71,9 @@
   color:white;
   font-size: small;
 }
+.justificado{
+  text-align: justify;
+}
 
 /*--------------------------------------------------------------
 Acordions
