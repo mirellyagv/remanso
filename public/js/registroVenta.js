@@ -578,7 +578,41 @@ $( document ).ready(function() {
             dataType: 'json',
             data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_tipo_recaudacion': cod_tipo_recaudacion,'cod_subtipo_servicio':cod_subtipo_servicio,'tipo_nec':tipo_nec},
             success: function(respuesta){
-                console.log(respuesta);
+                    console.log(respuesta['response']);
+                respuesta['response'].forEach(element => {
+                     console.log(element);
+                    var tabla = document.getElementById('tablaServicios');
+                    var tbody = tabla.getElementsByTagName('tbody')[0];
+                    
+                    var nuevaFila = tbody.insertRow();
+                    
+                    var codigoCelda = nuevaFila.insertCell();
+                    codigoCelda.textContent = element['cod_servicio'];
+                    
+                    var dscServicioCelda = nuevaFila.insertCell();
+                    dscServicioCelda.textContent = element['dsc_servicio'];
+                    dscServicioCelda.classList.add('justificado');
+
+                    var monedaCelda = nuevaFila.insertCell();
+                    monedaCelda.textContent = element['cod_moneda'];
+
+                    var precioCelda = nuevaFila.insertCell();
+                    precioCelda.textContent = element['imp_precio'];
+
+                    var accionesCelda = nuevaFila.insertCell();
+    
+                    var accionesDiv = document.createElement('div'); // Contenedor para los botones
+                    accionesDiv.classList.add('acciones'); // Clase CSS opcional para estilizar el contenedor
+                    var addBoton = document.createElement('button');
+                    addBoton.classList.add('btn');
+                    addBoton.classList.add('btn-success');
+                    addBoton.classList.add('BtnverdeRemanso');
+                    addBoton.innerHTML  = '<span class="bi bi-check"></span>';
+                    addBoton.id = 'botonAddd' + nuevaFila.rowIndex;
+                    accionesDiv.appendChild(addBoton);
+                    accionesCelda.appendChild(accionesDiv);
+                    
+                });
             },//success
             error(e){
                 console.log(e.message);
