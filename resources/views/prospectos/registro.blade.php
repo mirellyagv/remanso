@@ -825,66 +825,66 @@ boton.addEventListener("click",function(){
       var direccProsInput = document.getElementById("direccPros");
       var direccProsValue = direccProsInput.value.trim();
 
-      var telf1ProspInput = document.getElementById("telf1Prosp");
-      var telf1ProspValue = telf1ProspInput.value.trim();
-      
-      // Validación para el campo "Núm. de Documento"
-      var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
-      if (!numDocRegex.test(numDocValue)) {
-        var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");
-        collapseOne.classList.add("show");
-        numDocInput.focus();
-        invalidFeedbackNumDoc.style.display = "block";
-        return;
-      }
-      if (numDocRegex.test(numDocValue)){var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");invalidFeedbackNumDoc.style.display = "none";}
-      // Validación para el campo "nombreProsp"
-      if (nombreProspValue === "") {
-        var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
-        collapseOne.classList.add("show");
-        nombreProspInput.focus();
-        invalidFeedbackNombreProsp.style.display = "block";
-        return;
-      }
-      if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
+  var telf1ProspInput = document.getElementById("telf1Prosp");
+  var telf1ProspValue = telf1ProspInput.value.trim();
+  
+  // // Validación para el campo "Núm. de Documento"
+  // var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
+  // if (!numDocRegex.test(numDocValue)) {
+  //   var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");
+  //   collapseOne.classList.add("show");
+  //   numDocInput.focus();
+  //   invalidFeedbackNumDoc.style.display = "block";
+  //   return;
+  // }
+  // if (numDocRegex.test(numDocValue)){var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");invalidFeedbackNumDoc.style.display = "none";}
+  // // Validación para el campo "nombreProsp"
+  // if (nombreProspValue === "") {
+  //   var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
+  //   collapseOne.classList.add("show");
+  //   nombreProspInput.focus();
+  //   invalidFeedbackNombreProsp.style.display = "block";
+  //   return;
+  // }
+  // if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
 
-      // Validación para el campo "apellPProsp"
-      if (apellPProspValue === "") {
-        var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
-        collapseOne.classList.add("show");
-        apellPProspInput.focus();
-        invalidFeedbackapellPProsp.style.display = "block";
-        return;
-      }
-      if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
+  // // Validación para el campo "apellPProsp"
+  // if (apellPProspValue === "") {
+  //   var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
+  //   collapseOne.classList.add("show");
+  //   apellPProspInput.focus();
+  //   invalidFeedbackapellPProsp.style.display = "block";
+  //   return;
+  // }
+  // if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
 
-      // Validación para el campo "apellMProsp"
-      if (apellMProspValue === "") {
-        var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
-        collapseOne.classList.add("show");
-        apellMProspInput.focus();
-        invalidFeedbackapellMProsp.style.display = "block";
-        return;
-      }
-      if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
+  // // Validación para el campo "apellMProsp"
+  // if (apellMProspValue === "") {
+  //   var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
+  //   collapseOne.classList.add("show");
+  //   apellMProspInput.focus();
+  //   invalidFeedbackapellMProsp.style.display = "block";
+  //   return;
+  // }
+  // if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
 
-      // Validación para el campo "direccPros"
-      if (direccProsValue === "") {
-        var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
-        collapseOne.classList.add("show");
-        direccProsInput.focus();
-        invalidFeedbackdireccPros.style.display = "block";
-        return;
-      }
-      if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
+  // // Validación para el campo "direccPros"
+  // if (direccProsValue === "") {
+  //   var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
+  //   collapseOne.classList.add("show");
+  //   direccProsInput.focus();
+  //   invalidFeedbackdireccPros.style.display = "block";
+  //   return;
+  // }
+  // if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
 
-      // Validación para el campo "telf1Prosp"
-      if (telf1ProspValue === "") {
-        collapseTelf1Prosp.classList.add("show");
-        telf1ProspInput.focus();
-        invalidFeedbackTelf1Prosp.style.display = "block";
-        return;
-      }
+  // // Validación para el campo "telf1Prosp"
+  // if (telf1ProspValue === "") {
+  //   collapseTelf1Prosp.classList.add("show");
+  //   telf1ProspInput.focus();
+  //   invalidFeedbackTelf1Prosp.style.display = "block";
+  //   return;
+  // }
 
       var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
         flgJuridico = '';
