@@ -35,9 +35,9 @@
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso" required name="numDocPros"
                             id="numDocPros" min="9" max="9" maxlength="9">
-                          <div class="a invalid-feedback">
+                          {{-- <div class="a invalid-feedback">
                             Debe tener 9 números.
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
                       <div id="nombre">
@@ -48,9 +48,9 @@
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" required name="nombreProsp"
                               id="nombreProsp" required>
-                            <div class="b invalid-feedback">
+                            {{-- <div class="b invalid-feedback">
                               El nombre no puede estar vacío.
-                            </div>
+                            </div> --}}
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
@@ -58,9 +58,9 @@
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" required name="apellPProsp"
                               id="apellPProsp" required>
-                            <div class="c invalid-feedback">
+                            {{-- <div class="c invalid-feedback">
                               El apellido no puede estar vacío.
-                            </div>
+                            </div> --}}
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
@@ -68,9 +68,9 @@
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="apellMProsp" id="apellMProsp"
                               required>
-                            <div class="d invalid-feedback">
+                            {{-- <div class="d invalid-feedback">
                               El apellido no puede estar vacío.
-                            </div>
+                            </div> --}}
                           </div>
                         </div>
                       </div>
@@ -91,9 +91,9 @@
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" required name="direccPros"
                             id="direccPros" required>
-                          <div class="e invalid-feedback">
+                          {{-- <div class="e invalid-feedback">
                             La dirección no puede estar vacía.
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
                       <div class="row">
@@ -137,11 +137,11 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp"  min="9" max="9" maxlength="9"
+                          <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp"  min="9" max="12" maxlength="12"
                             required>
-                          <div class="f invalid-feedback">
+                          {{-- <div class="f invalid-feedback">
                             El telefono 1 no puede estar vacío.
-                          </div>
+                          </div> --}}
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
@@ -157,9 +157,9 @@
                         <div class="col-md-9 mb-3">
                           <input type="mail" class="form-control form-remanso" name="correoProsp" id="correoProsp"
                             required>
-                          <div class="g invalid-feedback">
+                          {{-- <div class="g invalid-feedback">
                             El correo no puede estar vacío.
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
                       <hr>
@@ -185,9 +185,9 @@
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso" name="impProsp" id="impProsp" required>
-                          <div class="h invalid-feedback">
+                          {{-- <div class="h invalid-feedback">
                             El importe no puede estar vacío.
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
                       <div class="row">
@@ -197,9 +197,9 @@
                         <div class="col-md-9 mb-3">
                           <textarea class="form-control form-remanso" name="obsvProsp" id="obsvProsp"
                             rows="5"></textarea>
-                          <div class="i invalid-feedback">
+                          {{-- <div class="i invalid-feedback">
                             Las observaciones no puede estar vacías.
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
                     </div>
@@ -592,6 +592,7 @@ document.getElementById("fechaContacto").value = fechaActual;
     dateFormat: "d-m-Y"
   });
 
+// ----------------------Valida correo---------------------------------
     var emailInput = document.getElementById("correoProsp");
 
       emailInput.addEventListener("input", function(event) {
@@ -609,23 +610,103 @@ document.getElementById("fechaContacto").value = fechaActual;
         }
       });
 
-    var numDocProsInput = document.getElementById("numDocPros");
+      var emailInput2 = document.getElementById("correo2Tit");
 
-      numDocProsInput.addEventListener("input", function() {
-        var inputValue = numDocProsInput.value;
-      
-        // Eliminar caracteres no numéricos
-        inputValue = inputValue.replace(/\D/g, '');
+      emailInput2.addEventListener("input", function(event) {
+        var email = event.target.value;
         
-        // Limitar la longitud del valor a 9 caracteres
-        if (inputValue.length > 9) {
-          inputValue = inputValue.slice(0, 9);
+        // Expresión regular para validar el formato de correo electrónico
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!emailRegex.test(email)) {
+          // El correo electrónico no cumple con el formato válido
+          emailInput2.setCustomValidity("Ingrese un correo electrónico válido");
+        } else {
+          // El correo electrónico tiene un formato válido
+          emailInput2.setCustomValidity("");
         }
-        
-        // Actualizar el valor del campo
-        numDocProsInput.value = inputValue;
       });
-    
+// --------------------valida documentyo de identidad-------------
+var numDocProsInput = document.getElementById("numDocPros");
+
+numDocProsInput.addEventListener("input", function(event) {
+  var inputValue = numDocProsInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > 9) {
+    inputValue = inputValue.slice(0, 9);
+  }
+  
+  // Actualizar el valor del campo
+  numDocProsInput.value = inputValue;
+  
+  // Verificar si se ingresaron 9 dígitos
+  if (inputValue.length !== 9) {
+    numDocProsInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+    numDocProsInput.reportValidity(); // Mostrar el mensaje de error
+  } else {
+    numDocProsInput.setCustomValidity(""); // Campo válido
+  }
+});
+
+var numDoc2titInput = document.getElementById("numDoc2tit");
+
+numDoc2titInput.addEventListener("input", function(event) {
+  var inputValue = numDoc2titInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > 9) {
+    inputValue = inputValue.slice(0, 9);
+  }
+  
+  // Actualizar el valor del campo
+  numDoc2titInput.value = inputValue;
+  
+  if (inputValue.length !=='') {
+    // Verificar si se ingresaron 9 dígitos
+    if (inputValue.length !== 9) {
+      numDoc2titInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+      numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
+    } else {
+      numDoc2titInput.setCustomValidity(""); // Campo válido
+    }
+  }
+});
+
+var numDocAddBenefInput = document.getElementById("numDocAddBenef");
+
+numDocAddBenefInput.addEventListener("input", function(event) {
+  var inputValue = numDocAddBenefInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > 9) {
+    inputValue = inputValue.slice(0, 9);
+  }
+  
+  // Actualizar el valor del campo
+  numDocAddBenefInput.value = inputValue;
+  
+  if (inputValue.length !=='') {
+    // Verificar si se ingresaron 9 dígitos
+    if (inputValue.length !== 9) {
+      numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+      numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+    } else {
+      numDocAddBenefInput.setCustomValidity(""); // Campo válido
+    }
+  }
+});
+
+// -----------------------valida telefono-------------------------    
       var phoneInput = document.getElementById("telf1Prosp");
 
       phoneInput.addEventListener("input", function(event) {
@@ -633,14 +714,95 @@ document.getElementById("fechaContacto").value = fechaActual;
         
         // Eliminar cualquier carácter que no sea un número
         phone = phone.replace(/\D/g, '');
-        
-        if (phone.length !== 9) {
-          // El número de teléfono no tiene 9 dígitos
-          phoneInput.setCustomValidity("Ingrese un número de teléfono válido con 9 dígitos");
-        } else {
-          // El número de teléfono tiene 9 dígitos
-          phoneInput.setCustomValidity("");
+
+        // Limitar la longitud del valor a 12 caracteres
+        if (phone.length > 12) {
+          phone = phone.slice(0, 12);
         }
+
+        event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+        
+        if (phone.length == 8 || phone.length ==12) {
+          // El número de teléfono tiene 9-12 dígitos
+          phoneInput.setCustomValidity("");
+          
+          } else {
+            // El número de teléfono no tiene 9-12 dígitos
+            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+          }
+                
+      });
+      var phoneInput2 = document.getElementById("telf2Prosp");
+
+      phoneInput2.addEventListener("input", function(event) {
+        var phone = event.target.value;
+        
+        // Eliminar cualquier carácter que no sea un número
+        phone = phone.replace(/\D/g, '');
+
+        // Limitar la longitud del valor a 12 caracteres
+        if (phone.length > 12) {
+          phone = phone.slice(0, 12);
+        }
+
+        event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+          
+        if (phone.length == 8 || phone.length ==12) {
+          // El número de teléfono tiene 9-12 dígitos
+          phoneInput.setCustomValidity("");
+          
+          } else {
+            // El número de teléfono no tiene 9-12 dígitos
+            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+          }
+      });
+      var phoneInput3 = document.getElementById("telf1_2Tit");
+
+      phoneInput3.addEventListener("input", function(event) {
+        var phone = event.target.value;
+        
+        // Eliminar cualquier carácter que no sea un número
+        phone = phone.replace(/\D/g, '');
+
+        // Limitar la longitud del valor a 12 caracteres
+        if (phone.length > 12) {
+          phone = phone.slice(0, 12);
+        }
+
+        event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+          
+        if (phone.length == 8 || phone.length ==12) {
+          // El número de teléfono tiene 9-12 dígitos
+          phoneInput.setCustomValidity("");
+          
+          } else {
+            // El número de teléfono no tiene 9-12 dígitos
+            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+          }
+      });
+      var phoneInput4 = document.getElementById("telf2_2Tit");
+
+      phoneInput4.addEventListener("input", function(event) {
+        var phone = event.target.value;
+        
+        // Eliminar cualquier carácter que no sea un número
+        phone = phone.replace(/\D/g, '');
+
+        // Limitar la longitud del valor a 12 caracteres
+        if (phone.length > 12) {
+          phone = phone.slice(0, 12);
+        }
+
+        event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+          
+        if (phone.length == 8 || phone.length ==12) {
+          // El número de teléfono tiene 9-12 dígitos
+          phoneInput.setCustomValidity("");
+          
+          } else {
+            // El número de teléfono no tiene 9-12 dígitos
+            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+          }
       });
 
   //--------------Guardar Prospecto--------------
