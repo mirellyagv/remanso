@@ -3,7 +3,28 @@
     .align-right {
       text-align: right;
     }
+    /* .loader {
+      display: block;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .loader img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    } */
   </style>
+
+{{-- <div class="loader">
+  <img src="{{asset('images/7.gif')}}" alt="Cargando...">
+</div> --}}
 
   <main class="main" id="main">
     <div class="pagetitle">
@@ -799,6 +820,14 @@
 </x-layouts.app>
 <script src="{{asset('js/registroVenta.js')}}"></script>
 <script type="text/javascript">
+
+// window.addEventListener('load', function() {
+//       var loader = document.querySelector('.loader');
+//       setTimeout(function() {
+//         loader.style.display = 'none';
+//       }, 2000);
+//     });
+
 
 // ----------------------Valida correo---------------------------------
 var emailInput = document.getElementById("correoRegVta");
