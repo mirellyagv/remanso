@@ -489,3 +489,22 @@ addContacto.addEventListener("click",function (){
 
 });
 
+var btnAbreModalBenef = document.getElementById("abreModalBenef");
+btnAbreModalBenef.addEventListener("click",function (){
+    document.getElementById("tipoDocAddBenef").value = '';
+    document.getElementById("numDocAddBenef").value = '';
+    document.getElementById("nombresAddBenef").value = '';
+    document.getElementById("apellPAddBenef").value = '';
+    document.getElementById("apellMAddBenef").value = '';
+    document.getElementById("fchNacAddBenef").value = '';
+    document.getElementById("parentescoAddBenef").value = '';
+    document.getElementById("sexoAddBenef").value = '';
+    document.getElementById("edoCivilAddBenef").value = '';
+});
+
+var btnAbreModalContacto = document.getElementById("abreModalContacto");
+btnAbreModalContacto.addEventListener("click",function (){
+    document.getElementById("califAddContacto").value = '';
+    document.getElementById("obsvAddContacto").value = '';
+});
+

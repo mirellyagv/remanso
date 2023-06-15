@@ -807,23 +807,28 @@ flatpickr("#fch1erVcto",{
   defaultDate: fechaMasUnMes,
   dateFormat: "Y-m-d"
 });
-  $("#tipoDoc").change(function(){
-        if(this.value==1){
-            $("#nombre").css("display", "none");
-            $("#razonSoc").css("display", "block");
-        }else{
-            $("#nombre").css("display", "block");
-            $("#razonSoc").css("display", "none");
-        }
-        
-    });
-    var boton = document.getElementById("tipoNec");
-    boton.addEventListener("change",function(){
-      console.log(this.checked);
-      if(this.checked == true){
-        document.getElementById("formRegVenta").reset();
+
+document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
+    ele.bootstrapToggle();
+});
+
+$("#tipoDoc").change(function(){
+      if(this.value==1){
+          $("#nombre").css("display", "none");
+          $("#razonSoc").css("display", "block");
+      }else{
+          $("#nombre").css("display", "block");
+          $("#razonSoc").css("display", "none");
       }
-    });
+      
+  });
+  var boton = document.getElementById("tipoNec");
+  boton.addEventListener("change",function(){
+    console.log(this.checked);
+    if(this.checked == true){
+      document.getElementById("formRegVenta").reset();
+    }
+  });
 //-----------------------------------recuperar prospecto-------------------------------------------------
 
 var cod_prospecto = ''; // Variable para almacenar el valor de cod_prospecto
@@ -849,6 +854,8 @@ window.onload= function () {
       data:{'cod_prospecto':cod_prospecto},
       success: function(result) {
         console.log(result);
+        document.getElementById("tipoNec").bootstrapToggle('off');
+        document.getElementById("tipoNec").bootstrapToggle('readonly');
         document.getElementById("razonSocRegVta").value=result["response"]["dsc_razon_social"];
         document.getElementById("apellPRegVta").value=result["response"]["dsc_apellido_paterno"];
         document.getElementById("apellMRegVta").value=result["response"]["dsc_apellido_materno"];
@@ -1087,65 +1094,84 @@ boton.addEventListener("click",function(){
     'fch_1er_vencimiento': document.getElementById("fch1erVcto").value
   };
 
-  $.ajax({
-    url: '../api/guardaProspecto', 
-    method: "PUT",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'prospecto':prospecto},
-    success: function(respuesta){
-      var codProspecto = respuesta['response']['cod_prospecto'];
-      filasArray.forEach(function (fila) {
-        fila['cod_prospecto'] = codProspecto;
+  Swal.fire({
+    title: 'Esta seguro que quiere Guardar la venta?',
+    text: dscTitular,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#35B44A',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: '../api/guardaProspecto', 
+        method: "PUT",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'prospecto':prospecto},
+        success: function(respuesta){
+          var codProspecto = respuesta['response']['cod_prospecto'];
+          filasArray.forEach(function (fila) {
+            fila['cod_prospecto'] = codProspecto;
+          });
+
+            $.ajax({
+                url: '../api/guardaBeneficiario', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'beneficiarios':filasArray},
+                success: function(respuesta){
+                    console.log(respuesta);   
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
+            });
+
+            servicioArray['cod_prospecto'] = codProspecto;
+
+            $.ajax({
+                url: '../api/InsertarProspectoServicio', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'datosServicios':servicioArray},
+                success: function(respuesta){
+                    console.log(respuesta);   
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
+            });
+
+            Swal.fire({
+              title: 'Guardado',
+              text: codProspecto,
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#35B44A',
+            }).then((result) => {
+              /* Read more about isConfirmed, isDenied below */
+              if (result.isConfirmed) {
+                route{{'prospectos.listado'}}
+              } 
+            })
+    
+        },//success
+        error(e){
+            console.log(e.message);
+            Swal.fire({
+              title:'Error!',
+              text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+              icon:'warning',
+              confirmButtonColor: '#35B44A',
+            }) 
+        }//error
       });
-
-        $.ajax({
-            url: '../api/guardaBeneficiario', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'beneficiarios':filasArray},
-            success: function(respuesta){
-                console.log(respuesta);   
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
-
-        servicioArray['cod_prospecto'] = codProspecto;
-
-        $.ajax({
-            url: '../api/InsertarProspectoServicio', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'datosServicios':servicioArray},
-            success: function(respuesta){
-                console.log(respuesta);   
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
-
-        Swal.fire({
-          title: 'Guardado',
-          text: codProspecto,
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-             route{{'prospectos.listado'}} 
-          } 
-        })
- 
-    },//success
-    error(e){
-        console.log(e.message);
-    }//error
-  });
+    }
+  })//then
 });
 
 </script>

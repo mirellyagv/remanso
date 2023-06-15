@@ -376,4 +376,36 @@ class APIController extends Controller
 
     }
 
+    public function editarEstadoProspecto(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['prospecto']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoEstado/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+
+            $promise->wait();
+            $mensaje= 'Actualizado';
+            return $mensaje;
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+    }
+
+    
+
 }

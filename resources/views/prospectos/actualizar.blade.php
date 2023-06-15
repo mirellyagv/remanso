@@ -314,7 +314,7 @@
                       <div class="col-md-3 offset-md-9">
                         <div class="form-group form-remanso">
                           <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
-                              data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;">Añadir
+                              data-bs-target="#ModalBeneficiarios" id="abreModalBenef" style="width: -webkit-fill-available;">Añadir
                               Beneficiario</button></h5>
                         </div>
                       </div>
@@ -357,7 +357,7 @@
                           <div class="col-md-3 offset-md-9">
                             <div class="form-group form-remanso">
                               <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
-                                  data-bs-target="#ModalRegistro" style="width: -webkit-fill-available;">Añadir
+                                  data-bs-target="#ModalRegistro" id="abreModalContacto" style="width: -webkit-fill-available;">Añadir
                                   Contacto</button></h5>
                             </div>
                           </div>
@@ -794,36 +794,69 @@ boton.addEventListener("click",function(){
   };
 
 
-
-  $.ajax({
-    url: '../api/editarProspecto', 
-    method: "PUT",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'prospecto':prospecto},
-    success: function(respuesta){
-      console.log(respuesta);
-
-        Swal.fire({
-          title: 'Actualizado',
-          text: codProspecto,
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-             route{{'prospectos.listado'}} 
-          } 
-        })
-        
-    },//success
-    error(e){
-        console.log(e.message);
-    }//error
-  });
-
+  Swal.fire({
+    title: 'Esta seguro que quiere Actualizar este prospecto?',
+    text: codigo+' '+nombre,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#35B44A',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+      url: '../api/editarProspecto', 
+      method: "PUT",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'prospecto':prospecto},
+      success: function(respuesta){
+        console.log(respuesta);
+          Swal.fire({
+            title: 'Actualizado',
+            text: codProspecto,
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              route{{'prospectos.listado'}} 
+            } 
+          })
+        },//success
+        error(e){
+            console.log(e.message);
+            Swal.fire({
+              title:'Error!',
+              text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+              icon:'warning',
+              confirmButtonColor: '#35B44A',
+            }) 
+        }//error
+      });
+    }
+  })//then
 
 
 });
+
+var btnAbreModalBenef = document.getElementById("abreModalBenef");
+btnAbreModalBenef.addEventListener("click",function (){
+    document.getElementById("tipoDocAddBenef").value = '';
+    document.getElementById("numDocAddBenef").value = '';
+    document.getElementById("nombresAddBenef").value = '';
+    document.getElementById("apellPAddBenef").value = '';
+    document.getElementById("apellMAddBenef").value = '';
+    document.getElementById("fchNacAddBenef").value = '';
+    document.getElementById("parentescoAddBenef").value = '';
+    document.getElementById("sexoAddBenef").value = '';
+    document.getElementById("edoCivilAddBenef").value = '';
+});
+
+var btnAbreModalContacto = document.getElementById("abreModalContacto");
+btnAbreModalContacto.addEventListener("click",function (){
+    document.getElementById("califAddContacto").value = '';
+    document.getElementById("obsvAddContacto").value = '';
+});
+
 
 </script>

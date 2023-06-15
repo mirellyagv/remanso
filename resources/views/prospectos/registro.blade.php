@@ -345,7 +345,7 @@
                         <div class="col-md-3 offset-md-9">
                           <div class="form-group form-remanso">
                             <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
-                                data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;">Añadir
+                                data-bs-target="#ModalBeneficiarios" id="abreModalBenef" style="width: -webkit-fill-available;">Añadir
                                 Beneficiario</button></h5>
                           </div>
                         </div>
@@ -388,7 +388,7 @@
                             <div class="col-md-3 offset-md-9">
                               <div class="form-group form-remanso">
                                 <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
-                                    data-bs-target="#ModalRegistro" style="width: -webkit-fill-available;">Añadir
+                                    data-bs-target="#ModalRegistro" id="abreModalContacto" style="width: -webkit-fill-available;">Añadir
                                     Contacto</button></h5>
                               </div>
                             </div>
@@ -647,239 +647,245 @@ document.getElementById("fechaContacto").value = fechaActual;
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
 
-  var numDocInput = document.getElementById("numDocPros");
-  var numDocValue = numDocInput.value.trim();
-  var collapseOne = document.getElementById("collapseOne");
-  
-  var nombreProspInput = document.getElementById("nombreProsp");
-  var nombreProspValue = nombreProspInput.value.trim();
+      var numDocInput = document.getElementById("numDocPros");
+      var numDocValue = numDocInput.value.trim();
+      var collapseOne = document.getElementById("collapseOne");
+      
+      var nombreProspInput = document.getElementById("nombreProsp");
+      var nombreProspValue = nombreProspInput.value.trim();
 
-  var apellPProspInput = document.getElementById("apellPProsp");
-  var apellPProspValue = apellPProspInput.value.trim();
+      var apellPProspInput = document.getElementById("apellPProsp");
+      var apellPProspValue = apellPProspInput.value.trim();
 
-  var apellMProspInput = document.getElementById("apellMProsp");
-  var apellMProspValue = apellMProspInput.value.trim();
+      var apellMProspInput = document.getElementById("apellMProsp");
+      var apellMProspValue = apellMProspInput.value.trim();
 
-  var direccProsInput = document.getElementById("direccPros");
-  var direccProsValue = direccProsInput.value.trim();
+      var direccProsInput = document.getElementById("direccPros");
+      var direccProsValue = direccProsInput.value.trim();
 
-  var telf1ProspInput = document.getElementById("telf1Prosp");
-  var telf1ProspValue = telf1ProspInput.value.trim();
-  
-  // Validación para el campo "Núm. de Documento"
-  var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
-  if (!numDocRegex.test(numDocValue)) {
-    var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");
-    collapseOne.classList.add("show");
-    numDocInput.focus();
-    invalidFeedbackNumDoc.style.display = "block";
-    return;
-  }
-  if (numDocRegex.test(numDocValue)){var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");invalidFeedbackNumDoc.style.display = "none";}
-  // Validación para el campo "nombreProsp"
-  if (nombreProspValue === "") {
-    var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
-    collapseOne.classList.add("show");
-    nombreProspInput.focus();
-    invalidFeedbackNombreProsp.style.display = "block";
-    return;
-  }
-  if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
+      var telf1ProspInput = document.getElementById("telf1Prosp");
+      var telf1ProspValue = telf1ProspInput.value.trim();
+      
+      // Validación para el campo "Núm. de Documento"
+      var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
+      if (!numDocRegex.test(numDocValue)) {
+        var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");
+        collapseOne.classList.add("show");
+        numDocInput.focus();
+        invalidFeedbackNumDoc.style.display = "block";
+        return;
+      }
+      if (numDocRegex.test(numDocValue)){var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");invalidFeedbackNumDoc.style.display = "none";}
+      // Validación para el campo "nombreProsp"
+      if (nombreProspValue === "") {
+        var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
+        collapseOne.classList.add("show");
+        nombreProspInput.focus();
+        invalidFeedbackNombreProsp.style.display = "block";
+        return;
+      }
+      if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
 
-  // Validación para el campo "apellPProsp"
-  if (apellPProspValue === "") {
-    var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
-    collapseOne.classList.add("show");
-    apellPProspInput.focus();
-    invalidFeedbackapellPProsp.style.display = "block";
-    return;
-  }
-  if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
+      // Validación para el campo "apellPProsp"
+      if (apellPProspValue === "") {
+        var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
+        collapseOne.classList.add("show");
+        apellPProspInput.focus();
+        invalidFeedbackapellPProsp.style.display = "block";
+        return;
+      }
+      if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
 
-  // Validación para el campo "apellMProsp"
-  if (apellMProspValue === "") {
-    var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
-    collapseOne.classList.add("show");
-    apellMProspInput.focus();
-    invalidFeedbackapellMProsp.style.display = "block";
-    return;
-  }
-  if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
+      // Validación para el campo "apellMProsp"
+      if (apellMProspValue === "") {
+        var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
+        collapseOne.classList.add("show");
+        apellMProspInput.focus();
+        invalidFeedbackapellMProsp.style.display = "block";
+        return;
+      }
+      if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
 
-  // Validación para el campo "direccPros"
-  if (direccProsValue === "") {
-    var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
-    collapseOne.classList.add("show");
-    direccProsInput.focus();
-    invalidFeedbackdireccPros.style.display = "block";
-    return;
-  }
-  if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
+      // Validación para el campo "direccPros"
+      if (direccProsValue === "") {
+        var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
+        collapseOne.classList.add("show");
+        direccProsInput.focus();
+        invalidFeedbackdireccPros.style.display = "block";
+        return;
+      }
+      if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
 
-  // Validación para el campo "telf1Prosp"
-  if (telf1ProspValue === "") {
-    collapseTelf1Prosp.classList.add("show");
-    telf1ProspInput.focus();
-    invalidFeedbackTelf1Prosp.style.display = "block";
-    return;
-  }
+      // Validación para el campo "telf1Prosp"
+      if (telf1ProspValue === "") {
+        collapseTelf1Prosp.classList.add("show");
+        telf1ProspInput.focus();
+        invalidFeedbackTelf1Prosp.style.display = "block";
+        return;
+      }
 
-  // // Validación de longitud y formato
-  // if (telf1ProspValue.length !== 9 || !/^\d{9}$/.test(telf1ProspValue)) {
-  //   collapseTelf1Prosp.classList.add("show");
-  //   telf1ProspInput.focus();
-  //   invalidFeedbackTelf1Prosp.style.display = "block";
-  //   return;
-  // }
-  // if (telf1ProspValue.length === 9 || /^\d{9}$/.test(telf1ProspValue)){var invalidFeedbacktelf1Prosp = document.querySelector("#collapseOne .f.invalid-feedback");invalidFeedbacktelf1Prosp.style.display = "none";}
-
-
-
-
-  var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
-    flgJuridico = '';
-    flgJuridico2 = '';
-  if(document.getElementById("tipoDocProsp").value == 'DI004'){
-    flgJuridico = 'SI';
-    
-  }else{
-    flgJuridico = 'NO';
-  }
-  if(document.getElementById("tipoDoc2tit").value ==  'DI004'){
-    flgJuridico2 = 'SI';
-    
-  }else{
-    flgJuridico2 = 'NO';
-  }
-  var prospecto = {
-    'cod_prospecto': '',
-    'dsc_prospecto': nombres,
-    'dsc_razon_social': document.getElementById("rucProsp").value,
-    'dsc_apellido_paterno': document.getElementById("apellPProsp").value,
-    'dsc_apellido_materno': document.getElementById("apellMProsp").value,
-    'dsc_nombre': document.getElementById("nombreProsp").value,
-    'flg_juridico': flgJuridico,
-    'cod_tipo_documento': document.getElementById("tipoDocProsp").value,
-    'dsc_documento': document.getElementById("numDocPros").value,
-    'cod_pais': document.getElementById("paisProspecto").value,
-    'cod_departamento': document.getElementById("dptoProsp").value,
-    'cod_provincia': document.getElementById("provinProsp").value,
-    'cod_distrito': document.getElementById("dttoProsp").value,
-    'dsc_direccion':  document.getElementById("direccPros").value,
-    'dsc_telefono_1': document.getElementById("telf1Prosp").value,
-    'dsc_telefono_2': document.getElementById("telf2Prosp").value,
-    'cod_origen': document.getElementById("canalProsp").value,
-    'cod_calificacion': document.getElementById("califProsp").value,
-    'dsc_observaciones':  document.getElementById("obsvProsp").value,
-    'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
-    'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
-    'cod_grupo': '',
-    'cod_supervisor': '',
-    'cod_jefeventas': '',
-    'cod_estado': 'ACT',
-    'imp_monto':document.getElementById("impProsp").value,
-    'dsc_correo': document.getElementById("correoProsp").value,
-    'flg_sincronizado_crm': 'NO',
-    'cod_localidad_p': 'LC001',
-    'dsc_apellido_paterno_2do': document.getElementById("apelP2tit").value,
-    'dsc_apellido_materno_2do': document.getElementById("apelM2tit").value,
-    'dsc_nombre_2do': document.getElementById("nombre2Tit").value,
-    'flg_juridico_2do': flgJuridico2,
-    'cod_tipo_documento_2do': document.getElementById("tipoDoc2tit").value,
-    'dsc_documento_2do': document.getElementById("numDoc2tit").value,
-    'dsc_prospecto_2do': document.getElementById("nombre2Tit").value+' '+document.getElementById("apelP2tit").value+' '+document.getElementById("apelM2tit").value,
-    'cod_pais_2do': document.getElementById("pais2Tit").value,
-    'cod_departamento_2do': document.getElementById("dpto2Tit").value,
-    'cod_provincia_2do': document.getElementById("prov2Tit").value,
-    'cod_distrito_2do': document.getElementById("dtto2Tit").value,
-    'dsc_direccion_2do': document.getElementById("dir2Tit").value,
-    'dsc_telefono_1_2do': document.getElementById("telf1_2Tit").value,
-    'dsc_telefono_2_2do': document.getElementById("telf2_2Tit").value,
-    'dsc_correo_2do': document.getElementById("correo2Tit").value,
-    'dsc_apellido_paterno_aval': '',
-    'dsc_apellido_materno_aval': '',
-    'dsc_nombre_aval': '',
-    'cod_tipo_documento_aval': '',
-    'dsc_documento_aval': '',
-    'dsc_prospecto_aval': '',
-    'cod_pais_aval': '',
-    'cod_departamento_aval': '',
-    'cod_provincia_aval': '',
-    'cod_distrito_aval': '',
-    'dsc_telefono_1_aval': '',
-    'dsc_telefono_2_aval': '',
-    'dsc_correo_aval': '',
-    'cod_camposanto': '',
-    'cod_plataforma': '',
-    'cod_area_plataforma': '',
-    'cod_eje_horizontal': '',
-    'cod_eje_vertical': '',
-    'cod_espacio': '',
-    'cod_tipo_espacio': '',
-    'num_nivel': 0,
-    'cod_tipo_necesidad': 'NF'
-  };
-
-  $.ajax({
-    url: '../api/guardaProspecto', 
-    method: "PUT",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'prospecto':prospecto},
-    success: function(respuesta){
-      var codProspecto = respuesta['response']['cod_prospecto'];
-      var fchContacto = document.getElementById("fch_contacto");
-      filasArray.forEach(function (fila) {
-        fila['cod_prospecto'] = codProspecto;
-      });
-
-        $.ajax({
-            url: '../api/guardaBeneficiario', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'beneficiarios':filasArray},
-            success: function(respuesta){
-                console.log(respuesta);   
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
-
-        $.ajax({
-            url: '../api/guardaObservacion', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
-            success: function(respuesta){
-                console.log(respuesta);   
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
+      var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
+        flgJuridico = '';
+        flgJuridico2 = '';
+      if(document.getElementById("tipoDocProsp").value == 'DI004'){
+        flgJuridico = 'SI';
         
-        Swal.fire({
-          title: 'Guardado',
-          text: codProspecto,
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-             route{{'prospectos.listado'}}
-          } 
-        })
+      }else{
+        flgJuridico = 'NO';
+      }
+      if(document.getElementById("tipoDoc2tit").value ==  'DI004'){
+        flgJuridico2 = 'SI';
+        
+      }else{
+        flgJuridico2 = 'NO';
+      }
+      var prospecto = {
+        'cod_prospecto': '',
+        'dsc_prospecto': nombres,
+        'dsc_razon_social': document.getElementById("rucProsp").value,
+        'dsc_apellido_paterno': document.getElementById("apellPProsp").value,
+        'dsc_apellido_materno': document.getElementById("apellMProsp").value,
+        'dsc_nombre': document.getElementById("nombreProsp").value,
+        'flg_juridico': flgJuridico,
+        'cod_tipo_documento': document.getElementById("tipoDocProsp").value,
+        'dsc_documento': document.getElementById("numDocPros").value,
+        'cod_pais': document.getElementById("paisProspecto").value,
+        'cod_departamento': document.getElementById("dptoProsp").value,
+        'cod_provincia': document.getElementById("provinProsp").value,
+        'cod_distrito': document.getElementById("dttoProsp").value,
+        'dsc_direccion':  document.getElementById("direccPros").value,
+        'dsc_telefono_1': document.getElementById("telf1Prosp").value,
+        'dsc_telefono_2': document.getElementById("telf2Prosp").value,
+        'cod_origen': document.getElementById("canalProsp").value,
+        'cod_calificacion': document.getElementById("califProsp").value,
+        'dsc_observaciones':  document.getElementById("obsvProsp").value,
+        'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
+        'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
+        'cod_grupo': '',
+        'cod_supervisor': '',
+        'cod_jefeventas': '',
+        'cod_estado': 'ACT',
+        'imp_monto':document.getElementById("impProsp").value,
+        'dsc_correo': document.getElementById("correoProsp").value,
+        'flg_sincronizado_crm': 'NO',
+        'cod_localidad_p': 'LC001',
+        'dsc_apellido_paterno_2do': document.getElementById("apelP2tit").value,
+        'dsc_apellido_materno_2do': document.getElementById("apelM2tit").value,
+        'dsc_nombre_2do': document.getElementById("nombre2Tit").value,
+        'flg_juridico_2do': flgJuridico2,
+        'cod_tipo_documento_2do': document.getElementById("tipoDoc2tit").value,
+        'dsc_documento_2do': document.getElementById("numDoc2tit").value,
+        'dsc_prospecto_2do': document.getElementById("nombre2Tit").value+' '+document.getElementById("apelP2tit").value+' '+document.getElementById("apelM2tit").value,
+        'cod_pais_2do': document.getElementById("pais2Tit").value,
+        'cod_departamento_2do': document.getElementById("dpto2Tit").value,
+        'cod_provincia_2do': document.getElementById("prov2Tit").value,
+        'cod_distrito_2do': document.getElementById("dtto2Tit").value,
+        'dsc_direccion_2do': document.getElementById("dir2Tit").value,
+        'dsc_telefono_1_2do': document.getElementById("telf1_2Tit").value,
+        'dsc_telefono_2_2do': document.getElementById("telf2_2Tit").value,
+        'dsc_correo_2do': document.getElementById("correo2Tit").value,
+        'dsc_apellido_paterno_aval': '',
+        'dsc_apellido_materno_aval': '',
+        'dsc_nombre_aval': '',
+        'cod_tipo_documento_aval': '',
+        'dsc_documento_aval': '',
+        'dsc_prospecto_aval': '',
+        'cod_pais_aval': '',
+        'cod_departamento_aval': '',
+        'cod_provincia_aval': '',
+        'cod_distrito_aval': '',
+        'dsc_telefono_1_aval': '',
+        'dsc_telefono_2_aval': '',
+        'dsc_correo_aval': '',
+        'cod_camposanto': '',
+        'cod_plataforma': '',
+        'cod_area_plataforma': '',
+        'cod_eje_horizontal': '',
+        'cod_eje_vertical': '',
+        'cod_espacio': '',
+        'cod_tipo_espacio': '',
+        'num_nivel': 0,
+        'cod_tipo_necesidad': 'NF'
+      };
 
-    },//success
-    error(e){
-        console.log(e.message);
-    }//error
-  });
+  Swal.fire({
+    title: 'Esta seguro que quiere Guardar este prospecto?',
+    text: nombres,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#35B44A',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
 
+      $.ajax({
+        url: '../api/guardaProspecto', 
+        method: "PUT",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'prospecto':prospecto},
+        success: function(respuesta){
+          var codProspecto = respuesta['response']['cod_prospecto'];
+          var fchContacto = document.getElementById("fch_contacto");
+          filasArray.forEach(function (fila) {
+            fila['cod_prospecto'] = codProspecto;
+          });
 
-});
+            $.ajax({
+                url: '../api/guardaBeneficiario', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'beneficiarios':filasArray},
+                success: function(respuesta){
+                    console.log(respuesta);   
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
+            });
+
+            $.ajax({
+                url: '../api/guardaObservacion', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+                success: function(respuesta){
+                    console.log(respuesta);   
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
+            });
+            
+            Swal.fire({
+              title: 'Guardado',
+              text: codProspecto,
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#35B44A',
+            }).then((result) => {
+              /* Read more about isConfirmed, isDenied below */
+              if (result.isConfirmed) {
+                route{{'prospectos.listado'}}
+              } 
+            })
+
+        },//success
+        error(e){
+            console.log(e.message);
+            Swal.fire({
+              title:'Error!',
+              text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+              icon:'warning',
+              confirmButtonColor: '#35B44A',
+            }) 
+        }//error
+      });
+    }
+  })//then
+});//fin guarda
 
 </script>

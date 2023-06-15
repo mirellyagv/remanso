@@ -102,7 +102,7 @@
                         class="bi bi-search"></span></button>
                   </div>
                   <div class="col-md-2 mb-3 d-none d-md-block" style="text-align: end">
-                    <button class="btn btn-success BtnverdeRemanso form-remanso" id="excelBtn1"><img
+                    <button class="btn btn-success BtnverdeRemanso form-remanso" onclick="descargarTablaExcel()" id="btnExportar"><img
                         src="{{asset('images/icon-excel.svg')}}" alt="Bootstrap" width="20" height="20"></button>
                   </div>
                 </div>
@@ -139,6 +139,7 @@
 
 </x-layouts.app>
 
+
 {{-- @push('script')
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
@@ -148,204 +149,246 @@
 @endpush --}}
 
 <script type="text/javascript">
-  //
+
 $(document).ready(function () {
 
-        // Obtener la fecha actual
-var currentDate = new Date();
+  var currentDate = new Date();
 
-// Crear las fechas de inicio y fin del mes actual
-var firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-var lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+  var firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1); // Crear las fechas de inicio y fin del mes actual
+  var lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
 
-// Formatear las fechas como cadenas en formato "YYYY-MM-DD"
-var firstDayOfMonthStr = firstDayOfMonth.toISOString().split('T')[0];
-var lastDayOfMonthStr = lastDayOfMonth.toISOString().split('T')[0];
+  var firstDayOfMonthStr = firstDayOfMonth.toISOString().split('T')[0]; // Formatear las fechas como cadenas en formato "YYYY-MM-DD"
+  var lastDayOfMonthStr = lastDayOfMonth.toISOString().split('T')[0];
 
-// Configurar Flatpickr para fchIni
-flatpickr("#fchIni", {
-  locale: "es",
-  defaultDate: firstDayOfMonthStr,
-  onChange: function(selectedDates, dateStr) {
-    // Habilitar fchFin cuando se seleccione una fecha en fchIni
-    document.getElementById("fchFin").disabled = false;
-    
-    // Actualizar la opción de deshabilitar en fchFin
-    flatpickr("#fchFin", {
-      locale: "es",
-      defaultDate: lastDayOfMonthStr,
-      disable: [
-        {
-          from: "2005-01-01",
-          to: dateStr
+  // Configurar Flatpickr para fchIni
+  flatpickr("#fchIni", {
+    locale: "es",
+    defaultDate: firstDayOfMonthStr,
+    onChange: function(selectedDates, dateStr) {
+      // Habilitar fchFin cuando se seleccione una fecha en fchIni
+      document.getElementById("fchFin").disabled = false;
+      
+      // Actualizar la opción de deshabilitar en fchFin
+      flatpickr("#fchFin", {
+        locale: "es",
+        defaultDate: lastDayOfMonthStr,
+        disable: [
+          {
+            from: "2005-01-01",
+            to: dateStr
+          }
+        ]
+      });
+    }
+  });
+
+  // Configurar Flatpickr para fchFin
+  flatpickr("#fchFin", {
+    locale: "es",
+    defaultDate: lastDayOfMonthStr
+  });
+
+  $.ajax({
+    url: '../lista/ListaProspectos', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
+    success: function(respuesta){
+      // console.log('parado',respuesta)
+        fila='';
+        respuesta['response'].forEach(function(word){
+          
+        // dias =  '{{ \Carbon\Carbon::now ()  }}' ;
+        // var fchRegistro = '{{ \Carbon\Carbon::now ()  }}' ;
+        var codProsp = "'"+word['cod_prospecto']+"'";
+        var dscProsp = "'"+word['dsc_prospecto']+"'";
+        var today = new Date(word['fch_registro']);
+        // obtener la fecha de hoy en formato `MM/DD/YYYY`
+        var dia = today.toLocaleDateString('es-ES');
+        var estado = word['dsc_estado'];
+        estado1 = "'"+estado+"'";
+        if(estado == 'ACTIVO'){
+          ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
+          ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+        }else{
+          ref='';
+          ref2 = '';
         }
-      ]
-    });
-  }
-});
+          fila += '<tr><td>'+
+              '<a class="btn btn-secondary form-remanso" '+ref+' ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
+              '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' ><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
+                  '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
+                  '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
+              '<td>'+word['cod_prospecto']+'</td>'+
+              '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
+              '<td>'+word['dsc_prospecto']+'</td>'+
+              '<td>'+dia+'</td>'+
+              '<td>'+word['num_dias']+'</td>'+
+              '<td>'+word['dsc_origen']+'</td>'+
+              '<td>'+word['dsc_estado']+'</td>'+
+            '</tr>';
 
-// Configurar Flatpickr para fchFin
-flatpickr("#fchFin", {
-  locale: "es",
-  defaultDate: lastDayOfMonthStr
-});
+        });
+        //console.log(fila);
+        $('#bodyListado').html(fila);
+        var totalRegistros = respuesta['response'].length;
+        $('#totalRegistros').text(totalRegistros); // Actualiza el contador de totales en la tabla
 
-  
-    $.ajax({
-      url: '../lista/ListaProspectos', 
-      method: "GET",
-      crossDomain: true,
-      dataType: 'json',
-      data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
-      success: function(respuesta){
-        // console.log('parado',respuesta)
-          fila='';
-          respuesta['response'].forEach(function(word){
-            
-          // dias =  '{{ \Carbon\Carbon::now ()  }}' ;
-          // var fchRegistro = '{{ \Carbon\Carbon::now ()  }}' ;
-         
-          var today = new Date(word['fch_registro']);
-          // obtener la fecha de hoy en formato `MM/DD/YYYY`
-          var dia = today.toLocaleDateString('es-ES');
-          var estado = word['dsc_estado'];
-            fila += '<tr><td>'+
-            '<a class="btn btn-secondary form-remanso"  @if('+estado+' != 'ACTIVO') disabled @endif  href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
-            '<a class="btn btn-success BtnverdeRemanso form-remanso"  @if('+estado+' != 'ACTIVO') disabled @endif href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
-                    '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
-                    '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
-                '<td>'+word['cod_prospecto']+'</td>'+
-                '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
-                '<td>'+word['dsc_prospecto']+'</td>'+
-                '<td>'+dia+'</td>'+
-                '<td>'+word['num_dias']+'</td>'+
-                '<td>'+word['dsc_origen']+'</td>'+
-                '<td>'+word['dsc_estado']+'</td>'+
-              '</tr>';
-  
-          });
-          //console.log(fila);
-          $('#bodyListado').html(fila);
-          var totalRegistros = respuesta['response'].length;
-          $('#totalRegistros').text(totalRegistros); // Actualiza el contador de totales en la tabla
-  
-          if ($.fn.dataTable.isDataTable('#listaProsp')) {
+        if ($.fn.dataTable.isDataTable('#listaProsp')) {
             $('#listaProsp').DataTable().clear();
             $('#listaProsp').DataTable().destroy();        
         }
-  
-        $('#listaProsp').DataTable({
-              paging: true,
-              language: {
+      $('#listaProsp').DataTable({
+            paging: true,
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+            },
+            dom: 'trip',
+            processing: true,
+          });
+
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error
+  }); //ajax     
+});//ready
+
+function cambiarEdoP(codigo,nombre,estado) {
+  if (estado == 'ACTIVO' || estado == 'VENTA') {
+    console.log(estado);          
+  }else{
+    Swal.fire({
+      title: 'Esta seguro que quiere ACTIVAR este prospecto?',
+      text: codigo+' '+nombre,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#35B44A',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var prospecto={
+          'cod_localidad_p': 'LC001',
+          'cod_prospecto': codigo,
+          'cod_estado': estado
+        }
+        $.ajax({
+          type : 'PUT',
+          url:'../api/editarEstadoProspecto',
+          dataType: 'json',
+          data:{'prospecto':prospecto},
+          success: function(respuesta){
+            console.log(respuesta);  
+            Swal.fire({
+              title:'Exito!',
+              text:'Se ha activado el prospecto.',
+              icon:'success',
+              confirmButtonColor: '#35B44A',
+            }) 
+          },//success
+          error(e){
+              console.log(e.message);
+              Swal.fire({
+                title:'Error!',
+                text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+                icon:'warning',
+                confirmButtonColor: '#35B44A',
+              }) 
+          }//error
+        });
+      }
+    })//then
+  } //if
+}//funcion
+
+function BuscarProspecto() {
+    $('#listaProsp').DataTable().clear();
+    $('#listaProsp').DataTable().destroy();
+  $.ajax({
+    url: '../lista/ListaProspectos', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
+    success: function(respuesta){
+      // console.log('de funcion',respuesta)
+        fila='';
+        respuesta['response'].forEach(function(word){          
+        var codProsp = "'"+word['cod_prospecto']+"'";
+        var dscProsp = "'"+word['dsc_prospecto']+"'";
+        var today = new Date(word['fch_registro']);
+        var estado = word['dsc_estado'];
+        estado1 = "'"+estado+"'";
+        if(estado == 'ACTIVO'){
+          ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
+          ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+        }else{
+          ref='';
+          ref2 = '';
+        }
+        // obtener la fecha de hoy en formato `MM/DD/YYYY`
+        var dia = today.toLocaleDateString('es-ES');
+          fila += '<tr><td>'+
+                '<a class="btn btn-secondary form-remanso" '+ref+' ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+'<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
+                '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
+                '<button class="btn btn-warning form-remanso" @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif  onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
+              '<td>'+word['cod_prospecto']+'</td>'+
+              '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
+              '<td>'+word['dsc_prospecto']+'</td>'+
+              '<td>'+dia+'</td>'+
+              '<td>'+word['num_dias']+'</td>'+
+              '<td>'+word['dsc_origen']+'</td>'+
+              '<td>'+word['dsc_estado']+'</td>'+
+            '</tr>';
+
+        });
+        // console.log(fila);
+        $('#bodyListado').html(fila);
+        var totalRegistros = respuesta['response'].length;
+        $('#totalRegistros').text(totalRegistros); // Actualiza el contador de totales en la tabla
+        // Inicializar DataTable dentro del bloque success
+              $('#listaProsp').DataTable({
+                paging: true,
+                language: {
                   url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-              },
-              dom: 'Btrip',
-              buttons: [
-                {
-                  extend: "excel",                    // Extend the excel button
+                },
+                dom: 'Btrip',
+                buttons: [{
+                  extend: "excel",
                   text: 'Excel',
                   className: 'btn btn-success',
-                  excelStyles: {                      // Add an excelStyles definition
-                    cells: "2",                     // to row 2
-                    style: {                        // The style block
-                        font: {                     // Style the font
-                            name: "Arial",          // Font name
-                            size: "14",             // Font size
-                            color: "FFFFFF",        // Font Color
-                            b: false,               // Remove bolding from header row
-                        },
-                        fill: {                     // Style the cell fill (background)
-                            pattern: {              // Type of fill (pattern or gradient)
-                                color: "457B9D",    // Fill color
-                            }
-                        }
-                    }
-                  },
-                },
-              ],
-              processing: true,
-            });
-
-      },//success
-      error(e){
-          console.log(e.message);
-      }//error
-    });
-  
-    
-        
-      });
-
-
-    function BuscarProspecto() {
-      $('#listaProsp').DataTable().clear();
-      $('#listaProsp').DataTable().destroy();
-    $.ajax({
-      url: '../lista/ListaProspectos', 
-      method: "GET",
-      crossDomain: true,
-      dataType: 'json',
-      data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
-      success: function(respuesta){
-        // console.log('de funcion',respuesta)
-          fila='';
-          respuesta['response'].forEach(function(word){          
-
-          var today = new Date(word['fch_registro']);
-          // obtener la fecha de hoy en formato `MM/DD/YYYY`
-          var dia = today.toLocaleDateString('es-ES');
-            fila += '<tr><td>'+
-                  '<a class="btn btn-secondary form-remanso"  href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+'<a class="btn btn-success BtnverdeRemanso form-remanso"  href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
-                  '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
-                  '<button class="btn btn-warning form-remanso" onclick="" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
-                '<td>'+word['cod_prospecto']+'</td>'+
-                '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
-                '<td>'+word['dsc_prospecto']+'</td>'+
-                '<td>'+dia+'</td>'+
-                '<td>'+word['num_dias']+'</td>'+
-                '<td>'+word['dsc_origen']+'</td>'+
-                '<td>'+word['dsc_estado']+'</td>'+
-              '</tr>';
-  
-          });
-          // console.log(fila);
-          $('#bodyListado').html(fila);
-          var totalRegistros = respuesta['response'].length;
-          $('#totalRegistros').text(totalRegistros); // Actualiza el contador de totales en la tabla
-          // Inicializar DataTable dentro del bloque success
-                $('#listaProsp').DataTable({
-                  paging: true,
-                  language: {
-                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-                  },
-                  dom: 'Btrip',
-                  buttons: [{
-                    extend: "excel",
-                    text: 'Excel',
-                    className: 'btn btn-success',
-                    excelStyles: {
-                      cells: "2",
-                      style: {
-                        font: {
-                          name: "Arial",
-                          size: "14",
-                          color: "FFFFFF",
-                          b: false,
-                        },
-                        fill: {
-                          pattern: {
-                            color: "457B9D",
-                          }
+                  excelStyles: {
+                    cells: "2",
+                    style: {
+                      font: {
+                        name: "Arial",
+                        size: "14",
+                        color: "FFFFFF",
+                        b: false,
+                      },
+                      fill: {
+                        pattern: {
+                          color: "457B9D",
                         }
                       }
-                    },
-                  }],
-                  processing: true,
-                });
-              },//success
-      error(e){
-          console.log(e.message);
-      }//error
-    });
-    };
+                    }
+                  },
+                }],
+                processing: true,
+              });
+            },//success
+    error(e){
+        console.log(e.message);
+    }//error
+  });
+};
+
+function descargarTablaExcel() {
+  var tabla = document.getElementById('listaProsp');
+  var libro = XLSX.utils.table_to_book(tabla);
+  XLSX.writeFile(libro, 'tabla.xlsx');
+}
+
 </script>
