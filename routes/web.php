@@ -55,6 +55,7 @@ Route::put('api/guardaProspecto', [APIController::class, 'guardaProspecto'])->na
 Route::put('api/guardaBeneficiario', [APIController::class, 'guardaBeneficiario'])->name('api.guardaBeneficiario');
 Route::delete('api/EliminarProspectoBeneficiario', [APIController::class, 'EliminarProspectoBeneficiario'])->name('api.EliminarProspectoBeneficiario');
 Route::get('lista/ListaProspectos', [ListaController::class, 'ListaProspectos'])->name('api.ListaProspectos');
+Route::get('lista/ListaProspectosCaducar', [ListaController::class, 'ListaProspectosCaducar'])->name('api.ListaProspectosCaducar');
 Route::put('api/guardaObservacion', [APIController::class, 'guardaObservacion'])->name('api.guardaObservacion');
 Route::put('api/editarProspecto', [APIController::class, 'editarProspecto'])->name('api.editarProspecto');
 Route::put('api/InsertarProspectoServicio', [APIController::class, 'InsertarProspectoServicio'])->name('api.InsertarProspectoServicio');

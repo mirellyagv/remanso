@@ -18,157 +18,7 @@
               <th style="text-align: center;" width="15%">Canal</th>
             </tr>
           </thead>
-          <tbody style="text-align: center;">
-            <tr>
-              <td><a href="gestionProspecto.php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000051</td>
-              <td>DNI-123456789</td>
-              <td>Milagros Huaman</td>
-              <td>05/03/2023</td>
-              <td>60</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000021</td>
-              <td>DNI-123456789</td>
-              <td>Rodrigo Montero</td>
-              <td>10/03/2023</td>
-              <td>60</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000521</td>
-              <td>DNI-123456789</td>
-              <td>Adriana Jaramillo</td>
-              <td>15/03/2023</td>
-              <td>58</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000025</td>
-              <td>DNI-123456789</td>
-              <td>Carlos González</td>
-              <td>20/03/2023</td>
-              <td>57</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000658</td>
-              <td>DNI-123456789</td>
-              <td>María Huaman</td>
-              <td>28/03/2023</td>
-              <td>55</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000051</td>
-              <td>DNI-123456789</td>
-              <td>Milagros Huaman</td>
-              <td>05/03/2023</td>
-              <td>60</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000021</td>
-              <td>DNI-123456789</td>
-              <td>Rodrigo Montero</td>
-              <td>10/03/2023</td>
-              <td>60</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000521</td>
-              <td>DNI-123456789</td>
-              <td>Adriana Jaramillo</td>
-              <td>15/03/2023</td>
-              <td>58</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000025</td>
-              <td>DNI-123456789</td>
-              <td>Carlos González</td>
-              <td>20/03/2023</td>
-              <td>57</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000658</td>
-              <td>DNI-123456789</td>
-              <td>María Huaman</td>
-              <td>28/03/2023</td>
-              <td>55</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000051</td>
-              <td>DNI-123456789</td>
-              <td>Milagros Huaman</td>
-              <td>05/03/2023</td>
-              <td>60</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000021</td>
-              <td>DNI-123456789</td>
-              <td>Rodrigo Montero</td>
-              <td>10/03/2023</td>
-              <td>60</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000521</td>
-              <td>DNI-123456789</td>
-              <td>Adriana Jaramillo</td>
-              <td>15/03/2023</td>
-              <td>58</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000025</td>
-              <td>DNI-123456789</td>
-              <td>Carlos González</td>
-              <td>20/03/2023</td>
-              <td>57</td>
-              <td>Referido</td>
-            </tr>
-            <tr>
-              <td><a href="php" class="btn btn-success form-remanso BtnverdeRemanso"
-                  style="width: -webkit-fill-available;" id="loginBtn">Gestión</a></td>
-              <td>PVT0000658</td>
-              <td>DNI-123456789</td>
-              <td>María Huaman</td>
-              <td>28/03/2023</td>
-              <td>55</td>
-              <td>Referido</td>
-            </tr>
+          <tbody style="text-align: center;">           
           </tbody>
         </table>
       </div>
@@ -179,37 +29,51 @@
 </x-layouts.app>
 
 <script type="text/javascript">
-  $(document).ready(function () {
-        $('#homeListado').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-            },
-            dom: 'Btrip',
-            buttons: [
-              {
-                extend: "excel",                    // Extend the excel button
-                text: 'Excel',
-                className: 'btn btn-success',
-                excelStyles: {                      // Add an excelStyles definition
-                  cells: "2",                     // to row 2
-                  style: {                        // The style block
-                      font: {                     // Style the font
-                          name: "Arial",          // Font name
-                          size: "14",             // Font size
-                          color: "FFFFFF",        // Font Color
-                          b: false,               // Remove bolding from header row
-                      },
-                      fill: {                     // Style the cell fill (background)
-                          pattern: {              // Type of fill (pattern or gradient)
-                              color: "457B9D",    // Fill color
-                          }
-                      }
-                  }
-                },
-              },
-            ],
-            processing: true,
+$(document).ready(function () {
+    $.ajax({
+        url: 'lista/ListaProspectosCaducar', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{},
+        success: function(respuesta){
 
-        });
-    });
+          var filasArray = [];
+          respuesta['response'].forEach(element => {
+            var fchReg =  element['fch_registro'].split("T");
+            var filaData = [
+                '<a class="btn btn-secondary form-remanso"  href="{{route('prospectos.actualizar')}}?CodProspecto='+element['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>',
+                element['cod_prospecto'],
+                element['dsc_tipo_documento']+'-'+element['dsc_documento'],
+                element['dsc_prospecto'],
+                fchReg[0],
+                element['num_dias'],
+                element['dsc_origen']
+            ];
+            filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#homeListado').DataTable({
+              language: {
+                  url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+              },
+              data: filasArray,
+              columns: [
+                  { title: '' },
+                  { title: 'Código' },
+                  { title: 'Documento' },
+                  { title: 'Prospecto' },
+                  { title: 'Fcha' },
+                  { title: 'Días' },
+                  { title: 'Canal' },
+              ],
+              dom: 'trip',
+              processing: true,
+          });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//end ajax
+});//end ready
 </script>

@@ -21,6 +21,7 @@ class VerifyCsrfToken extends Middleware
         'api/InsertarProspectoServicio',
         'api/editarProspecto',
         '/lista/ListaProspectos',
+        'lista/ListaProspectosCaducar',
         'lista/MuestraPais',
         'lista/MuestraDpto',
         'lista/MuestraProvincia',
