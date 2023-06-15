@@ -239,7 +239,7 @@ $(document).ready(function () {
         var dia = today.toLocaleDateString('es-ES');
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
-        if(estado == 'ACTIVO'){
+        if(estado == 'ACTIVO' || estado == 'VENTA'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
         }else{
@@ -358,7 +358,7 @@ function BuscarProspecto() {
         var today = new Date(word['fch_registro']);
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
-        if(estado == 'ACTIVO'){
+        if(estado == 'ACTIVO' || estado = 'VENTA'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
         }else{
