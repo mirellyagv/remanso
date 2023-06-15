@@ -807,23 +807,28 @@ flatpickr("#fch1erVcto",{
   defaultDate: fechaMasUnMes,
   dateFormat: "Y-m-d"
 });
-  $("#tipoDoc").change(function(){
-        if(this.value==1){
-            $("#nombre").css("display", "none");
-            $("#razonSoc").css("display", "block");
-        }else{
-            $("#nombre").css("display", "block");
-            $("#razonSoc").css("display", "none");
-        }
-        
-    });
-    var boton = document.getElementById("tipoNec");
-    boton.addEventListener("change",function(){
-      console.log(this.checked);
-      if(this.checked == true){
-        document.getElementById("formRegVenta").reset();
+
+document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
+    ele.bootstrapToggle();
+});
+
+$("#tipoDoc").change(function(){
+      if(this.value==1){
+          $("#nombre").css("display", "none");
+          $("#razonSoc").css("display", "block");
+      }else{
+          $("#nombre").css("display", "block");
+          $("#razonSoc").css("display", "none");
       }
-    });
+      
+  });
+  var boton = document.getElementById("tipoNec");
+  boton.addEventListener("change",function(){
+    console.log(this.checked);
+    if(this.checked == true){
+      document.getElementById("formRegVenta").reset();
+    }
+  });
 //-----------------------------------recuperar prospecto-------------------------------------------------
 
 var cod_prospecto = ''; // Variable para almacenar el valor de cod_prospecto
@@ -849,6 +854,8 @@ window.onload= function () {
       data:{'cod_prospecto':cod_prospecto},
       success: function(result) {
         console.log(result);
+        document.getElementById("tipoNec").bootstrapToggle('off');
+        document.getElementById("tipoNec").bootstrapToggle('readonly');
         document.getElementById("razonSocRegVta").value=result["response"]["dsc_razon_social"];
         document.getElementById("apellPRegVta").value=result["response"]["dsc_apellido_paterno"];
         document.getElementById("apellMRegVta").value=result["response"]["dsc_apellido_materno"];
