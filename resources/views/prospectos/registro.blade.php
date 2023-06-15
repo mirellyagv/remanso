@@ -609,6 +609,23 @@ document.getElementById("fechaContacto").value = fechaActual;
           emailInput.setCustomValidity("");
         }
       });
+
+      var emailInput2 = document.getElementById("correo2Tit");
+
+      emailInput2.addEventListener("input", function(event) {
+        var email = event.target.value;
+        
+        // Expresión regular para validar el formato de correo electrónico
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!emailRegex.test(email)) {
+          // El correo electrónico no cumple con el formato válido
+          emailInput2.setCustomValidity("Ingrese un correo electrónico válido");
+        } else {
+          // El correo electrónico tiene un formato válido
+          emailInput2.setCustomValidity("");
+        }
+      });
 // --------------------valida documentyo de identidad-------------
 var numDocProsInput = document.getElementById("numDocPros");
 
@@ -635,6 +652,60 @@ numDocProsInput.addEventListener("input", function(event) {
   }
 });
 
+var numDoc2titInput = document.getElementById("numDoc2tit");
+
+numDoc2titInput.addEventListener("input", function(event) {
+  var inputValue = numDoc2titInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > 9) {
+    inputValue = inputValue.slice(0, 9);
+  }
+  
+  // Actualizar el valor del campo
+  numDoc2titInput.value = inputValue;
+  
+  if (inputValue.length !=='') {
+    // Verificar si se ingresaron 9 dígitos
+    if (inputValue.length !== 9) {
+      numDoc2titInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+      numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
+    } else {
+      numDoc2titInput.setCustomValidity(""); // Campo válido
+    }
+  }
+});
+
+var numDocAddBenefInput = document.getElementById("numDocAddBenef");
+
+numDocAddBenefInput.addEventListener("input", function(event) {
+  var inputValue = numDocAddBenefInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > 9) {
+    inputValue = inputValue.slice(0, 9);
+  }
+  
+  // Actualizar el valor del campo
+  numDocAddBenefInput.value = inputValue;
+  
+  if (inputValue.length !=='') {
+    // Verificar si se ingresaron 9 dígitos
+    if (inputValue.length !== 9) {
+      numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+      numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+    } else {
+      numDocAddBenefInput.setCustomValidity(""); // Campo válido
+    }
+  }
+});
+
 // -----------------------valida telefono-------------------------    
       var phoneInput = document.getElementById("telf1Prosp");
 
@@ -644,15 +715,94 @@ numDocProsInput.addEventListener("input", function(event) {
         // Eliminar cualquier carácter que no sea un número
         phone = phone.replace(/\D/g, '');
 
+        // Limitar la longitud del valor a 12 caracteres
+        if (phone.length > 12) {
+          phone = phone.slice(0, 12);
+        }
+
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
-          
-        if (phone.length !== 12) {
-          // El número de teléfono no tiene 9-12 dígitos
-          phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-        } else {
+        
+        if (phone.length == 8 || phone.length ==12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
+          
+          } else {
+            // El número de teléfono no tiene 9-12 dígitos
+            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+          }
+                
+      });
+      var phoneInput2 = document.getElementById("telf2Prosp");
+
+      phoneInput2.addEventListener("input", function(event) {
+        var phone = event.target.value;
+        
+        // Eliminar cualquier carácter que no sea un número
+        phone = phone.replace(/\D/g, '');
+
+        // Limitar la longitud del valor a 12 caracteres
+        if (phone.length > 12) {
+          phone = phone.slice(0, 12);
         }
+
+        event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+          
+        if (phone.length == 8 || phone.length ==12) {
+          // El número de teléfono tiene 9-12 dígitos
+          phoneInput.setCustomValidity("");
+          
+          } else {
+            // El número de teléfono no tiene 9-12 dígitos
+            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+          }
+      });
+      var phoneInput3 = document.getElementById("telf1_2Tit");
+
+      phoneInput3.addEventListener("input", function(event) {
+        var phone = event.target.value;
+        
+        // Eliminar cualquier carácter que no sea un número
+        phone = phone.replace(/\D/g, '');
+
+        // Limitar la longitud del valor a 12 caracteres
+        if (phone.length > 12) {
+          phone = phone.slice(0, 12);
+        }
+
+        event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+          
+        if (phone.length == 8 || phone.length ==12) {
+          // El número de teléfono tiene 9-12 dígitos
+          phoneInput.setCustomValidity("");
+          
+          } else {
+            // El número de teléfono no tiene 9-12 dígitos
+            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+          }
+      });
+      var phoneInput4 = document.getElementById("telf2_2Tit");
+
+      phoneInput4.addEventListener("input", function(event) {
+        var phone = event.target.value;
+        
+        // Eliminar cualquier carácter que no sea un número
+        phone = phone.replace(/\D/g, '');
+
+        // Limitar la longitud del valor a 12 caracteres
+        if (phone.length > 12) {
+          phone = phone.slice(0, 12);
+        }
+
+        event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+          
+        if (phone.length == 8 || phone.length ==12) {
+          // El número de teléfono tiene 9-12 dígitos
+          phoneInput.setCustomValidity("");
+          
+          } else {
+            // El número de teléfono no tiene 9-12 dígitos
+            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+          }
       });
 
   //--------------Guardar Prospecto--------------
