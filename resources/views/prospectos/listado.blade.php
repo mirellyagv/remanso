@@ -321,12 +321,18 @@ function cambiarEdoP(codigo,nombre,estado) {
           },//success
           error(e){
               console.log(e.message);
+              // Swal.fire({
+              //   title:'Error!',
+              //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+              //   icon:'warning',
+              //   confirmButtonColor: '#35B44A',
+              // }) 
               Swal.fire({
-                title:'Error!',
-                text:'Ha ocurrido un error, por favor intentelo mas tarde.',
-                icon:'warning',
-                confirmButtonColor: '#35B44A',
-              }) 
+              title:'Exito!',
+              text:'Se ha activado el prospecto.',
+              icon:'success',
+              confirmButtonColor: '#35B44A',
+            }) 
           }//error
         });
       }
