@@ -1,4 +1,11 @@
 <x-layouts.app title="Informacion" meta-description="Información de prospectos meta description">
+
+  <style>
+    .align-right {
+      text-align: right;
+    }
+
+  </style>
  
   <main class="main" id="main">
     <div class="pagetitle">
@@ -31,7 +38,7 @@
                         <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso"  required name="numDocPros" id="numDocPros">
+                        <input type="text" class="form-control form-remanso align-right"  required name="numDocPros" id="numDocPros">
                       </div>
                     </div>
                     <div id="nombre">
@@ -121,13 +128,13 @@
                         <label for="inputText" class="col-form-label">Teléfono 1:</label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp" required>
+                        <input type="text" class="form-control form-remanso align-right" name="telf1Prosp" id="telf1Prosp" required>
                       </div>
                       <div class="col-md-3 mb-3">
                         <label for="inputText" class="col-form-label">Teléfono 2: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="telf2Prosp" id="telf2Prosp">
+                        <input type="text" class="form-control form-remanso align-right" name="telf2Prosp" id="telf2Prosp">
                       </div>
                     </div>
                     <div class="row">
@@ -160,7 +167,7 @@
                         <label for="inputText" class="col-form-label">Importe:</label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="impProsp" id="impProsp">
+                        <input type="text" class="form-control form-remanso align-right" name="impProsp" id="impProsp">
                       </div>
                     </div>
                     <div class="row">
@@ -196,7 +203,7 @@
                         <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="numDoc2tit" id="numDoc2tit">
+                        <input type="text" class="form-control form-remanso align-right" name="numDoc2tit" id="numDoc2tit">
                       </div>
                     </div>
                     <div id="cajaNombre2Tit">
@@ -227,7 +234,7 @@
                           <label for="inputText" class="col-form-label">Razón social:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="ruc2Tit" id="ruc2Tit">
+                          <input type="text" class="form-control form-remanso align-right" name="ruc2Tit" id="ruc2Tit">
                         </div>
                       </div>
                     </div>
@@ -280,13 +287,13 @@
                         <label for="inputText" class="col-form-label">Teléfono 1:</label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="telf1_2Tit" id="telf1_2Tit">
+                        <input type="text" class="form-control form-remanso align-right" name="telf1_2Tit" id="telf1_2Tit">
                       </div>
                       <div class="col-md-3 mb-3">
                         <label for="inputText" class="col-form-label">Teléfono 2: </label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso" name="telf2_2Tit" id="telf2_2Tit">
+                        <input type="text" class="form-control form-remanso align-right" name="telf2_2Tit" id="telf2_2Tit">
                       </div>
                     </div>
                     <div class="row">
@@ -368,7 +375,7 @@
                               <tr>
                                 <th style="text-align: center;" width="5%"></th>
                                 <th style="text-align: center;" width="15%">Fec. Contacto</th>
-                                <th style="text-align: center;" width="5%">Calificación</th>
+                                <th style="text-align: center;" width="10%">Calificación</th>
                                 <th style="text-align: center;">Observaciones</th>
                                 <th style="text-align: center;" width="10%"></th>
                               </tr>
@@ -385,7 +392,7 @@
             </div>
             <br>
             <div class="row">
-              <div class="col-md-3 offset-md-2 mb-3">
+              <div class="col-md-3 offset-md-2 mb-3" style="margin:auto;">
                 <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnGuarda" style="width: -webkit-fill-available;">Guardar</a>
               </div>
             </div>
@@ -425,7 +432,7 @@
               <label for="inputText" class="col-form-label">Núm. de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="numDocAddBenef" id="numDocAddBenef">
+              <input type="text" class="form-control form-remanso align-right" name="numDocAddBenef" id="numDocAddBenef">
             </div>
           </div>
           <div class="row">
@@ -531,6 +538,220 @@
 
 <script src="{{asset('js/registroProspecto.js')}}"></script>
 <script type="text/javascript">  
+
+// ----------------------Valida correo---------------------------------
+var emailInput = document.getElementById("correoProsp");
+
+emailInput.addEventListener("input", function(event) {
+  var email = event.target.value;
+  
+  // Expresión regular para validar el formato de correo electrónico
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if (!emailRegex.test(email)) {
+    // El correo electrónico no cumple con el formato válido
+    emailInput.setCustomValidity("Ingrese un correo electrónico válido");
+  } else {
+    // El correo electrónico tiene un formato válido
+    emailInput.setCustomValidity("");
+  }
+});
+
+var emailInput2 = document.getElementById("correo2Tit");
+
+emailInput2.addEventListener("input", function(event) {
+  var email = event.target.value;
+  
+  // Expresión regular para validar el formato de correo electrónico
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if (!emailRegex.test(email)) {
+    // El correo electrónico no cumple con el formato válido
+    emailInput2.setCustomValidity("Ingrese un correo electrónico válido");
+  } else {
+    // El correo electrónico tiene un formato válido
+    emailInput2.setCustomValidity("");
+  }
+});
+// --------------------valida documento de identidad-------------
+var numDocProsInput = document.getElementById("numDocPros");
+
+numDocProsInput.addEventListener("input", function(event) {
+var inputValue = numDocProsInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocProsInput.value = inputValue;
+
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocProsInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocProsInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocProsInput.setCustomValidity(""); // Campo válido
+}
+});
+
+var numDoc2titInput = document.getElementById("numDoc2tit");
+
+numDoc2titInput.addEventListener("input", function(event) {
+var inputValue = numDoc2titInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDoc2titInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDoc2titInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDoc2titInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+var numDocAddBenefInput = document.getElementById("numDocAddBenef");
+
+numDocAddBenefInput.addEventListener("input", function(event) {
+var inputValue = numDocAddBenefInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocAddBenefInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocAddBenefInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+// -----------------------valida telefono-------------------------    
+var phoneInput = document.getElementById("telf1Prosp");
+
+phoneInput.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+  
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+          
+});
+var phoneInput2 = document.getElementById("telf2Prosp");
+
+phoneInput2.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+var phoneInput3 = document.getElementById("telf1_2Tit");
+
+phoneInput3.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+var phoneInput4 = document.getElementById("telf2_2Tit");
+
+phoneInput4.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+
 
 var cod_prospecto="";
 

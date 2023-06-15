@@ -1,4 +1,30 @@
 <x-layouts.app title="Registro" meta-description="Registro de ventas meta description">
+  <style>
+    .align-right {
+      text-align: right;
+    }
+    /* .loader {
+      display: block;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .loader img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    } */
+  </style>
+
+{{-- <div class="loader">
+  <img src="{{asset('images/7.gif')}}" alt="Cargando...">
+</div> --}}
 
   <main class="main" id="main">
     <div class="pagetitle">
@@ -40,7 +66,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDocRegVta" id="numDocRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="numDocRegVta" id="numDocRegVta">
                         </div>
                       </div>
                       <div id="nombre">
@@ -71,7 +97,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="razonSocRegVta" id="razonSocRegVta">
+                            <input type="text" class="form-control form-remanso align-right" name="razonSocRegVta" id="razonSocRegVta">
                           </div>
                         </div>
                       </div>
@@ -120,13 +146,13 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf1RegVta" id="telf1RegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf1RegVta" id="telf1RegVta">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf2RegVta" id="telf2RegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf2RegVta" id="telf2RegVta">
                         </div>
                       </div>
                       <div class="row">
@@ -162,7 +188,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDoc2doRegVta" id="numDoc2doRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="numDoc2doRegVta" id="numDoc2doRegVta">
                         </div>
                       </div>
                       <div id="nombre">
@@ -193,7 +219,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="razonSoc2doRegVta" id="razonSoc2doRegVta">
+                            <input type="text" class="form-control form-remanso align-right" name="razonSoc2doRegVta" id="razonSoc2doRegVta">
                           </div>
                         </div>
                       </div>
@@ -242,13 +268,13 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf12doRegVta" id="telf12doRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf12doRegVta" id="telf12doRegVta">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf22doRegVta" id="telf22doRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf22doRegVta" id="telf22doRegVta">
                         </div>
                       </div>
                       <div class="row">
@@ -284,7 +310,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDocAval" id="numDocAval">
+                          <input type="text" class="form-control form-remanso align-right" name="numDocAval" id="numDocAval">
                         </div>
                       </div>
                       <div id="nombre">
@@ -315,7 +341,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="razonSocAval" id="razonSocAval">
+                            <input type="text" class="form-control form-remanso align-right" name="razonSocAval" id="razonSocAval">
                           </div>
                         </div>
                       </div>
@@ -364,13 +390,13 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telef1Aval" id="telef1Aval">
+                          <input type="text" class="form-control form-remanso align-right" name="telef1Aval" id="telef1Aval">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telef2Aval" id="telef2Aval">
+                          <input type="text" class="form-control form-remanso align-right" name="telef2Aval" id="telef2Aval">
                         </div>
                       </div>
                       <div class="row">
@@ -563,19 +589,19 @@
                           <label for="inputText" class="col-form-label">Precio Total: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" readonly name="impTotal" id="impTotal">
+                          <input type="text" class="form-control form-remanso align-right" readonly name="impTotal" id="impTotal">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">CUOI: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impCuoi" id="impCuoi">
+                          <input type="text" class="form-control form-remanso align-right" name="impCuoi" id="impCuoi">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Saldo: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" readonly class="form-control form-remanso" name="impSaldo" id="impSaldo">
+                          <input type="text" readonly class="form-control form-remanso align-right" name="impSaldo" id="impSaldo">
                           <input type="hidden" name="impDscto" id="impDscto">
                           <input type="hidden" name="codServicio" id="codServicio">
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
@@ -585,33 +611,33 @@
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso">
+                          <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso align-right">
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codTasa"  id="codTasa" class="form-select form-remanso">
+                          <select name="codTasa"  id="codTasa" class="form-select form-remanso align-right">
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Fch. 1er vencimiento: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="fch1erVcto" id="fch1erVcto">
+                          <input type="text" class="form-control form-remanso align-right" name="fch1erVcto" id="fch1erVcto">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">FOMA: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impFoma" id="impFoma">
+                          <input type="text" class="form-control form-remanso align-right" name="impFoma" id="impFoma">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso">
+                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso align-right">
                             <option value="068">1</option>
                           </select>
                         </div>
@@ -695,7 +721,7 @@
               <label for="inputText" class="col-form-label">Núm. de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="numDocAddBenef" id="numDocAddBenef">
+              <input type="text" class="form-control form-remanso align-right" name="numDocAddBenef" id="numDocAddBenef">
             </div>
           </div>
           <div class="row">
@@ -794,6 +820,358 @@
 </x-layouts.app>
 <script src="{{asset('js/registroVenta.js')}}"></script>
 <script type="text/javascript">
+
+// window.addEventListener('load', function() {
+//       var loader = document.querySelector('.loader');
+//       setTimeout(function() {
+//         loader.style.display = 'none';
+//       }, 2000);
+//     });
+
+
+// ----------------------Valida correo---------------------------------
+var emailInput = document.getElementById("correoRegVta");
+
+emailInput.addEventListener("input", function(event) {
+  var email = event.target.value;
+  
+  // Expresión regular para validar el formato de correo electrónico
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if (!emailRegex.test(email)) {
+    // El correo electrónico no cumple con el formato válido
+    emailInput.setCustomValidity("Ingrese un correo electrónico válido");
+  } else {
+    // El correo electrónico tiene un formato válido
+    emailInput.setCustomValidity("");
+  }
+});
+
+var emailInput2 = document.getElementById("correo2doRegVta");
+
+emailInput2.addEventListener("input", function(event) {
+  var email = event.target.value;
+  
+  // Expresión regular para validar el formato de correo electrónico
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if (!emailRegex.test(email)) {
+    // El correo electrónico no cumple con el formato válido
+    emailInput2.setCustomValidity("Ingrese un correo electrónico válido");
+  } else {
+    // El correo electrónico tiene un formato válido
+    emailInput2.setCustomValidity("");
+  }
+});
+// --------------------valida documento de identidad-------------
+var numDocProsInput = document.getElementById("numDocRegVta");
+
+numDocProsInput.addEventListener("input", function(event) {
+var inputValue = numDocProsInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocProsInput.value = inputValue;
+
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocProsInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocProsInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocProsInput.setCustomValidity(""); // Campo válido
+}
+});
+
+var numDoc2titInput = document.getElementById("numDoc2doRegVta");
+
+numDoc2titInput.addEventListener("input", function(event) {
+var inputValue = numDoc2titInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDoc2titInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDoc2titInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDoc2titInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+var numDocAddBenefInput = document.getElementById("numDocAval");
+
+numDocAddBenefInput.addEventListener("input", function(event) {
+var inputValue = numDocAddBenefInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocAddBenefInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocAddBenefInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+var numDocAddBenefInput = document.getElementById("numDocAddBenef");
+
+numDocAddBenefInput.addEventListener("input", function(event) {
+var inputValue = numDocAddBenefInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocAddBenefInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocAddBenefInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+var numDocAvalInput = document.getElementById("numDocAval");
+
+numDocAvalInput.addEventListener("input", function(event) {
+var inputValue = numDocAvalInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocAvalInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocAvalInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocAvalInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocAvalInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+// -----------------------valida telefono-------------------------    
+var phoneInput = document.getElementById("telf1RegVta");
+
+phoneInput.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+  
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+          
+});
+var phoneInput2 = document.getElementById("telf2RegVta");
+
+phoneInput2.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+var phoneInput3 = document.getElementById("telf12doRegVta");
+
+phoneInput3.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+var phoneInput4 = document.getElementById("telf22doRegVta");
+
+phoneInput4.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+
+var phoneInput5 = document.getElementById("telef1Aval");
+
+phoneInput5.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+
+var phoneInput6 = document.getElementById("telef2Aval");
+
+phoneInput6.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+
+// -----------------------validacion numerica servicios---------------
+var impCuoiInput = document.getElementById("impCuoi");
+
+impCuoiInput.addEventListener("input", function(event) {
+  var inputValue = impCuoiInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Actualizar el valor del campo
+  impCuoiInput.value = inputValue;
+});
+
+var impFomaInput = document.getElementById("impFoma");
+
+impFomaInput.addEventListener("input", function(event) {
+  var inputValue = impFomaInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Actualizar el valor del campo
+  impFomaInput.value = inputValue;
+});
+
+
 
 flatpickr("#fchNacAddBenef",{
   locale:"es",

@@ -1,4 +1,12 @@
 <x-layouts.app title="Registro" meta-description="Registro de prospectos meta description">
+
+  <style>
+    .align-right {
+      text-align: right;
+    }
+
+  </style>
+
   <form action="" method="GET" id="myForm">
     @csrf
     <main class="main" id="main">
@@ -33,7 +41,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" required name="numDocPros"
+                          <input type="text" class="form-control form-remanso align-right" required name="numDocPros"
                             id="numDocPros" min="9" max="9" maxlength="9">
                           {{-- <div class="a invalid-feedback">
                             Debe tener 9 números.
@@ -80,7 +88,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="rucProsp" id="rucProsp">
+                            <input type="text" class="form-control form-remanso align-right" name="rucProsp" id="rucProsp">
                           </div>
                         </div>
                       </div>
@@ -137,7 +145,7 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp"  min="9" max="12" maxlength="12"
+                          <input type="text" class="form-control form-remanso align-right" name="telf1Prosp" id="telf1Prosp"  min="9" max="12" maxlength="12"
                             required>
                           {{-- <div class="f invalid-feedback">
                             El telefono 1 no puede estar vacío.
@@ -147,7 +155,7 @@
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf2Prosp" id="telf2Prosp">
+                          <input type="text" class="form-control form-remanso align-right" name="telf2Prosp" id="telf2Prosp">
                         </div>
                       </div>
                       <div class="row">
@@ -184,7 +192,7 @@
                           <label for="inputText" class="col-form-label">Importe:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impProsp" id="impProsp" required>
+                          <input type="text" class="form-control form-remanso align-right" name="impProsp" id="impProsp" required>
                           {{-- <div class="h invalid-feedback">
                             El importe no puede estar vacío.
                           </div> --}}
@@ -227,7 +235,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDoc2tit" id="numDoc2tit">
+                          <input type="text" class="form-control form-remanso align-right" name="numDoc2tit" id="numDoc2tit">
                         </div>
                       </div>
                       <div id="cajaNombre2Tit">
@@ -311,13 +319,13 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf1_2Tit" id="telf1_2Tit">
+                          <input type="text" class="form-control form-remanso align-right" name="telf1_2Tit" id="telf1_2Tit">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf2_2Tit" id="telf2_2Tit">
+                          <input type="text" class="form-control form-remanso align-right" name="telf2_2Tit" id="telf2_2Tit">
                         </div>
                       </div>
                       <div class="row">
@@ -459,7 +467,7 @@
               <label for="inputText" class="col-form-label">Núm. de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="numDocAddBenef" id="numDocAddBenef">
+              <input type="text" class="form-control form-remanso align-right" name="numDocAddBenef" id="numDocAddBenef">
             </div>
           </div>
           <div class="row">
@@ -626,7 +634,7 @@ document.getElementById("fechaContacto").value = fechaActual;
           emailInput2.setCustomValidity("");
         }
       });
-// --------------------valida documentyo de identidad-------------
+// --------------------valida documento de identidad-------------
 var numDocProsInput = document.getElementById("numDocPros");
 
 numDocProsInput.addEventListener("input", function(event) {
@@ -809,21 +817,21 @@ numDocAddBenefInput.addEventListener("input", function(event) {
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
 
-      var numDocInput = document.getElementById("numDocPros");
-      var numDocValue = numDocInput.value.trim();
-      var collapseOne = document.getElementById("collapseOne");
-      
-      var nombreProspInput = document.getElementById("nombreProsp");
-      var nombreProspValue = nombreProspInput.value.trim();
+  var numDocInput = document.getElementById("numDocPros");
+  var numDocValue = numDocInput.value.trim();
+  var collapseOne = document.getElementById("collapseOne");
+  
+  var nombreProspInput = document.getElementById("nombreProsp");
+  var nombreProspValue = nombreProspInput.value.trim();
 
-      var apellPProspInput = document.getElementById("apellPProsp");
-      var apellPProspValue = apellPProspInput.value.trim();
+  var apellPProspInput = document.getElementById("apellPProsp");
+  var apellPProspValue = apellPProspInput.value.trim();
 
-      var apellMProspInput = document.getElementById("apellMProsp");
-      var apellMProspValue = apellMProspInput.value.trim();
+  var apellMProspInput = document.getElementById("apellMProsp");
+  var apellMProspValue = apellMProspInput.value.trim();
 
-      var direccProsInput = document.getElementById("direccPros");
-      var direccProsValue = direccProsInput.value.trim();
+  var direccProsInput = document.getElementById("direccPros");
+  var direccProsValue = direccProsInput.value.trim();
 
   var telf1ProspInput = document.getElementById("telf1Prosp");
   var telf1ProspValue = telf1ProspInput.value.trim();
@@ -886,168 +894,162 @@ boton.addEventListener("click",function(){
   //   return;
   // }
 
-      var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
-        flgJuridico = '';
-        flgJuridico2 = '';
-      if(document.getElementById("tipoDocProsp").value == 'DI004'){
-        flgJuridico = 'SI';
-        
-      }else{
-        flgJuridico = 'NO';
-      }
-      if(document.getElementById("tipoDoc2tit").value ==  'DI004'){
-        flgJuridico2 = 'SI';
-        
-      }else{
-        flgJuridico2 = 'NO';
-      }
-      var prospecto = {
-        'cod_prospecto': '',
-        'dsc_prospecto': nombres,
-        'dsc_razon_social': document.getElementById("rucProsp").value,
-        'dsc_apellido_paterno': document.getElementById("apellPProsp").value,
-        'dsc_apellido_materno': document.getElementById("apellMProsp").value,
-        'dsc_nombre': document.getElementById("nombreProsp").value,
-        'flg_juridico': flgJuridico,
-        'cod_tipo_documento': document.getElementById("tipoDocProsp").value,
-        'dsc_documento': document.getElementById("numDocPros").value,
-        'cod_pais': document.getElementById("paisProspecto").value,
-        'cod_departamento': document.getElementById("dptoProsp").value,
-        'cod_provincia': document.getElementById("provinProsp").value,
-        'cod_distrito': document.getElementById("dttoProsp").value,
-        'dsc_direccion':  document.getElementById("direccPros").value,
-        'dsc_telefono_1': document.getElementById("telf1Prosp").value,
-        'dsc_telefono_2': document.getElementById("telf2Prosp").value,
-        'cod_origen': document.getElementById("canalProsp").value,
-        'cod_calificacion': document.getElementById("califProsp").value,
-        'dsc_observaciones':  document.getElementById("obsvProsp").value,
-        'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
-        'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
-        'cod_grupo': '',
-        'cod_supervisor': '',
-        'cod_jefeventas': '',
-        'cod_estado': 'ACT',
-        'imp_monto':document.getElementById("impProsp").value,
-        'dsc_correo': document.getElementById("correoProsp").value,
-        'flg_sincronizado_crm': 'NO',
-        'cod_localidad_p': 'LC001',
-        'dsc_apellido_paterno_2do': document.getElementById("apelP2tit").value,
-        'dsc_apellido_materno_2do': document.getElementById("apelM2tit").value,
-        'dsc_nombre_2do': document.getElementById("nombre2Tit").value,
-        'flg_juridico_2do': flgJuridico2,
-        'cod_tipo_documento_2do': document.getElementById("tipoDoc2tit").value,
-        'dsc_documento_2do': document.getElementById("numDoc2tit").value,
-        'dsc_prospecto_2do': document.getElementById("nombre2Tit").value+' '+document.getElementById("apelP2tit").value+' '+document.getElementById("apelM2tit").value,
-        'cod_pais_2do': document.getElementById("pais2Tit").value,
-        'cod_departamento_2do': document.getElementById("dpto2Tit").value,
-        'cod_provincia_2do': document.getElementById("prov2Tit").value,
-        'cod_distrito_2do': document.getElementById("dtto2Tit").value,
-        'dsc_direccion_2do': document.getElementById("dir2Tit").value,
-        'dsc_telefono_1_2do': document.getElementById("telf1_2Tit").value,
-        'dsc_telefono_2_2do': document.getElementById("telf2_2Tit").value,
-        'dsc_correo_2do': document.getElementById("correo2Tit").value,
-        'dsc_apellido_paterno_aval': '',
-        'dsc_apellido_materno_aval': '',
-        'dsc_nombre_aval': '',
-        'cod_tipo_documento_aval': '',
-        'dsc_documento_aval': '',
-        'dsc_prospecto_aval': '',
-        'cod_pais_aval': '',
-        'cod_departamento_aval': '',
-        'cod_provincia_aval': '',
-        'cod_distrito_aval': '',
-        'dsc_telefono_1_aval': '',
-        'dsc_telefono_2_aval': '',
-        'dsc_correo_aval': '',
-        'cod_camposanto': '',
-        'cod_plataforma': '',
-        'cod_area_plataforma': '',
-        'cod_eje_horizontal': '',
-        'cod_eje_vertical': '',
-        'cod_espacio': '',
-        'cod_tipo_espacio': '',
-        'num_nivel': 0,
-        'cod_tipo_necesidad': 'NF'
-      };
+  // // Validación de longitud y formato
+  // if (telf1ProspValue.length !== 9 || !/^\d{9}$/.test(telf1ProspValue)) {
+  //   collapseTelf1Prosp.classList.add("show");
+  //   telf1ProspInput.focus();
+  //   invalidFeedbackTelf1Prosp.style.display = "block";
+  //   return;
+  // }
+  // if (telf1ProspValue.length === 9 || /^\d{9}$/.test(telf1ProspValue)){var invalidFeedbacktelf1Prosp = document.querySelector("#collapseOne .f.invalid-feedback");invalidFeedbacktelf1Prosp.style.display = "none";}
 
-  Swal.fire({
-    title: 'Esta seguro que quiere Guardar este prospecto?',
-    text: nombres,
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#35B44A',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Aceptar'
-  }).then((result) => {
-    if (result.isConfirmed) {
 
-      $.ajax({
-        url: '../api/guardaProspecto', 
-        method: "PUT",
-        crossDomain: true,
-        dataType: 'json',
-        data:{'prospecto':prospecto},
-        success: function(respuesta){
-          var codProspecto = respuesta['response']['cod_prospecto'];
-          var fchContacto = document.getElementById("fch_contacto");
-          filasArray.forEach(function (fila) {
-            fila['cod_prospecto'] = codProspecto;
-          });
 
-            $.ajax({
-                url: '../api/guardaBeneficiario', 
-                method: "PUT",
-                crossDomain: true,
-                dataType: 'json',
-                data:{'beneficiarios':filasArray},
-                success: function(respuesta){
-                    console.log(respuesta);   
-                },//success
-                error(e){
-                    console.log(e.message);
-                }//error
-            });
 
-            $.ajax({
-                url: '../api/guardaObservacion', 
-                method: "PUT",
-                crossDomain: true,
-                dataType: 'json',
-                data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
-                success: function(respuesta){
-                    console.log(respuesta);   
-                },//success
-                error(e){
-                    console.log(e.message);
-                }//error
-            });
-            
-            Swal.fire({
-              title: 'Guardado',
-              text: codProspecto,
-              icon: 'success',
-              confirmButtonText: 'Aceptar',
-              confirmButtonColor: '#35B44A',
-            }).then((result) => {
-              /* Read more about isConfirmed, isDenied below */
-              if (result.isConfirmed) {
-                route{{'prospectos.listado'}}
-              } 
-            })
+  var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
+    flgJuridico = '';
+    flgJuridico2 = '';
+  if(document.getElementById("tipoDocProsp").value == 'DI004'){
+    flgJuridico = 'SI';
+    
+  }else{
+    flgJuridico = 'NO';
+  }
+  if(document.getElementById("tipoDoc2tit").value ==  'DI004'){
+    flgJuridico2 = 'SI';
+    
+  }else{
+    flgJuridico2 = 'NO';
+  }
+  var prospecto = {
+    'cod_prospecto': '',
+    'dsc_prospecto': nombres,
+    'dsc_razon_social': document.getElementById("rucProsp").value,
+    'dsc_apellido_paterno': document.getElementById("apellPProsp").value,
+    'dsc_apellido_materno': document.getElementById("apellMProsp").value,
+    'dsc_nombre': document.getElementById("nombreProsp").value,
+    'flg_juridico': flgJuridico,
+    'cod_tipo_documento': document.getElementById("tipoDocProsp").value,
+    'dsc_documento': document.getElementById("numDocPros").value,
+    'cod_pais': document.getElementById("paisProspecto").value,
+    'cod_departamento': document.getElementById("dptoProsp").value,
+    'cod_provincia': document.getElementById("provinProsp").value,
+    'cod_distrito': document.getElementById("dttoProsp").value,
+    'dsc_direccion':  document.getElementById("direccPros").value,
+    'dsc_telefono_1': document.getElementById("telf1Prosp").value,
+    'dsc_telefono_2': document.getElementById("telf2Prosp").value,
+    'cod_origen': document.getElementById("canalProsp").value,
+    'cod_calificacion': document.getElementById("califProsp").value,
+    'dsc_observaciones':  document.getElementById("obsvProsp").value,
+    'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
+    'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
+    'cod_grupo': '',
+    'cod_supervisor': '',
+    'cod_jefeventas': '',
+    'cod_estado': 'ACT',
+    'imp_monto':document.getElementById("impProsp").value,
+    'dsc_correo': document.getElementById("correoProsp").value,
+    'flg_sincronizado_crm': 'NO',
+    'cod_localidad_p': 'LC001',
+    'dsc_apellido_paterno_2do': document.getElementById("apelP2tit").value,
+    'dsc_apellido_materno_2do': document.getElementById("apelM2tit").value,
+    'dsc_nombre_2do': document.getElementById("nombre2Tit").value,
+    'flg_juridico_2do': flgJuridico2,
+    'cod_tipo_documento_2do': document.getElementById("tipoDoc2tit").value,
+    'dsc_documento_2do': document.getElementById("numDoc2tit").value,
+    'dsc_prospecto_2do': document.getElementById("nombre2Tit").value+' '+document.getElementById("apelP2tit").value+' '+document.getElementById("apelM2tit").value,
+    'cod_pais_2do': document.getElementById("pais2Tit").value,
+    'cod_departamento_2do': document.getElementById("dpto2Tit").value,
+    'cod_provincia_2do': document.getElementById("prov2Tit").value,
+    'cod_distrito_2do': document.getElementById("dtto2Tit").value,
+    'dsc_direccion_2do': document.getElementById("dir2Tit").value,
+    'dsc_telefono_1_2do': document.getElementById("telf1_2Tit").value,
+    'dsc_telefono_2_2do': document.getElementById("telf2_2Tit").value,
+    'dsc_correo_2do': document.getElementById("correo2Tit").value,
+    'dsc_apellido_paterno_aval': '',
+    'dsc_apellido_materno_aval': '',
+    'dsc_nombre_aval': '',
+    'cod_tipo_documento_aval': '',
+    'dsc_documento_aval': '',
+    'dsc_prospecto_aval': '',
+    'cod_pais_aval': '',
+    'cod_departamento_aval': '',
+    'cod_provincia_aval': '',
+    'cod_distrito_aval': '',
+    'dsc_telefono_1_aval': '',
+    'dsc_telefono_2_aval': '',
+    'dsc_correo_aval': '',
+    'cod_camposanto': '',
+    'cod_plataforma': '',
+    'cod_area_plataforma': '',
+    'cod_eje_horizontal': '',
+    'cod_eje_vertical': '',
+    'cod_espacio': '',
+    'cod_tipo_espacio': '',
+    'num_nivel': 0,
+    'cod_tipo_necesidad': 'NF'
+  };
 
-        },//success
-        error(e){
-            console.log(e.message);
-            Swal.fire({
-              title:'Error!',
-              text:'Ha ocurrido un error, por favor intentelo mas tarde.',
-              icon:'warning',
-              confirmButtonColor: '#35B44A',
-            }) 
-        }//error
+  $.ajax({
+    url: '../api/guardaProspecto', 
+    method: "PUT",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'prospecto':prospecto},
+    success: function(respuesta){
+      var codProspecto = respuesta['response']['cod_prospecto'];
+      var fchContacto = document.getElementById("fch_contacto");
+      filasArray.forEach(function (fila) {
+        fila['cod_prospecto'] = codProspecto;
       });
-    }
-  })//then
-});//fin guarda
+
+        $.ajax({
+            url: '../api/guardaBeneficiario', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'beneficiarios':filasArray},
+            success: function(respuesta){
+                console.log(respuesta);   
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+
+        $.ajax({
+            url: '../api/guardaObservacion', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+            success: function(respuesta){
+                console.log(respuesta);   
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+        
+        Swal.fire({
+          title: 'Guardado',
+          text: codProspecto,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+             route{{'prospectos.listado'}}
+          } 
+        })
+
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error
+  });
+
+
+});
 
 </script>

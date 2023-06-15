@@ -1,5 +1,10 @@
 <x-layouts.app title="Listado" meta-description="Listado de prospectos meta description">
+  <style>
+    .align-right {
+      text-align: right;
+    }
 
+  </style>
   <main class="main" id="main">
     <div class="pagetitle">
       <h1>Listado de prospectos</h1>
@@ -21,14 +26,14 @@
                     <label for="inputText" class="col-form-label">Fecha Inicio: </label>
                   </div>
                   <div class="col-md-2 mb-3">
-                    <input type="text" class="form-control form-remanso" name="fchIni" id="fchIni"
+                    <input type="text" class="form-control form-remanso align-right" name="fchIni" id="fchIni"
                       placeholder="seleccione..">
                   </div>
                   <div class="col-md-1 mb-3">
                     <label for="inputText" class="col-form-label">Fecha Fin: </label>
                   </div>
                   <div class="col-md-2 mb-3">
-                    <input type="date" class="form-control form-remanso" name="fchFin" id="fchFin"
+                    <input type="date" class="form-control form-remanso align-right" name="fchFin" id="fchFin"
                       placeholder="seleccione..">
                   </div>
                   <div class="col-md-1 mb-3">
@@ -62,7 +67,7 @@
                       col-md-3 mb-3
                     @endif 
                     ">
-                    <input type="text" class="form-control form-remanso" name="numDoc" id="numDoc">
+                    <input type="text" class="form-control form-remanso align-right" name="numDoc" id="numDoc">
                   </div>
                   <div class="
                     @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
@@ -149,6 +154,32 @@
 @endpush --}}
 
 <script type="text/javascript">
+
+// --------------------valida documento de identidad-------------
+var numDocInput = document.getElementById("numDoc");
+
+numDocInput.addEventListener("input", function(event) {
+  var inputValue = numDocInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > 9) {
+    inputValue = inputValue.slice(0, 9);
+  }
+  
+  // Actualizar el valor del campo
+  numDocInput.value = inputValue;
+  
+  // Verificar si se ingresaron 9 dígitos
+  if (inputValue.length !== 9) {
+    numDocInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+    numDocInput.reportValidity(); // Mostrar el mensaje de error
+  } else {
+    numDocInput.setCustomValidity(""); // Campo válido
+  }
+});
 
 $(document).ready(function () {
 
