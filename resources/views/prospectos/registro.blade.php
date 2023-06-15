@@ -35,9 +35,9 @@
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso" required name="numDocPros"
                             id="numDocPros" min="9" max="9" maxlength="9">
-                          {{-- <div class="a invalid-feedback">
+                          <div class="a invalid-feedback">
                             Debe tener 9 números.
-                          </div> --}}
+                          </div>
                         </div>
                       </div>
                       <div id="nombre">
@@ -48,9 +48,9 @@
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" required name="nombreProsp"
                               id="nombreProsp" required>
-                            {{-- <div class="b invalid-feedback">
+                            <div class="b invalid-feedback">
                               El nombre no puede estar vacío.
-                            </div> --}}
+                            </div>
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
@@ -58,9 +58,9 @@
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" required name="apellPProsp"
                               id="apellPProsp" required>
-                            {{-- <div class="c invalid-feedback">
+                            <div class="c invalid-feedback">
                               El apellido no puede estar vacío.
-                            </div> --}}
+                            </div>
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
@@ -68,9 +68,9 @@
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="apellMProsp" id="apellMProsp"
                               required>
-                            {{-- <div class="d invalid-feedback">
+                            <div class="d invalid-feedback">
                               El apellido no puede estar vacío.
-                            </div> --}}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -91,9 +91,9 @@
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" required name="direccPros"
                             id="direccPros" required>
-                          {{-- <div class="e invalid-feedback">
+                          <div class="e invalid-feedback">
                             La dirección no puede estar vacía.
-                          </div> --}}
+                          </div>
                         </div>
                       </div>
                       <div class="row">
@@ -137,11 +137,11 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp"  min="9" max="12" maxlength="12"
+                          <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp"  min="9" max="9" maxlength="9"
                             required>
-                          {{-- <div class="f invalid-feedback">
+                          <div class="f invalid-feedback">
                             El telefono 1 no puede estar vacío.
-                          </div> --}}
+                          </div>
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
@@ -157,9 +157,9 @@
                         <div class="col-md-9 mb-3">
                           <input type="mail" class="form-control form-remanso" name="correoProsp" id="correoProsp"
                             required>
-                          {{-- <div class="g invalid-feedback">
+                          <div class="g invalid-feedback">
                             El correo no puede estar vacío.
-                          </div> --}}
+                          </div>
                         </div>
                       </div>
                       <hr>
@@ -185,9 +185,9 @@
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso" name="impProsp" id="impProsp" required>
-                          {{-- <div class="h invalid-feedback">
+                          <div class="h invalid-feedback">
                             El importe no puede estar vacío.
-                          </div> --}}
+                          </div>
                         </div>
                       </div>
                       <div class="row">
@@ -197,9 +197,9 @@
                         <div class="col-md-9 mb-3">
                           <textarea class="form-control form-remanso" name="obsvProsp" id="obsvProsp"
                             rows="5"></textarea>
-                          {{-- <div class="i invalid-feedback">
+                          <div class="i invalid-feedback">
                             Las observaciones no puede estar vacías.
-                          </div> --}}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -592,7 +592,6 @@ document.getElementById("fechaContacto").value = fechaActual;
     dateFormat: "d-m-Y"
   });
 
-// ----------------------Valida correo---------------------------------
     var emailInput = document.getElementById("correoProsp");
 
       emailInput.addEventListener("input", function(event) {
@@ -609,33 +608,24 @@ document.getElementById("fechaContacto").value = fechaActual;
           emailInput.setCustomValidity("");
         }
       });
-// --------------------valida documentyo de identidad-------------
-var numDocProsInput = document.getElementById("numDocPros");
 
-numDocProsInput.addEventListener("input", function(event) {
-  var inputValue = numDocProsInput.value;
-  
-  // Eliminar caracteres no numéricos
-  inputValue = inputValue.replace(/\D/g, '');
-  
-  // Limitar la longitud del valor a 9 caracteres
-  if (inputValue.length > 9) {
-    inputValue = inputValue.slice(0, 9);
-  }
-  
-  // Actualizar el valor del campo
-  numDocProsInput.value = inputValue;
-  
-  // Verificar si se ingresaron 9 dígitos
-  if (inputValue.length !== 9) {
-    numDocProsInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-    numDocProsInput.reportValidity(); // Mostrar el mensaje de error
-  } else {
-    numDocProsInput.setCustomValidity(""); // Campo válido
-  }
-});
+    var numDocProsInput = document.getElementById("numDocPros");
 
-// -----------------------valida telefono-------------------------    
+      numDocProsInput.addEventListener("input", function() {
+        var inputValue = numDocProsInput.value;
+      
+        // Eliminar caracteres no numéricos
+        inputValue = inputValue.replace(/\D/g, '');
+        
+        // Limitar la longitud del valor a 9 caracteres
+        if (inputValue.length > 9) {
+          inputValue = inputValue.slice(0, 9);
+        }
+        
+        // Actualizar el valor del campo
+        numDocProsInput.value = inputValue;
+      });
+    
       var phoneInput = document.getElementById("telf1Prosp");
 
       phoneInput.addEventListener("input", function(event) {
@@ -643,14 +633,12 @@ numDocProsInput.addEventListener("input", function(event) {
         
         // Eliminar cualquier carácter que no sea un número
         phone = phone.replace(/\D/g, '');
-
-        event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
-          
-        if (phone.length !== 12) {
-          // El número de teléfono no tiene 9-12 dígitos
-          phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+        
+        if (phone.length !== 9) {
+          // El número de teléfono no tiene 9 dígitos
+          phoneInput.setCustomValidity("Ingrese un número de teléfono válido con 9 dígitos");
         } else {
-          // El número de teléfono tiene 9-12 dígitos
+          // El número de teléfono tiene 9 dígitos
           phoneInput.setCustomValidity("");
         }
       });
@@ -678,63 +666,63 @@ boton.addEventListener("click",function(){
   var telf1ProspInput = document.getElementById("telf1Prosp");
   var telf1ProspValue = telf1ProspInput.value.trim();
   
-  // // Validación para el campo "Núm. de Documento"
-  // var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
-  // if (!numDocRegex.test(numDocValue)) {
-  //   var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   numDocInput.focus();
-  //   invalidFeedbackNumDoc.style.display = "block";
-  //   return;
-  // }
-  // if (numDocRegex.test(numDocValue)){var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");invalidFeedbackNumDoc.style.display = "none";}
-  // // Validación para el campo "nombreProsp"
-  // if (nombreProspValue === "") {
-  //   var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   nombreProspInput.focus();
-  //   invalidFeedbackNombreProsp.style.display = "block";
-  //   return;
-  // }
-  // if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
+  // Validación para el campo "Núm. de Documento"
+  var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
+  if (!numDocRegex.test(numDocValue)) {
+    var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");
+    collapseOne.classList.add("show");
+    numDocInput.focus();
+    invalidFeedbackNumDoc.style.display = "block";
+    return;
+  }
+  if (numDocRegex.test(numDocValue)){var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");invalidFeedbackNumDoc.style.display = "none";}
+  // Validación para el campo "nombreProsp"
+  if (nombreProspValue === "") {
+    var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
+    collapseOne.classList.add("show");
+    nombreProspInput.focus();
+    invalidFeedbackNombreProsp.style.display = "block";
+    return;
+  }
+  if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
 
-  // // Validación para el campo "apellPProsp"
-  // if (apellPProspValue === "") {
-  //   var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   apellPProspInput.focus();
-  //   invalidFeedbackapellPProsp.style.display = "block";
-  //   return;
-  // }
-  // if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
+  // Validación para el campo "apellPProsp"
+  if (apellPProspValue === "") {
+    var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
+    collapseOne.classList.add("show");
+    apellPProspInput.focus();
+    invalidFeedbackapellPProsp.style.display = "block";
+    return;
+  }
+  if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
 
-  // // Validación para el campo "apellMProsp"
-  // if (apellMProspValue === "") {
-  //   var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   apellMProspInput.focus();
-  //   invalidFeedbackapellMProsp.style.display = "block";
-  //   return;
-  // }
-  // if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
+  // Validación para el campo "apellMProsp"
+  if (apellMProspValue === "") {
+    var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
+    collapseOne.classList.add("show");
+    apellMProspInput.focus();
+    invalidFeedbackapellMProsp.style.display = "block";
+    return;
+  }
+  if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
 
-  // // Validación para el campo "direccPros"
-  // if (direccProsValue === "") {
-  //   var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   direccProsInput.focus();
-  //   invalidFeedbackdireccPros.style.display = "block";
-  //   return;
-  // }
-  // if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
+  // Validación para el campo "direccPros"
+  if (direccProsValue === "") {
+    var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
+    collapseOne.classList.add("show");
+    direccProsInput.focus();
+    invalidFeedbackdireccPros.style.display = "block";
+    return;
+  }
+  if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
 
-  // // Validación para el campo "telf1Prosp"
-  // if (telf1ProspValue === "") {
-  //   collapseTelf1Prosp.classList.add("show");
-  //   telf1ProspInput.focus();
-  //   invalidFeedbackTelf1Prosp.style.display = "block";
-  //   return;
-  // }
+  // Validación para el campo "telf1Prosp"
+  if (telf1ProspValue === "") {
+    collapseTelf1Prosp.classList.add("show");
+    telf1ProspInput.focus();
+    invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
 
   // // Validación de longitud y formato
   // if (telf1ProspValue.length !== 9 || !/^\d{9}$/.test(telf1ProspValue)) {
