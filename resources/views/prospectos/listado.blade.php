@@ -303,7 +303,7 @@ function cambiarEdoP(codigo,nombre,estado) {
         var prospecto={
           'cod_localidad_p': 'LC001',
           'cod_prospecto': codigo,
-          'cod_estado': estado
+          'cod_estado': 'ACT'
         }
         $.ajax({
           type : 'PUT',
