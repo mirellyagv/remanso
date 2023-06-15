@@ -1,4 +1,12 @@
 <x-layouts.app title="Registro" meta-description="Registro de prospectos meta description">
+
+  <style>
+    .align-right {
+      text-align: right;
+    }
+
+  </style>
+
   <form action="" method="GET" id="myForm">
     @csrf
     <main class="main" id="main">
@@ -33,7 +41,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" required name="numDocPros"
+                          <input type="text" class="form-control form-remanso align-right" required name="numDocPros"
                             id="numDocPros" min="9" max="9" maxlength="9">
                           {{-- <div class="a invalid-feedback">
                             Debe tener 9 números.
@@ -80,7 +88,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="rucProsp" id="rucProsp">
+                            <input type="text" class="form-control form-remanso align-right" name="rucProsp" id="rucProsp">
                           </div>
                         </div>
                       </div>
@@ -137,7 +145,7 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf1Prosp" id="telf1Prosp"  min="9" max="12" maxlength="12"
+                          <input type="text" class="form-control form-remanso align-right" name="telf1Prosp" id="telf1Prosp"  min="9" max="12" maxlength="12"
                             required>
                           {{-- <div class="f invalid-feedback">
                             El telefono 1 no puede estar vacío.
@@ -147,7 +155,7 @@
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf2Prosp" id="telf2Prosp">
+                          <input type="text" class="form-control form-remanso align-right" name="telf2Prosp" id="telf2Prosp">
                         </div>
                       </div>
                       <div class="row">
@@ -184,7 +192,7 @@
                           <label for="inputText" class="col-form-label">Importe:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impProsp" id="impProsp" required>
+                          <input type="text" class="form-control form-remanso align-right" name="impProsp" id="impProsp" required>
                           {{-- <div class="h invalid-feedback">
                             El importe no puede estar vacío.
                           </div> --}}
@@ -227,7 +235,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDoc2tit" id="numDoc2tit">
+                          <input type="text" class="form-control form-remanso align-right" name="numDoc2tit" id="numDoc2tit">
                         </div>
                       </div>
                       <div id="cajaNombre2Tit">
@@ -311,13 +319,13 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf1_2Tit" id="telf1_2Tit">
+                          <input type="text" class="form-control form-remanso align-right" name="telf1_2Tit" id="telf1_2Tit">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf2_2Tit" id="telf2_2Tit">
+                          <input type="text" class="form-control form-remanso align-right" name="telf2_2Tit" id="telf2_2Tit">
                         </div>
                       </div>
                       <div class="row">
@@ -459,7 +467,7 @@
               <label for="inputText" class="col-form-label">Núm. de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="numDocAddBenef" id="numDocAddBenef">
+              <input type="text" class="form-control form-remanso align-right" name="numDocAddBenef" id="numDocAddBenef">
             </div>
           </div>
           <div class="row">
