@@ -761,48 +761,45 @@ campoCuoi.addEventListener("input",function(){
     document.getElementById("impSaldo").value=saldo;
 });
 
-    
-
-
-    //-----------------muestra select Cuota-----------
-    $( document ).ready(function() {
-        $.ajax({
-            url: '../lista/MuestraListaCuota', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            success: function(respuesta){
-                $("#codCuotaServ").append('<option value="" selected disabled>SELECCIONE...</option>');
-                respuesta['response'].forEach(function(word){
-                seleccion = '';
-                $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-                });
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
+//-----------------muestra select Cuota-----------
+$( document ).ready(function() {
+    $.ajax({
+        url: '../lista/MuestraListaCuota', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){
+            $("#codCuotaServ").append('<option value="" selected disabled>SELECCIONE...</option>');
+            respuesta['response'].forEach(function(word){
+            seleccion = '';
+            $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
     });
+});
 
-    //-----------------muestra select Interes-----------
-    $( document ).ready(function() {
-        $.ajax({
-            url: '../lista/MuestraListaInteres', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            success: function(respuesta){
-                $("#codTasa").append('<option value="" selected disabled>SELECCIONE...</option>');
-                respuesta['response'].forEach(function(word){
-                seleccion = '';
-                $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-                });
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
+//-----------------muestra select Interes-----------
+$( document ).ready(function() {
+    $.ajax({
+        url: '../lista/MuestraListaInteres', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){
+            $("#codTasa").append('<option value="" selected disabled>SELECCIONE...</option>');
+            respuesta['response'].forEach(function(word){
+            seleccion = '';
+            $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
     });
+});
     
 //-----------------Añade Beneficiarios--------------------
 
@@ -855,32 +852,32 @@ addBeneficiario.addEventListener("click",function (){
     var accionesDiv = document.createElement('div'); // Contenedor para los botones
     accionesDiv.classList.add('acciones'); // Clase CSS opcional para estilizar el contenedor
     
-    var editarBoton = document.createElement('button');
-    editarBoton.classList.add('btn');
-    editarBoton.classList.add('btn-success');
-    editarBoton.classList.add('BtnverdeRemanso');
-    editarBoton.innerHTML  = '<span class="bi bi-pencil"></span>';
-    editarBoton.id = 'botonEditar' + nuevaFila.rowIndex;
-    
     var eliminarBoton = document.createElement('button');
     eliminarBoton.classList.add('btn');
     eliminarBoton.classList.add('btn-danger');
     eliminarBoton.innerHTML  = '<span class="bi bi-x-lg"></span>';
     eliminarBoton.id = 'botonEliminar' + nuevaFila.rowIndex;
+
+    // var editarBoton = document.createElement('button');
+    // editarBoton.classList.add('btn');
+    // editarBoton.classList.add('btn-success');
+    // editarBoton.classList.add('BtnverdeRemanso');
+    // editarBoton.innerHTML  = '<span class="bi bi-pencil"></span>';
+    // editarBoton.id = 'botonEditar' + nuevaFila.rowIndex;
     
-    accionesDiv.appendChild(editarBoton);
+    // accionesDiv.appendChild(editarBoton);
     accionesDiv.appendChild(eliminarBoton);
     
     accionesCelda.appendChild(accionesDiv);
 
-    editarBoton.addEventListener('click', function() {
-      var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
-      editarFila(filaIndex);
-    });
+    // editarBoton.addEventListener('click', function() {
+    //   var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
+    //   editarFila(filaIndex);
+    // });
     
     eliminarBoton.addEventListener('click', function() {
       var filaIndex = this.id.replace('botonEliminar', ''); // Obtiene el índice de la fila desde el ID del botón
-      eliminarFila(filaIndex);
+      eliminarFila(filaIndex,'NO','');
     });
 
     var today = new Date();
@@ -890,7 +887,7 @@ addBeneficiario.addEventListener("click",function (){
     var filaData = {
       cod_localidad_p: 'LC001',
       cod_prospecto: '',
-      num_linea: '0',
+      num_linea: '0', 
       cod_tipo_documento: codtipoDoc,
       dsc_documento: dscDoc,
       dsc_apellido_paterno: apellP,
@@ -907,17 +904,36 @@ addBeneficiario.addEventListener("click",function (){
 
 });
 
-function editarFila(index) {
-  // Lógica para editar la fila específica
-  console.log('Editar fila:', index);
-}
-
-function eliminarFila(index) {
+function eliminarFila(index,bd,num_linea) {
   var tabla = document.getElementById('tablaBeneficiarios');
   var tbody = tabla.getElementsByTagName('tbody')[0];
   var fila = tbody.rows[index-1];
   tbody.removeChild(fila);
   filasArray.splice(index-1, 1); // Eliminar el valor del array en la posición index
   console.log(filasArray);
+  if(bd === 'SI'){
+    $.ajax({         
+        type: "DELETE",
+        url: '../api/EliminarProspectoBeneficiario', 
+        dataType: 'json',
+        data:{'cod_prospecto':cod_prospecto,'num_linea':num_linea},
+        success: function(resultBenef){
+          console.log(resultBenef['response']);
+        }
+    });
+  }
 
 }  
+
+var btnAbreModalBenef = document.getElementById("abreModalBenef");
+btnAbreModalBenef.addEventListener("click",function (){
+    document.getElementById("tipoDocAddBenef").value = '';
+    document.getElementById("numDocAddBenef").value = '';
+    document.getElementById("nombresAddBenef").value = '';
+    document.getElementById("apellPAddBenef").value = '';
+    document.getElementById("apellMAddBenef").value = '';
+    document.getElementById("fchNacAddBenef").value = '';
+    document.getElementById("parentescoAddBenef").value = '';
+    document.getElementById("sexoAddBenef").value = '';
+    document.getElementById("edoCivilAddBenef").value = '';
+});

@@ -16,6 +16,7 @@ class VerifyCsrfToken extends Middleware
         '/api/logueo',
         '/api/guardaProspecto',
         'api/guardaBeneficiario',
+        'api/EliminarProspectoBeneficiario',
         'api/guardaObservacion',
         'api/InsertarProspectoServicio',
         'api/editarProspecto',

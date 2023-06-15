@@ -53,6 +53,7 @@ Route::name('ventas.')->prefix('/ventas')->group(function(){
 Route::get('api/logueo', [APIController::class, 'logueo'])->name('api.logueo');
 Route::put('api/guardaProspecto', [APIController::class, 'guardaProspecto'])->name('api.guardaProspecto');
 Route::put('api/guardaBeneficiario', [APIController::class, 'guardaBeneficiario'])->name('api.guardaBeneficiario');
+Route::delete('api/EliminarProspectoBeneficiario', [APIController::class, 'EliminarProspectoBeneficiario'])->name('api.EliminarProspectoBeneficiario');
 Route::get('lista/ListaProspectos', [ListaController::class, 'ListaProspectos'])->name('api.ListaProspectos');
 Route::put('api/guardaObservacion', [APIController::class, 'guardaObservacion'])->name('api.guardaObservacion');
 Route::put('api/editarProspecto', [APIController::class, 'editarProspecto'])->name('api.editarProspecto');

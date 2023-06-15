@@ -645,8 +645,6 @@ window.onload= function () {
           }
       });
 
-
-
       $.ajax({              
             type: "GET",
             url: '../api/ListarProspectoContacto', 
@@ -748,9 +746,9 @@ boton.addEventListener("click",function(){
     'dsc_observaciones':  document.getElementById("obsvProsp").value,
     'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
     'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
-    'cod_grupo': 'GV007',
-    'cod_supervisor': 'TRA00297',
-    'cod_jefeventas': 'TRA00058',
+    'cod_grupo': '',
+    'cod_supervisor': '',
+    'cod_jefeventas': '',
     'cod_estado': 'ACT',
     'imp_monto':document.getElementById("impProsp").value,
     'dsc_correo': document.getElementById("correoProsp").value,
@@ -792,7 +790,7 @@ boton.addEventListener("click",function(){
     'cod_espacio': '',
     'cod_tipo_espacio': '',
     'num_nivel': 0,
-    'cod_tipo_necesidad': ''
+    'cod_tipo_necesidad': 'NF'
   };
 
 
@@ -806,7 +804,17 @@ boton.addEventListener("click",function(){
     success: function(respuesta){
       console.log(respuesta);
 
-       
+        Swal.fire({
+          title: 'Actualizado',
+          text: codProspecto,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+             route{{'prospectos.listado'}} 
+          } 
+        })
         
     },//success
     error(e){

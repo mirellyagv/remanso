@@ -208,11 +208,12 @@ flatpickr("#fchFin", {
           var today = new Date(word['fch_registro']);
           // obtener la fecha de hoy en formato `MM/DD/YYYY`
           var dia = today.toLocaleDateString('es-ES');
+          var estado = word['dsc_estado'];
             fila += '<tr><td>'+
-            '<a class="btn btn-secondary form-remanso"  href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
-            '<a class="btn btn-success BtnverdeRemanso form-remanso"  href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
+            '<a class="btn btn-secondary form-remanso"  @if('+estado+' != 'ACTIVO') disabled @endif  href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
+            '<a class="btn btn-success BtnverdeRemanso form-remanso"  @if('+estado+' != 'ACTIVO') disabled @endif href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'" ><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
                     '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
-                    '<button class="btn btn-warning form-remanso" onclick="" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
+                    '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="" id="buscarDoc" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
                 '<td>'+word['cod_prospecto']+'</td>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_prospecto']+'</td>'+

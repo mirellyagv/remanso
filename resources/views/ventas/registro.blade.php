@@ -14,7 +14,6 @@
                   <div class="form-group form-remanso">
                     <h5>
                       <input type="checkbox" data-toggle="toggle" id="tipoNec" data-onlabel="NI" data-offlabel = "NF" data-onstyle ="success" checked>
-                      
                     </h5>
                   </div>
                 </div>
@@ -398,7 +397,7 @@
                       <div class="row">
                         <div class="col-md-3 offset-md-9">
                           <div class="form-group form-remanso">
-                            <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;" type="button">Añadir Beneficiario</button></h5>
+                            <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;" type="button" id="abreModalBenef">Añadir Beneficiario</button></h5>
                           </div>
                         </div>
                       </div>
@@ -415,7 +414,7 @@
                               <th style="text-align: center;" width="15%"></th>
                             </tr>
                           </thead>
-                          <tbody style="text-align: center;">
+                          <tbody id="bodyTablaBenef" style="text-align: center;">
                           </tbody>
                         </table>
                       </div>
@@ -825,6 +824,153 @@ flatpickr("#fch1erVcto",{
         document.getElementById("formRegVenta").reset();
       }
     });
+//-----------------------------------recuperar prospecto-------------------------------------------------
+
+var cod_prospecto = ''; // Variable para almacenar el valor de cod_prospecto
+
+// Verificar si se envió CodProspecto por GET
+if (window.location.search) {
+    var params = new URLSearchParams(window.location.search);
+    if (params.has('CodProspecto')) {
+        cod_prospecto = params.get('CodProspecto');
+    }
+}
+
+window.onload= function () {
+
+    console.log('cod_prospecto',cod_prospecto);
+    if (cod_prospecto !== '') {
+      $("#acordeonAval").css("display", "none");
+
+      $.ajax({
+      type : "GET",
+      url:"../api/ObtenerProspecto",
+      dataType: 'json',
+      data:{'cod_prospecto':cod_prospecto},
+      success: function(result) {
+        console.log(result);
+        document.getElementById("razonSocRegVta").value=result["response"]["dsc_razon_social"];
+        document.getElementById("apellPRegVta").value=result["response"]["dsc_apellido_paterno"];
+        document.getElementById("apellMRegVta").value=result["response"]["dsc_apellido_materno"];
+        document.getElementById("nombresRegVta").value=result["response"]["dsc_nombre"];
+        var tipoDocPros=document.getElementById("tipoDocRegVta") ;
+        tipoDocPros.value=result["response"]["cod_tipo_documento"];
+
+        document.getElementById("numDocRegVta").value=result["response"]["dsc_documento"];
+
+        var paisProspecto=document.getElementById("paisRegVta") ;
+        paisProspecto.value=result["response"]["cod_pais"];
+       
+        var dptoProsp=document.getElementById("dptoRegVta") ;
+        dptoProsp.value=result["response"]["cod_departamento"];
+        var changeEvent = new Event('change');   // Crea un evento "change"
+        dptoProsp.dispatchEvent(changeEvent); // Desencadena el evento "change"
+       
+        var provinProsp=document.getElementById("provRegVta") ;
+        var dttoProsp=document.getElementById("dttoRegVta") ;
+        setTimeout(function() { 
+          provinProsp.value=result["response"]["cod_provincia"];
+          provinProsp.dispatchEvent(changeEvent);
+          setTimeout(function() { 
+            dttoProsp.value=result["response"]["cod_distrito"];
+            dttoProsp.dispatchEvent(changeEvent);
+          }, 2000);
+        }, 2000);       
+        
+        document.getElementById("direccRegVta").value=result["response"]["dsc_direccion"];
+        document.getElementById("telf1RegVta").value=result["response"]["dsc_telefono_1"];
+        document.getElementById("telf2RegVta").value=result["response"]["dsc_telefono_2"];
+        document.getElementById("correoRegVta").value=result["response"]["dsc_correo"];
+
+        document.getElementById("apellP2doRegVta").value=result["response"]["dsc_apellido_paterno_2do"];
+        document.getElementById("apellM2doRegVta").value=result["response"]["dsc_apellido_materno_2do"];
+        document.getElementById("nombres2doRegVta").value=result["response"]["dsc_nombre_2do"];
+
+        var tipoDoc2tit=document.getElementById("tipoDoc2doRegVta") ;
+        tipoDoc2tit.value=result["response"]["cod_tipo_documento_2do"];
+
+        document.getElementById("numDoc2doRegVta").value=result["response"]["dsc_documento_2do"];
+
+        var pais2Tit=document.getElementById("pais2doRegVta") ;
+        pais2Tit.value=result["response"]["cod_pais_2do"];
+
+        var dpto2Tit=document.getElementById("dpto2doRegVta") ;
+        dpto2Tit.value=result["response"]["cod_departamento_2do"];
+        dpto2Tit.dispatchEvent(changeEvent); 
+
+        var prov2Tit=document.getElementById("prov2doRegVta");
+        var dtto2Tit=document.getElementById("dtto2doRegVta");
+        setTimeout(function() { 
+          prov2Tit.value=result["response"]["cod_provincia_2do"];
+          prov2Tit.dispatchEvent(changeEvent);
+          setTimeout(function() { 
+            dtto2Tit.value=result["response"]["cod_distrito_2do"];
+            dtto2Tit.dispatchEvent(changeEvent);
+          }, 2000);
+        }, 2000);   
+
+        document.getElementById("direcc2doRegVta").value=result["response"]["dsc_direccion_2do"];
+        document.getElementById("telf12doRegVta").value=result["response"]["dsc_telefono_1_2do"];
+        document.getElementById("telf22doRegVta").value=result["response"]["dsc_telefono_2_2do"];
+        document.getElementById("correo2doRegVta").value=result["response"]["dsc_correo_2do"];
+
+      }                  
+    });
+ 
+    $.ajax({         
+          type: "GET",
+          url: '../api/ListarProspectoBeneficiario', 
+          dataType: 'json',
+          data:{'cod_prospecto':cod_prospecto},
+          success: function(resultBenef){
+            console.log(resultBenef['response']);
+              var fila='';
+              resultBenef['response'].forEach(function(word){
+                  fecha = word['fch_nacimiento'].split("T");
+                  fila += '<tr>'+
+                  '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
+                  '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
+                  '<td>'+fecha[0]+'</td>'+
+                  '<td>'+word['dsc_parentesco']+'</td>'+
+                  '<td>'+word['dsc_sexo']+'</td>'+
+                  '<td>'+word['dsc_estado_civil']+'</td>'+
+                  '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFila('+word['num_linea']+','+"'SI'"+','+word['num_linea']+');" id="botonEliminar'+word['num_linea']+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '</tr>';
+              });
+            $('#bodyTablaBenef').html(fila);
+      
+          }
+      });
+
+      // $.ajax({              
+      //       type: "GET",
+      //       url: '../api/ListarProspectoContacto', 
+      //       dataType: 'json',
+      //       data:{'cod_prospecto':cod_prospecto},
+      //       success: function(result){
+      //               var fila='';
+      //               var item=1;
+      //               result['response'].forEach(function(word){
+      //                 fila += '<tr>'+
+      //                 '<td>'+item+'</td>'+
+      //                 '<td>'+word['fch_contacto']+'</td>'+
+      //                 '<td>'+word['dsc_calificacion']+'</td>'+
+      //                 '<td class="justificado">'+word['dsc_observaciones']+'</td>'+
+      //                 '<td></td>'+
+      //               '</tr>';
+      //               item=item+1;
+      //           });
+      //           $('#bodyListadoCon').html(fila);
+        
+      //       }
+      // });
+    }
+             
+}
+
+
+
+  //-----------------------------------Registrar venta---------------------------------------------------
 
 var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
@@ -872,9 +1018,9 @@ boton.addEventListener("click",function(){
     'dsc_observaciones':  '',
     'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
     'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
-    'cod_grupo': 'GV007',
-    'cod_supervisor': 'TRA00297',
-    'cod_jefeventas': 'TRA00058',
+    'cod_grupo': '',
+    'cod_supervisor': '',
+    'cod_jefeventas': '',
     'cod_estado': 'VEN',
     'imp_monto':document.getElementById("impTotal").value,
     'dsc_correo': document.getElementById("correoRegVta").value.toUpperCase(),
@@ -982,6 +1128,18 @@ boton.addEventListener("click",function(){
                 console.log(e.message);
             }//error
         });
+
+        Swal.fire({
+          title: 'Guardado',
+          text: codProspecto,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+             route{{'prospectos.listado'}} 
+          } 
+        })
  
     },//success
     error(e){
