@@ -694,15 +694,37 @@ $( document ).ready(function() {
         var precioCelda = nuevaFila.insertCell();
         precioCelda.textContent = datos['imp_precio'];
 
+        var descuentoPorcCelda = nuevaFila.insertCell();
+        var dsctoPorcInput = document.createElement('input');
+        dsctoPorcInput.type = 'number';
+        dsctoPorcInput.setAttribute('style', 'width: 5em;');
+        dsctoPorcInput.setAttribute('max', '100');
+        dsctoPorcInput.value = 0;   
+        
+        descuentoPorcCelda.appendChild(dsctoPorcInput);
+
         var descuentoCelda = nuevaFila.insertCell();
-        var nombreInput = document.createElement('input');
-        nombreInput.type = 'number';
-        nombreInput.value = 0;
+        descuentoCelda.textContent = 0;
+
+
+        var dsctoLibreCelda = nuevaFila.insertCell();
+        var dsctoLibreInput = document.createElement('input');
+        dsctoLibreInput.type = 'number';
+        dsctoLibreInput.setAttribute('style', 'width: 5em;');
+        dsctoLibreInput.value = 0;
+ 
+        dsctoLibreCelda.appendChild(dsctoLibreInput);
+
+        
+        //------caja descuento
+        // var nombreInput = document.createElement('input');
+        // nombreInput.type = 'number';
+        // nombreInput.value = 0;
+
         var saldo = datos['imp_precio'];
         cuoi = datos['imp_precio_cuoi'];
-        
-        
-        descuentoCelda.appendChild(nombreInput);
+         
+        //descuentoCelda.appendChild(nombreInput);
 
         var precioFinalCelda = nuevaFila.insertCell();
         precioFinalCelda.textContent = saldo;
@@ -710,32 +732,64 @@ $( document ).ready(function() {
         var changeEvent = new Event('input');   // Crea un evento "change"
         inputCOUI = document.getElementById('impCuoi');
 
-        nombreInput.addEventListener('change', function() {
-            calculaSaldo(cantInput.value,nombreInput.value,datos['imp_precio']);
+        // nombreInput.addEventListener('input', function() {
+        //     calculaSaldo(cantInput.value,nombreInput.value,datos['imp_precio']);
+        //     document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
+        //     inputCOUI.dispatchEvent(changeEvent);
+
+        //  });
+
+        cantInput.addEventListener('input', function() {
+            calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
+            document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
+            inputCOUI.dispatchEvent(changeEvent);
+        });
+
+        dsctoPorcInput.addEventListener('input', function() {
+            if(dsctoPorcInput.value > 100){
+                dsctoPorcInput.value = 100;
+            }
+            calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
             document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
             inputCOUI.dispatchEvent(changeEvent);
 
-         });
+        });
 
-         cantInput.addEventListener('change', function() {
-            calculaSaldo(cantInput.value,nombreInput.value,datos['imp_precio']);
+        dsctoLibreInput.addEventListener('input', function() {
+            calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
             document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
             inputCOUI.dispatchEvent(changeEvent);
-         });
+
+        });
 
         document.getElementById("impTotal").value=datos['imp_precio'];
         document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
         document.getElementById("impFoma").value=datos['imp_precio_foma'];    
         document.getElementById("codServicio").value=datos['cod_servicio'];
         document.getElementById("impPrecioLista").value=datos['imp_precio_lista'];
+        document.getElementById("impMinCuoi").value=datos['imp_min_cuoi'];
 
-        function calculaSaldo(ctd,dscto,precio) {
+        function calculaSaldo(ctd,dsctoLibre,dsctoPorc,precio) {
             if(ctd < 1){
                 ctd = 1;
             }
+            if(dsctoLibre =='' || dsctoLibre == null){
+                dsctoLibre=0;
+            }
+            if(dsctoPorc =='' || dsctoPorc == null){
+                dsctoPorc=0;
+            }
+            var porc = (precio*parseFloat(dsctoPorc))/100;
+            dscto = parseFloat(dsctoLibre)+porc;
             saldo = (ctd*precio)-dscto;
+            if(saldo < 0){
+                dscto = 0;
+                dsctoLibreInput.value = 0;
+                saldo = (ctd*precio)-porc;
+            }
 
             precioFinalCelda.textContent = saldo;
+            descuentoCelda.textContent = porc;
             document.getElementById("impDscto").value=dscto;
             document.getElementById("impSaldo").value=saldo;
             document.getElementById("ctdServ").value=ctd;
@@ -750,8 +804,11 @@ var campoCuoi = document.getElementById("impCuoi");
 campoCuoi.addEventListener("input",function(){
     var total = document.getElementById("impTotal").value;
     var cuoi = parseFloat(this.value);
-    console.log('cuoi ',cuoi,' total ',total)
+    //console.log('cuoi ',cuoi,' total ',total)
     total = parseFloat(total);
+    if(cuoi =='' || cuoi == null){
+        cuoi=0;
+    }
     if(cuoi > total){
         saldo = 0;
         document.getElementById("impCuoi").value = total;
@@ -759,6 +816,15 @@ campoCuoi.addEventListener("input",function(){
         saldo = total - cuoi;
     }
     document.getElementById("impSaldo").value=saldo;
+});
+
+campoCuoi.addEventListener("change",function(){
+    var minCuoiInput = document.getElementById("impMinCuoi").value;
+    var cuoi = parseFloat(this.value);
+    var minCuoi = parseFloat(minCuoiInput);
+    if(cuoi < minCuoi || cuoi == null || cuoi == ''){
+        document.getElementById("impCuoi").value = minCuoi;
+    }
 });
 
 //-----------------muestra select Cuota-----------

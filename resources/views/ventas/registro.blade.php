@@ -568,11 +568,12 @@
                             <table class="table table-striped" id="tablaServiciosAdded" style="width:100%">
                               <thead style="background-color: #181C35;; color: white;">
                                 <tr>
-                                  <th style="text-align: center;" width="45%">Servicio</th>
+                                  <th style="text-align: center;" width="30%">Servicio</th>
                                   <th style="text-align: center;" width="5%">Cantidad</th>
                                   <th style="text-align: center;" width="10%">Precio Lista</th>
                                   <th style="text-align: center;" width="10%">Precio Venta</th>
-                                  <th style="text-align: center;" width="5%">Descuento</th>
+                                  <th style="text-align: center;" width="5%" colspan="2">Dscto. %</th>
+                                  <th style="text-align: center;" width="5%">Dscto. Libre</th>
                                   <th style="text-align: center;" width="10%">Precio Final</th>
                                 </tr>
                               </thead>
@@ -606,6 +607,7 @@
                           <input type="hidden" name="codServicio" id="codServicio">
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
                           <input type="hidden" name="ctdServ" id="ctdServ">
+                          <input type="hidden" name="impMinCuoi" id="impMinCuoi">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
@@ -1469,7 +1471,9 @@ boton.addEventListener("click",function(){
     'cod_cuota_foma': document.getElementById("codCuotaFoma").value,
     'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
     'cod_tasa': document.getElementById("codTasa").value,
-    'fch_1er_vencimiento': document.getElementById("fch1erVcto").value
+    'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
+    'por_descuento': 10,
+    'imp_descuento_adicional': 500
   };
 
   Swal.fire({

@@ -41,6 +41,9 @@ class APIController extends Controller
                     session(['flg_vendedor' => $responseData['response']['flg_vendedor']]);
                     session(['flg_jefe' => $responseData['response']['flg_jefe']]);
                     session(['flg_supervisor' => $responseData['response']['flg_supervisor']]);
+                    if($responseData['response']['flg_vendedor'] =='NO' && $responseData['response']['flg_jefe']=='NO' && $responseData['response']['flg_supervisor'] == 'NO'){
+                        session(['flg_administrador' => 'SI']);
+                    }
 
                 }
 

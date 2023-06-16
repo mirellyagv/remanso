@@ -46,6 +46,7 @@ Route::name('prospectos.')->prefix('/prospectos')->group(function(){
 
 Route::name('ventas.')->prefix('/ventas')->group(function(){
     Route::view('registro', 'ventas.registro')->name('registro');
+    Route::view('autorizacion', 'ventas.autorizacion')->name('autorizacion');
 });
 
 //----------------APIs--------------------------------------
@@ -86,7 +87,7 @@ Route::get('lista/MuestraTipoEspacio', [ListaController::class, 'MuestraTipoEspa
 Route::get('lista/MuestraServicio', [ListaController::class, 'MuestraServicio'])->name('lista.MuestraServicio');
 Route::get('lista/MuestraListaCuota', [ListaController::class, 'MuestraListaCuota'])->name('lista.MuestraListaCuota');
 Route::get('lista/MuestraListaInteres', [ListaController::class, 'MuestraListaInteres'])->name('lista.MuestraListaInteres');
-
+Route::get('lista/MuestraListaContratoFirmante', [ListaController::class, 'MuestraListaContratoFirmante'])->name('lista.MuestraListaContratoFirmante');
 
 
 //-------------------------MOSTRAR DATOS--------------------------------------------
