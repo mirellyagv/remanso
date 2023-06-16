@@ -23,7 +23,7 @@
           <span class="item-menu">Registro de Ventas</span>
         </a>
       </li><br>
-      @if (session('flg_jefe')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+      @if (session('flg_administrador')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
       
         <li class="nav-item">
           <a href="{{route('ventas.autorizacion')}}">
