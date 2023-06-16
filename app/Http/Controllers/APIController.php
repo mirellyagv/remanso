@@ -416,7 +416,34 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https:\\webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ObtenerContratoServicioPrincipal/20396900719/LC001/'.$cod_contrato);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ObtenerContratoServicioPrincipal/20396900719/LC001/'.$cod_contrato);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function ActualizarContratoFirmado(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['data']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ActualizarContratoFirmado/20396900719/',$header,$data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

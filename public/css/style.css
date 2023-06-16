@@ -71,6 +71,9 @@
 .justificado{
   text-align: justify;
 }
+.derecha{
+  text-align: right;
+}
 
 /*--------------------------------------------------------------
 Acordions

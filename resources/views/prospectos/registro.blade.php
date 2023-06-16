@@ -1036,6 +1036,7 @@ boton.addEventListener("click",function(){
           text: codProspecto,
           icon: 'success',
           confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#35B44A',
         }).then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {

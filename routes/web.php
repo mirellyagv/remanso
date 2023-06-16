@@ -61,6 +61,7 @@ Route::put('api/guardaObservacion', [APIController::class, 'guardaObservacion'])
 Route::put('api/editarProspecto', [APIController::class, 'editarProspecto'])->name('api.editarProspecto');
 Route::put('api/editarEstadoProspecto', [APIController::class, 'editarEstadoProspecto'])->name('api.editarEstadoProspecto');
 Route::put('api/InsertarProspectoServicio', [APIController::class, 'InsertarProspectoServicio'])->name('api.InsertarProspectoServicio');
+Route::put('api/ActualizarContratoFirmado', [APIController::class, 'ActualizarContratoFirmado'])->name('api.ActualizarContratoFirmado');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');
