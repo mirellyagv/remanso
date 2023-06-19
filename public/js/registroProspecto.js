@@ -406,21 +406,20 @@ addBeneficiario.addEventListener("click",function (){
 
     var filaData = {
       cod_localidad_p: 'LC001',
-      cod_prospecto: 'PVT0034978',
+      cod_prospecto: '',
       num_linea: '0',
       cod_tipo_documento: codtipoDoc,
       dsc_documento: dscDoc,
       dsc_apellido_paterno: apellP,
       dsc_apellido_materno: apellM,
       dsc_nombres: nombre,
-      fch_nacimiento: '2023-02-01',
+      fch_nacimiento: fechNac,
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
       cod_parentesco: codParentesco
     };
     
     filasArray.push(filaData); // Agregar la fila al array
-    console.log(filasArray);
 
 });
 
@@ -488,5 +487,24 @@ addContacto.addEventListener("click",function (){
       editarFila(filaIndex);
     });
 
+});
+
+var btnAbreModalBenef = document.getElementById("abreModalBenef");
+btnAbreModalBenef.addEventListener("click",function (){
+    document.getElementById("tipoDocAddBenef").value = '';
+    document.getElementById("numDocAddBenef").value = '';
+    document.getElementById("nombresAddBenef").value = '';
+    document.getElementById("apellPAddBenef").value = '';
+    document.getElementById("apellMAddBenef").value = '';
+    document.getElementById("fchNacAddBenef").value = '';
+    document.getElementById("parentescoAddBenef").value = '';
+    document.getElementById("sexoAddBenef").value = '';
+    document.getElementById("edoCivilAddBenef").value = '';
+});
+
+var btnAbreModalContacto = document.getElementById("abreModalContacto");
+btnAbreModalContacto.addEventListener("click",function (){
+    document.getElementById("califAddContacto").value = '';
+    document.getElementById("obsvAddContacto").value = '';
 });
 

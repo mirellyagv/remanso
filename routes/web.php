@@ -46,6 +46,7 @@ Route::name('prospectos.')->prefix('/prospectos')->group(function(){
 
 Route::name('ventas.')->prefix('/ventas')->group(function(){
     Route::view('registro', 'ventas.registro')->name('registro');
+    Route::view('autorizacion', 'ventas.autorizacion')->name('autorizacion');
 });
 
 //----------------APIs--------------------------------------
@@ -54,8 +55,14 @@ Route::get('api/logueo', [APIController::class, 'logueo'])->name('api.logueo');
 Route::put('api/guardaProspecto', [APIController::class, 'guardaProspecto'])->name('api.guardaProspecto');
 Route::put('api/editarProspecto', [APIController::class, 'editarProspecto'])->name('api.editarProspecto');
 Route::put('api/guardaBeneficiario', [APIController::class, 'guardaBeneficiario'])->name('api.guardaBeneficiario');
+Route::delete('api/EliminarProspectoBeneficiario', [APIController::class, 'EliminarProspectoBeneficiario'])->name('api.EliminarProspectoBeneficiario');
 Route::get('lista/ListaProspectos', [ListaController::class, 'ListaProspectos'])->name('api.ListaProspectos');
+Route::get('lista/ListaProspectosCaducar', [ListaController::class, 'ListaProspectosCaducar'])->name('api.ListaProspectosCaducar');
 Route::put('api/guardaObservacion', [APIController::class, 'guardaObservacion'])->name('api.guardaObservacion');
+Route::put('api/editarProspecto', [APIController::class, 'editarProspecto'])->name('api.editarProspecto');
+Route::put('api/editarEstadoProspecto', [APIController::class, 'editarEstadoProspecto'])->name('api.editarEstadoProspecto');
+Route::put('api/InsertarProspectoServicio', [APIController::class, 'InsertarProspectoServicio'])->name('api.InsertarProspectoServicio');
+Route::put('api/ActualizarContratoFirmado', [APIController::class, 'ActualizarContratoFirmado'])->name('api.ActualizarContratoFirmado');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');
@@ -78,6 +85,16 @@ Route::get('lista/MuestraArea', [ListaController::class, 'MuestraArea'])->name('
 Route::get('lista/MuestraEjeX', [ListaController::class, 'MuestraEjeX'])->name('lista.MuestraEjeX');
 Route::get('lista/MuestraEjeY', [ListaController::class, 'MuestraEjeY'])->name('lista.MuestraEjeY');
 Route::get('lista/MuestraEspacio', [ListaController::class, 'MuestraEspacio'])->name('lista.MuestraEspacio');
+Route::get('lista/MuestraTipoEspacio', [ListaController::class, 'MuestraTipoEspacio'])->name('lista.MuestraTipoEspacio');
 Route::get('lista/MuestraServicio', [ListaController::class, 'MuestraServicio'])->name('lista.MuestraServicio');
 Route::get('lista/MuestraListaCuota', [ListaController::class, 'MuestraListaCuota'])->name('lista.MuestraListaCuota');
 Route::get('lista/MuestraListaInteres', [ListaController::class, 'MuestraListaInteres'])->name('lista.MuestraListaInteres');
+Route::get('lista/MuestraListaContratoFirmante', [ListaController::class, 'MuestraListaContratoFirmante'])->name('lista.MuestraListaContratoFirmante');
+
+
+//-------------------------MOSTRAR DATOS--------------------------------------------
+
+Route::get('api/ObtenerProspecto', [APIController::class, 'ObtenerProspecto'])->name('api.ObtenerProspecto');
+Route::get('api/ListarProspectoBeneficiario', [APIController::class, 'ListarProspectoBeneficiario'])->name('api.ListarProspectoBeneficiario');
+Route::get('api/ListarProspectoContacto', [APIController::class, 'ListarProspectoContacto'])->name('api.ListarProspectoContacto');
+Route::get('api/ObtenerContratoServicioPrincipal', [APIController::class, 'ObtenerContratoServicioPrincipal'])->name('api.ObtenerContratoServicioPrincipal');

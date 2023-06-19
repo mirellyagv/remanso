@@ -41,6 +41,9 @@ class APIController extends Controller
                     session(['flg_vendedor' => $responseData['response']['flg_vendedor']]);
                     session(['flg_jefe' => $responseData['response']['flg_jefe']]);
                     session(['flg_supervisor' => $responseData['response']['flg_supervisor']]);
+                    if($responseData['response']['flg_vendedor'] =='NO' && $responseData['response']['flg_jefe']=='NO' && $responseData['response']['flg_supervisor'] == 'NO'){
+                        session(['flg_administrador' => 'SI']);
+                    }
 
                 }
 
@@ -168,6 +171,34 @@ class APIController extends Controller
             });
             
             $promise->wait();
+            //$codProspecto = APIController::obtenerUltimoProspecto();
+            //return $codProspecto;
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function InsertarProspectoServicio(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['datosServicios']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoServicio/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            
+            $promise->wait();
             $codProspecto = APIController::obtenerUltimoProspecto();
             return $codProspecto;
         } catch (\Exception $e) {
@@ -210,16 +241,16 @@ class APIController extends Controller
         $cod_prospecto = $request['cod_prospecto'];
         $cod_calificacion = $request['cod_calificacion'];
         $dsc_observacion = $request['dsc_observacion'];
+        $fecha = $request['fch_contacto'];
         $data1 = [
             "cod_prospecto"=> $cod_prospecto,
             "num_linea"=> 0,
-            "fch_contacto"=> "2023-06-06T22:12:46.750Z",
+            "fch_contacto"=> $fecha,
             "cod_calificacion"=>  $cod_calificacion,
             "flg_presentacion"=> "NO",
             "cod_consejero"=> session('cod_trabajador'),
             "dsc_observaciones"=> $dsc_observacion,
             "cod_usuario_registro"=> session('cod_trabajador'),
-            "flg_indicador"=> "NO",
             "cod_localidad_p"=> "LC001"
         ];
         $data = json_encode($data1);
@@ -245,5 +276,217 @@ class APIController extends Controller
         }
     }
 
+    public function ObtenerProspecto(Request $request)
+    {
+        $client = new Client();
+        $cod_prospecto = $request['cod_prospecto'];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspecto/20396900719/LC001/'.$cod_prospecto);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ListarProspectoBeneficiario(Request $request)
+    {
+        $client = new Client();
+        $cod_prospecto = $request['cod_prospecto'];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoBeneficiario/20396900719/LC001/'.$cod_prospecto);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function EliminarProspectoBeneficiario(Request $request)
+    {
+        $client = new Client();
+        $cod_prospecto = $request['cod_prospecto'];
+        $num_linea = $request['num_linea'];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoBeneficiario/20396900719/LC001/'.$cod_prospecto.'/'.$num_linea);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ListarProspectoContacto(Request $request)
+    {
+        $client = new Client();
+        $cod_prospecto = $request['cod_prospecto'];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoContacto/20396900719/LC001/'.$cod_prospecto);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function editarProspecto(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['prospecto']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspecto/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+
+            $promise->wait();
+            $mensaje= 'Actualizado';
+            return $mensaje;
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+    }
+
+    public function editarEstadoProspecto(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['prospecto']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoEstado/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+
+            $promise->wait();
+            $mensaje= 'Actualizado';
+            return $mensaje;
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+    }
+
+    public function ObtenerContratoServicioPrincipal(Request $request)
+    {
+        $client = new Client();
+        $cod_contrato = $request['cod_contrato'];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ObtenerContratoServicioPrincipal/20396900719/LC001/'.$cod_contrato);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
+    public function ActualizarContratoFirmado(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['data']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ActualizarContratoFirmado/20396900719/',$header,$data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 
 }

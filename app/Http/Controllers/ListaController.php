@@ -16,8 +16,8 @@ class ListaController extends Controller
     {  
 
         $client = new Client();
-        $cod_trabajador = 'TRA00245';
-        //$cod_trabajador = session('cod_trabajador');
+        //$cod_trabajador = 'TRA00245';
+        $cod_trabajador = session('cod_trabajador');
         $fchInicio = $request['fch_inicio'];
         $fchFin = $request['fch_fin'];
         $cod_estado= $request['cod_estado'];
@@ -43,6 +43,30 @@ class ListaController extends Controller
 
         } catch (\Exception $e) {
 
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ListaProspectosCaducar(Request $request)
+    {   
+        $client = new Client();
+        $cod_trabajador = session('cod_trabajador');
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoxCaducar/20396900719/'.$cod_trabajador);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -473,6 +497,34 @@ class ListaController extends Controller
         $ejeY = $request['ejeY'];
         try {
                           
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEspacio/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function MuestraTipoEspacio(Request $request)
+    {   
+        $client = new Client();
+        $cod_camposanto = $request['cod_camposanto'];
+        $cod_plataforma = $request['cod_plataforma'];
+        $cod_area = $request['cod_area'];
+        $ejeX = $request['ejeX'];
+        $ejeY = $request['ejeY'];
+        try {
+                          
             $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEspacioxFiltro/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
@@ -567,4 +619,27 @@ class ListaController extends Controller
         }
     }
 
+    public function MuestraListaContratoFirmante(Request $request)
+    {   
+        $client = new Client();
+        $codFirmante = $request['codFirmante']; 
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ListarContratoNoFirmado/20396900719/LC001/'.$codFirmante);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

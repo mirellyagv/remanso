@@ -61,10 +61,7 @@
 }
 .form-remanso{
     border-radius: 0% !important;
-}
-
-.form-remanso input{
-  text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 .item-menu{
@@ -73,6 +70,9 @@
 }
 .justificado{
   text-align: justify;
+}
+.derecha{
+  text-align: right;
 }
 
 /*--------------------------------------------------------------

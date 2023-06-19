@@ -1,4 +1,30 @@
 <x-layouts.app title="Registro" meta-description="Registro de ventas meta description">
+  <style>
+    .align-right {
+      text-align: right;
+    }
+    /* .loader {
+      display: block;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .loader img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    } */
+  </style>
+
+{{-- <div class="loader">
+  <img src="{{asset('images/7.gif')}}" alt="Cargando...">
+</div> --}}
 
   <main class="main" id="main">
     <div class="pagetitle">
@@ -14,7 +40,6 @@
                   <div class="form-group form-remanso">
                     <h5>
                       <input type="checkbox" data-toggle="toggle" id="tipoNec" data-onlabel="NI" data-offlabel = "NF" data-onstyle ="success" checked>
-                      
                     </h5>
                   </div>
                 </div>
@@ -35,17 +60,13 @@
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="tipoDocRegVta" id="tipoDocRegVta" class="form-select form-remanso">
-                            <option value="0">DNI</option>
-                            <option value="1">RUC</option>
-                            <option value="2">Pasaporte</option>
-                            <option value="3">Carnet de extranjería</option>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDocRegVta" id="numDocRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="numDocRegVta" id="numDocRegVta">
                         </div>
                       </div>
                       <div id="nombre">
@@ -76,7 +97,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="razonSocRegVta" id="razonSocRegVta">
+                            <input type="text" class="form-control form-remanso align-right" name="razonSocRegVta" id="razonSocRegVta">
                           </div>
                         </div>
                       </div>
@@ -125,13 +146,13 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf1RegVta" id="telf1RegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf1RegVta" id="telf1RegVta">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf2RegVta" id="telf2RegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf2RegVta" id="telf2RegVta">
                         </div>
                       </div>
                       <div class="row">
@@ -167,7 +188,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDoc2doRegVta" id="numDoc2doRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="numDoc2doRegVta" id="numDoc2doRegVta">
                         </div>
                       </div>
                       <div id="nombre">
@@ -198,7 +219,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="razonSoc2doRegVta" id="razonSoc2doRegVta">
+                            <input type="text" class="form-control form-remanso align-right" name="razonSoc2doRegVta" id="razonSoc2doRegVta">
                           </div>
                         </div>
                       </div>
@@ -247,13 +268,13 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf12doRegVta" id="telf12doRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf12doRegVta" id="telf12doRegVta">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telf22doRegVta" id="telf22doRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf22doRegVta" id="telf22doRegVta">
                         </div>
                       </div>
                       <div class="row">
@@ -289,7 +310,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="numDocAval" id="numDocAval">
+                          <input type="text" class="form-control form-remanso align-right" name="numDocAval" id="numDocAval">
                         </div>
                       </div>
                       <div id="nombre">
@@ -320,7 +341,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="razonSocAval" id="razonSocAval">
+                            <input type="text" class="form-control form-remanso align-right" name="razonSocAval" id="razonSocAval">
                           </div>
                         </div>
                       </div>
@@ -369,13 +390,13 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telef1Aval" id="telef1Aval">
+                          <input type="text" class="form-control form-remanso align-right" name="telef1Aval" id="telef1Aval">
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso" name="telef2Aval" id="telef2Aval">
+                          <input type="text" class="form-control form-remanso align-right" name="telef2Aval" id="telef2Aval">
                         </div>
                       </div>
                       <div class="row">
@@ -402,7 +423,7 @@
                       <div class="row">
                         <div class="col-md-3 offset-md-9">
                           <div class="form-group form-remanso">
-                            <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;" type="button">Añadir Beneficiario</button></h5>
+                            <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios" style="width: -webkit-fill-available;" type="button" id="abreModalBenef">Añadir Beneficiario</button></h5>
                           </div>
                         </div>
                       </div>
@@ -419,7 +440,7 @@
                               <th style="text-align: center;" width="15%"></th>
                             </tr>
                           </thead>
-                          <tbody style="text-align: center;">
+                          <tbody id="bodyTablaBenef" style="text-align: center;">
                           </tbody>
                         </table>
                       </div>
@@ -544,26 +565,19 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="table-responsive">
-                            <table class="table table-striped" id="example" style="width:100%">
+                            <table class="table table-striped" id="tablaServiciosAdded" style="width:100%">
                               <thead style="background-color: #181C35;; color: white;">
                                 <tr>
-                                  <th style="text-align: center;" width="5%"></th>
-                                  <th style="text-align: center;" width="45%">Servicio</th>
-                                  <th style="text-align: center;" width="5%">Precio Lista</th>
-                                  <th style="text-align: center;" width="5%">Precio Venta</th>
-                                  <th style="text-align: center;" width="5%">Descuento</th>
-                                  <th style="text-align: center;" width="5%">Precio Final</th>
-                                  <th style="text-align: center;" width="10%"></th>
+                                  <th style="text-align: center;" width="30%">Servicio</th>
+                                  <th style="text-align: center;" width="5%">Cantidad</th>
+                                  <th style="text-align: center;" width="10%">Precio Lista</th>
+                                  <th style="text-align: center;" width="10%">Precio Venta</th>
+                                  <th style="text-align: center;" width="5%" colspan="2">Dscto. %</th>
+                                  <th style="text-align: center;" width="5%">Dscto. Libre</th>
+                                  <th style="text-align: center;" width="10%">Precio Final</th>
                                 </tr>
                               </thead>
                               <tbody style="text-align: center;">
-                                <td>1</td>
-                                <td>DU00043 POR DERECHO DE USO PERPETUO SEPULTURA TRIPLE</td>
-                                <td>13.900,00</td>
-                                <td>12.600,00</td>
-                                <td>1.000,00</td>
-                                <td>10.710,00</td>
-                                <td></td>
                               </tbody>
                             </table>
                           </div>
@@ -576,54 +590,60 @@
                           <label for="inputText" class="col-form-label">Precio Total: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impTotal" id="impTotal">
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Saldo: </label>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impSaldo" id="impSaldo">
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <select name="codTasa"  id="codTasa" class="form-select form-remanso">
-                          </select>
+                          <input type="text" class="form-control form-remanso align-right" readonly name="impTotal" id="impTotal">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">CUOI: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impCuoi" id="impCuoi">
+                          <input type="text" class="form-control form-remanso align-right" name="impCuoi" id="impCuoi">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
+                          <label for="inputText" class="col-form-label">Saldo: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso">
-                            <option value="068">1</option>
-                          </select>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">FOMA: </label>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="impFoma" id="impFoma">
+                          <input type="text" readonly class="form-control form-remanso align-right" name="impSaldo" id="impSaldo">
+                          <input type="hidden" name="impDscto" id="impDscto">
+                          <input type="hidden" name="codServicio" id="codServicio">
+                          <input type="hidden" name="impPrecioLista" id="impPrecioLista">
+                          <input type="hidden" name="ctdServ" id="ctdServ">
+                          <input type="hidden" name="impMinCuoi" id="impMinCuoi">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso">
+                          <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso align-right">
+                          </select>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <select name="codTasa"  id="codTasa" class="form-select form-remanso align-right">
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Fch. 1er vencimiento: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso" name="fch1erVcto" id="fch1erVcto">
+                          <input type="text" class="form-control form-remanso align-right" name="fch1erVcto" id="fch1erVcto">
                         </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">FOMA: </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <input type="text" class="form-control form-remanso align-right" name="impFoma" id="impFoma">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso align-right">
+                            <option value="068">1</option>
+                          </select>
+                        </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -674,10 +694,10 @@
 
   </main>
 
-  <!-- -------------------Modal Beneficiarios------------------------------- -->
+    <!-- -------------------Modal Beneficiarios------------------------------- -->
 
   <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel"
-    aria-hidden="true">
+  aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content form-remanso">
         <div class="modal-header">
@@ -690,68 +710,73 @@
               <label for="inputText" class="col-form-label">Tipo de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="tipoDocBenef" id="tipoDocBenef" class="form-select form-remanso">
+              <select name="tipoDocAddBenef" id="tipoDocAddBenef" class="form-select form-remanso">
+                <option value="" selected="" disabled="">SELECCIONE...</option>
+                <option value="DI002">C.E</option>
+                <option value="DI001">DNI</option>
+                <option value="DI006">L.E.</option>
+                <option value="DI005">OTROS</option>
+                <option value="DI003">PASAPORTE</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Núm. de Documento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="numDocBenef" id="numDocBenef">
+              <input type="text" class="form-control form-remanso align-right" name="numDocAddBenef" id="numDocAddBenef">
             </div>
           </div>
-          <div id="nombre">
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Nombres:</label>
-              </div>
-              <div class="col-md-9 mb-3">
-                <input type="text" class="form-control form-remanso" name="nombresBenef" id="nombresBenef">
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Apellido Paterno: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <input type="text" class="form-control form-remanso" name="apellPBenef" id="apellPBenef">
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Apellido Materno: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <input type="text" class="form-control form-remanso" name="apellMBenef" id="apellMBenef">
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <input type="text" class="form-control form-remanso" name="fchNacBenef" id="fchNacBenef">
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Parentesco: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <select name="parentBenef" id="parentBenef" class="form-select form-remanso">
-                </select>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Sexo: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <select name="sexoBenef" id="sexoBenef" class="form-select form-remanso">
-                </select>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="inputText" class="col-form-label">Estado Civil: </label>
-              </div>
-              <div class="col-md-3 mb-3">
-                <select name="edoCivilBenef" id="edoCivilBenef" class="form-select form-remanso">
-                </select>
-              </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Nombres:</label>
+            </div>
+            <div class="col-md-9 mb-3">
+              <input type="text" class="form-control form-remanso" name="nombresAddBenef" id="nombresAddBenef">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="text" class="form-control form-remanso" name="apellPAddBenef" id="apellPAddBenef">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Apellido Materno: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="text" class="form-control form-remanso" name="apellMAddBenef" id="apellMAddBenef">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="text" class="form-control form-remanso" name="fchNacAddBenef" id="fchNacAddBenef"
+                placeholder="seleccione..">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Parentesco: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <select name="parentescoAddBenef" id="parentescoAddBenef" class="form-select form-remanso">
+              </select>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Sexo: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <select name="sexoAddBenef" id="sexoAddBenef" class="form-select form-remanso">
+              </select>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Estado Civil: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <select name="edoCivilAddBenef" id="edoCivilAddBenef" class="form-select form-remanso">
+              </select>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso"
+          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso"
             data-bs-dismiss="modal">Aceptar</button>
         </div>
       </div>
@@ -797,24 +822,552 @@
 </x-layouts.app>
 <script src="{{asset('js/registroVenta.js')}}"></script>
 <script type="text/javascript">
-  $("#tipoDoc").change(function(){
-        if(this.value==1){
-            $("#nombre").css("display", "none");
-            $("#razonSoc").css("display", "block");
-        }else{
-            $("#nombre").css("display", "block");
-            $("#razonSoc").css("display", "none");
-        }
-        
-    });
-    var boton = document.getElementById("tipoNec");
-    boton.addEventListener("change",function(){
-      console.log(this.checked);
-      if(this.checked == true){
-        document.getElementById("formRegVenta").reset();
-      }
-    });
 
+// window.addEventListener('load', function() {
+//       var loader = document.querySelector('.loader');
+//       setTimeout(function() {
+//         loader.style.display = 'none';
+//       }, 2000);
+//     });
+
+
+// ----------------------Valida correo---------------------------------
+var emailInput = document.getElementById("correoRegVta");
+
+emailInput.addEventListener("input", function(event) {
+  var email = event.target.value;
+  
+  // Expresión regular para validar el formato de correo electrónico
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if (!emailRegex.test(email)) {
+    // El correo electrónico no cumple con el formato válido
+    emailInput.setCustomValidity("Ingrese un correo electrónico válido");
+  } else {
+    // El correo electrónico tiene un formato válido
+    emailInput.setCustomValidity("");
+  }
+});
+
+var emailInput2 = document.getElementById("correo2doRegVta");
+
+emailInput2.addEventListener("input", function(event) {
+  var email = event.target.value;
+  
+  // Expresión regular para validar el formato de correo electrónico
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if (!emailRegex.test(email)) {
+    // El correo electrónico no cumple con el formato válido
+    emailInput2.setCustomValidity("Ingrese un correo electrónico válido");
+  } else {
+    // El correo electrónico tiene un formato válido
+    emailInput2.setCustomValidity("");
+  }
+});
+// --------------------valida documento de identidad-------------
+var numDocProsInput = document.getElementById("numDocRegVta");
+
+numDocProsInput.addEventListener("input", function(event) {
+var inputValue = numDocProsInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocProsInput.value = inputValue;
+
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocProsInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocProsInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocProsInput.setCustomValidity(""); // Campo válido
+}
+});
+
+var numDoc2titInput = document.getElementById("numDoc2doRegVta");
+
+numDoc2titInput.addEventListener("input", function(event) {
+var inputValue = numDoc2titInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDoc2titInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDoc2titInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDoc2titInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+var numDocAddBenefInput = document.getElementById("numDocAval");
+
+numDocAddBenefInput.addEventListener("input", function(event) {
+var inputValue = numDocAddBenefInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocAddBenefInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocAddBenefInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+var numDocAddBenefInput = document.getElementById("numDocAddBenef");
+
+numDocAddBenefInput.addEventListener("input", function(event) {
+var inputValue = numDocAddBenefInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocAddBenefInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocAddBenefInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+var numDocAvalInput = document.getElementById("numDocAval");
+
+numDocAvalInput.addEventListener("input", function(event) {
+var inputValue = numDocAvalInput.value;
+
+// Eliminar caracteres no numéricos
+inputValue = inputValue.replace(/\D/g, '');
+
+// Limitar la longitud del valor a 9 caracteres
+if (inputValue.length > 9) {
+inputValue = inputValue.slice(0, 9);
+}
+
+// Actualizar el valor del campo
+numDocAvalInput.value = inputValue;
+
+if (inputValue.length !=='') {
+// Verificar si se ingresaron 9 dígitos
+if (inputValue.length !== 9) {
+numDocAvalInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+numDocAvalInput.reportValidity(); // Mostrar el mensaje de error
+} else {
+numDocAvalInput.setCustomValidity(""); // Campo válido
+}
+}
+});
+
+// -----------------------valida telefono-------------------------    
+var phoneInput = document.getElementById("telf1RegVta");
+
+phoneInput.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+  
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+          
+});
+var phoneInput2 = document.getElementById("telf2RegVta");
+
+phoneInput2.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+var phoneInput3 = document.getElementById("telf12doRegVta");
+
+phoneInput3.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+var phoneInput4 = document.getElementById("telf22doRegVta");
+
+phoneInput4.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+
+var phoneInput5 = document.getElementById("telef1Aval");
+
+phoneInput5.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+
+var phoneInput6 = document.getElementById("telef2Aval");
+
+phoneInput6.addEventListener("input", function(event) {
+  var phone = event.target.value;
+  
+  // Eliminar cualquier carácter que no sea un número
+  phone = phone.replace(/\D/g, '');
+
+  // Limitar la longitud del valor a 12 caracteres
+  if (phone.length > 12) {
+    phone = phone.slice(0, 12);
+  }
+
+  event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
+    
+  if (phone.length == 8 || phone.length ==12) {
+    // El número de teléfono tiene 9-12 dígitos
+    phoneInput.setCustomValidity("");
+    
+    } else {
+      // El número de teléfono no tiene 9-12 dígitos
+      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+    }
+});
+
+// -----------------------validacion numerica servicios---------------
+var impCuoiInput = document.getElementById("impCuoi");
+
+impCuoiInput.addEventListener("input", function(event) {
+  var inputValue = impCuoiInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Actualizar el valor del campo
+  impCuoiInput.value = inputValue;
+});
+
+var impFomaInput = document.getElementById("impFoma");
+
+impFomaInput.addEventListener("input", function(event) {
+  var inputValue = impFomaInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Actualizar el valor del campo
+  impFomaInput.value = inputValue;
+});
+
+
+
+flatpickr("#fchNacAddBenef",{
+  locale:"es",
+  dateFormat: "Y-m-d"
+});
+var fechaActual = new Date();
+var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
+
+flatpickr("#fch1erVcto",{
+  locale:"es",
+  defaultDate: fechaMasUnMes,
+  dateFormat: "Y-m-d"
+});
+
+document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
+    ele.bootstrapToggle();
+});
+
+$("#tipoDoc").change(function(){
+      if(this.value==1){
+          $("#nombre").css("display", "none");
+          $("#razonSoc").css("display", "block");
+      }else{
+          $("#nombre").css("display", "block");
+          $("#razonSoc").css("display", "none");
+      }
+      
+  });
+  var boton = document.getElementById("tipoNec");
+  boton.addEventListener("change",function(){
+    console.log(this.checked);
+    if(this.checked == true){
+      document.getElementById("formRegVenta").reset();
+    }
+  });
+//-----------------------------------recuperar prospecto-------------------------------------------------
+
+var cod_prospecto = ''; // Variable para almacenar el valor de cod_prospecto
+
+// Verificar si se envió CodProspecto por GET
+if (window.location.search) {
+    var params = new URLSearchParams(window.location.search);
+    if (params.has('CodProspecto')) {
+        cod_prospecto = params.get('CodProspecto');
+    }
+}
+
+window.onload= function () {
+
+    console.log('cod_prospecto',cod_prospecto);
+    if (cod_prospecto !== '') {
+      $("#acordeonAval").css("display", "none");
+
+      $.ajax({
+      type : "GET",
+      url:"../api/ObtenerProspecto",
+      dataType: 'json',
+      data:{'cod_prospecto':cod_prospecto},
+      success: function(result) {
+        console.log(result);
+        document.getElementById("tipoNec").bootstrapToggle('off');
+        document.getElementById("tipoNec").bootstrapToggle('readonly');
+        document.getElementById("razonSocRegVta").value=result["response"]["dsc_razon_social"];
+        document.getElementById("apellPRegVta").value=result["response"]["dsc_apellido_paterno"];
+        document.getElementById("apellMRegVta").value=result["response"]["dsc_apellido_materno"];
+        document.getElementById("nombresRegVta").value=result["response"]["dsc_nombre"];
+        var tipoDocPros=document.getElementById("tipoDocRegVta") ;
+        tipoDocPros.value=result["response"]["cod_tipo_documento"];
+
+        document.getElementById("numDocRegVta").value=result["response"]["dsc_documento"];
+
+        var paisProspecto=document.getElementById("paisRegVta") ;
+        paisProspecto.value=result["response"]["cod_pais"];
+       
+        var dptoProsp=document.getElementById("dptoRegVta") ;
+        dptoProsp.value=result["response"]["cod_departamento"];
+        var changeEvent = new Event('change');   // Crea un evento "change"
+        dptoProsp.dispatchEvent(changeEvent); // Desencadena el evento "change"
+       
+        var provinProsp=document.getElementById("provRegVta") ;
+        var dttoProsp=document.getElementById("dttoRegVta") ;
+        setTimeout(function() { 
+          provinProsp.value=result["response"]["cod_provincia"];
+          provinProsp.dispatchEvent(changeEvent);
+          setTimeout(function() { 
+            dttoProsp.value=result["response"]["cod_distrito"];
+            dttoProsp.dispatchEvent(changeEvent);
+          }, 2000);
+        }, 2000);       
+        
+        document.getElementById("direccRegVta").value=result["response"]["dsc_direccion"];
+        document.getElementById("telf1RegVta").value=result["response"]["dsc_telefono_1"];
+        document.getElementById("telf2RegVta").value=result["response"]["dsc_telefono_2"];
+        document.getElementById("correoRegVta").value=result["response"]["dsc_correo"];
+
+        document.getElementById("apellP2doRegVta").value=result["response"]["dsc_apellido_paterno_2do"];
+        document.getElementById("apellM2doRegVta").value=result["response"]["dsc_apellido_materno_2do"];
+        document.getElementById("nombres2doRegVta").value=result["response"]["dsc_nombre_2do"];
+
+        var tipoDoc2tit=document.getElementById("tipoDoc2doRegVta") ;
+        tipoDoc2tit.value=result["response"]["cod_tipo_documento_2do"];
+
+        document.getElementById("numDoc2doRegVta").value=result["response"]["dsc_documento_2do"];
+
+        var pais2Tit=document.getElementById("pais2doRegVta") ;
+        pais2Tit.value=result["response"]["cod_pais_2do"];
+
+        var dpto2Tit=document.getElementById("dpto2doRegVta") ;
+        dpto2Tit.value=result["response"]["cod_departamento_2do"];
+        dpto2Tit.dispatchEvent(changeEvent); 
+
+        var prov2Tit=document.getElementById("prov2doRegVta");
+        var dtto2Tit=document.getElementById("dtto2doRegVta");
+        setTimeout(function() { 
+          prov2Tit.value=result["response"]["cod_provincia_2do"];
+          prov2Tit.dispatchEvent(changeEvent);
+          setTimeout(function() { 
+            dtto2Tit.value=result["response"]["cod_distrito_2do"];
+            dtto2Tit.dispatchEvent(changeEvent);
+          }, 2000);
+        }, 2000);   
+
+        document.getElementById("direcc2doRegVta").value=result["response"]["dsc_direccion_2do"];
+        document.getElementById("telf12doRegVta").value=result["response"]["dsc_telefono_1_2do"];
+        document.getElementById("telf22doRegVta").value=result["response"]["dsc_telefono_2_2do"];
+        document.getElementById("correo2doRegVta").value=result["response"]["dsc_correo_2do"];
+
+      }                  
+    });
+ 
+    $.ajax({         
+          type: "GET",
+          url: '../api/ListarProspectoBeneficiario', 
+          dataType: 'json',
+          data:{'cod_prospecto':cod_prospecto},
+          success: function(resultBenef){
+            console.log(resultBenef['response']);
+              var fila='';
+              resultBenef['response'].forEach(function(word){
+                  fecha = word['fch_nacimiento'].split("T");
+                  fila += '<tr>'+
+                  '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
+                  '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
+                  '<td>'+fecha[0]+'</td>'+
+                  '<td>'+word['dsc_parentesco']+'</td>'+
+                  '<td>'+word['dsc_sexo']+'</td>'+
+                  '<td>'+word['dsc_estado_civil']+'</td>'+
+                  '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFila('+word['num_linea']+','+"'SI'"+','+word['num_linea']+');" id="botonEliminar'+word['num_linea']+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '</tr>';
+              });
+            $('#bodyTablaBenef').html(fila);
+      
+          }
+      });
+
+      // $.ajax({              
+      //       type: "GET",
+      //       url: '../api/ListarProspectoContacto', 
+      //       dataType: 'json',
+      //       data:{'cod_prospecto':cod_prospecto},
+      //       success: function(result){
+      //               var fila='';
+      //               var item=1;
+      //               result['response'].forEach(function(word){
+      //                 fila += '<tr>'+
+      //                 '<td>'+item+'</td>'+
+      //                 '<td>'+word['fch_contacto']+'</td>'+
+      //                 '<td>'+word['dsc_calificacion']+'</td>'+
+      //                 '<td class="justificado">'+word['dsc_observaciones']+'</td>'+
+      //                 '<td></td>'+
+      //               '</tr>';
+      //               item=item+1;
+      //           });
+      //           $('#bodyListadoCon').html(fila);
+        
+      //       }
+      // });
+    }
+             
+}
+
+
+
+  //-----------------------------------Registrar venta---------------------------------------------------
+
+var boton = document.getElementById("registrarVenta");
+boton.addEventListener("click",function(){
+
+    var boton = document.getElementById("tipoNec");
+    if(boton.checked == true){
+        tipo_nec = 'NI';
+    }else{
+        tipo_nec = 'NF';
+    }
     flgJuridico = '';
     flgJuridico2 = '';
     if(document.getElementById("tipoDocRegVta").value == 'DI004'){
@@ -833,18 +1386,18 @@
     var prospecto = {
     'cod_prospecto': '',
     'dsc_prospecto': dscTitular,
-    'dsc_razon_social': document.getElementById("razonSocRegVta").value,
-    'dsc_apellido_paterno': document.getElementById("apellPRegVta").value,
-    'dsc_apellido_materno': document.getElementById("apellMRegVta").value,
-    'dsc_nombre': document.getElementById("nombresRegVta").value,
+    'dsc_razon_social': document.getElementById("razonSocRegVta").value.toUpperCase(),
+    'dsc_apellido_paterno': document.getElementById("apellPRegVta").value.toUpperCase(),
+    'dsc_apellido_materno': document.getElementById("apellMRegVta").value.toUpperCase(),
+    'dsc_nombre': document.getElementById("nombresRegVta").value.toUpperCase(),
     'flg_juridico': flgJuridico,
-    'cod_tipo_documento': document.getElementById("tipoDocRegVta").value,
+    'cod_tipo_documento': document.getElementById("tipoDocRegVta").value.toUpperCase(),
     'dsc_documento': document.getElementById("numDocRegVta").value,
     'cod_pais': document.getElementById("paisRegVta").value,
     'cod_departamento': document.getElementById("dptoRegVta").value,
     'cod_provincia': document.getElementById("provRegVta").value,
     'cod_distrito': document.getElementById("dttoRegVta").value,
-    'dsc_direccion':  document.getElementById("direccRegVta").value,
+    'dsc_direccion':  document.getElementById("direccRegVta").value.toUpperCase(),
     'dsc_telefono_1': document.getElementById("telf1RegVta").value,
     'dsc_telefono_2': document.getElementById("telf2RegVta").value,
     'cod_origen': 'CV001',
@@ -852,51 +1405,155 @@
     'dsc_observaciones':  '',
     'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
     'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
-    'cod_grupo': 'GV007',
-    'cod_supervisor': 'TRA00297',
-    'cod_jefeventas': 'TRA00058',
-    'cod_estado': 'VTA',
+    'cod_grupo': '',
+    'cod_supervisor': '',
+    'cod_jefeventas': '',
+    'cod_estado': 'VEN',
     'imp_monto':document.getElementById("impTotal").value,
-    'dsc_correo': document.getElementById("correoRegVta").value,
+    'dsc_correo': document.getElementById("correoRegVta").value.toUpperCase(),
     'flg_sincronizado_crm': 'NO',
     'cod_localidad_p': 'LC001',
-    'dsc_apellido_paterno_2do': document.getElementById("apellP2doRegVta").value,
-    'dsc_apellido_materno_2do': document.getElementById("apellM2doRegVta").value,
-    'dsc_nombre_2do': document.getElementById("nombres2doRegVta").value,
+    'dsc_apellido_paterno_2do': document.getElementById("apellP2doRegVta").value.toUpperCase(),
+    'dsc_apellido_materno_2do': document.getElementById("apellM2doRegVta").value.toUpperCase(),
+    'dsc_nombre_2do': document.getElementById("nombres2doRegVta").value.toUpperCase(),
     'flg_juridico_2do': flgJuridico2,
     'cod_tipo_documento_2do': document.getElementById("tipoDoc2doRegVta").value,
     'dsc_documento_2do': document.getElementById("numDoc2doRegVta").value,
-    'dsc_prospecto_2do': document.getElementById("nombres2doRegVta").value+' '+document.getElementById("apellP2doRegVta").value+' '+document.getElementById("apellM2doRegVta").value,
+    'dsc_prospecto_2do': document.getElementById("nombres2doRegVta").value.toUpperCase()+' '+document.getElementById("apellP2doRegVta").value.toUpperCase()+' '+document.getElementById("apellM2doRegVta").value.toUpperCase(),
     'cod_pais_2do': document.getElementById("pais2doRegVta").value,
     'cod_departamento_2do': document.getElementById("dpto2doRegVta").value,
     'cod_provincia_2do': document.getElementById("prov2doRegVta").value,
     'cod_distrito_2do': document.getElementById("dtto2doRegVta").value,
-    'dsc_direccion_2do': document.getElementById("direcc2doRegVta").value,
+    'dsc_direccion_2do': document.getElementById("direcc2doRegVta").value.toUpperCase(),
     'dsc_telefono_1_2do': document.getElementById("telf12doRegVta").value,
     'dsc_telefono_2_2do': document.getElementById("telf22doRegVta").value,
-    'dsc_correo_2do': document.getElementById("correo2doRegVta").value,
-    'dsc_apellido_paterno_aval': document.getElementById("apellPAval").value,
-    'dsc_apellido_materno_aval': document.getElementById("apellMAval").value,
-    'dsc_nombre_aval': document.getElementById("nombresAval").value,
+    'dsc_correo_2do': document.getElementById("correo2doRegVta").value.toUpperCase(),
+    'dsc_apellido_paterno_aval': document.getElementById("apellPAval").value.toUpperCase(),
+    'dsc_apellido_materno_aval': document.getElementById("apellMAval").value.toUpperCase(),
+    'dsc_nombre_aval': document.getElementById("nombresAval").value.toUpperCase(),
     'cod_tipo_documento_aval': document.getElementById("tipoDocAval").value,
     'dsc_documento_aval': document.getElementById("numDocAval").value,
-    'dsc_prospecto_aval':  document.getElementById("nombresAval").value+' '+document.getElementById("apellPAval").value+' '+document.getElementById("apellMAval").value,
+    'dsc_prospecto_aval':  document.getElementById("nombresAval").value.toUpperCase()+' '+document.getElementById("apellPAval").value.toUpperCase()+' '+document.getElementById("apellMAval").value.toUpperCase(),
     'cod_pais_aval': document.getElementById("paisAval").value,
     'cod_departamento_aval': document.getElementById("dptoAval").value,
     'cod_provincia_aval': document.getElementById("provAval").value,
     'cod_distrito_aval': document.getElementById("dttoAval").value,
     'dsc_telefono_1_aval': document.getElementById("telef1Aval").value,
     'dsc_telefono_2_aval': document.getElementById("telef2Aval").value,
-    'dsc_correo_aval': document.getElementById("correoAval").value,
+    'dsc_correo_aval': document.getElementById("correoAval").value.toUpperCase(),
     'cod_camposanto': document.getElementById("camposanto").value,
-    'cod_plataforma': document.getElementById("correoAval").value,
-    'cod_area_plataforma': document.getElementById("nombrePlat").value,
+    'cod_plataforma': document.getElementById("nombrePlat").value,
+    'cod_area_plataforma': document.getElementById("nombreArea").value,
     'cod_eje_horizontal': document.getElementById("ejeX").value,
     'cod_eje_vertical': document.getElementById("ejeY").value,
     'cod_espacio': document.getElementById("espacio").value,
-    'cod_tipo_espacio': document.getElementById("correoAval").value,
+    'cod_tipo_espacio': document.getElementById("tipoEspacio").value,
     'num_nivel': 0,
-    'cod_tipo_necesidad': ''
+    'cod_tipo_necesidad': tipo_nec
   };
+
+  var servicioArray ={
+    'cod_localidad_p': 'LC001',
+    'cod_prospecto': '',
+    'num_linea': 0,
+    'cod_servicio': document.getElementById("codServicio").value,
+    'num_ctd': document.getElementById("ctdServ").value,
+    'imp_precio_lista': document.getElementById("impPrecioLista").value,
+    'imp_precio_venta': document.getElementById("impPrecioLista").value,
+    'imp_dscto': document.getElementById("impDscto").value,
+    'imp_total': document.getElementById("impTotal").value,
+    'imp_foma': document.getElementById("impFoma").value,
+    'imp_cui': document.getElementById("impCuoi").value,
+    'imp_saldo': document.getElementById("impSaldo").value,
+    'cod_localidad_base': '',
+    'cod_contrato_base': document.getElementById("cttoBase").value,
+    'num_servicio_base': document.getElementById("numServBase").value,
+    'cod_cuota_foma': document.getElementById("codCuotaFoma").value,
+    'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
+    'cod_tasa': document.getElementById("codTasa").value,
+    'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
+    'por_descuento': 10,
+    'imp_descuento_adicional': 500
+  };
+
+  Swal.fire({
+    title: 'Esta seguro que quiere Guardar la venta?',
+    text: dscTitular,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#35B44A',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: '../api/guardaProspecto', 
+        method: "PUT",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'prospecto':prospecto},
+        success: function(respuesta){
+          var codProspecto = respuesta['response']['cod_prospecto'];
+          filasArray.forEach(function (fila) {
+            fila['cod_prospecto'] = codProspecto;
+          });
+
+            $.ajax({
+                url: '../api/guardaBeneficiario', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'beneficiarios':filasArray},
+                success: function(respuesta){
+                    console.log(respuesta);   
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
+            });
+
+            servicioArray['cod_prospecto'] = codProspecto;
+
+            $.ajax({
+                url: '../api/InsertarProspectoServicio', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'datosServicios':servicioArray},
+                success: function(respuesta){
+                    console.log(respuesta);   
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
+            });
+
+            Swal.fire({
+              title: 'Guardado',
+              text: codProspecto,
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#35B44A',
+            }).then((result) => {
+              /* Read more about isConfirmed, isDenied below */
+              if (result.isConfirmed) {
+                route{{'prospectos.listado'}}
+              } 
+            })
+    
+        },//success
+        error(e){
+            console.log(e.message);
+            Swal.fire({
+              title:'Error!',
+              text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+              icon:'warning',
+              confirmButtonColor: '#35B44A',
+            }) 
+        }//error
+      });
+    }
+  })//then
+});
 
 </script>
