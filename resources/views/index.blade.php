@@ -139,7 +139,7 @@
                
             },//success
             error(e){
-                console.log('error',respuesta);
+                console.log('error',e);
                 alert("area de error");
                 console.log(e.message);
             }//error
