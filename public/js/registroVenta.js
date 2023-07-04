@@ -856,6 +856,7 @@ $( document ).ready(function() {
         dataType: 'json',
         success: function(respuesta){
             $("#codTasa").append('<option value="" selected disabled>SELECCIONE...</option>');
+            $("#codTasa").append('<option value="">0% INTERES</option>');
             respuesta['response'].forEach(function(word){
             seleccion = '';
             $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 

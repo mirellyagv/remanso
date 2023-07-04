@@ -8,6 +8,9 @@
         </a>
       </li>
       <br><br>
+
+      @if (session('flg_administrador')!='SI')
+
       <li class="nav-item">
           <a href="{{route('prospectos.registro')}}">
             <span class="item-menu">Registro de prospectos</span>
@@ -23,6 +26,7 @@
           <span class="item-menu">Registro de Ventas</span>
         </a>
       </li><br>
+      @endif
       @if (session('flg_administrador')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
       
         <li class="nav-item">

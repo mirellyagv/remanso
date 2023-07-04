@@ -145,7 +145,7 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="telf1Prosp" id="telf1Prosp"  min="9" max="12" maxlength="12"
+                          <input type="text" class="form-control form-remanso align-right" name="telf1Prosp" id="telf1Prosp"  min="8" max="12" maxlength="12"
                             required>
                           {{-- <div class="f invalid-feedback">
                             El telefono 1 no puede estar vacío.
@@ -730,14 +730,14 @@ numDocAddBenefInput.addEventListener("input", function(event) {
 
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
         
-        if (phone.length == 8 || phone.length ==12) {
+        if (phone.length > 8 && phone.length <= 12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
           
-          } else {
-            // El número de teléfono no tiene 9-12 dígitos
-            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-          }
+        } else {
+          // El número de teléfono no tiene 9-12 dígitos
+          phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+        }
                 
       });
       var phoneInput2 = document.getElementById("telf2Prosp");
@@ -755,14 +755,14 @@ numDocAddBenefInput.addEventListener("input", function(event) {
 
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
           
-        if (phone.length == 8 || phone.length ==12) {
+        if (phone.length > 8 && phone.length <= 12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
           
-          } else {
-            // El número de teléfono no tiene 9-12 dígitos
-            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-          }
+        } else {
+          // El número de teléfono no tiene 9-12 dígitos
+          phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+        }
       });
       var phoneInput3 = document.getElementById("telf1_2Tit");
 
@@ -779,14 +779,14 @@ numDocAddBenefInput.addEventListener("input", function(event) {
 
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
           
-        if (phone.length == 8 || phone.length ==12) {
+        if (phone.length > 8 && phone.length <= 12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
           
-          } else {
-            // El número de teléfono no tiene 9-12 dígitos
-            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-          }
+        } else {
+          // El número de teléfono no tiene 9-12 dígitos
+          phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+        }
       });
       var phoneInput4 = document.getElementById("telf2_2Tit");
 
@@ -803,14 +803,14 @@ numDocAddBenefInput.addEventListener("input", function(event) {
 
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
           
-        if (phone.length == 8 || phone.length ==12) {
+        if (phone.length > 8 && phone.length <= 12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
           
-          } else {
-            // El número de teléfono no tiene 9-12 dígitos
-            phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-          }
+        } else {
+          // El número de teléfono no tiene 9-12 dígitos
+          phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+        }
       });
 
   //--------------Guardar Prospecto--------------

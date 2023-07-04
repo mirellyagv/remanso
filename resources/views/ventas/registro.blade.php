@@ -613,14 +613,14 @@
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso align-right">
+                          <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codTasa"  id="codTasa" class="form-select form-remanso align-right">
+                          <select name="codTasa"  id="codTasa" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
@@ -630,10 +630,10 @@
                           <input type="text" class="form-control form-remanso align-right" name="fch1erVcto" id="fch1erVcto">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">FOMA: </label>
+                          <label for="inputText"  class="col-form-label">FOMA: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="impFoma" id="impFoma">
+                          <input type="text" readonly class="form-control form-remanso align-right" name="impFoma" id="impFoma">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
@@ -1015,14 +1015,14 @@ phoneInput.addEventListener("input", function(event) {
 
   event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
   
-  if (phone.length == 8 || phone.length ==12) {
+  if (phone.length > 8 && phone.length <= 12) {
     // El número de teléfono tiene 9-12 dígitos
     phoneInput.setCustomValidity("");
     
-    } else {
-      // El número de teléfono no tiene 9-12 dígitos
-      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-    }
+  } else {
+    // El número de teléfono no tiene 9-12 dígitos
+    phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+  }
           
 });
 var phoneInput2 = document.getElementById("telf2RegVta");
@@ -1040,14 +1040,14 @@ phoneInput2.addEventListener("input", function(event) {
 
   event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
     
-  if (phone.length == 8 || phone.length ==12) {
+  if (phone.length > 8 && phone.length <= 12) {
     // El número de teléfono tiene 9-12 dígitos
     phoneInput.setCustomValidity("");
     
-    } else {
-      // El número de teléfono no tiene 9-12 dígitos
-      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-    }
+  } else {
+    // El número de teléfono no tiene 9-12 dígitos
+    phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+  }
 });
 var phoneInput3 = document.getElementById("telf12doRegVta");
 
@@ -1064,14 +1064,14 @@ phoneInput3.addEventListener("input", function(event) {
 
   event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
     
-  if (phone.length == 8 || phone.length ==12) {
+  if (phone.length > 8 && phone.length <= 12) {
     // El número de teléfono tiene 9-12 dígitos
     phoneInput.setCustomValidity("");
     
-    } else {
-      // El número de teléfono no tiene 9-12 dígitos
-      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-    }
+  } else {
+    // El número de teléfono no tiene 9-12 dígitos
+    phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+  }
 });
 var phoneInput4 = document.getElementById("telf22doRegVta");
 
@@ -1088,14 +1088,14 @@ phoneInput4.addEventListener("input", function(event) {
 
   event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
     
-  if (phone.length == 8 || phone.length ==12) {
+  if (phone.length > 8 && phone.length <= 12) {
     // El número de teléfono tiene 9-12 dígitos
     phoneInput.setCustomValidity("");
     
-    } else {
-      // El número de teléfono no tiene 9-12 dígitos
-      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-    }
+  } else {
+    // El número de teléfono no tiene 9-12 dígitos
+    phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+  }
 });
 
 var phoneInput5 = document.getElementById("telef1Aval");
@@ -1113,14 +1113,14 @@ phoneInput5.addEventListener("input", function(event) {
 
   event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
     
-  if (phone.length == 8 || phone.length ==12) {
+  if (phone.length > 8 && phone.length <= 12) {
     // El número de teléfono tiene 9-12 dígitos
     phoneInput.setCustomValidity("");
     
-    } else {
-      // El número de teléfono no tiene 9-12 dígitos
-      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-    }
+  } else {
+    // El número de teléfono no tiene 9-12 dígitos
+    phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+  }
 });
 
 var phoneInput6 = document.getElementById("telef2Aval");
@@ -1138,14 +1138,14 @@ phoneInput6.addEventListener("input", function(event) {
 
   event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
     
-  if (phone.length == 8 || phone.length ==12) {
+  if (phone.length > 8 && phone.length <= 12) {
     // El número de teléfono tiene 9-12 dígitos
     phoneInput.setCustomValidity("");
     
-    } else {
-      // El número de teléfono no tiene 9-12 dígitos
-      phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
-    }
+  } else {
+    // El número de teléfono no tiene 9-12 dígitos
+    phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
+  }
 });
 
 // -----------------------validacion numerica servicios---------------
