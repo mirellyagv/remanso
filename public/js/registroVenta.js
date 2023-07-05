@@ -236,10 +236,10 @@ $( document ).ready(function() {
                 $("#tipoDocBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
               respuesta['response'].forEach(function(word){
                 seleccion = '';
-                $("#tipoDocRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-                $("#tipoDoc2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-                $("#tipoDocAval").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
-                $("#tipoDocBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
+                $("#tipoDocRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
+                $("#tipoDoc2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
+                $("#tipoDocAval").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
+                $("#tipoDocBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
               });
             },//success
             error(e){
@@ -426,7 +426,18 @@ $( document ).ready(function() {
     var codcampo = document.getElementById("tipoPlat");
     codcampo.addEventListener("change",function(){
         var options = document.querySelectorAll('#nombrePlat option');
-            options.forEach(o => o.remove());
+        options.forEach(o => o.remove());
+        var options1 = document.querySelectorAll('#nombreArea option');
+        options1.forEach(o => o.remove());
+        var options2 = document.querySelectorAll('#ejeX option');
+        options2.forEach(o => o.remove());
+        var options3 = document.querySelectorAll('#ejeY option');
+        options3.forEach(o => o.remove());
+        var options4 = document.querySelectorAll('#espacio option');
+        options4.forEach(o => o.remove());
+        var options5 = document.querySelectorAll('#tipoEspacio option');
+        options5.forEach(o => o.remove());
+
         codCamposanto = document.getElementById("camposanto").value;
         codTipoplat = document.getElementById("tipoPlat").value;
         $.ajax({
@@ -452,7 +463,16 @@ $( document ).ready(function() {
     var codcampo = document.getElementById("nombrePlat");
     codcampo.addEventListener("change",function(){
         var options = document.querySelectorAll('#nombreArea option');
-            options.forEach(o => o.remove());
+        options.forEach(o => o.remove());
+        var options2 = document.querySelectorAll('#ejeX option');
+        options2.forEach(o => o.remove());
+        var options3 = document.querySelectorAll('#ejeY option');
+        options3.forEach(o => o.remove());
+        var options4 = document.querySelectorAll('#espacio option');
+        options4.forEach(o => o.remove());
+        var options5 = document.querySelectorAll('#tipoEspacio option');
+        options5.forEach(o => o.remove());
+
         codCamposanto = document.getElementById("camposanto").value;
         codPlataforma = document.getElementById("nombrePlat").value;
         $.ajax({
@@ -478,7 +498,14 @@ $( document ).ready(function() {
     var codcampo = document.getElementById("nombreArea");
     codcampo.addEventListener("change",function(){
         var options = document.querySelectorAll('#ejeX option');
-            options.forEach(o => o.remove());
+        options.forEach(o => o.remove());
+        var options3 = document.querySelectorAll('#ejeY option');
+        options3.forEach(o => o.remove());
+        var options4 = document.querySelectorAll('#espacio option');
+        options4.forEach(o => o.remove());
+        var options5 = document.querySelectorAll('#tipoEspacio option');
+        options5.forEach(o => o.remove());
+
         codCamposanto = document.getElementById("camposanto").value;
         codPlataforma = document.getElementById("nombrePlat").value;
         codArea = document.getElementById("nombreArea").value;
@@ -505,7 +532,12 @@ $( document ).ready(function() {
     var codcampo = document.getElementById("ejeX");
     codcampo.addEventListener("change",function(){
         var options = document.querySelectorAll('#ejeY option');
-            options.forEach(o => o.remove());
+        options.forEach(o => o.remove());
+        var options4 = document.querySelectorAll('#espacio option');
+        options4.forEach(o => o.remove());
+        var options5 = document.querySelectorAll('#tipoEspacio option');
+        options5.forEach(o => o.remove());
+
         codCamposanto = document.getElementById("camposanto").value;
         codPlataforma = document.getElementById("nombrePlat").value;
         codArea = document.getElementById("nombreArea").value;
@@ -533,7 +565,7 @@ $( document ).ready(function() {
     var codcampo = document.getElementById("ejeY");
     codcampo.addEventListener("change",function(){
         var options = document.querySelectorAll('#espacio option');
-            options.forEach(o => o.remove());
+        options.forEach(o => o.remove());
         codCamposanto = document.getElementById("camposanto").value;
         codPlataforma = document.getElementById("nombrePlat").value;
         codArea = document.getElementById("nombreArea").value;
@@ -561,8 +593,8 @@ $( document ).ready(function() {
     //-----------------muestra select Espacio-----------
     var codcampo = document.getElementById("ejeY");
     codcampo.addEventListener("change",function(){
-        var options = document.querySelectorAll('#espacio option');
-            options.forEach(o => o.remove());
+        var options = document.querySelectorAll('#tipoEspacio option');
+        options.forEach(o => o.remove());
         codCamposanto = document.getElementById("camposanto").value;
         codPlataforma = document.getElementById("nombrePlat").value;
         codArea = document.getElementById("nombreArea").value;

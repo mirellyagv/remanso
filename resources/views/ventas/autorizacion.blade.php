@@ -159,9 +159,10 @@ window.onload= function () {
         success: function(respuesta){
           var filasArray = [];
             respuesta['response'].forEach(element => {
-                var codCtto = "'"+element['cod_contrato']+"'";
+                var codCtto = "'"+element['cod_contrato']+"-"+element['num_servicio']+"'";
                 var filaData = [
-                    '<button class="btn btn-primary btn-primary BtnAzulORemanso form-remanso" data-bs-toggle="modal" data-bs-target="#ModalDetalleCtto"   id="btnVer" onclick="detallesContrato('+codCtto+')" name="btnModal" type="button"><span class="bi bi-vector-pen"></span></button>',
+                    '<button class="btn btn-success BtnverdeRemanso form-remanso" id="btnVer" onclick="verDocumentos('+codCtto+')" name="btnVer" type="button" title="Ver Documentos"><span class="bi bi-file-pdf"></span></button>'+
+                    '<button class="btn btn-primary BtnAzulORemanso form-remanso"  id="btnFirmar" onclick="firmaCtto('+codCtto+')" name="btnFirmar" type="button" title="Firmar"><span class="bi bi-vector-pen"></span></button>',
                     element['cod_contrato']+'-'+element['num_servicio'],
                     element['dsc_tipo_documento_cliente']+'-'+element['dsc_documento_cliente'],
                     element['dsc_cliente'],
@@ -274,7 +275,7 @@ function detallesContrato(codCtto){
 
 //------------------------------Firma contrato-----------------------
 
-function frimaCtto(codCtto){
+function firmaCtto(codCtto){
     var aux = codCtto.split('-');
     var codCtto = aux[0];
     var numServ = aux[1];
@@ -283,42 +284,65 @@ function frimaCtto(codCtto){
         'cod_contrato':codCtto,
         'num_servicio': numServ
     }
-    $.ajax({
-        url: '../api/ActualizarContratoFirmado', 
-        method: "PUT",
-        crossDomain: true,
-        dataType: 'json',
-        data:{'data':data},
-        success: function(respuesta){
-            console.log(respuesta);
-            Swal.fire({
-                title: 'Firmado',
-                icon: 'success',
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#35B44A',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload();
-                    } 
-                })
-        },//success
-        error(e){
-            console.log(e.message);
-            Swal.fire({
-                text: 'Ha ocurrido un error, intentelo mas tarde',
-                icon: 'error',
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#35B44A',
-                })
-        }//error
-    });
+    console.log('firmado')
+    // $.ajax({
+    //     url: '../api/ActualizarContratoFirmado', 
+    //     method: "PUT",
+    //     crossDomain: true,
+    //     dataType: 'json',
+    //     data:{'data':data},
+    //     success: function(respuesta){
+    //         console.log(respuesta);
+    //         Swal.fire({
+    //             title: 'Firmado',
+    //             icon: 'success',
+    //             confirmButtonText: 'Aceptar',
+    //             confirmButtonColor: '#35B44A',
+    //             }).then((result) => {
+    //                 if (result.isConfirmed) {
+    //                     location.reload();
+    //                 } 
+    //             })
+    //     },//success
+    //     error(e){
+    //         console.log(e.message);
+    //         Swal.fire({
+    //             text: 'Ha ocurrido un error, intentelo mas tarde',
+    //             icon: 'error',
+    //             confirmButtonText: 'Aceptar',
+    //             confirmButtonColor: '#35B44A',
+    //             })
+    //     }//error
+    // });
 }
 
 function formatearNumero(numero) {
-  return numero.toLocaleString('es', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
+    return numero.toLocaleString('es', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+function verDocumentos(codCtto) {
+    var aux = codCtto.split('-');
+    var codCtto = aux[0];
+    var numServ = aux[1];
+
+    $.ajax({
+        url: '../lista/ObtenerDocumentoPuente', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codCtto':codCtto,'numServicio':numServ},
+        success: function(respuesta){
+            console.log(respuesta['response']);
+           
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
+    
 }
 
 </script>

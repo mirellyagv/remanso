@@ -506,7 +506,7 @@
               <label for="inputText" class="col-form-label">Fecha del contacto: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" value="29/05/2023" name="numDoc" id="numDoc"
+              <input type="text" class="form-control form-remanso" readonly  name="fchContacto" id="fchContacto"
                 disabled>
             </div>
             <div class="col-md-3 mb-3">
@@ -577,80 +577,94 @@ emailInput2.addEventListener("input", function(event) {
 var numDocProsInput = document.getElementById("numDocPros");
 
 numDocProsInput.addEventListener("input", function(event) {
-var inputValue = numDocProsInput.value;
+  var inputValue = numDocProsInput.value;
+  var tipoDoc = document.getElementById('tipoDocProsp');
+  var tam = $('option:selected', tipoDoc).attr('data');
+ // console.log(tam);
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
+  }
+  
+  // Actualizar el valor del campo
+  numDocProsInput.value = inputValue;
+  
+  if (tam < 12) {
+    // Verificar si se ingresaron 9 dígitos
+    if (inputValue.length != tam) {
+      numDocProsInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+      numDocProsInput.reportValidity(); // Mostrar el mensaje de error
+    } else {
+      numDocProsInput.setCustomValidity(""); // Campo válido
+    }
+  }
 
-// Eliminar caracteres no numéricos
-inputValue = inputValue.replace(/\D/g, '');
-
-// Limitar la longitud del valor a 9 caracteres
-if (inputValue.length > 9) {
-inputValue = inputValue.slice(0, 9);
-}
-
-// Actualizar el valor del campo
-numDocProsInput.value = inputValue;
-
-// Verificar si se ingresaron 9 dígitos
-if (inputValue.length !== 9) {
-numDocProsInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-numDocProsInput.reportValidity(); // Mostrar el mensaje de error
-} else {
-numDocProsInput.setCustomValidity(""); // Campo válido
-}
 });
 
 var numDoc2titInput = document.getElementById("numDoc2tit");
 
 numDoc2titInput.addEventListener("input", function(event) {
-var inputValue = numDoc2titInput.value;
-
-// Eliminar caracteres no numéricos
-inputValue = inputValue.replace(/\D/g, '');
-
-// Limitar la longitud del valor a 9 caracteres
-if (inputValue.length > 9) {
-inputValue = inputValue.slice(0, 9);
-}
-
-// Actualizar el valor del campo
-numDoc2titInput.value = inputValue;
-
-if (inputValue.length !=='') {
-// Verificar si se ingresaron 9 dígitos
-if (inputValue.length !== 9) {
-numDoc2titInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
-} else {
-numDoc2titInput.setCustomValidity(""); // Campo válido
-}
-}
+  var inputValue = numDoc2titInput.value;
+  var tipoDoc = document.getElementById('tipoDoc2tit');
+  var tam = $('option:selected', tipoDoc).attr('data');
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
+  }
+  
+  // Actualizar el valor del campo
+  numDoc2titInput.value = inputValue;
+  
+  if (inputValue.length !=='') {
+    if (tam < 12) {
+      // Verificar si se ingresaron 9 dígitos
+      if (inputValue.length != tam) {
+        numDoc2titInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+        numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
+      } else {
+        numDoc2titInput.setCustomValidity(""); // Campo válido
+      }
+    }
+  }
 });
 
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
 
 numDocAddBenefInput.addEventListener("input", function(event) {
-var inputValue = numDocAddBenefInput.value;
-
-// Eliminar caracteres no numéricos
-inputValue = inputValue.replace(/\D/g, '');
-
-// Limitar la longitud del valor a 9 caracteres
-if (inputValue.length > 9) {
-inputValue = inputValue.slice(0, 9);
-}
-
-// Actualizar el valor del campo
-numDocAddBenefInput.value = inputValue;
-
-if (inputValue.length !=='') {
-// Verificar si se ingresaron 9 dígitos
-if (inputValue.length !== 9) {
-numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
-} else {
-numDocAddBenefInput.setCustomValidity(""); // Campo válido
-}
-}
+  var inputValue = numDocAddBenefInput.value;
+  var tipoDoc = document.getElementById('tipoDocAddBenef');
+  var tam = $('option:selected', tipoDoc).attr('data');
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
+  
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
+  }
+  
+  // Actualizar el valor del campo
+  numDocAddBenefInput.value = inputValue;
+  
+  if (inputValue.length !=='') {
+    if (tam < 12) {
+      // Verificar si se ingresaron 9 dígitos
+      if (inputValue.length != tam) {
+        numDocAddBenefInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+        numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+      } else {
+        numDocAddBenefInput.setCustomValidity(""); // Campo válido
+      }
+    }
+  }
 });
 
 // -----------------------valida telefono-------------------------    
@@ -756,6 +770,12 @@ phoneInput4.addEventListener("input", function(event) {
 var cod_prospecto="";
 
 window.onload= function () {
+  var fechaActual = new Date();
+  var dia = fechaActual.getDate();
+  var mes = fechaActual.getMonth()+1;
+  var anio = fechaActual.getFullYear();
+  var fchBD = anio+'-'+mes+'-'+dia;
+  document.getElementById('fchContacto').value = fchBD;
     cod_prospecto=document.getElementById("codProsp").value;
     
     $.ajax({

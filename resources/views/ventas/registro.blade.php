@@ -661,7 +661,7 @@
                       <br>
                       <div class="row">
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Documento 1: </label>
+                          <label for="inputText" class="col-form-label">DNI Titular: </label>
                         </div>
                         <div class="col-md-4 mb-3">
                           <div class="custom-file">
@@ -669,10 +669,16 @@
                           </div>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Documento 2: </label>
+                          <label for="inputText" class="col-form-label">DNI Alterno: </label>
                         </div>
                         <div class="col-md-4 mb-3">
                           <input class="form-control form-remanso form-control-sm" id="docAdj2" type="file" multiple>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Recibo de servicio: </label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <input class="form-control form-remanso form-control-sm" id="docAdj3" type="file" multiple>
                         </div>
                       </div>
                     </div>
@@ -869,134 +875,123 @@ emailInput2.addEventListener("input", function(event) {
 var numDocProsInput = document.getElementById("numDocRegVta");
 
 numDocProsInput.addEventListener("input", function(event) {
-var inputValue = numDocProsInput.value;
+  var inputValue = numDocProsInput.value;
+  var tipoDoc = document.getElementById('tipoDocRegVta');
+  var tam = $('option:selected', tipoDoc).attr('data');
 
-// Eliminar caracteres no numéricos
-inputValue = inputValue.replace(/\D/g, '');
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
 
-// Limitar la longitud del valor a 9 caracteres
-if (inputValue.length > 9) {
-inputValue = inputValue.slice(0, 9);
-}
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
+  }
 
-// Actualizar el valor del campo
-numDocProsInput.value = inputValue;
+  // Actualizar el valor del campo
+  numDocProsInput.value = inputValue;
 
-// Verificar si se ingresaron 9 dígitos
-if (inputValue.length !== 9) {
-numDocProsInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-numDocProsInput.reportValidity(); // Mostrar el mensaje de error
-} else {
-numDocProsInput.setCustomValidity(""); // Campo válido
-}
+  if (tam < 12) {
+    // Verificar si se ingresaron 9 dígitos
+    if (inputValue.length != tam) {
+      numDocProsInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+      numDocProsInput.reportValidity(); // Mostrar el mensaje de error
+    } else {
+      numDocProsInput.setCustomValidity(""); // Campo válido
+    }
+  }
 });
 
 var numDoc2titInput = document.getElementById("numDoc2doRegVta");
 
 numDoc2titInput.addEventListener("input", function(event) {
-var inputValue = numDoc2titInput.value;
+  var inputValue = numDoc2titInput.value;
+  var tipoDoc = document.getElementById('tipoDoc2doRegVta');
+  var tam = $('option:selected', tipoDoc).attr('data');
 
-// Eliminar caracteres no numéricos
-inputValue = inputValue.replace(/\D/g, '');
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
 
-// Limitar la longitud del valor a 9 caracteres
-if (inputValue.length > 9) {
-inputValue = inputValue.slice(0, 9);
-}
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
+  }
 
-// Actualizar el valor del campo
-numDoc2titInput.value = inputValue;
+  // Actualizar el valor del campo
+  numDoc2titInput.value = inputValue;
 
-if (inputValue.length !=='') {
-// Verificar si se ingresaron 9 dígitos
-if (inputValue.length !== 9) {
-numDoc2titInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
-} else {
-numDoc2titInput.setCustomValidity(""); // Campo válido
-}
-}
+  if (inputValue.length !=='') {
+    if (tam < 12) {
+      // Verificar si se ingresaron 9 dígitos
+      if (inputValue.length != tam) {
+        numDoc2titInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+        numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
+      } else {
+        numDoc2titInput.setCustomValidity(""); // Campo válido
+      }
+    }
+  }
 });
 
 var numDocAddBenefInput = document.getElementById("numDocAval");
 
 numDocAddBenefInput.addEventListener("input", function(event) {
-var inputValue = numDocAddBenefInput.value;
+  var inputValue = numDocAddBenefInput.value;
+  var tipoDoc = document.getElementById('tipoDocAval');
+  var tam = $('option:selected', tipoDoc).attr('data');
 
-// Eliminar caracteres no numéricos
-inputValue = inputValue.replace(/\D/g, '');
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
 
-// Limitar la longitud del valor a 9 caracteres
-if (inputValue.length > 9) {
-inputValue = inputValue.slice(0, 9);
-}
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
+  }
 
-// Actualizar el valor del campo
-numDocAddBenefInput.value = inputValue;
+  // Actualizar el valor del campo
+  numDocAddBenefInput.value = inputValue;
 
-if (inputValue.length !=='') {
-// Verificar si se ingresaron 9 dígitos
-if (inputValue.length !== 9) {
-numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
-} else {
-numDocAddBenefInput.setCustomValidity(""); // Campo válido
-}
-}
+  if (inputValue.length !=='') {
+    if (tam < 12) {
+      // Verificar si se ingresaron 9 dígitos
+      if (inputValue.length != tam) {
+        numDocAddBenefInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+        numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+      } else {
+        numDocAddBenefInput.setCustomValidity(""); // Campo válido
+      }
+    }
+  }
 });
 
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
 
 numDocAddBenefInput.addEventListener("input", function(event) {
-var inputValue = numDocAddBenefInput.value;
+  var inputValue = numDocAddBenefInput.value;
+  var tipoDoc = document.getElementById('tipoDocBenef');
+  var tam = $('option:selected', tipoDoc).attr('data');
 
-// Eliminar caracteres no numéricos
-inputValue = inputValue.replace(/\D/g, '');
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/\D/g, '');
 
-// Limitar la longitud del valor a 9 caracteres
-if (inputValue.length > 9) {
-inputValue = inputValue.slice(0, 9);
-}
+  // Limitar la longitud del valor a 9 caracteres
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
+  }
 
-// Actualizar el valor del campo
-numDocAddBenefInput.value = inputValue;
+  // Actualizar el valor del campo
+  numDocAddBenefInput.value = inputValue;
 
-if (inputValue.length !=='') {
-// Verificar si se ingresaron 9 dígitos
-if (inputValue.length !== 9) {
-numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
-} else {
-numDocAddBenefInput.setCustomValidity(""); // Campo válido
-}
-}
-});
-
-var numDocAvalInput = document.getElementById("numDocAval");
-
-numDocAvalInput.addEventListener("input", function(event) {
-var inputValue = numDocAvalInput.value;
-
-// Eliminar caracteres no numéricos
-inputValue = inputValue.replace(/\D/g, '');
-
-// Limitar la longitud del valor a 9 caracteres
-if (inputValue.length > 9) {
-inputValue = inputValue.slice(0, 9);
-}
-
-// Actualizar el valor del campo
-numDocAvalInput.value = inputValue;
-
-if (inputValue.length !=='') {
-// Verificar si se ingresaron 9 dígitos
-if (inputValue.length !== 9) {
-numDocAvalInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-numDocAvalInput.reportValidity(); // Mostrar el mensaje de error
-} else {
-numDocAvalInput.setCustomValidity(""); // Campo válido
-}
-}
+  if (inputValue.length !=='') {
+    if (tam < 12) {
+      // Verificar si se ingresaron 9 dígitos
+      if (inputValue.length != tam) {
+        numDocAddBenefInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+        numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+      } else {
+        numDocAddBenefInput.setCustomValidity(""); // Campo válido
+      }
+    }
+  }
 });
 
 // -----------------------valida telefono-------------------------    

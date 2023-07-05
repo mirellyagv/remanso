@@ -50,28 +50,65 @@ $( document ).ready(function() {
 
 });
 
+var verifPais = document.getElementById("paisProspecto");
+verifPais.addEventListener("change",function (){ 
+  if (verifPais.value != '00001') {
+    document.getElementById("dptoProsp").value = '';
+    document.getElementById("dptoProsp").setAttribute('disabled', 'disabled');
+    document.getElementById("provinProsp").value = '';
+    document.getElementById("provinProsp").setAttribute('disabled', 'disabled');
+    document.getElementById("dttoProsp").value = '';
+    document.getElementById("dttoProsp").setAttribute('disabled', 'disabled');
+  }else{
+    document.getElementById("dptoProsp").removeAttribute('disabled');
+    document.getElementById("provinProsp").removeAttribute('disabled');
+    document.getElementById("dttoProsp").removeAttribute('disabled');
+  }
+
+});
+
+var verifPais2 = document.getElementById("pais2Tit");
+verifPais2.addEventListener("change",function (){ 
+  if (verifPais2.value != '00001') {
+    document.getElementById("dpto2Tit").value = '';
+    document.getElementById("dpto2Tit").setAttribute('disabled', 'disabled');
+    document.getElementById("prov2Tit").value = '';
+    document.getElementById("prov2Tit").setAttribute('disabled', 'disabled');
+    document.getElementById("dtto2Tit").value = '';
+    document.getElementById("dtto2Tit").setAttribute('disabled', 'disabled');
+  }else{
+    document.getElementById("dpto2Tit").removeAttribute('disabled');
+    document.getElementById("prov2Tit").removeAttribute('disabled');
+    document.getElementById("dtto2Tit").removeAttribute('disabled');
+  }
+
+});
+
 //-----------------muestra select Departamento-----------
 $( document ).ready(function() {
+
+  //---------------------------departamento-------------------------
+
   codPais1 = document.getElementById("paisProspecto").value;
   $.ajax({
-        url: '../lista/MuestraDpto', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-      data:{'cod_pais':'00001'},
-        success: function(respuesta){
-            $("#dptoProsp").append('<option value="" selected disabled>SELECCIONE...</option>');
-            $("#dpto2Tit").append('<option value="" selected disabled>SELECCIONE...</option>');
-          respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#dptoProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-            $("#dpto2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-          });
-        },//success
-        error(e){
-            console.log(e.message);
-        }//error
-    });
+    url: '../lista/MuestraDpto', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'cod_pais':'00001'},
+      success: function(respuesta){
+          $("#dptoProsp").append('<option value="" selected disabled>SELECCIONE...</option>');
+          $("#dpto2Tit").append('<option value="" selected disabled>SELECCIONE...</option>');
+        respuesta['response'].forEach(function(word){
+          seleccion = '';
+          $("#dptoProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+          $("#dpto2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+        });
+      },//success
+      error(e){
+          console.log(e.message);
+      }//error
+  });
 
 });
 
@@ -202,8 +239,8 @@ $( document ).ready(function() {
             //   $("#tipoDocAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
               seleccion = '';
-              $("#tipoDocProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-              $("#tipoDoc2tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+              $("#tipoDocProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
+              $("#tipoDoc2tit").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
             //   $("#tipoDocAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
           },//success
@@ -323,7 +360,7 @@ $( document ).ready(function() {
 
 //-----------------Añade Beneficiarios--------------------
 
-var filasArray = []; // Array para almacenar las filas
+var filasArrayBenef = []; // Array para almacenar las filas
 
 var addBeneficiario = document.getElementById("agregaBeneficiario");
 addBeneficiario.addEventListener("click",function (){
@@ -419,7 +456,7 @@ addBeneficiario.addEventListener("click",function (){
       cod_parentesco: codParentesco
     };
     
-    filasArray.push(filaData); // Agregar la fila al array
+    filasArrayBenef.push(filaData); // Agregar la fila al array
 
 });
 
@@ -433,8 +470,8 @@ function eliminarFila(index) {
   var tbody = tabla.getElementsByTagName('tbody')[0];
   var fila = tbody.rows[index-1];
   tbody.removeChild(fila);
-  filasArray.splice(index-1, 1); // Eliminar el valor del array en la posición index
-  console.log(filasArray);
+  filasArrayBenef.splice(index-1, 1); // Eliminar el valor del array en la posición index
+  console.log(filasArrayBenef);
 
 }
 

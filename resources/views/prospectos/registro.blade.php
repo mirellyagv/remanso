@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso align-right" required name="numDocPros"
-                            id="numDocPros" min="9" max="9" maxlength="9">
+                            id="numDocPros">
                           {{-- <div class="a invalid-feedback">
                             Debe tener 9 números.
                           </div> --}}
@@ -456,11 +456,11 @@
             <div class="col-md-3 mb-3">
               <select name="tipoDocAddBenef" id="tipoDocAddBenef" class="form-select form-remanso">
                 <option value="" selected="" disabled="">SELECCIONE...</option>
-                <option value="DI002">C.E</option>
-                <option value="DI001">DNI</option>
-                <option value="DI006">L.E.</option>
-                <option value="DI005">OTROS</option>
-                <option value="DI003">PASAPORTE</option>
+                <option value="DI002" data="9">C.E</option>
+                <option value="DI001" data="8">DNI</option>
+                <option value="DI006" data="8">L.E.</option>
+                <option value="DI005" data="20">OTROS</option>
+                <option value="DI003" data="20">PASAPORTE</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
@@ -639,50 +639,60 @@ var numDocProsInput = document.getElementById("numDocPros");
 
 numDocProsInput.addEventListener("input", function(event) {
   var inputValue = numDocProsInput.value;
+  var tipoDoc = document.getElementById('tipoDocProsp');
+  var tam = $('option:selected', tipoDoc).attr('data');
+ // console.log(tam);
   
   // Eliminar caracteres no numéricos
   inputValue = inputValue.replace(/\D/g, '');
   
   // Limitar la longitud del valor a 9 caracteres
-  if (inputValue.length > 9) {
-    inputValue = inputValue.slice(0, 9);
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
   }
   
   // Actualizar el valor del campo
   numDocProsInput.value = inputValue;
   
-  // Verificar si se ingresaron 9 dígitos
-  if (inputValue.length !== 9) {
-    numDocProsInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-    numDocProsInput.reportValidity(); // Mostrar el mensaje de error
-  } else {
-    numDocProsInput.setCustomValidity(""); // Campo válido
+  if (tam < 12) {
+    // Verificar si se ingresaron 9 dígitos
+    if (inputValue.length != tam) {
+      numDocProsInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+      numDocProsInput.reportValidity(); // Mostrar el mensaje de error
+    } else {
+      numDocProsInput.setCustomValidity(""); // Campo válido
+    }
   }
+
 });
 
 var numDoc2titInput = document.getElementById("numDoc2tit");
 
 numDoc2titInput.addEventListener("input", function(event) {
   var inputValue = numDoc2titInput.value;
+  var tipoDoc = document.getElementById('tipoDoc2tit');
+  var tam = $('option:selected', tipoDoc).attr('data');
   
   // Eliminar caracteres no numéricos
   inputValue = inputValue.replace(/\D/g, '');
   
   // Limitar la longitud del valor a 9 caracteres
-  if (inputValue.length > 9) {
-    inputValue = inputValue.slice(0, 9);
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
   }
   
   // Actualizar el valor del campo
   numDoc2titInput.value = inputValue;
   
   if (inputValue.length !=='') {
-    // Verificar si se ingresaron 9 dígitos
-    if (inputValue.length !== 9) {
-      numDoc2titInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-      numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
-    } else {
-      numDoc2titInput.setCustomValidity(""); // Campo válido
+    if (tam < 12) {
+      // Verificar si se ingresaron 9 dígitos
+      if (inputValue.length != tam) {
+        numDoc2titInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+        numDoc2titInput.reportValidity(); // Mostrar el mensaje de error
+      } else {
+        numDoc2titInput.setCustomValidity(""); // Campo válido
+      }
     }
   }
 });
@@ -691,25 +701,29 @@ var numDocAddBenefInput = document.getElementById("numDocAddBenef");
 
 numDocAddBenefInput.addEventListener("input", function(event) {
   var inputValue = numDocAddBenefInput.value;
+  var tipoDoc = document.getElementById('tipoDocAddBenef');
+  var tam = $('option:selected', tipoDoc).attr('data');
   
   // Eliminar caracteres no numéricos
   inputValue = inputValue.replace(/\D/g, '');
   
   // Limitar la longitud del valor a 9 caracteres
-  if (inputValue.length > 9) {
-    inputValue = inputValue.slice(0, 9);
+  if (inputValue.length > tam) {
+    inputValue = inputValue.slice(0, tam);
   }
   
   // Actualizar el valor del campo
   numDocAddBenefInput.value = inputValue;
   
   if (inputValue.length !=='') {
-    // Verificar si se ingresaron 9 dígitos
-    if (inputValue.length !== 9) {
-      numDocAddBenefInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
-      numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
-    } else {
-      numDocAddBenefInput.setCustomValidity(""); // Campo válido
+    if (tam < 12) {
+      // Verificar si se ingresaron 9 dígitos
+      if (inputValue.length != tam) {
+        numDocAddBenefInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+        numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+      } else {
+        numDocAddBenefInput.setCustomValidity(""); // Campo válido
+      }
     }
   }
 });
@@ -989,6 +1003,7 @@ boton.addEventListener("click",function(){
     'num_nivel': 0,
     'cod_tipo_necesidad': 'NF'
   };
+  console.log(filasArrayBenef);
 
   $.ajax({
     url: '../api/guardaProspecto', 
@@ -999,38 +1014,46 @@ boton.addEventListener("click",function(){
     success: function(respuesta){
       var codProspecto = respuesta['response']['cod_prospecto'];
       var fchContacto = document.getElementById("fch_contacto");
-      filasArray.forEach(function (fila) {
+      filasArrayBenef.forEach(function (fila) {
         fila['cod_prospecto'] = codProspecto;
       });
 
-        $.ajax({
-            url: '../api/guardaBeneficiario', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'beneficiarios':filasArray},
-            success: function(respuesta){
-                console.log(respuesta);   
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
-
-        $.ajax({
-            url: '../api/guardaObservacion', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
-            success: function(respuesta){
-                console.log(respuesta);   
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
+        if (filasArrayBenef.length > 0) {
         
+          $.ajax({
+              url: '../api/guardaBeneficiario', 
+              method: "PUT",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'beneficiarios':filasArrayBenef},
+              success: function(respuesta){
+                  console.log(respuesta);   
+              },//success
+              error(e){
+                  console.log(e.message);
+              }//error
+          });
+  
+        }
+
+        if (obsvContacto != '') {
+      
+          $.ajax({
+              url: '../api/guardaObservacion', 
+              method: "PUT",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+              success: function(respuesta){
+                  console.log(respuesta);   
+              },//success
+              error(e){
+                  console.log(e.message);
+              }//error
+          });
+
+        }
+
         Swal.fire({
           title: 'Guardado',
           text: codProspecto,
@@ -1038,9 +1061,8 @@ boton.addEventListener("click",function(){
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#35B44A',
         }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-             route{{'prospectos.listado'}}
+            window.location.href = "listado";
           } 
         })
 

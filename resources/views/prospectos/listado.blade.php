@@ -173,8 +173,8 @@ numDocInput.addEventListener("input", function(event) {
   numDocInput.value = inputValue;
   
   // Verificar si se ingresaron 9 dígitos
-  if (inputValue.length !== 9) {
-    numDocInput.setCustomValidity("Debe ingresar 9 dígitos"); // Mostrar mensaje de error
+  if (inputValue.length !== 8) {
+    numDocInput.setCustomValidity("Debe ingresar 8 dígitos"); // Mostrar mensaje de error
     numDocInput.reportValidity(); // Mostrar el mensaje de error
   } else {
     numDocInput.setCustomValidity(""); // Campo válido
@@ -247,10 +247,10 @@ $(document).ready(function () {
           ref2 = '';
         }
           fila += '<tr><td>'+
-              '<a class="btn btn-secondary form-remanso" '+ref+' ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
-              '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' ><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
+              '<a class="btn btn-secondary form-remanso" '+ref+' title="Gestión"><span class="bi bi-clipboard-check" ></span></a>'+
+              '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Registrar venta"><span class="bi bi-cash-stack"></span></a>'+
                   '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
-                  '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
+                  '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" title="Activar Prospecto"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
               '<td>'+word['cod_prospecto']+'</td>'+
               '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
               '<td>'+word['dsc_prospecto']+'</td>'+

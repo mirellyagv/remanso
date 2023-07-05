@@ -52,6 +52,8 @@ class VerifyCsrfToken extends Middleware
         'api/ListarProspectoContacto',
         'lista/MuestraListaContratoFirmante',
         'api/ObtenerContratoServicioPrincipal',
+        'lista/ObtenerDocumentoPuente',
+        'lista/EliminarDocumentoPuente',
 
     ];
 }
