@@ -460,9 +460,46 @@ addBeneficiario.addEventListener("click",function (){
 
 });
 
-function editarFila(index) {
-  // Lógica para editar la fila específica
-  console.log('Editar fila:', index);
+function editarFila(filaIndex) {
+  // Obtener la fila correspondiente al índice
+  var tabla = document.getElementById('tablaObsv');
+  var fila = tabla.rows[filaIndex];
+
+  // Obtener los elementos HTML dentro de la fila
+  var fechaCelda = fila.cells[0];
+  var califCelda = fila.cells[1];
+  var obsvCelda = fila.cells[2];
+
+  // Obtener los valores actuales de la fila
+  var fechaActual = fechaCelda.textContent;
+  var califActual = califCelda.textContent;
+  var obsvActual = obsvCelda.textContent;
+
+  // Mostrar los valores actuales en el modal de edición
+  document.getElementById('fchContacto').value = fechaActual;
+  document.getElementById('califAddContacto').value = codCalif; // Establecer la opción seleccionada en el select
+  document.getElementById('obsvAddContacto').value = obsvActual;
+
+  // Abrir el modal de edición
+  var modal = new bootstrap.Modal(document.getElementById('ModalRegistro'));
+  modal.show();
+
+  // Guardar los cambios al hacer clic en el botón de Aceptar del modal
+  var aceptarBtn = document.querySelector('#ModalRegistro .btn-primary');
+  aceptarBtn.addEventListener('click', function() {
+    // Obtener los nuevos valores del modal
+    var nuevaFecha = document.getElementById('fchContacto').value;
+    var nuevaCalif = document.getElementById('califAddContacto').value;
+    var nuevaObsv = document.getElementById('obsvAddContacto').value;
+
+    // Actualizar los valores en la fila
+    fechaCelda.textContent = nuevaFecha;
+    califCelda.textContent = nuevaCalif;
+    obsvCelda.textContent = nuevaObsv;
+
+    // Cerrar el modal
+    modal.hide();
+  });
 }
 
 function eliminarFila(index) {
@@ -521,10 +558,11 @@ addContacto.addEventListener("click",function (){
 
     editarBoton.addEventListener('click', function() {
       var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
-      editarFila(filaIndex);
+      editarFila(nuevaFilaO.rowIndex);
     });
 
 });
+
 
 var btnAbreModalBenef = document.getElementById("abreModalBenef");
 btnAbreModalBenef.addEventListener("click",function (){

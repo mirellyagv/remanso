@@ -370,10 +370,9 @@
                           </div>
                         </div>
                         <div class="table-responsive">
-                          <table class="table table-striped" id="example" style="width:100%">
+                          <table class="table table-striped" id="tablaObsv" style="width:100%">
                             <thead style="background-color: #181C35; color: white;">
                               <tr>
-                                <th style="text-align: center;" width="5%"></th>
                                 <th style="text-align: center;" width="15%">Fec. Contacto</th>
                                 <th style="text-align: center;" width="10%">Calificación</th>
                                 <th style="text-align: center;">Observaciones</th>
@@ -522,13 +521,13 @@
               <label for="inputText" class="col-form-label">Observaciones:</label>
             </div>
             <div class="col-md-9 mb-3">
-              <textarea class="form-control form-remanso" name="" id="" rows="5"></textarea>
+              <textarea class="form-control form-remanso" name="obsvAddContacto" id="obsvAddContacto" rows="5"></textarea>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso"
-            data-bs-dismiss="modal">Aceptar</button>
+            data-bs-dismiss="modal" id="btnAddContacto">Aceptar</button>
         </div>
       </div>
     </div>
