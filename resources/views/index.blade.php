@@ -74,7 +74,7 @@
                     <img src="images/logoFondoAzul.png" class="img-fluid" alt="...">
                 </div>
                 <div class="mb-3">
-                    <span style="text-align: left; color:white;"><h2>INGRESAR</h2></s pan>
+                    <span style="text-align: left; color:white;"><h2>INGRESAR</h2></span>
                 </div>
                 <div class="mb-3">
                     <input type="text" class="form-control form-remanso" id="userM" placeholder="Usuario">
