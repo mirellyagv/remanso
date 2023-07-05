@@ -673,7 +673,7 @@ class ListaController extends Controller
         $numServicio = $request['numServicio'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Documento/20396900719/ObtenerDocumentoPuente/LC001/'.$codCtto.'/'.$numServicio);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Documento/ObtenerDocumentoPuente/20396900719/LC001/'.$codCtto.'/'.$numServicio);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
