@@ -651,16 +651,31 @@ document.getElementById('btnUpdContacto').addEventListener('click', function() {
     var inputObservaciones = document.getElementById("obsvAddContacto");
 
     // Obtener la fila correspondiente al botón de editar
-    var filaIndex = modal.getAttribute("data-fila");
+    var filaIndex = modal.dataset.fila;
 
-    // Actualizar la fila correspondiente en la tabla original
-    var filaOriginal = document.querySelector("#tablaObsv tr:nth-child(" + filaIndex+ ")");
-    filaOriginal.cells[0].innerText = inputFecha.value;
-    filaOriginal.cells[1].innerText = inputCalificacion.options[inputCalificacion.selectedIndex].textContent;
-    filaOriginal.cells[2].innerText = inputObservaciones.value;
+    // Crear una nueva fila modificada
+    var nuevaFila = document.createElement("tr");
+    var celdaFecha = document.createElement("td");
+    var celdaCalificacion = document.createElement("td");
+    var celdaObservaciones = document.createElement("td");
+
+    // Asignar los valores a las nuevas celdas
+    celdaFecha.innerText = inputFecha.value;
+    celdaCalificacion.innerText = inputCalificacion.options[inputCalificacion.selectedIndex].textContent;
+    celdaObservaciones.innerText = inputObservaciones.value;
+
+    // Agregar las nuevas celdas a la nueva fila
+    nuevaFila.appendChild(celdaFecha);
+    nuevaFila.appendChild(celdaCalificacion);
+    nuevaFila.appendChild(celdaObservaciones);
+
+    // Reemplazar la fila existente con la nueva fila modificada
+    var filaOriginal = document.querySelector("#tablaObsv tbody tr:nth-child(" + filaIndex + ")");
+    filaOriginal.parentNode.replaceChild(nuevaFila, filaOriginal);
 
     // Cerrar el modal
     var modalBootstrap = new bootstrap.Modal(modal);
     modalBootstrap.hide();
 });
+
 

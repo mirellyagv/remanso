@@ -894,17 +894,19 @@ window.onload= function () {
             dataType: 'json',
             data:{'cod_prospecto':cod_prospecto},
             success: function(result){
+                console.log(result);
                     var fila='';
                     result['response'].forEach(function(word){
                       fecha = word['fch_contacto'].split("T");
                       fila += '<tr>'+
-                      '<td>'+fecha[0]+'</td>'+
-                      '<td>'+word['dsc_calificacion']+'</td>'+
-                      '<td>'+word['dsc_observaciones']+'</td>'+
+                      '<td><input type="date" class="fechaTabla" id="'+result['num_linea']+'" value="'+fecha[0]+'" ></td>'+
+                      '<td>se<input type="text" name="" id="" value="'+word['dsc_calificacion']+'"></td>'+
+                      '<td><input type="text" name="" id="" value="'+word['dsc_observaciones']+'"></td>'+
                       '<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
                     '</tr>';
                 });
                 $('#bodyListadoCon').html(fila);
+                $(".fechaTabla").flatpickr();
 
             }
       });
@@ -1088,7 +1090,7 @@ boton.addEventListener("click",function(){
 //   var codCalif = document.getElementById("califAddContacto").value;
 //   var obsvContacto = document.getElementById("obsvAddContacto").value;
 //   var fchContacto = document.getElementById("fchContacto").value;
-  
+
 //   // $.ajax({
 //   //     url: '../api/guardaObservacion',
 //   //     method: "PUT",
