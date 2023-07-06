@@ -6,7 +6,7 @@ $("#tipoDocProsp").change(function(){
         $("#nombre").css("display", "block");
         $("#razonSoc").css("display", "none");
     }
-    
+
 });
 
 var tipoDoc2 = document.getElementById("tipoDoc2tit");
@@ -18,7 +18,7 @@ tipoDoc2.addEventListener("change",function (){
         $("#cajaNombre2Tit").css("display", "block");
         $("#cajaRazonSoc2Tit").css("display", "none");
     }
-    
+
 });
 
 //-----------------muestra select pais-----------
@@ -26,11 +26,11 @@ tipoDoc2.addEventListener("change",function (){
 $( document ).ready(function() {
   var pais1 = $(paisProspecto).val();
   $.ajax({
-        url: '../lista/MuestraPais', 
+        url: '../lista/MuestraPais',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        success: function(respuesta){ 
+        success: function(respuesta){
                 respuesta['response'].forEach(function(word){
                 //console.log(word);
                 seleccion = '';
@@ -39,8 +39,8 @@ $( document ).ready(function() {
                 }else{
                 seleccion = '';
                 }
-                $("#paisProspecto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-                $("#pais2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                $("#paisProspecto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
+                $("#pais2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
         },//success
         error(e){
@@ -51,7 +51,7 @@ $( document ).ready(function() {
 });
 
 var verifPais = document.getElementById("paisProspecto");
-verifPais.addEventListener("change",function (){ 
+verifPais.addEventListener("change",function (){
   if (verifPais.value != '00001') {
     document.getElementById("dptoProsp").value = '';
     document.getElementById("dptoProsp").setAttribute('disabled', 'disabled');
@@ -68,7 +68,7 @@ verifPais.addEventListener("change",function (){
 });
 
 var verifPais2 = document.getElementById("pais2Tit");
-verifPais2.addEventListener("change",function (){ 
+verifPais2.addEventListener("change",function (){
   if (verifPais2.value != '00001') {
     document.getElementById("dpto2Tit").value = '';
     document.getElementById("dpto2Tit").setAttribute('disabled', 'disabled');
@@ -91,7 +91,7 @@ $( document ).ready(function() {
 
   codPais1 = document.getElementById("paisProspecto").value;
   $.ajax({
-    url: '../lista/MuestraDpto', 
+    url: '../lista/MuestraDpto',
     method: "GET",
     crossDomain: true,
     dataType: 'json',
@@ -101,8 +101,8 @@ $( document ).ready(function() {
           $("#dpto2Tit").append('<option value="" selected disabled>SELECCIONE...</option>');
         respuesta['response'].forEach(function(word){
           seleccion = '';
-          $("#dptoProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-          $("#dpto2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+          $("#dptoProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
+          $("#dpto2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
         });
       },//success
       error(e){
@@ -121,15 +121,15 @@ coddptto.addEventListener("change",function (){
         options.forEach(o => o.remove());
 
     $.ajax({
-        url: '../lista/MuestraProvincia', 
+        url: '../lista/MuestraProvincia',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         data:{'cod_pais':codPais2,'cod_departamento':valor},
-        success: function(respuesta){     
-            $("#provinProsp").append('<option value="" selected disabled>SELECCIONE...</option>');  
+        success: function(respuesta){
+            $("#provinProsp").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            $("#provinProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+            $("#provinProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
           });
         },//success
         error(e){
@@ -146,15 +146,15 @@ coddptto2.addEventListener("change",function (){
         options.forEach(o => o.remove());
 
     $.ajax({
-        url: '../lista/MuestraProvincia', 
+        url: '../lista/MuestraProvincia',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         data:{'cod_pais':codPais2,'cod_departamento':valor},
-        success: function(respuesta){     
-            $("#prov2Tit").append('<option value="" selected disabled>SELECCIONE...</option>');  
+        success: function(respuesta){
+            $("#prov2Tit").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            $("#prov2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+            $("#prov2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
           });
         },//success
         error(e){
@@ -175,17 +175,17 @@ coddptto.addEventListener("change",function(){
     options.forEach(o => o.remove());
 
   $.ajax({
-        url: '../lista/MuestraDtto', 
+        url: '../lista/MuestraDtto',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         data:{'cod_pais':codPais1,'cod_departamento':coddptto1,'cod_provincia':codprov1},
         success: function(respuesta){
-            $("#dttoProsp").append('<option value="" selected disabled>SELECCIONE...</option>'); 
+            $("#dttoProsp").append('<option value="" selected disabled>SELECCIONE...</option>');
           respuesta['response'].forEach(function(word){
             //console.log(word);
             seleccion = '';
-            $("#dttoProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');  
+            $("#dttoProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
           });
         },//success
         error(e){
@@ -206,17 +206,17 @@ coddptto.addEventListener("change",function(){
     options.forEach(o => o.remove());
 
   $.ajax({
-        url: '../lista/MuestraDtto', 
+        url: '../lista/MuestraDtto',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         data:{'cod_pais':codPais1,'cod_departamento':coddptto1,'cod_provincia':codprov1},
         success: function(respuesta){
-            $("#dtto2Tit").append('<option value="" selected disabled>SELECCIONE...</option>'); 
+            $("#dtto2Tit").append('<option value="" selected disabled>SELECCIONE...</option>');
           respuesta['response'].forEach(function(word){
             //console.log(word);
             seleccion = '';
-            $("#dtto2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+            $("#dtto2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
           });
         },//success
         error(e){
@@ -229,7 +229,7 @@ coddptto.addEventListener("change",function(){
 //-----------------muestra select tipo documento-----------
 $( document ).ready(function() {
     $.ajax({
-          url: '../lista/MuestraTipoDoc', 
+          url: '../lista/MuestraTipoDoc',
           method: "GET",
           crossDomain: true,
           dataType: 'json',
@@ -239,8 +239,8 @@ $( document ).ready(function() {
             //   $("#tipoDocAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
               seleccion = '';
-              $("#tipoDocProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
-              $("#tipoDoc2tit").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
+              $("#tipoDocProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
+              $("#tipoDoc2tit").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
             //   $("#tipoDocAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
           },//success
@@ -248,13 +248,13 @@ $( document ).ready(function() {
               console.log(e.message);
           }//error
       });
-  
+
   });
 
   //-----------------muestra select parentesco-----------
 $( document ).ready(function() {
     $.ajax({
-          url: '../lista/MuestraParentesco', 
+          url: '../lista/MuestraParentesco',
           method: "GET",
           crossDomain: true,
           dataType: 'json',
@@ -262,20 +262,20 @@ $( document ).ready(function() {
               $("#parentescoAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
               seleccion = '';
-              $("#parentescoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+              $("#parentescoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
           },//success
           error(e){
               console.log(e.message);
           }//error
       });
-  
+
   });
 
   //-----------------muestra select sexo-----------
   $( document ).ready(function() {
     $.ajax({
-          url: '../lista/MuestraSexo', 
+          url: '../lista/MuestraSexo',
           method: "GET",
           crossDomain: true,
           dataType: 'json',
@@ -283,20 +283,20 @@ $( document ).ready(function() {
               $("#sexoAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
               seleccion = '';
-              $("#sexoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+              $("#sexoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
           },//success
           error(e){
               console.log(e.message);
           }//error
       });
-  
+
   });
-  
+
   //-----------------muestra select Edo Civil-----------
 $( document ).ready(function() {
     $.ajax({
-          url: '../lista/MuestraEdoCivil', 
+          url: '../lista/MuestraEdoCivil',
           method: "GET",
           crossDomain: true,
           dataType: 'json',
@@ -304,20 +304,20 @@ $( document ).ready(function() {
               $("#edoCivilAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
               seleccion = '';
-              $("#edoCivilAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+              $("#edoCivilAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
           },//success
           error(e){
               console.log(e.message);
           }//error
       });
-  
+
   });
-  
+
   //-----------------muestra select canal-----------
 $( document ).ready(function() {
     $.ajax({
-          url: '../lista/MuestraCanal', 
+          url: '../lista/MuestraCanal',
           method: "GET",
           crossDomain: true,
           dataType: 'json',
@@ -325,20 +325,20 @@ $( document ).ready(function() {
               $("#canalProsp").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
               seleccion = '';
-              $("#canalProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+              $("#canalProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
           },//success
           error(e){
               console.log(e.message);
           }//error
       });
-  
+
   });
 
     //-----------------muestra select calificacion-----------
 $( document ).ready(function() {
     $.ajax({
-          url: '../lista/MuestraCalificacion', 
+          url: '../lista/MuestraCalificacion',
           method: "GET",
           crossDomain: true,
           dataType: 'json',
@@ -348,14 +348,14 @@ $( document ).ready(function() {
             respuesta['response'].forEach(function(word){
               seleccion = '';
               $("#califProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
-              $("#califAddContacto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+              $("#califAddContacto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
           },//success
           error(e){
               console.log(e.message);
           }//error
       });
-  
+
   });
 
 //-----------------Añade Beneficiarios--------------------
@@ -364,7 +364,7 @@ var filasArrayBenef = []; // Array para almacenar las filas
 
 var addBeneficiario = document.getElementById("agregaBeneficiario");
 addBeneficiario.addEventListener("click",function (){
-  
+
   var codtipoDoc = document.getElementById("tipoDocAddBenef").value;
   var doc = document.getElementById("tipoDocAddBenef");
   var tipoDoc = doc.options[doc.selectedIndex].text;
@@ -383,12 +383,12 @@ addBeneficiario.addEventListener("click",function (){
 
     var tabla = document.getElementById('tablaBeneficiarios');
     var tbody = tabla.getElementsByTagName('tbody')[0];
-    
+
     var nuevaFila = tbody.insertRow();
-    
+
     var dniCelda = nuevaFila.insertCell();
     dniCelda.textContent = tipoDoc+'-'+dscDoc;
-    
+
     var nombreCelda = nuevaFila.insertCell();
     nombreCelda.textContent = nombre+' '+apellP+' '+apellM;
 
@@ -405,33 +405,34 @@ addBeneficiario.addEventListener("click",function (){
     edoCivilCelda.textContent = edoCivil;
 
     var accionesCelda = nuevaFila.insertCell();
-    
+
     var accionesDiv = document.createElement('div'); // Contenedor para los botones
     accionesDiv.classList.add('acciones'); // Clase CSS opcional para estilizar el contenedor
-    
+
     var editarBoton = document.createElement('button');
     editarBoton.classList.add('btn');
     editarBoton.classList.add('btn-success');
     editarBoton.classList.add('BtnverdeRemanso');
     editarBoton.innerHTML  = '<span class="bi bi-pencil"></span>';
     editarBoton.id = 'botonEditar' + nuevaFila.rowIndex;
-    
+
     var eliminarBoton = document.createElement('button');
     eliminarBoton.classList.add('btn');
     eliminarBoton.classList.add('btn-danger');
     eliminarBoton.innerHTML  = '<span class="bi bi-x-lg"></span>';
     eliminarBoton.id = 'botonEliminar' + nuevaFila.rowIndex;
-    
+
     accionesDiv.appendChild(editarBoton);
     accionesDiv.appendChild(eliminarBoton);
-    
+
     accionesCelda.appendChild(accionesDiv);
 
     editarBoton.addEventListener('click', function() {
+        document.getElementById('btnUpdContacto').removeAttribute('hidden');
       var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
       editarFila(filaIndex);
     });
-    
+
     eliminarBoton.addEventListener('click', function() {
       var filaIndex = this.id.replace('botonEliminar', ''); // Obtiene el índice de la fila desde el ID del botón
       eliminarFila(filaIndex);
@@ -455,7 +456,7 @@ addBeneficiario.addEventListener("click",function (){
       cod_sexo: sexo,
       cod_parentesco: codParentesco
     };
-    
+
     filasArrayBenef.push(filaData); // Agregar la fila al array
 
 });
@@ -477,7 +478,13 @@ function editarFila(filaIndex) {
 
   // Mostrar los valores actuales en el modal de edición
   document.getElementById('fchContacto').value = fechaActual;
-  document.getElementById('califAddContacto').value = codCalif; // Establecer la opción seleccionada en el select
+    var selectElement = document.getElementById('califAddContacto'); // Establecer la opción seleccionada en el select
+    for (var i = 0; i < selectElement.options.length; i++) {
+        if (selectElement.options[i].text === califActual) {
+            selectElement.selectedIndex = i;
+            break;
+        }
+    }
   document.getElementById('obsvAddContacto').value = obsvActual;
 
   // Abrir el modal de edición
@@ -517,23 +524,23 @@ var codCalif = '';
 var obsvContacto = '';
 var addContacto = document.getElementById("btnAddContacto");
 addContacto.addEventListener("click",function (){
-  
+  document.getElementById('btnUpdContacto').setAttribute('hidden','true');
   codCalif = document.getElementById("califAddContacto").value;
   var calificacion = document.getElementById("califAddContacto");
   var dscCalif = calificacion.options[calificacion.selectedIndex].text;
   obsvContacto = document.getElementById("obsvAddContacto").value;
   var today = new Date();
   // obtener la fecha de hoy en formato `MM/DD/YYYY`
-  var dia = today.toLocaleDateString('en-US');
+  var dia = today.toLocaleDateString('es-PE');
 
     var tabla = document.getElementById('tablaObsv');
     var tbody = tabla.getElementsByTagName('tbody')[0];
-    
+
     var nuevaFilaO = tbody.insertRow();
 
     var fechaCelda = nuevaFilaO.insertCell();
     fechaCelda.textContent = dia;
-    
+
     var califCelda = nuevaFilaO.insertCell();
     califCelda.textContent = dscCalif;
 
@@ -541,25 +548,28 @@ addContacto.addEventListener("click",function (){
     califCelda.textContent = obsvContacto;
 
     var accionesCelda = nuevaFilaO.insertCell();
-    
+
     var accionesDiv = document.createElement('div'); // Contenedor para los botones
     accionesDiv.classList.add('acciones'); // Clase CSS opcional para estilizar el contenedor
-    
+
     var editarBoton = document.createElement('button');
     editarBoton.classList.add('btn');
     editarBoton.classList.add('btn-success');
     editarBoton.classList.add('BtnverdeRemanso');
-    editarBoton.innerHTML  = '<span class="bi bi-pencil"></span>';
+    editarBoton.classList.add('bi-pencil');
     editarBoton.id = 'botonEditarO' + nuevaFilaO.rowIndex;
-    
+
+    // editarBoton.setAttribute('data-bs-toggle', 'modal');
+    // editarBoton.setAttribute('data-bs-target', '#ModalRegistro');
+
     accionesDiv.appendChild(editarBoton);
-    
+
     accionesCelda.appendChild(accionesDiv);
 
-    editarBoton.addEventListener('click', function() {
-      var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
-      editarFila(nuevaFilaO.rowIndex);
-    });
+    // editarBoton.addEventListener('click', function() {
+    //   var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
+    //   editarFila(nuevaFilaO.rowIndex);
+    // });
 
 });
 
@@ -579,7 +589,65 @@ btnAbreModalBenef.addEventListener("click",function (){
 
 var btnAbreModalContacto = document.getElementById("abreModalContacto");
 btnAbreModalContacto.addEventListener("click",function (){
-    document.getElementById("califAddContacto").value = '';
-    document.getElementById("obsvAddContacto").value = '';
+    document.getElementById('btnAddContacto').removeAttribute('hidden');
+    document.getElementById('btnUpdContacto').setAttribute('hidden', 'true');
 });
 
+// Obtener el contenedor principal de la tabla
+var tablaObsv = document.getElementById("tablaObsv");
+
+// Agregar un controlador de eventos al contenedor principal
+tablaObsv.addEventListener("click", function(event) {
+    // Verificar si el objetivo del evento fue un botón de editar
+    if (event.target.classList.contains("btn-success")) {
+        // Obtener la fila correspondiente al botón de editar
+        var fila = event.target.closest("tr");
+
+        // Obtener los datos de la fila
+        var fechaContacto = fila.cells[0].innerText;
+        var calificacion = fila.cells[1].innerText;
+        var observaciones = fila.cells[2].innerText;
+
+        var boton = event.target;
+
+        // Llamar a la función con los datos de la fila
+        tuFuncion(fechaContacto, calificacion, observaciones, boton);
+    }
+});
+
+// Función a la que se llama con los datos de la fila
+function tuFuncion(fechaContacto, calificacion, observaciones, boton) {
+
+    document.getElementById('btnUpdContacto').removeAttribute('hidden');
+    document.getElementById('btnAddContacto').setAttribute('hidden', 'true');
+
+    // Obtener el modal y los campos de entrada
+    var modal = document.getElementById("ModalRegistro");
+    var inputFecha = document.getElementById("fchContacto");
+    var inputCalificacion = document.getElementById("califAddContacto");// Establecer la opción seleccionada en el select
+    var inputObservaciones = document.getElementById("obsvAddContacto");
+
+
+    // Llenar los campos de entrada con los datos de la fila
+    inputFecha.value = fechaContacto;
+    for (var i = 0; i < inputCalificacion.options.length; i++) {
+        if (inputCalificacion.options[i].text === calificacion) {
+            inputCalificacion.selectedIndex = i;
+            break;
+        }
+    }
+    inputObservaciones.value = observaciones;
+
+    // Abrir el modal
+    var modalBootstrap = bootstrap.Modal.getInstance(modal);
+    modalBootstrap.show();
+
+
+    // Hacer algo con los datos de la fila
+    // console.log("Fecha de contacto:", fechaContacto);
+    // console.log("Calificación:", calificacion);
+    // console.log("Observaciones:", observaciones);
+}
+document.getElementById('btnUpdContacto').addEventListener('click', function () {
+    alert('entro en funcion de modificacion ');
+})
