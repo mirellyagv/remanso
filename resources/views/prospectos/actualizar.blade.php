@@ -522,6 +522,7 @@
             </div>
             <div class="col-md-9 mb-3">
               <textarea class="form-control form-remanso" name="obsvAddContacto" id="obsvAddContacto" rows="5"></textarea>
+              <input type="hidden" id="numLineaObsv">
             </div>
           </div>
         </div>
@@ -894,16 +895,14 @@ window.onload= function () {
             data:{'cod_prospecto':cod_prospecto},
             success: function(result){
                     var fila='';
-                    var item=1;
                     result['response'].forEach(function(word){
+                      fecha = word['fch_contacto'].split("T");
                       fila += '<tr>'+
-                      '<td>'+item+'</td>'+
-                      '<td>'+word['fch_contacto']+'</td>'+
+                      '<td>'+fecha[0]+'</td>'+
                       '<td>'+word['dsc_calificacion']+'</td>'+
-                      '<td class="justificado">'+word['dsc_observaciones']+'</td>'+
-                      '<td></td>'+
+                      '<td>'+word['dsc_observaciones']+'</td>'+
+                      '<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
                     '</tr>';
-                    item=item+1;
                 });
                 $('#bodyListadoCon').html(fila);
 
@@ -1059,9 +1058,10 @@ boton.addEventListener("click",function(){
             text: codProspecto,
             icon: 'success',
             confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#35B44A',
           }).then((result) => {
             if (result.isConfirmed) {
-              route{{'prospectos.listado'}}
+              window.location.href = "listado";
             }
           })
         },//success
@@ -1081,6 +1081,46 @@ boton.addEventListener("click",function(){
 
 
 });
+
+// var btnActualizaContacto = document.getElementById("btnUpdContacto");
+// btnActualizaContacto.addEventListener("click",function (){
+
+//   var codCalif = document.getElementById("califAddContacto").value;
+//   var obsvContacto = document.getElementById("obsvAddContacto").value;
+//   var fchContacto = document.getElementById("fchContacto").value;
+  
+//   // $.ajax({
+//   //     url: '../api/guardaObservacion',
+//   //     method: "PUT",
+//   //     crossDomain: true,
+//   //     dataType: 'json',
+//   //     data:{'cod_prospecto':cod_prospecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+//   //     success: function(respuesta){
+//   //     console.log(respuesta);
+//   //       Swal.fire({
+//   //         text: 'Se ha grabado el contacto',
+//   //         icon: 'success',
+//   //         confirmButtonText: 'Aceptar',
+//   //         confirmButtonColor: '#35B44A',
+//   //       }).then((result) => {
+//   //         if (result.isConfirmed) {
+//   //           location.reload();
+//   //         }
+//   //       })
+//   //     },//success
+//   //     error(e){
+//   //         console.log(e.message);
+//   //         Swal.fire({
+//   //           title:'Error!',
+//   //           text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+//   //           icon:'warning',
+//   //           confirmButtonColor: '#35B44A',
+//   //         })
+//   //     }//error
+//   // });
+// });
+
+
 
 var btnAbreModalBenef = document.getElementById("abreModalBenef");
 btnAbreModalBenef.addEventListener("click",function (){

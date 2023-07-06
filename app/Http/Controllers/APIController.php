@@ -276,6 +276,48 @@ class APIController extends Controller
         }
     }
 
+    public function ActualizarProspectoContacto(Request $request)
+    {
+        $client = new Client();
+        $cod_prospecto = $request['cod_prospecto'];
+        $cod_calificacion = $request['cod_calificacion'];
+        $dsc_observacion = $request['dsc_observacion'];
+        $fecha = $request['fch_contacto'];
+        $numLinea = $request['numLinea'];
+        $data1 = [
+            "cod_prospecto"=> $cod_prospecto,
+            "num_linea"=> $numLinea,
+            "fch_contacto"=> $fecha,
+            "cod_calificacion"=>  $cod_calificacion,
+            "flg_presentacion"=> "NO",
+            "cod_consejero"=> session('cod_trabajador'),
+            "dsc_observaciones"=> $dsc_observacion,
+            "cod_usuario_registro"=> session('cod_trabajador'),
+            "cod_localidad_p"=> "LC001"
+        ];
+        $data = json_encode($data1);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoContacto/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+
+            $promise->wait();
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function ObtenerProspecto(Request $request)
     {
         $client = new Client();

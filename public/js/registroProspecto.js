@@ -531,7 +531,7 @@ addContacto.addEventListener("click",function (){
   obsvContacto = document.getElementById("obsvAddContacto").value;
   var today = new Date();
   // obtener la fecha de hoy en formato `MM/DD/YYYY`
-  var dia = today.toLocaleDateString('es-PE');
+  var dia = today.toLocaleDateString('en-US');
 
     var tabla = document.getElementById('tablaObsv');
     var tbody = tabla.getElementsByTagName('tbody')[0];
