@@ -30,10 +30,10 @@
                       <br>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label" required>Tipo de Documento: </label>
+                          <label for="inputText" class="col-form-label">Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="tipoDocProsp" id="tipoDocProsp" required class="form-select form-remanso"
+                          <select name="tipoDocProsp" id="tipoDocProsp" class="form-select form-remanso"
                             required>
                           </select>
                         </div>
@@ -54,7 +54,7 @@
                             <label for="inputText" class="col-form-label">Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" required name="nombreProsp"
+                            <input type="text" class="form-control form-remanso" name="nombreProsp"
                               id="nombreProsp" required>
                             {{-- <div class="b invalid-feedback">
                               El nombre no puede estar vacío.
@@ -64,7 +64,7 @@
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" required name="apellPProsp"
+                            <input type="text" class="form-control form-remanso" name="apellPProsp"
                               id="apellPProsp" required>
                             {{-- <div class="c invalid-feedback">
                               El apellido no puede estar vacío.
@@ -97,7 +97,7 @@
                           <label for="inputText" class="col-form-label">Dirección:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" required name="direccPros"
+                          <input type="text" class="form-control form-remanso" name="direccPros"
                             id="direccPros" required>
                           {{-- <div class="e invalid-feedback">
                             La dirección no puede estar vacía.
@@ -163,8 +163,8 @@
                           <label for="inputText" class="col-form-label">Correo:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="mail" class="form-control form-remanso" name="correoProsp" id="correoProsp"
-                            required>
+                          <input type="email" class="form-control form-remanso" name="correoProsp" id="correoProsp"
+                                 required>
                           {{-- <div class="g invalid-feedback">
                             El correo no puede estar vacío.
                           </div> --}}
@@ -580,7 +580,7 @@ var form = document.getElementById("myForm");
 form.addEventListener("submit", function(event) {
   // Detener el envío del formulario
   event.preventDefault();
-  
+
   // Realizar la pausa de 2 segundos
   // setTimeout(function() {
   //   // Continuar con el envío del formulario después de 2 segundos
@@ -605,10 +605,10 @@ document.getElementById("fechaContacto").value = fechaActual;
 
       emailInput.addEventListener("input", function(event) {
         var email = event.target.value;
-        
+
         // Expresión regular para validar el formato de correo electrónico
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
+
         if (!emailRegex.test(email)) {
           // El correo electrónico no cumple con el formato válido
           emailInput.setCustomValidity("Ingrese un correo electrónico válido");
@@ -622,10 +622,10 @@ document.getElementById("fechaContacto").value = fechaActual;
 
       emailInput2.addEventListener("input", function(event) {
         var email = event.target.value;
-        
+
         // Expresión regular para validar el formato de correo electrónico
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
+
         if (!emailRegex.test(email)) {
           // El correo electrónico no cumple con el formato válido
           emailInput2.setCustomValidity("Ingrese un correo electrónico válido");
@@ -642,18 +642,18 @@ numDocProsInput.addEventListener("input", function(event) {
   var tipoDoc = document.getElementById('tipoDocProsp');
   var tam = $('option:selected', tipoDoc).attr('data');
  // console.log(tam);
-  
+
   // Eliminar caracteres no numéricos
   inputValue = inputValue.replace(/\D/g, '');
-  
+
   // Limitar la longitud del valor a 9 caracteres
   if (inputValue.length > tam) {
     inputValue = inputValue.slice(0, tam);
   }
-  
+
   // Actualizar el valor del campo
   numDocProsInput.value = inputValue;
-  
+
   if (tam < 12) {
     // Verificar si se ingresaron 9 dígitos
     if (inputValue.length != tam) {
@@ -672,18 +672,18 @@ numDoc2titInput.addEventListener("input", function(event) {
   var inputValue = numDoc2titInput.value;
   var tipoDoc = document.getElementById('tipoDoc2tit');
   var tam = $('option:selected', tipoDoc).attr('data');
-  
+
   // Eliminar caracteres no numéricos
   inputValue = inputValue.replace(/\D/g, '');
-  
+
   // Limitar la longitud del valor a 9 caracteres
   if (inputValue.length > tam) {
     inputValue = inputValue.slice(0, tam);
   }
-  
+
   // Actualizar el valor del campo
   numDoc2titInput.value = inputValue;
-  
+
   if (inputValue.length !=='') {
     if (tam < 12) {
       // Verificar si se ingresaron 9 dígitos
@@ -703,18 +703,18 @@ numDocAddBenefInput.addEventListener("input", function(event) {
   var inputValue = numDocAddBenefInput.value;
   var tipoDoc = document.getElementById('tipoDocAddBenef');
   var tam = $('option:selected', tipoDoc).attr('data');
-  
+
   // Eliminar caracteres no numéricos
   inputValue = inputValue.replace(/\D/g, '');
-  
+
   // Limitar la longitud del valor a 9 caracteres
   if (inputValue.length > tam) {
     inputValue = inputValue.slice(0, tam);
   }
-  
+
   // Actualizar el valor del campo
   numDocAddBenefInput.value = inputValue;
-  
+
   if (inputValue.length !=='') {
     if (tam < 12) {
       // Verificar si se ingresaron 9 dígitos
@@ -728,12 +728,12 @@ numDocAddBenefInput.addEventListener("input", function(event) {
   }
 });
 
-// -----------------------valida telefono-------------------------    
+// -----------------------valida telefono-------------------------
       var phoneInput = document.getElementById("telf1Prosp");
 
       phoneInput.addEventListener("input", function(event) {
         var phone = event.target.value;
-        
+
         // Eliminar cualquier carácter que no sea un número
         phone = phone.replace(/\D/g, '');
 
@@ -743,22 +743,22 @@ numDocAddBenefInput.addEventListener("input", function(event) {
         }
 
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
-        
+
         if (phone.length > 8 && phone.length <= 12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
-          
+
         } else {
           // El número de teléfono no tiene 9-12 dígitos
           phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
         }
-                
+
       });
       var phoneInput2 = document.getElementById("telf2Prosp");
 
       phoneInput2.addEventListener("input", function(event) {
         var phone = event.target.value;
-        
+
         // Eliminar cualquier carácter que no sea un número
         phone = phone.replace(/\D/g, '');
 
@@ -768,11 +768,11 @@ numDocAddBenefInput.addEventListener("input", function(event) {
         }
 
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
-          
+
         if (phone.length > 8 && phone.length <= 12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
-          
+
         } else {
           // El número de teléfono no tiene 9-12 dígitos
           phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
@@ -782,7 +782,7 @@ numDocAddBenefInput.addEventListener("input", function(event) {
 
       phoneInput3.addEventListener("input", function(event) {
         var phone = event.target.value;
-        
+
         // Eliminar cualquier carácter que no sea un número
         phone = phone.replace(/\D/g, '');
 
@@ -792,11 +792,11 @@ numDocAddBenefInput.addEventListener("input", function(event) {
         }
 
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
-          
+
         if (phone.length > 8 && phone.length <= 12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
-          
+
         } else {
           // El número de teléfono no tiene 9-12 dígitos
           phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
@@ -806,7 +806,7 @@ numDocAddBenefInput.addEventListener("input", function(event) {
 
       phoneInput4.addEventListener("input", function(event) {
         var phone = event.target.value;
-        
+
         // Eliminar cualquier carácter que no sea un número
         phone = phone.replace(/\D/g, '');
 
@@ -816,11 +816,11 @@ numDocAddBenefInput.addEventListener("input", function(event) {
         }
 
         event.target.value = phone; // Actualizar el valor del campo con los caracteres válidos
-          
+
         if (phone.length > 8 && phone.length <= 12) {
           // El número de teléfono tiene 9-12 dígitos
           phoneInput.setCustomValidity("");
-          
+
         } else {
           // El número de teléfono no tiene 9-12 dígitos
           phoneInput.setCustomValidity("Ingrese un número de teléfono válido 9-12 dígitos");
@@ -834,7 +834,7 @@ boton.addEventListener("click",function(){
   var numDocInput = document.getElementById("numDocPros");
   var numDocValue = numDocInput.value.trim();
   var collapseOne = document.getElementById("collapseOne");
-  
+
   var nombreProspInput = document.getElementById("nombreProsp");
   var nombreProspValue = nombreProspInput.value.trim();
 
@@ -849,7 +849,7 @@ boton.addEventListener("click",function(){
 
   var telf1ProspInput = document.getElementById("telf1Prosp");
   var telf1ProspValue = telf1ProspInput.value.trim();
-  
+
   // // Validación para el campo "Núm. de Documento"
   // var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
   // if (!numDocRegex.test(numDocValue)) {
@@ -925,13 +925,13 @@ boton.addEventListener("click",function(){
     flgJuridico2 = '';
   if(document.getElementById("tipoDocProsp").value == 'DI004'){
     flgJuridico = 'SI';
-    
+
   }else{
     flgJuridico = 'NO';
   }
   if(document.getElementById("tipoDoc2tit").value ==  'DI004'){
     flgJuridico2 = 'SI';
-    
+
   }else{
     flgJuridico2 = 'NO';
   }
@@ -1006,7 +1006,7 @@ boton.addEventListener("click",function(){
   console.log(filasArrayBenef);
 
   $.ajax({
-    url: '../api/guardaProspecto', 
+    url: '../api/guardaProspecto',
     method: "PUT",
     crossDomain: true,
     dataType: 'json',
@@ -1019,33 +1019,33 @@ boton.addEventListener("click",function(){
       });
 
         if (filasArrayBenef.length > 0) {
-        
+
           $.ajax({
-              url: '../api/guardaBeneficiario', 
+              url: '../api/guardaBeneficiario',
               method: "PUT",
               crossDomain: true,
               dataType: 'json',
               data:{'beneficiarios':filasArrayBenef},
               success: function(respuesta){
-                  console.log(respuesta);   
+                  console.log(respuesta);
               },//success
               error(e){
                   console.log(e.message);
               }//error
           });
-  
+
         }
 
         if (obsvContacto != '') {
-      
+
           $.ajax({
-              url: '../api/guardaObservacion', 
+              url: '../api/guardaObservacion',
               method: "PUT",
               crossDomain: true,
               dataType: 'json',
               data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
               success: function(respuesta){
-                  console.log(respuesta);   
+                  console.log(respuesta);
               },//success
               error(e){
                   console.log(e.message);
@@ -1063,7 +1063,7 @@ boton.addEventListener("click",function(){
         }).then((result) => {
           if (result.isConfirmed) {
             window.location.href = "listado";
-          } 
+          }
         })
 
     },//success
