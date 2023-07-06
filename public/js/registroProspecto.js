@@ -608,25 +608,23 @@ tablaObsv.addEventListener("click", function(event) {
         var calificacion = fila.cells[1].innerText;
         var observaciones = fila.cells[2].innerText;
 
-        var boton = event.target;
-
         // Llamar a la función con los datos de la fila
-        tuFuncion(fechaContacto, calificacion, observaciones, boton);
+        tuFuncion(fechaContacto, calificacion, observaciones, fila.rowIndex);
     }
 });
 
 // Función a la que se llama con los datos de la fila
-function tuFuncion(fechaContacto, calificacion, observaciones, boton) {
+var modal; // Variable para almacenar el elemento modal
 
+function tuFuncion(fechaContacto, calificacion, observaciones, filaIndex) {
     document.getElementById('btnUpdContacto').removeAttribute('hidden');
     document.getElementById('btnAddContacto').setAttribute('hidden', 'true');
 
     // Obtener el modal y los campos de entrada
-    var modal = document.getElementById("ModalRegistro");
+    modal = document.getElementById("ModalRegistro");
     var inputFecha = document.getElementById("fchContacto");
-    var inputCalificacion = document.getElementById("califAddContacto");// Establecer la opción seleccionada en el select
+    var inputCalificacion = document.getElementById("califAddContacto");
     var inputObservaciones = document.getElementById("obsvAddContacto");
-
 
     // Llenar los campos de entrada con los datos de la fila
     inputFecha.value = fechaContacto;
@@ -638,16 +636,31 @@ function tuFuncion(fechaContacto, calificacion, observaciones, boton) {
     }
     inputObservaciones.value = observaciones;
 
+    // Asignar el número de fila al atributo "data-fila" del modal
+    modal.setAttribute("data-fila", filaIndex);
+
     // Abrir el modal
-    var modalBootstrap = bootstrap.Modal.getInstance(modal);
+    var modalBootstrap = new bootstrap.Modal(modal);
     modalBootstrap.show();
-
-
-    // Hacer algo con los datos de la fila
-    // console.log("Fecha de contacto:", fechaContacto);
-    // console.log("Calificación:", calificacion);
-    // console.log("Observaciones:", observaciones);
 }
-document.getElementById('btnUpdContacto').addEventListener('click', function () {
-    alert('entro en funcion de modificacion ');
-})
+
+document.getElementById('btnUpdContacto').addEventListener('click', function() {
+    // Obtener los campos de entrada
+    var inputFecha = document.getElementById("fchContacto");
+    var inputCalificacion = document.getElementById("califAddContacto");
+    var inputObservaciones = document.getElementById("obsvAddContacto");
+
+    // Obtener la fila correspondiente al botón de editar
+    var filaIndex = modal.getAttribute("data-fila");
+
+    // Actualizar la fila correspondiente en la tabla original
+    var filaOriginal = document.querySelector("#tablaObsv tr:nth-child(" + filaIndex+ ")");
+    filaOriginal.cells[0].innerText = inputFecha.value;
+    filaOriginal.cells[1].innerText = inputCalificacion.options[inputCalificacion.selectedIndex].textContent;
+    filaOriginal.cells[2].innerText = inputObservaciones.value;
+
+    // Cerrar el modal
+    var modalBootstrap = new bootstrap.Modal(modal);
+    modalBootstrap.hide();
+});
+
