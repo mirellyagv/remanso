@@ -26,6 +26,11 @@
           <span class="item-menu">Registro de Ventas</span>
         </a>
       </li><br>
+      <li class="nav-item">
+        <a href="{{route('telereporte.listado')}}">
+          <span class="item-menu">Telereportes</span>
+        </a>
+      </li><br>
       @endif
       @if (session('flg_administrador')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
       

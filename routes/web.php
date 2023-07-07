@@ -49,6 +49,12 @@ Route::name('ventas.')->prefix('/ventas')->group(function(){
     Route::view('autorizacion', 'ventas.autorizacion')->name('autorizacion');
 });
 
+
+Route::name('telereporte.')->prefix('/telereporte')->group(function(){
+    Route::view('registro', 'telereporte.registro')->name('registro');
+    Route::view('listado', 'telereporte.listado')->name('listado');
+    Route::view('actualizar', 'telereporte.actualizar')->name('actualizar');
+});
 //----------------APIs--------------------------------------
 
 Route::get('api/logueo', [APIController::class, 'logueo'])->name('api.logueo');
@@ -63,6 +69,10 @@ Route::put('api/editarProspecto', [APIController::class, 'editarProspecto'])->na
 Route::put('api/editarEstadoProspecto', [APIController::class, 'editarEstadoProspecto'])->name('api.editarEstadoProspecto');
 Route::put('api/InsertarProspectoServicio', [APIController::class, 'InsertarProspectoServicio'])->name('api.InsertarProspectoServicio');
 Route::put('api/ActualizarContratoFirmado', [APIController::class, 'ActualizarContratoFirmado'])->name('api.ActualizarContratoFirmado');
+Route::get('lista/ListaTelereporte', [ListaController::class, 'ListaTelereporte'])->name('api.ListaTelereporte');
+Route::put('api/AnularTelereporte', [APIController::class, 'AnularTelereporte'])->name('api.AnularTelereporte');
+Route::put('api/InsertarTelereporte', [APIController::class, 'InsertarTelereporte'])->name('api.InsertarTelereporte');
+Route::put('api/ActualizarTelereporte', [APIController::class, 'ActualizarTelereporte'])->name('api.ActualizarTelereporte');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');
@@ -92,7 +102,12 @@ Route::get('lista/MuestraListaInteres', [ListaController::class, 'MuestraListaIn
 Route::get('lista/MuestraListaContratoFirmante', [ListaController::class, 'MuestraListaContratoFirmante'])->name('lista.MuestraListaContratoFirmante');
 Route::get('lista/ObtenerDocumentoPuente', [ListaController::class, 'ObtenerDocumentoPuente'])->name('lista.ObtenerDocumentoPuente');
 Route::get('lista/EliminarDocumentoPuente', [ListaController::class, 'EliminarDocumentoPuente'])->name('lista.EliminarDocumentoPuente');
-
+Route::get('lista/MuestraAgencia', [ListaController::class, 'MuestraAgencia'])->name('lista.MuestraAgencia');
+Route::get('lista/MuestraLugarDeceso', [ListaController::class, 'MuestraLugarDeceso'])->name('lista.MuestraLugarDeceso');
+Route::get('lista/MuestraOrigen', [ListaController::class, 'MuestraOrigen'])->name('lista.MuestraOrigen');
+Route::get('lista/MuestraResultado', [ListaController::class, 'MuestraResultado'])->name('lista.MuestraResultado');
+Route::get('lista/MuestraAgenciaFiltro', [ListaController::class, 'MuestraAgenciaFiltro'])->name('lista.MuestraAgenciaFiltro');
+Route::get('lista/ObtenerTelereporte', [ListaController::class, 'ObtenerTelereporte'])->name('lista.ObtenerTelereporte');
 
 //-------------------------MOSTRAR DATOS--------------------------------------------
 

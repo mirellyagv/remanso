@@ -54,6 +54,16 @@ class VerifyCsrfToken extends Middleware
         'api/ObtenerContratoServicioPrincipal',
         'lista/ObtenerDocumentoPuente',
         'lista/EliminarDocumentoPuente',
-
+        'lista/MuestraAgencia',
+        'lista/MuestraLugarDeceso',
+        'lista/MuestraOrigen',
+        'lista/MuestraResultado',
+        'lista/MuestraAgenciaFiltro',
+        'lista/ListaListaTelereporte',
+        'api/AnularTelereporte',
+        'api/InsertarTelereporte',
+        'api/ActualizarTelereporte',
+        'lista/ObtenerTelereporte',
+        
     ];
 }

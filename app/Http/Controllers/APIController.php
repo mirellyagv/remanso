@@ -489,4 +489,92 @@ class APIController extends Controller
         }
     }
 
+
+    public function AnularTelereporte(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['telereporte']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/AnularTelereporte/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+
+            $promise->wait();
+            $mensaje= 'Actualizado';
+            return $mensaje;
+
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+    }
+
+
+    public function InsertarTelereporte(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['telereporte']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/InsertarTelereporte/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            
+            $promise->wait();
+            //$codProspecto = APIController::obtenerUltimoProspecto();
+            //return $codProspecto;
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ActualizarTelereporte(Request $request)
+    {
+        $client = new Client();
+        $data = json_encode($request['telereporte']);
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ActualizarTelereporte/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            
+            $promise->wait();
+            //$codProspecto = APIController::obtenerUltimoProspecto();
+            //return $codProspecto;
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }
