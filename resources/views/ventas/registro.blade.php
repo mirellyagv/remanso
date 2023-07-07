@@ -75,19 +75,19 @@
                             <label for="inputText" class="col-form-label">Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="nombresRegVta" id="nombresRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="nombresRegVta" id="nombresRegVta">
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apellPRegVta" id="apellPRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellPRegVta" id="apellPRegVta">
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apellMRegVta" id="apellMRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellMRegVta" id="apellMRegVta">
                           </div>
                         </div>
                       </div>
@@ -197,19 +197,19 @@
                             <label for="inputText" class="col-form-label">Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="nombres2doRegVta" id="nombres2doRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="nombres2doRegVta" id="nombres2doRegVta">
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apellP2doRegVta" id="apellP2doRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellP2doRegVta" id="apellP2doRegVta">
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apellM2doRegVta" id="apellM2doRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellM2doRegVta" id="apellM2doRegVta">
                           </div>
                         </div>
                       </div>
@@ -319,19 +319,19 @@
                             <label for="inputText" class="col-form-label">Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="nombresAval" id="nombresAval">
+                            <input type="text" class="form-control form-remanso letras-only" name="nombresAval" id="nombresAval">
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apellPAval" id="apellPAval">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellPAval" id="apellPAval">
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apellMAval" id="apellMAval">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellMAval" id="apellMAval">
                           </div>
                         </div>
                       </div>
@@ -737,19 +737,19 @@
               <label for="inputText" class="col-form-label">Nombres:</label>
             </div>
             <div class="col-md-9 mb-3">
-              <input type="text" class="form-control form-remanso" name="nombresAddBenef" id="nombresAddBenef">
+              <input type="text" class="form-control form-remanso letras-only" name="nombresAddBenef" id="nombresAddBenef">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Apellido Paterno: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="apellPAddBenef" id="apellPAddBenef">
+              <input type="text" class="form-control form-remanso letras-only" name="apellPAddBenef" id="apellPAddBenef">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Apellido Materno: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="apellMAddBenef" id="apellMAddBenef">
+              <input type="text" class="form-control form-remanso letras-only" name="apellMAddBenef" id="apellMAddBenef">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
@@ -835,7 +835,16 @@
 //         loader.style.display = 'none';
 //       }, 2000);
 //     });
+//------------------------valida letras-------------------------------
+var inputs = document.getElementsByClassName("letras-only");
 
+for (var i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener("input", function() {
+    var valor = this.value;
+    var soloLetras = valor.replace(/[^A-Za-z\s]/g, "");
+    this.value = soloLetras;
+  });
+}
 
 // ----------------------Valida correo---------------------------------
 var emailInput = document.getElementById("correoRegVta");

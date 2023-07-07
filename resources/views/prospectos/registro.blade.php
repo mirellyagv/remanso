@@ -41,7 +41,7 @@
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" required name="numDocPros"
+                          <input type="text" class="form-control form-remanso align-right " required name="numDocPros"
                             id="numDocPros">
                           {{-- <div class="a invalid-feedback">
                             Debe tener 9 números.
@@ -54,7 +54,7 @@
                             <label for="inputText" class="col-form-label">Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="nombreProsp"
+                            <input type="text" class="form-control form-remanso letras-only" name="nombreProsp"
                               id="nombreProsp" required>
                             {{-- <div class="b invalid-feedback">
                               El nombre no puede estar vacío.
@@ -64,7 +64,7 @@
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apellPProsp"
+                            <input type="text" class="form-control form-remanso letras-only" name="apellPProsp"
                               id="apellPProsp" required>
                             {{-- <div class="c invalid-feedback">
                               El apellido no puede estar vacío.
@@ -74,7 +74,7 @@
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apellMProsp" id="apellMProsp"
+                            <input type="text" class="form-control form-remanso letras-only" name="apellMProsp" id="apellMProsp"
                               required>
                             {{-- <div class="d invalid-feedback">
                               El apellido no puede estar vacío.
@@ -244,19 +244,19 @@
                             <label for="inputText" class="col-form-label">Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="nombre2Tit" id="nombre2Tit">
+                            <input type="text" class="form-control form-remanso letras-only" name="nombre2Tit" id="nombre2Tit">
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apelP2tit" id="apelP2tit">
+                            <input type="text" class="form-control form-remanso letras-only" name="apelP2tit" id="apelP2tit">
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso" name="apelM2tit" id="apelM2tit">
+                            <input type="text" class="form-control form-remanso letras-only" name="apelM2tit" id="apelM2tit">
                           </div>
                         </div>
                       </div>
@@ -266,7 +266,7 @@
                             <label for="inputText" class="col-form-label">Razón social:</label>
                           </div>
                           <div class="col-md-9 mb-3">
-                            <input type="text" class="form-control form-remanso" name="ruc2Tit" id="ruc2Tit">
+                            <input type="text" class="form-control form-remanso " name="ruc2Tit" id="ruc2Tit">
                           </div>
                         </div>
                       </div>
@@ -475,19 +475,19 @@
               <label for="inputText" class="col-form-label">Nombres:</label>
             </div>
             <div class="col-md-9 mb-3">
-              <input type="text" class="form-control form-remanso" name="nombresAddBenef" id="nombresAddBenef">
+              <input type="text" class="form-control form-remanso letras-only" name="nombresAddBenef" id="nombresAddBenef">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Apellido Paterno: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="apellPAddBenef" id="apellPAddBenef">
+              <input type="text" class="form-control form-remanso letras-only" name="apellPAddBenef" id="apellPAddBenef">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Apellido Materno: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="apellMAddBenef" id="apellMAddBenef">
+              <input type="text" class="form-control form-remanso letras-only" name="apellMAddBenef" id="apellMAddBenef">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
@@ -599,6 +599,17 @@ document.getElementById("fechaContacto").value = fechaActual;
     locale:"es",
     dateFormat: "d-m-Y"
   });
+
+//------------------------valida letras-------------------------------
+var inputs = document.getElementsByClassName("letras-only");
+
+for (var i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener("input", function() {
+    var valor = this.value;
+    var soloLetras = valor.replace(/[^A-Za-z\s]/g, "");
+    this.value = soloLetras;
+  });
+}
 
 // ----------------------Valida correo---------------------------------
     var emailInput = document.getElementById("correoProsp");
