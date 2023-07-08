@@ -74,6 +74,7 @@ Route::get('lista/ListaTelereporte', [ListaController::class, 'ListaTelereporte'
 Route::put('api/AnularTelereporte', [APIController::class, 'AnularTelereporte'])->name('api.AnularTelereporte');
 Route::put('api/InsertarTelereporte', [APIController::class, 'InsertarTelereporte'])->name('api.InsertarTelereporte');
 Route::put('api/ActualizarTelereporte', [APIController::class, 'ActualizarTelereporte'])->name('api.ActualizarTelereporte');
+Route::get('api/ValidarCoincidenciaDocumento', [APIController::class, 'ValidarCoincidenciaDocumento'])->name('api.ValidarCoincidenciaDocumento');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');

@@ -911,7 +911,7 @@ window.onload= function () {
                       fecha = word['fch_contacto'].split("T");
                       fila += '<tr>'+
                       '<td><input type="date" class="fechaTabla" id="'+result['num_linea']+'" value="'+fecha[0]+'" ></td>'+
-                      '<td>se<input type="text" name="" id="" value="'+word['dsc_calificacion']+'"></td>'+
+                      '<td><input type="text" name="" id="" value="'+word['dsc_calificacion']+'"></td>'+
                       '<td><input type="text" name="" id="" value="'+word['dsc_observaciones']+'"></td>'+
                       '<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
                     '</tr>';

@@ -619,4 +619,29 @@ class APIController extends Controller
         }
     }
 
+    public function ValidarCoincidenciaDocumento(Request $request)
+    {
+        $client = new Client();
+        $documento= $request['dscDocumento'];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ValidarCoincidenciaDocumento/20396900719/'.$documento);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            
+            $promise->wait();
+            //$codProspecto = APIController::obtenerUltimoProspecto();
+            //return $codProspecto;
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

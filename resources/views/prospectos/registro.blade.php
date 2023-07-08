@@ -390,7 +390,7 @@
                   <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <br>
-                      <div class="row">
+                      {{-- <div class="row">
                         <div class="col-md-12">
                           <div class="row">
                             <div class="col-md-3 offset-md-9">
@@ -415,8 +415,39 @@
                               </tbody>
                             </table>
                           </div>
+
+
+
+                        </div>
+                      </div> --}}
+                      <input type="hidden" id="abreModalContacto">
+                      <input type="hidden" id="tablaObsv">
+                      <input type="hidden" id="btnUpdContacto">
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Fecha de contacto:</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" readonly value="" name="fchContacto" id="fchContacto">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Calificación: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="califContacto" id="califContacto" class="form-select form-remanso">
+                          </select>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Observaciones:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <textarea class="form-control form-remanso" name="obsvContacto" id="obsvContacto"
+                            rows="5"></textarea>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -928,8 +959,9 @@ boton.addEventListener("click",function(){
   // }
   // if (telf1ProspValue.length === 9 || /^\d{9}$/.test(telf1ProspValue)){var invalidFeedbacktelf1Prosp = document.querySelector("#collapseOne .f.invalid-feedback");invalidFeedbacktelf1Prosp.style.display = "none";}
 
-
-
+  fchContacto = document.getElementById('fchContacto').value;
+  obsvContacto = document.getElementById('obsvContacto').value;
+  califContacto = document.getElementById('califContacto').value;
 
   var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
     flgJuridico = '';
@@ -1017,71 +1049,92 @@ boton.addEventListener("click",function(){
   console.log(filasArrayBenef);
 
   $.ajax({
-    url: '../api/guardaProspecto',
-    method: "PUT",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'prospecto':prospecto},
-    success: function(respuesta){
-      var codProspecto = respuesta['response']['cod_prospecto'];
-      var fchContacto = document.getElementById("fch_contacto");
-      filasArrayBenef.forEach(function (fila) {
-        fila['cod_prospecto'] = codProspecto;
-      });
+      url: '../api/ValidarCoincidenciaDocumento',
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'dscDocumento':document.getElementById("numDocPros").value},
+      success: function(respuesta){
+        console.log(respuesta);
+        if (respuesta['response']['ctd_coincidencia'] > 0) {
+          numDocProsInput.setCustomValidity("Documento duplicado"); // Mostrar mensaje de error
+          numDocProsInput.reportValidity(); // Mostrar el mensaje de error
+          Swal.fire({
+            title:'Error!',
+            text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+            icon:'warning',
+            confirmButtonColor: '#35B44A',
+          }) 
 
-        if (filasArrayBenef.length > 0) {
-
+        }else{
           $.ajax({
-              url: '../api/guardaBeneficiario',
-              method: "PUT",
-              crossDomain: true,
-              dataType: 'json',
-              data:{'beneficiarios':filasArrayBenef},
-              success: function(respuesta){
-                  console.log(respuesta);
-              },//success
-              error(e){
-                  console.log(e.message);
-              }//error
+            url: '../api/guardaProspecto',
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'prospecto':prospecto},
+            success: function(respuesta){
+              var codProspecto = respuesta['response']['cod_prospecto'];
+              var fchContacto = document.getElementById("fch_contacto");
+              filasArrayBenef.forEach(function (fila) {
+                fila['cod_prospecto'] = codProspecto;
+              });
+
+                if (filasArrayBenef.length > 0) {
+
+                  $.ajax({
+                      url: '../api/guardaBeneficiario',
+                      method: "PUT",
+                      crossDomain: true,
+                      dataType: 'json',
+                      data:{'beneficiarios':filasArrayBenef},
+                      success: function(respuesta){
+                          console.log(respuesta);
+                      },//success
+                      error(e){
+                          console.log(e.message);
+                      }//error
+                  });
+
+                }
+
+                if (obsvContacto != '') {
+
+                  $.ajax({
+                      url: '../api/guardaObservacion',
+                      method: "PUT",
+                      crossDomain: true,
+                      dataType: 'json',
+                      data:{'cod_prospecto':codProspecto,'cod_calificacion': califContacto,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+                      success: function(respuesta){
+                          console.log(respuesta);
+                      },//success
+                      error(e){
+                          console.log(e.message);
+                      }//error
+                  });
+
+                }
+
+                Swal.fire({
+                  title: 'Guardado',
+                  text: codProspecto,
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar',
+                  confirmButtonColor: '#35B44A',
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = "listado";
+                  }
+                })
+            }
           });
-
         }
-
-        if (obsvContacto != '') {
-
-          $.ajax({
-              url: '../api/guardaObservacion',
-              method: "PUT",
-              crossDomain: true,
-              dataType: 'json',
-              data:{'cod_prospecto':codProspecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
-              success: function(respuesta){
-                  console.log(respuesta);
-              },//success
-              error(e){
-                  console.log(e.message);
-              }//error
-          });
-
-        }
-
-        Swal.fire({
-          title: 'Guardado',
-          text: codProspecto,
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#35B44A',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = "listado";
-          }
-        })
-
-    },//success
-    error(e){
-        console.log(e.message);
-    }//error
-  });
+      },//success
+      error(e){
+          console.log(e.message);
+      }//error
+    });
 
 
 });

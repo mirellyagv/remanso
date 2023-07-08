@@ -345,16 +345,34 @@ $( document ).ready(function() {
           success: function(respuesta){
               $("#califProsp").append('<option value="" selected disabled>SELECCIONE...</option>');
               $("#califAddContacto").append('<option value="" selected disabled>SELECCIONE...</option>');
+              $("#califContacto").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
               seleccion = '';
               $("#califProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
               $("#califAddContacto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
+              $("#califContacto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
           },//success
           error(e){
               console.log(e.message);
           }//error
       });
+
+      // Obtener la fecha actual
+      var fechaActual = new Date();
+
+      // Obtener los componentes de la fecha
+      var dia = fechaActual.getDate();
+      var mes = fechaActual.getMonth() + 1; // Los meses en JavaScript son indexados desde 0
+      var anio = fechaActual.getFullYear();
+
+      // Formatear la fecha en formato dd-mm-aaaa
+      var fechaFormateada = (dia < 10 ? '0' + dia : dia) + '-' + (mes < 10 ? '0' + mes : mes) + '-' + anio;
+
+      // Asignar la fecha formateada al valor del input text
+      var inputFecha = document.getElementById('fchContacto');
+      inputFecha.value = fechaFormateada;
+
 
   });
 
