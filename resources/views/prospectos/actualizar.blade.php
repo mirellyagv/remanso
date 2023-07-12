@@ -927,6 +927,7 @@ window.onload= function () {
 //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
+  boton.setAttribute('disabled','disabled');
 
   var numDocInput = document.getElementById("numDocPros");
   var numDocValue = numDocInput.value.trim();
@@ -978,6 +979,7 @@ boton.addEventListener("click",function(){
   }else{
     flgJuridico2 = 'NO';
   }
+  var cod_prospecto = document.getElementById("codProsp").value; 
   var prospecto = {
     'cod_prospecto': cod_prospecto,
     'dsc_prospecto': nombres,
@@ -1050,7 +1052,7 @@ boton.addEventListener("click",function(){
 
   Swal.fire({
     title: 'Esta seguro que quiere Actualizar este prospecto?',
-    text: codigo+' '+nombre,
+    text: cod_prospecto+' '+nombres,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#35B44A',
@@ -1065,10 +1067,10 @@ boton.addEventListener("click",function(){
       dataType: 'json',
       data:{'prospecto':prospecto},
       success: function(respuesta){
-        console.log(respuesta);
+        console.log('respuesta',respuesta);
           Swal.fire({
             title: 'Actualizado',
-            text: codProspecto,
+            text: cod_prospecto,
             icon: 'success',
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#35B44A',
@@ -1079,13 +1081,14 @@ boton.addEventListener("click",function(){
           })
         },//success
         error(e){
-            console.log(e.message);
+            console.log('mensaje error',e.message);
             Swal.fire({
               title:'Error!',
               text:'Ha ocurrido un error, por favor intentelo mas tarde.',
               icon:'warning',
               confirmButtonColor: '#35B44A',
             })
+            btnSolicitar.removeAttribute('disabled');
         }//error
       });
     }

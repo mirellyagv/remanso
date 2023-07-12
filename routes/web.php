@@ -111,6 +111,7 @@ Route::get('lista/MuestraOrigen', [ListaController::class, 'MuestraOrigen'])->na
 Route::get('lista/MuestraResultado', [ListaController::class, 'MuestraResultado'])->name('lista.MuestraResultado');
 Route::get('lista/MuestraAgenciaFiltro', [ListaController::class, 'MuestraAgenciaFiltro'])->name('lista.MuestraAgenciaFiltro');
 Route::get('lista/ObtenerTelereporte', [ListaController::class, 'ObtenerTelereporte'])->name('lista.ObtenerTelereporte');
+Route::get('lista/ListarProspectoServicio', [ListaController::class, 'ListarProspectoServicio'])->name('lista.ListarProspectoServicio');
 
 //-------------------------MOSTRAR DATOS--------------------------------------------
 
@@ -119,3 +120,4 @@ Route::get('api/ListarProspectoBeneficiario', [APIController::class, 'ListarPros
 Route::get('api/ListarProspectoContacto', [APIController::class, 'ListarProspectoContacto'])->name('api.ListarProspectoContacto');
 Route::get('api/ObtenerContratoServicioPrincipal', [APIController::class, 'ObtenerContratoServicioPrincipal'])->name('api.ObtenerContratoServicioPrincipal');
 Route::get('api/ObtenerContratoServicioPrincipal', [APIController::class, 'ObtenerContratoServicioPrincipal'])->name('api.ObtenerContratoServicioPrincipal');
+

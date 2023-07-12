@@ -66,6 +66,7 @@ class VerifyCsrfToken extends Middleware
         'api/InsertarTelereporte',
         'api/ActualizarTelereporte',
         'lista/ObtenerTelereporte',
+        'lista/ListarProspectoServicio',
         'api/ValidarCoincidenciaDocumento',
         
     ];

@@ -145,7 +145,7 @@ class APIController extends Controller
                     }
                 }
             }
-            echo response()->json(['status' => $code, 'data' => $responseData, 'message' => $message ?? null]);
+            echo response()->json(['status' => $code ?? null, 'data' => $responseData, 'message' => $message ?? null]);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -228,7 +228,7 @@ class APIController extends Controller
             
             $promise->wait();
             $mensaje= 'Actualizado';
-            return $mensaje;
+           // return $mensaje;
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
