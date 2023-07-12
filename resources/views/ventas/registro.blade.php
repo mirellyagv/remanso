@@ -1165,7 +1165,7 @@ impCuoiInput.addEventListener("input", function(event) {
   var inputValue = impCuoiInput.value;
   
   // Eliminar caracteres no numéricos
-  inputValue = inputValue.replace(/\D/g, '');
+  inputValue = inputValue.replace(/[^0-9.]/g, '');
   
   // Actualizar el valor del campo
   impCuoiInput.value = inputValue;
@@ -1177,7 +1177,7 @@ impFomaInput.addEventListener("input", function(event) {
   var inputValue = impFomaInput.value;
   
   // Eliminar caracteres no numéricos
-  inputValue = inputValue.replace(/\D/g, '');
+  inputValue = inputValue.replace(/[^0-9.]/g, '');
   
   // Actualizar el valor del campo
   impFomaInput.value = inputValue;
@@ -1599,7 +1599,7 @@ boton.addEventListener("click",function(){
             }).then((result) => {
               /* Read more about isConfirmed, isDenied below */
               if (result.isConfirmed) {
-                window.location.href = "listado";
+                window.location.href = "../listado";
               }  
             })
     
