@@ -708,6 +708,31 @@ numDocProsInput.addEventListener("input", function(event) {
 
 });
 
+numDocProsInput.addEventListener("blur", function(event) {
+  $.ajax({
+    url: '../api/ValidarCoincidenciaDocumento',
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'dscDocumento':document.getElementById("numDocPros").value},
+    success: function(respuesta){
+      //console.log(respuesta);
+      if (respuesta['response']['ctd_coincidencia'] > 0) {
+        Swal.fire({
+          title:'Error!',
+          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+          icon:'warning',
+          confirmButtonColor: '#35B44A',
+        }) 
+        numDocProsInput.blur();
+      }
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });
+});
+
 var numDoc2titInput = document.getElementById("numDoc2tit");
 
 numDoc2titInput.addEventListener("input", function(event) {
@@ -1046,96 +1071,63 @@ boton.addEventListener("click",function(){
     'num_nivel': 0,
     'cod_tipo_necesidad': 'NF'
   };
-  console.log(filasArrayBenef);
+  //console.log(filasArrayBenef);
 
-  $.ajax({
-      url: '../api/ValidarCoincidenciaDocumento',
-      method: "GET",
+    $.ajax({
+      url: '../api/guardaProspecto',
+      method: "PUT",
       crossDomain: true,
       dataType: 'json',
-      data:{'dscDocumento':document.getElementById("numDocPros").value},
+      data:{'prospecto':prospecto},
       success: function(respuesta){
-        console.log(respuesta);
-        if (respuesta['response']['ctd_coincidencia'] > 0) {
-          numDocProsInput.setCustomValidity("Documento duplicado"); // Mostrar mensaje de error
-          numDocProsInput.reportValidity(); // Mostrar el mensaje de error
-          Swal.fire({
-            title:'Error!',
-            text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
-            icon:'warning',
-            confirmButtonColor: '#35B44A',
-          }) 
-
-        }else{
+        var codProspecto = respuesta['response']['cod_prospecto'];
+        var fchContacto = document.getElementById("fch_contacto");
+        filasArrayBenef.forEach(function (fila) {
+          fila['cod_prospecto'] = codProspecto;
+        });
+        if (filasArrayBenef.length > 0) {
           $.ajax({
-            url: '../api/guardaProspecto',
+            url: '../api/guardaBeneficiario',
             method: "PUT",
             crossDomain: true,
             dataType: 'json',
-            data:{'prospecto':prospecto},
+            data:{'beneficiarios':filasArrayBenef},
             success: function(respuesta){
-              var codProspecto = respuesta['response']['cod_prospecto'];
-              var fchContacto = document.getElementById("fch_contacto");
-              filasArrayBenef.forEach(function (fila) {
-                fila['cod_prospecto'] = codProspecto;
-              });
-
-                if (filasArrayBenef.length > 0) {
-
-                  $.ajax({
-                      url: '../api/guardaBeneficiario',
-                      method: "PUT",
-                      crossDomain: true,
-                      dataType: 'json',
-                      data:{'beneficiarios':filasArrayBenef},
-                      success: function(respuesta){
-                          console.log(respuesta);
-                      },//success
-                      error(e){
-                          console.log(e.message);
-                      }//error
-                  });
-
-                }
-
-                if (obsvContacto != '') {
-
-                  $.ajax({
-                      url: '../api/guardaObservacion',
-                      method: "PUT",
-                      crossDomain: true,
-                      dataType: 'json',
-                      data:{'cod_prospecto':codProspecto,'cod_calificacion': califContacto,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
-                      success: function(respuesta){
-                          console.log(respuesta);
-                      },//success
-                      error(e){
-                          console.log(e.message);
-                      }//error
-                  });
-
-                }
-
-                Swal.fire({
-                  title: 'Guardado',
-                  text: codProspecto,
-                  icon: 'success',
-                  confirmButtonText: 'Aceptar',
-                  confirmButtonColor: '#35B44A',
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    window.location.href = "listado";
-                  }
-                })
-            }
+              console.log(respuesta);
+            },//success
+            error(e){
+              console.log(e.message);
+            }//error
           });
         }
-      },//success
-      error(e){
-          console.log(e.message);
-      }//error
-    });
-
+        if (obsvContacto != '') {
+          $.ajax({
+            url: '../api/guardaObservacion',
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'cod_prospecto':codProspecto,'cod_calificacion': califContacto,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+            success: function(respuesta){
+              console.log(respuesta);
+            },//success
+            error(e){
+              console.log(e.message);
+            }//error
+          });
+        }
+        Swal.fire({
+          title: 'Guardado',
+          text: codProspecto,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#35B44A',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "listado";
+          }
+        })
+      }
+    }); 
 
 });
 
