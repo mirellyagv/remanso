@@ -163,7 +163,7 @@ window.onload= function () {
                 var filaData = [
                     '<button class="btn btn-success BtnverdeRemanso form-remanso" id="btnVer" onclick="verDocumentos('+codCtto+')" name="btnVer" type="button" title="Ver Documentos"><span class="bi bi-file-pdf"></span></button>'+
                     '<button class="btn btn-secondary form-remanso" id="btnVer" onclick="verComprobante('+codCtto+')" name="btnVer" type="button" title="Ver Comprobante"><span class="bi bi-receipt"></span></button>'+
-                    '<button class="btn btn-primary BtnAzulORemanso form-remanso"  id="btnFirmar" onclick="firmaCtto('+codCtto+')" name="btnFirmar" type="button" title="Firmar"><span class="bi bi-vector-pen"></span></button>',
+                    '<button class="btn btn-primary BtnAzulORemanso form-remanso"  id="btnFirmar" onclick="firmaCtto('+codCtto+')" name="btnFirmar" type="button" title="Enviar a firmar"><span class="bi bi-vector-pen"></span></button>',
                     element['cod_contrato']+'-'+element['num_servicio'],
                     element['dsc_tipo_documento_cliente']+'-'+element['dsc_documento_cliente'],
                     element['dsc_cliente'],
