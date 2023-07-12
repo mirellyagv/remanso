@@ -1599,7 +1599,7 @@ boton.addEventListener("click",function(){
             }).then((result) => {
               /* Read more about isConfirmed, isDenied below */
               if (result.isConfirmed) {
-                window.location.href = "../listado";
+                window.location.href = "../prospectos/listado";
               }  
             })
     
