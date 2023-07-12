@@ -11,7 +11,7 @@
     @csrf
     <main class="main" id="main">
       <div class="pagetitle">
-        <h1>Modificar Telereporte</h1>
+        <h1>MODIFICAR TELEREPORTE</h1>
       </div>
       <div class="section dashboard">
         <div class="row">
@@ -48,9 +48,9 @@
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_nombres"
                               id="dsc_nombres" required>
-                            {{-- <div class="b invalid-feedback">
+                            <div class="a invalid-feedback">
                               El nombre no puede estar vacío.
-                            </div> --}}
+                            </div> 
                           </div>
 
                           <div class="col-md-3 mb-3">
@@ -69,9 +69,9 @@
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_apellido_paterno"
                               id="dsc_apellido_paterno" required>
-                            {{-- <div class="c invalid-feedback">
-                              El apellido no puede estar vacío.
-                            </div> --}}
+                            <div class="b invalid-feedback">
+                              El apellido paterno no puede estar vacío.
+                            </div> 
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
@@ -159,9 +159,9 @@
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_apellido_paterno_c" id="dsc_apellido_paterno_c" required>
-                            {{-- <div class="c invalid-feedback">
+                            <div class="d invalid-feedback">
                               El apellido paterno del contacto no puede estar vacío.
-                            </div> --}}
+                            </div> 
                         </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
@@ -187,19 +187,6 @@
                           </div>
                       </div>
 
-
-                      <div class="row">
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Dirección:</label>
-                        </div>
-                        <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="dsc_direccion_c" id="dsc_direccion_c">
-                        </div>
-                      </div>
-                      
-                      
-                     
-                      
                     </div>
                   </div>
                 </div>
@@ -220,12 +207,37 @@
                       
                      
                       <div class="row">
-                      <div class="col-md-3 mb-3">
+                        <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Origen: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="cod_origen" id="cod_origen" class="form-select form-remanso">
+                          <select name="cod_origen" id="cod_origen" class="form-select form-remanso" disabled>
+                          <option value="00001" selected>WEB</option>
+                          </select>
+                        </div>
 
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Estado : </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="flg_anulado" id="flg_anulado" class="form-select form-remanso" disabled>
+                            <option value="NO" selected>ACTIVO</option>
+                            <option value="SI">ANULADO</option>
+                          </select>
+                        </div>
+
+                        
+                      </div>
+
+                      <div class="row">
+
+                     
+
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Resultado: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="cod_resultado" id="cod_resultado" class="form-select form-remanso">
                           </select>
                         </div>
 
@@ -237,27 +249,7 @@
 
                           </select>
                         </div>
-                      </div>
-
-                      <div class="row">
-                      <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Resultado: </label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <select name="cod_resultado" id="cod_resultado" class="form-select form-remanso">
-
-                          </select>
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Estado : </label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <select name="flg_anulado" id="flg_anulado" class="form-select form-remanso" >
-                            <option value="NO" selected>ACTIVO</option>
-                            <option value="SI">ANULADO</option>
-                          </select>
-                        </div>
+                        
                       </div>
 
                       <div class="row">
@@ -363,7 +355,52 @@
 
 function ActualizarTelereporte(){
 
-    
+  var collapseOne = document.getElementById("collapseOne");
+  var collapseTwo = document.getElementById("collapseTwo");
+
+  var dsc_nombresInput = document.getElementById("dsc_nombres");
+  var dsc_nombresValue = dsc_nombresInput.value.trim();
+  
+  var dsc_apellido_paternoInput = document.getElementById("dsc_apellido_paterno");
+  var dsc_apellido_paternoValue = dsc_apellido_paternoInput.value.trim();
+ 
+  var dsc_nombres_cInput = document.getElementById("dsc_nombres_c");
+  var dsc_nombres_cValue = dsc_nombres_cInput.value.trim();
+  
+  var dsc_apellido_paterno_cInput = document.getElementById("dsc_apellido_paterno_c");
+  var dsc_apellido_paterno_cValue = dsc_apellido_paterno_cInput.value.trim();
+
+  
+  // // Validación
+   if (dsc_nombresValue === "") {
+    var acordeon = document.querySelector("#collapseOne .a.invalid-feedback");
+    collapseOne.classList.add("show");
+    dsc_nombresInput.focus();
+    acordeon.style.display = "block";
+     return;
+    }
+    if (dsc_apellido_paternoValue === "") {
+    var acordeon = document.querySelector("#collapseOne .b.invalid-feedback");
+    collapseOne.classList.add("show");
+    dsc_apellido_paternoInput.focus();
+    acordeon.style.display = "block";
+     return;
+    }
+
+    if (dsc_nombres_cValue === "") {
+    var acordeon = document.querySelector("#collapseTwo .c.invalid-feedback");
+    collapseTwo.classList.add("show");
+    dsc_nombres_cInput.focus();
+    acordeon.style.display = "block";
+     return;
+    }
+    if (dsc_apellido_paterno_cValue === "") {
+    var acordeon = document.querySelector("#collapseTwo .d.invalid-feedback");
+    collapseTwo.classList.add("show");
+    dsc_apellido_paterno_cInput.focus();
+    acordeon.style.display = "block";
+     return;
+    }
     
     var telereporte = {
 
@@ -384,7 +421,7 @@ function ActualizarTelereporte(){
     'dsc_apellido_materno_c': document.getElementById("dsc_apellido_materno_c").value,
     'dsc_nombres_c':  document.getElementById("dsc_nombres_c").value,
     'dsc_telefono_c': document.getElementById("dsc_telefono_c").value,
-    'dsc_direccion_c': document.getElementById("dsc_direccion_c").value,
+    'dsc_direccion_c': '',
     'dsc_observacion': document.getElementById("dsc_observacion").value,
     'flg_anulado': document.getElementById("flg_anulado").value,
     'flg_modificado': 'NO',
@@ -402,13 +439,13 @@ function ActualizarTelereporte(){
          
           Swal.fire({
           title: 'Guardado',
-          text: 'Registro ha sido actualizado exitosamente !!',
+          text: 'Registro actualizado exitosamente !!!',
           icon: 'success',
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#35B44A',
             }).then((result) => {
             if (result.isConfirmed) {
-                //window.location.href = "listado";
+                window.location.href = "listado";
             }
             })
         }
@@ -544,8 +581,29 @@ window.onload= function() {
         success: function(result){
             console.log(result);
 
+            var fch1 = new Date(result["response"]["fch_registro"]);
+            var fch_registro = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
+
+            var fch2 = new Date(result["response"]["fch_real_registro"]);
+            var fch_real_registro = fch2.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
+            
+            var fch_modificacion ='';
+            
+            if(result["response"]["fch_modificacion"]!='' )
+            {
+              var fch3 = new Date(result["response"]["fch_modificacion"]);
+              fch_modificacion = fch3.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
+            }
+            if(result["response"]["fch_modificacion"].trim ='01/01/1900HORA:00:00'.trim )
+            {
+              fch_modificacion=''
+            }
+           
+
+            document.getElementById("fch_registro").value=fch_registro;
+
             document.getElementById("num_reporte").value=result["response"]["num_reporte"];
-            document.getElementById("fch_registro").value=result["response"]["fch_registro"];
+            //document.getElementById("fch_registro").value=result["response"]["fch_registro"];
             document.getElementById("dsc_apellido_paterno").value=result["response"]["dsc_apellido_paterno"];
             document.getElementById("dsc_apellido_materno").value=result["response"]["dsc_apellido_materno"];
             document.getElementById("dsc_nombres").value=result["response"]["dsc_nombres"];
@@ -559,12 +617,12 @@ window.onload= function() {
             document.getElementById("dsc_apellido_materno_c").value=result["response"]["dsc_apellido_materno_c"];
             document.getElementById("dsc_nombres_c").value=result["response"]["dsc_nombres_c"];
             document.getElementById("dsc_telefono_c").value=result["response"]["dsc_telefono_c"];
-            document.getElementById("dsc_direccion_c").value=result["response"]["dsc_direccion_c"];
+            //document.getElementById("dsc_direccion_c").value=result["response"]["dsc_direccion_c"];
            
             document.getElementById("dsc_usuario_reg").value=result["response"]["dsc_usuario_reg"];
-            document.getElementById("fch_real_registro").value=result["response"]["fch_real_registro"];
+            document.getElementById("fch_real_registro").value=fch_real_registro;
             document.getElementById("dsc_usuario_modif").value=result["response"]["dsc_usuario_modif"];
-            document.getElementById("fch_modificacion").value=result["response"]["fch_modificacion"];
+            document.getElementById("fch_modificacion").value=fch_modificacion;
             
             
 

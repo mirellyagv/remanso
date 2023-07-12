@@ -843,13 +843,14 @@ class ListaController extends Controller
         $cod_agencia= $request['cod_agencia'];
         $dsc_beneficiario = $request['dsc_beneficiario'];
         $flg_anulado = $request['flg_anulado'];
+        $cod_resultado = $request['cod_resultado'];
 
         if($dsc_beneficiario==null || $dsc_beneficiario==''){$dsc_beneficiario='%';}
         if($cod_agencia==null || $cod_agencia==''){$cod_agencia='%';}
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ListarTelereporte/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_agencia.'/'.$dsc_beneficiario.'/'.$flg_anulado);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ListarTelereporte/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_agencia.'/'.$dsc_beneficiario.'/'.$flg_anulado.'/'.$cod_resultado);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();

@@ -72,6 +72,7 @@ Route::put('api/InsertarProspectoServicio', [APIController::class, 'InsertarPros
 Route::put('api/ActualizarContratoFirmado', [APIController::class, 'ActualizarContratoFirmado'])->name('api.ActualizarContratoFirmado');
 Route::get('lista/ListaTelereporte', [ListaController::class, 'ListaTelereporte'])->name('api.ListaTelereporte');
 Route::put('api/AnularTelereporte', [APIController::class, 'AnularTelereporte'])->name('api.AnularTelereporte');
+Route::put('api/ActivarTelereporte', [APIController::class, 'ActivarTelereporte'])->name('api.ActivarTelereporte');
 Route::put('api/InsertarTelereporte', [APIController::class, 'InsertarTelereporte'])->name('api.InsertarTelereporte');
 Route::put('api/ActualizarTelereporte', [APIController::class, 'ActualizarTelereporte'])->name('api.ActualizarTelereporte');
 Route::get('api/ValidarCoincidenciaDocumento', [APIController::class, 'ValidarCoincidenciaDocumento'])->name('api.ValidarCoincidenciaDocumento');

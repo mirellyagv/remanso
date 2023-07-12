@@ -62,6 +62,7 @@ class VerifyCsrfToken extends Middleware
         'lista/MuestraAgenciaFiltro',
         'lista/ListaListaTelereporte',
         'api/AnularTelereporte',
+        'api/ActivarTelereporte',
         'api/InsertarTelereporte',
         'api/ActualizarTelereporte',
         'lista/ObtenerTelereporte',

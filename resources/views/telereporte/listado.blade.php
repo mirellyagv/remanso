@@ -51,31 +51,44 @@
                       &nbsp;<span class="bi bi-search"></span></button>
                   </div>
 
-                 
-                 
                 </div>
+                 
+                
                 <div class="row">
-                  <div class="col-md-1 mb-3">
-                    <label for="inputText" class="col-form-label">Beneficiario:</label>
-                  </div>
-                  <div class="col-md-5 mb-3">
-                    <input type="text" class="form-control form-remanso align-left" name="dsc_benecifiario" id="dsc_benecifiario">
-                  </div>
+                  
                   <div class="col-md-1 mb-3">
                     <label for="inputText" class="col-form-label">Estado: </label>
                   </div>
-                  <div class="col-md-3 mb-3">
+                  <div class="col-md-2 mb-3">
                     <select name="flg_anulado" id="flg_anulado" class="form-control form-remanso">
                       <option value="%">[ TODOS ]</option>
                       <option value="NO" selected>ACTIVO</option>
                       <option value="SI">ANULADO</option>
                     </select>
                   </div>
+
+                  <div class="col-md-1 mb-3">
+                    <label for="inputText" class="col-form-label">Resultado: </label>
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <select name="cod_resultado" id="cod_resultado" class="form-control form-remanso">
+                    <option value="%" selected>[ TODOS ]</option>
+                    </select>
+                  </div>
+                    
+
+                  <div class="col-md-1 mb-3">
+                    <label for="inputText" class="col-form-label">Beneficiario:</label>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                      <input type="text" class="form-control form-remanso align-left" name="dsc_benecifiario" id="dsc_benecifiario">
+                  </div>
                   
                   <div class="col-1 mb-3 d-md-none d-block">
                     <button class="btn btn-secondary form-remanso" id="excelBtn1">Buscar &nbsp;<span
                         class="bi bi-search"></span></button>
                   </div>
+
                   <div class="col-md-2 mb-3 d-none d-md-block" style="text-align: end">
                     <button class="btn btn-success BtnverdeRemanso form-remanso" onclick="descargarTablaExcel()" id="btnExportar"><img
                         src="{{asset('images/icon-excel.svg')}}" alt="Bootstrap" width="20" height="20"></button>
@@ -192,6 +205,23 @@ flatpickr("#fchFin", {
         }//error
     });
 
+    $.ajax({
+        url: '../lista/MuestraResultado', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){
+                
+            respuesta['response'].forEach(function(word){
+                //console.log(word);
+                $("#cod_resultado").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
+
     BuscarTelereporte();
 };//ready
 
@@ -199,29 +229,36 @@ flatpickr("#fchFin", {
 function BuscarTelereporte() {
     $('#listaTelereporte').DataTable().clear();
     $('#listaTelereporte').DataTable().destroy();
+    
   $.ajax({
     url: '../lista/ListaTelereporte', 
     method: "GET",
     crossDomain: true,
     dataType: 'json',
-    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_agencia':$('#cod_agencia').val(), 'dsc_beneficiario':$('#dsc_beneficiario').val(), 'flg_anulado':$('#flg_anulado').val() },
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_agencia':$('#cod_agencia').val(), 'dsc_beneficiario':$('#dsc_beneficiario').val(), 'flg_anulado':$('#flg_anulado').val(), 'cod_resultado':$('#cod_resultado').val() },
     success: function(respuesta){
       // console.log('de funcion',respuesta)
         fila='';
+        
+
         respuesta['response'].forEach(function(word){          
        
-        var today = new Date(word['fch_registro']);
+        // obtener la fecha de hoy en formato `MM/DD/YYYY`
+        var fch1 = new Date(word['fch_registro']);
+        var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+
         var num_reporte= word['num_reporte'];
         var ref = '';
         ref = 'href="{{route('telereporte.actualizar')}}?Cod_reporte='+word['num_reporte']+'"'; 
-      
-        // obtener la fecha de hoy en formato `MM/DD/YYYY`
-       var dia = today.toLocaleDateString('es-ES');
+        
+           var boton_estado='<a class="btn btn-success BtnredRemanso form-remanso" onclick="AnularTelereporte('+num_reporte+');" title="Anular"><span class="bi bi-trash"></span></a>';
+           if(word['flg_anulado']=="SI"){var boton_estado='<a class="btn btn-success BtnrojoRemanso form-remanso" onclick="ActivarTelereporte('+num_reporte+');" title="Activar"><span class="bi bi-check"></span></a>';}
+
           fila += '<tr><td>'+
-              '<a class="btn btn-secondary form-remanso" '+ref+' title="Modificar"><span class="bi bi-clipboard-check" ></span></a>'+
-              '<a class="btn btn-success BtnrojoRemanso form-remanso" onclick="AnularTelereporte('+num_reporte+');" title="Anular"><span class="bi bi-trash"></span></a></td>'+
+              '<a class="btn btn-secondary form-remanso" '+ref+' title="Modificar"><span class="bi bi-pencil" ></span></a>'+
+              boton_estado+
               '<td>'+word['num_reporte']+'</td>'+
-              '<td>'+dia+'</td>'+
+              '<td>'+fch_registro1+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td>'+word['dsc_canal_venta']+'</td>'+
               '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_nombres']+'</td>'+
@@ -229,12 +266,16 @@ function BuscarTelereporte() {
               '<td>'+word['dsc_resultado']+'</td>'+
               
             '</tr>';
-
         });
+        //$('.status').css("color", "red");
         // console.log(fila);
         $('#bodyListadoTelereporte').html(fila);
         var totalRegistros = respuesta['response'].length;
         $('#totalRegistros').text(totalRegistros); // Actualiza el contador de totales en la tabla
+
+
+
+       
         // Inicializar DataTable dentro del bloque success
               $('#listaTelereporte').DataTable({
                 paging: true,
@@ -270,6 +311,8 @@ function BuscarTelereporte() {
         console.log(e.message);
     }//error
   });
+
+  
 };
 
 
@@ -335,9 +378,85 @@ function AnularTelereporte(num_reporte) {
 }
 
 
+
+
+
+function ActivarTelereporte(num_reporte) {
+    var cod_trabajador = "'"+'@php echo(session('cod_trabajador')) @endphp'+"'";
+
+    Swal.fire({
+      title: '¿Esta seguro que quiere Activar este telereporte?',
+      text: 'Código : '+num_reporte,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#35B44A',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var telereporte={
+          'num_reporte': num_reporte,
+          'cod_trabajador': cod_trabajador
+        }
+        $.ajax({
+          type : 'PUT',
+          url:'../api/ActivarTelereporte',
+          dataType: 'json',
+          data:{'telereporte':telereporte},
+          success: function(respuesta){
+            console.log(respuesta);  
+            Swal.fire({
+              title:'Exito!',
+              text:'Se ha activado el telereporte.',
+              icon:'success',
+              confirmButtonColor: '#35B44A',
+            }) ;
+
+            BuscarTelereporte();
+          },//success
+          error(e){
+              console.log(e.message);
+              // Swal.fire({
+              //   title:'Error!',
+              //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+              //   icon:'warning',
+              //   confirmButtonColor: '#35B44A',
+              // }) 
+              Swal.fire({
+              title:'Exito!',
+              text:'Se ha activado el telereporte.',
+              icon:'success',
+              confirmButtonColor: '#35B44A',
+              
+            }) 
+            BuscarTelereporte();
+          },//error
+
+        
+
+        });
+
+        
+      }
+    })//then
+ 
+}
+
+
+
+
 function IrRegistro() 
 {
     //window.open('http://remanso.test:8080/telereporte/registro');
     window.location.href = "registro";
 }
+
+
+function descargarTablaExcel() {
+  var tabla = document.getElementById('listaTelereporte');
+  var libro = XLSX.utils.table_to_book(tabla);
+  XLSX.writeFile(libro, 'tabla.xlsx');
+}
+
+
 </script>
