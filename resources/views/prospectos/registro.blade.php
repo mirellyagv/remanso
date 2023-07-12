@@ -637,7 +637,7 @@ var inputs = document.getElementsByClassName("letras-only");
 for (var i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener("input", function() {
     var valor = this.value;
-    var soloLetras = valor.replace(/[^A-Za-z\s]/g, "");
+    var soloLetras = valor.replace(/[^A-Za-zñÑ\s]/g, "");
     this.value = soloLetras;
   });
 }
