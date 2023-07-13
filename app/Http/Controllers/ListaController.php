@@ -555,7 +555,7 @@ class ListaController extends Controller
         try {
                           
             $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicioxFiltros/20396900719/LC001/'.$tipo_nec.'/2023-01-01/2023-12-12/'.$cod_tipo_recaudacion.'/'.$cod_subtipo_servicio.'/'.$cod_camposanto.'/'.$cod_plataforma.'/NO/NO');
-            //$request =new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicioxFiltros/20396900719/LC001/NI/2023-01-01/2023-06-12/TR002/SS005/CA002/1/NO/NO');
+
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

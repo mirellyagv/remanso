@@ -1,3 +1,6 @@
+@if (session('dsc_usuario')=='' || session('dsc_usuario')==null)
+    <script>window.location.href = "{{ route('logout') }}";</script>
+@endif
 <!DOCTYPE html>
 <html lang="es">
 <head>

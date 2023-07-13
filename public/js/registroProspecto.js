@@ -26,27 +26,27 @@ tipoDoc2.addEventListener("change",function (){
 $( document ).ready(function() {
   var pais1 = $(paisProspecto).val();
   $.ajax({
-        url: '../lista/MuestraPais',
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        success: function(respuesta){
-                respuesta['response'].forEach(function(word){
-                //console.log(word);
-                seleccion = '';
-                if(word['codvar'] == '00001'){
-                seleccion = 'selected';
-                }else{
-                seleccion = '';
-                }
-                $("#paisProspecto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
-                $("#pais2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
-            });
-        },//success
-        error(e){
-            console.log(e.message);
-        }//error
-    });
+    url: '../lista/MuestraPais',
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    success: function(respuesta){
+      respuesta['response'].forEach(function(word){
+        //console.log(word);
+        seleccion = '';
+        if(word['codvar'] == '00001'){
+          seleccion = 'selected';
+        }else{
+          seleccion = '';
+        }
+        $("#paisProspecto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
+        $("#pais2Tit").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
+      });
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error
+  });
 
 });
 

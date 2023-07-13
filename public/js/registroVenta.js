@@ -143,6 +143,7 @@ window.onload=function() {
             console.log(e.message);
         }//error
     });
+    
     //-----------------muestra select Tipo Servicio-----------
     $.ajax({
         url: '../lista/MuestraTipoServicio', 
@@ -218,7 +219,60 @@ window.onload=function() {
 
 }//onload
 
-  //-----------------muestra select Provincia-----------
+//---------------------bloquea distrito cuando pais!='PERU'---------------------------
+
+var verifPais = document.getElementById("paisRegVta");
+verifPais.addEventListener("change",function (){
+  if (verifPais.value != '00001') {
+    document.getElementById("dptoRegVta").value = '';
+    document.getElementById("dptoRegVta").setAttribute('disabled', 'disabled');
+    document.getElementById("provRegVta").value = '';
+    document.getElementById("provRegVta").setAttribute('disabled', 'disabled');
+    document.getElementById("dttoRegVta").value = '';
+    document.getElementById("dttoRegVta").setAttribute('disabled', 'disabled');
+  }else{
+    document.getElementById("dptoRegVta").removeAttribute('disabled');
+    document.getElementById("provRegVta").removeAttribute('disabled');
+    document.getElementById("dttoRegVta").removeAttribute('disabled');
+  }
+
+});
+
+var verifPais2 = document.getElementById("pais2doRegVta");
+verifPais2.addEventListener("change",function (){
+  if (verifPais2.value != '00001') {
+    document.getElementById("dpto2doRegVta").value = '';
+    document.getElementById("dpto2doRegVta").setAttribute('disabled', 'disabled');
+    document.getElementById("prov2doRegVta").value = '';
+    document.getElementById("prov2doRegVta").setAttribute('disabled', 'disabled');
+    document.getElementById("dtto2doRegVta").value = '';
+    document.getElementById("dtto2doRegVta").setAttribute('disabled', 'disabled');
+  }else{
+    document.getElementById("dpto2doRegVta").removeAttribute('disabled');
+    document.getElementById("prov2doRegVta").removeAttribute('disabled');
+    document.getElementById("dtto2doRegVta").removeAttribute('disabled');
+  }
+
+});
+
+var verifPaisA = document.getElementById("paisAval");
+verifPaisA.addEventListener("change",function (){
+  if (verifPaisA.value != '00001') {
+    document.getElementById("dptoAval").value = '';
+    document.getElementById("dptoAval").setAttribute('disabled', 'disabled');
+    document.getElementById("provAval").value = '';
+    document.getElementById("provAval").setAttribute('disabled', 'disabled');
+    document.getElementById("dttoAval").value = '';
+    document.getElementById("dttoAval").setAttribute('disabled', 'disabled');
+  }else{
+    document.getElementById("dptoAval").removeAttribute('disabled');
+    document.getElementById("provAval").removeAttribute('disabled');
+    document.getElementById("dttoAval").removeAttribute('disabled');
+  }
+
+});
+
+//-----------------muestra select Provincia-----------
   var coddptto = document.getElementById("dptoRegVta");
   coddptto.addEventListener("change",function (){
       codPais2 = document.getElementById("paisRegVta").value;
@@ -410,6 +464,43 @@ codcampo.addEventListener("change",function(){
     });
 });
 
+//-----------------bloquea espacios CREMACION-----------
+var codTipoProg = document.getElementById("tipoPrograma");
+codTipoProg.addEventListener("change",function(){
+    var valor = codTipoProg.value;
+    if (valor == 'TR004') {
+
+        document.getElementById("camposanto").value = '';
+        document.getElementById("camposanto").setAttribute('disabled', 'disabled');
+        document.getElementById("tipoPlat").value = '';
+        document.getElementById("tipoPlat").setAttribute('disabled', 'disabled');
+        document.getElementById("nombrePlat").value = '';
+        document.getElementById("nombrePlat").setAttribute('disabled', 'disabled');
+        document.getElementById("nombreArea").value = '';
+        document.getElementById("nombreArea").setAttribute('disabled', 'disabled');
+        document.getElementById("ejeX").value = '';
+        document.getElementById("ejeX").setAttribute('disabled', 'disabled');
+        document.getElementById("ejeY").value = '';
+        document.getElementById("ejeY").setAttribute('disabled', 'disabled');
+        document.getElementById('espacio').value = '';
+        document.getElementById("espacio").setAttribute('disabled', 'disabled');
+        document.getElementById('tipoEspacio').value = '';
+        document.getElementById("tipoEspacio").setAttribute('disabled', 'disabled');
+        
+    }else{
+
+        document.getElementById("camposanto").removeAttribute('disabled');
+        document.getElementById("tipoPlat").removeAttribute('disabled');
+        document.getElementById("nombrePlat").removeAttribute('disabled');
+        document.getElementById("nombreArea").removeAttribute('disabled');
+        document.getElementById("ejeX").removeAttribute('disabled');
+        document.getElementById("ejeY").removeAttribute('disabled');
+        document.getElementById("espacio").removeAttribute('disabled');
+        document.getElementById("tipoEspacio").removeAttribute('disabled');
+
+    }
+});
+
 
 //-----------------muestra select tipo plataforma-----------
 var codcampo = document.getElementById("camposanto");
@@ -592,11 +683,15 @@ codcampo.addEventListener("change",function(){
         dataType: 'json',
         data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY},
         success: function(respuesta){
-            $("#espacio").append('<option value="" selected disabled>SELECCIONE...</option>');
-            respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#espacio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-            });
+            if(respuesta['response'] == ''){
+                $("#espacio").append('<option value="" selected disabled>NO HAY ESPACIOS DIPONIBLES</option>');
+            }else{
+                $("#espacio").append('<option value="" selected disabled>SELECCIONE...</option>');
+                respuesta['response'].forEach(function(word){
+                    $("#espacio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            }
+            
         },//success
         error(e){
             console.log(e.message);
@@ -634,8 +729,8 @@ codcampo.addEventListener("change",function(){
 //-----------------muestra select Subtipo servicio-----------
 var codcampo = document.getElementById("btnAddServicio");
 codcampo.addEventListener("click",function(){
-    codCamposanto = document.getElementById("camposanto").value;
-    codPlataforma = document.getElementById("nombrePlat").value;
+    codCamposanto = (document.getElementById("camposanto").value != '') ? document.getElementById("camposanto").value : '%' ;
+    codPlataforma = (document.getElementById("nombrePlat").value != '') ? document.getElementById("nombrePlat").value : '%';
     cod_tipo_recaudacion = document.getElementById("tipoPrograma").value;
     var boton = document.getElementById("tipoNec");
     if(boton.checked == true){

@@ -89,6 +89,14 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
+                        <label for="inputText" class="col-form-label">Dirección de referencia:</label>
+                      </div>
+                      <div class="col-md-9 mb-3">
+                        <input type="text" class="form-control form-remanso" name="direccRefPros" id="direccRefPros">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3 mb-3">
                         <label for="inputText" class="col-form-label">País: </label>
                       </div>
                       <div class="col-md-3 mb-3">
@@ -167,7 +175,7 @@
                         <label for="inputText" class="col-form-label">Importe:</label>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <input type="text" class="form-control form-remanso align-right" name="impProsp" id="impProsp">
+                        <input type="text" class="form-control form-remanso align-right" name="impProsp" id="impProsp" required>
                       </div>
                     </div>
                     <div class="row">
@@ -618,6 +626,31 @@ numDocProsInput.addEventListener("input", function(event) {
 
 });
 
+numDocProsInput.addEventListener("blur", function(event) {
+  $.ajax({
+    url: '../api/ValidarCoincidenciaDocumento',
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'dscDocumento':document.getElementById("numDocPros").value},
+    success: function(respuesta){
+      //console.log(respuesta);
+      if (respuesta['response']['ctd_coincidencia'] > 0) {
+        Swal.fire({
+          title:'Error!',
+          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+          icon:'warning',
+          confirmButtonColor: '#35B44A',
+        }) 
+        numDocProsInput.blur();
+      }
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });
+});
+
 var numDoc2titInput = document.getElementById("numDoc2tit");
 
 numDoc2titInput.addEventListener("input", function(event) {
@@ -649,6 +682,31 @@ numDoc2titInput.addEventListener("input", function(event) {
   }
 });
 
+numDoc2titInput.addEventListener("blur", function(event) {
+  $.ajax({
+    url: '../api/ValidarCoincidenciaDocumento',
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'dscDocumento':document.getElementById("tipoDoc2tit").value},
+    success: function(respuesta){
+      //console.log(respuesta);
+      if (respuesta['response']['ctd_coincidencia'] > 0) {
+        Swal.fire({
+          title:'Error!',
+          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+          icon:'warning',
+          confirmButtonColor: '#35B44A',
+        }) 
+        numDoc2titInput.blur();
+      }
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });
+});
+
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
 
 numDocAddBenefInput.addEventListener("input", function(event) {
@@ -678,6 +736,20 @@ numDocAddBenefInput.addEventListener("input", function(event) {
       }
     }
   }
+});
+
+//-----------------------valida importe-------------------------
+
+var impProspInput = document.getElementById("impProsp");
+
+impProspInput.addEventListener("input", function(event) {
+  var inputValue = impProspInput.value;
+  
+  // Eliminar caracteres no numéricos
+  inputValue = inputValue.replace(/[^0-9.]/g, '');
+  
+  // Actualizar el valor del campo
+  impProspInput.value = inputValue;
 });
 
 // -----------------------valida telefono-------------------------
@@ -827,6 +899,7 @@ window.onload= function () {
         }, 2000);
 
         document.getElementById("direccPros").value=result["response"]["dsc_direccion"];
+        document.getElementById("direccRefPros").value=result["response"]["dsc_direccion_referencia"];
         document.getElementById("telf1Prosp").value=result["response"]["dsc_telefono_1"];
         document.getElementById("telf2Prosp").value=result["response"]["dsc_telefono_2"];
         document.getElementById("correoProsp").value=result["response"]["dsc_correo"];
@@ -948,23 +1021,7 @@ boton.addEventListener("click",function(){
   var telf1ProspInput = document.getElementById("telf1Prosp");
   var telf1ProspValue = telf1ProspInput.value.trim();
 
-  // Validación para el campo "Núm. de Documento"
-
-
-
-  // // Validación de longitud y formato
-  // if (telf1ProspValue.length !== 9 || !/^\d{9}$/.test(telf1ProspValue)) {
-  //   collapseTelf1Prosp.classList.add("show");
-  //   telf1ProspInput.focus();
-  //   invalidFeedbackTelf1Prosp.style.display = "block";
-  //   return;
-  // }
-  // if (telf1ProspValue.length === 9 || /^\d{9}$/.test(telf1ProspValue)){var invalidFeedbacktelf1Prosp = document.querySelector("#collapseOne .f.invalid-feedback");invalidFeedbacktelf1Prosp.style.display = "none";}
-
-
-
-
-  var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
+ var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
     flgJuridico = '';
     flgJuridico2 = '';
   if(document.getElementById("tipoDocProsp").value == 'DI004'){
@@ -995,6 +1052,7 @@ boton.addEventListener("click",function(){
     'cod_provincia': document.getElementById("provinProsp").value,
     'cod_distrito': document.getElementById("dttoProsp").value,
     'dsc_direccion':  document.getElementById("direccPros").value,
+    'dsc_direccion_referencia':document.getElementById("direccRefPros").value,
     'dsc_telefono_1': document.getElementById("telf1Prosp").value,
     'dsc_telefono_2': document.getElementById("telf2Prosp").value,
     'cod_origen': document.getElementById("canalProsp").value,
@@ -1046,7 +1104,8 @@ boton.addEventListener("click",function(){
     'cod_espacio': '',
     'cod_tipo_espacio': '',
     'num_nivel': 0,
-    'cod_tipo_necesidad': 'NF'
+    'cod_tipo_necesidad': 'NF',
+    'num_operacion':''
   };
 
 

@@ -39,12 +39,13 @@
                 <div class="col-1 col-md-1 offset-9 offset-md-11">
                   <div class="form-group form-remanso">
                     <h5>
-                      <input type="checkbox" data-toggle="toggle" id="tipoNec" data-onlabel="NI" data-offlabel = "NF" data-onstyle ="success" checked>
+                      <input type="checkbox" data-toggle="toggle" id="tipoNec" data-onlabel="NI" data-offlabel = "NF" data-onstyle ="success" checked >
                     </h5>
                   </div>
                 </div>
               </div>
-              <div class="accordion accordion-flush" id="accordionExample">
+              <div class="
+               accordion-flush" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTitular" aria-expanded="true" aria-controls="collapseTitular">
@@ -59,14 +60,14 @@
                           <label for="inputText" class="col-form-label">Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="tipoDocRegVta" id="tipoDocRegVta" class="form-select form-remanso">
+                          <select name="tipoDocRegVta" id="tipoDocRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="numDocRegVta" id="numDocRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="numDocRegVta" id="numDocRegVta" required>
                         </div>
                       </div>
                       <div id="nombre">
@@ -75,19 +76,19 @@
                             <label for="inputText" class="col-form-label">Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso letras-only" name="nombresRegVta" id="nombresRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="nombresRegVta" id="nombresRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso letras-only" name="apellPRegVta" id="apellPRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellPRegVta" id="apellPRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="inputText" class="col-form-label">Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso letras-only" name="apellMRegVta" id="apellMRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellMRegVta" id="apellMRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3" id="labelCodProspecto" style="display: none;">
                             <label for="inputText" class="col-form-label">Codigo Prospecto: </label>
@@ -112,7 +113,15 @@
                           <label for="inputText" class="col-form-label">Dirección:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="direccRegVta" id="direccRegVta">
+                          <input type="text" class="form-control form-remanso" name="direccRegVta" id="direccRegVta" required>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Dirección de referencia:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <input type="text" class="form-control form-remanso" name="direccRefRegVta" id="direccRefRegVta">
                         </div>
                       </div>
                       <div class="row">
@@ -152,7 +161,7 @@
                           <label for="inputText" class="col-form-label">Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="telf1RegVta" id="telf1RegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="telf1RegVta" id="telf1RegVta" required>
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
@@ -166,7 +175,7 @@
                           <label for="inputText" class="col-form-label">Correo:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="correoRegVta" id="correoRegVta">
+                          <input type="text" class="form-control form-remanso" name="correoRegVta" id="correoRegVta" required>
                         </div>
                       </div>
                     </div>
@@ -558,6 +567,12 @@
                         <div class="col-md-1 mb-1">
                           <input type="text" class="form-control form-remanso" name="numServBase" id="numServBase">
                         </div>
+                        <div class="col-md-2 offset-md-1 mb-3">
+                          <label for="inputText" class="col-form-label"><b>Num. Operación:</b></label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso" name="numOpeRegVta" id="numOpeRegVta">
+                        </div>
                       </div>
                       <hr>
                       <div class="row">
@@ -667,24 +682,44 @@
                       <br>
                       <div class="row">
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">DNI Titular: </label>
+                          <label for="inputText" class="col-form-label">DNI Titular anverso: </label>
                         </div>
                         <div class="col-md-4 mb-3">
                           <div class="custom-file">
-                            <input class="form-control form-remanso form-control-sm" id="docAdj1" type="file" multiple>
+                            <input class="form-control form-remanso form-control-sm" id="DniAdj1" type="file">
                           </div>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">DNI Alterno: </label>
+                          <label for="inputText" class="col-form-label">DNI Titular reverso: </label>
                         </div>
                         <div class="col-md-4 mb-3">
-                          <input class="form-control form-remanso form-control-sm" id="docAdj2" type="file" multiple>
+                          <div class="custom-file">
+                            <input class="form-control form-remanso form-control-sm" id="DniAdj2" type="file">
+                          </div>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">DNI Alterno anverso: </label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <input class="form-control form-remanso form-control-sm" id="Dni2Adj1" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">DNI Alterno anverso: </label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <input class="form-control form-remanso form-control-sm" id="Dni2Adj2" type="file">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Recibo de servicio: </label>
                         </div>
                         <div class="col-md-4 mb-3">
-                          <input class="form-control form-remanso form-control-sm" id="docAdj3" type="file" multiple>
+                          <input class="form-control form-remanso form-control-sm" id="recServAdj" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Recibo de pago: </label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <input class="form-control form-remanso form-control-sm" id="RecAdj" type="file">
                         </div>
                       </div>
                     </div>
@@ -1278,6 +1313,7 @@ $( document ).ready(function () {
           }, 2000);       
           
           document.getElementById("direccRegVta").value=result["response"]["dsc_direccion"];
+          document.getElementById("direccRefRegVta").value=result["response"]["dsc_direccion_referencia"];
           document.getElementById("telf1RegVta").value=result["response"]["dsc_telefono_1"];
           document.getElementById("telf2RegVta").value=result["response"]["dsc_telefono_2"];
           document.getElementById("correoRegVta").value=result["response"]["dsc_correo"];
@@ -1346,12 +1382,12 @@ $( document ).ready(function () {
                     setTimeout(function() { 
                       espacio.value=result["response"]["cod_espacio"];
                       espacio.dispatchEvent(changeEvent);
-                    }, 3000);
-                  }, 3000);
-                }, 3000);
-              }, 3000);
-            }, 3000);
-          }, 3000);
+                    }, 2000);
+                  }, 2000);
+                }, 2000);
+              }, 2000);
+            }, 2000);
+          }, 2000);
 
           document.getElementById("impTotal").value=result["response"]["imp_total"];
           document.getElementById("impCuoi").value=result["response"]["imp_cui"];
@@ -1361,6 +1397,7 @@ $( document ).ready(function () {
           document.getElementById("fch1erVcto").value=result["response"]["fch_1er_vencimiento"];
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
           document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
+          document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
 
         }                  
       });
@@ -1405,12 +1442,14 @@ $( document ).ready(function () {
         }
       });
 
+    }else{
+      document.getElementById("tipoNec").bootstrapToggle('readonly');
     }
   }, 2000);             
 });
 
 
-  //-----------------------------------Registrar venta---------------------------------------------------
+//-----------------------------------Registrar venta---------------------------------------------------
 
 var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
@@ -1456,6 +1495,7 @@ boton.addEventListener("click",function(){
     'cod_departamento': document.getElementById("dptoRegVta").value,
     'cod_provincia': document.getElementById("provRegVta").value,
     'cod_distrito': document.getElementById("dttoRegVta").value,
+    'dsc_direccion_referencia':document.getElementById("direccRefRegVta").value,
     'dsc_direccion':  document.getElementById("direccRegVta").value.toUpperCase(),
     'dsc_telefono_1': document.getElementById("telf1RegVta").value,
     'dsc_telefono_2': document.getElementById("telf2RegVta").value,
@@ -1508,7 +1548,8 @@ boton.addEventListener("click",function(){
     'cod_espacio': document.getElementById("espacio").value,
     'cod_tipo_espacio': document.getElementById("tipoEspacio").value,
     'num_nivel': 0,
-    'cod_tipo_necesidad': tipo_nec
+    'cod_tipo_necesidad': tipo_nec,
+    'num_operacion': document.getElementById("numOpeRegVta").value
   };
 
   var servicioArray ={
@@ -1608,7 +1649,7 @@ boton.addEventListener("click",function(){
             console.log(e.message);
             Swal.fire({
               title:'Error!',
-              text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+              text:'Ha ocurrido un error de conexión con la base de datos, por favor intentelo mas tarde.',
               icon:'warning',
               confirmButtonColor: '#35B44A',
             }) 
