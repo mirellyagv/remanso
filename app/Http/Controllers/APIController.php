@@ -128,7 +128,7 @@ class APIController extends Controller
             foreach ($request->all() as $persona) {
                 foreach ($persona as $key) {
                     try {
-                        $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoBeneficiario/20396900719/';
+                        $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoBeneficiario/20396900719';
                         $body = json_encode($key);
     
                         $httpRequest = new GuzzleRequest('PUT', $url, $headers, $body);

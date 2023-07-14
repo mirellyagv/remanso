@@ -485,6 +485,10 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("espacio").setAttribute('disabled', 'disabled');
         document.getElementById('tipoEspacio').value = '';
         document.getElementById("tipoEspacio").setAttribute('disabled', 'disabled');
+        document.getElementById('impFoma').value = '';
+        document.getElementById("impFoma").setAttribute('disabled', 'disabled');
+        document.getElementById('codCuotaFoma').value = '';
+        document.getElementById("codCuotaFoma").setAttribute('disabled', 'disabled');
         
     }else{
 
@@ -496,6 +500,8 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("ejeY").removeAttribute('disabled');
         document.getElementById("espacio").removeAttribute('disabled');
         document.getElementById("tipoEspacio").removeAttribute('disabled');
+        document.getElementById("impFoma").removeAttribute('disabled');
+        document.getElementById("codCuotaFoma").removeAttribute('disabled');
 
     }
 });
@@ -845,7 +851,7 @@ function muestraserviciosFormulario(datos) {
     descuentoPorcCelda.appendChild(dsctoPorcInput);
 
     var descuentoCelda = nuevaFila.insertCell();
-    var desCalculado = (valorPorc*datos['imp_precio'])/100
+    var desCalculado = (valorPorc*parseFloat(datos['imp_precio']))/100;
     descuentoCelda.textContent = desCalculado;
 
     var dsctoLibreCelda = nuevaFila.insertCell();
