@@ -1406,7 +1406,10 @@ $( document ).ready(function () {
                 "imp_precio_cuoi":resultado["response"][0]["imp_cui"],
                 "imp_precio_foma":resultado["response"][0]["imp_foma"],
                 "flg_ds_compartido":"NO",
-                "imp_min_cuoi":resultado["response"][0]["imp_precio_lista"]
+                "imp_min_cuoi":resultado["response"][0]["imp_precio_lista"],
+                "por_descuento":resultado["response"][0]["por_descuento"],
+                "num_ctd":resultado["response"][0]["num_ctd"],
+                "imp_descuento_adicional":resultado["response"][0]["imp_descuento_adicional"]
               }
 
               muestraserviciosFormulario(datos);

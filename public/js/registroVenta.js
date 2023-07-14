@@ -823,7 +823,8 @@ function muestraserviciosFormulario(datos) {
     var cantInput = document.createElement('input');
     cantInput.setAttribute('style', 'width: 3em;');
     cantInput.type = 'number';
-    cantInput.value = 1;
+    var valorCant = (datos['num_ctd']) ? datos['num_ctd'] : 1;
+    cantInput.value = valorCant;
 
     cantidadCelda.appendChild(cantInput);
 
@@ -838,7 +839,9 @@ function muestraserviciosFormulario(datos) {
     dsctoPorcInput.type = 'number';
     dsctoPorcInput.setAttribute('style', 'width: 5em;');
     dsctoPorcInput.setAttribute('max', '100');
-    dsctoPorcInput.value = 0;   
+    var valorPorc = (datos['por_descuento']) ? datos['por_descuento'] : 0;
+    //console.log(datos['por_descuento']);
+    dsctoPorcInput.value =  valorPorc;  
     
     descuentoPorcCelda.appendChild(dsctoPorcInput);
 
@@ -850,7 +853,8 @@ function muestraserviciosFormulario(datos) {
     var dsctoLibreInput = document.createElement('input');
     dsctoLibreInput.type = 'number';
     dsctoLibreInput.setAttribute('style', 'width: 5em;');
-    dsctoLibreInput.value = 0;
+    var valorLibre = (datos['imp_descuento_adicional']) ? datos['imp_descuento_adicional'] : 0;
+    dsctoLibreInput.value = valorLibre;
 
     dsctoLibreCelda.appendChild(dsctoLibreInput);
 
