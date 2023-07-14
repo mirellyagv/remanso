@@ -596,7 +596,7 @@ window.onload= function() {
             }
             if(result["response"]["fch_modificacion"].trim ='01/01/1900HORA:00:00'.trim )
             {
-              fch_modificacion=''
+              fch_modificacion='';
             }
            
 

@@ -206,7 +206,6 @@ window.onload=function() {
         dataType: 'json',
         success: function(respuesta){
             $("#codTasa").append('<option value="" selected disabled>SELECCIONE...</option>');
-            $("#codTasa").append('<option value="">0% INTERES</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
@@ -846,8 +845,8 @@ function muestraserviciosFormulario(datos) {
     descuentoPorcCelda.appendChild(dsctoPorcInput);
 
     var descuentoCelda = nuevaFila.insertCell();
-    descuentoCelda.textContent = 0;
-
+    var desCalculado = (valorPorc*datos['imp_precio'])/100
+    descuentoCelda.textContent = desCalculado;
 
     var dsctoLibreCelda = nuevaFila.insertCell();
     var dsctoLibreInput = document.createElement('input');
@@ -864,7 +863,7 @@ function muestraserviciosFormulario(datos) {
     // nombreInput.type = 'number';
     // nombreInput.value = 0;
 
-    var saldo = datos['imp_precio'];
+    var saldo = datos['imp_precio']-valorLibre-desCalculado;
     cuoi = datos['imp_precio_cuoi'];
         
     //descuentoCelda.appendChild(nombreInput);
@@ -933,7 +932,9 @@ function muestraserviciosFormulario(datos) {
 
         precioFinalCelda.textContent = saldo;
         descuentoCelda.textContent = porc;
-        document.getElementById("impDscto").value=dscto;
+        document.getElementById("impDscto").value=dscto-dsctoLibre;
+        document.getElementById("impDsctoAdicional").value=dsctoLibre;
+        document.getElementById("pordescuento").value=dsctoPorc;
         document.getElementById("impSaldo").value=saldo;
         document.getElementById("ctdServ").value=ctd;
         document.getElementById("impTotal").value=saldo;  
@@ -1106,4 +1107,5 @@ btnAbreModalBenef.addEventListener("click",function (){
     document.getElementById("sexoAddBenef").value = '';
     document.getElementById("edoCivilAddBenef").value = '';
 });
+
 

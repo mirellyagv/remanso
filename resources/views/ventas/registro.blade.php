@@ -625,6 +625,8 @@
                         <div class="col-md-2 mb-3">
                           <input type="text" readonly class="form-control form-remanso align-right" name="impSaldo" id="impSaldo">
                           <input type="hidden" name="impDscto" id="impDscto">
+                          <input type="hidden" name="pordescuento" id="pordescuento">
+                          <input type="hidden" name="impDsctoAdicional" id="impDsctoAdicional">
                           <input type="hidden" name="codServicio" id="codServicio">
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
                           <input type="hidden" name="ctdServ" id="ctdServ">
@@ -1227,11 +1229,6 @@ flatpickr("#fchNacAddBenef",{
 var fechaActual = new Date();
 var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
 
-flatpickr("#fch1erVcto",{
-  locale:"es",
-  defaultDate: fechaMasUnMes,
-  dateFormat: "Y-m-d"
-});
 
 document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
     ele.bootstrapToggle();
@@ -1411,7 +1408,6 @@ $( document ).ready(function () {
                 "num_ctd":resultado["response"][0]["num_ctd"],
                 "imp_descuento_adicional":resultado["response"][0]["imp_descuento_adicional"]
               }
-
               muestraserviciosFormulario(datos);
                
             }
@@ -1422,11 +1418,19 @@ $( document ).ready(function () {
           document.getElementById("impCuoi").value=result["response"]["imp_cui"];
           document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
           document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
-          document.getElementById("codTasa").value=result["response"]["cod_tasa"];
-          document.getElementById("fch1erVcto").value=result["response"]["fch_1er_vencimiento"];
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
           document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
           document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
+          document.getElementById("numOpeRegVta").value=result["response"]["fch_1er_vencimiento"];
+          var codTasa=document.getElementById("codTasa") ;
+          codTasa.value=result["response"]["cod_tasa"];
+
+          
+            
+           
+            
+            
+
 
         }                  
       });
@@ -1590,8 +1594,8 @@ boton.addEventListener("click",function(){
     'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
     'cod_tasa': document.getElementById("codTasa").value,
     'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
-    'por_descuento': 10,
-    'imp_descuento_adicional': 500
+    'por_descuento': document.getElementById("pordescuento").value,
+    'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value,
   };
 
   Swal.fire({
