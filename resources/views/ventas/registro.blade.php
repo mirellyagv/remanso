@@ -624,8 +624,8 @@
                         </div>
                         <div class="col-md-2 mb-3">
                           <input type="text" readonly class="form-control form-remanso align-right" name="impSaldo" id="impSaldo">
-                          <input type="hidden" name="impDscto" id="impDscto">
-                          <input type="hidden" name="pordescuento" id="pordescuento">
+                          <input type="hidden" name="impDscto" id="impDscto" value=0>
+                          <input type="hidden" name="pordescuento" id="pordescuento" value="0">
                           <input type="hidden" name="impDsctoAdicional" id="impDsctoAdicional">
                           <input type="hidden" name="codServicio" id="codServicio">
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
