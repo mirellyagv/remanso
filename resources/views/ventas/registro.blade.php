@@ -1420,8 +1420,8 @@ $( document ).ready(function () {
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
           document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
           document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
-          var auxFecha = result["response"]["fch_1er_vencimiento"].split('-');
-          document.getElementById("fch1erVcto").value=auxFecha;
+          var auxFecha = result["response"]["fch_1er_vencimiento"].split('T');
+          document.getElementById("fch1erVcto").value=auxFecha[0];
           var codTasa=document.getElementById("codTasa") ;
           codTasa.value=result["response"]["cod_tasa"];
           
