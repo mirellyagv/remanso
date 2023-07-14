@@ -1420,7 +1420,8 @@ $( document ).ready(function () {
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
           document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
           document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
-          document.getElementById("fch1erVcto").value=result["response"]["fch_1er_vencimiento"];
+          var auxFecha = result["response"]["fch_1er_vencimiento"].split('-');
+          document.getElementById("fch1erVcto").value=auxFecha;
           var codTasa=document.getElementById("codTasa") ;
           codTasa.value=result["response"]["cod_tasa"];
           
@@ -1613,19 +1614,19 @@ boton.addEventListener("click",function(){
             fila['cod_prospecto'] = codProspecto;
           });
 
-            $.ajax({
-                url: '../api/guardaBeneficiario', 
-                method: "PUT",
-                crossDomain: true,
-                dataType: 'json',
-                data:{'beneficiarios':filasArray},
-                success: function(respuesta){
-                    console.log(respuesta);   
-                },//success
-                error(e){
-                    console.log(e.message);
-                }//error
-            });
+            // $.ajax({
+            //     url: '../api/guardaBeneficiario', 
+            //     method: "PUT",
+            //     crossDomain: true,
+            //     dataType: 'json',
+            //     data:{'beneficiarios':filasArray},
+            //     success: function(respuesta){
+            //         console.log(respuesta);   
+            //     },//success
+            //     error(e){
+            //         console.log(e.message);
+            //     }//error
+            // });
 
             servicioArray['cod_prospecto'] = codProspecto;
 
