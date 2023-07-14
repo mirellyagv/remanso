@@ -1413,29 +1413,19 @@ $( document ).ready(function () {
             }
           });
 
-
-          document.getElementById("impTotal").value=result["response"]["imp_total"];
+          //document.getElementById("impTotal").value=result["response"]["imp_total"];
           document.getElementById("impCuoi").value=result["response"]["imp_cui"];
           document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
           document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
           document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
           document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
-          document.getElementById("numOpeRegVta").value=result["response"]["fch_1er_vencimiento"];
+          document.getElementById("fch1erVcto").value=result["response"]["fch_1er_vencimiento"];
           var codTasa=document.getElementById("codTasa") ;
           codTasa.value=result["response"]["cod_tasa"];
-
           
-            
-           
-            
-            
-
-
         }                  
       });
-
-     
 
       //-------------------------------Beneficiarios---------------------------------------
  
