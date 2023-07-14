@@ -467,7 +467,7 @@ codcampo.addEventListener("change",function(){
 var codTipoProg = document.getElementById("tipoPrograma");
 codTipoProg.addEventListener("change",function(){
     var valor = codTipoProg.value;
-    if (valor == 'TR004') {
+    if (valor == 'TR004' || valor == 'TR008') {
 
         document.getElementById("camposanto").value = '';
         document.getElementById("camposanto").setAttribute('disabled', 'disabled');
@@ -904,7 +904,7 @@ function muestraserviciosFormulario(datos) {
 
     });
 
-    document.getElementById("impTotal").value=datos['imp_precio'];
+    document.getElementById("impTotal").value=saldo;//datos['imp_precio'];
     document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
     document.getElementById("impFoma").value=datos['imp_precio_foma'];    
     document.getElementById("codServicio").value=datos['cod_servicio'];
