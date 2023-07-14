@@ -528,8 +528,7 @@
               <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="fchNacAddBenef" id="fchNacAddBenef"
-                placeholder="seleccione..">
+              <input type="text" class="form-control form-remanso" name="fchNacAddBenef" id="fchNacAddBenef" placeholder="seleccione..">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Parentesco: </label>
@@ -626,14 +625,14 @@ form.addEventListener("submit", function(event) {
 var fechaActual = new Date();
 console.log(fechaActual);
 document.getElementById("fechaContacto").value = fechaActual;
-  flatpickr("#fchNacAddBenef",{
-      locale:"es",
-      dateFormat: "d-m-Y"
-    });
-  flatpickr("#fechaContacto",{
-    locale:"es",
-    dateFormat: "d-m-Y"
-  });
+flatpickr("#fchNacAddBenef",{
+  locale:"es",
+  dateFormat: "d-m-Y"
+});
+flatpickr("#fechaContacto",{
+  locale:"es",
+  dateFormat: "d-m-Y"
+});
 
 //------------------------valida letras-------------------------------
 var inputs = document.getElementsByClassName("letras-only");
@@ -937,6 +936,8 @@ phoneInput4.addEventListener("input", function(event) {
   }
 });
 
+var filasArrayBenef = []; // Array para almacenar las filas
+
   //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
@@ -1131,19 +1132,23 @@ boton.addEventListener("click",function(){
           fila['cod_prospecto'] = codProspecto;
         });
         if (filasArrayBenef.length > 0) {
-          $.ajax({
-            url: '../api/guardaBeneficiario',
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'beneficiarios':filasArrayBenef},
-            success: function(respuesta){
-              console.log(respuesta);
-            },//success
-            error(e){
-              console.log(e.message);
-            }//error
-          });
+          for (let index = 0; index < filasArrayBenef.length; index++) {
+            
+            $.ajax({
+              url: '../api/guardaBeneficiario',
+              method: "PUT",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'beneficiarios':filasArrayBenef[index]},
+              success: function(respuesta){
+                console.log(respuesta);
+              },//success
+              error(e){
+                console.log(e.message);
+              }//error
+            });
+            
+          }
         }
         if (obsvContacto != '') {
           $.ajax({

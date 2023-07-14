@@ -378,8 +378,6 @@ $( document ).ready(function() {
 
 //-----------------Añade Beneficiarios--------------------
 
-var filasArrayBenef = []; // Array para almacenar las filas
-
 var addBeneficiario = document.getElementById("agregaBeneficiario");
 addBeneficiario.addEventListener("click",function (){
 
@@ -463,7 +461,7 @@ addBeneficiario.addEventListener("click",function (){
     var filaData = {
       cod_localidad_p: 'LC001',
       cod_prospecto: '',
-      num_linea: '0',
+      num_linea: 0,
       cod_tipo_documento: codtipoDoc,
       dsc_documento: dscDoc,
       dsc_apellido_paterno: apellP,

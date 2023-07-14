@@ -465,7 +465,7 @@
               <label for="inputText" class="col-form-label">Fecha de nacimiento: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <input type="text" class="form-control form-remanso" name="fchNacAddBenef" id="fchNacAddBenef">
+              <input type="text" class="form-control form-remanso" name="fchNacAddBenef" id="fchNacAddBenef" placeholder="seleccione..">
             </div>
             <div class="col-md-3 mb-3">
               <label for="inputText" class="col-form-label">Parentesco: </label>
@@ -548,6 +548,18 @@
 
 <script src="{{asset('js/registroProspecto.js')}}"></script>
 <script type="text/javascript">
+
+//----------------------inicializa calendarios------------------------
+var fechaActual = new Date();
+document.getElementById("fchContacto").value = fechaActual;
+flatpickr("#fchNacAddBenef",{
+  locale:"es",
+  dateFormat: "d-m-Y"
+});
+flatpickr("#fchContacto",{
+  locale:"es",
+  dateFormat: "d-m-Y"
+});
 
 //------------------------valida letras-------------------------------
 var inputs = document.getElementsByClassName("letras-only");
@@ -853,6 +865,7 @@ phoneInput4.addEventListener("input", function(event) {
 
 
 var cod_prospecto="";
+var filasArrayBenef = []; // Array para almacenar las filas
 
 window.onload= function () {
   var fechaActual = new Date();
@@ -947,53 +960,69 @@ window.onload= function () {
       }
     });
 
-      $.ajax({
-          type: "GET",
-          url: '../api/ListarProspectoBeneficiario',
-          dataType: 'json',
-          data:{'cod_prospecto':cod_prospecto},
-          success: function(resultBenef){
-            console.log(resultBenef['response']);
-              var fila='';
-              resultBenef['response'].forEach(function(word){
-                  fecha = word['fch_nacimiento'].split("T");
-                  fila += '<tr>'+
-                  '<td>'+word['dsc_tipo_documento']+'</td>'+
-                  '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
-                  '<td>'+fecha[0]+'</td>'+
-                  '<td>'+word['dsc_parentesco']+'</td>'+
-                  '<td>'+word['dsc_sexo']+'</td>'+
-                  '<td>'+word['dsc_estado_civil']+'</td>'+
-                  '<td></td>'+
-                '</tr>';
-              });
-            $('#bodyListadoBen').html(fila);
+  $.ajax({
+    type: "GET",
+    url: '../api/ListarProspectoBeneficiario',
+    dataType: 'json',
+    data:{'cod_prospecto':cod_prospecto},
+    success: function(resultBenef){
+      console.log(resultBenef['response']);
+      var fila='';
+      resultBenef['response'].forEach(function(word){
+          fecha = word['fch_nacimiento'].split("T");
+          fila += '<tr>'+
+          '<td>'+word['dsc_tipo_documento']+'</td>'+
+          '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
+          '<td>'+fecha[0]+'</td>'+
+          '<td>'+word['dsc_parentesco']+'</td>'+
+          '<td>'+word['dsc_sexo']+'</td>'+
+          '<td>'+word['dsc_estado_civil']+'</td>'+
+          '<td></td>'+
+        '</tr>';
 
-          }
+        var filaData = {
+          'cod_localidad_p': 'LC001',
+          'cod_prospecto': cod_prospecto,
+          'num_linea': word['num_linea'],
+          'cod_tipo_documento': word['cod_tipo_documento'],
+          'dsc_documento': word['dsc_tipo_documento'],
+          'dsc_apellido_paterno': word['dsc_apellido_paterno'],
+          'dsc_apellido_materno': word['dsc_apellido_materno'],
+          'dsc_nombres': word['dsc_nombres'],
+          'fch_nacimiento': fecha[0],
+          'cod_estado_civil': word['cod_estado_civil'],
+          'cod_sexo': word['cod_sexo'],
+          'cod_parentesco': word['cod_parentesco']
+        };
+
+        filasArrayBenef.push(filaData); // Agregar la fila al array
       });
+      $('#bodyListadoBen').html(fila);
 
-      $.ajax({
-            type: "GET",
-            url: '../api/ListarProspectoContacto',
-            dataType: 'json',
-            data:{'cod_prospecto':cod_prospecto},
-            success: function(result){
-                console.log(result);
-                    var fila='';
-                    result['response'].forEach(function(word){
-                      fecha = word['fch_contacto'].split("T");
-                      fila += '<tr>'+
-                      '<td><input type="date" class="fechaTabla" id="'+result['num_linea']+'" value="'+fecha[0]+'" ></td>'+
-                      '<td><input type="text" name="" id="" value="'+word['dsc_calificacion']+'"></td>'+
-                      '<td><input type="text" name="" id="" value="'+word['dsc_observaciones']+'"></td>'+
-                      '<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
-                    '</tr>';
-                });
-                $('#bodyListadoCon').html(fila);
-                $(".fechaTabla").flatpickr();
+    }
+  });
 
-            }
+  $.ajax({
+    type: "GET",
+    url: '../api/ListarProspectoContacto',
+    dataType: 'json',
+    data:{'cod_prospecto':cod_prospecto},
+    success: function(result){
+      console.log(result);
+      var fila='';
+      result['response'].forEach(function(word){
+        fecha = word['fch_contacto'].split("T");
+        fila += '<tr>'+
+          '<td><input type="date" class="fechaTabla" id="'+result['num_linea']+'" value="'+fecha[0]+'" ></td>'+
+          '<td><input type="text" name="" id="" value="'+word['dsc_calificacion']+'"></td>'+
+          '<td><input type="text" name="" id="" value="'+word['dsc_observaciones']+'"></td>'+
+          '<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
+        '</tr>';
       });
+      $('#bodyListadoCon').html(fila);
+      $(".fechaTabla").flatpickr();
+    }
+  });
 
 }
 
@@ -1119,35 +1148,57 @@ boton.addEventListener("click",function(){
     confirmButtonText: 'Aceptar'
   }).then((result) => {
     if (result.isConfirmed) {
+      filasArrayBenef.forEach(function (fila) {
+        fila['cod_prospecto'] = cod_prospecto;
+      });
       $.ajax({
-      url: '../api/editarProspecto',
-      method: "PUT",
-      crossDomain: true,
-      dataType: 'json',
-      data:{'prospecto':prospecto},
-      success: function(respuesta){
-        console.log('respuesta',respuesta);
-          Swal.fire({
-            title: 'Actualizado',
-            text: cod_prospecto,
-            icon: 'success',
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#35B44A',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.location.href = "listado";
+        url: '../api/editarProspecto',
+        method: "PUT",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'prospecto':prospecto},
+        success: function(respuesta){
+          //console.log('respuesta',respuesta);
+          if (filasArrayBenef.length > 0) {
+            for (let index = 0; index < filasArrayBenef.length; index++) {
+              
+              $.ajax({
+                url: '../api/guardaBeneficiario',
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'beneficiarios':filasArrayBenef[index]},
+                success: function(respuesta){
+                  console.log(respuesta);
+                  Swal.fire({
+                    title: 'Actualizado',
+                    text: cod_prospecto,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#35B44A',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = "listado";
+                    }
+                  })
+                },//success
+                error(e){
+                  console.log(e.message);
+                }//error
+              });
+              
             }
-          })
+          }
         },//success
         error(e){
-            console.log('mensaje error',e.message);
-            Swal.fire({
-              title:'Error!',
-              text:'Ha ocurrido un error, por favor intentelo mas tarde.',
-              icon:'warning',
-              confirmButtonColor: '#35B44A',
-            })
-            btnSolicitar.removeAttribute('disabled');
+          console.log('mensaje error',e.message);
+          Swal.fire({
+            title:'Error!',
+            text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+            icon:'warning',
+            confirmButtonColor: '#35B44A',
+          })
+          btnSolicitar.removeAttribute('disabled');
         }//error
       });
     }
