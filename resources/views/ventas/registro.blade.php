@@ -1249,7 +1249,7 @@ $("#tipoDoc").change(function(){
   });
   var boton = document.getElementById("tipoNec");
   boton.addEventListener("change",function(){
-    console.log(this.checked);
+    //console.log(this.checked);
     if(this.checked == true){
       document.getElementById("formRegVenta").reset();
     }
@@ -1268,7 +1268,7 @@ if (window.location.search) {
 
 $( document ).ready(function () {
   setTimeout(function() { 
-    console.log('cod_prospecto',cod_prospecto);
+    //console.log('cod_prospecto',cod_prospecto);
     if (cod_prospecto !== '') {
       $("#acordeonAval").css("display", "none");
       $("#labelCodProspecto").css("display","block");
@@ -1281,7 +1281,7 @@ $( document ).ready(function () {
         dataType: 'json',
         data:{'cod_prospecto':cod_prospecto},
         success: function(result) {
-          console.log(result);
+          //console.log(result);
           document.getElementById("tipoNec").bootstrapToggle('off');
           document.getElementById("tipoNec").bootstrapToggle('readonly');
           document.getElementById("razonSocRegVta").value=result["response"]["dsc_razon_social"];
@@ -1389,6 +1389,32 @@ $( document ).ready(function () {
             }, 2000);
           }, 2000);
 
+          $.ajax({         
+            type: "GET",
+            url: '../lista/ListarProspectoServicio', 
+            dataType: 'json',
+            data:{'cod_localidad':'LC001','cod_prospecto':cod_prospecto},
+            success: function(resultado){
+              console.log(resultado["response"][0]);
+              var datos = {
+                "cod_servicio":resultado["response"][0]["cod_servicio"],
+                "dsc_servicio":resultado["response"][0]["dsc_servicio"],
+                "flg_contado":"NO",
+                "cod_moneda":"SOL",
+                "imp_precio":resultado["response"][0]["imp_precio_venta"],
+                "imp_precio_lista":resultado["response"][0]["imp_precio_lista"],
+                "imp_precio_cuoi":resultado["response"][0]["imp_cui"],
+                "imp_precio_foma":resultado["response"][0]["imp_foma"],
+                "flg_ds_compartido":"NO",
+                "imp_min_cuoi":resultado["response"][0]["imp_precio_lista"]
+              }
+
+              muestraserviciosFormulario(datos);
+               
+            }
+          });
+
+
           document.getElementById("impTotal").value=result["response"]["imp_total"];
           document.getElementById("impCuoi").value=result["response"]["imp_cui"];
           document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
@@ -1412,7 +1438,7 @@ $( document ).ready(function () {
         dataType: 'json',
         data:{'cod_prospecto':cod_prospecto},
         success: function(resultBenef){
-          console.log(resultBenef['response']);
+          //console.log(resultBenef['response']);
             var fila='';
             resultBenef['response'].forEach(function(word){
                 fecha = word['fch_nacimiento'].split("T");
@@ -1430,17 +1456,6 @@ $( document ).ready(function () {
         }
       });
 
-      $.ajax({         
-        type: "GET",
-        url: '../lista/ListarProspectoServicio', 
-        dataType: 'json',
-        data:{'cod_localidad':'LC001','cod_prospecto':cod_prospecto},
-        success: function(resultado){
-          console.log(resultado);
-          
-            
-        }
-      });
 
     }else{
       document.getElementById("tipoNec").bootstrapToggle('readonly');

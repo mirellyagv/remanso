@@ -6,13 +6,13 @@ window.onload=function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){ 
-                respuesta['response'].forEach(function(word){
+            respuesta['response'].forEach(function(word){
                 //console.log(word);
                 seleccion = '';
                 if(word['codvar'] == '00001'){
-                seleccion = 'selected';
+                    seleccion = 'selected';
                 }else{
-                seleccion = '';
+                    seleccion = '';
                 }
                 $("#paisRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
                 $("#pais2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
@@ -60,11 +60,11 @@ window.onload=function() {
             $("#tipoDocAval").append('<option value="" selected disabled>SELECCIONE...</option>');
             $("#tipoDocBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#tipoDocRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
-            $("#tipoDoc2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
-            $("#tipoDocAval").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
-            $("#tipoDocBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
+                seleccion = '';
+                $("#tipoDocRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
+                $("#tipoDoc2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
+                $("#tipoDocAval").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
+                $("#tipoDocBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
             });
         },//success
         error(e){
@@ -81,8 +81,8 @@ window.onload=function() {
         success: function(respuesta){
             $("#parentescoAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#parentescoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                seleccion = '';
+                $("#parentescoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -99,8 +99,8 @@ window.onload=function() {
         success: function(respuesta){
             $("#sexoAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#sexoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                seleccion = '';
+                $("#sexoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -117,8 +117,8 @@ window.onload=function() {
         success: function(respuesta){
             $("#edoCivilAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#edoCivilAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                seleccion = '';
+                $("#edoCivilAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -135,8 +135,8 @@ window.onload=function() {
         success: function(respuesta){
             $("#tipoPrograma").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                seleccion = '';
+                $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -153,8 +153,8 @@ window.onload=function() {
         success: function(respuesta){
             $("#tipoServicio").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#tipoServicio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                seleccion = '';
+                $("#tipoServicio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -171,8 +171,8 @@ window.onload=function() {
         success: function(respuesta){
             $("#camposanto").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#camposanto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                seleccion = '';
+                $("#camposanto").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -189,8 +189,8 @@ window.onload=function() {
         success: function(respuesta){
             $("#codCuotaServ").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                seleccion = '';
+                $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -208,8 +208,8 @@ window.onload=function() {
             $("#codTasa").append('<option value="" selected disabled>SELECCIONE...</option>');
             $("#codTasa").append('<option value="">0% INTERES</option>');
             respuesta['response'].forEach(function(word){
-            seleccion = '';
-            $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                seleccion = '';
+                $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -275,77 +275,77 @@ verifPaisA.addEventListener("change",function (){
 //-----------------muestra select Provincia-----------
   var coddptto = document.getElementById("dptoRegVta");
   coddptto.addEventListener("change",function (){
-      codPais2 = document.getElementById("paisRegVta").value;
-      var valor = document.getElementById("dptoRegVta").value;
-      var options = document.querySelectorAll('#provRegVta option');
-          options.forEach(o => o.remove());
-  
-      $.ajax({
-          url: '../lista/MuestraProvincia', 
-          method: "GET",
-          crossDomain: true,
-          dataType: 'json',
-          data:{'cod_pais':codPais2,'cod_departamento':valor},
-          success: function(respuesta){     
-              $("#provRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');  
-              respuesta['response'].forEach(function(word){
-              $("#provRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-            });
-          },//success
-          error(e){
-              console.log(e.message);
-          }//error
-      });
+        codPais2 = document.getElementById("paisRegVta").value;
+        var valor = document.getElementById("dptoRegVta").value;
+        var options = document.querySelectorAll('#provRegVta option');
+            options.forEach(o => o.remove());
+    
+        $.ajax({
+            url: '../lista/MuestraProvincia', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'cod_pais':codPais2,'cod_departamento':valor},
+            success: function(respuesta){     
+                $("#provRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');  
+                respuesta['response'].forEach(function(word){
+                    $("#provRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                });
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
   });
   
-  var coddptto2 = document.getElementById("dpto2doRegVta");
-  coddptto2.addEventListener("change",function (){
-      codPais2 = document.getElementById("pais2doRegVta").value;
-      var valor = document.getElementById("dpto2doRegVta").value;
-      var options = document.querySelectorAll('#prov2doRegVta option');
-          options.forEach(o => o.remove());
+var coddptto2 = document.getElementById("dpto2doRegVta");
+coddptto2.addEventListener("change",function (){
+    codPais2 = document.getElementById("pais2doRegVta").value;
+    var valor = document.getElementById("dpto2doRegVta").value;
+    var options = document.querySelectorAll('#prov2doRegVta option');
+    options.forEach(o => o.remove());
   
-      $.ajax({
-          url: '../lista/MuestraProvincia', 
-          method: "GET",
-          crossDomain: true,
-          dataType: 'json',
-          data:{'cod_pais':codPais2,'cod_departamento':valor},
-          success: function(respuesta){     
-              $("#prov2doRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');  
-              respuesta['response'].forEach(function(word){
-              $("#prov2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+    $.ajax({
+        url: '../lista/MuestraProvincia', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'cod_pais':codPais2,'cod_departamento':valor},
+        success: function(respuesta){     
+            $("#prov2doRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');  
+            respuesta['response'].forEach(function(word){
+                $("#prov2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
-          },//success
-          error(e){
-              console.log(e.message);
-          }//error
-      });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
   });
 
-  var coddptto2 = document.getElementById("dptoAval");
-  coddptto2.addEventListener("change",function (){
-      codPais2 = document.getElementById("paisAval").value;
-      var valor = document.getElementById("dptoAval").value;
-      var options = document.querySelectorAll('#provAval option');
-          options.forEach(o => o.remove());
+var coddptto2 = document.getElementById("dptoAval");
+coddptto2.addEventListener("change",function (){
+    codPais2 = document.getElementById("paisAval").value;
+    var valor = document.getElementById("dptoAval").value;
+    var options = document.querySelectorAll('#provAval option');
+    options.forEach(o => o.remove());
   
-      $.ajax({
-          url: '../lista/MuestraProvincia', 
-          method: "GET",
-          crossDomain: true,
-          dataType: 'json',
-          data:{'cod_pais':codPais2,'cod_departamento':valor},
-          success: function(respuesta){     
-              $("#provAval").append('<option value="" selected disabled>SELECCIONE...</option>');  
-              respuesta['response'].forEach(function(word){
-              $("#provAval").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+    $.ajax({
+        url: '../lista/MuestraProvincia', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'cod_pais':codPais2,'cod_departamento':valor},
+        success: function(respuesta){     
+            $("#provAval").append('<option value="" selected disabled>SELECCIONE...</option>');  
+            respuesta['response'].forEach(function(word){
+                $("#provAval").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
-          },//success
-          error(e){
-              console.log(e.message);
-          }//error
-      });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
   });
   
 //-----------------muestra select Distrito-----------
@@ -729,8 +729,8 @@ codcampo.addEventListener("change",function(){
 //-----------------muestra select Subtipo servicio-----------
 var codcampo = document.getElementById("btnAddServicio");
 codcampo.addEventListener("click",function(){
-    codCamposanto = (document.getElementById("camposanto").value != '') ? document.getElementById("camposanto").value : '%' ;
-    codPlataforma = (document.getElementById("nombrePlat").value != '') ? document.getElementById("nombrePlat").value : '%';
+    codCamposanto = document.getElementById("camposanto").value;
+    codPlataforma = document.getElementById("nombrePlat").value;
     cod_tipo_recaudacion = document.getElementById("tipoPrograma").value;
     var boton = document.getElementById("tipoNec");
     if(boton.checked == true){
@@ -752,7 +752,7 @@ codcampo.addEventListener("click",function(){
         dataType: 'json',
         data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_tipo_recaudacion': cod_tipo_recaudacion,'cod_subtipo_servicio':cod_subtipo_servicio,'tipo_nec':tipo_nec},
         success: function(respuesta){
-                console.log(respuesta['response']);
+            //console.log(respuesta['response']);
             respuesta['response'].forEach(element => {
                     console.log(element);
                 var tabla = document.getElementById('tablaServicios');
