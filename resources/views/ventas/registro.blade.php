@@ -1226,6 +1226,12 @@ flatpickr("#fchNacAddBenef",{
   locale:"es",
   dateFormat: "Y-m-d"
 });
+
+flatpickr("#fch1erVcto",{
+  locale:"es",
+  dateFormat: "Y-m-d"
+});
+
 var fechaActual = new Date();
 var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
 
