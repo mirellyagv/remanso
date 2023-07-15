@@ -630,7 +630,7 @@
                           <input type="hidden" name="codServicio" id="codServicio">
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
                           <input type="hidden" name="ctdServ" id="ctdServ">
-                          <input type="hidden" name="impMinCuoi" id="impMinCuoi">
+                          <input type="hidden" name="impMinCuoi" id="impMinCuoi" value = 0>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
@@ -1221,6 +1221,8 @@ impFomaInput.addEventListener("input", function(event) {
 });
 
 
+var fechaActual = new Date();
+var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
 
 flatpickr("#fchNacAddBenef",{
   locale:"es",
@@ -1229,11 +1231,10 @@ flatpickr("#fchNacAddBenef",{
 
 flatpickr("#fch1erVcto",{
   locale:"es",
-  dateFormat: "Y-m-d"
+  dateFormat: "Y-m-d",
+  defaultDate:fechaActual
 });
 
-var fechaActual = new Date();
-var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
 
 
 document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
@@ -1421,6 +1422,7 @@ $( document ).ready(function () {
 
           //document.getElementById("impTotal").value=result["response"]["imp_total"];
           document.getElementById("impCuoi").value=result["response"]["imp_cui"];
+          document.getElementById("impMinCuoi").value=result["response"]["imp_cui_minimo"];
           document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
           document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
@@ -1593,6 +1595,7 @@ boton.addEventListener("click",function(){
     'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
     'por_descuento': document.getElementById("pordescuento").value,
     'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value,
+    'imp_cui_minimo':document.getElementById("impMinCuoi").value
   };
 
   Swal.fire({
