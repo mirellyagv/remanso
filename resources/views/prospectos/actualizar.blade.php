@@ -883,6 +883,7 @@ window.onload= function () {
       data:{'cod_prospecto':cod_prospecto},
       success: function(result) {
 
+        var changeEvent = new Event('change');   // Crea un evento "change"
         document.getElementById("rucProsp").value=result["response"]["dsc_razon_social"];
         document.getElementById("apellPProsp").value=result["response"]["dsc_apellido_paterno"];
         document.getElementById("apellMProsp").value=result["response"]["dsc_apellido_materno"];
@@ -894,6 +895,7 @@ window.onload= function () {
 
         var paisProspecto=document.getElementById("paisProspecto") ;
         paisProspecto.value=result["response"]["cod_pais"];
+        paisProspecto.dispatchEvent(changeEvent); 
 
         var dptoProsp=document.getElementById("dptoProsp") ;
         dptoProsp.value=result["response"]["cod_departamento"];
@@ -936,6 +938,7 @@ window.onload= function () {
 
         var pais2Tit=document.getElementById("pais2Tit") ;
         pais2Tit.value=result["response"]["cod_pais_2do"];
+        pais2Tit.dispatchEvent(changeEvent); 
 
         var dpto2Tit=document.getElementById("dpto2Tit") ;
         dpto2Tit.value=result["response"]["cod_departamento_2do"];
@@ -971,7 +974,7 @@ window.onload= function () {
       resultBenef['response'].forEach(function(word){
           fecha = word['fch_nacimiento'].split("T");
           fila += '<tr>'+
-          '<td>'+word['dsc_tipo_documento']+'</td>'+
+          '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
           '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
           '<td>'+fecha[0]+'</td>'+
           '<td>'+word['dsc_parentesco']+'</td>'+
@@ -983,9 +986,9 @@ window.onload= function () {
         var filaData = {
           'cod_localidad_p': 'LC001',
           'cod_prospecto': cod_prospecto,
-          'num_linea': word['num_linea'],
+          'num_linea': word['num_linea'].toString(),
           'cod_tipo_documento': word['cod_tipo_documento'],
-          'dsc_documento': word['dsc_tipo_documento'],
+          'dsc_documento': word['dsc_documento'],
           'dsc_apellido_paterno': word['dsc_apellido_paterno'],
           'dsc_apellido_materno': word['dsc_apellido_materno'],
           'dsc_nombres': word['dsc_nombres'],
@@ -1132,7 +1135,7 @@ boton.addEventListener("click",function(){
     'cod_eje_vertical': '',
     'cod_espacio': '',
     'cod_tipo_espacio': '',
-    'num_nivel': 0,
+    'num_nivel': '0',
     'cod_tipo_necesidad': 'NF',
     'num_operacion':''
   };
@@ -1160,14 +1163,15 @@ boton.addEventListener("click",function(){
         success: function(respuesta){
           //console.log('respuesta',respuesta);
           if (filasArrayBenef.length > 0) {
-            for (let index = 0; index < filasArrayBenef.length; index++) {
+
+              console.log(filasArrayBenef);
               
               $.ajax({
                 url: '../api/guardaBeneficiario',
                 method: "PUT",
                 crossDomain: true,
                 dataType: 'json',
-                data:{'beneficiarios':filasArrayBenef[index]},
+                data:{'beneficiarios':filasArrayBenef},
                 success: function(respuesta){
                   console.log(respuesta);
                   Swal.fire({
@@ -1187,7 +1191,6 @@ boton.addEventListener("click",function(){
                 }//error
               });
               
-            }
           }
         },//success
         error(e){
@@ -1198,7 +1201,7 @@ boton.addEventListener("click",function(){
             icon:'warning',
             confirmButtonColor: '#35B44A',
           })
-          btnSolicitar.removeAttribute('disabled');
+          boton.removeAttribute('disabled');
         }//error
       });
     }

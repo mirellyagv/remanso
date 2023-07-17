@@ -1286,6 +1286,7 @@ $( document ).ready(function () {
         data:{'cod_prospecto':cod_prospecto},
         success: function(result) {
           //console.log(result);
+          var changeEvent = new Event('change');   // Crea un evento "change"
           document.getElementById("tipoNec").bootstrapToggle('off');
           document.getElementById("tipoNec").bootstrapToggle('readonly');
           document.getElementById("razonSocRegVta").value=result["response"]["dsc_razon_social"];
@@ -1299,10 +1300,11 @@ $( document ).ready(function () {
 
           var paisProspecto=document.getElementById("paisRegVta") ;
           paisProspecto.value=result["response"]["cod_pais"];
+          paisProspecto.dispatchEvent(changeEvent);
         
           var dptoProsp=document.getElementById("dptoRegVta") ;
           dptoProsp.value=result["response"]["cod_departamento"];
-          var changeEvent = new Event('change');   // Crea un evento "change"
+         
           dptoProsp.dispatchEvent(changeEvent); // Desencadena el evento "change"
         
           var provinProsp=document.getElementById("provRegVta") ;
@@ -1333,6 +1335,7 @@ $( document ).ready(function () {
 
           var pais2Tit=document.getElementById("pais2doRegVta") ;
           pais2Tit.value=result["response"]["cod_pais_2do"];
+          pais2Tit.dispatchEvent(changeEvent); 
 
           var dpto2Tit=document.getElementById("dpto2doRegVta") ;
           dpto2Tit.value=result["response"]["cod_departamento_2do"];
@@ -1618,54 +1621,52 @@ boton.addEventListener("click",function(){
           if (codProspecto == '') {
             codProspecto = respuesta['response']['cod_prospecto'];
           }
-         
           filasArray.forEach(function (fila) {
             fila['cod_prospecto'] = codProspecto;
           });
+          $.ajax({
+              url: '../api/guardaBeneficiario', 
+              method: "PUT",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'beneficiarios':filasArray},
+              success: function(respuesta){
+                  console.log(respuesta);   
+              },//success
+              error(e){
+                  console.log(e.message);
+              }//error
+          });
 
-            // $.ajax({
-            //     url: '../api/guardaBeneficiario', 
-            //     method: "PUT",
-            //     crossDomain: true,
-            //     dataType: 'json',
-            //     data:{'beneficiarios':filasArray},
-            //     success: function(respuesta){
-            //         console.log(respuesta);   
-            //     },//success
-            //     error(e){
-            //         console.log(e.message);
-            //     }//error
-            // });
+          servicioArray['cod_prospecto'] = codProspecto;
 
-            servicioArray['cod_prospecto'] = codProspecto;
+          $.ajax({
+              url: '../api/InsertarProspectoServicio', 
+              method: "PUT",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'datosServicios':servicioArray},
+              success: function(respuesta){
+                  console.log(respuesta);   
+              },//success
+              error(e){
+                  console.log(e.message);
+              }//error
+          });
 
-            $.ajax({
-                url: '../api/InsertarProspectoServicio', 
-                method: "PUT",
-                crossDomain: true,
-                dataType: 'json',
-                data:{'datosServicios':servicioArray},
-                success: function(respuesta){
-                    console.log(respuesta);   
-                },//success
-                error(e){
-                    console.log(e.message);
-                }//error
-            });
-
-            Swal.fire({
-              title: 'Guardado',
-              text: codProspecto,
-              icon: 'success',
-              confirmButtonText: 'Aceptar',
-              confirmButtonColor: '#35B44A',
-            }).then((result) => {
-              /* Read more about isConfirmed, isDenied below */
-              if (result.isConfirmed) {
-                window.location.href = "../prospectos/listado";
-              }  
-            })
-    
+          Swal.fire({
+            title: 'Guardado',
+            text: codProspecto,
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#35B44A',
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              window.location.href = "../prospectos/listado";
+            }  
+          })
+  
         },//success
         error(e){
             console.log(e.message);

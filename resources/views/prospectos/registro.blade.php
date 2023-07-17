@@ -623,7 +623,7 @@ form.addEventListener("submit", function(event) {
 });
 
 var fechaActual = new Date();
-console.log(fechaActual);
+//console.log(fechaActual);
 document.getElementById("fechaContacto").value = fechaActual;
 flatpickr("#fchNacAddBenef",{
   locale:"es",
@@ -1132,14 +1132,14 @@ boton.addEventListener("click",function(){
           fila['cod_prospecto'] = codProspecto;
         });
         if (filasArrayBenef.length > 0) {
-          for (let index = 0; index < filasArrayBenef.length; index++) {
-            
+
+            console.log(filasArrayBenef);
             $.ajax({
               url: '../api/guardaBeneficiario',
               method: "PUT",
               crossDomain: true,
               dataType: 'json',
-              data:{'beneficiarios':filasArrayBenef[index]},
+              data:{'beneficiarios':filasArrayBenef},
               success: function(respuesta){
                 console.log(respuesta);
               },//success
@@ -1149,7 +1149,7 @@ boton.addEventListener("click",function(){
             });
             
           }
-        }
+        
         if (obsvContacto != '') {
           $.ajax({
             url: '../api/guardaObservacion',

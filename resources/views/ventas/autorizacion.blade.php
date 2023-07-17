@@ -352,7 +352,7 @@ function verDocumentos(codCtto) {
         success: function(respuesta){
              
             if (respuesta['response']['dsc_documento_caratura'] != '' || respuesta['response']['dsc_documento_caratura'] != null) {
-                cara = respuesta['response']['dsc_documento_caratura']+respuesta['response']['dsc_documento_caratura_2'];
+                cara = respuesta['response']['dsc_documento_caratura']+respuesta['response']['dsc_documento_caratura_2']+respuesta['response']['dsc_documento_caratula_3'];
                 base64ToPDF(cara,'caratula');
             }else{
                 Swal.fire({
@@ -381,9 +381,9 @@ function verComprobante(codCtto) {
         dataType: 'json',
         data:{'codCtto':codCtto,'numServicio':numServ},
         success: function(respuesta){
-             
+             console.log(respuesta['response']['dsc_documento_comprobante']);
             if (respuesta['response']['dsc_documento_comprobante'] != '' || respuesta['response']['dsc_documento_comprobante'] != null) {
-                cara = respuesta['response']['dsc_documento_comprobante'];
+                cara = respuesta['response']['dsc_documento_comprobante']+respuesta['response']['dsc_documento_comprobante_2']+respuesta['response']['dsc_documento_comprobante_3'];
                 base64ToPDF(cara,'caratula');
             }else{
                 Swal.fire({
