@@ -36,7 +36,20 @@
           <form action="#" id="formRegVenta" method="post">
             <div class="card ">
               <div class="row">
-                <div class="col-1 col-md-1 offset-9 offset-md-11">
+                <div class="col-md-2 mb-2 offset-md-6">
+                  <label for="inputText" class="col-form-label">Aprobar venta: </label>
+                </div>
+                <div class="col-1 col-md-1">
+                  <div class="form-group form-remanso">
+                    <h5>
+                      <input type="checkbox" data-toggle="toggle" id="AprobarVenta" data-onlabel="SI" data-offlabel = "NO" data-onstyle ="success">
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-md-2 mb-2">
+                  <label for="inputText" class="col-form-label">Tipo Necesidad: </label>
+                </div>
+                <div class="col-1 col-md-1">
                   <div class="form-group form-remanso">
                     <h5>
                       <input type="checkbox" data-toggle="toggle" id="tipoNec" data-onlabel="NI" data-offlabel = "NF" data-onstyle ="success" checked >
@@ -197,7 +210,7 @@
                           <label for="inputText" class="col-form-label">Fch Nacimiento: </label>
                         </div>
                         <div class="col-md-2 mb-2">
-                          <input type="text" class="form-control form-remanso align-right" name="fchNacRegVta" id="fchNacRegVta">
+                          <input type="text" class="form-control form-remanso align-right" name="fchNacRegVta" id="fchNacRegVta" required>
                         </div>
                       </div>
                       <hr>
@@ -1550,10 +1563,10 @@ boton.addEventListener("click",function(){
     flgJuridico2 = '';
     if(document.getElementById("tipoDocRegVta").value == 'DI004'){
       flgJuridico = 'SI';
-      dscTitular = document.getElementById("razonSocRegVta").value;
+      dscTitular = document.getElementById("razonSocRegVta").value.toUpperCase();
     }else{
       flgJuridico = 'NO';
-      dscTitular = document.getElementById("nombresRegVta").value+' '+document.getElementById("apellPRegVta").value+' '+document.getElementById("apellMRegVta").value;
+      dscTitular = document.getElementById("nombresRegVta").value.toUpperCase()+' '+document.getElementById("apellPRegVta").value.toUpperCase()+' '+document.getElementById("apellMRegVta").value.toUpperCase();
     }
     if(document.getElementById("tipoDoc2doRegVta").value ==  'DI004'){
       flgJuridico2 = 'SI';
@@ -1632,7 +1645,7 @@ boton.addEventListener("click",function(){
     'cod_eje_vertical': document.getElementById("ejeY").value,
     'cod_espacio': document.getElementById("espacio").value,
     'cod_tipo_espacio': document.getElementById("tipoEspacio").value,
-    'num_nivel': 0,
+    'num_nivel': '0',
     'cod_tipo_necesidad': tipo_nec,
     'num_operacion': document.getElementById("numOpeRegVta").value,
     'cod_tipo_comprobante':document.getElementById("compVtaRegVta").value,

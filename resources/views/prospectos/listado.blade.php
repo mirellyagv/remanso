@@ -239,15 +239,21 @@ $(document).ready(function () {
         var dia = today.toLocaleDateString('es-ES');
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
-        if(estado == 'ACTIVO' || estado == 'VENTA'){
+        if(estado == 'ACTIVO'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
+          info='Gestión';
+          ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+        }else if(estado == 'VENTA'){
+          ref = ''; 
+          info = 'Este prospecto esta en estado Venta, solo se puede modificar en el registro de ventas.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
         }else{
           ref='';
+          info = '';
           ref2 = '';
         }
           fila += '<tr><td>'+
-              '<a class="btn btn-secondary form-remanso" '+ref+' title="Gestión"><span class="bi bi-clipboard-check" ></span></a>'+
+              '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" ></span></a>'+
               '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Registrar venta"><span class="bi bi-cash-stack"></span></a>'+
                   '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
                   '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" title="Activar Prospecto"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
