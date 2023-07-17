@@ -385,9 +385,9 @@ addBeneficiario.addEventListener("click",function (){
   var doc = document.getElementById("tipoDocAddBenef");
   var tipoDoc = doc.options[doc.selectedIndex].text;
   var dscDoc = document.getElementById("numDocAddBenef").value;
-  var nombre = document.getElementById("nombresAddBenef").value;
-  var apellP = document.getElementById("apellPAddBenef").value;
-  var apellM = document.getElementById("apellMAddBenef").value;
+  var nombre = document.getElementById("nombresAddBenef").value.toUpperCase();
+  var apellP = document.getElementById("apellPAddBenef").value.toUpperCase();
+  var apellM = document.getElementById("apellMAddBenef").value.toUpperCase();
   var fechNac = document.getElementById("fchNacAddBenef").value;
   var parent = document.getElementById("parentescoAddBenef");
   var parentesco = parent.options[parent.selectedIndex].text;
@@ -396,6 +396,7 @@ addBeneficiario.addEventListener("click",function (){
   var civil = document.getElementById("edoCivilAddBenef");
   var edoCivil = civil.options[civil.selectedIndex].text;
   var codEdoCivil = document.getElementById("edoCivilAddBenef").value;
+  var flgFallecido = (document.getElementById("flg_fallecido").checked) ? 'SI' : 'NO';
 
     var tabla = document.getElementById('tablaBeneficiarios');
     var tbody = tabla.getElementsByTagName('tbody')[0];
@@ -470,7 +471,8 @@ addBeneficiario.addEventListener("click",function (){
       fch_nacimiento: fechNac,
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
-      cod_parentesco: codParentesco
+      cod_parentesco: codParentesco,
+      flg_fallecido: flgFallecido
     };
 
     filasArrayBenef.push(filaData); // Agregar la fila al array

@@ -488,6 +488,12 @@
               <select name="edoCivilAddBenef" id="edoCivilAddBenef" class="form-select form-remanso">
               </select>
             </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Fallecido: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="checkbox" data-toggle="toggle" id="flg_fallecido" data-onlabel="SI" data-offlabel = "NO" data-onstyle ="success" >
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -995,7 +1001,8 @@ window.onload= function () {
           'fch_nacimiento': fecha[0],
           'cod_estado_civil': word['cod_estado_civil'],
           'cod_sexo': word['cod_sexo'],
-          'cod_parentesco': word['cod_parentesco']
+          'cod_parentesco': word['cod_parentesco'],
+          'flg_fallecido':word['flg_fallecido']
         };
 
         filasArrayBenef.push(filaData); // Agregar la fila al array
@@ -1098,6 +1105,9 @@ boton.addEventListener("click",function(){
     'cod_estado': 'ACT',
     'imp_monto':document.getElementById("impProsp").value,
     'dsc_correo': document.getElementById("correoProsp").value,
+    'fch_nacimiento':'',
+    'cod_estado_civil':'',
+    'cod_sexo':'',
     'flg_sincronizado_crm': 'NO',
     'cod_localidad_p': 'LC001',
     'dsc_apellido_paterno_2do': document.getElementById("apelP2tit").value,
@@ -1137,7 +1147,10 @@ boton.addEventListener("click",function(){
     'cod_tipo_espacio': '',
     'num_nivel': '0',
     'cod_tipo_necesidad': 'NF',
-    'num_operacion':''
+    'num_operacion':'',
+    'cod_tipo_comprobante':'',
+    'dsc_ruc':'',
+    'dsc_razonsocial_comprobante':''
   };
 
 

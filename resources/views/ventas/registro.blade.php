@@ -178,6 +178,54 @@
                           <input type="text" class="form-control form-remanso" name="correoRegVta" id="correoRegVta" required>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-2">
+                          <label for="inputText" class="col-form-label">Estado civil:</label>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <select name="edoCivilRegVta" id="edoCivilRegVta" class="form-select form-remanso" required>
+                          </select>
+                        </div>
+                        <div class="col-md-1 mb-2">
+                          <label for="inputText" class="col-form-label">Sexo: </label>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <select name="sexoRegVta" id="sexoRegVta" class="form-select form-remanso" required>
+                          </select>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <label for="inputText" class="col-form-label">Fch Nacimiento: </label>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <input type="text" class="form-control form-remanso align-right" name="fchNacRegVta" id="fchNacRegVta">
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Comprobante de venta:</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="compVtaRegVta" id="compVtaRegVta" class="form-select form-remanso">
+                            <option value="TC001">BOLETA</option>
+                            <option value="TC002">FACTURA</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">RUC: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso align-right" name="rucCompVtaRegVta" id="rucCompVtaRegVta" disabled>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">Razon social:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <input type="text" class="form-control form-remanso" name="razSocCompVtaRegVta" id="razSocCompVtaRegVta" disabled>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -822,6 +870,12 @@
               <select name="edoCivilAddBenef" id="edoCivilAddBenef" class="form-select form-remanso">
               </select>
             </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Fallecido: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="checkbox" data-toggle="toggle" id="flg_fallecido" data-onlabel="SI" data-offlabel = "NO" data-onstyle ="success" >
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -1235,6 +1289,10 @@ flatpickr("#fch1erVcto",{
   defaultDate:fechaActual
 });
 
+flatpickr("#fchNacRegVta",{
+  locale:"es",
+  dateFormat: "Y-m-d"
+});
 
 
 document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
@@ -1534,6 +1592,9 @@ boton.addEventListener("click",function(){
     'cod_estado': 'VEN',
     'imp_monto':document.getElementById("impTotal").value,
     'dsc_correo': document.getElementById("correoRegVta").value.toUpperCase(),
+    'fch_nacimiento':document.getElementById("fchNacRegVta").value,
+    'cod_estado_civil':document.getElementById("edoCivilRegVta").value,
+    'cod_sexo':document.getElementById("sexoRegVta").value,
     'flg_sincronizado_crm': 'NO',
     'cod_localidad_p': 'LC001',
     'dsc_apellido_paterno_2do': document.getElementById("apellP2doRegVta").value.toUpperCase(),
@@ -1573,7 +1634,10 @@ boton.addEventListener("click",function(){
     'cod_tipo_espacio': document.getElementById("tipoEspacio").value,
     'num_nivel': 0,
     'cod_tipo_necesidad': tipo_nec,
-    'num_operacion': document.getElementById("numOpeRegVta").value
+    'num_operacion': document.getElementById("numOpeRegVta").value,
+    'cod_tipo_comprobante':document.getElementById("compVtaRegVta").value,
+    'dsc_ruc':document.getElementById("rucCompVtaRegVta").value,
+    'dsc_razonsocial_comprobante':document.getElementById("razSocCompVtaRegVta").value
   };
 
   var servicioArray ={

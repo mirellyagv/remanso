@@ -551,6 +551,12 @@
               <select name="edoCivilAddBenef" id="edoCivilAddBenef" class="form-select form-remanso">
               </select>
             </div>
+            <div class="col-md-3 mb-3">
+              <label for="inputText" class="col-form-label">Fallecido: </label>
+            </div>
+            <div class="col-md-3 mb-3">
+              <input type="checkbox" data-toggle="toggle" id="flg_fallecido" data-onlabel="SI" data-offlabel = "NO" data-onstyle ="success" >
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -1051,9 +1057,9 @@ boton.addEventListener("click",function(){
     'cod_prospecto': '',
     'dsc_prospecto': nombres,
     'dsc_razon_social': document.getElementById("rucProsp").value,
-    'dsc_apellido_paterno': document.getElementById("apellPProsp").value,
-    'dsc_apellido_materno': document.getElementById("apellMProsp").value,
-    'dsc_nombre': document.getElementById("nombreProsp").value,
+    'dsc_apellido_paterno': document.getElementById("apellPProsp").value.toUpperCase(),
+    'dsc_apellido_materno': document.getElementById("apellMProsp").value.toUpperCase(),
+    'dsc_nombre': document.getElementById("nombreProsp").value.toUpperCase(),
     'flg_juridico': flgJuridico,
     'cod_tipo_documento': document.getElementById("tipoDocProsp").value,
     'dsc_documento': document.getElementById("numDocPros").value,
@@ -1061,13 +1067,13 @@ boton.addEventListener("click",function(){
     'cod_departamento': document.getElementById("dptoProsp").value,
     'cod_provincia': document.getElementById("provinProsp").value,
     'cod_distrito': document.getElementById("dttoProsp").value,
-    'dsc_direccion':  document.getElementById("direccPros").value,
-    'dsc_direccion_referencia':document.getElementById("direccRefPros").value,
+    'dsc_direccion':  document.getElementById("direccPros").value.toUpperCase(),
+    'dsc_direccion_referencia':document.getElementById("direccRefPros").value.toUpperCase(),
     'dsc_telefono_1': document.getElementById("telf1Prosp").value,
     'dsc_telefono_2': document.getElementById("telf2Prosp").value,
     'cod_origen': document.getElementById("canalProsp").value,
     'cod_calificacion': document.getElementById("califProsp").value,
-    'dsc_observaciones':  document.getElementById("obsvProsp").value,
+    'dsc_observaciones':  document.getElementById("obsvProsp").value.toUpperCase(),
     'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
     'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
     'cod_grupo': '',
@@ -1075,24 +1081,27 @@ boton.addEventListener("click",function(){
     'cod_jefeventas': '',
     'cod_estado': 'ACT',
     'imp_monto':document.getElementById("impProsp").value,
-    'dsc_correo': document.getElementById("correoProsp").value,
+    'dsc_correo': document.getElementById("correoProsp").value.toUpperCase(),
+    'fch_nacimiento':'',
+    'cod_estado_civil':'',
+    'cod_sexo':'',
     'flg_sincronizado_crm': 'NO',
     'cod_localidad_p': 'LC001',
-    'dsc_apellido_paterno_2do': document.getElementById("apelP2tit").value,
-    'dsc_apellido_materno_2do': document.getElementById("apelM2tit").value,
-    'dsc_nombre_2do': document.getElementById("nombre2Tit").value,
+    'dsc_apellido_paterno_2do': document.getElementById("apelP2tit").value.toUpperCase(),
+    'dsc_apellido_materno_2do': document.getElementById("apelM2tit").value.toUpperCase(),
+    'dsc_nombre_2do': document.getElementById("nombre2Tit").value.toUpperCase(),
     'flg_juridico_2do': flgJuridico2,
     'cod_tipo_documento_2do': document.getElementById("tipoDoc2tit").value,
     'dsc_documento_2do': document.getElementById("numDoc2tit").value,
-    'dsc_prospecto_2do': document.getElementById("nombre2Tit").value+' '+document.getElementById("apelP2tit").value+' '+document.getElementById("apelM2tit").value,
+    'dsc_prospecto_2do': document.getElementById("nombre2Tit").value.toUpperCase()+' '+document.getElementById("apelP2tit").value.toUpperCase()+' '+document.getElementById("apelM2tit").value.toUpperCase(),
     'cod_pais_2do': document.getElementById("pais2Tit").value,
     'cod_departamento_2do': document.getElementById("dpto2Tit").value,
     'cod_provincia_2do': document.getElementById("prov2Tit").value,
     'cod_distrito_2do': document.getElementById("dtto2Tit").value,
-    'dsc_direccion_2do': document.getElementById("dir2Tit").value,
+    'dsc_direccion_2do': document.getElementById("dir2Tit").value.toUpperCase(),
     'dsc_telefono_1_2do': document.getElementById("telf1_2Tit").value,
     'dsc_telefono_2_2do': document.getElementById("telf2_2Tit").value,
-    'dsc_correo_2do': document.getElementById("correo2Tit").value,
+    'dsc_correo_2do': document.getElementById("correo2Tit").value.toUpperCase(),
     'dsc_apellido_paterno_aval': '',
     'dsc_apellido_materno_aval': '',
     'dsc_nombre_aval': '',
@@ -1115,7 +1124,10 @@ boton.addEventListener("click",function(){
     'cod_tipo_espacio': '',
     'num_nivel': 0,
     'cod_tipo_necesidad': 'NF',
-    'num_operacion':''
+    'num_operacion':'',
+    'cod_tipo_comprobante':'',
+    'dsc_ruc':'',
+    'dsc_razonsocial_comprobante':''
   };
   //console.log(filasArrayBenef);
 

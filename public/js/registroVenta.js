@@ -98,9 +98,11 @@ window.onload=function() {
         dataType: 'json',
         success: function(respuesta){
             $("#sexoAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
+            $("#sexoRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#sexoAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                $("#sexoRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
             });
         },//success
         error(e){
@@ -116,9 +118,11 @@ window.onload=function() {
         dataType: 'json',
         success: function(respuesta){
             $("#edoCivilAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
+            $("#edoCivilRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#edoCivilAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                $("#edoCivilRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -1112,6 +1116,20 @@ btnAbreModalBenef.addEventListener("click",function (){
     document.getElementById("parentescoAddBenef").value = '';
     document.getElementById("sexoAddBenef").value = '';
     document.getElementById("edoCivilAddBenef").value = '';
+});
+
+
+var selectComprobante = document.getElementById("compVtaRegVta");
+selectComprobante.addEventListener("change",function (){
+    if (selectComprobante.value == 'TC001') {
+        document.getElementById("rucCompVtaRegVta").setAttribute('disabled', 'disabled');
+        document.getElementById("rucCompVtaRegVta").value = '';
+        document.getElementById("razSocCompVtaRegVta").setAttribute('disabled', 'disabled');
+        document.getElementById("razSocCompVtaRegVta").value = '';
+    }else{
+        document.getElementById("rucCompVtaRegVta").removeAttribute('disabled');
+        document.getElementById("razSocCompVtaRegVta").removeAttribute('disabled');
+    }
 });
 
 
