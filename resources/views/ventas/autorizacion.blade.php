@@ -350,13 +350,13 @@ function verDocumentos(codCtto) {
         dataType: 'json',
         data:{'codCtto':codCtto,'numServicio':numServ},
         success: function(respuesta){
-             
-            if (respuesta['response']['dsc_documento_caratura'] != '' || respuesta['response']['dsc_documento_caratura'] != null) {
+            //console.log(respuesta['response']['dsc_documento_caratura']);
+            if (respuesta['response']['dsc_documento_caratura'] != '' && respuesta['response']['dsc_documento_caratura'] != null) {
                 cara = respuesta['response']['dsc_documento_caratura']+respuesta['response']['dsc_documento_caratura_2']+respuesta['response']['dsc_documento_caratula_3'];
                 base64ToPDF(cara,'caratula');
-            }else{
+            }else if (respuesta['response']['dsc_documento_caratura'] == null){
                 Swal.fire({
-                    text: 'Ha ocurrido un error, intentelo mas tarde',
+                    text: 'No existen documentos a retornar.',
                     icon: 'error',
                     confirmButtonText: 'Aceptar',
                     confirmButtonColor: '#35B44A',
@@ -381,13 +381,13 @@ function verComprobante(codCtto) {
         dataType: 'json',
         data:{'codCtto':codCtto,'numServicio':numServ},
         success: function(respuesta){
-             console.log(respuesta['response']['dsc_documento_comprobante']);
-            if (respuesta['response']['dsc_documento_comprobante'] != '' || respuesta['response']['dsc_documento_comprobante'] != null) {
+            //console.log(respuesta['response']['dsc_documento_comprobante']);
+            if (respuesta['response']['dsc_documento_comprobante'] != '' && respuesta['response']['dsc_documento_comprobante'] != null) {
                 cara = respuesta['response']['dsc_documento_comprobante']+respuesta['response']['dsc_documento_comprobante_2']+respuesta['response']['dsc_documento_comprobante_3'];
                 base64ToPDF(cara,'caratula');
-            }else{
+            }else if (respuesta['response']['dsc_documento_comprobante'] == null){
                 Swal.fire({
-                    text: 'Ha ocurrido un error, intentelo mas tarde',
+                    text: 'No existen documentos a retornar.',
                     icon: 'error',
                     confirmButtonText: 'Aceptar',
                     confirmButtonColor: '#35B44A',
