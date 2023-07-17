@@ -1394,6 +1394,10 @@ $( document ).ready(function () {
           document.getElementById("telf1RegVta").value=result["response"]["dsc_telefono_1"];
           document.getElementById("telf2RegVta").value=result["response"]["dsc_telefono_2"];
           document.getElementById("correoRegVta").value=result["response"]["dsc_correo"];
+          document.getElementById("sexoRegVta").value=result["response"]["cod_sexo"];
+          document.getElementById("edoCivilRegVta").value=result["response"]["cod_estado_civil"];
+          auxFechaNac = result["response"]["fch_nacimiento"].split('T');
+          document.getElementById("fchNacRegVta").value=auxFechaNac[0];
 
           document.getElementById("apellP2doRegVta").value=result["response"]["dsc_apellido_paterno_2do"];
           document.getElementById("apellM2doRegVta").value=result["response"]["dsc_apellido_materno_2do"];
