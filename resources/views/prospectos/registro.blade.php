@@ -791,7 +791,7 @@ numDoc2titInput.addEventListener("blur", function(event) {
     method: "GET",
     crossDomain: true,
     dataType: 'json',
-    data:{'dscDocumento':document.getElementById("tipoDoc2tit").value},
+    data:{'dscDocumento':numDoc2titInput.value},
     success: function(respuesta){
       //console.log(respuesta);
       if (respuesta['response']['ctd_coincidencia'] > 0) {
