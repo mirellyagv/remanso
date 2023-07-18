@@ -1102,7 +1102,6 @@ function eliminarFila(index,bd,num_linea) {
         }
     });
   }
-
 }  
 
 var btnAbreModalBenef = document.getElementById("abreModalBenef");

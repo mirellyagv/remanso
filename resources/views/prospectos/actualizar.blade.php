@@ -1004,7 +1004,7 @@ window.onload= function () {
           '<td>'+word['dsc_parentesco']+'</td>'+
           '<td>'+word['dsc_sexo']+'</td>'+
           '<td>'+word['dsc_estado_civil']+'</td>'+
-          '<td></td>'+
+          '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+word['num_linea']+','+"'SI'"+','+word['num_linea']+');" id="botonEliminar'+word['num_linea']+'"><span class="bi bi-x-lg"></span></button></div></td>'+
         '</tr>';
 
         var filaData = {
@@ -1053,6 +1053,27 @@ window.onload= function () {
   });
 
 }
+
+//---------------------elimina Beneficiario---------------------------------
+function eliminarFilaBenef(index,bd,num_linea) {
+  var tabla = document.getElementById('tablaBeneficiarios');
+  var tbody = tabla.getElementsByTagName('tbody')[0];
+  var fila = tbody.rows[index-1];
+  tbody.removeChild(fila);
+  filasArray.splice(index-1, 1); // Eliminar el valor del array en la posición index
+  console.log(filasArray);
+  if(bd === 'SI'){
+    $.ajax({         
+        type: "DELETE",
+        url: '../api/EliminarProspectoBeneficiario', 
+        dataType: 'json',
+        data:{'cod_prospecto':cod_prospecto,'num_linea':num_linea},
+        success: function(resultBenef){
+          console.log(resultBenef['response']);
+        }
+    });
+  }
+} 
 
 //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
@@ -1198,35 +1219,45 @@ boton.addEventListener("click",function(){
         success: function(respuesta){
           //console.log('respuesta',respuesta);
           if (filasArrayBenef.length > 0) {
-
-              console.log(filasArrayBenef);
-              
-              $.ajax({
-                url: '../api/guardaBeneficiario',
-                method: "PUT",
-                crossDomain: true,
-                dataType: 'json',
-                data:{'beneficiarios':filasArrayBenef},
-                success: function(respuesta){
-                  console.log(respuesta);
-                  Swal.fire({
-                    title: 'Actualizado',
-                    text: cod_prospecto,
-                    icon: 'success',
-                    confirmButtonText: 'Aceptar',
-                    confirmButtonColor: '#35B44A',
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      window.location.href = "listado";
-                    }
-                  })
-                },//success
-                error(e){
-                  console.log(e.message);
-                }//error
-              });
-              
+            console.log(filasArrayBenef);
+            $.ajax({
+              url: '../api/guardaBeneficiario',
+              method: "PUT",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'beneficiarios':filasArrayBenef},
+              success: function(respuesta){
+                console.log(respuesta);
+                Swal.fire({
+                  title: 'Actualizado',
+                  text: cod_prospecto,
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar',
+                  confirmButtonColor: '#35B44A',
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = "listado";
+                  }
+                })
+              },//success
+              error(e){
+                console.log(e.message);
+              }//error
+            });  
+          }else{
+            Swal.fire({
+              title: 'Actualizado',
+              text: cod_prospecto,
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#35B44A',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = "listado";
+              }
+            })
           }
+          
         },//success
         error(e){
           console.log('mensaje error',e.message);

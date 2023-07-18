@@ -299,25 +299,25 @@ function firmaCtto(codCtto){
                 icon: 'success',
                 confirmButtonText: 'Aceptar',
                 confirmButtonColor: '#35B44A',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: '../lista/EliminarDocumentoPuente', 
-                            method: "GET",
-                            crossDomain: true,
-                            dataType: 'json',
-                            data:{'codCtto':codCtto,'numServicio':numServ},
-                            success: function(respuesta){
-                                console.log(respuesta['response']);   
-                            },//success
-                            error(e){
-                                console.log(e.message);
-                            }//error
-                        });
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '../lista/EliminarDocumentoPuente', 
+                        method: "GET",
+                        crossDomain: true,
+                        dataType: 'json',
+                        data:{'codCtto':codCtto,'numServicio':numServ},
+                        success: function(respuesta){
+                            console.log(respuesta['response']);   
+                        },//success
+                        error(e){
+                            console.log(e.message);
+                        }//error
+                    });
 
-                        location.reload();
-                    } 
-                })
+                    location.reload();
+                } 
+            })
         },//success
         error(e){
             console.log(e.message);

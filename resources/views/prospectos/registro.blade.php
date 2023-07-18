@@ -1154,52 +1154,53 @@ boton.addEventListener("click",function(){
   };
   //console.log(filasArrayBenef);
 
-    $.ajax({
-      url: '../api/guardaProspecto',
-      method: "PUT",
-      crossDomain: true,
-      dataType: 'json',
-      data:{'prospecto':prospecto},
-      success: function(respuesta){
-        var codProspecto = respuesta['response']['cod_prospecto'];
-        var fchContacto = document.getElementById("fch_contacto");
-        filasArrayBenef.forEach(function (fila) {
-          fila['cod_prospecto'] = codProspecto;
+  $.ajax({
+    url: '../api/guardaProspecto',
+    method: "PUT",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'prospecto':prospecto},
+    success: function(respuesta){
+      var codProspecto = respuesta['response']['cod_prospecto'];
+      var fchContacto = document.getElementById("fch_contacto");
+      filasArrayBenef.forEach(function (fila) {
+        fila['cod_prospecto'] = codProspecto;
+      });
+      var promesas = [];
+      if (filasArrayBenef.length > 0) {
+        var promesa = $.ajax({
+          url: '../api/guardaBeneficiario',
+          method: "PUT",
+          crossDomain: true,
+          dataType: 'json',
+          data:{'beneficiarios':filasArrayBenef},
+          success: function(respuesta){
+            console.log(respuesta);
+          },//success
+          error(e){
+            console.log(e.message);
+          }//error
         });
-        if (filasArrayBenef.length > 0) {
-
-            console.log(filasArrayBenef);
-            $.ajax({
-              url: '../api/guardaBeneficiario',
-              method: "PUT",
-              crossDomain: true,
-              dataType: 'json',
-              data:{'beneficiarios':filasArrayBenef},
-              success: function(respuesta){
-                console.log(respuesta);
-              },//success
-              error(e){
-                console.log(e.message);
-              }//error
-            });
-            
-          }
-        
-        if (obsvContacto != '') {
-          $.ajax({
-            url: '../api/guardaObservacion',
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'cod_prospecto':codProspecto,'cod_calificacion': califContacto,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
-            success: function(respuesta){
-              console.log(respuesta);
-            },//success
-            error(e){
-              console.log(e.message);
-            }//error
-          });
-        }
+        promesas.push(promesa);
+      }
+      if (obsvContacto != '') {
+        var promesa = $.ajax({
+          url: '../api/guardaObservacion',
+          method: "PUT",
+          crossDomain: true,
+          dataType: 'json',
+          data:{'cod_prospecto':codProspecto,'cod_calificacion': califContacto,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+          success: function(respuesta){
+            console.log(respuesta);
+          },//success
+          error(e){
+            console.log(e.message);
+          }//error
+        });
+        promesas.push(promesa);
+      }
+      Promise.all(promesas)
+      .then(function() {
         Swal.fire({
           title: 'Guardado',
           text: codProspecto,
@@ -1211,8 +1212,10 @@ boton.addEventListener("click",function(){
             window.location.href = "listado";
           }
         })
-      }
-    }); 
+      })
+      
+    }
+  }); 
 
 });
 
