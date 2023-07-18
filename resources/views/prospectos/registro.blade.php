@@ -632,11 +632,11 @@ var fechaActual = new Date();
 document.getElementById("fechaContacto").value = fechaActual;
 flatpickr("#fchNacAddBenef",{
   locale:"es",
-  dateFormat: "d-m-Y"
+  dateFormat: "Y-m-d"
 });
 flatpickr("#fechaContacto",{
   locale:"es",
-  dateFormat: "d-m-Y"
+  dateFormat: "Y-m-d"
 });
 
 //------------------------valida letras-------------------------------
