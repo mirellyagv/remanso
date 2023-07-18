@@ -615,14 +615,21 @@ emailInput2.addEventListener("input", function(event) {
 // --------------------valida documento de identidad-------------
 var numDocProsInput = document.getElementById("numDocPros");
 
-numDocProsInput.addEventListener("input", function(event) {
+  numDocProsInput.addEventListener("input", function(event) {
   var inputValue = numDocProsInput.value;
   var tipoDoc = document.getElementById('tipoDocProsp');
   var tam = $('option:selected', tipoDoc).attr('data');
- // console.log(tam);
+  
+  //console.log(val);
 
   // Eliminar caracteres no numéricos
-  inputValue = inputValue.replace(/\D/g, '');
+   if(document.getElementById("tipoDocProsp").value == 'DI005' )
+   {
+     inputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g,'');
+   }else
+   {
+    inputValue = inputValue.replace(/\D/g, '');
+   }
 
   // Limitar la longitud del valor a 9 caracteres
   if (inputValue.length > tam) {
@@ -677,8 +684,13 @@ numDoc2titInput.addEventListener("input", function(event) {
   var tam = $('option:selected', tipoDoc).attr('data');
 
   // Eliminar caracteres no numéricos
-  inputValue = inputValue.replace(/\D/g, '');
-
+  if(document.getElementById("tipoDoc2tit").value == 'DI005' )
+   {
+     inputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g,'');
+   }else
+   {
+    inputValue = inputValue.replace(/\D/g, '');
+   }
   // Limitar la longitud del valor a 9 caracteres
   if (inputValue.length > tam) {
     inputValue = inputValue.slice(0, tam);
@@ -733,7 +745,13 @@ numDocAddBenefInput.addEventListener("input", function(event) {
   var tam = $('option:selected', tipoDoc).attr('data');
 
   // Eliminar caracteres no numéricos
-  inputValue = inputValue.replace(/\D/g, '');
+  if(document.getElementById("tipoDocAddBenef").value == 'DI005' )
+   {
+     inputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g,'');
+   }else
+   {
+    inputValue = inputValue.replace(/\D/g, '');
+   }
 
   // Limitar la longitud del valor a 9 caracteres
   if (inputValue.length > tam) {
