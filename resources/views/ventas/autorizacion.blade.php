@@ -354,7 +354,7 @@ function verDocumentos(codCtto) {
             if (respuesta['response']['dsc_documento_caratura'] != '' && respuesta['response']['dsc_documento_caratura'] != null) {
                 cara = respuesta['response']['dsc_documento_caratura']+respuesta['response']['dsc_documento_caratura_2']+respuesta['response']['dsc_documento_caratula_3'];
                 base64ToPDF(cara,'caratula');
-            }else if (respuesta['response']['dsc_documento_caratura'] == null){
+            }else if (respuesta['response']['dsc_documento_caratura'] == null || respuesta['response']['dsc_documento_caratura'] == ''){
                 Swal.fire({
                     text: 'No existen documentos a retornar.',
                     icon: 'error',
@@ -385,7 +385,7 @@ function verComprobante(codCtto) {
             if (respuesta['response']['dsc_documento_comprobante'] != '' && respuesta['response']['dsc_documento_comprobante'] != null) {
                 cara = respuesta['response']['dsc_documento_comprobante']+respuesta['response']['dsc_documento_comprobante_2']+respuesta['response']['dsc_documento_comprobante_3'];
                 base64ToPDF(cara,'caratula');
-            }else if (respuesta['response']['dsc_documento_comprobante'] == null){
+            }else if (respuesta['response']['dsc_documento_comprobante'] == null || respuesta['response']['dsc_documento_comprobante'] == ''){
                 Swal.fire({
                     text: 'No existen documentos a retornar.',
                     icon: 'error',
