@@ -1163,12 +1163,16 @@ boton.addEventListener("click",function(){
     'cod_eje_vertical': '',
     'cod_espacio': '',
     'cod_tipo_espacio': '',
-    'num_nivel': '0',
+    'num_nivel': 0,
     'cod_tipo_necesidad': 'NF',
     'num_operacion':'',
     'cod_tipo_comprobante':'',
     'dsc_ruc':'',
-    'dsc_razonsocial_comprobante':''
+    'dsc_razon_social_comprobante':'',
+    'imp_total': 0,
+    'imp_cui': 0,
+    'imp_saldo_financiar': 0,
+    'imp_foma': 0,
   };
 
 

@@ -220,6 +220,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="compVtaRegVta" id="compVtaRegVta" class="form-select form-remanso">
+                            <option value="" selected></option>
                             <option value="TC001">BOLETA</option>
                             <option value="TC002">FACTURA</option>
                           </select>
@@ -792,7 +793,7 @@
               <br>
               <div class="row">
                 <div class="col-md-3 offset-md-4 mb-3">
-                  <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="registrarVenta" style="width: -webkit-fill-available;">Guardar</a>
+                  <button  type="button" class="btn btn-success form-remanso BtnverdeRemanso" id="registrarVenta" style="width: -webkit-fill-available;">Guardar</button>
                 </div>
               </div>
               <br>
@@ -1364,7 +1365,10 @@ if (window.location.search) {
     }
 }
 
+var cod_estado='';
+
 $( document ).ready(function () {
+ 
   setTimeout(function() { 
     //console.log('cod_prospecto',cod_prospecto);
     if (cod_prospecto !== '') {
@@ -1383,10 +1387,29 @@ $( document ).ready(function () {
           var changeEvent = new Event('change');   // Crea un evento "change"
           document.getElementById("tipoNec").bootstrapToggle('off');
           document.getElementById("tipoNec").bootstrapToggle('readonly');
+
+         
+          cod_estado=result["response"]["cod_estado"];
+          if(cod_estado=='VEN')
+          {
+            document.getElementById("AprobarVenta").bootstrapToggle('on');
+            document.getElementById("AprobarVenta").bootstrapToggle('readonly');
+            document.getElementById("registrarVenta").disabled  = true;
+          }else
+          {
+            document.getElementById("AprobarVenta").bootstrapToggle('off');
+          }
           document.getElementById("razonSocRegVta").value=result["response"]["dsc_razon_social"];
           document.getElementById("apellPRegVta").value=result["response"]["dsc_apellido_paterno"];
           document.getElementById("apellMRegVta").value=result["response"]["dsc_apellido_materno"];
           document.getElementById("nombresRegVta").value=result["response"]["dsc_nombre"];
+
+          document.getElementById("razSocCompVtaRegVta").value=result["response"]["dsc_razon_social_comprobante"];
+          document.getElementById("rucCompVtaRegVta").value=result["response"]["dsc_ruc"];
+          
+          var cod_tipo_comprobante=document.getElementById("compVtaRegVta") ;
+          cod_tipo_comprobante.value=result["response"]["cod_tipo_comprobante"];
+
           var tipoDocPros=document.getElementById("tipoDocRegVta") ;
           tipoDocPros.value=result["response"]["cod_tipo_documento"];
 
@@ -1586,6 +1609,13 @@ boton.addEventListener("click",function(){
         codProspecto = document.getElementById("inputCodProspecto").value;
         urlGrabar = '../api/editarProspecto';
     }
+
+    var botonApr = document.getElementById("AprobarVenta");
+    if(botonApr.checked == true){
+      cod_estado = 'VEN';
+    }
+
+
     flgJuridico = '';
     flgJuridico2 = '';
     if(document.getElementById("tipoDocRegVta").value == 'DI004'){
@@ -1602,6 +1632,7 @@ boton.addEventListener("click",function(){
       flgJuridico2 = 'NO';
     }
 
+     
 
     var prospecto = {
     'cod_prospecto': codProspecto,
@@ -1629,8 +1660,8 @@ boton.addEventListener("click",function(){
     'cod_grupo': '',
     'cod_supervisor': '',
     'cod_jefeventas': '',
-    'cod_estado': 'VEN',
-    'imp_monto':document.getElementById("impTotal").value,
+    'cod_estado': cod_estado,
+    'imp_monto':0,
     'dsc_correo': document.getElementById("correoRegVta").value.toUpperCase(),
     'fch_nacimiento':document.getElementById("fchNacRegVta").value,
     'cod_estado_civil':document.getElementById("edoCivilRegVta").value,
@@ -1672,12 +1703,16 @@ boton.addEventListener("click",function(){
     'cod_eje_vertical': document.getElementById("ejeY").value,
     'cod_espacio': document.getElementById("espacio").value,
     'cod_tipo_espacio': document.getElementById("tipoEspacio").value,
-    'num_nivel': '0',
+    'num_nivel': 0,
     'cod_tipo_necesidad': tipo_nec,
     'num_operacion': document.getElementById("numOpeRegVta").value,
     'cod_tipo_comprobante':document.getElementById("compVtaRegVta").value,
     'dsc_ruc':document.getElementById("rucCompVtaRegVta").value,
-    'dsc_razonsocial_comprobante':document.getElementById("razSocCompVtaRegVta").value
+    'dsc_razon_social_comprobante':document.getElementById("razSocCompVtaRegVta").value,
+    'imp_total': 0,
+    'imp_cui': 0,
+    'imp_saldo_financiar': 0,
+    'imp_foma': 0,
   };
 
   var servicioArray ={
