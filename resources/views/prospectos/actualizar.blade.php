@@ -996,6 +996,7 @@ window.onload= function () {
       console.log(resultBenef['response']);
       var fila='';
       resultBenef['response'].forEach(function(word){
+        index = 0;
           fecha = word['fch_nacimiento'].split("T");
           fila += '<tr>'+
           '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
@@ -1004,7 +1005,7 @@ window.onload= function () {
           '<td>'+word['dsc_parentesco']+'</td>'+
           '<td>'+word['dsc_sexo']+'</td>'+
           '<td>'+word['dsc_estado_civil']+'</td>'+
-          '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+word['num_linea']+','+"'SI'"+','+word['num_linea']+');" id="botonEliminar'+word['num_linea']+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+          '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
         '</tr>';
 
         var filaData = {
@@ -1024,6 +1025,7 @@ window.onload= function () {
         };
 
         filasArrayBenef.push(filaData); // Agregar la fila al array
+        index++;
       });
       $('#bodyListadoBen').html(fila);
 
@@ -1055,7 +1057,7 @@ window.onload= function () {
 }
 
 //---------------------elimina Beneficiario---------------------------------
-function eliminarFilaBenef(index,bd,num_linea) {
+function eliminarFilaBenef(index,bd) {
   var tabla = document.getElementById('tablaBeneficiarios');
   var tbody = tabla.getElementsByTagName('tbody')[0];
   var fila = tbody.rows[index-1];
@@ -1067,7 +1069,7 @@ function eliminarFilaBenef(index,bd,num_linea) {
         type: "DELETE",
         url: '../api/EliminarProspectoBeneficiario', 
         dataType: 'json',
-        data:{'cod_prospecto':cod_prospecto,'num_linea':num_linea},
+        data:{'cod_prospecto':cod_prospecto},
         success: function(resultBenef){
           console.log(resultBenef['response']);
         }

@@ -42,7 +42,7 @@
                 <div class="col-1 col-md-1">
                   <div class="form-group form-remanso">
                     <h5>
-                      <input type="checkbox" data-toggle="toggle" id="AprobarVenta" data-onlabel="SI" data-offlabel = "NO" data-onstyle ="success">
+                      <input type="checkbox" data-toggle="toggle" id="AprobarVenta" data-onlabel="SI" data-offlabel = "NO" data-onstyle ="success" readonly checked>
                     </h5>
                   </div>
                 </div>
@@ -1387,7 +1387,8 @@ $( document ).ready(function () {
           var changeEvent = new Event('change');   // Crea un evento "change"
           document.getElementById("tipoNec").bootstrapToggle('off');
           document.getElementById("tipoNec").bootstrapToggle('readonly');
-
+          document.getElementById("AprobarVenta").bootstrapToggle('on');
+          document.getElementById("AprobarVenta").bootstrapToggle('enable');
          
           cod_estado=result["response"]["cod_estado"];
           if(cod_estado=='VEN')
@@ -1572,6 +1573,7 @@ $( document ).ready(function () {
             var fila='';
             resultBenef['response'].forEach(function(word){
                 fecha = word['fch_nacimiento'].split("T");
+                index = 0;
                 fila += '<tr>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
@@ -1579,8 +1581,9 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['dsc_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFila('+word['num_linea']+','+"'SI'"+','+word['num_linea']+');" id="botonEliminar'+word['num_linea']+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
+              index++;
             });
           $('#bodyTablaBenef').html(fila); 
         }

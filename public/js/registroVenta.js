@@ -1067,7 +1067,7 @@ addBeneficiario.addEventListener("click",function (){
     var filaData = {
       cod_localidad_p: 'LC001',
       cod_prospecto: '',
-      num_linea: '0', 
+    //   num_linea: '0', 
       cod_tipo_documento: codtipoDoc,
       dsc_documento: dscDoc,
       dsc_apellido_paterno: apellP,
@@ -1084,7 +1084,7 @@ addBeneficiario.addEventListener("click",function (){
 
 });
 
-function eliminarFila(index,bd,num_linea) {
+function eliminarFila(index,bd,dni) {
   var tabla = document.getElementById('tablaBeneficiarios');
   var tbody = tabla.getElementsByTagName('tbody')[0];
   var fila = tbody.rows[index-1];
@@ -1096,7 +1096,7 @@ function eliminarFila(index,bd,num_linea) {
         type: "DELETE",
         url: '../api/EliminarProspectoBeneficiario', 
         dataType: 'json',
-        data:{'cod_prospecto':cod_prospecto,'num_linea':num_linea},
+        data:{'cod_prospecto':cod_prospecto,'dsc_dpocumento':dni},
         success: function(resultBenef){
           console.log(resultBenef['response']);
         }
