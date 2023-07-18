@@ -548,8 +548,11 @@ addContacto.addEventListener("click",function (){
   var dscCalif = calificacion.options[calificacion.selectedIndex].text;
   obsvContacto = document.getElementById("obsvAddContacto").value;
   var today = new Date();
-  // obtener la fecha de hoy en formato `MM/DD/YYYY`
-  var dia = today.toLocaleDateString('en-US');
+  var year = today.getFullYear();
+  var month = String(today.getMonth() + 1).padStart(2, '0');
+  var day = String(today.getDate()).padStart(2, '0');
+
+  var dia = year + '-' + month + '-' + day;
 
     var tabla = document.getElementById('tablaObsv');
     var tbody = tabla.getElementsByTagName('tbody')[0];

@@ -1058,7 +1058,7 @@ window.onload= function () {
         fila += '<tr>'+
           '<td><input type="date" class="fechaTabla" id="'+result['num_linea']+'" value="'+fecha[0]+'" ></td>'+
           '<td><input type="text" name="" id="" value="'+word['dsc_calificacion']+'"></td>'+
-          '<td><input type="text" name="" id="" value="'+word['dsc_observaciones']+'"></td>'+
+          '<td><input type="text" class="btnTabHome" name="" id="" value="'+word['dsc_observaciones']+'"></td>'+
           '<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
         '</tr>';
       });
