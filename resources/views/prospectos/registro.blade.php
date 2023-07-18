@@ -709,7 +709,7 @@ numDocProsInput.addEventListener("input", function(event) {
   // Eliminar caracteres no numéricos
    if(document.getElementById("tipoDocProsp").value == 'DI005' )
    {
-     inputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g,'');
+     inputValue = inputValue.replace(/[^a-zA-Z0-9\s.]/g,'');
    }else
    {
     inputValue = inputValue.replace(/\D/g, '');
@@ -770,7 +770,7 @@ numDoc2titInput.addEventListener("input", function(event) {
   // Eliminar caracteres no numéricos
   if(document.getElementById("tipoDoc2tit").value == 'DI005' )
    {
-     inputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g,'');
+     inputValue = inputValue.replace(/[^a-zA-Z0-9\s.]/g,'');
    }else
    {
     inputValue = inputValue.replace(/\D/g, '');
@@ -832,7 +832,7 @@ numDocAddBenefInput.addEventListener("input", function(event) {
   // Eliminar caracteres no numéricos
    if(document.getElementById("tipoDocAddBenef").value == 'DI005' )
    {
-     inputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g,'');
+     inputValue = inputValue.replace(/[^a-zA-Z0-9\s.]/g,'');
    }else
    {
     inputValue = inputValue.replace(/\D/g, '');
