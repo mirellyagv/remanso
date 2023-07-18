@@ -1323,7 +1323,7 @@ flatpickr("#fchNacAddBenef",{
 flatpickr("#fch1erVcto",{
   locale:"es",
   dateFormat: "Y-m-d",
-  defaultDate:fechaActual
+  defaultDate:fechaMasUnMes
 });
 
 flatpickr("#fchNacRegVta",{
@@ -1613,6 +1613,8 @@ boton.addEventListener("click",function(){
     var botonApr = document.getElementById("AprobarVenta");
     if(botonApr.checked == true){
       cod_estado = 'VEN';
+    }else{
+      cod_estado = 'PRE';
     }
 
 
