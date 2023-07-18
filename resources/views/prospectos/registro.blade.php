@@ -493,7 +493,6 @@
                 <option value="" selected="" disabled="">SELECCIONE...</option>
                 <option value="DI002" data="9">C.E</option>
                 <option value="DI001" data="8">DNI</option>
-                <option value="DI006" data="8">L.E.</option>
                 <option value="DI005" data="20">OTROS</option>
                 <option value="DI003" data="20">PASAPORTE</option>
               </select>
@@ -686,6 +685,19 @@ for (var i = 0; i < inputs.length; i++) {
         }
       });
 // --------------------valida documento de identidad-------------
+var tipoDoc = document.getElementById("tipoDocProsp");
+tipoDoc.addEventListener("change", function(event) {
+  document.getElementById("numDocPros").value = '';
+});
+var tipoDoc2 = document.getElementById("tipoDoc2tit");
+tipoDoc2.addEventListener("change", function(event) {
+  document.getElementById("numDoc2tit").value = '';
+});
+var tipoDocB = document.getElementById("tipoDocAddBenef");
+tipoDocB.addEventListener("change", function(event) {
+  document.getElementById("numDocAddBenef").value = '';
+});
+
 var numDocProsInput = document.getElementById("numDocPros");
 
 numDocProsInput.addEventListener("input", function(event) {
