@@ -1036,7 +1036,7 @@ tipoCuota.addEventListener("change", function(event) {
     document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }else
   {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
     document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }
  
@@ -1070,7 +1070,7 @@ tipoTasa.addEventListener("change", function(event) {
     document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }else
   {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
     document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }
  
