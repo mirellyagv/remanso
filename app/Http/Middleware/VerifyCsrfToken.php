@@ -68,6 +68,7 @@ class VerifyCsrfToken extends Middleware
         'lista/ObtenerTelereporte',
         'lista/ListarProspectoServicio',
         'api/ValidarCoincidenciaDocumento',
+        'api/EliminarProspectoContacto',
         
     ];
 }

@@ -43,6 +43,7 @@
                     <select name="EstDoc" id="EstDoc" class="form-control form-remanso">
                       <option value="0">Todos</option>
                       <option value="ACT">ACTIVO</option>
+                      <option value="PRE">PREVENTA</option>
                       <option value="VEN">VENTA</option>
                       <option value="VTA">CIERRE</option>
                       <option value="CAD">CADUCO</option>

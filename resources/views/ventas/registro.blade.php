@@ -698,14 +698,14 @@
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso">
+                          <select name="codCuotaServ"  id="codCuotaServ" class="form-select form-remanso" >
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Tasa de interés (%): </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codTasa"  id="codTasa" class="form-select form-remanso">
+                          <select name="codTasa"  id="codTasa" class="form-select form-remanso" >
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
@@ -727,6 +727,12 @@
                           <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso align-right">
                             <option value="068">1</option>
                           </select>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Importe Cuota: </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <input type="text" class="form-control form-remanso align-right" name="imp_cuota" id="imp_cuota" disabled>
                         </div>
                         
                       </div>
@@ -1007,6 +1013,101 @@ tipoDocA.addEventListener("change", function(event) {
 var tipoDocB = document.getElementById("tipoDocAddBenef");
 tipoDocB.addEventListener("change", function(event) {
   document.getElementById("numDocAddBenef").value = '';
+});
+
+//CALCULAR IMPUESTO CUOTA
+var tipoCuota = document.getElementById("codCuotaServ");
+tipoCuota.addEventListener("change", function(event) {
+
+  var tipoCuota = document.getElementById('codCuotaServ');
+  var num_cuota = $('option:selected', tipoCuota).attr('data');
+
+  var tipoInteres = document.getElementById('codTasa');
+  var num_interes = $('option:selected', tipoInteres).attr('data');
+
+  var imp_saldo=  document.getElementById('impSaldo').value;
+  var imp_cuota= 0;
+  console.log(num_cuota);
+  console.log(num_interes);
+
+  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
+  {
+    imp_cuota=imp_saldo/num_cuota;
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }else
+  {
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }
+ 
+});
+
+
+//CALCULAR IMPUESTO CUOTA
+var tipoTasa = document.getElementById("codTasa");
+tipoTasa.addEventListener("change", function(event) {
+
+  var tipoCuota = document.getElementById('codCuotaServ');
+  var num_cuota = $('option:selected', tipoCuota).attr('data');
+
+  var tipoInteres = document.getElementById('codTasa');
+  var num_interes = $('option:selected', tipoInteres).attr('data');
+
+  var imp_saldo=  document.getElementById('impSaldo').value;
+  var imp_cuota= 0;
+
+  console.log(num_cuota);
+  console.log(num_interes);
+
+  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
+  {
+    num_cuota=1;
+  }
+  
+  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
+  {
+    imp_cuota=imp_saldo/num_cuota;
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }else
+  {
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }
+ 
+});
+
+
+//CALCULAR IMPUESTO CUOTA
+var CuotaInicial = document.getElementById("impCuoi");
+CuotaInicial.addEventListener("input", function(event) {
+
+  var tipoCuota = document.getElementById('codCuotaServ');
+  var num_cuota = $('option:selected', tipoCuota).attr('data');
+
+  var tipoInteres = document.getElementById('codTasa');
+  var num_interes = $('option:selected', tipoInteres).attr('data');
+
+  var imp_saldo=  document.getElementById('impSaldo').value;
+  var imp_cuota= 0;
+
+  console.log(num_cuota);
+  console.log(num_interes);
+
+  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
+  {
+    num_cuota=1;
+  }
+  
+  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
+  {
+    imp_cuota=imp_saldo/num_cuota;
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }else
+  {
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }
+ 
 });
 
 var numDocProsInput = document.getElementById("numDocRegVta");
@@ -1386,6 +1487,14 @@ var cod_estado='';
 
 $( document ).ready(function () {
  
+  var currentDate = new Date();
+ // Crear las fechas de inicio y fin del mes actual
+  var lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDay());
+ // Formatear las fechas como cadenas en formato "YYYY-MM-DD"
+  var lastDayOfMonthStr = lastDayOfMonth.toISOString().split('T')[0];
+
+ 
+
   setTimeout(function() { 
     //console.log('cod_prospecto',cod_prospecto);
     if (cod_prospecto !== '') {
@@ -1570,11 +1679,15 @@ $( document ).ready(function () {
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
           document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
           document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
+          document.getElementById("imp_cuota").value=result["response"]["imp_cuota"];
           var auxFecha = result["response"]["fch_1er_vencimiento"].split('T');
           document.getElementById("fch1erVcto").value=auxFecha[0];
           var codTasa=document.getElementById("codTasa") ;
           codTasa.value=result["response"]["cod_tasa"];
           
+          if( document.getElementById("fch1erVcto").value=='1900-01-01'){document.getElementById("fch1erVcto").value=lastDayOfMonthStr;}
+          
+
         }                  
       });
 
@@ -1590,11 +1703,14 @@ $( document ).ready(function () {
             var fila='';
             resultBenef['response'].forEach(function(word){
                 fecha = word['fch_nacimiento'].split("T");
+                var fch1 = new Date(word['fch_nacimiento']);
+                var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+
                 index = 0;
                 fila += '<tr>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
-                '<td>'+fecha[0]+'</td>'+
+                '<td>'+fch_nacimiento1+'</td>'+
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['dsc_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
@@ -1735,6 +1851,7 @@ boton.addEventListener("click",function(){
     'imp_cui': 0,
     'imp_saldo_financiar': 0,
     'imp_foma': 0,
+    'imp_cuota': document.getElementById("imp_cuota").value,
   };
 
   var servicioArray ={
@@ -1842,5 +1959,19 @@ boton.addEventListener("click",function(){
     }
   })//then
 });
+
+
+function ObtenerImporteCuota() {
+  var codCuotaServ = document.getElementById('codCuotaServ');
+  var ctd_cuota = $('option:selected', codCuotaServ).attr('data');
+
+  var tipoDoc = document.getElementById('tipoDocRegVta');
+  var tam = $('option:selected', tipoDoc).attr('data');
+
+
+ document.getElementById("imp_cuota").value= tam;
+
+  console.log(tam);
+}  
 
 </script>

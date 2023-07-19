@@ -1163,6 +1163,7 @@ boton.addEventListener("click",function(){
     'imp_cui': 0,
     'imp_saldo_financiar': 0,
     'imp_foma': 0,
+    'imp_cuota': 0,
   };
   //console.log(filasArrayBenef);
 

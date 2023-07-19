@@ -191,10 +191,10 @@ window.onload=function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){
-            $("#codCuotaServ").append('<option value="" selected disabled>SELECCIONE...</option>');
+            $("#codCuotaServ").append('<option value="068" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
-                $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -209,10 +209,11 @@ window.onload=function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){
-            $("#codTasa").append('<option value="" selected disabled>SELECCIONE...</option>');
+            $("#codTasa").append('<option value="000" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
-                $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
+               
             });
         },//success
         error(e){

@@ -541,7 +541,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso"
-            data-bs-dismiss="modal" id="btnAddContacto" hidden>Guardar</button>
+            data-bs-dismiss="modal" id="btnAddContacto"  hidden>Guardar</button>
           <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso"
                     data-bs-dismiss="modal" id="btnUpdContacto" hidden>Modificar</button>
         </div>
@@ -903,6 +903,7 @@ phoneInput4.addEventListener("input", function(event) {
 
 var cod_prospecto="";
 var filasArrayBenef = []; // Array para almacenar las filas
+var filasArrayContacto = [];
 
 window.onload= function () {
   var fechaActual = new Date();
@@ -1011,10 +1012,14 @@ window.onload= function () {
       resultBenef['response'].forEach(function(word){
         index = 0;
           fecha = word['fch_nacimiento'].split("T");
+          
+          var fch1 = new Date(word['fch_nacimiento']);
+          var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+
           fila += '<tr>'+
           '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
           '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
-          '<td>'+fecha[0]+'</td>'+
+          '<td>'+fch_nacimiento1+'</td>'+
           '<td>'+word['dsc_parentesco']+'</td>'+
           '<td>'+word['dsc_sexo']+'</td>'+
           '<td>'+word['dsc_estado_civil']+'</td>'+
@@ -1045,7 +1050,8 @@ window.onload= function () {
     }
   });
 
-  $.ajax({
+  
+ $.ajax({
     type: "GET",
     url: '../api/ListarProspectoContacto',
     dataType: 'json',
@@ -1054,13 +1060,31 @@ window.onload= function () {
       console.log(result);
       var fila='';
       result['response'].forEach(function(word){
+        var fch1 = new Date(word['fch_contacto']);
+        var fch_contacto1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+        index = 0;
         fecha = word['fch_contacto'].split("T");
         fila += '<tr>'+
-          '<td><input type="date" class="fechaTabla" id="'+result['num_linea']+'" value="'+fecha[0]+'" ></td>'+
-          '<td><input type="text" name="" id="" value="'+word['dsc_calificacion']+'"></td>'+
-          '<td><input type="text" class="btnTabHome" name="" id="" value="'+word['dsc_observaciones']+'"></td>'+
-          '<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
+          '<td>'+fch_contacto1+'</td>'+
+          '<td>'+word['dsc_calificacion']+'</td>'+
+          '<td>'+word['dsc_observaciones']+'</td>'+
+          '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFilaContacto('+word['num_linea']+');"><span class="bi bi-x-lg"></span></button></div></td>'+
         '</tr>';
+
+        var filaData = {
+          'cod_prospecto': cod_prospecto,
+          'num_linea': word['num_linea'],
+          'fch_contacto': fecha[0],
+          'cod_calificacion': word['cod_calificacion'],
+          'flg_presentacion': 'NO',
+          'cod_consejero': '',
+          'dsc_observaciones': word['dsc_observaciones'],
+          'cod_usuario_registro':'',
+          'cod_localidad_p': 'LC001'
+        };
+
+        filasArrayContacto.push(filaData); // Agregar la fila al array
+        index++;
       });
       $('#bodyListadoCon').html(fila);
       $(".fechaTabla").flatpickr();
@@ -1088,6 +1112,36 @@ function eliminarFilaBenef(index,bd) {
         }
     });
   }
+} 
+
+//---------------------elimina Contacto---------------------------------
+function eliminarFilaContacto(num_linea) {
+  var cod_prospecto = document.getElementById("codProsp").value; 
+
+  Swal.fire({
+    title: '¿Esta seguro que quiere Eliminar este contacto?',
+    text: cod_prospecto,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#35B44A',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+    
+      $.ajax({         
+        type: "DELETE",
+        url: '../api/EliminarProspectoContacto', 
+        dataType: 'json',
+        data:{'cod_prospecto':cod_prospecto, 'num_linea':num_linea},
+        success: function(resultado){
+          console.log(resultado['response']);
+          ListarContacto();
+        }
+    });
+    
+    }
+  })
 } 
 
 //--------------Guardar Prospecto--------------
@@ -1209,6 +1263,7 @@ boton.addEventListener("click",function(){
     'imp_cui': 0,
     'imp_saldo_financiar': 0,
     'imp_foma': 0,
+    'imp_cuota': 0,
   };
 
 
@@ -1292,43 +1347,35 @@ boton.addEventListener("click",function(){
 
 });
 
-// var btnActualizaContacto = document.getElementById("btnUpdContacto");
-// btnActualizaContacto.addEventListener("click",function (){
 
-//   var codCalif = document.getElementById("califAddContacto").value;
-//   var obsvContacto = document.getElementById("obsvAddContacto").value;
-//   var fchContacto = document.getElementById("fchContacto").value;
+var btnActualizaContacto = document.getElementById("btnAddContacto");
+ btnActualizaContacto.addEventListener("click",function (){
 
-//   // $.ajax({
-//   //     url: '../api/guardaObservacion',
-//   //     method: "PUT",
-//   //     crossDomain: true,
-//   //     dataType: 'json',
-//   //     data:{'cod_prospecto':cod_prospecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
-//   //     success: function(respuesta){
-//   //     console.log(respuesta);
-//   //       Swal.fire({
-//   //         text: 'Se ha grabado el contacto',
-//   //         icon: 'success',
-//   //         confirmButtonText: 'Aceptar',
-//   //         confirmButtonColor: '#35B44A',
-//   //       }).then((result) => {
-//   //         if (result.isConfirmed) {
-//   //           location.reload();
-//   //         }
-//   //       })
-//   //     },//success
-//   //     error(e){
-//   //         console.log(e.message);
-//   //         Swal.fire({
-//   //           title:'Error!',
-//   //           text:'Ha ocurrido un error, por favor intentelo mas tarde.',
-//   //           icon:'warning',
-//   //           confirmButtonColor: '#35B44A',
-//   //         })
-//   //     }//error
-//   // });
-// });
+  var codCalif = document.getElementById("califAddContacto").value;
+  var obsvContacto = document.getElementById("obsvAddContacto").value;
+  var fchContacto = document.getElementById("fchContacto").value;
+
+  $.ajax({
+     url: '../api/guardaObservacion',
+     method: "PUT",
+     crossDomain: true,
+     dataType: 'json',
+     data:{'cod_prospecto':cod_prospecto,'cod_calificacion': codCalif,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+     success: function(respuesta){
+    console.log(respuesta);
+       
+     },//success
+     error(e){
+         console.log(e.message);
+         Swal.fire({
+           title:'Error!',
+           text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+           icon:'warning',
+          confirmButtonColor: '#35B44A',
+         })
+     }//error
+ });
+ });
 
 
 
@@ -1350,6 +1397,50 @@ btnAbreModalContacto.addEventListener("click",function (){
     document.getElementById("califAddContacto").value = '';
     document.getElementById("obsvAddContacto").value = '';
 });
+
+
+function ListarContacto(num_linea) {
+  $.ajax({
+    type: "GET",
+    url: '../api/ListarProspectoContacto',
+    dataType: 'json',
+    data:{'cod_prospecto':cod_prospecto},
+    success: function(result){
+      console.log(result);
+      var fila='';
+      result['response'].forEach(function(word){
+        var fch1 = new Date(word['fch_contacto']);
+        var fch_contacto1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+        index = 0;
+        fecha = word['fch_contacto'].split("T");
+        fila += '<tr>'+
+          '<td>'+fch_contacto1+'</td>'+
+          '<td>'+word['dsc_calificacion']+'</td>'+
+          '<td>'+word['dsc_observaciones']+'</td>'+
+          '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFilaContacto('+word['num_linea']+');"><span class="bi bi-x-lg"></span></button></div></td>'+
+          //'<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
+        '</tr>';
+
+        var filaData = {
+          'cod_prospecto': cod_prospecto,
+          'num_linea': word['num_linea'],
+          'fch_contacto': fecha[0],
+          'cod_calificacion': word['cod_calificacion'],
+          'flg_presentacion': 'NO',
+          'cod_consejero': '',
+          'dsc_observaciones': word['dsc_observaciones'],
+          'cod_usuario_registro':'',
+          'cod_localidad_p': 'LC001'
+        };
+
+        filasArrayContacto.push(filaData); // Agregar la fila al array
+        index++;
+      });
+      $('#bodyListadoCon').html(fila);
+      $(".fechaTabla").flatpickr();
+    }
+  });
+}
 
 
 </script>

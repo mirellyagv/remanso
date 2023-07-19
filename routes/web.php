@@ -76,6 +76,7 @@ Route::put('api/ActivarTelereporte', [APIController::class, 'ActivarTelereporte'
 Route::put('api/InsertarTelereporte', [APIController::class, 'InsertarTelereporte'])->name('api.InsertarTelereporte');
 Route::put('api/ActualizarTelereporte', [APIController::class, 'ActualizarTelereporte'])->name('api.ActualizarTelereporte');
 Route::get('api/ValidarCoincidenciaDocumento', [APIController::class, 'ValidarCoincidenciaDocumento'])->name('api.ValidarCoincidenciaDocumento');
+Route::delete('api/EliminarProspectoContacto', [APIController::class, 'EliminarProspectoContacto'])->name('api.EliminarProspectoContacto');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');
