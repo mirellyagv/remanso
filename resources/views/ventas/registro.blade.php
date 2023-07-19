@@ -996,7 +996,7 @@ emailInput2.addEventListener("input", function(event) {
     emailInput2.setCustomValidity("");
   }
 });
-// --------------------valida documento de identidad-------------
+// -----------------------------------------------------------valida documento de identidad--------------------------------------------
 
 var tipoDoc = document.getElementById("tipoDocRegVta");
 tipoDoc.addEventListener("change", function(event) {
@@ -1015,103 +1015,7 @@ tipoDocB.addEventListener("change", function(event) {
   document.getElementById("numDocAddBenef").value = '';
 });
 
-//CALCULAR IMPUESTO CUOTA
-var tipoCuota = document.getElementById("codCuotaServ");
-tipoCuota.addEventListener("change", function(event) {
-
-  var tipoCuota = document.getElementById('codCuotaServ');
-  var num_cuota = $('option:selected', tipoCuota).attr('data');
-
-  var tipoInteres = document.getElementById('codTasa');
-  var num_interes = $('option:selected', tipoInteres).attr('data');
-
-  var imp_saldo=  document.getElementById('impSaldo').value;
-  var imp_cuota= 0;
-  console.log(num_cuota);
-  console.log(num_interes);
-
-  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
-  {
-    imp_cuota=imp_saldo/num_cuota;
-    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
-  }else
-  {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
-    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
-  }
- 
-});
-
-
-//CALCULAR IMPUESTO CUOTA
-var tipoTasa = document.getElementById("codTasa");
-tipoTasa.addEventListener("change", function(event) {
-
-  var tipoCuota = document.getElementById('codCuotaServ');
-  var num_cuota = $('option:selected', tipoCuota).attr('data');
-
-  var tipoInteres = document.getElementById('codTasa');
-  var num_interes = $('option:selected', tipoInteres).attr('data');
-
-  var imp_saldo=  document.getElementById('impSaldo').value;
-  var imp_cuota= 0;
-
-  console.log(num_cuota);
-  console.log(num_interes);
-
-  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
-  {
-    num_cuota=1;
-  }
-  
-  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
-  {
-    imp_cuota=imp_saldo/num_cuota;
-    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
-  }else
-  {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
-    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
-  }
- 
-});
-
-
-//CALCULAR IMPUESTO CUOTA
-var CuotaInicial = document.getElementById("impCuoi");
-CuotaInicial.addEventListener("input", function(event) {
-
-  var tipoCuota = document.getElementById('codCuotaServ');
-  var num_cuota = $('option:selected', tipoCuota).attr('data');
-
-  var tipoInteres = document.getElementById('codTasa');
-  var num_interes = $('option:selected', tipoInteres).attr('data');
-
-  var imp_saldo=  document.getElementById('impSaldo').value;
-  var imp_cuota= 0;
-
-  console.log(num_cuota);
-  console.log(num_interes);
-
-  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
-  {
-    num_cuota=1;
-  }
-  
-  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
-  {
-    imp_cuota=imp_saldo/num_cuota;
-    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
-  }else
-  {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
-    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
-  }
- 
-});
-
 var numDocProsInput = document.getElementById("numDocRegVta");
-
 numDocProsInput.addEventListener("input", function(event) {
   var inputValue = numDocProsInput.value;
   var tipoDoc = document.getElementById('tipoDocRegVta');
@@ -1145,8 +1049,32 @@ numDocProsInput.addEventListener("input", function(event) {
   }
 });
 
-var numDoc2titInput = document.getElementById("numDoc2doRegVta");
+numDocProsInput.addEventListener("blur", function(event) {
+  $.ajax({
+    url: '../api/ValidarCoincidenciaDocumento',
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'dscDocumento':document.getElementById("numDocRegVta").value},
+    success: function(respuesta){
+      //console.log(respuesta);
+      if (respuesta['response']['ctd_coincidencia'] > 0) {
+        Swal.fire({
+          title:'Error!',
+          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+          icon:'warning',
+          confirmButtonColor: '#35B44A',
+        }) 
+        numDocProsInput.blur();
+      }
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });
+});
 
+var numDoc2titInput = document.getElementById("numDoc2doRegVta");
 numDoc2titInput.addEventListener("input", function(event) {
   var inputValue = numDoc2titInput.value;
   var tipoDoc = document.getElementById('tipoDoc2doRegVta');
@@ -1182,10 +1110,34 @@ numDoc2titInput.addEventListener("input", function(event) {
   }
 });
 
-var numDocAddBenefInput = document.getElementById("numDocAval");
+numDoc2titInput.addEventListener("blur", function(event) {
+  $.ajax({
+    url: '../api/ValidarCoincidenciaDocumento',
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'dscDocumento':document.getElementById("numDoc2doRegVta").value},
+    success: function(respuesta){
+      //console.log(respuesta);
+      if (respuesta['response']['ctd_coincidencia'] > 0) {
+        Swal.fire({
+          title:'Error!',
+          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+          icon:'warning',
+          confirmButtonColor: '#35B44A',
+        }) 
+        numDoc2titInput.blur();
+      }
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });
+});
 
-numDocAddBenefInput.addEventListener("input", function(event) {
-  var inputValue = numDocAddBenefInput.value;
+var numDocAvalInput = document.getElementById("numDocAval");
+numDocAvalInput.addEventListener("input", function(event) {
+  var inputValue = numDocAvalInput.value;
   var tipoDoc = document.getElementById('tipoDocAval');
   var tam = $('option:selected', tipoDoc).attr('data');
 
@@ -1204,19 +1156,44 @@ numDocAddBenefInput.addEventListener("input", function(event) {
   }
 
   // Actualizar el valor del campo
-  numDocAddBenefInput.value = inputValue;
+  numDocAvalInput.value = inputValue;
 
   if (inputValue.length !=='') {
     if (tam < 12) {
       // Verificar si se ingresaron 9 dígitos
       if (inputValue.length != tam) {
-        numDocAddBenefInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
-        numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
+        numDocAvalInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
+        numDocAvalInput.reportValidity(); // Mostrar el mensaje de error
       } else {
-        numDocAddBenefInput.setCustomValidity(""); // Campo válido
+        numDocAvalInput.setCustomValidity(""); // Campo válido
       }
     }
   }
+});
+
+numDocAvalInput.addEventListener("blur", function(event) {
+  $.ajax({
+    url: '../api/ValidarCoincidenciaDocumento',
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'dscDocumento':document.getElementById("numDocAval").value},
+    success: function(respuesta){
+      //console.log(respuesta);
+      if (respuesta['response']['ctd_coincidencia'] > 0) {
+        Swal.fire({
+          title:'Error!',
+          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+          icon:'warning',
+          confirmButtonColor: '#35B44A',
+        }) 
+        numDocAvalInput.blur();
+      }
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });
 });
 
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
@@ -1255,7 +1232,100 @@ numDocAddBenefInput.addEventListener("input", function(event) {
   }
 });
 
-// -----------------------valida telefono-------------------------    
+//-----------------------------------------------------CALCULAR IMPUESTO CUOTA--------------------------------------------------
+var CuotaInicial = document.getElementById("impCuoi");
+CuotaInicial.addEventListener("input", function(event) {
+
+  var tipoCuota = document.getElementById('codCuotaServ');
+  var num_cuota = $('option:selected', tipoCuota).attr('data');
+
+  var tipoInteres = document.getElementById('codTasa');
+  var num_interes = $('option:selected', tipoInteres).attr('data');
+
+  var imp_saldo=  document.getElementById('impSaldo').value;
+  var imp_cuota= 0;
+
+  console.log(num_cuota);
+  console.log(num_interes);
+
+  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
+  {
+    num_cuota=1;
+  }
+  
+  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
+  {
+    imp_cuota=imp_saldo/num_cuota;
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }else
+  {
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }
+ 
+});
+
+//-------------------------------------------CALCULAR IMPUESTO CUOTA--------------------------------------------------------
+var tipoCuota = document.getElementById("codCuotaServ");
+tipoCuota.addEventListener("change", function(event) {
+
+  var tipoCuota = document.getElementById('codCuotaServ');
+  var num_cuota = $('option:selected', tipoCuota).attr('data');
+
+  var tipoInteres = document.getElementById('codTasa');
+  var num_interes = $('option:selected', tipoInteres).attr('data');
+
+  var imp_saldo=  document.getElementById('impSaldo').value;
+  var imp_cuota= 0;
+  console.log(num_cuota);
+  console.log(num_interes);
+
+  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
+  {
+    imp_cuota=imp_saldo/num_cuota;
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }else
+  {
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }
+ 
+});
+
+//-----------------------------------------CALCULAR IMPUESTO CUOTA------------------------------------------
+var tipoTasa = document.getElementById("codTasa");
+tipoTasa.addEventListener("change", function(event) {
+
+  var tipoCuota = document.getElementById('codCuotaServ');
+  var num_cuota = $('option:selected', tipoCuota).attr('data');
+
+  var tipoInteres = document.getElementById('codTasa');
+  var num_interes = $('option:selected', tipoInteres).attr('data');
+
+  var imp_saldo=  document.getElementById('impSaldo').value;
+  var imp_cuota= 0;
+
+  console.log(num_cuota);
+  console.log(num_interes);
+
+  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
+  {
+    num_cuota=1;
+  }
+  
+  if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
+  {
+    imp_cuota=imp_saldo/num_cuota;
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }else
+  {
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
+  }
+ 
+});
+
+// -------------------------------------------------------------valida telefono------------------------------------------------    
 var phoneInput = document.getElementById("telf1RegVta");
 
 phoneInput.addEventListener("input", function(event) {
@@ -1404,7 +1474,7 @@ phoneInput6.addEventListener("input", function(event) {
   }
 });
 
-// -----------------------validacion numerica servicios---------------
+// ---------------------------------------------------------------validacion numerica servicios--------------------------------------------
 var impCuoiInput = document.getElementById("impCuoi");
 
 impCuoiInput.addEventListener("input", function(event) {
@@ -1471,7 +1541,7 @@ $("#tipoDoc").change(function(){
       document.getElementById("formRegVenta").reset();
     }
   });
-//-----------------------------------recuperar prospecto-------------------------------------------------
+//-----------------------------------------------------------recuperar prospecto------------------------------------------------------
 
 var cod_prospecto = ''; // Variable para almacenar el valor de cod_prospecto
 
