@@ -724,8 +724,8 @@
                           <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <select name="codCuotaFoma"  id="codCuotaFoma" class="form-select form-remanso align-right">
-                            <option value="068">1</option>
+                          <select name="codCuotaFoma"  id="codCuotaFoma" disabled class="form-control form-remanso align-right">
+                            <option value="068" selected>1</option>
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
