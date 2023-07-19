@@ -786,7 +786,7 @@
                           <input class="form-control form-remanso form-control-sm" id="recServAdj" type="file">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Recibo de pago: </label>
+                          <label for="inputText" class="col-form-label">Recibo provisional: </label>
                         </div>
                         <div class="col-md-4 mb-3">
                           <input class="form-control form-remanso form-control-sm" id="RecAdj" type="file">

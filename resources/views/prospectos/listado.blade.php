@@ -48,7 +48,7 @@
                       <option value="VTA">CIERRE</option>
                       <option value="CAD">CADUCO</option>
                       <option value="TRU">TRUNCO</option>
-                      <option value="REC">RECHAZADO</option>
+                      <option value="REC">OBSERVADO</option>
                       <option value="ANU">ANULADO</option>
                     </select>
                   </div>
@@ -244,9 +244,9 @@ $(document).ready(function () {
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           info='Gestión';
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
-        }else if(estado == 'VENTA' || estado == 'ACTIVO' || estado == 'PRE-VENTA'){
+        }else if(estado == 'VENTA' || estado == 'ACTIVO' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
           ref = ''; 
-          info = 'Este prospecto esta en estado Venta, solo se puede modificar en el registro de ventas.'
+          info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
         }else{
           ref='';
@@ -365,12 +365,12 @@ function BuscarProspecto() {
         var today = new Date(word['fch_registro']);
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
-        if(estado == 'ACTIVO' || estado == 'VENTA'){
+        if(estado == 'ACTIVO' ){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
-        }else if(estado == 'VENTA' || estado == 'ACTIVO' || estado == 'PRE-VENTA'){
+        }else if(estado == 'VENTA' || estado == 'ACTIVO' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
           ref = ''; 
-          info = 'Este prospecto esta en estado Venta, solo se puede modificar en el registro de ventas.'
+          info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
         }else{
           ref='';
