@@ -1750,7 +1750,7 @@ $( document ).ready(function () {
 
           //document.getElementById("impTotal").value=result["response"]["imp_total"];
           document.getElementById("impCuoi").value=result["response"]["imp_cui"];
-          document.getElementById("impMinCuoi").value=result["response"]["imp_cui"];
+          document.getElementById("impMinCuoi").value=parseFloat(result["response"]["imp_cui"]);
           document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
           document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
