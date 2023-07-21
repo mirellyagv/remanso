@@ -38,7 +38,7 @@
         </li>
       @endif
 
-      @if (session('flg_nf')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO')
+      @if (session('flg_nf')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO' && session('flg_firmante')==='NO')
        <li class="nav-item">
           <a href="{{route('prospectos.registro')}}">
             <span class="item-menu">Registro de prospectos</span>
@@ -51,7 +51,7 @@
       </li><br>
       @endif
 
-      @if (session('flg_ni')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO')
+      @if (session('flg_ni')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO' && session('flg_firmante')==='NO')
       <li class="nav-item">
         <a href="{{route('ventas.registro')}}">
           <span class="item-menu">Registro de Ventas</span>
@@ -64,7 +64,7 @@
       </li><br>
       @endif
 
-      @if ((session('flg_sac')==='SI' || session('flg_jefe')==='SI') && session('flg_administrador')==='NO')
+      @if ((session('flg_sac')==='SI' || session('flg_jefe')==='SI') && session('flg_administrador')==='NO' && session('flg_firmante')==='NO')
       <li class="nav-item">
           <a href="{{route('prospectos.registro')}}">
             <span class="item-menu">Registro de prospectos</span>
@@ -88,7 +88,7 @@
       @endif
 
       
-      @if (session('supervisor')==='SI'  && session('flg_administrativo')==='NO')
+      @if (session('supervisor')==='SI'  && session('flg_administrativo')==='NO' && session('flg_firmante')==='NO')
       <li class="nav-item">
           <a href="{{route('prospectos.registro')}}">
             <span class="item-menu">Registro de prospectos</span>
