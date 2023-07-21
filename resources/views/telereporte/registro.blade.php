@@ -31,7 +31,7 @@
                      
                       <div class="row">
                          <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Nombres:</label>
+                            <label for="inputText" class="col-form-label">* Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_nombres"
@@ -46,7 +46,7 @@
 
                       <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                            <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_apellido_paterno"
@@ -56,7 +56,7 @@
                             </div> 
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                            <label for="inputText" class="col-form-label">* Apellido Materno: </label>
                           </div>
 
                           <div class="col-md-3 mb-3">
@@ -127,7 +127,7 @@
                       
                       <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Nombres:</label>
+                            <label for="inputText" class="col-form-label">* Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_nombres_c" id="dsc_nombres_c" required>
@@ -138,7 +138,7 @@
                       </div>
                       <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                            <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_apellido_paterno_c" id="dsc_apellido_paterno_c">
@@ -437,36 +437,40 @@ function GuardarTelereporte()
   
   var dsc_apellido_paterno_cInput = document.getElementById("dsc_apellido_paterno_c");
   var dsc_apellido_paterno_cValue = dsc_apellido_paterno_cInput.value.trim();
-
+  var mensaje='OK';
   
   // // Validación
-   if (dsc_nombresValue === "") {
+   if (dsc_nombresValue == "") {
     var acordeon = document.querySelector("#collapseOne .a.invalid-feedback");
     collapseOne.classList.add("show");
     dsc_nombresInput.focus();
     acordeon.style.display = "block";
+    mensaje='ERROR';
      return;
     }
-    if (dsc_apellido_paternoValue === "") {
+    if (dsc_apellido_paternoValue == "") {
     var acordeon = document.querySelector("#collapseOne .b.invalid-feedback");
     collapseOne.classList.add("show");
     dsc_apellido_paternoInput.focus();
     acordeon.style.display = "block";
+    mensaje='ERROR';
      return;
     }
 
-    if (dsc_nombres_cValue === "") {
+    if (dsc_nombres_cValue == "") {
     var acordeon = document.querySelector("#collapseTwo .c.invalid-feedback");
     collapseTwo.classList.add("show");
     dsc_nombres_cInput.focus();
     acordeon.style.display = "block";
+    mensaje='ERROR';
      return;
     }
-    if (dsc_apellido_paterno_cValue === "") {
+    if (dsc_apellido_paterno_cValue == "") {
     var acordeon = document.querySelector("#collapseTwo .d.invalid-feedback");
     collapseTwo.classList.add("show");
     dsc_apellido_paterno_cInput.focus();
     acordeon.style.display = "block";
+    mensaje='ERROR';
      return;
     }
 
@@ -497,7 +501,7 @@ function GuardarTelereporte()
     'flg_modificado': 'NO',
     'cod_usuario': ''
   };
-
+   if(mensaje=='OK'){ 
     $.ajax({
         url: '../api/InsertarTelereporte', 
         method: "PUT",
@@ -520,5 +524,7 @@ function GuardarTelereporte()
 
         }
     });
+  }//EN IF
+   
 }
 </script>

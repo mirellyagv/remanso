@@ -42,7 +42,7 @@
                 <div class="col-1 col-md-1">
                   <div class="form-group form-remanso">
                     <h5>
-                      <input type="checkbox" data-toggle="toggle" id="AprobarVenta" data-onlabel="SI" data-offlabel = "NO" data-onstyle ="success" readonly checked>
+                      <input type="checkbox" data-toggle="toggle" id="AprobarVenta" data-onlabel="SI" data-offlabel = "NO" data-onstyle ="success"  unchecked>
                     </h5>
                   </div>
                 </div>
@@ -70,14 +70,14 @@
                       <br>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Tipo de Documento: </label>
+                          <label for="inputText" class="col-form-label">* Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="tipoDocRegVta" id="tipoDocRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Núm. de Documento: </label>
+                          <label for="inputText" class="col-form-label" >* Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="numDocRegVta" id="numDocRegVta" required>
@@ -86,13 +86,13 @@
                       <div id="nombre">
                         <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Nombres:</label>
+                            <label for="inputText" class="col-form-label">* Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="nombresRegVta" id="nombresRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                            <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="apellPRegVta" id="apellPRegVta" required>
@@ -104,7 +104,7 @@
                             <input type="text" class="form-control form-remanso letras-only" name="apellMRegVta" id="apellMRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3" id="labelCodProspecto" style="display: none;">
-                            <label for="inputText" class="col-form-label">Codigo Prospecto: </label>
+                            <label for="inputText" class="col-form-label">* Codigo Prospecto: </label>
                           </div>
                           <div class="col-md-3 mb-3" id="divCodProspecto" style="display: none;">
                             <input type="text" class="form-control form-remanso letras-only" name="inputCodProspecto" id="inputCodProspecto">
@@ -139,14 +139,14 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">País: </label>
+                          <label for="inputText" class="col-form-label">* País: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="paisRegVta" id="paisRegVta" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Departamento: </label>
+                          <label for="inputText" class="col-form-label">* Departamento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="dptoRegVta" id="dptoRegVta" class="form-select form-remanso">
@@ -155,14 +155,14 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Provincia: </label>
+                          <label for="inputText" class="col-form-label">* Provincia: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="provRegVta" id="provRegVta" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Distrito: </label>
+                          <label for="inputText" class="col-form-label">* Distrito: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="dttoRegVta" id="dttoRegVta" class="form-select form-remanso">
@@ -171,7 +171,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Teléfono 1:</label>
+                          <label for="inputText" class="col-form-label">* Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="telf1RegVta" id="telf1RegVta" required>
@@ -185,7 +185,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Correo:</label>
+                          <label for="inputText" class="col-form-label">* Correo:</label>
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="correoRegVta" id="correoRegVta" required>
@@ -213,31 +213,31 @@
                           <input type="text" class="form-control form-remanso align-right" name="fchNacRegVta" id="fchNacRegVta" required>
                         </div>
                       </div>
-                      <hr>
+                      
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Comprobante de venta:</label>
+                          <label for="inputText" class="col-form-label" hidden>Comprobante de venta:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="compVtaRegVta" id="compVtaRegVta" class="form-select form-remanso">
+                          <select name="compVtaRegVta" id="compVtaRegVta" class="form-select form-remanso" hidden>
                             <option value="" selected></option>
                             <option value="TC001">BOLETA</option>
                             <option value="TC002">FACTURA</option>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">RUC: </label>
+                          <label for="inputText" class="col-form-label" hidden>RUC: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="rucCompVtaRegVta" id="rucCompVtaRegVta" disabled>
+                          <input type="text" class="form-control form-remanso align-right" name="rucCompVtaRegVta" id="rucCompVtaRegVta" hidden disabled>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Razon social:</label>
+                          <label for="inputText" class="col-form-label" hidden>Razon social:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="razSocCompVtaRegVta" id="razSocCompVtaRegVta" disabled>
+                          <input type="text" class="form-control form-remanso" name="razSocCompVtaRegVta" id="razSocCompVtaRegVta" hidden disabled>
                         </div>
                       </div>
                     </div>
@@ -255,14 +255,14 @@
                       <br>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Tipo de Documento: </label>
+                          <label for="inputText" class="col-form-label">* Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="tipoDoc2doRegVta" id="tipoDoc2doRegVta" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Núm. de Documento: </label>
+                          <label for="inputText" class="col-form-label">* Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="numDoc2doRegVta" id="numDoc2doRegVta">
@@ -271,13 +271,13 @@
                       <div id="nombre">
                         <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Nombres:</label>
+                            <label for="inputText" class="col-form-label">* Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="nombres2doRegVta" id="nombres2doRegVta">
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                            <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="apellP2doRegVta" id="apellP2doRegVta">
@@ -588,20 +588,25 @@
                           <select name="nombreArea"  id="nombreArea" class="form-select form-remanso">
                           </select>
                         </div>
+
+                        
+
                         <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Eje Horiz.: </label>
                         </div>
-                        <div class="col-md-1 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="ejeX"  id="ejeX" class="form-select form-remanso">
                           </select>
                         </div>
+
                         <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Eje Vert.: </label>
                         </div>
-                        <div class="col-md-1 mb-3">
+                        <div class="col-md-3 mb-3">
                           <select name="ejeY"  id="ejeY" class="form-select form-remanso">
                           </select>
                         </div>
+                        
                         <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label">Espacio: </label>
                         </div>
@@ -609,13 +614,15 @@
                           <select name="espacio"  id="espacio" class="form-select form-remanso">
                           </select>
                         </div>
+
                         <div class="col-md-1 mb-3">
-                          <label for="inputText" class="col-form-label">Tipo espacio: </label>
+                          <label for="inputText" class="col-form-label" >Tipo espacio: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="tipoEspacio"  id="tipoEspacio" class="form-control form-remanso">
+                          <select name="tipoEspacio"  id="tipoEspacio" class="form-control form-remanso" dissabled>
                           </select>
                         </div>
+                        
                       </div>
                       <hr>
                       <br>
@@ -673,19 +680,19 @@
                           <label for="inputText" class="col-form-label">Precio Total: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" readonly name="impTotal" id="impTotal">
+                          <input type="text" class="form-control form-remanso align-right"  name="impTotal" id="impTotal" disabled >
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">CUOI: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="impCuoi" id="impCuoi">
+                          <input type="text" class="form-control form-remanso align-right" name="impCuoi" id="impCuoi" >
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Saldo: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" readonly class="form-control form-remanso align-right" name="impSaldo" id="impSaldo">
+                          <input type="text"  class="form-control form-remanso align-right" name="impSaldo" id="impSaldo" disabled>
                           <input type="hidden" name="impDscto" id="impDscto" value=0>
                           <input type="hidden" name="pordescuento" id="pordescuento" value="0">
                           <input type="hidden" name="impDsctoAdicional" id="impDsctoAdicional">
@@ -774,11 +781,25 @@
                           <input class="form-control form-remanso form-control-sm" id="Dni2Adj1" type="file">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">DNI Alterno anverso: </label>
+                          <label for="inputText" class="col-form-label">DNI Alterno reverso: </label>
                         </div>
                         <div class="col-md-4 mb-3">
                           <input class="form-control form-remanso form-control-sm" id="Dni2Adj2" type="file">
                         </div>
+
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">DNI Aval anverso: </label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <input class="form-control form-remanso form-control-sm" id="DniAvalAdj1" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">DNI Aval reverso: </label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <input class="form-control form-remanso form-control-sm" id="DniAvalAdj2" type="file">
+                        </div>
+
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Recibo de servicio: </label>
                         </div>
@@ -786,11 +807,14 @@
                           <input class="form-control form-remanso form-control-sm" id="recServAdj" type="file">
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Recibo provisional: </label>
+                          <label for="inputText" class="col-form-label">Comprobante: </label>
                         </div>
                         <div class="col-md-4 mb-3">
                           <input class="form-control form-remanso form-control-sm" id="RecAdj" type="file">
                         </div>
+
+                      
+
                       </div>
                     </div>
                   </div>
@@ -944,6 +968,11 @@
 </x-layouts.app>
 <script src="{{asset('js/registroVenta.js')}}"></script>
 <script type="text/javascript">
+
+//---------------------formato dinero
+
+
+
 
 // window.addEventListener('load', function() {
 //       var loader = document.querySelector('.loader');
@@ -1110,30 +1139,6 @@ numDoc2titInput.addEventListener("input", function(event) {
   }
 });
 
-numDoc2titInput.addEventListener("blur", function(event) {
-  $.ajax({
-    url: '../api/ValidarCoincidenciaDocumento',
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'dscDocumento':document.getElementById("numDoc2doRegVta").value},
-    success: function(respuesta){
-      //console.log(respuesta);
-      if (respuesta['response']['ctd_coincidencia'] > 0) {
-        Swal.fire({
-          title:'Error!',
-          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
-          icon:'warning',
-          confirmButtonColor: '#35B44A',
-        }) 
-        numDoc2titInput.blur();
-      }
-    },//success
-    error(e){
-      console.log(e.message);
-    }//error
-  });
-});
 
 var numDocAvalInput = document.getElementById("numDocAval");
 numDocAvalInput.addEventListener("input", function(event) {
@@ -1169,31 +1174,6 @@ numDocAvalInput.addEventListener("input", function(event) {
       }
     }
   }
-});
-
-numDocAvalInput.addEventListener("blur", function(event) {
-  $.ajax({
-    url: '../api/ValidarCoincidenciaDocumento',
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'dscDocumento':document.getElementById("numDocAval").value},
-    success: function(respuesta){
-      //console.log(respuesta);
-      if (respuesta['response']['ctd_coincidencia'] > 0) {
-        Swal.fire({
-          title:'Error!',
-          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
-          icon:'warning',
-          confirmButtonColor: '#35B44A',
-        }) 
-        numDocAvalInput.blur();
-      }
-    },//success
-    error(e){
-      console.log(e.message);
-    }//error
-  });
 });
 
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
@@ -1484,7 +1464,7 @@ impCuoiInput.addEventListener("input", function(event) {
   inputValue = inputValue.replace(/[^0-9.]/g, '');
   
   // Actualizar el valor del campo
-  impCuoiInput.value = inputValue;
+  impCuoiInput.value = inputValue.toFixed(2);
 });
 
 var impFomaInput = document.getElementById("impFoma");
@@ -1496,7 +1476,7 @@ impFomaInput.addEventListener("input", function(event) {
   inputValue = inputValue.replace(/[^0-9.]/g, '');
   
   // Actualizar el valor del campo
-  impFomaInput.value = inputValue;
+  impFomaInput.value = inputValue.toFixed(2);
 });
 
 
@@ -1563,10 +1543,21 @@ $( document ).ready(function () {
  // Formatear las fechas como cadenas en formato "YYYY-MM-DD"
   var lastDayOfMonthStr = lastDayOfMonth.toISOString().split('T')[0];
 
- 
+  var flg_supervisor ='@php echo(session('flg_supervisor')) @endphp';
+  var flg_jefe ='@php echo(session('flg_jefe')) @endphp';
+  var flg_ni ='@php echo(session('flg_ni')) @endphp';
+  var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
+  
+  if((flg_supervisor=='NO' && flg_jefe=='NO' && flg_firmante=='NO') || flg_ni=='SI')
+  { 
+       document.getElementById("AprobarVenta").bootstrapToggle('readonly'); 
+  }
+
 
   setTimeout(function() { 
     //console.log('cod_prospecto',cod_prospecto);
+
+   
     if (cod_prospecto !== '') {
       $("#acordeonAval").css("display", "none");
       $("#labelCodProspecto").css("display","block");
@@ -1580,22 +1571,38 @@ $( document ).ready(function () {
         data:{'cod_prospecto':cod_prospecto},
         success: function(result) {
           //console.log(result);
+
           var changeEvent = new Event('change');   // Crea un evento "change"
+          cod_prospecto=result["response"]["cod_prospecto"];
           document.getElementById("tipoNec").bootstrapToggle('off');
+          var cod_tipo_necesidad=result["response"]["cod_tipo_necesidad"];
+          if(cod_tipo_necesidad='NI')
+          { 
+              document.getElementById("tipoNec").bootstrapToggle('on'); 
+          }
+          
           document.getElementById("tipoNec").bootstrapToggle('readonly');
-          document.getElementById("AprobarVenta").bootstrapToggle('on');
-          document.getElementById("AprobarVenta").bootstrapToggle('enable');
+          //document.getElementById("AprobarVenta").bootstrapToggle('on');
+          //document.getElementById("AprobarVenta").bootstrapToggle('enable');
+
          
+            
           cod_estado=result["response"]["cod_estado"];
           if(cod_estado=='VEN')
           {
             document.getElementById("AprobarVenta").bootstrapToggle('on');
             document.getElementById("AprobarVenta").bootstrapToggle('readonly');
             document.getElementById("registrarVenta").disabled  = true;
+            
           }else
           {
             document.getElementById("AprobarVenta").bootstrapToggle('off');
+            if((flg_supervisor=='NO' && flg_jefe=='NO' && flg_firmante=='NO') || flg_ni=='SI'  )
+            { 
+              document.getElementById("AprobarVenta").bootstrapToggle('readonly'); 
+            }
           }
+
           document.getElementById("razonSocRegVta").value=result["response"]["dsc_razon_social"];
           document.getElementById("apellPRegVta").value=result["response"]["dsc_apellido_paterno"];
           document.getElementById("apellMRegVta").value=result["response"]["dsc_apellido_materno"];
@@ -1761,6 +1768,7 @@ $( document ).ready(function () {
         }                  
       });
 
+      
       //-------------------------------Beneficiarios---------------------------------------
  
       $.ajax({         
@@ -1795,8 +1803,11 @@ $( document ).ready(function () {
 
     }else{
       document.getElementById("tipoNec").bootstrapToggle('readonly');
+      
     }
-  }, 2000);             
+  }, 2000);  
+  
+  ModoVista();
 });
 
 
@@ -1804,15 +1815,16 @@ $( document ).ready(function () {
 
 var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
-    var codProspecto = '';
+    
     var boton = document.getElementById("tipoNec");
-    if(boton.checked == true){
-        tipo_nec = 'NI';
-        codProspecto = '';
+    var tipo_nec="";
+
+    var botonTNec= document.getElementById("tipoNec");
+    if( botonTNec=="SI"){ tipo_nec="NI";}else{ tipo_nec="NF";}
+
+    if(cod_prospecto== ""){
         urlGrabar = '../api/guardaProspecto';
     }else{
-        tipo_nec = 'NF';
-        codProspecto = document.getElementById("inputCodProspecto").value;
         urlGrabar = '../api/editarProspecto';
     }
 
@@ -1843,7 +1855,7 @@ boton.addEventListener("click",function(){
      
 
     var prospecto = {
-    'cod_prospecto': codProspecto,
+    'cod_prospecto': cod_prospecto,
     'dsc_prospecto': dscTitular,
     'dsc_razon_social': document.getElementById("razonSocRegVta").value.toUpperCase(),
     'dsc_apellido_paterno': document.getElementById("apellPRegVta").value.toUpperCase(),
@@ -1966,11 +1978,11 @@ boton.addEventListener("click",function(){
         dataType: 'json',
         data:{'prospecto':prospecto},
         success: function(respuesta){
-          if (codProspecto == '') {
-            codProspecto = respuesta['response']['cod_prospecto'];
+          if (cod_prospecto == '') {
+            cod_prospecto = respuesta['response']['cod_prospecto'];
           }
           filasArray.forEach(function (fila) {
-            fila['cod_prospecto'] = codProspecto;
+            fila['cod_prospecto'] = cod_prospecto;
           });
           $.ajax({
               url: '../api/guardaBeneficiario', 
@@ -1986,7 +1998,7 @@ boton.addEventListener("click",function(){
               }//error
           });
 
-          servicioArray['cod_prospecto'] = codProspecto;
+          servicioArray['cod_prospecto'] = cod_prospecto;
 
           $.ajax({
               url: '../api/InsertarProspectoServicio', 
@@ -2004,14 +2016,25 @@ boton.addEventListener("click",function(){
 
           Swal.fire({
             title: 'Guardado',
-            text: codProspecto,
+            text: cod_prospecto,
             icon: 'success',
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#35B44A',
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-              window.location.href = "../prospectos/listado";
+              var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
+  
+                if( flg_firmante=='NO')
+                { 
+                  window.location.href = "../prospectos/listado";
+                }
+                else
+                {window.location.href = "../home";
+
+                }
+
+              
             }  
           })
   
@@ -2043,5 +2066,112 @@ function ObtenerImporteCuota() {
 
   console.log(tam);
 }  
+
+
+function ModoVista() {
+  var flg_firmante ='@php echo(session('flg_firmante')) @endphp';  
+  if(flg_firmante=='SI')
+  {
+    document.getElementById("tipoDocRegVta").disabled = true;
+    document.getElementById("numDocRegVta").disabled = true;
+    document.getElementById("nombresRegVta").disabled = true;
+    document.getElementById("apellPRegVta").disabled = true;
+    document.getElementById("apellMRegVta").disabled = true;
+    document.getElementById("inputCodProspecto").disabled = true;
+    document.getElementById("razonSocRegVta").disabled = true;
+    document.getElementById("direccRegVta").disabled = true;
+    document.getElementById("direccRefRegVta").disabled = true;
+    document.getElementById("paisRegVta").disabled = true;
+    document.getElementById("dptoRegVta").disabled = true;
+    document.getElementById("provRegVta").disabled = true;
+    document.getElementById("dttoRegVta").disabled = true;
+    document.getElementById("telf1RegVta").disabled = true;
+    document.getElementById("telf2RegVta").disabled = true;
+    document.getElementById("correoRegVta").disabled = true;
+    document.getElementById("edoCivilRegVta").disabled = true;
+    document.getElementById("sexoRegVta").disabled = true;
+    document.getElementById("fchNacRegVta").disabled = true;
+    document.getElementById("numDocAval").disabled = true;
+    document.getElementById("nombresAval").disabled = true;
+    document.getElementById("apellPAval").disabled = true;
+    document.getElementById("apellMAval").disabled = true;
+    document.getElementById("razonSocAval").disabled = true;
+    document.getElementById("direccAval").disabled = true;
+    document.getElementById("paisAval").disabled = true;
+    document.getElementById("dptoAval").disabled = true;
+    document.getElementById("provAval").disabled = true;
+    document.getElementById("dttoAval").disabled = true;
+    document.getElementById("telef1Aval").disabled = true;
+    document.getElementById("telef2Aval").disabled = true;
+    document.getElementById("correoAval").disabled = true;
+    document.getElementById("camposanto").disabled = true;
+    document.getElementById("nombrePlat").disabled = true;
+    document.getElementById("nombreArea").disabled = true;
+    document.getElementById("ejeX").disabled = true;
+    document.getElementById("ejeY").disabled = true;
+    document.getElementById("espacio").disabled = true;
+    document.getElementById("tipoEspacio").disabled = true;
+    document.getElementById("numOpeRegVta").disabled = true;
+    document.getElementById("compVtaRegVta").disabled = true;
+    document.getElementById("rucCompVtaRegVta").disabled = true;
+    document.getElementById("razSocCompVtaRegVta").disabled = true;
+    document.getElementById("imp_cuota").disabled = true;
+    document.getElementById("codServicio").disabled = true;
+    document.getElementById("ctdServ").disabled = true;
+    document.getElementById("impPrecioLista").disabled = true;
+    document.getElementById("impPrecioLista").disabled = true;
+    document.getElementById("impDscto").disabled = true;
+    document.getElementById("impTotal").disabled = true;
+    document.getElementById("impFoma").disabled = true;
+    document.getElementById("impCuoi").disabled = true;
+    document.getElementById("impSaldo").disabled = true;
+    document.getElementById("cttoBase").disabled = true;
+    document.getElementById("numServBase").disabled = true;
+    document.getElementById("codCuotaFoma").disabled = true;
+    document.getElementById("codCuotaServ").disabled = true;
+    document.getElementById("codTasa").disabled = true;
+    document.getElementById("fch1erVcto").disabled = true;
+    document.getElementById("pordescuento").disabled = true;
+    document.getElementById("impDsctoAdicional").disabled = true;
+    document.getElementById("impMinCuoi").disabled = true;
+
+    document.getElementById("dtto2doRegVta").disabled = true;
+    document.getElementById("telf12doRegVta").disabled = true;
+    document.getElementById("telf22doRegVta").disabled = true;
+    document.getElementById("correo2doRegVta").disabled = true;
+    document.getElementById("tipoPrograma").disabled = true;
+    document.getElementById("subtipoServ").disabled = true;
+    document.getElementById("tipoPlat").disabled = true;
+    document.getElementById("abreModalBenef").disabled = true;
+    document.getElementById("btnAddServicio").disabled = true;
+    document.getElementById("ModalBeneficiariosLabel").disabled = true;
+    document.getElementById("RecAdj").disabled = true;
+    document.getElementById("recServAdj").disabled = true;
+    document.getElementById("DniAvalAdj2").disabled = true;
+    document.getElementById("DniAvalAdj1").disabled = true;
+    document.getElementById("Dni2Adj2").disabled = true;
+    document.getElementById("Dni2Adj1").disabled = true;
+    document.getElementById("DniAdj2").disabled = true;
+    document.getElementById("DniAdj1").disabled = true;
+    document.getElementById("tipoDoc2doRegVta").disabled = true;
+    document.getElementById("numDoc2doRegVta").disabled = true;
+    document.getElementById("nombres2doRegVta").disabled = true;
+    document.getElementById("apellP2doRegVta").disabled = true;
+    document.getElementById("apellM2doRegVta").disabled = true;
+    document.getElementById("razonSoc2doRegVta").disabled = true;
+    document.getElementById("direcc2doRegVta").disabled = true;
+    document.getElementById("pais2doRegVta").disabled = true;
+   
+    document.getElementById("prov2doRegVta").disabled = true;
+    document.getElementById("dpto2doRegVta").disabled = true;
+    document.getElementById("tipoServicio").disabled = true;
+    document.getElementById("pais2doRegVta").disabled = true;
+    document.getElementById("dpto2doRegVta").disabled = true;
+    document.getElementById("prov2doRegVta").disabled = true;
+    document.getElementById("dtto2doRegVta").disabled = true;
+  }
+  
+}  
+
 
 </script>

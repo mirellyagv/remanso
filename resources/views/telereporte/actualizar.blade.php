@@ -31,7 +31,7 @@
                      
                       <div class="row">
                          <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Nro Reporte:</label>
+                            <label for="inputText" class="col-form-label">* Nro Reporte:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso align-center"  value="" readonly name="num_reporte"
@@ -43,7 +43,7 @@
 
                       <div class="row">
                          <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Nombres:</label>
+                            <label for="inputText" class="col-form-label">* Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_nombres"
@@ -54,7 +54,7 @@
                           </div>
 
                           <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Fecha Registro: </label>
+                          <label for="inputText" class="col-form-label">* Fecha Registro: </label>
                             </div>
                             <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso align-center" required name="fch_registro"
@@ -64,7 +64,7 @@
 
                       <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                            <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_apellido_paterno"
@@ -74,7 +74,7 @@
                             </div> 
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                            <label for="inputText" class="col-form-label">* Apellido Materno: </label>
                           </div>
 
                           <div class="col-md-3 mb-3">
@@ -114,7 +114,7 @@
                      
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Vendedor:</label>
+                          <label for="inputText" class="col-form-label">* Vendedor:</label>
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="dsc_vendedor"
@@ -144,7 +144,7 @@
                       
                       <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Nombres:</label>
+                            <label for="inputText" class="col-form-label">* Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_nombres_c" id="dsc_nombres_c" required>
@@ -155,7 +155,7 @@
                       </div>
                       <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                            <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso" name="dsc_apellido_paterno_c" id="dsc_apellido_paterno_c" required>

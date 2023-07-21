@@ -132,7 +132,7 @@
                     
                 }else{
                     console.log('no',respuesta);
-                    alert("tiene usuario o clave incorrectos");
+                    alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
                     window.location.href = "/";
                     //document.getElementById('message2').style.display = "block";
                 }
@@ -168,7 +168,7 @@
                     
                 }else{
                     console.log('no',respuesta);
-                    alert("tiene usuario o clave incorrectos");
+                    alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
                     window.location.href = "/";
                     //document.getElementById('message2').style.display = "block";
                 }

@@ -62,7 +62,7 @@
                     <label for="inputText" class="col-form-label">Documento identidad: </label>
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
                       col-md-2 mb-3
                     @else
                       col-md-3 mb-3
@@ -71,7 +71,7 @@
                     <input type="text" class="form-control form-remanso align-right" name="numDoc" id="numDoc">
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
                       col-md-1 mb-3
                     @else
                       col-md-2 mb-3
@@ -80,7 +80,7 @@
                     <label for="inputText" class="col-form-label">Prospecto: </label>
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
                       col-md-2 mb-3
                     @else
                       col-md-3 mb-3
@@ -89,7 +89,7 @@
                     <input type="text" class="form-control form-remanso" name="nombreProspecto" id="nombreProspecto">
                   </div>
                   @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
-                  session('cod_usuario')==='ADMINISTRATOR')
+                  session('flg_administrador')==='SI')
                   <div class="col-md-1 mb-3">
                     <label for="inputText" class="col-form-label">Vendedor: </label>
                   </div>
@@ -122,14 +122,14 @@
           <table class="table table-striped" id="listaProsp" style="width:100%">
             <thead style="background-color: #35B44A; color: white;">
               <tr>
-                <th style="text-align: center;">Acciones</th>
-                <th style="text-align: center;" width="15%">Código</th>
-                <th style="text-align: center;" width="15%">Documento</th>
+                <th style="text-align: center;" width="12%">Acciones</th>
+                <th style="text-align: center;" width="10%">Código</th>
+                <th style="text-align: center;" width="12%">Documento</th>
                 <th style="text-align: center;">Prospecto</th>
-                <th style="text-align: center;" width="15%">Fch. de Registro</th>
+                <th style="text-align: center;" width="12%">Fch. de Registro</th>
                 <th style="text-align: center;" width="5%">Días</th>
-                <th style="text-align: center;">Canal</th>
-                <th style="text-align: center;" width="15%">Estado</th>
+                <th style="text-align: center;" width="15%">Canal</th>
+                <th style="text-align: center;" width="10%">Estado</th>
 
               </tr>
             </thead>
@@ -182,7 +182,18 @@ numDocInput.addEventListener("input", function(event) {
   }
 });
 
+var flg_ni= '';
+var flg_nf= '';
+var cod_tipo_necesidad= '';
+
 $(document).ready(function () {
+  flg_ni= '@php echo(session('flg_ni')) @endphp';
+  flg_nf= '@php echo(session('flg_nf')) @endphp';
+
+  if(flg_ni=='SI' && flg_nf=='SI'){cod_tipo_necesidad='%';}
+  else if(flg_ni=='NO' && flg_nf=='NO'){cod_tipo_necesidad='%';}
+  else if(flg_ni=='SI' && flg_nf=='NO'){cod_tipo_necesidad='NI';}
+  else if(flg_ni=='NO' && flg_nf=='SI'){cod_tipo_necesidad='NF';}
 
   var currentDate = new Date();
 
@@ -225,7 +236,7 @@ $(document).ready(function () {
     method: "GET",
     crossDomain: true,
     dataType: 'json',
-    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad},
     success: function(respuesta){
       // console.log('parado',respuesta)
         fila='';
@@ -236,6 +247,10 @@ $(document).ready(function () {
         var codProsp = "'"+word['cod_prospecto']+"'";
         var dscProsp = "'"+word['dsc_prospecto']+"'";
         var today = new Date(word['fch_registro']);
+
+        var fch1 = new Date(word['fch_registro']);
+        var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+
         // obtener la fecha de hoy en formato `MM/DD/YYYY`
         var dia = today.toLocaleDateString('es-ES');
         var estado = word['dsc_estado'];
@@ -256,12 +271,12 @@ $(document).ready(function () {
           fila += '<tr><td>'+
               '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" ></span></a>'+
               '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Registrar venta"><span class="bi bi-cash-stack"></span></a>'+
-                  '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
+                  '@if (session('flg_jefe')==='SI' ||  session('flg_administrador')==='SI')'+
                   '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" title="Activar Prospecto"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
               '<td>'+word['cod_prospecto']+'</td>'+
               '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
               '<td>'+word['dsc_prospecto']+'</td>'+
-              '<td>'+dia+'</td>'+
+              '<td>'+fch_registro1+'</td>'+
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td>'+word['dsc_estado']+'</td>'+
@@ -355,7 +370,7 @@ function BuscarProspecto() {
     method: "GET",
     crossDomain: true,
     dataType: 'json',
-    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val()},
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad},
     success: function(respuesta){
       // console.log('de funcion',respuesta)
         fila='';
@@ -363,6 +378,11 @@ function BuscarProspecto() {
         var codProsp = "'"+word['cod_prospecto']+"'";
         var dscProsp = "'"+word['dsc_prospecto']+"'";
         var today = new Date(word['fch_registro']);
+        
+        var fch1 = new Date(word['fch_registro']);
+        var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+
+
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
         if(estado == 'ACTIVO' ){
@@ -380,12 +400,12 @@ function BuscarProspecto() {
         var dia = today.toLocaleDateString('es-ES');
           fila += '<tr><td>'+
                 '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+'<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
-                '@if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('cod_usuario')==='ADMINISTRATOR')'+
+                '@if (session('flg_jefe')==='SI' ||  session('flg_administrador')==='SI')'+
                 '<button class="btn btn-warning form-remanso" @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif  onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
               '<td>'+word['cod_prospecto']+'</td>'+
               '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
               '<td>'+word['dsc_prospecto']+'</td>'+
-              '<td>'+dia+'</td>'+
+              '<td>'+fch_registro1+'</td>'+
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td>'+word['dsc_estado']+'</td>'+

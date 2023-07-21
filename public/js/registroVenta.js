@@ -148,24 +148,7 @@ window.onload=function() {
         }//error
     });
     
-    //-----------------muestra select Tipo Servicio-----------
-    $.ajax({
-        url: '../lista/MuestraTipoServicio', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        success: function(respuesta){
-            $("#tipoServicio").append('<option value="" selected disabled>SELECCIONE...</option>');
-            respuesta['response'].forEach(function(word){
-                seleccion = '';
-                $("#tipoServicio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-            });
-        },//success
-        error(e){
-            console.log(e.message);
-        }//error
-    });
-
+   
      //-----------------muestra select Camposanto-----------
      $.ajax({
         url: '../lista/MuestraCamposanto', 
@@ -443,6 +426,9 @@ coddptto.addEventListener("change",function(){
   
   });
 
+
+
+   
 //-----------------muestra select Subtipo servicio-----------
 var codcampo = document.getElementById("tipoServicio");
 codcampo.addEventListener("change",function(){
@@ -473,7 +459,7 @@ var codTipoProg = document.getElementById("tipoPrograma");
 codTipoProg.addEventListener("change",function(){
     var valor = codTipoProg.value;
     if (valor == 'TR004' || valor == 'TR008') {
-
+        
         document.getElementById("camposanto").value = '';
         document.getElementById("camposanto").setAttribute('disabled', 'disabled');
         document.getElementById("tipoPlat").value = '';
@@ -509,6 +495,29 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("codCuotaFoma").removeAttribute('disabled');
 
     }
+
+    //-----------------muestra select Tipo Servicio-----------
+    var options = document.querySelectorAll('#tipoServicio option');
+    options.forEach(o => o.remove());
+   $.ajax({
+
+       url: '../lista/MuestraTipoServicio', 
+       method: "GET",
+       crossDomain: true,
+       dataType: 'json',
+       data: {'cod_tipo_recaudacion': valor},
+       success: function(respuesta){
+           $("#tipoServicio").append('<option value="" selected disabled>SELECCIONE...</option>');
+           respuesta['response'].forEach(function(word){
+               seleccion = '';
+               $("#tipoServicio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+           });
+       },//success
+       error(e){
+           console.log(e.message);
+       }//error
+   });
+
 });
 
 
@@ -894,7 +903,7 @@ function muestraserviciosFormulario(datos) {
 
     cantInput.addEventListener('input', function() {
         calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
+        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'].toFixed(2);
         inputCOUI.dispatchEvent(changeEvent);
     });
 
@@ -903,24 +912,24 @@ function muestraserviciosFormulario(datos) {
             dsctoPorcInput.value = 100;
         }
         calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
+        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'].toFixed(2);
         inputCOUI.dispatchEvent(changeEvent);
 
     });
 
     dsctoLibreInput.addEventListener('input', function() {
         calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
+        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'].toFixed(2);
         inputCOUI.dispatchEvent(changeEvent);
 
     });
 
     document.getElementById("impTotal").value=saldo;//datos['imp_precio'];
-    document.getElementById("impCuoi").value=datos['imp_precio_cuoi'];
-    document.getElementById("impFoma").value=datos['imp_precio_foma'];    
+    document.getElementById("impCuoi").value=datos['imp_precio_cuoi'].toFixed(2);
+    document.getElementById("impFoma").value=datos['imp_precio_foma'].toFixed(2);    
     document.getElementById("codServicio").value=datos['cod_servicio'];
-    document.getElementById("impPrecioLista").value=datos['imp_precio_lista'];
-    document.getElementById("impMinCuoi").value=datos['imp_min_cuoi'];
+    document.getElementById("impPrecioLista").value=datos['imp_precio_lista'].toFixed(2);
+    document.getElementById("impMinCuoi").value=datos['imp_min_cuoi'].toFixed(2);
 
     function calculaSaldo(ctd,dsctoLibre,dsctoPorc,precio) {
         if(ctd < 1){
@@ -943,15 +952,15 @@ function muestraserviciosFormulario(datos) {
 
         precioFinalCelda.textContent = saldo;
         descuentoCelda.textContent = porc;
-        document.getElementById("impDscto").value=dscto-dsctoLibre;
-        document.getElementById("impDsctoAdicional").value=dsctoLibre;
+        document.getElementById("impDscto").value=dscto-dsctoLibre.toFixed(2);
+        document.getElementById("impDsctoAdicional").value=dsctoLibre.toFixed(2);
         document.getElementById("pordescuento").value=dsctoPorc;
-        document.getElementById("impSaldo").value=saldo;
+        document.getElementById("impSaldo").value=saldo.toFixed(2);
         document.getElementById("ctdServ").value=ctd;
-        document.getElementById("impTotal").value=saldo;  
+        document.getElementById("impTotal").value=saldo.toFixed(2);  
     }
     
-    document.getElementById("impSaldo").value=saldo-cuoi;
+    document.getElementById("impSaldo").value=saldo-cuoi.toFixed(2);
 }
 //-----------------cambia saldo menos CUOI
 
@@ -966,11 +975,11 @@ campoCuoi.addEventListener("input",function(){
     }
     if(cuoi > total){
         saldo = 0;
-        document.getElementById("impCuoi").value = total;
+        document.getElementById("impCuoi").value = total.toFixed(2);
     }else{
         saldo = total - cuoi;
     }
-    document.getElementById("impSaldo").value=saldo;
+    document.getElementById("impSaldo").value=saldo.toFixed(2);
 });
 
 campoCuoi.addEventListener("change",function(){
@@ -978,7 +987,7 @@ campoCuoi.addEventListener("change",function(){
     var cuoi = parseFloat(this.value);
     var minCuoi = parseFloat(minCuoiInput);
     if(cuoi < minCuoi || cuoi == null || cuoi == ''){
-        document.getElementById("impCuoi").value = minCuoi;
+       document.getElementById("impCuoi").value = minCuoi.toFixed(2);
     }
 });
   

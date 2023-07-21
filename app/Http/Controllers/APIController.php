@@ -41,9 +41,13 @@ class APIController extends Controller
                     session(['flg_vendedor' => $responseData['response']['flg_vendedor']]);
                     session(['flg_jefe' => $responseData['response']['flg_jefe']]);
                     session(['flg_supervisor' => $responseData['response']['flg_supervisor']]);
-                    if($responseData['response']['flg_vendedor'] =='NO' && $responseData['response']['flg_jefe']=='NO' && $responseData['response']['flg_supervisor'] == 'NO'){
-                        session(['flg_administrador' => 'SI']);
-                    }
+                    session(['flg_ni' => $responseData['response']['flg_ni']]);
+                    session(['flg_nf' => $responseData['response']['flg_nf']]);
+                    session(['flg_sac' => $responseData['response']['flg_sac']]);
+                    session(['flg_administrativo' => $responseData['response']['flg_administrativo']]);
+                    session(['flg_administrador' => $responseData['response']['flg_administrador']]);
+                    session(['flg_firmante' => $responseData['response']['flg_firmante']]);
+                    
 
                 }
 

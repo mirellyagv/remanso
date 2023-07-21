@@ -28,14 +28,14 @@
                     <br>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label" required>Tipo de Documento: </label>
+                        <label for="inputText" class="col-form-label" required>* Tipo de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="tipoDocProsp" id="tipoDocProsp" required class="form-select form-remanso">
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Núm. de Documento: </label>
+                        <label for="inputText" class="col-form-label">* Núm. de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <input type="text" class="form-control form-remanso align-right"  required name="numDocPros" id="numDocPros">
@@ -44,19 +44,19 @@
                     <div id="nombre">
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Nombres:</label>
+                          <label for="inputText" class="col-form-label">* Nombres:</label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" required name="nombreProsp" id="nombreProsp">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Codigo prospecto: </label>
+                          <label for="inputText" class="col-form-label">* Codigo prospecto: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso" value="{{$_GET['CodProspecto']}} " readonly name="codProsp" id="codProsp">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                          <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" required name="apellPProsp" id="apellPProsp">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">País: </label>
+                        <label for="inputText" class="col-form-label">* País: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="paisProspecto" id="paisProspecto" class="form-select form-remanso" required>
@@ -105,7 +105,7 @@
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Departamento: </label>
+                        <label for="inputText" class="col-form-label">* Departamento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="dptoProsp" id="dptoProsp" class="form-select form-remanso" required>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Provincia: </label>
+                        <label for="inputText" class="col-form-label">* Provincia: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="provinProsp" id="provinProsp" class="form-select form-remanso" required>
@@ -123,7 +123,7 @@
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Distrito: </label>
+                        <label for="inputText" class="col-form-label">* Distrito: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="dttoProsp" id="dttoProsp" class="form-select form-remanso" required>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Teléfono 1:</label>
+                        <label for="inputText" class="col-form-label">* Teléfono 1:</label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <input type="text" class="form-control form-remanso align-right" name="telf1Prosp" id="telf1Prosp" required>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Correo:</label>
+                        <label for="inputText" class="col-form-label">* Correo:</label>
                       </div>
                       <div class="col-md-9 mb-3">
                         <input type="text" class="form-control form-remanso" name="correoProsp" id="correoProsp" required>
@@ -156,14 +156,14 @@
                     <hr>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Canal de venta:</label>
+                        <label for="inputText" class="col-form-label">* Canal de venta:</label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="canalProsp" id="canalProsp" class="form-select form-remanso">
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Calificación: </label>
+                        <label for="inputText" class="col-form-label">* Calificación: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="califProsp" id="califProsp" class="form-select form-remanso">
@@ -172,7 +172,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Importe:</label>
+                        <label for="inputText" class="col-form-label">* Importe:</label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <input type="text" class="form-control form-remanso align-right" name="impProsp" id="impProsp" required>
@@ -201,14 +201,14 @@
                     <br>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Tipo de Documento: </label>
+                        <label for="inputText" class="col-form-label">* Tipo de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="tipoDoc2tit" id="tipoDoc2tit" class="form-select form-remanso">
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Núm. de Documento: </label>
+                        <label for="inputText" class="col-form-label">* Núm. de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <input type="text" class="form-control form-remanso align-right" name="numDoc2tit" id="numDoc2tit">
@@ -217,13 +217,13 @@
                     <div id="cajaNombre2Tit">
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Nombres:</label>
+                          <label for="inputText" class="col-form-label">* Nombres:</label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" name="nombre2Tit" id="nombre2Tit">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Apellido Paterno: </label>
+                          <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" name="apelP2tit" id="apelP2tit">
@@ -566,6 +566,8 @@ flatpickr("#fchContacto",{
   dateFormat: "Y-m-d"
 });
 
+
+
 //------------------------valida letras-------------------------------
 var inputs = document.getElementsByClassName("letras-only");
 
@@ -725,30 +727,6 @@ numDoc2titInput.addEventListener("input", function(event) {
   }
 });
 
-numDoc2titInput.addEventListener("blur", function(event) {
-  $.ajax({
-    url: '../api/ValidarCoincidenciaDocumento',
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'dscDocumento':document.getElementById("tipoDoc2tit").value},
-    success: function(respuesta){
-      //console.log(respuesta);
-      if (respuesta['response']['ctd_coincidencia'] > 0) {
-        Swal.fire({
-          title:'Error!',
-          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
-          icon:'warning',
-          confirmButtonColor: '#35B44A',
-        }) 
-        numDoc2titInput.blur();
-      }
-    },//success
-    error(e){
-      console.log(e.message);
-    }//error
-  });
-});
 
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
 

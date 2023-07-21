@@ -9,8 +9,62 @@
       </li>
       <br><br>
 
-      @if (session('flg_administrador')!='SI')
+      
+      @if (session('flg_administrador')==='SI')
+      <li class="nav-item">
+          <a href="{{route('prospectos.registro')}}">
+            <span class="item-menu">Registro de prospectos</span>
+          </a>
+      </li><br>
+      <li class="nav-item">
+        <a href="{{route('prospectos.listado')}}">
+          <span class="item-menu">Consulta de prospectos</span>
+        </a>
+      </li><br>
+      <li class="nav-item">
+        <a href="{{route('ventas.registro')}}">
+          <span class="item-menu">Registro de Ventas</span>
+        </a>
+      </li><br>
+      <li class="nav-item">
+        <a href="{{route('telereporte.listado')}}">
+          <span class="item-menu">Telereportes</span>
+        </a>
+      </li><br>
+      <li class="nav-item">
+          <a href="{{route('ventas.autorizacion')}}">
+            <span class="item-menu">Autorizar Ventas</span>
+          </a>
+        </li>
+      @endif
 
+      @if (session('flg_nf')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO')
+       <li class="nav-item">
+          <a href="{{route('prospectos.registro')}}">
+            <span class="item-menu">Registro de prospectos</span>
+          </a>
+      </li><br>
+      <li class="nav-item">
+        <a href="{{route('prospectos.listado')}}">
+          <span class="item-menu">Consulta de prospectos</span>
+        </a>
+      </li><br>
+      @endif
+
+      @if (session('flg_ni')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO')
+      <li class="nav-item">
+        <a href="{{route('ventas.registro')}}">
+          <span class="item-menu">Registro de Ventas</span>
+        </a>
+      </li><br>
+      <li class="nav-item">
+        <a href="{{route('telereporte.listado')}}">
+          <span class="item-menu">Telereportes</span>
+        </a>
+      </li><br>
+      @endif
+
+      @if ((session('flg_sac')==='SI' || session('flg_jefe')==='SI') && session('flg_administrador')==='NO')
       <li class="nav-item">
           <a href="{{route('prospectos.registro')}}">
             <span class="item-menu">Registro de prospectos</span>
@@ -32,14 +86,35 @@
         </a>
       </li><br>
       @endif
-      @if (session('flg_administrador')==='SI' || session('cod_usuario')==='ADMINISTRATOR')
+
       
+      @if (session('supervisor')==='SI'  && session('flg_administrativo')==='NO')
+      <li class="nav-item">
+          <a href="{{route('prospectos.registro')}}">
+            <span class="item-menu">Registro de prospectos</span>
+          </a>
+      </li><br>
+      <li class="nav-item">
+        <a href="{{route('prospectos.listado')}}">
+          <span class="item-menu">Consulta de prospectos</span>
+        </a>
+      </li><br>
+      @endif
+
+
+      @if (session('flg_firmante')==='SI')
+       <li class="nav-item">
+        <a href="{{route('home')}}">
+          <span class="item-menu">Aprobar Venta</span>
+        </a>
+      </li><br>
         <li class="nav-item">
           <a href="{{route('ventas.autorizacion')}}">
             <span class="item-menu">Autorizar Ventas</span>
           </a>
         </li>
-        
+        </li><br>
+       
       @endif
 
       <br>
