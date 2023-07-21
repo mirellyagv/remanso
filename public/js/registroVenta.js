@@ -987,7 +987,9 @@ campoCuoi.addEventListener("change",function(){
     var cuoi = parseFloat(this.value);
     var minCuoi = parseFloat(minCuoiInput);
     if(cuoi < minCuoi || cuoi == null || cuoi == ''){
-       document.getElementById("impCuoi").value = minCuoi.toFixed(2);
+        document.getElementById("impCuoi").value = minCuoi.toFixed(2);
+        var changeEvent = new Event('input');
+        campoCuoi.dispatchEvent(changeEvent);
     }
 });
   
