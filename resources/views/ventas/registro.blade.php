@@ -2024,14 +2024,17 @@ boton.addEventListener("click",function(){
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
               var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
-  
-                if( flg_firmante=='NO')
+              var flg_ni ='@php echo(session('flg_ni')) @endphp';
+              var flg_vendedor ='@php echo(session('flg_vendedor')) @endphp';
+
+                if( flg_ni=='SI' && flg_vendedor=='SI')
                 { 
-                  window.location.href = "../prospectos/listado";
+                  window.location.href = "../home";
+                  
                 }
                 else
-                {window.location.href = "../home";
-
+                {
+                  window.location.href = "../prospectos/listado";
                 }
 
               

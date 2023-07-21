@@ -9,7 +9,7 @@
         <table class="table table-striped" id="homeListado" style="width:100%">
           <thead style="background-color: #35B44A; color: white;">
             <tr>
-              <th style="text-align: center;" width="11%"></th>
+              <th style="text-align: center;" width="5%"></th>
               <th style="text-align: center;" width="10%">Código</th>
               <th style="text-align: center;" width="10%">Documento</th>
               <th style="text-align: center;" width="25%">Prospecto</th>
@@ -64,64 +64,6 @@ $(document).ready(function () {
 
             var filaData = [
                 '<a class="btn btn-secondary form-remanso"  href="{{route('prospectos.actualizar')}}?CodProspecto='+element['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>',
-                element['cod_prospecto'],
-                element['dsc_tipo_documento']+'-'+element['dsc_documento'],
-                element['dsc_prospecto'],
-                fch_registro1,
-                element['num_dias'],
-                element['dsc_origen'],
-                element['dsc_consejero'],
-            ];
-
-            filasArray.push(filaData);
-          });
-          //console.log(filasArray);
-          $('#homeListado').DataTable({
-              language: {
-                  url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-              },
-              data: filasArray,
-              columns: [
-                  { title: '' },
-                  { title: 'Código' },
-                  { title: 'Documento' },
-                  { title: 'Prospecto' },
-                  { title: 'Fecha' },
-                  { title: 'Días' },
-                  { title: 'Canal' },
-                  { title: 'Vendedor' },
-              ],
-              dom: 'trip',
-              processing: true,
-          });
-        },//success
-        error(e){
-            console.log(e.message);
-        }//error
-    });//end ajax
-    
-  }else if(flg_firmante=='SI')
-  {
-    $('.etiqueta').text('Prospectos por Aprobar');
-    $.ajax({
-        url: 'lista/ListarProspectoxAprobar', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{},
-        success: function(respuesta){
-
-          var filasArray = [];
-          respuesta['response'].forEach(element => {
-          var fchReg =  element['fch_registro'].split("T");
-          var fch1 = new Date(element['fch_registro']);
-          var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
-
-
-            var filaData = [
-                '<a class="btn btn-success BtnverdeRemanso form-remanso"  href="{{route('ventas.registro')}}?CodProspecto='+element['cod_prospecto']+'" ><span class="bi bi-search" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Ver Prospecto"></span></a>'+
-                '<button class="btn btn-warning form-remanso" onclick="cambiarEdoP('+element['cod_prospecto']+',VEN);" id="cambiaEdo" title="Aprobar Prospecto"><span class="bi bi-bookmark-star"></span></button>'+
-                '<button class="btn btn-success BtnredRemanso form-remanso" onclick="cambiarEdoP('+element['cod_prospecto']+',REC);" id="cambiaEdo" title="Rechazar Prospecto"><span class="bi bi-trash"></span></button>',
                 element['cod_prospecto'],
                 element['dsc_tipo_documento']+'-'+element['dsc_documento'],
                 element['dsc_prospecto'],
@@ -217,125 +159,5 @@ $(document).ready(function () {
    
 });//end ready
 
-function RefrescarProspecto() {
-
-  $.ajax({
-        url: 'lista/ListarProspectoxAprobar', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{},
-        success: function(respuesta){
-
-          var filasArray = [];
-          respuesta['response'].forEach(element => {
-          var fchReg =  element['fch_registro'].split("T");
-          var fch1 = new Date(element['fch_registro']);
-          var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
-
-
-            var filaData = [
-                '<a class="btn btn-success BtnverdeRemanso form-remanso"  href="{{route('ventas.registro')}}?CodProspecto='+element['cod_prospecto']+'" ><span class="bi bi-search" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Ver Prospecto"></span></a>'+
-                '<button class="btn btn-warning form-remanso" onclick="cambiarEdoP('+element['cod_prospecto']+',VEN);" id="cambiaEdo" title="Aprobar Prospecto"><span class="bi bi-bookmark-star"></span></button>'+
-                '<button class="btn btn-success BtnredRemanso form-remanso" onclick="cambiarEdoP('+element['cod_prospecto']+',REC);" id="cambiaEdo2" title="Rechazar Prospecto"><span class="bi bi-trash"></span></button>',
-                element['cod_prospecto'],
-                element['dsc_tipo_documento']+'-'+element['dsc_documento'],
-                element['dsc_prospecto'],
-                fch_registro1,
-                element['num_dias'],
-                element['dsc_origen'],
-                element['dsc_consejero'],
-            ];
-
-            filasArray.push(filaData);
-          });
-          //console.log(filasArray);
-          $('#homeListado').DataTable({
-              language: {
-                  url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-              },
-              data: filasArray,
-              columns: [
-                  { title: '' },
-                  { title: 'Código' },
-                  { title: 'Documento' },
-                  { title: 'Prospecto' },
-                  { title: 'Fecha' },
-                  { title: 'Días' },
-                  { title: 'Canal' },
-                  { title: 'Vendedor' },
-              ],
-              dom: 'trip',
-              processing: true,
-          });
-        },//success
-        error(e){
-            console.log(e.message);
-        }//error
-    });//end ajax
-}
-
-function cambiarEdoP(codigo,estado) {
-  var dsc_estado='';
-  var dsc_estado_pas='';
-  if (estado == 'REC') {
-    dsc_estado= 'RECHAZAR' ;  
-    dsc_estado_pas='RECHAZADO' ;
-  }
-  else if (estado == 'VEN') {
-    dsc_estado= 'APROBAR' ; 
-    dsc_estado_pas='APROBADO' ;   
-  }
-
-    Swal.fire({
-      title: 'Esta seguro que quiere '+dsc_estado+' este prospecto?',
-      text: codigo,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#35B44A',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var prospecto={
-          'cod_localidad_p': 'LC001',
-          'cod_prospecto': codigo,
-          'cod_estado': estado
-        }
-        $.ajax({
-          type : 'PUT',
-          url:'../api/editarEstadoProspecto',
-          dataType: 'json',
-          data:{'prospecto':prospecto},
-          success: function(respuesta){
-            console.log(respuesta);  
-            Swal.fire({
-              title:'Exito!',
-              text:'Se ha '+dsc_estado_pas+' el prospecto.',
-              icon:'success',
-              confirmButtonColor: '#35B44A',
-            }) 
-          },//success
-          error(e){
-              console.log(e.message);
-              // Swal.fire({
-              //   title:'Error!',
-              //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
-              //   icon:'warning',
-              //   confirmButtonColor: '#35B44A',
-              // }) 
-              Swal.fire({
-              title:'Exito!',
-              text:'Se ha activado el prospecto.',
-              icon:'success',
-              confirmButtonColor: '#35B44A',
-            }) 
-          }//error
-        });
-      }
-      RefrescarProspecto() ;
-    })//then
-  } //if
-//funcion
 
 </script>

@@ -103,11 +103,6 @@
 
 
       @if (session('flg_firmante')==='SI')
-       <li class="nav-item">
-        <a href="{{route('home')}}">
-          <span class="item-menu">Aprobar Venta</span>
-        </a>
-      </li><br>
         <li class="nav-item">
           <a href="{{route('ventas.autorizacion')}}">
             <span class="item-menu">Autorizar Ventas</span>
