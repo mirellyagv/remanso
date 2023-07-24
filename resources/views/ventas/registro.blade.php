@@ -1739,7 +1739,7 @@ $( document ).ready(function () {
             dataType: 'json',
             data:{'cod_localidad':'LC001','cod_prospecto':cod_prospecto},
             success: function(resultado){
-              console.log(resultado["response"][0]);
+              //console.log(resultado["response"][0]);
               var datos = {
                 "cod_servicio":resultado["response"][0]["cod_servicio"],
                 "dsc_servicio":resultado["response"][0]["dsc_servicio"],

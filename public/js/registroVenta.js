@@ -748,6 +748,10 @@ codcampo.addEventListener("change",function(){
 //-----------------muestra select Subtipo servicio-----------
 var codcampo = document.getElementById("btnAddServicio");
 codcampo.addEventListener("click",function(){
+    if ($.fn.dataTable.isDataTable('#tablaServicios')) {
+        $('#tablaServicios').DataTable().clear();
+        $('#tablaServicios').DataTable().destroy();        
+    }
     codCamposanto = document.getElementById("camposanto").value;
     codPlataforma = document.getElementById("nombrePlat").value;
     cod_tipo_recaudacion = document.getElementById("tipoPrograma").value;
@@ -773,7 +777,7 @@ codcampo.addEventListener("click",function(){
         success: function(respuesta){
             //console.log(respuesta['response']);
             respuesta['response'].forEach(element => {
-                    console.log(element);
+                //console.log(element);
                 var tabla = document.getElementById('tablaServicios');
                 var tbody = tabla.getElementsByTagName('tbody')[0];
                 
@@ -815,12 +819,22 @@ codcampo.addEventListener("click",function(){
 
                 accionesCelda.appendChild(accionesDiv);
                 
+            });//forEach
+
+            $('#tablaServicios').DataTable({
+                paging: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                },
+                dom: 'ftrp',
+                processing: true,
             });
         },//success
         error(e){
             console.log(e.message);
         }//error
     });
+
 });
 
 //---------------------llena tabla servicios--------------------------
