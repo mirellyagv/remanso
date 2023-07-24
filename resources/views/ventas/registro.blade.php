@@ -36,7 +36,13 @@
           <form action="#" id="formRegVenta" method="post">
             <div class="card ">
               <div class="row">
-                <div class="col-md-2 mb-2 offset-md-6">
+                <div class="col-md-1 mb-1">
+                  <label for="inputText" class="col-form-label">Estado:</label>
+                </div>
+                <div class="col-md-1 mb-1">
+                  <label for="inputText" class="col-form-label" id="tituloEstado"></label>
+                </div>
+                <div class="col-md-2 mb-2 offset-md-4">
                   <label for="inputText" class="col-form-label">Aprobar venta: </label>
                 </div>
                 <div class="col-1 col-md-1">
@@ -193,21 +199,21 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-2">
-                          <label for="inputText" class="col-form-label">(*)Estado civil:</label>
+                          <label for="inputText" class="col-form-label">(*) Estado civil:</label>
                         </div>
                         <div class="col-md-2 mb-2">
                           <select name="edoCivilRegVta" id="edoCivilRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-1 mb-2">
-                          <label for="inputText" class="col-form-label">(*)Sexo: </label>
+                          <label for="inputText" class="col-form-label">(*) Sexo: </label>
                         </div>
                         <div class="col-md-2 mb-2">
                           <select name="sexoRegVta" id="sexoRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-2 mb-2">
-                          <label for="inputText" class="col-form-label">(*)Fch Nacimiento: </label>
+                          <label for="inputText" class="col-form-label">(*) Fch Nacimiento: </label>
                         </div>
                         <div class="col-md-2 mb-2">
                           <input type="text" class="form-control form-remanso align-right" name="fchNacRegVta" id="fchNacRegVta" required>
@@ -1585,7 +1591,9 @@ $( document ).ready(function () {
         data:{'cod_prospecto':cod_prospecto},
         success: function(result) {
           //console.log(result);
-
+          cod_estado=result["response"]["cod_estado"];
+          dsc_estado = result["response"]["dsc_estado"];
+          document.getElementById("tituloEstado").innerHTML = dsc_estado;
           var changeEvent = new Event('change');   // Crea un evento "change"
           cod_prospecto=result["response"]["cod_prospecto"];
           document.getElementById("tipoNec").bootstrapToggle('off');
@@ -1594,8 +1602,7 @@ $( document ).ready(function () {
           { 
               document.getElementById("tipoNec").bootstrapToggle('on'); 
           }
-          if (flg_administrador == 'SI') {
-            
+          if (flg_administrador == 'SI' && dsc_estado != 'CIERRE') {         
             document.getElementById("tipoNec").bootstrapToggle('enabled');
           }else{
             document.getElementById("tipoNec").bootstrapToggle('readonly');
@@ -1605,20 +1612,20 @@ $( document ).ready(function () {
 
          
             
-          cod_estado=result["response"]["cod_estado"];
-          dsc_estado = "'"+result["response"]["dsc_estado"]+"'";
-          if(cod_estado=='VEN')
-          {
+          
+          if(cod_estado=='VEN'){
+
             document.getElementById("AprobarVenta").bootstrapToggle('on');
             document.getElementById("AprobarVenta").bootstrapToggle('readonly');
             document.getElementById("registrarVenta").disabled  = true;
             
-          }else
-          {
+          }else{
             document.getElementById("AprobarVenta").bootstrapToggle('off');
             if((flg_supervisor=='NO' && flg_jefe=='NO' && flg_firmante=='NO') || flg_ni=='SI'  )
             { 
               document.getElementById("AprobarVenta").bootstrapToggle('readonly'); 
+            }else if(flg_administrador == 'SI'){
+              document.getElementById("tipoNec").bootstrapToggle('enabled');
             }
           }
 
@@ -1733,6 +1740,7 @@ $( document ).ready(function () {
                     setTimeout(function() { 
                       espacio.value=result["response"]["cod_espacio"];
                       espacio.dispatchEvent(changeEvent);
+                      ModoVista();
                     }, 2000);
                   }, 2000);
                 }, 2000);
@@ -1818,7 +1826,6 @@ $( document ).ready(function () {
           $('#bodyTablaBenef').html(fila); 
         }
       });
-      ModoVista();
 
     }else{
       document.getElementById("tipoNec").bootstrapToggle('readonly');
@@ -2091,7 +2098,6 @@ function ObtenerImporteCuota() {
 
 
 function ModoVista() {
-  alert(dsc_estado);
   var flg_firmante ='@php echo(session('flg_firmante')) @endphp';  
   if(flg_firmante=='SI' || dsc_estado=='CIERRE')
   {
