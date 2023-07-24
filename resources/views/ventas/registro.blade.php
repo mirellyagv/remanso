@@ -39,10 +39,10 @@
                 <div class="col-md-1 mb-1">
                   <label for="inputText" class="col-form-label">Estado:</label>
                 </div>
-                <div class="col-md-1 mb-1">
+                <div class="col-md-2 mb-1">
                   <label for="inputText" class="col-form-label" id="tituloEstado"></label>
                 </div>
-                <div class="col-md-2 mb-2 offset-md-4">
+                <div class="col-md-2 mb-2 offset-md-3">
                   <label for="inputText" class="col-form-label">Aprobar venta: </label>
                 </div>
                 <div class="col-1 col-md-1">
@@ -1568,12 +1568,6 @@ $( document ).ready(function () {
   var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
   var flg_administrador ='@php echo(session('flg_administrador')) @endphp';
   
-  if((flg_supervisor=='NO' && flg_jefe=='NO' && flg_firmante=='NO') || flg_ni=='SI')
-  { 
-       document.getElementById("AprobarVenta").bootstrapToggle('readonly'); 
-  }
-
-
   setTimeout(function() { 
     //console.log('cod_prospecto',cod_prospecto);
 
@@ -1607,25 +1601,21 @@ $( document ).ready(function () {
           }else{
             document.getElementById("tipoNec").bootstrapToggle('readonly');
           }
-          //document.getElementById("AprobarVenta").bootstrapToggle('on');
-          //document.getElementById("AprobarVenta").bootstrapToggle('enable');
-
-         
-            
           
-          if(cod_estado=='VEN'){
-
+          if(dsc_estado=='VENTA' || dsc_estado=='CIERRE'){
+            
             document.getElementById("AprobarVenta").bootstrapToggle('on');
             document.getElementById("AprobarVenta").bootstrapToggle('readonly');
             document.getElementById("registrarVenta").disabled  = true;
             
           }else{
+            
             document.getElementById("AprobarVenta").bootstrapToggle('off');
-            if((flg_supervisor=='NO' && flg_jefe=='NO' && flg_firmante=='NO') || flg_ni=='SI'  )
-            { 
+            if(flg_administrador == 'SI' || flg_supervisor=='SI' || flg_jefe=='SI'){
+              
+              document.getElementById("AprobarVenta").bootstrapToggle('enabled');
+            }else{ 
               document.getElementById("AprobarVenta").bootstrapToggle('readonly'); 
-            }else if(flg_administrador == 'SI' || flg_supervisor=='SI' || flg_jefe=='SI'){
-              document.getElementById("tipoNec").bootstrapToggle('enabled');
             }
           }
 
