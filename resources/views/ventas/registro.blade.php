@@ -741,6 +741,12 @@
                         <div class="col-md-2 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="imp_cuota" id="imp_cuota" disabled>
                         </div>
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Observaciones: </label>
+                        </div>
+                        <div class="col-md-10 mb-3">
+                          <textarea class="form-control form-remanso" name="obsvRegVentas" id="obsvRegVentas" rows="2"></textarea>
+                        </div>
                         
                       </div>
                     </div>
