@@ -1624,7 +1624,7 @@ $( document ).ready(function () {
             if((flg_supervisor=='NO' && flg_jefe=='NO' && flg_firmante=='NO') || flg_ni=='SI'  )
             { 
               document.getElementById("AprobarVenta").bootstrapToggle('readonly'); 
-            }else if(flg_administrador == 'SI'){
+            }else if(flg_administrador == 'SI' || flg_supervisor=='SI' || flg_jefe=='SI'){
               document.getElementById("tipoNec").bootstrapToggle('enabled');
             }
           }
