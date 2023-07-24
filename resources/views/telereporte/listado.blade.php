@@ -81,7 +81,7 @@
                     <label for="inputText" class="col-form-label">Beneficiario:</label>
                   </div>
                   <div class="col-md-3 mb-3">
-                      <input type="text" class="form-control form-remanso align-left" name="dsc_benecifiario" id="dsc_benecifiario">
+                      <input type="text" class="form-control form-remanso align-left" name="dsc_beneficiario" id="dsc_beneficiario">
                   </div>
                   
                   <div class="col-1 mb-3 d-md-none d-block">
@@ -114,11 +114,11 @@
                 <th style="text-align: center;">Acciones</th>
                 <th style="text-align: center;" width="5%">Nro</th>
                 <th style="text-align: center;" width="10%">Fecha</th>
-                <th style="text-align: center;">Origen</th>
                 <th style="text-align: center;" width="15%">Canal Venta</th>
                 <th style="text-align: center;" width="25%">Beneficiario</th>
                 <th style="text-align: center;">Agencia</th>
                 <th style="text-align: center;" width="15%">Resultado</th>
+                <th style="text-align: center;" width="25%">Ejecutivo</th>
                
 
               </tr>
@@ -259,12 +259,11 @@ function BuscarTelereporte() {
               boton_estado+
               '<td>'+word['num_reporte']+'</td>'+
               '<td>'+fch_registro1+'</td>'+
-              '<td>'+word['dsc_origen']+'</td>'+
               '<td>'+word['dsc_canal_venta']+'</td>'+
               '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_nombres']+'</td>'+
               '<td>'+word['dsc_agencia']+'</td>'+
               '<td>'+word['dsc_resultado']+'</td>'+
-              
+              '<td>'+word['dsc_vendedor']+'</td>'+
             '</tr>';
         });
         //$('.status').css("color", "red");
