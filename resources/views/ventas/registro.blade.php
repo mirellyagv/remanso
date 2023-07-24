@@ -824,8 +824,14 @@
                         <div class="col-md-4 mb-3">
                           <input class="form-control form-remanso form-control-sm" id="RecAdj" type="file">
                         </div>
-
-                      
+                        @if (session('flg_nf')==='SI')
+                        <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Recibo separación: </label>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <input class="form-control form-remanso form-control-sm" id="RecSepAdj" type="file">
+                        </div>
+                        @endif                      
 
                       </div>
                     </div>

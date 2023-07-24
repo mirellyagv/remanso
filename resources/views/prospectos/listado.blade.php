@@ -120,7 +120,7 @@
                 <th style="text-align: center;" width="10%">Código</th>
                 <th style="text-align: center;" width="10%">Documento</th>
                 <th style="text-align: center;" width="15%">Prospecto</th>
-                <th style="text-align: center;" width="5%">Tipo N.</th>
+                <th style="text-align: center;" width="5%">Tipo Nec.</th>
                 <th style="text-align: center;" width="12%">Fch. de Registro</th>
                 <th style="text-align: center;" width="5%">Días</th>
                 <th style="text-align: center;" width="15%">Canal</th>
