@@ -1546,6 +1546,7 @@ if (window.location.search) {
 }
 
 var cod_estado='';
+var dsc_estado = '';
 
 $( document ).ready(function () {
  
@@ -1559,6 +1560,7 @@ $( document ).ready(function () {
   var flg_jefe ='@php echo(session('flg_jefe')) @endphp';
   var flg_ni ='@php echo(session('flg_ni')) @endphp';
   var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
+  var flg_administrador ='@php echo(session('flg_administrador')) @endphp';
   
   if((flg_supervisor=='NO' && flg_jefe=='NO' && flg_firmante=='NO') || flg_ni=='SI')
   { 
@@ -1592,14 +1594,19 @@ $( document ).ready(function () {
           { 
               document.getElementById("tipoNec").bootstrapToggle('on'); 
           }
-          
-          document.getElementById("tipoNec").bootstrapToggle('readonly');
+          if (flg_administrador == 'SI') {
+            
+            document.getElementById("tipoNec").bootstrapToggle('enabled');
+          }else{
+            document.getElementById("tipoNec").bootstrapToggle('readonly');
+          }
           //document.getElementById("AprobarVenta").bootstrapToggle('on');
           //document.getElementById("AprobarVenta").bootstrapToggle('enable');
 
          
             
           cod_estado=result["response"]["cod_estado"];
+          dsc_estado = "'"+result["response"]["dsc_estado"]+"'";
           if(cod_estado=='VEN')
           {
             document.getElementById("AprobarVenta").bootstrapToggle('on');
@@ -1811,15 +1818,15 @@ $( document ).ready(function () {
           $('#bodyTablaBenef').html(fila); 
         }
       });
-
+      ModoVista();
 
     }else{
       document.getElementById("tipoNec").bootstrapToggle('readonly');
       
     }
+    
   }, 2000);  
   
-  ModoVista();
 });
 
 
@@ -1842,9 +1849,9 @@ boton.addEventListener("click",function(){
 
     var botonApr = document.getElementById("AprobarVenta");
     if(botonApr.checked == true){
-      cod_estado = 'VEN';
+      cod_estado_venta = 'VEN';
     }else{
-      cod_estado = 'PRE';
+      cod_estado_venta = 'PRE';
     }
 
 
@@ -1886,13 +1893,13 @@ boton.addEventListener("click",function(){
     'dsc_telefono_2': document.getElementById("telf2RegVta").value,
     'cod_origen': 'CV001',
     'cod_calificacion': 'CP001',
-    'dsc_observaciones':  '',
+    'dsc_observaciones':  document.getElementById("obsvRegVentas").value,
     'cod_usuario': '@php echo(session('cod_usuario')) @endphp',
     'cod_consejero':'@php echo(session('cod_trabajador')) @endphp',
     'cod_grupo': '',
     'cod_supervisor': '',
     'cod_jefeventas': '',
-    'cod_estado': cod_estado,
+    'cod_estado': cod_estado_venta,
     'imp_monto':0,
     'dsc_correo': document.getElementById("correoRegVta").value.toUpperCase(),
     'fch_nacimiento':document.getElementById("fchNacRegVta").value,
@@ -2084,8 +2091,9 @@ function ObtenerImporteCuota() {
 
 
 function ModoVista() {
+  alert(dsc_estado);
   var flg_firmante ='@php echo(session('flg_firmante')) @endphp';  
-  if(flg_firmante=='SI')
+  if(flg_firmante=='SI' || dsc_estado=='CIERRE')
   {
     document.getElementById("tipoDocRegVta").disabled = true;
     document.getElementById("numDocRegVta").disabled = true;

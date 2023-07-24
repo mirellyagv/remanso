@@ -254,7 +254,7 @@ $(document).ready(function () {
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           info='Gestión';
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
-        }else if(estado == 'VENTA' || estado == 'ACTIVO' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
+        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
           ref = ''; 
           info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
@@ -264,7 +264,7 @@ $(document).ready(function () {
           ref2 = '';
         }
           fila += '<tr><td>'+
-            '@if (session('flg_nf')==='SI')'+
+            '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI')'+
               '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
               '@endif'+
               '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Registrar venta"><span class="bi bi-cash-stack"></span></a>'+
@@ -386,7 +386,7 @@ function BuscarProspecto() {
         if(estado == 'ACTIVO' ){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
-        }else if(estado == 'VENTA' || estado == 'ACTIVO' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
+        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
           ref = ''; 
           info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
@@ -397,7 +397,7 @@ function BuscarProspecto() {
         // obtener la fecha de hoy en formato `MM/DD/YYYY`
         var dia = today.toLocaleDateString('es-ES');
           fila += '<tr><td>'+
-                '@if (session('flg_nf')==='SI')'+
+                '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI')'+
                 '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
                 '@endif'+
                 '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
