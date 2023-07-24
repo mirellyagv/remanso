@@ -119,7 +119,8 @@
                 <th style="text-align: center;" width="12%">Acciones</th>
                 <th style="text-align: center;" width="10%">Código</th>
                 <th style="text-align: center;" width="10%">Documento</th>
-                <th style="text-align: center;" width="20%">Prospecto</th>
+                <th style="text-align: center;" width="15%">Prospecto</th>
+                <th style="text-align: center;" width="5%">Tipo N.</th>
                 <th style="text-align: center;" width="12%">Fch. de Registro</th>
                 <th style="text-align: center;" width="5%">Días</th>
                 <th style="text-align: center;" width="15%">Canal</th>
@@ -273,6 +274,7 @@ $(document).ready(function () {
               '<td>'+word['cod_prospecto']+'</td>'+
               '<td style="text-align: left;" >'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
               '<td>'+word['dsc_prospecto']+'</td>'+
+              '<td>'+word['cod_tipo_necesidad']+'</td>'+
               '<td>'+fch_registro1+'</td>'+
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
@@ -406,6 +408,7 @@ function BuscarProspecto() {
               '<td>'+word['cod_prospecto']+'</td>'+
               '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
               '<td style="text-align: left;">'+word['dsc_prospecto']+'</td>'+
+              '<td>'+word['cod_tipo_necesidad']+'</td>'+
               '<td>'+fch_registro1+'</td>'+
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
