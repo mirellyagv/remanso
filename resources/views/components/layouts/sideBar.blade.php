@@ -8,7 +8,7 @@
         </a>
       </li>
       <br><br>
-
+ 
       
       @if (session('flg_administrador')==='SI')
       <li class="nav-item">
@@ -31,11 +31,6 @@
           <span class="item-menu">Telereportes</span>
         </a>
       </li><br>
-      <li class="nav-item">
-          <a href="{{route('ventas.autorizacion')}}">
-            <span class="item-menu">Autorizar Ventas</span>
-          </a>
-        </li>
       @endif
 
       @if (session('flg_nf')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO' && session('flg_firmante')==='NO')
@@ -49,12 +44,22 @@
           <span class="item-menu">Consulta de prospectos</span>
         </a>
       </li><br>
+      <li class="nav-item">
+        <a href="{{route('ventas.registro')}}">
+          <span class="item-menu">Registro de Ventas</span>
+        </a>
+      </li><br>
       @endif
 
       @if (session('flg_ni')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO' && session('flg_firmante')==='NO')
       <li class="nav-item">
         <a href="{{route('ventas.registro')}}">
           <span class="item-menu">Registro de Ventas</span>
+        </a>
+      </li><br>
+      <li class="nav-item">
+        <a href="{{route('prospectos.listado')}}">
+          <span class="item-menu">Listado de Ventas</span>
         </a>
       </li><br>
       <li class="nav-item">
@@ -88,7 +93,7 @@
       @endif
 
       
-      @if (session('supervisor')==='SI'  && session('flg_administrativo')==='NO' && session('flg_firmante')==='NO')
+      @if (session('flg_supervisor')==='SI'  && session('flg_administrativo')==='NO' && session('flg_firmante')==='NO')
       <li class="nav-item">
           <a href="{{route('prospectos.registro')}}">
             <span class="item-menu">Registro de prospectos</span>
@@ -105,7 +110,7 @@
       @if (session('flg_firmante')==='SI')
         <li class="nav-item">
           <a href="{{route('ventas.autorizacion')}}">
-            <span class="item-menu">Autorizar Ventas</span>
+            <span class="item-menu">Firmar contrato</span>
           </a>
         </li>
         </li><br>

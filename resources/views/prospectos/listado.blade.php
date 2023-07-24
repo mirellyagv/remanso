@@ -94,13 +94,7 @@
                     <label for="inputText" class="col-form-label">Vendedor: </label>
                   </div>
                   <div class="col-md-2 mb-3">
-                    <select name="tipoDoc" id="tipoDoc" class="form-control form-remanso">
-                      <option value="0">Todos</option>
-                      <option value="0">Ana Martinez</option>
-                      <option value="1">Juan Hernandez</option>
-                      <option value="2">Lilian Huaman</option>
-                      <option value="3">Mario Gonzalez</option>
-                    </select>
+                    <input type="text" class="form-control form-remanso" name="buscaVendedor" id="buscaVendedor">
                   </div>
                   @endif
                   <div class="col-1 mb-3 d-md-none d-block">
@@ -124,11 +118,12 @@
               <tr>
                 <th style="text-align: center;" width="12%">Acciones</th>
                 <th style="text-align: center;" width="10%">Código</th>
-                <th style="text-align: center;" width="12%">Documento</th>
-                <th style="text-align: center;">Prospecto</th>
+                <th style="text-align: center;" width="10%">Documento</th>
+                <th style="text-align: center;" width="20%">Prospecto</th>
                 <th style="text-align: center;" width="12%">Fch. de Registro</th>
                 <th style="text-align: center;" width="5%">Días</th>
                 <th style="text-align: center;" width="15%">Canal</th>
+                <th style="text-align: center;" width="15%">Vendedor</th>
                 <th style="text-align: center;" width="10%">Estado</th>
 
               </tr>
@@ -236,9 +231,9 @@ $(document).ready(function () {
     method: "GET",
     crossDomain: true,
     dataType: 'json',
-    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad},
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad,'dscVendedor':'%'},
     success: function(respuesta){
-      // console.log('parado',respuesta)
+       console.log('parado',respuesta)
         fila='';
         respuesta['response'].forEach(function(word){
           
@@ -269,16 +264,19 @@ $(document).ready(function () {
           ref2 = '';
         }
           fila += '<tr><td>'+
-              '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" ></span></a>'+
+            '@if (session('flg_nf')==='SI')'+
+              '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
+              '@endif'+
               '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Registrar venta"><span class="bi bi-cash-stack"></span></a>'+
                   '@if (session('flg_jefe')==='SI' ||  session('flg_administrador')==='SI')'+
                   '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" title="Activar Prospecto"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
               '<td>'+word['cod_prospecto']+'</td>'+
-              '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
+              '<td style="text-align: left;" >'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
               '<td>'+word['dsc_prospecto']+'</td>'+
               '<td>'+fch_registro1+'</td>'+
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
+              '<td style="text-align: left;">'+word['dsc_consejero']+'</td>'+
               '<td>'+word['dsc_estado']+'</td>'+
             '</tr>';
 
@@ -370,7 +368,7 @@ function BuscarProspecto() {
     method: "GET",
     crossDomain: true,
     dataType: 'json',
-    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad},
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad,'dscVendedor':$('#buscaVendedor').val()},
     success: function(respuesta){
       // console.log('de funcion',respuesta)
         fila='';
@@ -399,15 +397,19 @@ function BuscarProspecto() {
         // obtener la fecha de hoy en formato `MM/DD/YYYY`
         var dia = today.toLocaleDateString('es-ES');
           fila += '<tr><td>'+
-                '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+'<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
+                '@if (session('flg_nf')==='SI')'+
+                '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
+                '@endif'+
+                '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
                 '@if (session('flg_jefe')==='SI' ||  session('flg_administrador')==='SI')'+
                 '<button class="btn btn-warning form-remanso" @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif  onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
               '<td>'+word['cod_prospecto']+'</td>'+
               '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
-              '<td>'+word['dsc_prospecto']+'</td>'+
+              '<td style="text-align: left;">'+word['dsc_prospecto']+'</td>'+
               '<td>'+fch_registro1+'</td>'+
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
+              '<td style="text-align: left;">'+word['dsc_consejero']+'</td>'+
               '<td>'+word['dsc_estado']+'</td>'+
             '</tr>';
 

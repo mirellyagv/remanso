@@ -283,7 +283,7 @@
                             <input type="text" class="form-control form-remanso letras-only" name="apellP2doRegVta" id="apellP2doRegVta">
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">(*)Apellido Materno: </label>
+                            <label for="inputText" class="col-form-label">(*) Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="apellM2doRegVta" id="apellM2doRegVta" required>
@@ -302,7 +302,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*)Dirección:</label>
+                          <label for="inputText" class="col-form-label">(*) Dirección:</label>
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="direcc2doRegVta" id="direcc2doRegVta" required>
@@ -310,14 +310,14 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*)País: </label>
+                          <label for="inputText" class="col-form-label">(*) País: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="pais2doRegVta" id="pais2doRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*)Departamento: </label>
+                          <label for="inputText" class="col-form-label">(*) Departamento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="dpto2doRegVta" id="dpto2doRegVta" class="form-select form-remanso" required>
@@ -326,14 +326,14 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*)Provincia: </label>
+                          <label for="inputText" class="col-form-label">(*) Provincia: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="prov2doRegVta" id="prov2doRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*)Distrito: </label>
+                          <label for="inputText" class="col-form-label">(*) Distrito: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="dtto2doRegVta" id="dtto2doRegVta" class="form-select form-remanso" required>
@@ -342,7 +342,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*)Teléfono 1:</label>
+                          <label for="inputText" class="col-form-label">(*) Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="telf12doRegVta" id="telf12doRegVta" required>
@@ -356,7 +356,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*)Correo:</label>
+                          <label for="inputText" class="col-form-label">(*) Correo:</label>
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="correo2doRegVta" id="correo2doRegVta" required>

@@ -24,13 +24,14 @@ class ListaController extends Controller
         $dsc_documento = $request['dsc_documento'];
         $dsc_prospecto = $request['dsc_prospecto'];
         $cod_tipo_necesidad = $request['cod_tipo_necesidad'];
+        $dscVendedor = ($request['dscVendedor'] != '') ? $request['dscVendedor'] : '%';
 
         if($dsc_documento==null || $dsc_documento==''){$dsc_documento='0';}
         if($dsc_prospecto==null || $dsc_prospecto==''){$dsc_prospecto='0';}
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspecto/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_estado.'/'.$dsc_documento.'/'.$dsc_prospecto.'/'.$cod_tipo_necesidad);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspecto/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_estado.'/'.$dsc_documento.'/'.$dsc_prospecto.'/'.$cod_tipo_necesidad.'/'.$dscVendedor);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
