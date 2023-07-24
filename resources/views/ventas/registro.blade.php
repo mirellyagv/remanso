@@ -70,14 +70,14 @@
                       <br>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Tipo de Documento: </label>
+                          <label for="inputText" class="col-form-label">(*) Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="tipoDocRegVta" id="tipoDocRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label" >* Núm. de Documento: </label>
+                          <label for="inputText" class="col-form-label" >(*) Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="numDocRegVta" id="numDocRegVta" required>
@@ -86,25 +86,25 @@
                       <div id="nombre">
                         <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">* Nombres:</label>
+                            <label for="inputText" class="col-form-label">(*) Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="nombresRegVta" id="nombresRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
+                            <label for="inputText" class="col-form-label">(*) Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="apellPRegVta" id="apellPRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                            <label for="inputText" class="col-form-label">(*)Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="apellMRegVta" id="apellMRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3" id="labelCodProspecto" style="display: none;">
-                            <label for="inputText" class="col-form-label">* Codigo Prospecto: </label>
+                            <label for="inputText" class="col-form-label">(*) Codigo Prospecto: </label>
                           </div>
                           <div class="col-md-3 mb-3" id="divCodProspecto" style="display: none;">
                             <input type="text" class="form-control form-remanso letras-only" name="inputCodProspecto" id="inputCodProspecto">
@@ -123,7 +123,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Dirección:</label>
+                          <label for="inputText" class="col-form-label">(*)Dirección:</label>
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="direccRegVta" id="direccRegVta" required>
@@ -139,14 +139,14 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* País: </label>
+                          <label for="inputText" class="col-form-label">(*) País: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="paisRegVta" id="paisRegVta" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Departamento: </label>
+                          <label for="inputText" class="col-form-label">(*) Departamento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="dptoRegVta" id="dptoRegVta" class="form-select form-remanso">
@@ -155,14 +155,14 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Provincia: </label>
+                          <label for="inputText" class="col-form-label">(*) Provincia: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="provRegVta" id="provRegVta" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Distrito: </label>
+                          <label for="inputText" class="col-form-label">(*) Distrito: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="dttoRegVta" id="dttoRegVta" class="form-select form-remanso">
@@ -171,7 +171,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Teléfono 1:</label>
+                          <label for="inputText" class="col-form-label">(*) Teléfono 1:</label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="telf1RegVta" id="telf1RegVta" required>
@@ -185,7 +185,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Correo:</label>
+                          <label for="inputText" class="col-form-label">(*) Correo:</label>
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="correoRegVta" id="correoRegVta" required>
@@ -193,21 +193,21 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-2">
-                          <label for="inputText" class="col-form-label">Estado civil:</label>
+                          <label for="inputText" class="col-form-label">(*)Estado civil:</label>
                         </div>
                         <div class="col-md-2 mb-2">
                           <select name="edoCivilRegVta" id="edoCivilRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-1 mb-2">
-                          <label for="inputText" class="col-form-label">Sexo: </label>
+                          <label for="inputText" class="col-form-label">(*)Sexo: </label>
                         </div>
                         <div class="col-md-2 mb-2">
                           <select name="sexoRegVta" id="sexoRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-2 mb-2">
-                          <label for="inputText" class="col-form-label">Fch Nacimiento: </label>
+                          <label for="inputText" class="col-form-label">(*)Fch Nacimiento: </label>
                         </div>
                         <div class="col-md-2 mb-2">
                           <input type="text" class="form-control form-remanso align-right" name="fchNacRegVta" id="fchNacRegVta" required>
@@ -255,14 +255,14 @@
                       <br>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Tipo de Documento: </label>
+                          <label for="inputText" class="col-form-label">(*) Tipo de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="tipoDoc2doRegVta" id="tipoDoc2doRegVta" class="form-select form-remanso">
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Núm. de Documento: </label>
+                          <label for="inputText" class="col-form-label">(*) Núm. de Documento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="numDoc2doRegVta" id="numDoc2doRegVta">
@@ -271,22 +271,22 @@
                       <div id="nombre">
                         <div class="row">
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">* Nombres:</label>
+                            <label for="inputText" class="col-form-label">(*) Nombres:</label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="nombres2doRegVta" id="nombres2doRegVta">
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
+                            <label for="inputText" class="col-form-label">(*) Apellido Paterno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="apellP2doRegVta" id="apellP2doRegVta">
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                            <label for="inputText" class="col-form-label">(*)Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control form-remanso letras-only" name="apellM2doRegVta" id="apellM2doRegVta">
+                            <input type="text" class="form-control form-remanso letras-only" name="apellM2doRegVta" id="apellM2doRegVta" required>
                           </div>
                         </div>
                       </div>
@@ -302,50 +302,50 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Dirección:</label>
+                          <label for="inputText" class="col-form-label">(*)Dirección:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="direcc2doRegVta" id="direcc2doRegVta">
+                          <input type="text" class="form-control form-remanso" name="direcc2doRegVta" id="direcc2doRegVta" required>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">País: </label>
+                          <label for="inputText" class="col-form-label">(*)País: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="pais2doRegVta" id="pais2doRegVta" class="form-select form-remanso">
+                          <select name="pais2doRegVta" id="pais2doRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Departamento: </label>
+                          <label for="inputText" class="col-form-label">(*)Departamento: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="dpto2doRegVta" id="dpto2doRegVta" class="form-select form-remanso">
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Provincia: </label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <select name="prov2doRegVta" id="prov2doRegVta" class="form-select form-remanso">
-                          </select>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Distrito: </label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <select name="dtto2doRegVta" id="dtto2doRegVta" class="form-select form-remanso">
+                          <select name="dpto2doRegVta" id="dpto2doRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Teléfono 1:</label>
+                          <label for="inputText" class="col-form-label">(*)Provincia: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="telf12doRegVta" id="telf12doRegVta">
+                          <select name="prov2doRegVta" id="prov2doRegVta" class="form-select form-remanso" required>
+                          </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">(*)Distrito: </label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="dtto2doRegVta" id="dtto2doRegVta" class="form-select form-remanso" required>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">(*)Teléfono 1:</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <input type="text" class="form-control form-remanso align-right" name="telf12doRegVta" id="telf12doRegVta" required>
                         </div>
                         <div class="col-md-3 mb-3">
                           <label for="inputText" class="col-form-label">Teléfono 2: </label>
@@ -356,10 +356,10 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Correo:</label>
+                          <label for="inputText" class="col-form-label">(*)Correo:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="correo2doRegVta" id="correo2doRegVta">
+                          <input type="text" class="form-control form-remanso" name="correo2doRegVta" id="correo2doRegVta" required>
                         </div>
                       </div>
                     </div>
@@ -980,6 +980,15 @@
 //         loader.style.display = 'none';
 //       }, 2000);
 //     });
+
+var botonNece = document.getElementById("tipoNec");
+botonNece.addEventListener("change",function(){
+  //console.log(this.checked);
+  if(this.checked == true){
+    document.getElementById("formRegVenta").reset();
+  }
+});
+
 //------------------------valida letras-------------------------------
 var inputs = document.getElementsByClassName("letras-only");
 
@@ -1079,28 +1088,31 @@ numDocProsInput.addEventListener("input", function(event) {
 });
 
 numDocProsInput.addEventListener("blur", function(event) {
-  $.ajax({
-    url: '../api/ValidarCoincidenciaDocumento',
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'dscDocumento':document.getElementById("numDocRegVta").value},
-    success: function(respuesta){
-      //console.log(respuesta);
-      if (respuesta['response']['ctd_coincidencia'] > 0) {
-        Swal.fire({
-          title:'Error!',
-          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
-          icon:'warning',
-          confirmButtonColor: '#35B44A',
-        }) 
-        numDocProsInput.blur();
-      }
-    },//success
-    error(e){
-      console.log(e.message);
-    }//error
-  });
+  if (botonNece.checked != true) { 
+    $.ajax({
+      url: '../api/ValidarCoincidenciaDocumento',
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'dscDocumento':document.getElementById("numDocRegVta").value},
+      success: function(respuesta){
+        //console.log(respuesta);
+        if (respuesta['response']['ctd_coincidencia'] > 0) {
+          Swal.fire({
+            title:'Error!',
+            text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+            icon:'warning',
+            confirmButtonColor: '#35B44A',
+          }) 
+          numDocProsInput.blur();
+        }
+      },//success
+      error(e){
+        console.log(e.message);
+      }//error
+    });
+  }
+
 });
 
 var numDoc2titInput = document.getElementById("numDoc2doRegVta");
@@ -1505,22 +1517,16 @@ document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(
 });
 
 $("#tipoDoc").change(function(){
-      if(this.value==1){
-          $("#nombre").css("display", "none");
-          $("#razonSoc").css("display", "block");
-      }else{
-          $("#nombre").css("display", "block");
-          $("#razonSoc").css("display", "none");
-      }
-      
-  });
-  var boton = document.getElementById("tipoNec");
-  boton.addEventListener("change",function(){
-    //console.log(this.checked);
-    if(this.checked == true){
-      document.getElementById("formRegVenta").reset();
+    if(this.value==1){
+        $("#nombre").css("display", "none");
+        $("#razonSoc").css("display", "block");
+    }else{
+        $("#nombre").css("display", "block");
+        $("#razonSoc").css("display", "none");
     }
-  });
+    
+});
+
 //-----------------------------------------------------------recuperar prospecto------------------------------------------------------
 
 var cod_prospecto = ''; // Variable para almacenar el valor de cod_prospecto
