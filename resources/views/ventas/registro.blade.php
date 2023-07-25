@@ -1577,9 +1577,9 @@ $( document ).ready(function () {
   if(flg_ni == 'SI'){ 
       document.getElementById("tipoNec").bootstrapToggle('on'); 
   }else{
-    document.getElementById("tipoNec").bootstrapToggle('of');
+    document.getElementById("tipoNec").bootstrapToggle('off');
   }
-  console.log('flg_administrador',flg_administrador);
+  console.log('flg_ni',flg_ni);
   
   setTimeout(function() { 
     //console.log('cod_prospecto',cod_prospecto);
