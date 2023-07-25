@@ -1605,7 +1605,7 @@ $( document ).ready(function () {
           cod_prospecto=result["response"]["cod_prospecto"];
           document.getElementById("tipoNec").bootstrapToggle('off');
           var cod_tipo_necesidad=result["response"]["cod_tipo_necesidad"];
-          if(cod_tipo_necesidad='NI'){ 
+          if(cod_tipo_necesidad =='NI'){ 
               document.getElementById("tipoNec").bootstrapToggle('on'); 
           }else{
             document.getElementById("tipoNec").bootstrapToggle('of');
