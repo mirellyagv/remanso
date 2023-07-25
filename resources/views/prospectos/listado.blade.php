@@ -270,7 +270,7 @@ $(document).ready(function () {
               '@endif'+
               '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Registrar venta"><span class="bi bi-cash-stack"></span></a>'+
                   '@if (session('flg_jefe')==='SI' ||  session('flg_administrador')==='SI')'+
-                  '<button @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" title="Activar Prospecto"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
+                  '<button @if('+estado+' != 'TRUNCO' || '+estado+' != 'CADUCO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" title="Activar Prospecto"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
               '<td>'+word['cod_prospecto']+'</td>'+
               '<td style="text-align: left;" >'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
               '<td>'+word['dsc_prospecto']+'</td>'+
@@ -309,9 +309,7 @@ $(document).ready(function () {
 });//ready
 
 function cambiarEdoP(codigo,nombre,estado) {
-  if (estado == 'ACTIVO' || estado == 'VENTA') {
-    console.log(estado);          
-  }else{
+  if (estado == 'TRUNCO' || estado == 'CADUCO') {
     Swal.fire({
       title: 'Esta seguro que quiere ACTIVAR este prospecto?',
       text: codigo+' '+nombre,
@@ -359,7 +357,13 @@ function cambiarEdoP(codigo,nombre,estado) {
         });
       }
     })//then
-  } //if
+  }else{
+    Swal.fire({
+      text:'Solo se puede activar un prospecto en estado TRUNCO o CADUCO.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+  }
 }//funcion
 
 function BuscarProspecto() {

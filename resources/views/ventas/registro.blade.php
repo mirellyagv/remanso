@@ -104,7 +104,7 @@
                             <input type="text" class="form-control form-remanso letras-only" name="apellPRegVta" id="apellPRegVta" required>
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">(*)Apellido Materno: </label>
+                            <label for="inputText" class="col-form-label">(*) Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="apellMRegVta" id="apellMRegVta" required>
@@ -129,7 +129,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*)Dirección:</label>
+                          <label for="inputText" class="col-form-label">(*) Dirección:</label>
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="direccRegVta" id="direccRegVta" required>
