@@ -1837,6 +1837,7 @@ $( document ).ready(function () {
         document.getElementById("AprobarVenta").bootstrapToggle('enabled');
       }else{
         document.getElementById("tipoNec").bootstrapToggle('readonly');
+        document.getElementById("AprobarVenta").bootstrapToggle('readonly');
       }
     }
     
