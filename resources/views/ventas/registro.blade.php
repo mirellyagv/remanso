@@ -1573,6 +1573,7 @@ $( document ).ready(function () {
   var flg_ni ='@php echo(session('flg_ni')) @endphp';
   var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
   var flg_administrador ='@php echo(session('flg_administrador')) @endphp';
+  console.log('flg_administrador',flg_administrador);
   
   setTimeout(function() { 
     //console.log('cod_prospecto',cod_prospecto);
@@ -1824,8 +1825,12 @@ $( document ).ready(function () {
       });
 
     }else{
-      document.getElementById("tipoNec").bootstrapToggle('readonly');
-      
+      if (flg_administrador == 'SI') {         
+        document.getElementById("tipoNec").bootstrapToggle('enabled');
+        document.getElementById("AprobarVenta").bootstrapToggle('enabled');
+      }else{
+        document.getElementById("tipoNec").bootstrapToggle('readonly');
+      }
     }
     
   }, 2000);  
