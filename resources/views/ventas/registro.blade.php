@@ -1855,7 +1855,7 @@ boton.addEventListener("click",function(){
     var tipo_nec="";
 
     var botonTNec= document.getElementById("tipoNec");
-    if( botonTNec=="SI"){ tipo_nec="NI";}else{ tipo_nec="NF";}
+    tipo_nec = ( botonTNec.checked) ? "NI" : "NF";
 
     if(cod_prospecto== ""){
         urlGrabar = '../api/guardaProspecto';
