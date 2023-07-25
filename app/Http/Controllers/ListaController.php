@@ -317,10 +317,10 @@ class ListaController extends Controller
         $client = new Client();
         $flg_ni = session('flg_ni');
         $flg_nf = session('flg_nf');
-
+        $codTrabajador = session('cod_trabajador');
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoRecaudacion/20396900719/'.$flg_ni.'/'.$flg_nf);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoRecaudacion/20396900719/'.$flg_ni.'/'.$flg_nf.'/'.$codTrabajador);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
