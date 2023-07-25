@@ -966,15 +966,15 @@ function muestraserviciosFormulario(datos) {
 
         precioFinalCelda.textContent = saldo;
         descuentoCelda.textContent = porc;
-        document.getElementById("impDscto").value=dscto-dsctoLibre.toFixed(2);
-        document.getElementById("impDsctoAdicional").value=dsctoLibre.toFixed(2);
+        document.getElementById("impDscto").value=Number(dscto-dsctoLibre).toFixed(2);
+        document.getElementById("impDsctoAdicional").value=Number(dsctoLibre).toFixed(2);
         document.getElementById("pordescuento").value=dsctoPorc;
         document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
         document.getElementById("ctdServ").value=ctd;
         document.getElementById("impTotal").value=Number(saldo).toFixed(2);  
     }
     
-    document.getElementById("impSaldo").value=saldo-cuoi.toFixed(2);
+    document.getElementById("impSaldo").value=Number(saldo-cuoi).toFixed(2);
 }
 //-----------------cambia saldo menos CUOI
 
@@ -989,11 +989,11 @@ campoCuoi.addEventListener("input",function(){
     }
     if(cuoi > total){
         saldo = 0;
-        document.getElementById("impCuoi").value = total.toFixed(2);
+        document.getElementById("impCuoi").value = Number(total).toFixed(2);
     }else{
         saldo = total - cuoi;
     }
-    document.getElementById("impSaldo").value=saldo.toFixed(2);
+    document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
 });
 
 campoCuoi.addEventListener("change",function(){
@@ -1001,7 +1001,7 @@ campoCuoi.addEventListener("change",function(){
     var cuoi = parseFloat(this.value);
     var minCuoi = parseFloat(minCuoiInput);
     if(cuoi < minCuoi || cuoi == null || cuoi == ''){
-        document.getElementById("impCuoi").value = minCuoi.toFixed(2);
+        document.getElementById("impCuoi").value = Number(minCuoi).toFixed(2);
         var changeEvent = new Event('input');
         campoCuoi.dispatchEvent(changeEvent);
     }
