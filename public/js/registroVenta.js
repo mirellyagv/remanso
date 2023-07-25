@@ -917,7 +917,7 @@ function muestraserviciosFormulario(datos) {
 
     cantInput.addEventListener('input', function() {
         calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'].toFixed(2);
+        document.getElementById("impCuoi").value = Number(datos['imp_precio_cuoi']).toFixed(2);
         inputCOUI.dispatchEvent(changeEvent);
     });
 
@@ -926,24 +926,24 @@ function muestraserviciosFormulario(datos) {
             dsctoPorcInput.value = 100;
         }
         calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'].toFixed(2);
+        document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
         inputCOUI.dispatchEvent(changeEvent);
 
     });
 
     dsctoLibreInput.addEventListener('input', function() {
         calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value=datos['imp_precio_cuoi'].toFixed(2);
+        document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
         inputCOUI.dispatchEvent(changeEvent);
 
     });
 
     document.getElementById("impTotal").value=saldo;//datos['imp_precio'];
-    document.getElementById("impCuoi").value=datos['imp_precio_cuoi'].toFixed(2);
-    document.getElementById("impFoma").value=datos['imp_precio_foma'].toFixed(2);    
+    document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
+    document.getElementById("impFoma").value=Number(datos['imp_precio_foma']).toFixed(2);    
     document.getElementById("codServicio").value=datos['cod_servicio'];
-    document.getElementById("impPrecioLista").value=datos['imp_precio_lista'].toFixed(2);
-    document.getElementById("impMinCuoi").value=datos['imp_min_cuoi'].toFixed(2);
+    document.getElementById("impPrecioLista").value=Number(datos['imp_precio_lista']).toFixed(2);
+    document.getElementById("impMinCuoi").value=Number(datos['imp_min_cuoi']).toFixed(2);
 
     function calculaSaldo(ctd,dsctoLibre,dsctoPorc,precio) {
         if(ctd < 1){
@@ -969,9 +969,9 @@ function muestraserviciosFormulario(datos) {
         document.getElementById("impDscto").value=dscto-dsctoLibre.toFixed(2);
         document.getElementById("impDsctoAdicional").value=dsctoLibre.toFixed(2);
         document.getElementById("pordescuento").value=dsctoPorc;
-        document.getElementById("impSaldo").value=saldo.toFixed(2);
+        document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
         document.getElementById("ctdServ").value=ctd;
-        document.getElementById("impTotal").value=saldo.toFixed(2);  
+        document.getElementById("impTotal").value=Number(saldo).toFixed(2);  
     }
     
     document.getElementById("impSaldo").value=saldo-cuoi.toFixed(2);
