@@ -1573,6 +1573,12 @@ $( document ).ready(function () {
   var flg_ni ='@php echo(session('flg_ni')) @endphp';
   var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
   var flg_administrador ='@php echo(session('flg_administrador')) @endphp';
+
+  if(flg_ni='SI'){ 
+      document.getElementById("tipoNec").bootstrapToggle('on'); 
+  }else{
+    document.getElementById("tipoNec").bootstrapToggle('of');
+  }
   console.log('flg_administrador',flg_administrador);
   
   setTimeout(function() { 
@@ -1599,9 +1605,10 @@ $( document ).ready(function () {
           cod_prospecto=result["response"]["cod_prospecto"];
           document.getElementById("tipoNec").bootstrapToggle('off');
           var cod_tipo_necesidad=result["response"]["cod_tipo_necesidad"];
-          if(cod_tipo_necesidad='NI')
-          { 
+          if(cod_tipo_necesidad='NI'){ 
               document.getElementById("tipoNec").bootstrapToggle('on'); 
+          }else{
+            document.getElementById("tipoNec").bootstrapToggle('of');
           }
           if (flg_administrador == 'SI' && dsc_estado != 'CIERRE') {         
             document.getElementById("tipoNec").bootstrapToggle('enabled');
