@@ -1851,11 +1851,9 @@ $( document ).ready(function () {
 var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
     
-    var boton = document.getElementById("tipoNec");
     var tipo_nec="";
-
     var botonTNec= document.getElementById("tipoNec");
-    tipo_nec = ( botonTNec.checked) ? "NI" : "NF";
+    tipo_nec = (botonTNec.checked) ? "NI" : "NF";
 
     if(cod_prospecto== ""){
         urlGrabar = '../api/guardaProspecto';
