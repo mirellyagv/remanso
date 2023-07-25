@@ -1574,7 +1574,7 @@ $( document ).ready(function () {
   var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
   var flg_administrador ='@php echo(session('flg_administrador')) @endphp';
 
-  if(flg_ni='SI'){ 
+  if(flg_ni == 'SI'){ 
       document.getElementById("tipoNec").bootstrapToggle('on'); 
   }else{
     document.getElementById("tipoNec").bootstrapToggle('of');
