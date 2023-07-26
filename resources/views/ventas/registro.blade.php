@@ -677,7 +677,7 @@
                                   <th style="text-align: center;" width="10%">Precio Lista</th>
                                   <th style="text-align: center;" width="10%">Precio Venta</th>
                                   <th style="text-align: center;" width="5%" colspan="2">Dscto. %</th>
-                                  <th style="text-align: center;" width="5%">Dscto. Libre</th>
+                                  <th style="text-align: center;" width="5%">Dscto. Libre S/.</th>
                                   <th style="text-align: center;" width="10%">Precio Final</th>
                                 </tr>
                               </thead>
@@ -1804,7 +1804,7 @@ $( document ).ready(function () {
           document.getElementById("fch1erVcto").value=auxFecha[0];
           var codTasa=document.getElementById("codTasa") ;
           codTasa.value=result["response"]["cod_tasa"];
-          
+          document.getElementById("obsvRegVentas").value = result["response"]["dsc_observaciones"];
           if( document.getElementById("fch1erVcto").value=='1900-01-01'){document.getElementById("fch1erVcto").value=lastDayOfMonthStr;}
           
 
