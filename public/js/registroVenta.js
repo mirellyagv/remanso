@@ -140,7 +140,7 @@ window.onload=function() {
             $("#tipoPrograma").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
-                $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+' compar="'+word['desvar3']+'">'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -499,24 +499,36 @@ codTipoProg.addEventListener("change",function(){
     //-----------------muestra select Tipo Servicio-----------
     var options = document.querySelectorAll('#tipoServicio option');
     options.forEach(o => o.remove());
-   $.ajax({
+    $.ajax({
 
-       url: '../lista/MuestraTipoServicio', 
-       method: "GET",
-       crossDomain: true,
-       dataType: 'json',
-       data: {'cod_tipo_recaudacion': valor},
-       success: function(respuesta){
-           $("#tipoServicio").append('<option value="" selected disabled>SELECCIONE...</option>');
-           respuesta['response'].forEach(function(word){
-               seleccion = '';
-               $("#tipoServicio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-           });
-       },//success
-       error(e){
-           console.log(e.message);
-       }//error
-   });
+        url: '../lista/MuestraTipoServicio', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data: {'cod_tipo_recaudacion': valor},
+        success: function(respuesta){
+            $("#tipoServicio").append('<option value="" selected disabled>SELECCIONE...</option>');
+            respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#tipoServicio").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
+
+    //------------------muestra Nivel----------------------------------------------
+
+    var esCompart = $('option:selected', codTipoProg).attr('compar');
+    console.log('esCompart',esCompart)
+    if(esCompart == 'SI'){
+        document.getElementById("nivelRegVnta").removeAttribute('disabled');
+    }else{
+        document.getElementById("nivelRegVnta").setAttribute('disabled', 'disabled');
+        var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
+        optionsNivel.forEach(o => o.remove());
+    }
 
 });
 
@@ -561,6 +573,8 @@ codcampo.addEventListener("change",function(){
     options4.forEach(o => o.remove());
     var options5 = document.querySelectorAll('#tipoEspacio option');
     options5.forEach(o => o.remove());
+    var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
+    optionsNivel.forEach(o => o.remove());
 
     codCamposanto = document.getElementById("camposanto").value;
     codTipoplat = document.getElementById("tipoPlat").value;
@@ -596,6 +610,8 @@ codcampo.addEventListener("change",function(){
     options4.forEach(o => o.remove());
     var options5 = document.querySelectorAll('#tipoEspacio option');
     options5.forEach(o => o.remove());
+    var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
+    optionsNivel.forEach(o => o.remove());
 
     codCamposanto = document.getElementById("camposanto").value;
     codPlataforma = document.getElementById("nombrePlat").value;
@@ -629,6 +645,8 @@ codcampo.addEventListener("change",function(){
     options4.forEach(o => o.remove());
     var options5 = document.querySelectorAll('#tipoEspacio option');
     options5.forEach(o => o.remove());
+    var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
+    optionsNivel.forEach(o => o.remove());
 
     codCamposanto = document.getElementById("camposanto").value;
     codPlataforma = document.getElementById("nombrePlat").value;
@@ -661,6 +679,8 @@ codcampo.addEventListener("change",function(){
     options4.forEach(o => o.remove());
     var options5 = document.querySelectorAll('#tipoEspacio option');
     options5.forEach(o => o.remove());
+    var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
+    optionsNivel.forEach(o => o.remove());
 
     codCamposanto = document.getElementById("camposanto").value;
     codPlataforma = document.getElementById("nombrePlat").value;
@@ -723,6 +743,8 @@ var codcampo = document.getElementById("ejeY");
 codcampo.addEventListener("change",function(){
     var options = document.querySelectorAll('#tipoEspacio option');
     options.forEach(o => o.remove());
+    var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
+    optionsNivel.forEach(o => o.remove());
     codCamposanto = document.getElementById("camposanto").value;
     codPlataforma = document.getElementById("nombrePlat").value;
     codArea = document.getElementById("nombreArea").value;
@@ -737,6 +759,38 @@ codcampo.addEventListener("change",function(){
         success: function(respuesta){
             respuesta['response'].forEach(function(word){
             $("#tipoEspacio").append('<option value="'+ word['codvar'] +'" selected>'+ word['desvar1'] +'</option>'); 
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
+});
+
+//--------------------------llena select Nivel------------------------
+
+var codEspacio = document.getElementById("espacio");
+codEspacio.addEventListener("change",function(){
+    var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
+    optionsNivel.forEach(o => o.remove());
+    codCamposanto = document.getElementById("camposanto").value;
+    codPlataforma = document.getElementById("nombrePlat").value;
+    codArea = document.getElementById("nombreArea").value;
+    ejeX = document.getElementById("ejeX").value;
+    ejeY = document.getElementById("ejeY").value;
+    espacio = document.getElementById("espacio").value;
+    $.ajax({
+
+        url: '../lista/MuestraNivel', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY,'espacio':espacio},
+        success: function(respuesta){
+            $("#nivelRegVnta").append('<option value="" selected disabled>SELECCIONE...</option>');
+            respuesta['response'].forEach(function(word){
+                seleccion = '';
+                $("#nivelRegVnta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -942,6 +996,7 @@ function muestraserviciosFormulario(datos) {
     document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
     document.getElementById("impFoma").value=Number(datos['imp_precio_foma']).toFixed(2);    
     document.getElementById("codServicio").value=datos['cod_servicio'];
+    document.getElementById("esCompartido").value=datos['flg_ds_compartido'];
     document.getElementById("impPrecioLista").value=Number(datos['imp_precio_lista']).toFixed(2);
     document.getElementById("impMinCuoi").value=Number(datos['imp_min_cuoi']).toFixed(2);
 
@@ -975,6 +1030,18 @@ function muestraserviciosFormulario(datos) {
     }
     
     document.getElementById("impSaldo").value=Number(saldo-cuoi).toFixed(2);
+    if(Number(saldo-cuoi) == 0){
+        document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
+        document.getElementById("codCuotaServ").value = '';
+        document.getElementById("codTasa").setAttribute('disabled','disabled');
+        document.getElementById("codTasa").value = '';
+        document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
+        document.getElementById("fch1erVcto").value = '';
+    }else{
+        document.getElementById("codCuotaServ").removeAttribute('disabled');
+        document.getElementById("codTasa").removeAttribute('disabled');
+        document.getElementById("fch1erVcto").removeAttribute('disabled');
+    }
 }
 //-----------------cambia saldo menos CUOI
 
@@ -994,6 +1061,18 @@ campoCuoi.addEventListener("input",function(){
         saldo = total - cuoi;
     }
     document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
+    if(saldo == 0){
+        document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
+        document.getElementById("codCuotaServ").value = '';
+        document.getElementById("codTasa").setAttribute('disabled','disabled');
+        document.getElementById("codTasa").value = '';
+        document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
+        document.getElementById("fch1erVcto").value = '';
+    }else{
+        document.getElementById("codCuotaServ").removeAttribute('disabled');
+        document.getElementById("codTasa").removeAttribute('disabled');
+        document.getElementById("fch1erVcto").removeAttribute('disabled');
+    }
 });
 
 campoCuoi.addEventListener("change",function(){

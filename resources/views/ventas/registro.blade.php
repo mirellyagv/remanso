@@ -625,7 +625,7 @@
                           <label for="inputText" class="col-form-label">Nivel: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="nivelRegVnta"  id="nivelRegVnta" class="form-select form-remanso">
+                          <select name="nivelRegVnta"  id="nivelRegVnta" class="form-select form-remanso" disabled>
                           </select>
                         </div>
 
@@ -714,6 +714,7 @@
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
                           <input type="hidden" name="ctdServ" id="ctdServ">
                           <input type="hidden" name="impMinCuoi" id="impMinCuoi" value = 0>
+                          <input type="hidden" name="esCompartido" id="esCompartido" value = 'NO'>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
@@ -1735,6 +1736,7 @@ $( document ).ready(function () {
           var ejeX=document.getElementById("ejeX");
           var ejeY=document.getElementById("ejeY");
           var espacio=document.getElementById("espacio");
+          var nivel=document.getElementById("nivelRegVnta");
           setTimeout(function() { 
             tipoPlataf.value=result["response"]["cod_tipo_plataforma"];
             tipoPlataf.dispatchEvent(changeEvent);
@@ -1753,7 +1755,11 @@ $( document ).ready(function () {
                     setTimeout(function() { 
                       espacio.value=result["response"]["cod_espacio"];
                       espacio.dispatchEvent(changeEvent);
-                      ModoVista();
+                      setTimeout(function() { 
+                        nivel.value=result["response"]["num_nivel"];
+                        nivel.dispatchEvent(changeEvent);
+                        ModoVista();
+                      }, 2000);
                     }, 2000);
                   }, 2000);
                 }, 2000);
@@ -1894,7 +1900,7 @@ boton.addEventListener("click",function(){
       flgJuridico2 = 'NO';
     }
 
-     
+    var numNivel = (document.getElementById("nivelRegVnta").value != '' || document.getElementById("nivelRegVnta").value != null) ? document.getElementById("nivelRegVnta").value : 0;
 
     var prospecto = {
     'cod_prospecto': cod_prospecto,
@@ -1965,7 +1971,7 @@ boton.addEventListener("click",function(){
     'cod_eje_vertical': document.getElementById("ejeY").value,
     'cod_espacio': document.getElementById("espacio").value,
     'cod_tipo_espacio': document.getElementById("tipoEspacio").value,
-    'num_nivel': 0,
+    'num_nivel': numNivel,
     'cod_tipo_necesidad': tipo_nec,
     'num_operacion': document.getElementById("numOpeRegVta").value,
     'cod_tipo_comprobante':document.getElementById("compVtaRegVta").value,

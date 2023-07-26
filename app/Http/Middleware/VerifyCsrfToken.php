@@ -70,6 +70,7 @@ class VerifyCsrfToken extends Middleware
         'api/ValidarCoincidenciaDocumento',
         'api/EliminarProspectoContacto',
         'lista/ListarProspectoxAprobar',
+        'lista/MuestraNivel',
         
     ];
 }
