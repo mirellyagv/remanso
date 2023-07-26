@@ -62,7 +62,7 @@
                     <label for="inputText" class="col-form-label">Documento identidad: </label>
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI' || session('flg_sac')==='SI')
                       col-md-2 mb-3
                     @else
                       col-md-3 mb-3
@@ -71,7 +71,7 @@
                     <input type="text" class="form-control form-remanso align-right" name="numDoc" id="numDoc">
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI' || session('flg_sac')==='SI')
                       col-md-1 mb-3
                     @else
                       col-md-2 mb-3
@@ -80,7 +80,7 @@
                     <label for="inputText" class="col-form-label">Prospecto: </label>
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI' || session('flg_sac')==='SI')
                       col-md-2 mb-3
                     @else
                       col-md-3 mb-3
@@ -88,8 +88,7 @@
                     ">
                     <input type="text" class="form-control form-remanso" name="nombreProspecto" id="nombreProspecto">
                   </div>
-                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
-                  session('flg_administrador')==='SI')
+                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI' || session('flg_sac')==='SI')
                   <div class="col-md-1 mb-3">
                     <label for="inputText" class="col-form-label">Vendedor: </label>
                   </div>
@@ -185,19 +184,23 @@ var cod_tipo_necesidad= '';
 $(document).ready(function () {
   flg_ni= '@php echo(session('flg_ni')) @endphp';
   flg_nf= '@php echo(session('flg_nf')) @endphp';
+  flg_sac= '@php echo(session('flg_sac')) @endphp';
   
-  if(flg_ni=='SI' && flg_nf=='SI'){cod_tipo_necesidad='%';}
-  else if(flg_ni=='NO' && flg_nf=='NO'){
+  if(flg_ni=='SI' && flg_nf=='SI'){
+    cod_tipo_necesidad='%';
+  } else if(flg_ni=='NO' && flg_nf=='NO' && flg_sac=='SI'){
+    cod_tipo_necesidad='%';
+    document.getElementById("tituloPag").innerText = "prospectos/ventas";
+  } else if(flg_ni=='NO' && flg_nf=='NO' && flg_sac=='NO'){
     cod_tipo_necesidad='%';
     document.getElementById("tituloPag").innerText = "ventas";
-  }
-  else if(flg_ni=='SI' && flg_nf=='NO'){
+  } else if(flg_ni=='SI' && flg_nf=='NO'){
     cod_tipo_necesidad='NI';
     document.getElementById("tituloPag").innerText = "ventas";
-  }
-  else if(flg_ni=='NO' && flg_nf=='SI'){
+  } else if(flg_ni=='NO' && flg_nf=='SI'){
     cod_tipo_necesidad='NF';
-    document.getElementById("tituloPag").innerText = "prospectos";}
+    document.getElementById("tituloPag").innerText = "prospectos";
+  }
 
   var currentDate = new Date();
 
