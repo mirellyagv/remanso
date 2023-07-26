@@ -1896,9 +1896,9 @@ boton.addEventListener("click",function(){
     }else{
       flgJuridico2 = 'NO';
     }
-
-    var numNivel = (document.getElementById("nivelRegVnta").value != '' || document.getElementById("nivelRegVnta").value != null) ? document.getElementById("nivelRegVnta").value : 0;
-
+    var inputReg = document.getElementById("nivelRegVnta").value;
+    var numNivel = (!inputReg) ? 0 :  inputReg;
+    console.log('numNivel',inputReg);
     var prospecto = {
     'cod_prospecto': cod_prospecto,
     'dsc_prospecto': dscTitular,
