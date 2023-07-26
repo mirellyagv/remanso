@@ -1802,8 +1802,7 @@ $( document ).ready(function () {
           document.getElementById("imp_cuota").value=result["response"]["imp_cuota"];
           var auxFecha = result["response"]["fch_1er_vencimiento"].split('T');
           document.getElementById("fch1erVcto").value=auxFecha[0];
-          var codTasa=document.getElementById("codTasa") ;
-          codTasa.value=result["response"]["cod_tasa"];
+          document.getElementById("codTasa").value=result["response"]["cod_tasa"];
           document.getElementById("obsvRegVentas").value = result["response"]["dsc_observaciones"];
           if( document.getElementById("fch1erVcto").value=='1900-01-01'){document.getElementById("fch1erVcto").value=lastDayOfMonthStr;}
           

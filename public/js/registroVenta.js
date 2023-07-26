@@ -192,7 +192,7 @@ window.onload=function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){
-            $("#codTasa").append('<option value="000" selected disabled>SELECCIONE...</option>');
+            $("#codTasa").append('<option value="0" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
