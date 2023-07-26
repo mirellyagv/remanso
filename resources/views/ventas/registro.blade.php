@@ -740,7 +740,7 @@
                           <label for="inputText"  class="col-form-label">FOMA: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" readonly class="form-control form-remanso align-right" name="impFoma" id="impFoma">
+                          <input type="text" disabled class="form-control form-remanso align-right" name="impFoma" id="impFoma">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
@@ -1264,14 +1264,12 @@ CuotaInicial.addEventListener("input", function(event) {
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
 
-  console.log(num_cuota);
-  console.log(num_interes);
-
-  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
+  if(num_cuota=='' || num_cuota=='0' || num_cuota==0 || !num_cuota)
   {
     num_cuota=1;
   }
-  
+  console.log('num_cuota',num_cuota);
+  console.log('num_interes',num_interes);
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
@@ -1324,14 +1322,13 @@ tipoTasa.addEventListener("change", function(event) {
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
 
-  console.log(num_cuota);
-  console.log(num_interes);
-
-  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
+  if(num_cuota=='' || num_cuota=='0' || num_cuota==0 || !num_cuota)
   {
     num_cuota=1;
   }
-  
+  console.log('num_cuota',num_cuota);
+  console.log('num_interes',num_interes);
+
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
