@@ -200,6 +200,19 @@
                             </div> 
                       </div>
 
+                      <div class="row">
+                        <div class="col-md-3 mb-3">
+                          <label for="inputText" class="col-form-label">(*) Dirección:</label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                          <input type="text" class="form-control form-remanso" name="dsc_direccion_c" id="dsc_direccion_c">
+                        </div>
+                        <div class="dsc_direccion_c invalid-feedback">
+                              La Dirección del contacto no puede estar vacía.
+                        </div>
+                      </div>
+
+
                     </div>
                   </div>
                 </div>
@@ -361,7 +374,8 @@
 
 <script type="text/javascript">
     var cod_vendedor ='';
-    var num_reporte ='2487';
+    var cod_trabajador ='';
+    var num_reporte ='0';
 
 
 
@@ -395,6 +409,9 @@ function ActualizarTelereporte(){
 
   var dsc_telefono_cInput = document.getElementById("dsc_telefono_c");
   var dsc_telefono_cValue = dsc_telefono_cInput.value.trim();
+
+  var dsc_direccion_cInput = document.getElementById("dsc_direccion_c");
+  var dsc_direccion_cValue = dsc_direccion_cInput.value.trim();
 
   var mensaje='OK';
   
@@ -469,6 +486,15 @@ function ActualizarTelereporte(){
      return;
     }
 
+    if (dsc_direccion_cValue == "") {
+    var acordeon = document.querySelector("#collapseTwo .dsc_direccion_c.invalid-feedback");
+    collapseTwo.classList.add("show");
+    dsc_direccion_cInput.focus();
+    acordeon.style.display = "block";
+    mensaje='ERROR';
+     return;
+    }
+
 
     var telereporte = {
 
@@ -478,7 +504,7 @@ function ActualizarTelereporte(){
     'dsc_nombres': document.getElementById("dsc_nombres").value,
     'cod_lugar_deceso': document.getElementById("cod_lugar_deceso").value,
     'dsc_ubicacion_benef': document.getElementById("dsc_ubicacion_benef").value,
-    'cod_vendedor': cod_vendedor,
+    'cod_vendedor': '',
     'cod_agencia': document.getElementById("cod_agencia").value,
     'dsc_vendedor_agencia': document.getElementById("dsc_vendedor_agencia").value,
     'cod_origen': document.getElementById("cod_origen").value,
@@ -536,7 +562,7 @@ function ActualizarTelereporte(){
 
 window.onload= function() {
 
-    cod_vendedor = '@php echo(session('cod_trabajador')) @endphp';
+    cod_trabajador = '@php echo(session('cod_trabajador')) @endphp';
     document.getElementById("num_reporte").value="{{$_GET['Cod_reporte']}} ";
     num_reporte = document.getElementById("num_reporte").value;
 
@@ -678,6 +704,7 @@ window.onload= function() {
             document.getElementById("dsc_apellido_paterno").value=result["response"]["dsc_apellido_paterno"];
             document.getElementById("dsc_apellido_materno").value=result["response"]["dsc_apellido_materno"];
             document.getElementById("dsc_nombres").value=result["response"]["dsc_nombres"];
+            cod_vendedor=result["response"]["cod_vendedor"];
             document.getElementById("dsc_vendedor").value=result["response"]["dsc_vendedor"];
             document.getElementById("dsc_observacion").value=result["response"]["dsc_observacion"];
             document.getElementById("dsc_ubicacion_benef").value=result["response"]["dsc_ubicacion_benef"];
@@ -717,7 +744,8 @@ window.onload= function() {
 
             var flg_anulado=document.getElementById("flg_anulado") ;
             flg_anulado.value=result["response"]["flg_anulado"];
-            
+
+            if (cod_vendedor!=cod_trabajador){ModoVista();}
 
         },//success
         error(e){
@@ -725,7 +753,34 @@ window.onload= function() {
         }//error
     });
 
+   
 }
 
+function ModoVista()
+{
+    document.getElementById("num_reporte").disabled = true;
+    document.getElementById("dsc_nombres").disabled = true;
+    document.getElementById("fch_registro").disabled = true;
+    document.getElementById("dsc_apellido_paterno").disabled = true;
+    document.getElementById("dsc_apellido_materno").disabled = true;
+    document.getElementById("cod_lugar_deceso").disabled = true;
+    document.getElementById("dsc_etiqueta").disabled = true;
+    document.getElementById("dsc_ubicacion_benef").disabled = true;
+    document.getElementById("dsc_vendedor").disabled = true;
+    document.getElementById("dsc_nombres_c").disabled = true;
+    document.getElementById("dsc_apellido_paterno_c").disabled = true;
+    document.getElementById("dsc_apellido_materno_c").disabled = true;
+    document.getElementById("cod_parentesco").disabled = true;
+    document.getElementById("dsc_telefono_c").disabled = true;
+    document.getElementById("dsc_direccion_c").disabled = true;
+    document.getElementById("cod_origen").disabled = true;
+    document.getElementById("flg_anulado").disabled = true;
+    document.getElementById("cod_resultado").disabled = true;
+    document.getElementById("cod_canal_venta").disabled = true;
+    document.getElementById("cod_agencia").disabled = true;
+    document.getElementById("dsc_vendedor_agencia").disabled = true;
+    document.getElementById("dsc_observacion").disabled = true;
 
+    document.getElementById("btnGuarda").disabled = true;
+}
 </script>
