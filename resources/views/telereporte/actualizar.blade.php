@@ -377,9 +377,6 @@
     var cod_trabajador ='';
     var num_reporte ='0';
 
-
-
-
 function ActualizarTelereporte(){
   var collapseOne = document.getElementById("collapseOne");
   var collapseTwo = document.getElementById("collapseTwo");
@@ -416,74 +413,74 @@ function ActualizarTelereporte(){
   var mensaje='OK';
   
   // // Validación
-   if (dsc_nombresValue == "") {
-    var acordeon = document.querySelector("#collapseOne .dsc_nombres.invalid-feedback");
-    collapseOne.classList.add("show");
-    dsc_nombresInput.focus();
-    acordeon.style.display = "block";
-    mensaje='ERROR';
-     return;
+    if (dsc_nombresValue == "") {
+      var acordeon = document.querySelector("#collapseOne .dsc_nombres.invalid-feedback");
+      collapseOne.classList.add("show");
+      dsc_nombresInput.focus();
+      acordeon.style.display = "block";
+      mensaje='ERROR';
+      return;
     }
     if (dsc_apellido_paternoValue == "") {
-    var acordeon = document.querySelector("#collapseOne .dsc_apellido_paterno.invalid-feedback");
-    collapseOne.classList.add("show");
-    dsc_apellido_paternoInput.focus();
-    acordeon.style.display = "block";
-    mensaje='ERROR';
-     return;
+      var acordeon = document.querySelector("#collapseOne .dsc_apellido_paterno.invalid-feedback");
+      collapseOne.classList.add("show");
+      dsc_apellido_paternoInput.focus();
+      acordeon.style.display = "block";
+      mensaje='ERROR';
+      return;
     }
 
     if (dsc_apellido_maternoValue == "") {
-    var acordeon = document.querySelector("#collapseOne .dsc_apellido_materno.invalid-feedback");
-    collapseOne.classList.add("show");
-    dsc_apellido_maternoInput.focus();
-    acordeon.style.display = "block";
-    mensaje='ERROR';
-     return;
+      var acordeon = document.querySelector("#collapseOne .dsc_apellido_materno.invalid-feedback");
+      collapseOne.classList.add("show");
+      dsc_apellido_maternoInput.focus();
+      acordeon.style.display = "block";
+      mensaje='ERROR';
+      return;
     }
 
     if (dsc_ubicacion_benefValue == "") {
-    var acordeon = document.querySelector("#collapseOne .dsc_ubicacion_benef.invalid-feedback");
-    collapseOne.classList.add("show");
-    dsc_ubicacion_benefInput.focus();
-    acordeon.style.display = "block";
-    mensaje='ERROR';
-     return;
+      var acordeon = document.querySelector("#collapseOne .dsc_ubicacion_benef.invalid-feedback");
+      collapseOne.classList.add("show");
+      dsc_ubicacion_benefInput.focus();
+      acordeon.style.display = "block";
+      mensaje='ERROR';
+      return;
     }
 
     if (dsc_nombres_cValue == "") {
-    var acordeon = document.querySelector("#collapseTwo .dsc_nombres_c.invalid-feedback");
-    collapseTwo.classList.add("show");
-    dsc_nombres_cInput.focus();
-    acordeon.style.display = "block";
-    mensaje='ERROR';
-     return;
+      var acordeon = document.querySelector("#collapseTwo .dsc_nombres_c.invalid-feedback");
+      collapseTwo.classList.add("show");
+      dsc_nombres_cInput.focus();
+      acordeon.style.display = "block";
+      mensaje='ERROR';
+      return;
     }
     if (dsc_apellido_paterno_cValue == "") {
-    var acordeon = document.querySelector("#collapseTwo .dsc_apellido_paterno_c.invalid-feedback");
-    collapseTwo.classList.add("show");
-    dsc_apellido_paterno_cInput.focus();
-    acordeon.style.display = "block";
-    mensaje='ERROR';
-     return;
+      var acordeon = document.querySelector("#collapseTwo .dsc_apellido_paterno_c.invalid-feedback");
+      collapseTwo.classList.add("show");
+      dsc_apellido_paterno_cInput.focus();
+      acordeon.style.display = "block";
+      mensaje='ERROR';
+      return;
     }
 
     if (dsc_apellido_materno_cValue == "") {
-    var acordeon = document.querySelector("#collapseTwo .dsc_apellido_materno_c.invalid-feedback");
-    collapseTwo.classList.add("show");
-    dsc_apellido_materno_cInput.focus();
-    acordeon.style.display = "block";
-    mensaje='ERROR';
-     return;
+      var acordeon = document.querySelector("#collapseTwo .dsc_apellido_materno_c.invalid-feedback");
+      collapseTwo.classList.add("show");
+      dsc_apellido_materno_cInput.focus();
+      acordeon.style.display = "block";
+      mensaje='ERROR';
+      return;
     }
 
     if (dsc_telefono_cValue == "") {
-    var acordeon = document.querySelector("#collapseTwo .dsc_telefono_c.invalid-feedback");
-    collapseTwo.classList.add("show");
-    dsc_telefono_cInput.focus();
-    acordeon.style.display = "block";
-    mensaje='ERROR';
-     return;
+      var acordeon = document.querySelector("#collapseTwo .dsc_telefono_c.invalid-feedback");
+      collapseTwo.classList.add("show");
+      dsc_telefono_cInput.focus();
+      acordeon.style.display = "block";
+      mensaje='ERROR';
+      return;
     }
 
     if (dsc_direccion_cValue == "") {
@@ -515,7 +512,7 @@ function ActualizarTelereporte(){
     'dsc_apellido_materno_c': document.getElementById("dsc_apellido_materno_c").value,
     'dsc_nombres_c':  document.getElementById("dsc_nombres_c").value,
     'dsc_telefono_c': document.getElementById("dsc_telefono_c").value,
-    'dsc_direccion_c': '',
+    'dsc_direccion_c': document.getElementById("dsc_direccion_c").value,,
     'dsc_observacion': document.getElementById("dsc_observacion").value,
     'flg_anulado': document.getElementById("flg_anulado").value,
     'flg_modificado': 'NO',
@@ -525,40 +522,29 @@ function ActualizarTelereporte(){
 
   if(mensaje=='OK'){ 
     $.ajax({
-        url: '../api/ActualizarTelereporte', 
-        method: "PUT",
-        crossDomain: true,
-        dataType: 'json',
-        data:{'telereporte':telereporte},
-        success: function(respuesta){
-            console.log(respuesta);
-         
-          Swal.fire({
-          title: 'Guardado',
-          text: 'Registro actualizado exitosamente !!!',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#35B44A',
-            }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "listado";
-            }
-            })
-        }
+      url: '../api/ActualizarTelereporte', 
+      method: "PUT",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'telereporte':telereporte},
+      success: function(respuesta){
+          console.log(respuesta);
+        
+        Swal.fire({
+        title: 'Guardado',
+        text: 'Registro actualizado exitosamente !!!',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#35B44A',
+        }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = "listado";
+          }
+        })
+      }
     });
-     }//EN IF
+  }//END IF
 }
-
-
-
-
-
-
-
-
-
-
-
 
 window.onload= function() {
 
@@ -676,28 +662,28 @@ window.onload= function() {
         dataType: 'json',
         data:{'num_reporte':num_reporte},
         success: function(result){
-            console.log(result);
+          console.log(result);
 
-            var fch1 = new Date(result["response"]["fch_registro"]);
-            var fch_registro = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
+          var fch1 = new Date(result["response"]["fch_registro"]);
+          var fch_registro = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
 
-            var fch2 = new Date(result["response"]["fch_real_registro"]);
-            var fch_real_registro = fch2.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
-            
-            var fch_modificacion ='';
-            
-            if(result["response"]["fch_modificacion"]!='' )
-            {
-              var fch3 = new Date(result["response"]["fch_modificacion"]);
-              fch_modificacion = fch3.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
-            }
-            if(result["response"]["fch_modificacion"].trim ='01/01/1900HORA:00:00'.trim )
-            {
-              fch_modificacion='';
-            }
-           
+          var fch2 = new Date(result["response"]["fch_real_registro"]);
+          var fch_real_registro = fch2.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
+          
+          var fch_modificacion ='';
+          
+          if(result["response"]["fch_modificacion"]!='' )
+          {
+            var fch3 = new Date(result["response"]["fch_modificacion"]);
+            fch_modificacion = fch3.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
+          }
+          if(result["response"]["fch_modificacion"].trim ='01/01/1900HORA:00:00'.trim )
+          {
+            fch_modificacion='';
+          }
+          
 
-            document.getElementById("fch_registro").value=fch_registro;
+          document.getElementById("fch_registro").value=fch_registro;
 
             document.getElementById("num_reporte").value=result["response"]["num_reporte"];
             //document.getElementById("fch_registro").value=result["response"]["fch_registro"];
@@ -710,37 +696,35 @@ window.onload= function() {
             document.getElementById("dsc_ubicacion_benef").value=result["response"]["dsc_ubicacion_benef"];
             document.getElementById("dsc_etiqueta").value=result["response"]["dsc_etiqueta"];
 
-            document.getElementById("dsc_vendedor_agencia").value=result["response"]["dsc_vendedor_agencia"];
-            document.getElementById("dsc_apellido_paterno_c").value=result["response"]["dsc_apellido_paterno_c"];
-            document.getElementById("dsc_apellido_materno_c").value=result["response"]["dsc_apellido_materno_c"];
-            document.getElementById("dsc_nombres_c").value=result["response"]["dsc_nombres_c"];
-            document.getElementById("dsc_telefono_c").value=result["response"]["dsc_telefono_c"];
-            //document.getElementById("dsc_direccion_c").value=result["response"]["dsc_direccion_c"];
-           
-            document.getElementById("dsc_usuario_reg").value=result["response"]["dsc_usuario_reg"];
-            document.getElementById("fch_real_registro").value=fch_real_registro;
-            document.getElementById("dsc_usuario_modif").value=result["response"]["dsc_usuario_modif"];
-            document.getElementById("fch_modificacion").value=fch_modificacion;
-            
-            
+          document.getElementById("dsc_vendedor_agencia").value=result["response"]["dsc_vendedor_agencia"];
+          document.getElementById("dsc_apellido_paterno_c").value=result["response"]["dsc_apellido_paterno_c"];
+          document.getElementById("dsc_apellido_materno_c").value=result["response"]["dsc_apellido_materno_c"];
+          document.getElementById("dsc_nombres_c").value=result["response"]["dsc_nombres_c"];
+          document.getElementById("dsc_telefono_c").value=result["response"]["dsc_telefono_c"];
+          document.getElementById("dsc_direccion_c").value=result["response"]["dsc_direccion_c"];
+          
+          document.getElementById("dsc_usuario_reg").value=result["response"]["dsc_usuario_reg"];
+          document.getElementById("fch_real_registro").value=fch_real_registro;
+          document.getElementById("dsc_usuario_modif").value=result["response"]["dsc_usuario_modif"];
+          document.getElementById("fch_modificacion").value=fch_modificacion;
 
-            var cod_lugar_deceso=document.getElementById("cod_lugar_deceso") ;
-            cod_lugar_deceso.value=result["response"]["cod_lugar_deceso"];
+          var cod_lugar_deceso=document.getElementById("cod_lugar_deceso") ;
+          cod_lugar_deceso.value=result["response"]["cod_lugar_deceso"];
 
-            var cod_agencia=document.getElementById("cod_agencia") ;
-            cod_agencia.value=result["response"]["cod_agencia"];
+          var cod_agencia=document.getElementById("cod_agencia") ;
+          cod_agencia.value=result["response"]["cod_agencia"];
 
-            var cod_origen=document.getElementById("cod_origen") ;
-            cod_origen.value=result["response"]["cod_origen"];
+          var cod_origen=document.getElementById("cod_origen") ;
+          cod_origen.value=result["response"]["cod_origen"];
 
-            var cod_canal_venta=document.getElementById("cod_canal_venta") ;
-            cod_canal_venta.value=result["response"]["cod_canal_venta"];
+          var cod_canal_venta=document.getElementById("cod_canal_venta") ;
+          cod_canal_venta.value=result["response"]["cod_canal_venta"];
 
-            var cod_resultado=document.getElementById("cod_resultado") ;
-            cod_resultado.value=result["response"]["cod_resultado"];
-            
-            var cod_parentesco=document.getElementById("cod_parentesco") ;
-            cod_parentesco.value=result["response"]["cod_parentesco"];
+          var cod_resultado=document.getElementById("cod_resultado") ;
+          cod_resultado.value=result["response"]["cod_resultado"];
+          
+          var cod_parentesco=document.getElementById("cod_parentesco") ;
+          cod_parentesco.value=result["response"]["cod_parentesco"];
 
             var flg_anulado=document.getElementById("flg_anulado") ;
             flg_anulado.value=result["response"]["flg_anulado"];
