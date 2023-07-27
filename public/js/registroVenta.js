@@ -924,17 +924,20 @@ function muestraserviciosFormulario(datos) {
     var descuentoPorcCelda = nuevaFila.insertCell();
     var dsctoPorcInput = document.createElement('input');
     dsctoPorcInput.type = 'number';
-    dsctoPorcInput.setAttribute('style', 'width: 5em;');
-    dsctoPorcInput.setAttribute('max', '100');
+    dsctoPorcInput.setAttribute('style', 'width: 3em;');
+    dsctoPorcInput.setAttribute('max', '99');
     var valorPorc = (datos['por_descuento']) ? datos['por_descuento'] : 0;
     //console.log(datos['por_descuento']);
     dsctoPorcInput.value =  valorPorc;  
     
     descuentoPorcCelda.appendChild(dsctoPorcInput);
+    descuentoPorcCelda.setAttribute('style', 'border-left: 1px solid;');
+
 
     var descuentoCelda = nuevaFila.insertCell();
     var desCalculado = (valorPorc*parseFloat(datos['imp_precio']))/100;
     descuentoCelda.textContent = desCalculado;
+    descuentoCelda.setAttribute('style', 'border-right: 1px solid;');
 
     var dsctoLibreCelda = nuevaFila.insertCell();
     var dsctoLibreInput = document.createElement('input');

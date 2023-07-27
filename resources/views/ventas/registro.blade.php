@@ -669,7 +669,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="table-responsive">
-                            <table class="table table-striped" id="tablaServiciosAdded" style="width:100%">
+                            <table class="table table-striped " id="tablaServiciosAdded" style="width:100%">
                               <thead style="background-color: #181C35;; color: white;">
                                 <tr>
                                   <th style="text-align: center;" width="30%">Servicio</th>
@@ -833,15 +833,12 @@
                         <div class="col-md-4 mb-3">
                           <input class="form-control form-remanso form-control-sm" id="RecAdj" type="file">
                         </div>
-                        @if (session('flg_nf')==='SI')
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloRecSep">
                           <label for="inputText" class="col-form-label">Recibo separación: </label>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputRecSep">
                           <input class="form-control form-remanso form-control-sm" id="RecSepAdj" type="file">
-                        </div>
-                        @endif                      
-
+                        </div>    
                       </div>
                     </div>
                   </div>
@@ -864,8 +861,7 @@
 
     <!-- -------------------Modal Beneficiarios------------------------------- -->
 
-  <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel"
-  aria-hidden="true">
+  <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel" aria-hidden="true" data-bs-focus="false">
     <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content form-remanso">
         <div class="modal-header">
@@ -1012,7 +1008,12 @@ var botonNece = document.getElementById("tipoNec");
 botonNece.addEventListener("change",function(){
   //console.log(this.checked);
   if(this.checked == true){
-    document.getElementById("formRegVenta").reset();
+    //document.getElementById("formRegVenta").reset();
+    document.getElementById('tituloRecSep').style.display = "none";
+    document.getElementById('inputRecSep').style.display = "none";
+  }else{
+    document.getElementById('tituloRecSep').style.display = "block";
+    document.getElementById('inputRecSep').style.display = "block";
   }
 });
 
@@ -1830,7 +1831,7 @@ $( document ).ready(function () {
                 fila += '<tr>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
-                '<td>'+fch_nacimiento1+'</td>'+
+                '<td>'+fecha+'</td>'+
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['dsc_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
@@ -1846,6 +1847,9 @@ $( document ).ready(function () {
       if (flg_administrador == 'SI') {         
         document.getElementById("tipoNec").bootstrapToggle('enabled');
         document.getElementById("AprobarVenta").bootstrapToggle('enabled');
+      }else if('@php echo(session('flg_sac')) @endphp' == 'SI'){
+        document.getElementById("tipoNec").bootstrapToggle('enabled');
+        document.getElementById("AprobarVenta").bootstrapToggle('readonly');
       }else{
         document.getElementById("tipoNec").bootstrapToggle('readonly');
         document.getElementById("AprobarVenta").bootstrapToggle('readonly');

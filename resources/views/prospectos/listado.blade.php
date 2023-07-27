@@ -40,7 +40,7 @@
                     <label for="inputText" class="col-form-label">Estado: </label>
                   </div>
                   <div class="col-md-2 mb-3">
-                    <select name="EstDoc" id="EstDoc" class="form-control form-remanso">
+                    <select name="EstDoc" id="EstDoc" class="form-select form-remanso">
                       <option value="0">Todos</option>
                       <option value="ACT">ACTIVO</option>
                       <option value="PRE">PREVENTA</option>
@@ -185,10 +185,11 @@ $(document).ready(function () {
   flg_ni= '@php echo(session('flg_ni')) @endphp';
   flg_nf= '@php echo(session('flg_nf')) @endphp';
   flg_sac= '@php echo(session('flg_sac')) @endphp';
+  flg_admin = '@php echo(session('flg_administrador')) @endphp';
   
   if(flg_ni=='SI' && flg_nf=='SI'){
     cod_tipo_necesidad='%';
-  } else if(flg_ni=='NO' && flg_nf=='NO' && flg_sac=='SI'){
+  } else if(flg_ni=='NO' && flg_nf=='NO' && (flg_sac=='SI' || flg_admin == 'SI')){
     cod_tipo_necesidad='%';
     document.getElementById("tituloPag").innerText = "prospectos/ventas";
   } else if(flg_ni=='NO' && flg_nf=='NO' && flg_sac=='NO'){
@@ -262,21 +263,28 @@ $(document).ready(function () {
         var dia = today.toLocaleDateString('es-ES');
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
+        var dscObservado = '';
         if(estado == 'ACTIVO'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           info='Gestión';
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
-        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
+        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' ){
           ref = ''; 
           info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+        }else if(estado == 'OBSERVADO' ){
+          ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
+          ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+          info = '';
+          observacion = "'"+word['dsc_observaciones']+"'";
+          dscObservado = '<br><span class="bi bi-eye" onclick="alertaObservacion('+observacion+')"></span>';
         }else{
           ref='';
           info = '';
           ref2 = '';
         }
           fila += '<tr><td>'+
-            '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI')'+
+            '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI' || session('flg_sac')==='SI')'+
               '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
               '@endif'+
               '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Gestionar venta"><span class="bi bi-cash-stack"></span></a>'+
@@ -290,7 +298,7 @@ $(document).ready(function () {
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td style="text-align: left;">'+word['dsc_consejero']+'</td>'+
-              '<td>'+word['dsc_estado']+'</td>'+
+              '<td>'+word['dsc_estado']+dscObservado+'</td>'+
             '</tr>';
 
         });
@@ -318,6 +326,15 @@ $(document).ready(function () {
     }//error
   }); //ajax     
 });//ready
+
+function alertaObservacion(datos) {
+  Swal.fire({
+    title:'Observación',
+    text: datos,
+    icon:'info',
+    confirmButtonColor: '#35B44A',
+  }) 
+}
 
 function cambiarEdoP(codigo,nombre,estado) {
   if (estado == 'TRUNCO' || estado == 'CADUCO') {
@@ -396,17 +413,22 @@ function BuscarProspecto() {
         
         var fch1 = new Date(word['fch_registro']);
         var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
-
-
+        var dscObservado = '';
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
-        if(estado == 'ACTIVO' ){
+        if(estado == 'ACTIVO'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
-        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
+        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA'){
           ref = ''; 
           info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+        }else if(estado == 'OBSERVADO'){
+          ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
+          ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+          info = '';
+          observacion = "'"+word['dsc_observaciones']+"'";
+          dscObservado = '<br><span class="bi bi-eye" onclick="alertaObservacion('+observacion+')"></span>';
         }else{
           ref='';
           ref2 = '';
@@ -414,7 +436,7 @@ function BuscarProspecto() {
         // obtener la fecha de hoy en formato `MM/DD/YYYY`
         var dia = today.toLocaleDateString('es-ES');
           fila += '<tr><td>'+
-                '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI')'+
+                '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI' || session('flg_sac')==='SI')'+
                 '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
                 '@endif'+
                 '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestionar venta"></span></a>'+
@@ -428,7 +450,7 @@ function BuscarProspecto() {
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td style="text-align: left;">'+word['dsc_consejero']+'</td>'+
-              '<td>'+word['dsc_estado']+'</td>'+
+              '<td>'+word['dsc_estado']+dscObservado+'</td>'+
             '</tr>';
 
         });
