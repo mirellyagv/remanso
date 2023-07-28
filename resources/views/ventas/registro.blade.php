@@ -1831,9 +1831,9 @@ $( document ).ready(function () {
                 fila += '<tr>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
-                '<td>'+fecha+'</td>'+
+                '<td>'+fch_nacimiento1+'</td>'+
                 '<td>'+word['dsc_parentesco']+'</td>'+
-                '<td>'+word['dsc_sexo']+'</td>'+
+                '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
                 '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';

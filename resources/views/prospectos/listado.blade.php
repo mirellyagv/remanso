@@ -263,12 +263,18 @@ $(document).ready(function () {
         var dia = today.toLocaleDateString('es-ES');
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
+        color = '';
         var dscObservado = '';
         if(estado == 'ACTIVO'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           info='Gestión';
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
         }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' ){
+          if(estado == 'VENTA'){
+            color = 'style="color:mediumseagreen;"';
+          }else if(estado == 'PRE-VENTA'){
+            color = 'style="color:goldenrod;"';
+          }
           ref = ''; 
           info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
@@ -276,8 +282,9 @@ $(document).ready(function () {
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
           info = '';
+          color = 'style="color:indianred;"';
           observacion = "'"+word['dsc_observaciones']+"'";
-          dscObservado = '<br><span class="bi bi-eye" onclick="alertaObservacion('+observacion+')"></span>';
+          dscObservado = '<br><span class="bi bi-exclamation-triangle" style="font-size:1.5em;" onclick="alertaObservacion('+observacion+')"></span>';
         }else{
           ref='';
           info = '';
@@ -298,7 +305,7 @@ $(document).ready(function () {
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td style="text-align: left;">'+word['dsc_consejero']+'</td>'+
-              '<td>'+word['dsc_estado']+dscObservado+'</td>'+
+              '<td '+color+'><b>'+word['dsc_estado']+dscObservado+'</b></td>'+
             '</tr>';
 
         });
@@ -327,13 +334,31 @@ $(document).ready(function () {
   }); //ajax     
 });//ready
 
-function alertaObservacion(datos) {
-  Swal.fire({
-    title:'Observación',
-    text: datos,
-    icon:'info',
-    confirmButtonColor: '#35B44A',
-  }) 
+function alertaObservacion(cod_prospecto) {
+
+  $.ajax({
+    type: "GET",
+    url: '../api/ListarProspectoContacto',
+    dataType: 'json',
+    data:{'cod_prospecto':cod_prospecto},
+    success: function(result){ 
+      console.log(result)
+      var mensajeObsv = '';
+      result['response'].forEach(function(word){
+        var auxFecha = new Date('190-01-01');
+        if(new Date(word['fch_contacto']) > auxFecha){
+          auxFecha = new Date(word['fch_contacto']);
+          mensajeObsv = word['dsc_observaciones'];
+        }
+      });
+      Swal.fire({
+        title:'Observación',
+        text: mensajeObsv,
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      }) 
+    }
+  });
 }
 
 function cambiarEdoP(codigo,nombre,estado) {
@@ -416,10 +441,16 @@ function BuscarProspecto() {
         var dscObservado = '';
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
+        color = '';
         if(estado == 'ACTIVO'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
         }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA'){
+          if(estado == 'VENTA'){
+            color = 'style="color:mediumseagreen;"';
+          }else if(estado == 'PRE-VENTA'){
+            color = 'style="color:goldenrod;"';
+          }
           ref = ''; 
           info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
@@ -427,8 +458,9 @@ function BuscarProspecto() {
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
           info = '';
-          observacion = "'"+word['dsc_observaciones']+"'";
-          dscObservado = '<br><span class="bi bi-eye" onclick="alertaObservacion('+observacion+')"></span>';
+          color = 'style="color:indianred;"';
+          observacion = "'"+word['cod_prospecto']+"'";
+          dscObservado = '<br><span class="bi bi-exclamation-triangle" style="font-size:1.5em;"  onclick="alertaObservacion('+observacion+')"></span>';
         }else{
           ref='';
           ref2 = '';
@@ -450,7 +482,7 @@ function BuscarProspecto() {
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td style="text-align: left;">'+word['dsc_consejero']+'</td>'+
-              '<td>'+word['dsc_estado']+dscObservado+'</td>'+
+              '<td '+color+'><b>'+word['dsc_estado']+dscObservado+'</b></td>'+
             '</tr>';
 
         });
