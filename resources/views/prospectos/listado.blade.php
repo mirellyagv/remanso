@@ -246,7 +246,7 @@ $(document).ready(function () {
     dataType: 'json',
     data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad,'dscVendedor':'%'},
     success: function(respuesta){
-       console.log('parado',respuesta)
+       //console.log('parado',respuesta)
         fila='';
         respuesta['response'].forEach(function(word){
           
