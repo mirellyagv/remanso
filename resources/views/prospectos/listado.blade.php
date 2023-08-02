@@ -283,7 +283,7 @@ $(document).ready(function () {
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
           info = '';
           color = 'style="color:indianred;"';
-          observacion = "'"+word['dsc_observaciones']+"'";
+          observacion = "'"+word['cod_prospecto']+"'";
           dscObservado = '<br><span class="bi bi-exclamation-triangle" style="font-size:1.5em;" onclick="alertaObservacion('+observacion+')"></span>';
         }else{
           ref='';
