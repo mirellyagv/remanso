@@ -661,7 +661,7 @@
                       <div class="row">
                         <div class="col-md-3 offset-md-9">
                           <div class="form-group form-remanso">
-                            <h5><button class="btn btn-primary BtnverdeRemanso form-remanso" data-bs-toggle="modal"
+                            <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
                               data-bs-target="#ModalServicio" id="btnAddServicio" type="button" style="width: -webkit-fill-available;">Añadir servicio</button></h5>
                           </div>
                         </div>
@@ -678,11 +678,23 @@
                                   <th style="text-align: center;" width="10%">Precio Venta</th>
                                   <th style="text-align: center;" width="5%" colspan="2">Dscto. %</th>
                                   <th style="text-align: center;" width="5%">Dscto. Libre S/.</th>
-                                  <th style="text-align: center;" width="10%">Precio Final</th>
+                                  <th style="text-align: center;" width="10%">Precio Total</th>
+                                  <th style="text-align: center;" width="10%">Cuota Inicial</th>
+                                  <th style="text-align: center;" width="10%">Saldo</th>
+                                  <th style="text-align: center;" width="10%"></th>
                                 </tr>
                               </thead>
                               <tbody style="text-align: center;">
                               </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td colspan="7" style="text-align: right;"><strong>Total:</strong></td>
+                                  <td id="sumTotal" style="text-align: right;">0.00</td>
+                                  <td id="sumCuoi" style="text-align: right;">0.00</td>
+                                  <td id="sumSaldo" style="text-align: right;">0.00</td>
+                                  <td></td>
+                                </tr>
+                              </tfoot>
                             </table>
                           </div>
                         </div>
@@ -697,10 +709,10 @@
                           <input type="text" class="form-control form-remanso align-right"  name="impTotal" id="impTotal" disabled >
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">CUOI: </label>
+                          <label for="inputText" class="col-form-label">CUOI Total: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="impCuoi" id="impCuoi" >
+                          <input type="text" class="form-control form-remanso align-right" name="impCuoi" id="impCuoi" disabled>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Saldo: </label>
@@ -1771,24 +1783,27 @@ $( document ).ready(function () {
             dataType: 'json',
             data:{'cod_localidad':'LC001','cod_prospecto':cod_prospecto},
             success: function(resultado){
-              //console.log(resultado["response"][0]);
-              var datos = {
-                "cod_servicio":resultado["response"][0]["cod_servicio"],
-                "dsc_servicio":resultado["response"][0]["dsc_servicio"],
-                "flg_contado":"NO",
-                "cod_moneda":"SOL",
-                "imp_precio":resultado["response"][0]["imp_precio_venta"],
-                "imp_precio_lista":resultado["response"][0]["imp_precio_lista"],
-                "imp_precio_cuoi":resultado["response"][0]["imp_cui"],
-                "imp_precio_foma":resultado["response"][0]["imp_foma"],
-                "flg_ds_compartido":"NO",
-                "imp_min_cuoi":resultado["response"][0]["imp_cui"],
-                "por_descuento":resultado["response"][0]["por_descuento"],
-                "num_ctd":resultado["response"][0]["num_ctd"],
-                "imp_descuento_adicional":resultado["response"][0]["imp_descuento_adicional"]
-              }
-              muestraserviciosFormulario(datos);
-               
+              console.log(resultado["response"]);
+              resultado['response'].forEach(function(servicio){
+                var datos = {
+                  "cod_prospecto":servicio["cod_prospecto"],
+                  "cod_servicio":servicio["cod_servicio"],
+                  "dsc_servicio":servicio["dsc_servicio"],
+                  "flg_contado":"NO",
+                  "cod_moneda":"SOL",
+                  "imp_precio":servicio["imp_precio_venta"],
+                  "imp_precio_lista":servicio["imp_precio_lista"],
+                  "imp_precio_cuoi":servicio["imp_cui"],
+                  "imp_precio_foma":servicio["imp_foma"],
+                  "flg_ds_compartido":"NO",
+                  "imp_min_cuoi":servicio["imp_cui"],
+                  "por_descuento":servicio["por_descuento"],
+                  "num_ctd":servicio["num_ctd"],
+                  "imp_descuento_adicional":servicio["imp_descuento_adicional"],
+                  "num_linea":servicio["num_linea"]
+                }
+                muestraserviciosFormulario(datos);
+              });
             }
           });
 
@@ -1992,11 +2007,13 @@ boton.addEventListener("click",function(){
     'num_ctd': document.getElementById("ctdServ").value,
     'imp_precio_lista': document.getElementById("impPrecioLista").value,
     'imp_precio_venta': document.getElementById("impPrecioLista").value,
+
     'imp_dscto': document.getElementById("impDscto").value,
     'imp_total': document.getElementById("impTotal").value,
     'imp_foma': document.getElementById("impFoma").value,
     'imp_cui': document.getElementById("impCuoi").value,
     'imp_saldo': document.getElementById("impSaldo").value,
+
     'cod_localidad_base': '',
     'cod_contrato_base': document.getElementById("cttoBase").value,
     'num_servicio_base': document.getElementById("numServBase").value,
@@ -2004,8 +2021,10 @@ boton.addEventListener("click",function(){
     'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
     'cod_tasa': document.getElementById("codTasa").value,
     'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
+    
     'por_descuento': document.getElementById("pordescuento").value,
-    'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value,
+    'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value, //validar como string
+    
     'imp_cui_minimo':document.getElementById("impMinCuoi").value
   };
 
@@ -2031,6 +2050,7 @@ boton.addEventListener("click",function(){
           }
           filasArray.forEach(function (fila) {
             fila['cod_prospecto'] = cod_prospecto;
+            
           });
           $.ajax({
               url: '../api/guardaBeneficiario', 
@@ -2046,20 +2066,33 @@ boton.addEventListener("click",function(){
               }//error
           });
 
-          servicioArray['cod_prospecto'] = cod_prospecto;
+          serviciosAgregados.forEach(function (fila) {
 
-          $.ajax({
+            fila['cod_prospecto'] = cod_prospecto;
+            fila['cod_contrato_base'] = document.getElementById("cttoBase").value;
+            fila['num_servicio_base'] = document.getElementById("numServBase").value;
+            fila['cod_cuota_foma'] = document.getElementById("codCuotaFoma").value;
+            fila['cod_cuota_servicio'] = document.getElementById("codCuotaServ").value;
+            fila['cod_tasa'] = document.getElementById("codTasa").value;
+            fila['fch_1er_vencimiento'] = document.getElementById("fch1erVcto").value;
+            fila['imp_total'] = document.getElementById("impTotal").value;
+            fila['imp_foma'] = document.getElementById("impFoma").value;
+            
+            console.log(serviciosAgregados);
+
+            $.ajax({
               url: '../api/InsertarProspectoServicio', 
               method: "PUT",
               crossDomain: true,
               dataType: 'json',
-              data:{'datosServicios':servicioArray},
+              data:{'datosServicios':fila},
               success: function(respuesta){
-                  console.log(respuesta);   
+                console.log(respuesta);   
               },//success
               error(e){
-                  console.log(e.message);
+                console.log(e.message);
               }//error
+            });
           });
 
           Swal.fire({
