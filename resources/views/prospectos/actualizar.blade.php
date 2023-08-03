@@ -28,14 +28,14 @@
                     <br>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label" required>* Tipo de Documento: </label>
+                        <label for="inputText" class="col-form-label" required>(*) Tipo de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="tipoDocProsp" id="tipoDocProsp" required class="form-select form-remanso">
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Núm. de Documento: </label>
+                        <label for="inputText" class="col-form-label">(*) Núm. de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <input type="text" class="form-control form-remanso align-right"  required name="numDocPros" id="numDocPros">
@@ -44,25 +44,25 @@
                     <div id="nombre">
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Nombres:</label>
+                          <label for="inputText" class="col-form-label">(*) Nombres:</label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" required name="nombreProsp" id="nombreProsp">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Codigo prospecto: </label>
+                          <label for="inputText" class="col-form-label">(*) Codigo prospecto: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso" value="{{$_GET['CodProspecto']}} " readonly name="codProsp" id="codProsp">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
+                          <label for="inputText" class="col-form-label">(*) Apellido Paterno: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" required name="apellPProsp" id="apellPProsp">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                          <label for="inputText" class="col-form-label">(*) Apellido Materno: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" name="apellMProsp" id="apellMProsp">
@@ -81,7 +81,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Dirección:</label>
+                        <label for="inputText" class="col-form-label">(*) Dirección:</label>
                       </div>
                       <div class="col-md-9 mb-3">
                         <input type="text" class="form-control form-remanso" required name="direccPros" id="direccPros">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* País: </label>
+                        <label for="inputText" class="col-form-label">(*) País: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="paisProspecto" id="paisProspecto" class="form-select form-remanso" required>
@@ -105,7 +105,7 @@
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Departamento: </label>
+                        <label for="inputText" class="col-form-label">(*) Departamento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="dptoProsp" id="dptoProsp" class="form-select form-remanso" required>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Provincia: </label>
+                        <label for="inputText" class="col-form-label">(*) Provincia: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="provinProsp" id="provinProsp" class="form-select form-remanso" required>
@@ -123,7 +123,7 @@
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Distrito: </label>
+                        <label for="inputText" class="col-form-label">(*) Distrito: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="dttoProsp" id="dttoProsp" class="form-select form-remanso" required>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Teléfono 1:</label>
+                        <label for="inputText" class="col-form-label">(*) Teléfono 1:</label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <input type="text" class="form-control form-remanso align-right" name="telf1Prosp" id="telf1Prosp" required>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Correo:</label>
+                        <label for="inputText" class="col-form-label">(*) Correo:</label>
                       </div>
                       <div class="col-md-9 mb-3">
                         <input type="text" class="form-control form-remanso" name="correoProsp" id="correoProsp" required>
@@ -156,14 +156,14 @@
                     <hr>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Canal de venta:</label>
+                        <label for="inputText" class="col-form-label">(*) Canal de venta:</label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="canalProsp" id="canalProsp" class="form-select form-remanso">
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Calificación: </label>
+                        <label for="inputText" class="col-form-label">(*) Calificación: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="califProsp" id="califProsp" class="form-select form-remanso">
@@ -172,7 +172,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Importe:</label>
+                        <label for="inputText" class="col-form-label">(*) Importe:</label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <input type="text" class="form-control form-remanso align-right" name="impProsp" id="impProsp" required>
@@ -201,14 +201,14 @@
                     <br>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Tipo de Documento: </label>
+                        <label for="inputText" class="col-form-label">(*) Tipo de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="tipoDoc2tit" id="tipoDoc2tit" class="form-select form-remanso">
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">* Núm. de Documento: </label>
+                        <label for="inputText" class="col-form-label">(*) Núm. de Documento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <input type="text" class="form-control form-remanso align-right" name="numDoc2tit" id="numDoc2tit">
@@ -217,19 +217,19 @@
                     <div id="cajaNombre2Tit">
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Nombres:</label>
+                          <label for="inputText" class="col-form-label">(*) Nombres:</label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" name="nombre2Tit" id="nombre2Tit">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">* Apellido Paterno: </label>
+                          <label for="inputText" class="col-form-label">(*) Apellido Paterno: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" name="apelP2tit" id="apelP2tit">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                          <label for="inputText" class="col-form-label">(*) Apellido Materno: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <input type="text" class="form-control form-remanso letras-only" name="apelM2tit" id="apelM2tit">
@@ -248,7 +248,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Dirección:</label>
+                        <label for="inputText" class="col-form-label">(*) Dirección:</label>
                       </div>
                       <div class="col-md-9 mb-3">
                         <input type="text" class="form-control form-remanso" name="dir2Tit" id="dir2Tit">
@@ -256,7 +256,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">País: </label>
+                        <label for="inputText" class="col-form-label">(*) País: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="pais2Tit" id="pais2Tit" class="form-select form-remanso">
@@ -264,7 +264,7 @@
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Departamento: </label>
+                        <label for="inputText" class="col-form-label">(*) Departamento: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="dpto2Tit" id="dpto2Tit" class="form-select form-remanso">
@@ -274,7 +274,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Provincia: </label>
+                        <label for="inputText" class="col-form-label">(*) Provincia: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="prov2Tit" id="prov2Tit" class="form-select form-remanso">
@@ -282,7 +282,7 @@
                         </select>
                       </div>
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Distrito: </label>
+                        <label for="inputText" class="col-form-label">(*) Distrito: </label>
                       </div>
                       <div class="col-md-3 mb-3">
                         <select name="dtto2Tit" id="dtto2Tit" class="form-select form-remanso">
@@ -306,7 +306,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3 mb-3">
-                        <label for="inputText" class="col-form-label">Correo:</label>
+                        <label for="inputText" class="col-form-label">(*) Correo:</label>
                       </div>
                       <div class="col-md-9 mb-3">
                         <input type="text" class="form-control form-remanso" name="correo2Tit" id="correo2Tit">
@@ -412,8 +412,7 @@
 
   <!-- -------------------Modal Beneficiarios------------------------------- -->
 
-  <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel" aria-hidden="true" data-bs-focus="false">
     <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content form-remanso">
         <div class="modal-header">
@@ -890,94 +889,98 @@ window.onload= function () {
   var anio = fechaActual.getFullYear();
   var fchBD = anio+'-'+mes+'-'+dia;
   document.getElementById('fchContacto').value = fchBD;
-    cod_prospecto=document.getElementById("codProsp").value;
+  cod_prospecto=document.getElementById("codProsp").value;
+  var codTraUsuario = '@php echo(session('cod_trabajador')) @endphp';
+  var flgAdmin = '@php echo(session('flg_administrador')) @endphp';
+  var codConsejero = '';
+  $.ajax({
+    type : "GET",
+    url:"../api/ObtenerProspecto",
+    dataType: 'json',
+    data:{'cod_prospecto':cod_prospecto},
+    success: function(result) {
+      codConsejero = result["response"]["cod_consejero"];
+      var changeEvent = new Event('change');   // Crea un evento "change"
+      document.getElementById("rucProsp").value=result["response"]["dsc_razon_social"];
+      document.getElementById("apellPProsp").value=result["response"]["dsc_apellido_paterno"];
+      document.getElementById("apellMProsp").value=result["response"]["dsc_apellido_materno"];
+      document.getElementById("nombreProsp").value=result["response"]["dsc_nombre"];
+      var tipoDocPros=document.getElementById("tipoDocProsp") ;
+      tipoDocPros.value=result["response"]["cod_tipo_documento"];
 
-    $.ajax({
-      type : "GET",
-      url:"../api/ObtenerProspecto",
-      dataType: 'json',
-      data:{'cod_prospecto':cod_prospecto},
-      success: function(result) {
+      document.getElementById("numDocPros").value=result["response"]["dsc_documento"];
 
-        var changeEvent = new Event('change');   // Crea un evento "change"
-        document.getElementById("rucProsp").value=result["response"]["dsc_razon_social"];
-        document.getElementById("apellPProsp").value=result["response"]["dsc_apellido_paterno"];
-        document.getElementById("apellMProsp").value=result["response"]["dsc_apellido_materno"];
-        document.getElementById("nombreProsp").value=result["response"]["dsc_nombre"];
-        var tipoDocPros=document.getElementById("tipoDocProsp") ;
-        tipoDocPros.value=result["response"]["cod_tipo_documento"];
+      var paisProspecto=document.getElementById("paisProspecto") ;
+      paisProspecto.value=result["response"]["cod_pais"];
+      paisProspecto.dispatchEvent(changeEvent); 
 
-        document.getElementById("numDocPros").value=result["response"]["dsc_documento"];
+      var dptoProsp=document.getElementById("dptoProsp") ;
+      dptoProsp.value=result["response"]["cod_departamento"];
+      var changeEvent = new Event('change');   // Crea un evento "change"
+      dptoProsp.dispatchEvent(changeEvent); // Desencadena el evento "change"
 
-        var paisProspecto=document.getElementById("paisProspecto") ;
-        paisProspecto.value=result["response"]["cod_pais"];
-        paisProspecto.dispatchEvent(changeEvent); 
-
-        var dptoProsp=document.getElementById("dptoProsp") ;
-        dptoProsp.value=result["response"]["cod_departamento"];
-        var changeEvent = new Event('change');   // Crea un evento "change"
-        dptoProsp.dispatchEvent(changeEvent); // Desencadena el evento "change"
-
-        var provinProsp=document.getElementById("provinProsp") ;
-        var dttoProsp=document.getElementById("dttoProsp") ;
+      var provinProsp=document.getElementById("provinProsp") ;
+      var dttoProsp=document.getElementById("dttoProsp") ;
+      setTimeout(function() {
+        provinProsp.value=result["response"]["cod_provincia"];
+        provinProsp.dispatchEvent(changeEvent);
         setTimeout(function() {
-          provinProsp.value=result["response"]["cod_provincia"];
-          provinProsp.dispatchEvent(changeEvent);
-          setTimeout(function() {
-            dttoProsp.value=result["response"]["cod_distrito"];
-            dttoProsp.dispatchEvent(changeEvent);
-          }, 2000);
+          dttoProsp.value=result["response"]["cod_distrito"];
+          dttoProsp.dispatchEvent(changeEvent);
         }, 2000);
+      }, 2000);
 
-        document.getElementById("direccPros").value=result["response"]["dsc_direccion"];
-        document.getElementById("direccRefPros").value=result["response"]["dsc_direccion_referencia"];
-        document.getElementById("telf1Prosp").value=result["response"]["dsc_telefono_1"];
-        document.getElementById("telf2Prosp").value=result["response"]["dsc_telefono_2"];
-        document.getElementById("correoProsp").value=result["response"]["dsc_correo"];
+      document.getElementById("direccPros").value=result["response"]["dsc_direccion"];
+      document.getElementById("direccRefPros").value=result["response"]["dsc_direccion_referencia"];
+      document.getElementById("telf1Prosp").value=result["response"]["dsc_telefono_1"];
+      document.getElementById("telf2Prosp").value=result["response"]["dsc_telefono_2"];
+      document.getElementById("correoProsp").value=result["response"]["dsc_correo"];
 
-        var canalProsp=document.getElementById("canalProsp") ;
-        canalProsp.value=result["response"]["cod_origen"];
+      var canalProsp=document.getElementById("canalProsp") ;
+      canalProsp.value=result["response"]["cod_origen"];
 
-        var califProsp=document.getElementById("califProsp") ;
-        califProsp.value=result["response"]["cod_calificacion"];
+      var califProsp=document.getElementById("califProsp") ;
+      califProsp.value=result["response"]["cod_calificacion"];
 
-        document.getElementById("obsvProsp").value=result["response"]["dsc_observaciones"];
-        document.getElementById("impProsp").value=result["response"]["imp_monto"];
-        document.getElementById("apelP2tit").value=result["response"]["dsc_apellido_paterno_2do"];
-        document.getElementById("apelM2tit").value=result["response"]["dsc_apellido_materno_2do"];
-        document.getElementById("nombre2Tit").value=result["response"]["dsc_nombre_2do"];
+      document.getElementById("obsvProsp").value=result["response"]["dsc_observaciones"];
+      document.getElementById("impProsp").value=result["response"]["imp_monto"];
+      document.getElementById("apelP2tit").value=result["response"]["dsc_apellido_paterno_2do"];
+      document.getElementById("apelM2tit").value=result["response"]["dsc_apellido_materno_2do"];
+      document.getElementById("nombre2Tit").value=result["response"]["dsc_nombre_2do"];
 
-        var tipoDoc2tit=document.getElementById("tipoDoc2tit") ;
-        tipoDoc2tit.value=result["response"]["cod_tipo_documento_2do"];
+      var tipoDoc2tit=document.getElementById("tipoDoc2tit") ;
+      tipoDoc2tit.value=result["response"]["cod_tipo_documento_2do"];
 
-        document.getElementById("numDoc2tit").value=result["response"]["dsc_documento_2do"];
+      document.getElementById("numDoc2tit").value=result["response"]["dsc_documento_2do"];
 
-        var pais2Tit=document.getElementById("pais2Tit") ;
-        pais2Tit.value=result["response"]["cod_pais_2do"];
-        pais2Tit.dispatchEvent(changeEvent); 
+      var pais2Tit=document.getElementById("pais2Tit") ;
+      pais2Tit.value=result["response"]["cod_pais_2do"];
+      pais2Tit.dispatchEvent(changeEvent); 
 
-        var dpto2Tit=document.getElementById("dpto2Tit") ;
-        dpto2Tit.value=result["response"]["cod_departamento_2do"];
-        dpto2Tit.dispatchEvent(changeEvent);
+      var dpto2Tit=document.getElementById("dpto2Tit") ;
+      dpto2Tit.value=result["response"]["cod_departamento_2do"];
+      dpto2Tit.dispatchEvent(changeEvent);
 
-        var prov2Tit=document.getElementById("prov2Tit");
-        var dtto2Tit=document.getElementById("dtto2Tit");
+      var prov2Tit=document.getElementById("prov2Tit");
+      var dtto2Tit=document.getElementById("dtto2Tit");
+      setTimeout(function() {
+        prov2Tit.value=result["response"]["cod_provincia_2do"];
+        prov2Tit.dispatchEvent(changeEvent);
         setTimeout(function() {
-          prov2Tit.value=result["response"]["cod_provincia_2do"];
-          prov2Tit.dispatchEvent(changeEvent);
-          setTimeout(function() {
-            dtto2Tit.value=result["response"]["cod_distrito_2do"];
-            dtto2Tit.dispatchEvent(changeEvent);
-          }, 2000);
+          dtto2Tit.value=result["response"]["cod_distrito_2do"];
+          dtto2Tit.dispatchEvent(changeEvent);
         }, 2000);
+      }, 2000);
 
-        document.getElementById("dir2Tit").value=result["response"]["dsc_direccion_2do"];
-        document.getElementById("telf1_2Tit").value=result["response"]["dsc_telefono_1_2do"];
-        document.getElementById("telf2_2Tit").value=result["response"]["dsc_telefono_2_2do"];
-        document.getElementById("correo2Tit").value=result["response"]["dsc_correo_2do"];
-
+      document.getElementById("dir2Tit").value=result["response"]["dsc_direccion_2do"];
+      document.getElementById("telf1_2Tit").value=result["response"]["dsc_telefono_1_2do"];
+      document.getElementById("telf2_2Tit").value=result["response"]["dsc_telefono_2_2do"];
+      document.getElementById("correo2Tit").value=result["response"]["dsc_correo_2do"];
+      if (codConsejero != codTraUsuario && flgAdmin == 'NO') {
+        modoVista();
       }
-    });
+    }
+  });
 
   $.ajax({
     type: "GET",
@@ -999,7 +1002,7 @@ window.onload= function () {
           '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
           '<td>'+fch_nacimiento1+'</td>'+
           '<td>'+word['dsc_parentesco']+'</td>'+
-          '<td>'+word['dsc_sexo']+'</td>'+
+          '<td>'+word['cod_sexo']+'</td>'+
           '<td>'+word['dsc_estado_civil']+'</td>'+
           '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
         '</tr>';
@@ -1027,9 +1030,8 @@ window.onload= function () {
 
     }
   });
-
-  
- $.ajax({
+ 
+  $.ajax({
     type: "GET",
     url: '../api/ListarProspectoContacto',
     dataType: 'json',
@@ -1068,6 +1070,7 @@ window.onload= function () {
       $(".fechaTabla").flatpickr();
     }
   });
+
 
 }
 
@@ -1418,6 +1421,46 @@ function ListarContacto(num_linea) {
       $(".fechaTabla").flatpickr();
     }
   });
+}
+
+function modoVista() {
+  document.getElementById("rucProsp").setAttribute('disabled','disabled');
+  document.getElementById("apellPProsp").setAttribute('disabled','disabled');
+  document.getElementById("apellMProsp").setAttribute('disabled','disabled');
+  document.getElementById("codProsp").setAttribute('disabled','disabled');
+  document.getElementById("nombreProsp").setAttribute('disabled','disabled');
+  document.getElementById("tipoDocProsp").setAttribute('disabled','disabled');
+  document.getElementById("numDocPros").setAttribute('disabled','disabled');
+  document.getElementById("paisProspecto").setAttribute('disabled','disabled');
+  document.getElementById("dptoProsp").setAttribute('disabled','disabled');
+  document.getElementById("provinProsp").setAttribute('disabled','disabled');
+  document.getElementById("dttoProsp").setAttribute('disabled','disabled');
+  document.getElementById("direccPros").setAttribute('disabled','disabled');
+  document.getElementById("direccRefPros").setAttribute('disabled','disabled');
+  document.getElementById("telf1Prosp").setAttribute('disabled','disabled');
+  document.getElementById("telf2Prosp").setAttribute('disabled','disabled');
+  document.getElementById("correoProsp").setAttribute('disabled','disabled');
+  document.getElementById("canalProsp").setAttribute('disabled','disabled');
+  document.getElementById("califProsp").setAttribute('disabled','disabled');
+  document.getElementById("obsvProsp").setAttribute('disabled','disabled');
+  document.getElementById("impProsp").setAttribute('disabled','disabled');
+  document.getElementById("apelP2tit").setAttribute('disabled','disabled');
+  document.getElementById("apelM2tit").setAttribute('disabled','disabled');
+  document.getElementById("nombre2Tit").setAttribute('disabled','disabled');
+  document.getElementById("tipoDoc2tit").setAttribute('disabled','disabled');
+  document.getElementById("numDoc2tit").setAttribute('disabled','disabled');
+  document.getElementById("pais2Tit").setAttribute('disabled','disabled');
+  document.getElementById("dpto2Tit").setAttribute('disabled','disabled');
+  document.getElementById("prov2Tit").setAttribute('disabled','disabled');
+  document.getElementById("dtto2Tit").setAttribute('disabled','disabled');
+  document.getElementById("dir2Tit").setAttribute('disabled','disabled');
+  document.getElementById("telf1_2Tit").setAttribute('disabled','disabled');
+  document.getElementById("telf2_2Tit").setAttribute('disabled','disabled');
+  document.getElementById("correo2Tit").setAttribute('disabled','disabled');
+
+  document.getElementById("abreModalBenef").setAttribute('disabled','disabled');
+  document.getElementById("abreModalContacto").setAttribute('disabled','disabled');
+  document.getElementById("btnGuarda").classList.add('enlace_desactivado');
 }
 
 

@@ -192,7 +192,7 @@ window.onload=function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){
-            $("#codTasa").append('<option value="000" selected disabled>SELECCIONE...</option>');
+            $("#codTasa").append('<option value="0" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
@@ -478,7 +478,6 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("tipoEspacio").setAttribute('disabled', 'disabled');
         document.getElementById('impFoma').value = '';
         document.getElementById("impFoma").setAttribute('disabled', 'disabled');
-        document.getElementById('codCuotaFoma').value = '';
         document.getElementById("codCuotaFoma").setAttribute('disabled', 'disabled');
         
     }else{
@@ -806,6 +805,7 @@ codcampo.addEventListener("click",function(){
                 addBoton.classList.add('btn');
                 addBoton.classList.add('btn-success');
                 addBoton.classList.add('BtnverdeRemanso');
+                addBoton.classList.add('form-remanso');
                 addBoton.setAttribute('data-bs-dismiss', 'modal');
                 addBoton.innerHTML  = '<span class="bi bi-check"></span>';
                 addBoton.addEventListener('click', function() {
@@ -838,54 +838,66 @@ codcampo.addEventListener("click",function(){
 });
 
 //---------------------llena tabla servicios--------------------------
+
+// Variable global para almacenar los servicios agregados
+var serviciosAgregados = [];
+var fomaTotal = Number(0);
+
 function muestraserviciosFormulario(datos) {
     
     var tabla = document.getElementById('tablaServiciosAdded');
     var tbody = tabla.getElementsByTagName('tbody')[0];
-    while (tbody.firstChild) {
-        tbody.removeChild(tbody.firstChild);
-    }
+    // while (tbody.firstChild) {
+    //     tbody.removeChild(tbody.firstChild);
+    // }
     
-    var nuevaFila = tbody.insertRow();
+    var nuevaFilaServ = tbody.insertRow();
 
-    var codigoCelda = nuevaFila.insertCell();
+    var codigoCelda = nuevaFilaServ.insertCell();
     codigoCelda.textContent = datos['cod_servicio']+' '+datos['dsc_servicio'];
     codigoCelda.classList.add('justificado');
 
-    var cantidadCelda = nuevaFila.insertCell();
+    var cantidadCelda = nuevaFilaServ.insertCell();
     var cantInput = document.createElement('input');
     cantInput.setAttribute('style', 'width: 3em;');
     cantInput.type = 'number';
+    cantInput.setAttribute('min', '1');
+    cantInput.setAttribute('disabled','disabled');
     var valorCant = (datos['num_ctd']) ? datos['num_ctd'] : 1;
     cantInput.value = valorCant;
 
     cantidadCelda.appendChild(cantInput);
 
-    var impListaCelda = nuevaFila.insertCell();
+    var impListaCelda = nuevaFilaServ.insertCell();
     impListaCelda.textContent = datos['imp_precio_lista'];
 
-    var precioCelda = nuevaFila.insertCell();
+    var precioCelda = nuevaFilaServ.insertCell();
     precioCelda.textContent = datos['imp_precio'];
 
-    var descuentoPorcCelda = nuevaFila.insertCell();
+    var descuentoPorcCelda = nuevaFilaServ.insertCell();
     var dsctoPorcInput = document.createElement('input');
     dsctoPorcInput.type = 'number';
-    dsctoPorcInput.setAttribute('style', 'width: 5em;');
-    dsctoPorcInput.setAttribute('max', '100');
+    dsctoPorcInput.setAttribute('style', 'width: 3em;');
+    dsctoPorcInput.setAttribute('max', '99');
+    dsctoPorcInput.setAttribute('min', '0');
     var valorPorc = (datos['por_descuento']) ? datos['por_descuento'] : 0;
     //console.log(datos['por_descuento']);
     dsctoPorcInput.value =  valorPorc;  
     
     descuentoPorcCelda.appendChild(dsctoPorcInput);
+    descuentoPorcCelda.setAttribute('style', 'border-left: 1px solid;');
 
-    var descuentoCelda = nuevaFila.insertCell();
+
+    var descuentoCelda = nuevaFilaServ.insertCell();
     var desCalculado = (valorPorc*parseFloat(datos['imp_precio']))/100;
     descuentoCelda.textContent = desCalculado;
+    descuentoCelda.setAttribute('style', 'border-right: 1px solid;');
 
-    var dsctoLibreCelda = nuevaFila.insertCell();
+    var dsctoLibreCelda = nuevaFilaServ.insertCell();
     var dsctoLibreInput = document.createElement('input');
     dsctoLibreInput.type = 'number';
     dsctoLibreInput.setAttribute('style', 'width: 5em;');
+    dsctoLibreInput.setAttribute('min', '0');
     var valorLibre = (datos['imp_descuento_adicional']) ? datos['imp_descuento_adicional'] : 0;
     dsctoLibreInput.value = valorLibre;
 
@@ -902,8 +914,35 @@ function muestraserviciosFormulario(datos) {
         
     //descuentoCelda.appendChild(nombreInput);
 
-    var precioFinalCelda = nuevaFila.insertCell();
+    var precioFinalCelda = nuevaFilaServ.insertCell();
     precioFinalCelda.textContent = saldo;
+
+    var cuoIniCelda = nuevaFilaServ.insertCell();
+    var cuoIniInput = document.createElement('input');
+    cuoIniInput.type = 'number';
+    cuoIniInput.setAttribute('min', '0');
+    cuoIniInput.setAttribute('style', 'width: 5em;');
+    cuoIniInput.classList.add('inputCUOI');
+    var valorLibre = (datos['imp_precio_cuoi']) ? datos['imp_precio_cuoi'] : 0;
+    cuoIniInput.value = valorLibre;
+
+    cuoIniCelda.appendChild(cuoIniInput);
+
+    
+    var precioFinal1Celda = nuevaFilaServ.insertCell();
+    precioFinal1Celda.textContent = saldo;
+
+    var btnEliminarCelda = nuevaFilaServ.insertCell();
+    var btnEliminarInput = document.createElement('button');
+    btnEliminarInput.type = 'button';
+    btnEliminarInput.classList.add('btn');
+    btnEliminarInput.classList.add('btn-danger');
+    btnEliminarInput.classList.add('form-remanso');
+    btnEliminarInput.setAttribute('onclick','eliminarFilaServicios('+nuevaFilaServ.rowIndex+')');
+    btnEliminarInput.innerHTML = '<span class="bi bi-x-lg"></span>';
+    btnEliminarInput.setAttribute('title', 'Eliminar servicio');
+
+    btnEliminarCelda.appendChild(btnEliminarInput);
 
     var changeEvent = new Event('input');   // Crea un evento "change"
     inputCOUI = document.getElementById('impCuoi');
@@ -916,36 +955,55 @@ function muestraserviciosFormulario(datos) {
     //  });
 
     cantInput.addEventListener('input', function() {
+        precio = parseFloat(datos['imp_precio']);
         calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value = Number(datos['imp_precio_cuoi']).toFixed(2);
-        inputCOUI.dispatchEvent(changeEvent);
+        // document.getElementById("impCuoi").value = Number(datos['imp_precio_cuoi']).toFixed(2);
+        cuoIniInput.dispatchEvent(changeEvent);
+        serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['num_ctd'] = cantInput.value;
+        recalcularSuma();
     });
 
     dsctoPorcInput.addEventListener('input', function() {
         if(dsctoPorcInput.value > 100){
             dsctoPorcInput.value = 100;
         }
-        calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
-        inputCOUI.dispatchEvent(changeEvent);
+        precio = parseFloat(datos['imp_precio']);
+        calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,precio);
+        // document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
+        cuoIniInput.dispatchEvent(changeEvent);
 
+        serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['por_descuento'] = dsctoPorcInput.value;
+        recalcularSuma();
     });
 
     dsctoLibreInput.addEventListener('input', function() {
         calculaSaldo(cantInput.value,dsctoLibreInput.value,dsctoPorcInput.value,datos['imp_precio']);
-        document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
-        inputCOUI.dispatchEvent(changeEvent);
-
+        // document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
+        cuoIniInput.dispatchEvent(changeEvent);
+        serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_descuento_adicional'] = dsctoLibreInput.value;
+        recalcularSuma();
     });
-
-    document.getElementById("impTotal").value=saldo;//datos['imp_precio'];
-    document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
-    document.getElementById("impFoma").value=Number(datos['imp_precio_foma']).toFixed(2);    
+    
+    //document.getElementById("impTotal").value=saldo;//datos['imp_precio'];
+    //document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
+    document.getElementById("impFoma").value=fomaTotal+Number(datos['imp_precio_foma']).toFixed(2);    
     document.getElementById("codServicio").value=datos['cod_servicio'];
     document.getElementById("impPrecioLista").value=Number(datos['imp_precio_lista']).toFixed(2);
     document.getElementById("impMinCuoi").value=Number(datos['imp_min_cuoi']).toFixed(2);
+    
+    cuoIniInput.addEventListener('input', function() {
+        var nvoSaldo = saldo-cuoIniInput.value;
+        precioFinal1Celda.textContent = nvoSaldo;
+        serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_cui'] = cuoIniInput.value;
+        serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_saldo'] = nvoSaldo;
+        recalcularSuma();
+    });
 
     function calculaSaldo(ctd,dsctoLibre,dsctoPorc,precio) {
+        precio = parseFloat(precio);
+        ctd = parseInt(ctd);
+        dsctoPorc = parseFloat(dsctoPorc);
+        dsctoLibre = parseFloat(dsctoLibre);
         if(ctd < 1){
             ctd = 1;
         }
@@ -955,8 +1013,8 @@ function muestraserviciosFormulario(datos) {
         if(dsctoPorc =='' || dsctoPorc == null){
             dsctoPorc=0;
         }
-        var porc = (precio*parseFloat(dsctoPorc))/100;
-        dscto = parseFloat(dsctoLibre)+porc;
+        var porc = (precio*dsctoPorc)/100;
+        dscto = dsctoLibre+porc;
         saldo = (ctd*precio)-dscto;
         if(saldo < 0){
             dscto = 0;
@@ -966,15 +1024,122 @@ function muestraserviciosFormulario(datos) {
 
         precioFinalCelda.textContent = saldo;
         descuentoCelda.textContent = porc;
-        document.getElementById("impDscto").value=Number(dscto-dsctoLibre).toFixed(2);
+       // document.getElementById("impDscto").value=Number(dscto-dsctoLibre).toFixed(2);
+        serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_dscto'] = dscto-dsctoLibre;
         document.getElementById("impDsctoAdicional").value=Number(dsctoLibre).toFixed(2);
         document.getElementById("pordescuento").value=dsctoPorc;
-        document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
+        //document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
         document.getElementById("ctdServ").value=ctd;
-        document.getElementById("impTotal").value=Number(saldo).toFixed(2);  
+        //document.getElementById("impTotal").value=Number(saldo).toFixed(2);  
     }
     
-    document.getElementById("impSaldo").value=Number(saldo-cuoi).toFixed(2);
+    //document.getElementById("impSaldo").value=Number(saldo-cuoi).toFixed(2);
+    if(Number(saldo-cuoi) == 0){
+        document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
+        document.getElementById("codCuotaServ").value = '';
+        document.getElementById("codTasa").setAttribute('disabled','disabled');
+        document.getElementById("codTasa").value = '';
+        document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
+        document.getElementById("fch1erVcto").value = '';
+    }else{
+        document.getElementById("codCuotaServ").removeAttribute('disabled');
+        document.getElementById("codTasa").removeAttribute('disabled');
+        document.getElementById("fch1erVcto").removeAttribute('disabled');
+    }
+
+    recalcularSuma();
+    datosXserv = {
+        'cod_localidad_p': 'LC001',
+        'cod_prospecto': (datos['cod_prospecto']) ? datos['cod_prospecto'] : '',
+        'num_linea': (datos['num_linea']) ? datos['num_linea'] : 0,
+        'cod_servicio': datos['cod_servicio'],
+        'num_ctd': (datos['num_ctd']) ? datos['num_ctd'] : 1,
+        'imp_precio_lista': datos['imp_precio_lista'],
+        'imp_precio_venta': datos['imp_precio'],
+        'imp_dscto': (datos['imp_dscto']) ? datos['imp_dscto'] : 0,
+        'imp_total': (datos['imp_total']) ? datos['imp_total'] : 0,
+        'imp_foma': (datos['imp_foma']) ? datos['imp_foma'] : 0,
+        'imp_cui': datos['imp_precio_cuoi'],
+        'imp_saldo': datos['imp_precio'],
+        'cod_localidad_base':  '',
+        'cod_contrato_base':  '',
+        'num_servicio_base': '',
+        'cod_cuota_foma': '',
+        'cod_cuota_servicio': '',
+        'cod_tasa': '',
+        'fch_1er_vencimiento': '',
+        'por_descuento': (datos['por_descuento']) ? datos['por_descuento'] : 0,
+        'imp_descuento_adicional': (datos['imp_descuento_adicional']) ? datos['imp_descuento_adicional'] : 0, //validar como string
+        'imp_cui_minimo':datos['imp_min_cuoi']
+    };
+    serviciosAgregados.push(datosXserv);
+
+}
+
+function recalcularSuma() {
+    let sumaTotal = 0;
+    let sumaCuoi = 0;
+    let sumaSaldo = 0;
+    const tabla = document.getElementById('tablaServiciosAdded');
+    const tbody = tabla.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    const inputsCuoi = tabla.getElementsByClassName('inputCUOI');
+
+    for (let i = 0; i < tbody.length; i++) {
+      const precioFinalCelda = tbody[i].getElementsByTagName('td')[7].textContent;
+      sumaTotal += parseFloat(precioFinalCelda);
+
+      const valorInput = parseFloat(inputsCuoi[i].value);
+        if (!isNaN(valorInput)) {
+            sumaCuoi += valorInput;
+        }
+      
+      const precioFinalSaldo = tbody[i].getElementsByTagName('td')[9].textContent;
+      sumaSaldo += parseFloat(precioFinalSaldo);
+    }
+    document.getElementById('sumTotal').textContent = sumaTotal.toFixed(2);
+    document.getElementById("impTotal").value=Number(sumaTotal).toFixed(2); 
+    document.getElementById('sumCuoi').textContent = sumaCuoi.toFixed(2);
+    document.getElementById("impCuoi").value=Number(sumaCuoi).toFixed(2);
+    document.getElementById('sumSaldo').textContent = sumaSaldo.toFixed(2);
+    document.getElementById("impSaldo").value=Number(sumaSaldo).toFixed(2);
+}
+
+function eliminarFilaServicios(index) {
+    Swal.fire({
+    title: 'Esta seguro que quiere Eliminar el servicio?',
+    text: dscTitular,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#35B44A',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const table = document.getElementById('tablaServiciosAdded');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            var fila = tbody.rows[index-1];
+            tbody.removeChild(fila);
+            serviciosAgregados.splice(index-1, 1); // Eliminar el valor del array en la posición index
+            if (serviciosAgregados[index-1]['num_linea'] != 0) {
+                $.ajax({
+                    url: '../api/EliminarServicio', 
+                    method: "DELETE",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'cod_prospecto': serviciosAgregados[index-1]['cod_prospecto'],'num_linea':serviciosAgregados[index-1]['num_linea']},
+                    success: function(respuesta){
+                        console.log(respuesta);   
+                    },//success
+                    error(e){
+                        console.log(e.message);
+                    }//error
+                });
+            }
+
+            recalcularSuma();
+        }
+    })//then
+
 }
 //-----------------cambia saldo menos CUOI
 
@@ -993,7 +1158,19 @@ campoCuoi.addEventListener("input",function(){
     }else{
         saldo = total - cuoi;
     }
-    document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
+    //document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
+    if(saldo == 0){
+        document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
+        document.getElementById("codCuotaServ").value = '';
+        document.getElementById("codTasa").setAttribute('disabled','disabled');
+        document.getElementById("codTasa").value = '';
+        document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
+        document.getElementById("fch1erVcto").value = '';
+    }else{
+        document.getElementById("codCuotaServ").removeAttribute('disabled');
+        document.getElementById("codTasa").removeAttribute('disabled');
+        document.getElementById("fch1erVcto").removeAttribute('disabled');
+    }
 });
 
 campoCuoi.addEventListener("change",function(){
@@ -1042,7 +1219,9 @@ addBeneficiario.addEventListener("click",function (){
     nombreCelda.textContent = nombre+' '+apellP+' '+apellM;
 
     var fchNacCelda = nuevaFila.insertCell();
-    fchNacCelda.textContent = fechNac;
+    var fch1 = new Date(fechNac);
+    var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+    fchNacCelda.textContent = fch_nacimiento1;
 
     var parentescoCelda = nuevaFila.insertCell();
     parentescoCelda.textContent = parentesco;

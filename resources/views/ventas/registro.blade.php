@@ -653,7 +653,7 @@
                       <div class="row">
                         <div class="col-md-3 offset-md-9">
                           <div class="form-group form-remanso">
-                            <h5><button class="btn btn-primary BtnverdeRemanso form-remanso" data-bs-toggle="modal"
+                            <h5><button class="btn btn-success BtnverdeRemanso form-remanso" data-bs-toggle="modal"
                               data-bs-target="#ModalServicio" id="btnAddServicio" type="button" style="width: -webkit-fill-available;">Añadir servicio</button></h5>
                           </div>
                         </div>
@@ -661,7 +661,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="table-responsive">
-                            <table class="table table-striped" id="tablaServiciosAdded" style="width:100%">
+                            <table class="table table-striped " id="tablaServiciosAdded" style="width:100%">
                               <thead style="background-color: #181C35;; color: white;">
                                 <tr>
                                   <th style="text-align: center;" width="30%">Servicio</th>
@@ -669,12 +669,24 @@
                                   <th style="text-align: center;" width="10%">Precio Lista</th>
                                   <th style="text-align: center;" width="10%">Precio Venta</th>
                                   <th style="text-align: center;" width="5%" colspan="2">Dscto. %</th>
-                                  <th style="text-align: center;" width="5%">Dscto. Libre</th>
-                                  <th style="text-align: center;" width="10%">Precio Final</th>
+                                  <th style="text-align: center;" width="5%">Dscto. Libre S/.</th>
+                                  <th style="text-align: center;" width="10%">Precio Total</th>
+                                  <th style="text-align: center;" width="10%">Cuota Inicial</th>
+                                  <th style="text-align: center;" width="10%">Saldo</th>
+                                  <th style="text-align: center;" width="10%"></th>
                                 </tr>
                               </thead>
                               <tbody style="text-align: center;">
                               </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td colspan="7" style="text-align: right;"><strong>Total:</strong></td>
+                                  <td id="sumTotal" style="text-align: right;">0.00</td>
+                                  <td id="sumCuoi" style="text-align: right;">0.00</td>
+                                  <td id="sumSaldo" style="text-align: right;">0.00</td>
+                                  <td></td>
+                                </tr>
+                              </tfoot>
                             </table>
                           </div>
                         </div>
@@ -689,10 +701,10 @@
                           <input type="text" class="form-control form-remanso align-right"  name="impTotal" id="impTotal" disabled >
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">CUOI: </label>
+                          <label for="inputText" class="col-form-label">CUOI Total: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" class="form-control form-remanso align-right" name="impCuoi" id="impCuoi" >
+                          <input type="text" class="form-control form-remanso align-right" name="impCuoi" id="impCuoi" disabled>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Saldo: </label>
@@ -731,7 +743,7 @@
                           <label for="inputText"  class="col-form-label">FOMA: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <input type="text" readonly class="form-control form-remanso align-right" name="impFoma" id="impFoma">
+                          <input type="text" disabled class="form-control form-remanso align-right" name="impFoma" id="impFoma">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas FOMA: </label>
@@ -824,15 +836,12 @@
                         <div class="col-md-4 mb-3">
                           <input class="form-control form-remanso form-control-sm" id="RecAdj" type="file">
                         </div>
-                        @if (session('flg_nf')==='SI')
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloRecSep">
                           <label for="inputText" class="col-form-label">Recibo separación: </label>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputRecSep">
                           <input class="form-control form-remanso form-control-sm" id="RecSepAdj" type="file">
-                        </div>
-                        @endif                      
-
+                        </div>    
                       </div>
                     </div>
                   </div>
@@ -855,8 +864,7 @@
 
     <!-- -------------------Modal Beneficiarios------------------------------- -->
 
-  <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel"
-  aria-hidden="true">
+  <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel" aria-hidden="true" data-bs-focus="false">
     <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content form-remanso">
         <div class="modal-header">
@@ -1003,7 +1011,12 @@ var botonNece = document.getElementById("tipoNec");
 botonNece.addEventListener("change",function(){
   //console.log(this.checked);
   if(this.checked == true){
-    document.getElementById("formRegVenta").reset();
+    //document.getElementById("formRegVenta").reset();
+    document.getElementById('tituloRecSep').style.display = "none";
+    document.getElementById('inputRecSep').style.display = "none";
+  }else{
+    document.getElementById('tituloRecSep').style.display = "block";
+    document.getElementById('inputRecSep').style.display = "block";
   }
 });
 
@@ -1255,14 +1268,12 @@ CuotaInicial.addEventListener("input", function(event) {
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
 
-  console.log(num_cuota);
-  console.log(num_interes);
-
-  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
+  if(num_cuota=='' || num_cuota=='0' || num_cuota==0 || !num_cuota)
   {
     num_cuota=1;
   }
-  
+  console.log('num_cuota',num_cuota);
+  console.log('num_interes',num_interes);
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
@@ -1315,14 +1326,13 @@ tipoTasa.addEventListener("change", function(event) {
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
 
-  console.log(num_cuota);
-  console.log(num_interes);
-
-  if(num_cuota=='' || num_cuota=='0' || num_cuota==0)
+  if(num_cuota=='' || num_cuota=='0' || num_cuota==0 || !num_cuota)
   {
     num_cuota=1;
   }
-  
+  console.log('num_cuota',num_cuota);
+  console.log('num_interes',num_interes);
+
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
@@ -1758,24 +1768,27 @@ $( document ).ready(function () {
             dataType: 'json',
             data:{'cod_localidad':'LC001','cod_prospecto':cod_prospecto},
             success: function(resultado){
-              //console.log(resultado["response"][0]);
-              var datos = {
-                "cod_servicio":resultado["response"][0]["cod_servicio"],
-                "dsc_servicio":resultado["response"][0]["dsc_servicio"],
-                "flg_contado":"NO",
-                "cod_moneda":"SOL",
-                "imp_precio":resultado["response"][0]["imp_precio_venta"],
-                "imp_precio_lista":resultado["response"][0]["imp_precio_lista"],
-                "imp_precio_cuoi":resultado["response"][0]["imp_cui"],
-                "imp_precio_foma":resultado["response"][0]["imp_foma"],
-                "flg_ds_compartido":"NO",
-                "imp_min_cuoi":resultado["response"][0]["imp_cui"],
-                "por_descuento":resultado["response"][0]["por_descuento"],
-                "num_ctd":resultado["response"][0]["num_ctd"],
-                "imp_descuento_adicional":resultado["response"][0]["imp_descuento_adicional"]
-              }
-              muestraserviciosFormulario(datos);
-               
+              console.log(resultado["response"]);
+              resultado['response'].forEach(function(servicio){
+                var datos = {
+                  "cod_prospecto":servicio["cod_prospecto"],
+                  "cod_servicio":servicio["cod_servicio"],
+                  "dsc_servicio":servicio["dsc_servicio"],
+                  "flg_contado":"NO",
+                  "cod_moneda":"SOL",
+                  "imp_precio":servicio["imp_precio_venta"],
+                  "imp_precio_lista":servicio["imp_precio_lista"],
+                  "imp_precio_cuoi":servicio["imp_cui"],
+                  "imp_precio_foma":servicio["imp_foma"],
+                  "flg_ds_compartido":"NO",
+                  "imp_min_cuoi":servicio["imp_cui"],
+                  "por_descuento":servicio["por_descuento"],
+                  "num_ctd":servicio["num_ctd"],
+                  "imp_descuento_adicional":servicio["imp_descuento_adicional"],
+                  "num_linea":servicio["num_linea"]
+                }
+                muestraserviciosFormulario(datos);
+              });
             }
           });
 
@@ -1790,9 +1803,8 @@ $( document ).ready(function () {
           document.getElementById("imp_cuota").value=result["response"]["imp_cuota"];
           var auxFecha = result["response"]["fch_1er_vencimiento"].split('T');
           document.getElementById("fch1erVcto").value=auxFecha[0];
-          var codTasa=document.getElementById("codTasa") ;
-          codTasa.value=result["response"]["cod_tasa"];
-          
+          document.getElementById("codTasa").value=result["response"]["cod_tasa"];
+          document.getElementById("obsvRegVentas").value = result["response"]["dsc_observaciones"];
           if( document.getElementById("fch1erVcto").value=='1900-01-01'){document.getElementById("fch1erVcto").value=lastDayOfMonthStr;}
           
 
@@ -1821,7 +1833,7 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
                 '<td>'+fch_nacimiento1+'</td>'+
                 '<td>'+word['dsc_parentesco']+'</td>'+
-                '<td>'+word['dsc_sexo']+'</td>'+
+                '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
                 '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
@@ -1835,6 +1847,9 @@ $( document ).ready(function () {
       if (flg_administrador == 'SI') {         
         document.getElementById("tipoNec").bootstrapToggle('enabled');
         document.getElementById("AprobarVenta").bootstrapToggle('enabled');
+      }else if('@php echo(session('flg_sac')) @endphp' == 'SI'){
+        document.getElementById("tipoNec").bootstrapToggle('enabled');
+        document.getElementById("AprobarVenta").bootstrapToggle('readonly');
       }else{
         document.getElementById("tipoNec").bootstrapToggle('readonly');
         document.getElementById("AprobarVenta").bootstrapToggle('readonly');
@@ -1884,9 +1899,9 @@ boton.addEventListener("click",function(){
     }else{
       flgJuridico2 = 'NO';
     }
-
-     
-
+    var inputReg = document.getElementById("nivelRegVnta").value;
+    var numNivel = (!inputReg) ? 0 :  inputReg;
+    console.log('numNivel',inputReg);
     var prospecto = {
     'cod_prospecto': cod_prospecto,
     'dsc_prospecto': dscTitular,
@@ -1977,11 +1992,13 @@ boton.addEventListener("click",function(){
     'num_ctd': document.getElementById("ctdServ").value,
     'imp_precio_lista': document.getElementById("impPrecioLista").value,
     'imp_precio_venta': document.getElementById("impPrecioLista").value,
+
     'imp_dscto': document.getElementById("impDscto").value,
     'imp_total': document.getElementById("impTotal").value,
     'imp_foma': document.getElementById("impFoma").value,
     'imp_cui': document.getElementById("impCuoi").value,
     'imp_saldo': document.getElementById("impSaldo").value,
+
     'cod_localidad_base': '',
     'cod_contrato_base': document.getElementById("cttoBase").value,
     'num_servicio_base': document.getElementById("numServBase").value,
@@ -1989,8 +2006,10 @@ boton.addEventListener("click",function(){
     'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
     'cod_tasa': document.getElementById("codTasa").value,
     'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
+    
     'por_descuento': document.getElementById("pordescuento").value,
-    'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value,
+    'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value, //validar como string
+    
     'imp_cui_minimo':document.getElementById("impMinCuoi").value
   };
 
@@ -2016,6 +2035,7 @@ boton.addEventListener("click",function(){
           }
           filasArray.forEach(function (fila) {
             fila['cod_prospecto'] = cod_prospecto;
+            
           });
           $.ajax({
               url: '../api/guardaBeneficiario', 
@@ -2031,20 +2051,33 @@ boton.addEventListener("click",function(){
               }//error
           });
 
-          servicioArray['cod_prospecto'] = cod_prospecto;
+          serviciosAgregados.forEach(function (fila) {
 
-          $.ajax({
+            fila['cod_prospecto'] = cod_prospecto;
+            fila['cod_contrato_base'] = document.getElementById("cttoBase").value;
+            fila['num_servicio_base'] = document.getElementById("numServBase").value;
+            fila['cod_cuota_foma'] = document.getElementById("codCuotaFoma").value;
+            fila['cod_cuota_servicio'] = document.getElementById("codCuotaServ").value;
+            fila['cod_tasa'] = document.getElementById("codTasa").value;
+            fila['fch_1er_vencimiento'] = document.getElementById("fch1erVcto").value;
+            fila['imp_total'] = document.getElementById("impTotal").value;
+            fila['imp_foma'] = document.getElementById("impFoma").value;
+            
+            console.log(serviciosAgregados);
+
+            $.ajax({
               url: '../api/InsertarProspectoServicio', 
               method: "PUT",
               crossDomain: true,
               dataType: 'json',
-              data:{'datosServicios':servicioArray},
+              data:{'datosServicios':fila},
               success: function(respuesta){
-                  console.log(respuesta);   
+                console.log(respuesta);   
               },//success
               error(e){
-                  console.log(e.message);
+                console.log(e.message);
               }//error
+            });
           });
 
           Swal.fire({

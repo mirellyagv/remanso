@@ -40,7 +40,7 @@
                     <label for="inputText" class="col-form-label">Estado: </label>
                   </div>
                   <div class="col-md-2 mb-3">
-                    <select name="EstDoc" id="EstDoc" class="form-control form-remanso">
+                    <select name="EstDoc" id="EstDoc" class="form-select form-remanso">
                       <option value="0">Todos</option>
                       <option value="ACT">ACTIVO</option>
                       <option value="PRE">PREVENTA</option>
@@ -62,7 +62,7 @@
                     <label for="inputText" class="col-form-label">Documento identidad: </label>
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI' || session('flg_sac')==='SI')
                       col-md-2 mb-3
                     @else
                       col-md-3 mb-3
@@ -71,7 +71,7 @@
                     <input type="text" class="form-control form-remanso align-right" name="numDoc" id="numDoc">
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI' || session('flg_sac')==='SI')
                       col-md-1 mb-3
                     @else
                       col-md-2 mb-3
@@ -80,7 +80,7 @@
                     <label for="inputText" class="col-form-label">Prospecto: </label>
                   </div>
                   <div class="
-                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI')
+                    @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI' || session('flg_sac')==='SI')
                       col-md-2 mb-3
                     @else
                       col-md-3 mb-3
@@ -88,8 +88,7 @@
                     ">
                     <input type="text" class="form-control form-remanso" name="nombreProspecto" id="nombreProspecto">
                   </div>
-                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' ||
-                  session('flg_administrador')==='SI')
+                  @if (session('flg_jefe')==='SI' || session('flg_supervisor')==='SI' || session('flg_administrador')==='SI' || session('flg_sac')==='SI')
                   <div class="col-md-1 mb-3">
                     <label for="inputText" class="col-form-label">Vendedor: </label>
                   </div>
@@ -185,11 +184,24 @@ var cod_tipo_necesidad= '';
 $(document).ready(function () {
   flg_ni= '@php echo(session('flg_ni')) @endphp';
   flg_nf= '@php echo(session('flg_nf')) @endphp';
-
-  if(flg_ni=='SI' && flg_nf=='SI'){cod_tipo_necesidad='%';}
-  else if(flg_ni=='NO' && flg_nf=='NO'){cod_tipo_necesidad='%';}
-  else if(flg_ni=='SI' && flg_nf=='NO'){cod_tipo_necesidad='NI';}
-  else if(flg_ni=='NO' && flg_nf=='SI'){cod_tipo_necesidad='NF';}
+  flg_sac= '@php echo(session('flg_sac')) @endphp';
+  flg_admin = '@php echo(session('flg_administrador')) @endphp';
+  
+  if(flg_ni=='SI' && flg_nf=='SI'){
+    cod_tipo_necesidad='%';
+  } else if(flg_ni=='NO' && flg_nf=='NO' && (flg_sac=='SI' || flg_admin == 'SI')){
+    cod_tipo_necesidad='%';
+    document.getElementById("tituloPag").innerText = "prospectos/ventas";
+  } else if(flg_ni=='NO' && flg_nf=='NO' && flg_sac=='NO'){
+    cod_tipo_necesidad='%';
+    document.getElementById("tituloPag").innerText = "ventas";
+  } else if(flg_ni=='SI' && flg_nf=='NO'){
+    cod_tipo_necesidad='NI';
+    document.getElementById("tituloPag").innerText = "ventas";
+  } else if(flg_ni=='NO' && flg_nf=='SI'){
+    cod_tipo_necesidad='NF';
+    document.getElementById("tituloPag").innerText = "prospectos";
+  }
 
   var currentDate = new Date();
 
@@ -234,7 +246,7 @@ $(document).ready(function () {
     dataType: 'json',
     data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad,'dscVendedor':'%'},
     success: function(respuesta){
-       console.log('parado',respuesta)
+       //console.log('parado',respuesta)
         fila='';
         respuesta['response'].forEach(function(word){
           
@@ -251,21 +263,35 @@ $(document).ready(function () {
         var dia = today.toLocaleDateString('es-ES');
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
+        color = '';
+        var dscObservado = '';
         if(estado == 'ACTIVO'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           info='Gestión';
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
-        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
+        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' ){
+          if(estado == 'VENTA'){
+            color = 'style="color:mediumseagreen;"';
+          }else if(estado == 'PRE-VENTA'){
+            color = 'style="color:goldenrod;"';
+          }
           ref = ''; 
           info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+        }else if(estado == 'OBSERVADO' ){
+          ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
+          ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+          info = '';
+          color = 'style="color:indianred;"';
+          observacion = "'"+word['cod_prospecto']+"'";
+          dscObservado = '<br><span class="bi bi-exclamation-triangle" style="font-size:1.5em;" onclick="alertaObservacion('+observacion+')"></span>';
         }else{
           ref='';
           info = '';
           ref2 = '';
         }
           fila += '<tr><td>'+
-            '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI')'+
+            '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI' || session('flg_sac')==='SI')'+
               '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
               '@endif'+
               '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Registrar venta"><span class="bi bi-cash-stack"></span></a>'+
@@ -279,7 +305,7 @@ $(document).ready(function () {
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td style="text-align: left;">'+word['dsc_consejero']+'</td>'+
-              '<td>'+word['dsc_estado']+'</td>'+
+              '<td '+color+'><b>'+word['dsc_estado']+dscObservado+'</b></td>'+
             '</tr>';
 
         });
@@ -307,6 +333,33 @@ $(document).ready(function () {
     }//error
   }); //ajax     
 });//ready
+
+function alertaObservacion(cod_prospecto) {
+
+  $.ajax({
+    type: "GET",
+    url: '../api/ListarProspectoContacto',
+    dataType: 'json',
+    data:{'cod_prospecto':cod_prospecto},
+    success: function(result){ 
+      console.log(result)
+      var mensajeObsv = '';
+      result['response'].forEach(function(word){
+        var auxFecha = new Date('190-01-01');
+        if(new Date(word['fch_contacto']) > auxFecha){
+          auxFecha = new Date(word['fch_contacto']);
+          mensajeObsv = word['dsc_observaciones'];
+        }
+      });
+      Swal.fire({
+        title:'Observación',
+        text: mensajeObsv,
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      }) 
+    }
+  });
+}
 
 function cambiarEdoP(codigo,nombre,estado) {
   if (estado == 'TRUNCO' || estado == 'CADUCO') {
@@ -385,17 +438,29 @@ function BuscarProspecto() {
         
         var fch1 = new Date(word['fch_registro']);
         var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
-
-
+        var dscObservado = '';
         var estado = word['dsc_estado'];
         estado1 = "'"+estado+"'";
-        if(estado == 'ACTIVO' ){
+        color = '';
+        if(estado == 'ACTIVO'){
           ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
-        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA' || estado == 'OBSERVADO'){
+        }else if(estado == 'VENTA' || estado == 'CIERRE' || estado == 'PRE-VENTA'){
+          if(estado == 'VENTA'){
+            color = 'style="color:mediumseagreen;"';
+          }else if(estado == 'PRE-VENTA'){
+            color = 'style="color:goldenrod;"';
+          }
           ref = ''; 
           info = 'Este prospecto esta en un estado avanzado, solo se puede modificar registros con estado ACTIVOS.'
           ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+        }else if(estado == 'OBSERVADO'){
+          ref = 'href="{{route('prospectos.actualizar')}}?CodProspecto='+word['cod_prospecto']+'"'; 
+          ref2= 'href="{{route('ventas.registro')}}?CodProspecto='+word['cod_prospecto']+'"';
+          info = '';
+          color = 'style="color:indianred;"';
+          observacion = "'"+word['cod_prospecto']+"'";
+          dscObservado = '<br><span class="bi bi-exclamation-triangle" style="font-size:1.5em;"  onclick="alertaObservacion('+observacion+')"></span>';
         }else{
           ref='';
           ref2 = '';
@@ -403,7 +468,7 @@ function BuscarProspecto() {
         // obtener la fecha de hoy en formato `MM/DD/YYYY`
         var dia = today.toLocaleDateString('es-ES');
           fila += '<tr><td>'+
-                '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI')'+
+                '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI' || session('flg_sac')==='SI')'+
                 '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
                 '@endif'+
                 '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
@@ -417,7 +482,7 @@ function BuscarProspecto() {
               '<td>'+word['num_dias']+'</td>'+
               '<td>'+word['dsc_origen']+'</td>'+
               '<td style="text-align: left;">'+word['dsc_consejero']+'</td>'+
-              '<td>'+word['dsc_estado']+'</td>'+
+              '<td '+color+'><b>'+word['dsc_estado']+dscObservado+'</b></td>'+
             '</tr>';
 
         });
