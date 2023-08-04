@@ -121,5 +121,5 @@ Route::get('api/ObtenerProspecto', [APIController::class, 'ObtenerProspecto'])->
 Route::get('api/ListarProspectoBeneficiario', [APIController::class, 'ListarProspectoBeneficiario'])->name('api.ListarProspectoBeneficiario');
 Route::get('api/ListarProspectoContacto', [APIController::class, 'ListarProspectoContacto'])->name('api.ListarProspectoContacto');
 Route::get('api/ObtenerContratoServicioPrincipal', [APIController::class, 'ObtenerContratoServicioPrincipal'])->name('api.ObtenerContratoServicioPrincipal');
-Route::delete('api/EliminarServicio', [APIController::class, 'EliminarServicio'])->name('api.EliminarServicio');
+Route::get('api/ObtenerContratoServicioPrincipal', [APIController::class, 'ObtenerContratoServicioPrincipal'])->name('api.ObtenerContratoServicioPrincipal');
 

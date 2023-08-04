@@ -8,11 +8,7 @@
         </a>
       </li>
       <br><br>
-      <li class="nav-item">
-        <a href="{{route('home')}}">
-          <span class="item-menu">Prospectos por caducar</span>
-        </a>
-    </li><br>
+ 
       
       @if (session('flg_administrador')==='SI')
       <li class="nav-item">
@@ -22,7 +18,7 @@
       </li><br>
       <li class="nav-item">
         <a href="{{route('prospectos.listado')}}">
-          <span class="item-menu">Listado de prospectos / venta</span>
+          <span class="item-menu">Consulta de prospectos</span>
         </a>
       </li><br>
       <li class="nav-item">
@@ -81,11 +77,7 @@
       </li><br>
       <li class="nav-item">
         <a href="{{route('prospectos.listado')}}">
-          @if(session('flg_sac') == 'SI')
-            <span class="item-menu">Listado de prospectos / venta</span>
-          @else
-            <span class="item-menu">Consulta de prospectos</span>
-          @endif
+          <span class="item-menu">Consulta de prospectos</span>
         </a>
       </li><br>
       <li class="nav-item">
@@ -109,7 +101,7 @@
       </li><br>
       <li class="nav-item">
         <a href="{{route('prospectos.listado')}}">
-          <span class="item-menu">Listado de prospectos / venta</span>
+          <span class="item-menu">Consulta de prospectos</span>
         </a>
       </li><br>
       @endif

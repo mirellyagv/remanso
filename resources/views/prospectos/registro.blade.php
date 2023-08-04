@@ -475,7 +475,8 @@
 
   <!-- -------------------Modal Beneficiarios------------------------------- -->
 
-  <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel" aria-hidden="true" data-bs-focus="false">
+  <div class="modal fade" id="ModalBeneficiarios" tabindex="-1" aria-labelledby="ModalBeneficiariosLabel"
+    aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content form-remanso">
         <div class="modal-header">

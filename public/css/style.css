@@ -1569,8 +1569,3 @@ Acordions
     color: #181C35;
     font-family: "Poppins", sans-serif;
   }
-
-  .enlace_desactivado {
-    pointer-events: none;
-    cursor: default;
-  }

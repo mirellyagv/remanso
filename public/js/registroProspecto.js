@@ -410,9 +410,7 @@ addBeneficiario.addEventListener("click",function (){
     nombreCelda.textContent = nombre+' '+apellP+' '+apellM;
 
     var fchNacCelda = nuevaFila.insertCell();
-    var fch1 = new Date(fechNac);
-    var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
-    fchNacCelda.textContent = fch_nacimiento1;
+    fchNacCelda.textContent = fechNac;
 
     var parentescoCelda = nuevaFila.insertCell();
     parentescoCelda.textContent = parentesco;

@@ -704,30 +704,4 @@ class APIController extends Controller
         }
     }
 
-    public function EliminarServicio(Request $request)
-    {
-        $client = new Client();
-        $cod_prospecto = $request['cod_prospecto'];
-        $num_linea = $request['num_linea'];
-
-        try {
-
-            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoServicio/LC001/'.$cod_prospecto.'/'.$num_linea);
-            $promise = $client->sendAsync($request)->then(function ($response) {
-                echo  $response->getBody();
-                $code = $response->getStatusCode(); 
-                $reason = $response->getReasonPhrase(); 
-
-                return response()->json(['status' => $code, 'mensaje' => $reason]);
-
-            });
-            
-            $promise->wait();
-
-        } catch (\Exception $e) {
-            // Manejo de errores en caso de que la petición falle
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
 }
