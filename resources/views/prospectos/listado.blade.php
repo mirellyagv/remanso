@@ -7,7 +7,7 @@
   </style>
   <main class="main" id="main">
     <div class="pagetitle">
-      <h1>Listado de  <span id="tituloPag"></span></h1>
+      <h1>Listado de prospectos</h1>
     </div>
     <div class="section dashboard">
       <div class="card">
