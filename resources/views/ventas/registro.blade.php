@@ -113,7 +113,7 @@
                             <label for="inputText" class="col-form-label">(*) Codigo Prospecto: </label>
                           </div>
                           <div class="col-md-3 mb-3" id="divCodProspecto" style="display: none;">
-                            <input type="text" class="form-control form-remanso letras-only" name="inputCodProspecto" id="inputCodProspecto">
+                            <input type="text" disabled class="form-control form-remanso letras-only" name="inputCodProspecto" id="inputCodProspecto">
                           </div>
                         </div>
                       </div>
