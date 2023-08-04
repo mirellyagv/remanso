@@ -495,6 +495,19 @@ codTipoProg.addEventListener("change",function(){
 
     }
 
+    //----------------borra tabla servicios-------------------
+
+    var tabla = document.getElementById('tablaServiciosAdded');
+    var tbody = tabla.getElementsByTagName('tbody')[0];
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
+
+    //-----------------borra array para guardar servicios------
+
+    serviciosAgregados = [];
+    recalcularSuma();
+
     //-----------------muestra select Tipo Servicio-----------
     var options = document.querySelectorAll('#tipoServicio option');
     options.forEach(o => o.remove());
