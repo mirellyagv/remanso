@@ -1182,18 +1182,16 @@ function eliminarFilaServicios(index) {
     confirmButtonText: 'Aceptar'
     }).then((result) => {
         if (result.isConfirmed) {
-            const table = document.getElementById('tablaServiciosAdded');
-            const tbody = table.getElementsByTagName('tbody')[0];
-            var fila = tbody.rows[index-1];
-            tbody.removeChild(fila);
-            serviciosAgregados.splice(index-1, 1); // Eliminar el valor del array en la posición index
+           
             if (serviciosAgregados[index-1]['num_linea'] != 0) {
+                codProsp = serviciosAgregados[index-1]['cod_prospecto'];
+                numlinea = serviciosAgregados[index-1]['num_linea'];
                 $.ajax({
                     url: '../api/EliminarServicio', 
                     method: "DELETE",
                     crossDomain: true,
                     dataType: 'json',
-                    data:{'cod_prospecto': serviciosAgregados[index-1]['cod_prospecto'],'num_linea':serviciosAgregados[index-1]['num_linea']},
+                    data:{'cod_prospecto': codProsp,'num_linea':numlinea},
                     success: function(respuesta){
                         console.log(respuesta);   
                     },//success
@@ -1202,6 +1200,12 @@ function eliminarFilaServicios(index) {
                     }//error
                 });
             }
+
+            const table = document.getElementById('tablaServiciosAdded');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            var fila = tbody.rows[index-1];
+            tbody.removeChild(fila);
+            serviciosAgregados.splice(index-1, 1); // Eliminar el valor del array en la posición index
 
             recalcularSuma();
         }

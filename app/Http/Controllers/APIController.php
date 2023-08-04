@@ -712,7 +712,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoServicio/LC001/'.$cod_prospecto.'/'.$num_linea);
+            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoServicio/20396900719/LC001/'.$cod_prospecto.'/'.$num_linea);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
