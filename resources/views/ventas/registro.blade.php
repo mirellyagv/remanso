@@ -671,7 +671,7 @@
                                   <th style="text-align: center;" width="5%" colspan="2">Dscto. %</th>
                                   <th style="text-align: center;" width="5%">Dscto. Libre S/.</th>
                                   <th style="text-align: center;" width="10%">Precio Total</th>
-                                  <th style="text-align: center;" width="10%">CUI mínima</th>
+                                  <th style="text-align: center;" width="10%">Cuota Inicial</th>
                                   <th style="text-align: center;" width="10%">Saldo</th>
                                   <th style="text-align: center;" width="10%"></th>
                                 </tr>
