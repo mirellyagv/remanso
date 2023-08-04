@@ -908,7 +908,7 @@ codcampo.addEventListener("click",function(){
 
 // Variable global para almacenar los servicios agregados
 var serviciosAgregados = [];
-var fomaTotal = Number(0);
+var fomaTotal = parseInt(0);
 
 function muestraserviciosFormulario(datos) {
     
