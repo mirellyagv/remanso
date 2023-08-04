@@ -1175,7 +1175,6 @@ function recalcularSuma() {
 function eliminarFilaServicios(index) {
     Swal.fire({
     title: 'Esta seguro que quiere Eliminar el servicio?',
-    text: dscTitular,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#35B44A',
