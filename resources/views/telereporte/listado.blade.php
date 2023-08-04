@@ -147,7 +147,7 @@
 
 <script type="text/javascript">
 
-
+var cod_trabajador='';
 window.onload= function() {
 
 var currentDate = new Date();
@@ -157,6 +157,8 @@ var lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() 
 
 var firstDayOfMonthStr = firstDayOfMonth.toISOString().split('T')[0]; // Formatear las fechas como cadenas en formato "YYYY-MM-DD"
 var lastDayOfMonthStr = lastDayOfMonth.toISOString().split('T')[0];
+
+cod_trabajador = '@php echo(session('cod_trabajador')) @endphp';
 
 // Configurar Flatpickr para fchIni
 flatpickr("#fchIni", {
@@ -250,12 +252,27 @@ function BuscarTelereporte() {
         var num_reporte= word['num_reporte'];
         var ref = '';
         ref = 'href="{{route('telereporte.actualizar')}}?Cod_reporte='+word['num_reporte']+'"'; 
-        
-           var boton_estado='<a class="btn btn-success BtnredRemanso form-remanso" onclick="AnularTelereporte('+num_reporte+');" title="Anular"><span class="bi bi-trash"></span></a>';
-           if(word['flg_anulado']=="SI"){var boton_estado='<a class="btn btn-success BtnrojoRemanso form-remanso" onclick="ActivarTelereporte('+num_reporte+');" title="Activar"><span class="bi bi-check"></span></a>';}
+           var boton_modificar='';
+           var boton_estado='';
+           if(word['flg_anulado']=="SI" && word['cod_vendedor']==cod_trabajador)
+           { 
+            boton_estado='<a class="btn btn-success BtnrojoRemanso form-remanso" onclick="ActivarTelereporte('+num_reporte+');" title="Activar"><span class="bi bi-check"></span></a>';
+           }
+           else if(word['flg_anulado']=="NO" && word['cod_vendedor']==cod_trabajador)
+           { 
+            boton_estado='<a class="btn btn-success BtnredRemanso form-remanso" onclick="AnularTelereporte('+num_reporte+');" title="Anular"><span class="bi bi-trash"></span></a>';
+           }
+
+           if(word['cod_vendedor']==cod_trabajador)
+           { 
+            boton_modificar='<a class="btn btn-secondary form-remanso" '+ref+' title="Modificar"><span class="bi bi-pencil" ></span></a>';
+           }else if(word['cod_vendedor']!=cod_trabajador)
+           {
+            boton_modificar='<a class="btn btn-secondary form-remanso" '+ref+' title="Ver Telereporte"><span class="bi bi-search" ></span></a>';
+           }
 
           fila += '<tr><td>'+
-              '<a class="btn btn-secondary form-remanso" '+ref+' title="Modificar"><span class="bi bi-pencil" ></span></a>'+
+              boton_modificar+
               boton_estado+
               '<td>'+word['num_reporte']+'</td>'+
               '<td>'+fch_registro1+'</td>'+

@@ -622,14 +622,6 @@
                         </div>
 
                         <div class="col-md-1 mb-3">
-                          <label for="inputText" class="col-form-label">Nivel: </label>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <select name="nivelRegVnta"  id="nivelRegVnta" class="form-select form-remanso" disabled>
-                          </select>
-                        </div>
-
-                        <div class="col-md-1 mb-3">
                           <label for="inputText" class="col-form-label" >Tipo espacio: </label>
                         </div>
                         <div class="col-md-3 mb-3">
@@ -726,7 +718,6 @@
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
                           <input type="hidden" name="ctdServ" id="ctdServ">
                           <input type="hidden" name="impMinCuoi" id="impMinCuoi" value = 0>
-                          <input type="hidden" name="esCompartido" id="esCompartido" value = 'NO'>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
@@ -1286,11 +1277,11 @@ CuotaInicial.addEventListener("input", function(event) {
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
-    document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }else
   {
     imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
-    document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }
  
 });
@@ -1313,11 +1304,11 @@ tipoCuota.addEventListener("change", function(event) {
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
-    document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }else
   {
     imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
-    document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }
  
 });
@@ -1345,11 +1336,11 @@ tipoTasa.addEventListener("change", function(event) {
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
-    document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }else
   {
     imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
-    document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
+    document.getElementById("imp_cuota").value= imp_cuota.toFixed(2);
   }
  
 });
@@ -1513,7 +1504,7 @@ impCuoiInput.addEventListener("input", function(event) {
   inputValue = inputValue.replace(/[^0-9.]/g, '');
   
   // Actualizar el valor del campo
-  impCuoiInput.value = Number(inputValue).toFixed(2);
+  impCuoiInput.value = inputValue.toFixed(2);
 });
 
 var impFomaInput = document.getElementById("impFoma");
@@ -1525,7 +1516,7 @@ impFomaInput.addEventListener("input", function(event) {
   inputValue = inputValue.replace(/[^0-9.]/g, '');
   
   // Actualizar el valor del campo
-  impFomaInput.value = Number(inputValue).toFixed(2);
+  impFomaInput.value = inputValue.toFixed(2);
 });
 
 
@@ -1639,7 +1630,6 @@ $( document ).ready(function () {
             
             document.getElementById("AprobarVenta").bootstrapToggle('on');
             document.getElementById("AprobarVenta").bootstrapToggle('readonly');
-            document.getElementById("tipoNec").bootstrapToggle('readonly');
             document.getElementById("registrarVenta").disabled  = true;
             
           }else{
@@ -1746,7 +1736,6 @@ $( document ).ready(function () {
           var ejeX=document.getElementById("ejeX");
           var ejeY=document.getElementById("ejeY");
           var espacio=document.getElementById("espacio");
-          var nivel=document.getElementById("nivelRegVnta");
           setTimeout(function() { 
             tipoPlataf.value=result["response"]["cod_tipo_plataforma"];
             tipoPlataf.dispatchEvent(changeEvent);
@@ -1765,11 +1754,7 @@ $( document ).ready(function () {
                     setTimeout(function() { 
                       espacio.value=result["response"]["cod_espacio"];
                       espacio.dispatchEvent(changeEvent);
-                      setTimeout(function() { 
-                        nivel.value=result["response"]["num_nivel"];
-                        nivel.dispatchEvent(changeEvent);
-                        ModoVista();
-                      }, 2000);
+                      ModoVista();
                     }, 2000);
                   }, 2000);
                 }, 2000);
@@ -1986,7 +1971,7 @@ boton.addEventListener("click",function(){
     'cod_eje_vertical': document.getElementById("ejeY").value,
     'cod_espacio': document.getElementById("espacio").value,
     'cod_tipo_espacio': document.getElementById("tipoEspacio").value,
-    'num_nivel': numNivel,
+    'num_nivel': 0,
     'cod_tipo_necesidad': tipo_nec,
     'num_operacion': document.getElementById("numOpeRegVta").value,
     'cod_tipo_comprobante':document.getElementById("compVtaRegVta").value,

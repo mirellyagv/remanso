@@ -7,7 +7,7 @@
   </style>
   <main class="main" id="main">
     <div class="pagetitle">
-      <h1>Listado de <span id="tituloPag"></span></h1>
+      <h1>Listado de prospectos</h1>
     </div>
     <div class="section dashboard">
       <div class="card">
@@ -294,7 +294,7 @@ $(document).ready(function () {
             '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI' || session('flg_sac')==='SI')'+
               '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
               '@endif'+
-              '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Gestionar venta"><span class="bi bi-cash-stack"></span></a>'+
+              '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+' title="Registrar venta"><span class="bi bi-cash-stack"></span></a>'+
                   '@if (session('flg_jefe')==='SI' ||  session('flg_administrador')==='SI')'+
                   '<button @if('+estado+' != 'TRUNCO' || '+estado+' != 'CADUCO') disabled @endif class="btn btn-warning form-remanso" onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" title="Activar Prospecto"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
               '<td>'+word['cod_prospecto']+'</td>'+
@@ -471,9 +471,9 @@ function BuscarProspecto() {
                 '@if (session('flg_nf')==='SI' ||  session('flg_administrador')==='SI' || session('flg_sac')==='SI')'+
                 '<a class="btn btn-secondary form-remanso" '+ref+' title="'+info+'"><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>'+
                 '@endif'+
-                '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestionar venta"></span></a>'+
+                '<a class="btn btn-success BtnverdeRemanso form-remanso" '+ref2+'><span class="bi bi-cash-stack" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"></span></a>'+
                 '@if (session('flg_jefe')==='SI' ||  session('flg_administrador')==='SI')'+
-                '<button class="btn btn-warning form-remanso" @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif  onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestionar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
+                '<button class="btn btn-warning form-remanso" @if('+estado+' === 'VENTA' || '+estado+' === 'ACTIVO') disabled @endif  onclick="cambiarEdoP('+codProsp+','+dscProsp+','+estado1+');" id="cambiaEdo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Registrar venta"><span class="bi bi-bookmark-star"></span></button>@endif</td>'+
               '<td>'+word['cod_prospecto']+'</td>'+
               '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
               '<td style="text-align: left;">'+word['dsc_prospecto']+'</td>'+
