@@ -495,19 +495,6 @@ codTipoProg.addEventListener("change",function(){
 
     }
 
-    //----------------borra tabla servicios-------------------
-
-    var tabla = document.getElementById('tablaServiciosAdded');
-    var tbody = tabla.getElementsByTagName('tbody')[0];
-    while (tbody.firstChild) {
-        tbody.removeChild(tbody.firstChild);
-    }
-
-    //-----------------borra array para guardar servicios------
-
-    serviciosAgregados = [];
-    recalcularSuma();
-
     //-----------------muestra select Tipo Servicio-----------
     var options = document.querySelectorAll('#tipoServicio option');
     options.forEach(o => o.remove());
@@ -1167,7 +1154,10 @@ function recalcularSuma() {
     document.getElementById('sumTotal').textContent = sumaTotal.toFixed(2);
     document.getElementById("impTotal").value=Number(sumaTotal).toFixed(2); 
     document.getElementById('sumCuoi').textContent = sumaCuoi.toFixed(2);
-    document.getElementById("impCuoi").value=Number(sumaCuoi).toFixed(2);
+    var CuotaInicialInput = document.getElementById("impCuoi");
+    CuotaInicialInput.value=Number(sumaCuoi).toFixed(2);
+    var changeEvent = new Event('input');
+    CuotaInicialInput.dispatchEvent(changeEvent);
     document.getElementById('sumSaldo').textContent = sumaSaldo.toFixed(2);
     document.getElementById("impSaldo").value=Number(sumaSaldo).toFixed(2);
 }
@@ -1406,5 +1396,19 @@ selectComprobante.addEventListener("change",function (){
         document.getElementById("razSocCompVtaRegVta").removeAttribute('disabled');
     }
 });
+
+function limpiaTablaServicio() {
+    //----------------borra tabla servicios-------------------
+    var tabla = document.getElementById('tablaServiciosAdded');
+    var tbody = tabla.getElementsByTagName('tbody')[0];
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
+
+    //-----------------borra array para guardar servicios------
+    serviciosAgregados = [];
+    recalcularSuma();
+
+}
 
 
