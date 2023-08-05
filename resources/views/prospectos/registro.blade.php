@@ -71,7 +71,7 @@
                             </div> --}}
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="inputText" class="col-form-label">Apellido Materno: </label>
+                            <label for="inputText" class="col-form-label">(*) Apellido Materno: </label>
                           </div>
                           <div class="col-md-3 mb-3">
                             <input type="text" class="form-control form-remanso letras-only" name="apellMProsp" id="apellMProsp"
@@ -94,7 +94,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Dirección:</label>
+                          <label for="inputText" class="col-form-label">(*) Dirección:</label>
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="direccPros" id="direccPros" required>
