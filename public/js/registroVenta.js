@@ -1113,7 +1113,7 @@ function muestraserviciosFormulario(datos) {
         'imp_precio_venta': datos['imp_precio'],
         'imp_dscto': (datos['imp_dscto']) ? datos['imp_dscto'] : 0,
         'imp_total': (datos['imp_total']) ? datos['imp_total'] : 0,
-        'imp_foma': (datos['imp_foma']) ? datos['imp_foma'] : 0,
+        'imp_foma': (datos['imp_precio_foma']) ? datos['imp_precio_foma'] : 0,
         'imp_cui': datos['imp_precio_cuoi'],
         'imp_saldo': datos['imp_precio'],
         'cod_localidad_base':  '',
