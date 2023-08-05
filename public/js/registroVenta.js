@@ -895,7 +895,7 @@ codcampo.addEventListener("click",function(){
 
 // Variable global para almacenar los servicios agregados
 var serviciosAgregados = [];
-var fomaTotal = parseInt(0);
+var fomaTotal = 0;
 
 function muestraserviciosFormulario(datos) {
     
@@ -1040,7 +1040,7 @@ function muestraserviciosFormulario(datos) {
     
     //document.getElementById("impTotal").value=saldo;//datos['imp_precio'];
     //document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
-    document.getElementById("impFoma").value=fomaTotal+Number(datos['imp_precio_foma']).toFixed(2);    
+    document.getElementById("impFoma").value=parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma']);    
     document.getElementById("codServicio").value=datos['cod_servicio'];
     document.getElementById("esCompartido").value=datos['flg_ds_compartido'];
     document.getElementById("impPrecioLista").value=Number(datos['imp_precio_lista']).toFixed(2);

@@ -1999,34 +1999,34 @@ boton.addEventListener("click",function(){
     'imp_cuota': document.getElementById("imp_cuota").value,
   };
 
-  var servicioArray ={
-    'cod_localidad_p': 'LC001',
-    'cod_prospecto': '',
-    'num_linea': 0,
-    'cod_servicio': document.getElementById("codServicio").value,
-    'num_ctd': document.getElementById("ctdServ").value,
-    'imp_precio_lista': document.getElementById("impPrecioLista").value,
-    'imp_precio_venta': document.getElementById("impPrecioLista").value,
+  // var servicioArray ={
+  //   'cod_localidad_p': 'LC001',
+  //   'cod_prospecto': '',
+  //   'num_linea': 0,
+  //   'cod_servicio': document.getElementById("codServicio").value,
+  //   'num_ctd': document.getElementById("ctdServ").value,
+  //   'imp_precio_lista': document.getElementById("impPrecioLista").value,
+  //   'imp_precio_venta': document.getElementById("impPrecioLista").value,
 
-    'imp_dscto': document.getElementById("impDscto").value,
-    'imp_total': document.getElementById("impTotal").value,
-    'imp_foma': document.getElementById("impFoma").value,
-    'imp_cui': document.getElementById("impCuoi").value,
-    'imp_saldo': document.getElementById("impSaldo").value,
+  //   'imp_dscto': document.getElementById("impDscto").value,
+  //   'imp_total': document.getElementById("impTotal").value,
+  //   'imp_foma': document.getElementById("impFoma").value,
+  //   'imp_cui': document.getElementById("impCuoi").value,
+  //   'imp_saldo': document.getElementById("impSaldo").value,
 
-    'cod_localidad_base': '',
-    'cod_contrato_base': document.getElementById("cttoBase").value,
-    'num_servicio_base': document.getElementById("numServBase").value,
-    'cod_cuota_foma': document.getElementById("codCuotaFoma").value,
-    'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
-    'cod_tasa': document.getElementById("codTasa").value,
-    'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
+  //   'cod_localidad_base': '',
+  //   'cod_contrato_base': document.getElementById("cttoBase").value,
+  //   'num_servicio_base': document.getElementById("numServBase").value,
+  //   'cod_cuota_foma': document.getElementById("codCuotaFoma").value,
+  //   'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
+  //   'cod_tasa': document.getElementById("codTasa").value,
+  //   'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
     
-    'por_descuento': document.getElementById("pordescuento").value,
-    'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value, //validar como string
+  //   'por_descuento': document.getElementById("pordescuento").value,
+  //   'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value, //validar como string
     
-    'imp_cui_minimo':document.getElementById("impMinCuoi").value
-  };
+  //   'imp_cui_minimo':document.getElementById("impMinCuoi").value
+  // };
 
   Swal.fire({
     title: 'Esta seguro que quiere Guardar la venta?',
@@ -2075,8 +2075,6 @@ boton.addEventListener("click",function(){
             fila['cod_cuota_servicio'] = document.getElementById("codCuotaServ").value;
             fila['cod_tasa'] = document.getElementById("codTasa").value;
             fila['fch_1er_vencimiento'] = document.getElementById("fch1erVcto").value;
-            fila['imp_total'] = document.getElementById("impTotal").value;
-            fila['imp_foma'] = document.getElementById("impFoma").value;
             
             console.log(serviciosAgregados);
 
