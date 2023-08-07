@@ -996,7 +996,7 @@ function muestraserviciosFormulario(datos) {
 
     
     var precioFinal1Celda = nuevaFilaServ.insertCell();
-    precioFinal1Celda.textContent = saldo;
+    precioFinal1Celda.textContent = saldo-valorLibre;
 
     var btnEliminarCelda = nuevaFilaServ.insertCell();
     var btnEliminarInput = document.createElement('button');
