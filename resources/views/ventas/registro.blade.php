@@ -1161,7 +1161,9 @@ numDocProsInput.addEventListener("blur", function(event) {
                 document.getElementById("correoRegVta").value = respuesta['response']['dsc_correo'];
                 document.getElementById("edoCivilRegVta").value = respuesta['response']['cod_estado_civil'];
                 document.getElementById("sexoRegVta").value = respuesta['response']['cod_sexo'];
-                document.getElementById("fchNacRegVta").value = respuesta['response']['fch_nacimiento'];
+                if(respuesta['response']['fch_nacimiento'] != ''){
+                  document.getElementById("fchNacRegVta").value = respuesta['response']['fch_nacimiento'];
+                }
                 
                 var changeEvent = new Event('change');
                 var paisProspecto=document.getElementById("paisRegVta") ;
@@ -1745,7 +1747,9 @@ $( document ).ready(function () {
           document.getElementById("sexoRegVta").value=result["response"]["cod_sexo"];
           document.getElementById("edoCivilRegVta").value=result["response"]["cod_estado_civil"];
           auxFechaNac = result["response"]["fch_nacimiento"].split('T');
-          document.getElementById("fchNacRegVta").value=auxFechaNac[0];
+          if(respuesta['response']['fch_nacimiento'] != ''){
+            document.getElementById("fchNacRegVta").value=auxFechaNac[0];
+          }
 
           document.getElementById("apellP2doRegVta").value=result["response"]["dsc_apellido_paterno_2do"];
           document.getElementById("apellM2doRegVta").value=result["response"]["dsc_apellido_materno_2do"];
