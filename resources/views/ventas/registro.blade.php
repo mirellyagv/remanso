@@ -1130,20 +1130,60 @@ numDocProsInput.addEventListener("input", function(event) {
 numDocProsInput.addEventListener("blur", function(event) {
   if (botonNece.checked != true) { 
     $.ajax({
-      url: '../api/ValidarCoincidenciaDocumento',
+      url: '../api/ObtenerProspectoxDocumento',
       method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{'dscDocumento':document.getElementById("numDocRegVta").value},
+      data:{'tipoDoc':document.getElementById("tipoDocRegVta").value,'dscDocumento':document.getElementById("numDocRegVta").value},
       success: function(respuesta){
-        //console.log(respuesta);
-        if (respuesta['response']['ctd_coincidencia'] > 0) {
+        console.log(respuesta);
+        if (respuesta['response']['cod_prospecto'] != null) {
           Swal.fire({
             title:'Error!',
-            text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
+            text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ¿Desea generar otra venta?.',
             icon:'warning',
+            showCancelButton: true,
             confirmButtonColor: '#35B44A',
-          }) 
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                  alert(respuesta['response']['dsc_prospecto']);
+                  document.getElementById("nombresRegVta").value = respuesta['response']['dsc_nombre'];
+                  document.getElementById("apellPRegVta").value = respuesta['response']['dsc_apellido_paterno'];
+                  document.getElementById("apellMRegVta").value = respuesta['response']['dsc_apellido_materno'];
+                  document.getElementById("inputCodProspecto").value = respuesta['response']['cod_prospecto'];
+                  document.getElementById("razonSocRegVta").value = respuesta['response']['dsc_razon_social'];
+                  document.getElementById("direccRegVta").value = respuesta['response']['dsc_direccion'];
+                  document.getElementById("direccRefRegVta").value = respuesta['response']['dsc_direccion_referencia'];
+                  document.getElementById("telf1RegVta").value = respuesta['response']['dsc_telefono_1'];
+                  document.getElementById("telf2RegVta").value = respuesta['response']['dsc_telefono_2'];
+                  document.getElementById("correoRegVta").value = respuesta['response']['dsc_correo'];
+                  document.getElementById("edoCivilRegVta").value = respuesta['response']['cod_estado_civil'];
+                  document.getElementById("sexoRegVta").value = respuesta['response']['cod_sexo'];
+                  document.getElementById("fchNacRegVta").value = respuesta['response']['fch_nacimiento'];
+
+                  var changeEvent = new Event('change');
+                  var paisProspecto=document.getElementById("paisRegVta") ;
+                  paisProspecto.value=respuesta["response"]["cod_pais"];
+                  paisProspecto.dispatchEvent(changeEvent);
+                
+                  var dptoProsp=document.getElementById("dptoRegVta") ;
+                  dptoProsp.value=respuesta["response"]["cod_departamento"];
+                  dptoProsp.dispatchEvent(changeEvent); 
+                
+                  var provinProsp=document.getElementById("provRegVta") ;
+                  var dttoProsp=document.getElementById("dttoRegVta") ;
+                  setTimeout(function() { 
+                    provinProsp.value=respuesta["response"]["cod_provincia"];
+                    provinProsp.dispatchEvent(changeEvent);
+                    setTimeout(function() { 
+                      dttoProsp.value=respuesta["response"]["cod_distrito"];
+                      dttoProsp.dispatchEvent(changeEvent);
+                    }, 2000);
+                  }, 2000); 
+              }
+            })//then
           numDocProsInput.blur();
         }
       },//success
