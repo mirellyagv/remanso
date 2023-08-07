@@ -899,8 +899,9 @@ var serviciosAgregados = [];
 var fomaTotal = 0;
 
 function muestraserviciosFormulario(datos) {
+    console.log(datos);
 
-    if (document.getElementById("tieneDS").value == 'SI') {
+    if (document.getElementById("tieneDS").value == 'SI' && datos['flg_dsepultura'] == 'SI') {
         Swal.fire({
             title:'Error!',
             text:'Ya ha seleccionado un derecho de sepultura.',
