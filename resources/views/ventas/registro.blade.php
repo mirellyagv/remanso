@@ -1128,7 +1128,7 @@ numDocProsInput.addEventListener("input", function(event) {
 });
 
 numDocProsInput.addEventListener("blur", function(event) {
-  if (botonNece.checked != true) { 
+ 
     $.ajax({
       url: '../api/ObtenerProspectoxDocumento',
       method: "GET",
@@ -1199,7 +1199,7 @@ numDocProsInput.addEventListener("blur", function(event) {
         console.log(e.message);
       }//error
     });
-  }
+  
 
 });
 
