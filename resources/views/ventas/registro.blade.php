@@ -1161,7 +1161,7 @@ numDocProsInput.addEventListener("blur", function(event) {
                 document.getElementById("correoRegVta").value = respuesta['response']['dsc_correo'];
                 document.getElementById("edoCivilRegVta").value = respuesta['response']['cod_estado_civil'];
                 document.getElementById("sexoRegVta").value = respuesta['response']['cod_sexo'];
-                if(respuesta['response']['fch_nacimiento'] != ''){
+                if(respuesta['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
                   document.getElementById("fchNacRegVta").value = respuesta['response']['fch_nacimiento'];
                 }
                 
@@ -1747,7 +1747,7 @@ $( document ).ready(function () {
           document.getElementById("sexoRegVta").value=result["response"]["cod_sexo"];
           document.getElementById("edoCivilRegVta").value=result["response"]["cod_estado_civil"];
           auxFechaNac = result["response"]["fch_nacimiento"].split('T');
-          if(respuesta['response']['fch_nacimiento'] != ''){
+          if(respuesta['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
             document.getElementById("fchNacRegVta").value=auxFechaNac[0];
           }
 
