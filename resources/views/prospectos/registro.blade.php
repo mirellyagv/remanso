@@ -734,28 +734,122 @@ numDocProsInput.addEventListener("input", function(event) {
 });
 
 numDocProsInput.addEventListener("blur", function(event) {
+ 
   $.ajax({
-    url: '../api/ValidarCoincidenciaDocumento',
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'dscDocumento':document.getElementById("numDocPros").value},
-    success: function(respuesta){
-      //console.log(respuesta);
-      if (respuesta['response']['ctd_coincidencia'] > 0) {
-        Swal.fire({
-          title:'Error!',
-          text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
-          icon:'warning',
-          confirmButtonColor: '#35B44A',
-        }) 
-        numDocProsInput.blur();
-      }
-    },//success
-    error(e){
-      console.log(e.message);
-    }//error
-  });
+      url: '../api/ObtenerProspectoxDocumento',
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'tipoDoc':document.getElementById("tipoDocProsp").value,'dscDocumento':document.getElementById("numDocPros").value},
+      success: function(respuesta){
+        if (respuesta['response']['cod_prospecto'] != null) {
+          if (respuesta['response']['cod_consejero'] == '@php echo(session('cod_trabajador')) @endphp') {
+            Swal.fire({
+              title:'Advertencia!',
+              text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ¿Desea generar otra venta?.',
+              icon:'info',
+              showCancelButton: true,
+              confirmButtonColor: '#35B44A',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Aceptar'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                codConsejero = respuesta["response"]["cod_consejero"];
+                var changeEvent = new Event('change');   // Crea un evento "change"
+                document.getElementById("rucProsp").value=respuesta["response"]["dsc_razon_social"];
+                document.getElementById("apellPProsp").value=respuesta["response"]["dsc_apellido_paterno"];
+                document.getElementById("apellMProsp").value=respuesta["response"]["dsc_apellido_materno"];
+                document.getElementById("nombreProsp").value=respuesta["response"]["dsc_nombre"];
+                var tipoDocPros=document.getElementById("tipoDocProsp") ;
+                tipoDocPros.value=respuesta["response"]["cod_tipo_documento"];
+
+                document.getElementById("numDocPros").value=respuesta["response"]["dsc_documento"];
+
+                var paisProspecto=document.getElementById("paisProspecto") ;
+                paisProspecto.value=respuesta["response"]["cod_pais"];
+                paisProspecto.dispatchEvent(changeEvent); 
+
+                var dptoProsp=document.getElementById("dptoProsp") ;
+                dptoProsp.value=respuesta["response"]["cod_departamento"];
+                var changeEvent = new Event('change');   // Crea un evento "change"
+                dptoProsp.dispatchEvent(changeEvent); // Desencadena el evento "change"
+
+                var provinProsp=document.getElementById("provinProsp") ;
+                var dttoProsp=document.getElementById("dttoProsp") ;
+                setTimeout(function() {
+                  provinProsp.value=respuesta["response"]["cod_provincia"];
+                  provinProsp.dispatchEvent(changeEvent);
+                  setTimeout(function() {
+                    dttoProsp.value=respuesta["response"]["cod_distrito"];
+                    dttoProsp.dispatchEvent(changeEvent);
+                  }, 2000);
+                }, 2000);
+
+                document.getElementById("direccPros").value=respuesta["response"]["dsc_direccion"];
+                document.getElementById("direccRefPros").value=respuesta["response"]["dsc_direccion_referencia"];
+                document.getElementById("telf1Prosp").value=respuesta["response"]["dsc_telefono_1"];
+                document.getElementById("telf2Prosp").value=respuesta["response"]["dsc_telefono_2"];
+                document.getElementById("correoProsp").value=respuesta["response"]["dsc_correo"];
+
+                var canalProsp=document.getElementById("canalProsp") ;
+                canalProsp.value=respuesta["response"]["cod_origen"];
+
+                var califProsp=document.getElementById("califProsp") ;
+                califProsp.value=respuesta["response"]["cod_calificacion"];
+
+                document.getElementById("obsvProsp").value=respuesta["response"]["dsc_observaciones"];
+                document.getElementById("impProsp").value=respuesta["response"]["imp_monto"];
+                document.getElementById("apelP2tit").value=respuesta["response"]["dsc_apellido_paterno_2do"];
+                document.getElementById("apelM2tit").value=respuesta["response"]["dsc_apellido_materno_2do"];
+                document.getElementById("nombre2Tit").value=respuesta["response"]["dsc_nombre_2do"];
+
+                var tipoDoc2tit=document.getElementById("tipoDoc2tit") ;
+                tipoDoc2tit.value=respuesta["response"]["cod_tipo_documento_2do"];
+
+                document.getElementById("numDoc2tit").value=respuesta["response"]["dsc_documento_2do"];
+
+                var pais2Tit=document.getElementById("pais2Tit") ;
+                pais2Tit.value=respuesta["response"]["cod_pais_2do"];
+                pais2Tit.dispatchEvent(changeEvent); 
+
+                var dpto2Tit=document.getElementById("dpto2Tit") ;
+                dpto2Tit.value=respuesta["response"]["cod_departamento_2do"];
+                dpto2Tit.dispatchEvent(changeEvent);
+
+                var prov2Tit=document.getElementById("prov2Tit");
+                var dtto2Tit=document.getElementById("dtto2Tit");
+                setTimeout(function() {
+                  prov2Tit.value=respuesta["response"]["cod_provincia_2do"];
+                  prov2Tit.dispatchEvent(changeEvent);
+                  setTimeout(function() {
+                    dtto2Tit.value=respuesta["response"]["cod_distrito_2do"];
+                    dtto2Tit.dispatchEvent(changeEvent);
+                  }, 2000);
+                }, 2000);
+
+                document.getElementById("dir2Tit").value=respuesta["response"]["dsc_direccion_2do"];
+                document.getElementById("telf1_2Tit").value=respuesta["response"]["dsc_telefono_1_2do"];
+                document.getElementById("telf2_2Tit").value=respuesta["response"]["dsc_telefono_2_2do"];
+                document.getElementById("correo2Tit").value=respuesta["response"]["dsc_correo_2do"];
+                
+              }
+            })//then
+            numDocProsInput.blur();  
+          }else{
+            Swal.fire({
+              title:'Error!',
+              text:'El numero de documento '+respuesta['response']['dsc_documento']+' pertenece a un prospecto registrado por otro consejero.',
+              icon:'warning',
+              confirmButtonColor: '#35B44A',
+            }) 
+            document.getElementById("myForm").reset();
+          }
+        }
+      },//success
+      error(e){
+        console.log(e.message);
+      }//error
+    });
 });
 
 var numDoc2titInput = document.getElementById("numDoc2tit");
