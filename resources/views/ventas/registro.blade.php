@@ -1861,16 +1861,18 @@ $( document ).ready(function () {
 
           //document.getElementById("impTotal").value=result["response"]["imp_total"];
           document.getElementById("impCuoi").value=result["response"]["imp_cui"];
-          document.getElementById("impMinCuoi").value=parseFloat(result["response"]["imp_cui"]);
+          //document.getElementById("impMinCuoi").value=parseFloat(result["response"]["imp_cui"]);
           document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
-          document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
+          setTimeout(function() { 
+            document.getElementById("codTasa").value=result["response"]["cod_tasa"];
+            document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
+          }, 2000);
           document.getElementById("impFoma").value=result["response"]["imp_foma"];
           document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
           document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
           document.getElementById("imp_cuota").value=result["response"]["imp_cuota"];
           var auxFecha = result["response"]["fch_1er_vencimiento"].split('T');
           document.getElementById("fch1erVcto").value=auxFecha[0];
-          document.getElementById("codTasa").value=result["response"]["cod_tasa"];
           document.getElementById("obsvRegVentas").value = result["response"]["dsc_observaciones"];
           if( document.getElementById("fch1erVcto").value=='1900-01-01'){document.getElementById("fch1erVcto").value=lastDayOfMonthStr;}
           
@@ -2253,7 +2255,7 @@ function ModoVista() {
     document.getElementById("fch1erVcto").disabled = true;
     document.getElementById("pordescuento").disabled = true;
     document.getElementById("impDsctoAdicional").disabled = true;
-    document.getElementById("impMinCuoi").disabled = true;
+    //document.getElementById("impMinCuoi").disabled = true;
 
     document.getElementById("dtto2doRegVta").disabled = true;
     document.getElementById("telf12doRegVta").disabled = true;
