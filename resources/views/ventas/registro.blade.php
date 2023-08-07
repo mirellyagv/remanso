@@ -1190,7 +1190,7 @@ numDocProsInput.addEventListener("blur", function(event) {
           }else{
             Swal.fire({
               title:'Error!',
-              text:'el numero de documento '+respuesta['response']['dsc_documento']+' pertenece a un prospecto registrado por otro consejero.',
+              text:'El numero de documento '+respuesta['response']['dsc_documento']+' pertenece a un prospecto registrado por otro consejero.',
               icon:'warning',
               confirmButtonColor: '#35B44A',
             }) 
