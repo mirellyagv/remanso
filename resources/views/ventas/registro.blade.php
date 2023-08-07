@@ -1747,7 +1747,7 @@ $( document ).ready(function () {
           document.getElementById("sexoRegVta").value=result["response"]["cod_sexo"];
           document.getElementById("edoCivilRegVta").value=result["response"]["cod_estado_civil"];
           auxFechaNac = result["response"]["fch_nacimiento"].split('T');
-          if(respuesta['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
+          if(result['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
             document.getElementById("fchNacRegVta").value=auxFechaNac[0];
           }
 
