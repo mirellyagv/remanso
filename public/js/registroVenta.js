@@ -1052,7 +1052,10 @@ function muestraserviciosFormulario(datos) {
     
     document.getElementById("tieneDS").value=datos['flg_dsepultura'];
     //document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
-    document.getElementById("impFoma").value=parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma']);    
+    console.log('fomaTotal',fomaTotal);
+    fomaTotal = parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma'])
+    document.getElementById("impFoma").value=parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma']);  
+    console.log('fomaTcalculootal',parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma']));  
     document.getElementById("codServicio").value=datos['cod_servicio'];
     document.getElementById("esCompartido").value=datos['flg_ds_compartido'];
     document.getElementById("impPrecioLista").value=Number(datos['imp_precio_lista']).toFixed(2);

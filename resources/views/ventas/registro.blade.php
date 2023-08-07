@@ -2044,10 +2044,10 @@ boton.addEventListener("click",function(){
     'cod_tipo_comprobante':document.getElementById("compVtaRegVta").value,
     'dsc_ruc':document.getElementById("rucCompVtaRegVta").value,
     'dsc_razon_social_comprobante':document.getElementById("razSocCompVtaRegVta").value,
-    'imp_total': 0,
-    'imp_cui': 0,
-    'imp_saldo_financiar': 0,
-    'imp_foma': 0,
+    'imp_total': document.getElementById("impTotal").value,
+    'imp_cui': document.getElementById("impCuoi").value,
+    'imp_saldo_financiar': document.getElementById("impSaldo").value,
+    'imp_foma': document.getElementById("impFoma").value,
     'imp_cuota': document.getElementById("imp_cuota").value,
   };
 
