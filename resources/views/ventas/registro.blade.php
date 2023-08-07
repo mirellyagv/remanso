@@ -1149,7 +1149,6 @@ numDocProsInput.addEventListener("blur", function(event) {
               confirmButtonText: 'Aceptar'
             }).then((result) => {
               if (result.isConfirmed) {
-                alert(respuesta['response']['dsc_prospecto']);
                 document.getElementById("nombresRegVta").value = respuesta['response']['dsc_nombre'];
                 document.getElementById("apellPRegVta").value = respuesta['response']['dsc_apellido_paterno'];
                 document.getElementById("apellMRegVta").value = respuesta['response']['dsc_apellido_materno'];

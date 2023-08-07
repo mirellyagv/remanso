@@ -738,7 +738,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspectoxDocumento/20396900719/LC001/'.$documento.'/'.$tipoDoc);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspectoxDocumento/20396900719/LC001/'.$tipoDoc.'/'.$documento);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
