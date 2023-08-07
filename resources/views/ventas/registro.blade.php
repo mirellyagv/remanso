@@ -1140,9 +1140,9 @@ numDocProsInput.addEventListener("blur", function(event) {
         if (respuesta['response']['cod_prospecto'] != null) {
           if (respuesta['response']['cod_consejero'] == '@php echo(session('cod_trabajador')) @endphp') {
             Swal.fire({
-              title:'Error!',
+              title:'Advertencia!',
               text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ¿Desea generar otra venta?.',
-              icon:'warning',
+              icon:'info',
               showCancelButton: true,
               confirmButtonColor: '#35B44A',
               cancelButtonColor: '#d33',
@@ -1188,10 +1188,11 @@ numDocProsInput.addEventListener("blur", function(event) {
           }else{
             Swal.fire({
               title:'Error!',
-              text:'Este prospecto ha sido registrado por otro consejero.',
+              text:'el numero de documento '+respuesta['response']['dsc_documento']+' pertenece a un prospecto registrado por otro consejero.',
               icon:'warning',
               confirmButtonColor: '#35B44A',
             }) 
+            document.getElementById("formRegVenta").reset();
           }
         }
       },//success
@@ -1238,7 +1239,6 @@ numDoc2titInput.addEventListener("input", function(event) {
     }
   }
 });
-
 
 var numDocAvalInput = document.getElementById("numDocAval");
 numDocAvalInput.addEventListener("input", function(event) {
