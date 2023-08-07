@@ -580,8 +580,8 @@ class ListaController extends Controller
         $client = new Client();
         $cod_camposanto = ($request['cod_camposanto'] == '') ? '% ' : $request['cod_camposanto'];
         $cod_plataforma = ($request['cod_plataforma'] == '') ? '% ' : $request['cod_plataforma'];
-        $cod_tipo_recaudacion = $request['cod_tipo_recaudacion'];
-        $cod_subtipo_servicio = $request['cod_subtipo_servicio'];
+        $cod_tipo_recaudacion = ($request['cod_tipo_recaudacion'] == '') ? '% ' : $request['cod_tipo_recaudacion'];
+        $cod_subtipo_servicio = ($request['cod_subtipo_servicio'] == '') ? '% ' : $request['cod_subtipo_servicio'];
         $tipo_nec = $request['tipo_nec'];
         $flgIntegral = $request['sintegral'];
         $fecha = getDate();
