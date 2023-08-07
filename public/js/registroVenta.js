@@ -140,7 +140,7 @@ window.onload=function() {
             $("#tipoPrograma").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
-                $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+' compar="'+word['desvar3']+'">'+ word['desvar1'] +'</option>'); 
+                $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+' compar="'+word['desvar3']+'" integral="'+word['desvar4']+'" >'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -476,7 +476,7 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("espacio").setAttribute('disabled', 'disabled');
         document.getElementById('tipoEspacio').value = '';
         document.getElementById("tipoEspacio").setAttribute('disabled', 'disabled');
-        document.getElementById('impFoma').value = '';
+        document.getElementById('impFoma').value = 0;
         document.getElementById("impFoma").setAttribute('disabled', 'disabled');
         document.getElementById("codCuotaFoma").setAttribute('disabled', 'disabled');
         
@@ -490,8 +490,6 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("ejeY").removeAttribute('disabled');
         document.getElementById("espacio").removeAttribute('disabled');
         document.getElementById("tipoEspacio").removeAttribute('disabled');
-        document.getElementById("impFoma").removeAttribute('disabled');
-        document.getElementById("codCuotaFoma").removeAttribute('disabled');
 
     }
 
@@ -808,6 +806,9 @@ codcampo.addEventListener("click",function(){
     codCamposanto = document.getElementById("camposanto").value;
     codPlataforma = document.getElementById("nombrePlat").value;
     cod_tipo_recaudacion = document.getElementById("tipoPrograma").value;
+    var tipoProgramaSelect = document.getElementById('tipoPrograma');
+    var selectedOptionTrec = tipoProgramaSelect.options[tipoProgramaSelect.selectedIndex];
+    var integralValue = selectedOptionTrec.getAttribute('integral');
     var boton = document.getElementById("tipoNec");
     if(boton.checked == true){
         tipo_nec = 'NI';
@@ -826,7 +827,7 @@ codcampo.addEventListener("click",function(){
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_tipo_recaudacion': cod_tipo_recaudacion,'cod_subtipo_servicio':cod_subtipo_servicio,'tipo_nec':tipo_nec},
+        data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_tipo_recaudacion': cod_tipo_recaudacion,'cod_subtipo_servicio':cod_subtipo_servicio,'sintegral':integralValue,'tipo_nec':tipo_nec},
         success: function(respuesta){
             //console.log(respuesta['response']);
             respuesta['response'].forEach(element => {
@@ -898,6 +899,16 @@ var serviciosAgregados = [];
 var fomaTotal = 0;
 
 function muestraserviciosFormulario(datos) {
+
+    if (document.getElementById("tieneDS").value == 'SI') {
+        Swal.fire({
+            title:'Error!',
+            text:'Ya ha seleccionado un derecho de sepultura.',
+            icon:'warning',
+            confirmButtonColor: '#35B44A',
+        })
+        return;
+    }
     
     var tabla = document.getElementById('tablaServiciosAdded');
     var tbody = tabla.getElementsByTagName('tbody')[0];
@@ -1038,13 +1049,13 @@ function muestraserviciosFormulario(datos) {
         recalcularSuma();
     });
     
-    //document.getElementById("impTotal").value=saldo;//datos['imp_precio'];
+    document.getElementById("tieneDS").value=datos['flg_dsepultura'];
     //document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
     document.getElementById("impFoma").value=parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma']);    
     document.getElementById("codServicio").value=datos['cod_servicio'];
     document.getElementById("esCompartido").value=datos['flg_ds_compartido'];
     document.getElementById("impPrecioLista").value=Number(datos['imp_precio_lista']).toFixed(2);
-    document.getElementById("impMinCuoi").value=Number(datos['imp_min_cuoi']).toFixed(2);
+    //document.getElementById("impMinCuoi").value=Number(datos['imp_min_cuoi']).toFixed(2);
     
     cuoIniInput.addEventListener('input', function() {
         var nvoSaldo = saldo-cuoIniInput.value;
@@ -1197,7 +1208,14 @@ function eliminarFilaServicios(index) {
             tbody.removeChild(fila);
             serviciosAgregados.splice(index-1, 1); // Eliminar el valor del array en la posición index
 
+            var inputIntegral = document.getElementById("tieneDS");
+            if(inputIntegral.value == "SI"){
+                inputIntegral.value = "NO";
+            }
             recalcularSuma();
+            var CuotaInicialInput = document.getElementById("impCuoi");
+            var changeEvent = new Event('input');
+            CuotaInicialInput.dispatchEvent(changeEvent);
         }
     })//then
 

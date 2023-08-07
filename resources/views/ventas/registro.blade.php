@@ -725,7 +725,7 @@
                           <input type="hidden" name="codServicio" id="codServicio">
                           <input type="hidden" name="impPrecioLista" id="impPrecioLista">
                           <input type="hidden" name="ctdServ" id="ctdServ">
-                          <input type="hidden" name="impMinCuoi" id="impMinCuoi" value = 0>
+                          <input type="hidden" name="tieneDS" id="tieneDS" value='NO'>
                           <input type="hidden" name="esCompartido" id="esCompartido" value = 'NO'>
                         </div>
                         <div class="col-md-2 mb-3">

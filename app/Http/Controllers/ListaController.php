@@ -583,10 +583,11 @@ class ListaController extends Controller
         $cod_tipo_recaudacion = $request['cod_tipo_recaudacion'];
         $cod_subtipo_servicio = $request['cod_subtipo_servicio'];
         $tipo_nec = $request['tipo_nec'];
+        $flgIntegral = $request['sintegral'];
         $fecha = getDate();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicioxFiltros/20396900719/LC001/'.$tipo_nec.'/2023-01-01/2023-12-12/'.$cod_tipo_recaudacion.'/'.$cod_subtipo_servicio.'/'.$cod_camposanto.'/'.$cod_plataforma.'/NO/NO');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicioxFiltros/20396900719/LC001/'.$tipo_nec.'/2023-01-01/2023-12-12/'.$cod_tipo_recaudacion.'/'.$cod_subtipo_servicio.'/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$flgIntegral.'/NO');
 
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();

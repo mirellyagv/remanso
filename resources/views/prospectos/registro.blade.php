@@ -164,11 +164,10 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">(*) Correo:</label>
+                          <label for="inputText" class="col-form-label"> Correo:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="email" class="form-control form-remanso" name="correoProsp" id="correoProsp"
-                                 required>
+                          <input type="email" class="form-control form-remanso" name="correoProsp" id="correoProsp">
                           {{-- <div class="g invalid-feedback">
                             El correo no puede estar vacío.
                           </div> --}}
@@ -584,19 +583,19 @@
                 readonly>
             </div>
             <div class="col-md-3 mb-3">
-              <label for="inputText" class="col-form-label">Calificación: </label>
+              <label for="inputText" class="col-form-label">(*) Calificación: </label>
             </div>
             <div class="col-md-3 mb-3">
-              <select name="califAddContacto" id="califAddContacto" class="form-select form-remanso">
+              <select name="califAddContacto" id="califAddContacto" class="form-select form-remanso" required>
               </select>
             </div>
           </div>
           <div class="row">
             <div class="col-md-3 mb-3">
-              <label for="inputText" class="col-form-label">Observaciones:</label>
+              <label for="inputText" class="col-form-label">(*) Observaciones:</label>
             </div>
             <div class="col-md-9 mb-3">
-              <textarea class="form-control form-remanso" name="obsvAddContacto" id="obsvAddContacto" rows="5"></textarea>
+              <textarea class="form-control form-remanso" name="obsvAddContacto" id="obsvAddContacto" rows="5" required></textarea>
             </div>
           </div>
         </div>
