@@ -1023,9 +1023,11 @@ botonNece.addEventListener("change",function(){
     //document.getElementById("formRegVenta").reset();
     document.getElementById('tituloRecSep').style.display = "none";
     document.getElementById('inputRecSep').style.display = "none";
+    $("#acordeonAval").css("display", "block");
   }else{
     document.getElementById('tituloRecSep').style.display = "block";
     document.getElementById('inputRecSep').style.display = "block";
+    $("#acordeonAval").css("display", "none");
   }
 });
 
@@ -1322,7 +1324,7 @@ CuotaInicial.addEventListener("input", function(event) {
   var num_cuota = $('option:selected', tipoCuota).attr('data');
 
   var tipoInteres = document.getElementById('codTasa');
-  var num_interes = $('option:selected', tipoInteres).attr('data');
+  var num_interes = ($('option:selected', tipoInteres).attr('data')) ? $('option:selected', tipoInteres).attr('data') : 0;
 
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
@@ -1339,7 +1341,7 @@ CuotaInicial.addEventListener("input", function(event) {
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }else
   {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ^ num_cuota) / ((1 + num_interes) ^ num_cuota - 1));
+    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }
  
@@ -1353,7 +1355,7 @@ tipoCuota.addEventListener("change", function(event) {
   var num_cuota = $('option:selected', tipoCuota).attr('data');
 
   var tipoInteres = document.getElementById('codTasa');
-  var num_interes = $('option:selected', tipoInteres).attr('data');
+  var num_interes = ($('option:selected', tipoInteres).attr('data') != 'undefined') ? $('option:selected', tipoInteres).attr('data') : 0;
 
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
@@ -1645,6 +1647,7 @@ $( document ).ready(function () {
 
   if(flg_ni == 'SI'){ 
       document.getElementById("tipoNec").bootstrapToggle('on'); 
+
   }else{
     document.getElementById("tipoNec").bootstrapToggle('off');
   }
@@ -1655,7 +1658,7 @@ $( document ).ready(function () {
 
    
     if (cod_prospecto !== '') {
-      $("#acordeonAval").css("display", "none");
+      
       $("#labelCodProspecto").css("display","block");
       $("#divCodProspecto").css("display","block");
       $("#inputCodProspecto").val(cod_prospecto);
@@ -1858,24 +1861,23 @@ $( document ).ready(function () {
               });
             }
           });
-
-          //document.getElementById("impTotal").value=result["response"]["imp_total"];
-          document.getElementById("impCuoi").value=result["response"]["imp_cui"];
-          //document.getElementById("impMinCuoi").value=parseFloat(result["response"]["imp_cui"]);
-          document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
           setTimeout(function() { 
+            //document.getElementById("impTotal").value=result["response"]["imp_total"];
+            document.getElementById("impCuoi").value=result["response"]["imp_cui"];
+            //document.getElementById("impMinCuoi").value=parseFloat(result["response"]["imp_cui"]);
+            document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
             document.getElementById("codTasa").value=result["response"]["cod_tasa"];
             document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
-          }, 2000);
-          document.getElementById("impFoma").value=result["response"]["imp_foma"];
-          document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
-          document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
-          document.getElementById("imp_cuota").value=result["response"]["imp_cuota"];
-          var auxFecha = result["response"]["fch_1er_vencimiento"].split('T');
-          document.getElementById("fch1erVcto").value=auxFecha[0];
-          document.getElementById("obsvRegVentas").value = result["response"]["dsc_observaciones"];
-          if( document.getElementById("fch1erVcto").value=='1900-01-01'){document.getElementById("fch1erVcto").value=lastDayOfMonthStr;}
-          
+            document.getElementById("impFoma").value=result["response"]["imp_foma"];
+            //document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
+            document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
+            document.getElementById("imp_cuota").value=result["response"]["imp_cuota"];
+            var auxFecha = result["response"]["fch_1er_vencimiento"].split('T');
+            document.getElementById("fch1erVcto").value=auxFecha[0];
+            document.getElementById("obsvRegVentas").value = result["response"]["dsc_observaciones"];
+            if( document.getElementById("fch1erVcto").value=='1900-01-01'){document.getElementById("fch1erVcto").value=lastDayOfMonthStr;}
+              
+          }, 2500);
 
         }                  
       });
@@ -1934,6 +1936,7 @@ $( document ).ready(function () {
 
 var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
+  boton.setAttribute('disabled','disabled');
     
     var tipo_nec="";
     var botonTNec= document.getElementById("tipoNec");
@@ -2169,6 +2172,7 @@ boton.addEventListener("click",function(){
               icon:'warning',
               confirmButtonColor: '#35B44A',
             }) 
+            boton.removeAttribute('disabled');
         }//error
       });
     }

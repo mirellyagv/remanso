@@ -1045,6 +1045,7 @@ var filasArrayBenef = []; // Array para almacenar las filas
   //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
+  boton.setAttribute('disabled','disabled');
 
   var numDocInput = document.getElementById("numDocPros");
   var numDocValue = numDocInput.value.trim();
