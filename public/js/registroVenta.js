@@ -1323,6 +1323,7 @@ addBeneficiario.addEventListener("click",function (){
     var eliminarBoton = document.createElement('button');
     eliminarBoton.classList.add('btn');
     eliminarBoton.classList.add('btn-danger');
+    eliminarBoton.classList.add('form-remanso');
     eliminarBoton.innerHTML  = '<span class="bi bi-x-lg"></span>';
     eliminarBoton.id = 'botonEliminar' + nuevaFila.rowIndex;
 

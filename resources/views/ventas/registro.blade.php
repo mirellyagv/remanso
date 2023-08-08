@@ -1822,7 +1822,6 @@ $( document ).ready(function () {
                       espacio.dispatchEvent(changeEvent);
                       setTimeout(function() { 
                         nivel.value=result["response"]["num_nivel"];
-                        nivel.dispatchEvent(changeEvent);
                         ModoVista();
                       }, 2000);
                     }, 2000);
@@ -1906,7 +1905,7 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
               index++;
             });
@@ -2259,6 +2258,8 @@ function ModoVista() {
     document.getElementById("fch1erVcto").disabled = true;
     document.getElementById("pordescuento").disabled = true;
     document.getElementById("impDsctoAdicional").disabled = true;
+    document.getElementById("obsvRegVentas").disabled = true;
+    document.getElementsByClassName("btn btn-danger").disabled = true;
     //document.getElementById("impMinCuoi").disabled = true;
 
     document.getElementById("dtto2doRegVta").disabled = true;
@@ -2279,6 +2280,7 @@ function ModoVista() {
     document.getElementById("Dni2Adj1").disabled = true;
     document.getElementById("DniAdj2").disabled = true;
     document.getElementById("DniAdj1").disabled = true;
+    document.getElementById("RecSepAdj").disabled = true;
     document.getElementById("tipoDoc2doRegVta").disabled = true;
     document.getElementById("numDoc2doRegVta").disabled = true;
     document.getElementById("nombres2doRegVta").disabled = true;
