@@ -1664,7 +1664,8 @@ $( document ).ready(function () {
 
    
     if (cod_prospecto !== '') {
-      
+      var botonGraba = document.getElementById("registrarVenta");
+      botonGraba.setAttribute('disabled','disabled');
       $("#labelCodProspecto").css("display","block");
       $("#divCodProspecto").css("display","block");
       $("#inputCodProspecto").val(cod_prospecto);
@@ -1801,27 +1802,27 @@ $( document ).ready(function () {
           document.getElementById("apellMAval").value=result["response"]["dsc_apellido_materno_aval"];
           document.getElementById("nombresAval").value=result["response"]["dsc_nombre_aval"];
 
-          var tipoDoc2tit=document.getElementById("tipoDocAval") ;
-          tipoDoc2tit.value=result["response"]["cod_tipo_documento_aval"];
+          var tipoDocAval=document.getElementById("tipoDocAval") ;
+          tipoDocAval.value=result["response"]["cod_tipo_documento_aval"];
 
           document.getElementById("numDocAval").value=result["response"]["dsc_documento_aval"];
 
-          var pais2Tit=document.getElementById("paisAval") ;
-          pais2Tit.value=result["response"]["cod_pais_aval"];
-          pais2Tit.dispatchEvent(changeEvent); 
+          var paisAval=document.getElementById("paisAval") ;
+          paisAval.value=result["response"]["cod_pais_aval"];
+          paisAval.dispatchEvent(changeEvent); 
 
-          var dpto2Tit=document.getElementById("dptoAval") ;
-          dpto2Tit.value=result["response"]["cod_departamento_aval"];
-          dpto2Tit.dispatchEvent(changeEvent); 
+          var dptoAval=document.getElementById("dptoAval") ;
+          dptoAval.value=result["response"]["cod_departamento_aval"];
+          dptoAval.dispatchEvent(changeEvent); 
 
-          var prov2Tit=document.getElementById("provAval");
-          var dtto2Tit=document.getElementById("dttoAval");
+          var provAval=document.getElementById("provAval");
+          var dttoAval=document.getElementById("dttoAval");
           setTimeout(function() { 
-            prov2Tit.value=result["response"]["cod_provincia_aval"];
-            prov2Tit.dispatchEvent(changeEvent);
+            provAval.value=result["response"]["cod_provincia_aval"];
+            provAval.dispatchEvent(changeEvent);
             setTimeout(function() { 
-              dtto2Tit.value=result["response"]["cod_distrito_aval"];
-              dtto2Tit.dispatchEvent(changeEvent);
+              dttoAval.value=result["response"]["cod_distrito_aval"];
+              dttoAval.dispatchEvent(changeEvent);
             }, 2000);
           }, 2000);   
 
@@ -1901,6 +1902,7 @@ $( document ).ready(function () {
                 }
                 muestraserviciosFormulario(datos);
               });
+              botonGraba.removeAttribute('disabled');
             }
           });
           setTimeout(function() { 
@@ -1959,6 +1961,7 @@ $( document ).ready(function () {
           $('#bodyTablaBenef').html(fila); 
         }
       });
+
 
     }else{
       if (flg_administrador == 'SI') {         
