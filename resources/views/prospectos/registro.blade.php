@@ -1155,7 +1155,7 @@ boton.addEventListener("click",function(){
   var prospecto = {
     'cod_prospecto': '',
     'dsc_prospecto': nombres,
-    'dsc_razon_social': document.getElementById("rucProsp").value,
+    'dsc_razon_social': document.getElementById("rucProsp").value.toUpperCase(),
     'dsc_apellido_paterno': document.getElementById("apellPProsp").value.toUpperCase(),
     'dsc_apellido_materno': document.getElementById("apellMProsp").value.toUpperCase(),
     'dsc_nombre': document.getElementById("nombreProsp").value.toUpperCase(),
