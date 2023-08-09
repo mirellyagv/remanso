@@ -763,7 +763,8 @@
                           </select>
                         </div>
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">Importe Cuota: </label>
+                          <label for="inputText" class="col-form-label">Importe Cuota: </label><br>
+                          <span style="font-size:0.7em">* cuota referencial</span>
                         </div>
                         <div class="col-md-2 mb-3">
                           <input type="text" class="form-control form-remanso align-right" name="imp_cuota" id="imp_cuota" disabled>
@@ -1759,6 +1760,8 @@ $( document ).ready(function () {
             document.getElementById("fchNacRegVta").value=auxFechaNac[0];
           }
 
+          //------------------------------------------2do titular-----------------------------------------------------
+
           document.getElementById("apellP2doRegVta").value=result["response"]["dsc_apellido_paterno_2do"];
           document.getElementById("apellM2doRegVta").value=result["response"]["dsc_apellido_materno_2do"];
           document.getElementById("nombres2doRegVta").value=result["response"]["dsc_nombre_2do"];
@@ -1791,6 +1794,41 @@ $( document ).ready(function () {
           document.getElementById("telf12doRegVta").value=result["response"]["dsc_telefono_1_2do"];
           document.getElementById("telf22doRegVta").value=result["response"]["dsc_telefono_2_2do"];
           document.getElementById("correo2doRegVta").value=result["response"]["dsc_correo_2do"];
+
+          //------------------------------------------Aval-----------------------------------------------------
+
+          document.getElementById("apellPAval").value=result["response"]["dsc_apellido_paterno_aval"];
+          document.getElementById("apellMAval").value=result["response"]["dsc_apellido_materno_aval"];
+          document.getElementById("nombresAval").value=result["response"]["dsc_nombre_aval"];
+
+          var tipoDoc2tit=document.getElementById("tipoDocAval") ;
+          tipoDoc2tit.value=result["response"]["cod_tipo_documento_aval"];
+
+          document.getElementById("numDocAval").value=result["response"]["dsc_documento_aval"];
+
+          var pais2Tit=document.getElementById("paisAval") ;
+          pais2Tit.value=result["response"]["cod_pais_aval"];
+          pais2Tit.dispatchEvent(changeEvent); 
+
+          var dpto2Tit=document.getElementById("dptoAval") ;
+          dpto2Tit.value=result["response"]["cod_departamento_aval"];
+          dpto2Tit.dispatchEvent(changeEvent); 
+
+          var prov2Tit=document.getElementById("provAval");
+          var dtto2Tit=document.getElementById("dttoAval");
+          setTimeout(function() { 
+            prov2Tit.value=result["response"]["cod_provincia_aval"];
+            prov2Tit.dispatchEvent(changeEvent);
+            setTimeout(function() { 
+              dtto2Tit.value=result["response"]["cod_distrito_aval"];
+              dtto2Tit.dispatchEvent(changeEvent);
+            }, 2000);
+          }, 2000);   
+
+          document.getElementById("direccAval").value=result["response"]["dsc_direccion_aval"];
+          document.getElementById("telef1Aval").value=result["response"]["dsc_telefono_1_aval"];
+          document.getElementById("telef2Aval").value=result["response"]["dsc_telefono_2_aval"];
+          document.getElementById("correoAval").value=result["response"]["dsc_correo_aval"];
 
           //-------------------------------------------Servicios---------------------------------------------------------
 
