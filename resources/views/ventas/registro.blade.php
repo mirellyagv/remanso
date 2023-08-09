@@ -2079,6 +2079,7 @@ boton.addEventListener("click",function(){
     'cod_departamento_aval': document.getElementById("dptoAval").value,
     'cod_provincia_aval': document.getElementById("provAval").value,
     'cod_distrito_aval': document.getElementById("dttoAval").value,
+    'dsc_direccion_aval': document.getElementById("direccAval").value,
     'dsc_telefono_1_aval': document.getElementById("telef1Aval").value,
     'dsc_telefono_2_aval': document.getElementById("telef2Aval").value,
     'dsc_correo_aval': document.getElementById("correoAval").value.toUpperCase(),
