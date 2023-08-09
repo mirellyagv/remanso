@@ -1957,6 +1957,7 @@ $( document ).ready(function () {
                       espacio.dispatchEvent(changeEvent);
                       setTimeout(function() { 
                         nivel.value=result["response"]["num_nivel"];
+                        botonGraba.removeAttribute('disabled');
                         ModoVista();
                       }, 2000);
                     }, 2000);
@@ -1993,7 +1994,7 @@ $( document ).ready(function () {
                 }
                 muestraserviciosFormulario(datos);
               });
-              botonGraba.removeAttribute('disabled');
+              
             }
           });
           setTimeout(function() { 
