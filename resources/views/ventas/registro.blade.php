@@ -519,7 +519,7 @@
                               <th style="text-align: center;" width="15%">Fecha de nacimiento</th>
                               <th style="text-align: center;" width="10%">Parentesco</th>
                               <th style="text-align: center;" width="5%">Sexo</th>
-                              <th style="text-align: center;" width="10%">Edo Civil</th>
+                              <th style="text-align: center;" width="10%">E. Civil</th>
                               <th style="text-align: center;" width="15%"></th>
                             </tr>
                           </thead>
