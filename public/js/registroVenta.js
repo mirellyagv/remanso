@@ -192,7 +192,6 @@ window.onload=function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){
-            $("#codTasa").append('<option value="0" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#codTasa").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
@@ -1106,9 +1105,7 @@ function muestraserviciosFormulario(datos) {
     //document.getElementById("impSaldo").value=Number(saldo-cuoi).toFixed(2);
     if(Number(saldo-cuoi) == 0){
         document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
-        document.getElementById("codCuotaServ").value = '';
         document.getElementById("codTasa").setAttribute('disabled','disabled');
-        document.getElementById("codTasa").value = '';
         document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
         document.getElementById("fch1erVcto").value = '';
     }else{
@@ -1244,9 +1241,7 @@ campoCuoi.addEventListener("input",function(){
     //document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
     if(saldo == 0){
         document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
-        document.getElementById("codCuotaServ").value = '';
         document.getElementById("codTasa").setAttribute('disabled','disabled');
-        document.getElementById("codTasa").value = '';
         document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
         document.getElementById("fch1erVcto").value = '';
     }else{

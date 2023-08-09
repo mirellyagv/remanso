@@ -1361,6 +1361,8 @@ tipoCuota.addEventListener("change", function(event) {
   var imp_cuota= 0;
   console.log(num_cuota);
   console.log(num_interes);
+  interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 ) - 1);
+  console.log()
 
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
@@ -1368,7 +1370,7 @@ tipoCuota.addEventListener("change", function(event) {
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }else
   {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
+    imp_cuota=imp_saldo * ((interes * ( 1  + interes) ** num_cuota) / ((1 + interes) ** num_cuota - 1));
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }
  
@@ -1393,6 +1395,8 @@ tipoTasa.addEventListener("change", function(event) {
   }
   console.log('num_cuota',num_cuota);
   console.log('num_interes',num_interes);
+  interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;
+  console.log('interes',interes)
 
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
@@ -1400,7 +1404,8 @@ tipoTasa.addEventListener("change", function(event) {
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }else
   {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
+    console.log('calculo',((1 + interes) ** num_cuota) - 1);
+    imp_cuota = imp_saldo * ((interes * ( 1  + interes) ** num_cuota) / (((1 + interes) ** num_cuota) - 1));
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }
  
@@ -1865,8 +1870,12 @@ $( document ).ready(function () {
             document.getElementById("impCuoi").value=result["response"]["imp_cui"];
             //document.getElementById("impMinCuoi").value=parseFloat(result["response"]["imp_cui"]);
             document.getElementById("impSaldo").value=result["response"]["imp_saldo_financiar"];
-            document.getElementById("codTasa").value=result["response"]["cod_tasa"];
-            document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
+            if (result["response"]["cod_tasa"] != '') {
+              document.getElementById("codTasa").value=result["response"]["cod_tasa"];
+            }
+            if (result["response"]["cod_cuota_servicio"] != '') {
+              document.getElementById("codCuotaServ").value=result["response"]["cod_cuota_servicio"];
+            }
             document.getElementById("impFoma").value=result["response"]["imp_foma"];
             //document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
             document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
