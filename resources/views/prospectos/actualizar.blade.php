@@ -726,9 +726,53 @@ numDoc2titInput.addEventListener("input", function(event) {
   }
 });
 
+numDoc2titInput.addEventListener("blur", function(event) {
+  $.ajax({
+    url: '../api/ObtenerProspectoxDocumento',
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'tipoDoc':document.getElementById("tipoDoc2tit").value,'dscDocumento':document.getElementById("numDoc2tit").value},
+    success: function(respuesta){
+      if (respuesta) {
+        document.getElementById("apelP2tit").value = respuesta['response']['dsc_nombre'];
+        document.getElementById("apelM2tit").value = respuesta['response']['dsc_apellido_paterno'];
+        document.getElementById("nombre2Tit").value = respuesta['response']['dsc_apellido_materno'];
+        document.getElementById("ruc2Tit").value = respuesta['response']['dsc_razon_social'];
+        document.getElementById("dir2Tit").value = respuesta['response']['dsc_direccion'];
+        document.getElementById("telf1_2Tit").value = respuesta['response']['dsc_telefono_1'];
+        document.getElementById("telf2_2Tit").value = respuesta['response']['dsc_telefono_2'];
+        document.getElementById("correo2Tit").value = respuesta['response']['dsc_correo'];
+        
+        var changeEvent = new Event('change');
+        var paisProspecto=document.getElementById("pais2Tit") ;
+        paisProspecto.value=respuesta["response"]["cod_pais"];
+        paisProspecto.dispatchEvent(changeEvent);
+        
+        var dptoProsp=document.getElementById("dpto2Tit") ;
+        dptoProsp.value=respuesta["response"]["cod_departamento"];
+        dptoProsp.dispatchEvent(changeEvent); 
+        
+        var provinProsp=document.getElementById("prov2Tit") ;
+        var dttoProsp=document.getElementById("dtto2Tit") ;
+        setTimeout(function() { 
+          provinProsp.value=respuesta["response"]["cod_provincia"];
+          provinProsp.dispatchEvent(changeEvent);
+          setTimeout(function() { 
+            dttoProsp.value=respuesta["response"]["cod_distrito"];
+            dttoProsp.dispatchEvent(changeEvent);
+          }, 2000);
+        }, 2000); 
+      }
+      numDoc2titInput.blur();  
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });
+});
 
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
-
 numDocAddBenefInput.addEventListener("input", function(event) {
   var inputValue = numDocAddBenefInput.value;
   var tipoDoc = document.getElementById('tipoDocAddBenef');
