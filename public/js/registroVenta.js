@@ -898,7 +898,7 @@ var serviciosAgregados = [];
 var fomaTotal = 0;
 
 function muestraserviciosFormulario(datos) {
-    //console.log(datos);
+   // console.log(datos);
 
     if (document.getElementById("tieneDS").value == 'SI' && datos['flg_dsepultura'] == 'SI') {
         Swal.fire({
@@ -909,6 +909,8 @@ function muestraserviciosFormulario(datos) {
         })
         return;
     }
+
+    var flgAdicional = datos['flg_sadicional'];
     
     var tabla = document.getElementById('tablaServiciosAdded');
     var tbody = tabla.getElementsByTagName('tbody')[0];
@@ -988,14 +990,19 @@ function muestraserviciosFormulario(datos) {
     cuoIniInput.setAttribute('min', '0');
     cuoIniInput.setAttribute('style', 'width: 5em;');
     cuoIniInput.classList.add('inputCUOI');
-    var valorLibre = (datos['imp_precio_cuoi']) ? datos['imp_precio_cuoi'] : 0;
-    cuoIniInput.value = valorLibre;
+    var valorCUOI = '';
+    if(flgAdicional == 'SI'){
+        valorCUOI = datos['imp_precio'];
+    }else{
+        valorCUOI = (datos['imp_precio_cuoi']) ? datos['imp_precio_cuoi'] : 0;
+    } 
+    cuoIniInput.value = valorCUOI;
 
     cuoIniCelda.appendChild(cuoIniInput);
 
     
     var precioFinal1Celda = nuevaFilaServ.insertCell();
-    precioFinal1Celda.textContent = saldo-valorLibre;
+    precioFinal1Celda.textContent = saldo-valorCUOI;
 
     var btnEliminarCelda = nuevaFilaServ.insertCell();
     var btnEliminarInput = document.createElement('button');
