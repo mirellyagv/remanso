@@ -2231,9 +2231,10 @@ boton.addEventListener("click",function(){
     title: 'Esta seguro que quiere Guardar la venta?',
     text: dscTitular,
     icon: 'warning',
-    showCancelButton: true,
+    showDenyButton: true,
     confirmButtonColor: '#35B44A',
-    cancelButtonColor: '#d33',
+    denyButtonColor: '#d33',
+    denyButtonText: 'Cancelar',
     confirmButtonText: 'Aceptar'
   }).then((result) => {
     if (result.isConfirmed) {
@@ -2317,6 +2318,8 @@ boton.addEventListener("click",function(){
             boton.removeAttribute('disabled');
         }//error
       });
+    }else if (result.isDenied) {
+      boton.removeAttribute('disabled');
     }
   })//then
 });
