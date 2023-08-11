@@ -1341,8 +1341,8 @@ numDocAvalInput.addEventListener("blur", function(event) {
         document.getElementById("apellMAval").value = respuesta['response']['dsc_apellido_materno'];
         document.getElementById("razonSocAval").value = respuesta['response']['dsc_razon_social'];
         document.getElementById("direccAval").value = respuesta['response']['dsc_direccion'];
-        document.getElementById("telf1Aval").value = respuesta['response']['dsc_telefono_1'];
-        document.getElementById("telf2Aval").value = respuesta['response']['dsc_telefono_2'];
+        document.getElementById("telef1Aval").value = respuesta['response']['dsc_telefono_1'];
+        document.getElementById("telef2Aval").value = respuesta['response']['dsc_telefono_2'];
         document.getElementById("correoAval").value = respuesta['response']['dsc_correo'];
         
         var changeEvent = new Event('change');
