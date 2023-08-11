@@ -1016,7 +1016,8 @@ function muestraserviciosFormulario(datos) {
 
     btnEliminarCelda.appendChild(btnEliminarInput);
 
-    var changeEvent = new Event('input');   // Crea un evento "change"
+    var changeEvent = new Event('input');
+    var changeEvent2 = new Event('change'); 
     inputCOUI = document.getElementById('impCuoi');
 
     // nombreInput.addEventListener('input', function() {
@@ -1035,6 +1036,9 @@ function muestraserviciosFormulario(datos) {
         recalcularSuma();
     });
 
+    var inputNumCuotas=document.getElementById("codCuotaServ") ;
+    var inputInteres=document.getElementById("codTasa") ;
+
     dsctoPorcInput.addEventListener('input', function() {
         if(dsctoPorcInput.value > 100){
             dsctoPorcInput.value = 100;
@@ -1046,6 +1050,8 @@ function muestraserviciosFormulario(datos) {
 
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['por_descuento'] = dsctoPorcInput.value;
         recalcularSuma();
+        inputNumCuotas.dispatchEvent(changeEvent2);
+        inputInteres.dispatchEvent(changeEvent2);
     });
 
     dsctoLibreInput.addEventListener('input', function() {
@@ -1054,6 +1060,9 @@ function muestraserviciosFormulario(datos) {
         cuoIniInput.dispatchEvent(changeEvent);
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_descuento_adicional'] = dsctoLibreInput.value;
         recalcularSuma();
+
+        inputNumCuotas.dispatchEvent(changeEvent2);
+        inputInteres.dispatchEvent(changeEvent2);
     });
     
     document.getElementById("tieneDS").value=datos['flg_dsepultura'];
@@ -1073,6 +1082,9 @@ function muestraserviciosFormulario(datos) {
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_cui'] = cuoIniInput.value;
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_saldo'] = nvoSaldo;
         recalcularSuma();
+        
+        inputNumCuotas.dispatchEvent(changeEvent2);
+        inputInteres.dispatchEvent(changeEvent2);
     });
 
     function calculaSaldo(ctd,dsctoLibre,dsctoPorc,precio) {
