@@ -192,7 +192,7 @@ window.onload= function () {
                     { title: 'PRECIO VENTA' },
                 ],
                 "columnDefs": [
-                    { className: "derecha", "targets": [ 4 ] }
+                    { className: "derecha", "targets": [ 5 ] }
                 ],
                 dom: 'trip',
                 processing: true,
