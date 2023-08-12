@@ -1114,6 +1114,8 @@ function muestraserviciosFormulario(datos) {
         descuentoCelda.textContent = porc;
        // document.getElementById("impDscto").value=Number(dscto-dsctoLibre).toFixed(2);
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_dscto'] = dscto-dsctoLibre;
+        serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_cui'] = cuoIniInput.value;
+        serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_saldo'] = precioFinal1Celda.textContent;
         document.getElementById("impDsctoAdicional").value=Number(dsctoLibre).toFixed(2);
         document.getElementById("pordescuento").value=dsctoPorc;
         //document.getElementById("impSaldo").value=Number(saldo).toFixed(2);
@@ -1145,8 +1147,8 @@ function muestraserviciosFormulario(datos) {
         'imp_dscto': (datos['imp_dscto']) ? datos['imp_dscto'] : 0,
         'imp_total': (datos['imp_total']) ? datos['imp_total'] : 0,
         'imp_foma': (datos['imp_precio_foma']) ? datos['imp_precio_foma'] : 0,
-        'imp_cui': datos['imp_precio_cuoi'],
-        'imp_saldo': datos['imp_precio'],
+        'imp_cui': cuoIniInput.value,
+        'imp_saldo': precioFinal1Celda.textContent,
         'cod_localidad_base':  '',
         'cod_contrato_base':  '',
         'num_servicio_base': '',

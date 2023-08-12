@@ -15,7 +15,8 @@
                             <th style="text-align: center;" width="15%">Acciones</th>
                             <th style="text-align: center;" width="15%">Contrato</th>
                             <th style="text-align: center;" width="15%">Documento</th>
-                            <th style="text-align: center;" width="40%">Titular</th>
+                            <th style="text-align: center;" width="25%">Titular</th>
+                            <th style="text-align: center;" width="15%">Consejero</th>
                             <th style="text-align: center;" width="15%">Precio Venta</th>    
                         </tr>
                     </thead>
@@ -167,6 +168,7 @@ window.onload= function () {
                     element['cod_contrato']+'-'+element['num_servicio'],
                     element['dsc_tipo_documento_cliente']+'-'+element['dsc_documento_cliente'],
                     element['dsc_cliente'],
+                    element['dsc_vendedor'],
                     formatearNumero(element['imp_precio_venta'])
                 ];
                 filasArray.push(filaData);
@@ -186,6 +188,7 @@ window.onload= function () {
                     { title: 'CONTRATO' },
                     { title: 'DOCUMENTO' },
                     { title: 'TITULAR' },
+                    { title: 'CONSEJERO'},
                     { title: 'PRECIO VENTA' },
                 ],
                 "columnDefs": [

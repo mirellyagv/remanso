@@ -679,7 +679,7 @@
                                   <th style="text-align: center;" width="5%" colspan="2">Dscto. %</th>
                                   <th style="text-align: center;" width="5%">Dscto. Libre S/.</th>
                                   <th style="text-align: center;" width="10%">Precio Total</th>
-                                  <th style="text-align: center;" width="10%">CUI mínima</th>
+                                  <th style="text-align: center;" width="10%">CUI</th>
                                   <th style="text-align: center;" width="10%">Saldo</th>
                                   <th style="text-align: center;" width="10%"></th>
                                 </tr>
@@ -2123,7 +2123,7 @@ boton.addEventListener("click",function(){
     'dsc_apellido_materno': document.getElementById("apellMRegVta").value.toUpperCase(),
     'dsc_nombre': document.getElementById("nombresRegVta").value.toUpperCase(),
     'flg_juridico': flgJuridico,
-    'cod_tipo_documento': document.getElementById("tipoDocRegVta").value.toUpperCase(),
+    'cod_tipo_documento': document.getElementById("tipoDocRegVta").value,
     'dsc_documento': document.getElementById("numDocRegVta").value,
     'cod_pais': document.getElementById("paisRegVta").value,
     'cod_departamento': document.getElementById("dptoRegVta").value,
@@ -2226,7 +2226,7 @@ boton.addEventListener("click",function(){
     
   //   'imp_cui_minimo':document.getElementById("impMinCuoi").value
   // };
-
+  console.log(serviciosAgregados);
   Swal.fire({
     title: 'Esta seguro que quiere Guardar la venta?',
     text: dscTitular,
