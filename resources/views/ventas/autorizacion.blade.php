@@ -13,7 +13,8 @@
                     <thead style="background-color: #35B44A; color: white;">
                         <tr>
                             <th style="text-align: center;" width="15%">Acciones</th>
-                            <th style="text-align: center;" width="15%">Contrato</th>
+                            <th style="text-align: center;" width="10%">Contrato</th>
+                            <th style="text-align: center;" width="10%">Integral</th>
                             <th style="text-align: center;" width="15%">Documento</th>
                             <th style="text-align: center;" width="25%">Titular</th>
                             <th style="text-align: center;" width="15%">Consejero</th>
@@ -166,6 +167,7 @@ window.onload= function () {
                     '<button class="btn btn-secondary form-remanso" id="btnVer" onclick="verComprobante('+codCtto+')" name="btnVer" type="button" title="Ver Comprobante"><span class="bi bi-receipt"></span></button>'+
                     '<button class="btn btn-primary BtnAzulORemanso form-remanso"  id="btnFirmar" onclick="firmaCtto('+codCtto+')" name="btnFirmar" type="button" title="Enviar a firmar"><span class="bi bi-vector-pen"></span></button>',
                     element['cod_contrato']+'-'+element['num_servicio'],
+                    element['flg_integral'],
                     element['dsc_tipo_documento_cliente']+'-'+element['dsc_documento_cliente'],
                     element['dsc_cliente'],
                     element['dsc_vendedor'],
@@ -186,6 +188,7 @@ window.onload= function () {
                 columns: [
                     { title: 'ACCION' },
                     { title: 'CONTRATO' },
+                    { title: 'INTEGRAL' },
                     { title: 'DOCUMENTO' },
                     { title: 'TITULAR' },
                     { title: 'CONSEJERO'},
