@@ -166,11 +166,17 @@
             success: function(respuesta){
                 console.log(respuesta['data']['mensaje']);
                 
-                if(respuesta['data']['mensaje'] == 'OK'){
+                if(respuesta['data']['mensaje'] == 'OK' && respuesta['data']['response']['flg_acceso_ventas_web'] == 'SI' ){
                     // alert("en OKKKKK");
                     // console.log('ok',respuesta);                    
                     //document.getElementById('message2').style.display = "none";
-                    window.location.href = "home";
+                    if(respuesta['data']['response']['flg_ni'] == 'SI'){
+                        window.location.href = "telereporte/listado";
+                    }else if(respuesta['data']['response']['flg_firmante'] == 'SI'){
+                        window.location.href = "ventas/autorizacion";
+                    }else{
+                        window.location.href = "home";
+                    }
                     
                 }else{
                     console.log('no',respuesta);
@@ -181,7 +187,7 @@
                
             },//success
             error(e){
-                console.log('error',respuesta);
+                console.log('error',e);
                 alert("area de error");
                 console.log(e.message);
             }//error
