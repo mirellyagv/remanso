@@ -155,8 +155,8 @@
     var boton2 = document.getElementById("loginBtn1");
     
     boton2.addEventListener("click",function(){
-        var usuario = document.getElementById("user").value;
-        var password = document.getElementById("password").value;
+        var usuario = document.getElementById("userM").value;
+        var password = document.getElementById("passwordM").value;
         $.ajax({
             url: 'api/logueo', 
             method: "GET",
@@ -188,7 +188,7 @@
             },//success
             error(e){
                 console.log('error',e);
-                alert("area de error");
+                alert(e.message);
                 console.log(e.message);
             }//error
         });
