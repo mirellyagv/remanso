@@ -56,6 +56,11 @@ return [
             'throw' => false,
         ],
 
+        'documentosProspectos' => [
+            'driver' => 'local',
+            'root' => 'C:/pruebaSubeDocumentos',
+        ],
+
     ],
 
     /*

@@ -821,16 +821,16 @@
                           <input class="form-control form-remanso form-control-sm" id="Dni2Adj2" type="file">
                         </div>
 
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-2 mb-3" id="tituloDniAval1">
                           <label for="inputText" class="col-form-label">DNI Aval anverso: </label>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-3" id="inputDniAval1">
                           <input class="form-control form-remanso form-control-sm" id="DniAvalAdj1" type="file">
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-2 mb-3" id="tituloDniAval2">
                           <label for="inputText" class="col-form-label">DNI Aval reverso: </label>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-3" id="inputDniAval2">
                           <input class="form-control form-remanso form-control-sm" id="DniAvalAdj2" type="file">
                         </div>
 
@@ -1022,10 +1022,18 @@ botonNece.addEventListener("change",function(){
   //console.log(this.checked);
   if(this.checked == true){
     //document.getElementById("formRegVenta").reset();
+    document.getElementById('tituloDniAval1').style.display = "block";
+    document.getElementById('inputDniAval1').style.display = "block";
+    document.getElementById('tituloDniAval2').style.display = "block";
+    document.getElementById('inputDniAval2').style.display = "block";
     document.getElementById('tituloRecSep').style.display = "none";
     document.getElementById('inputRecSep').style.display = "none";
     $("#acordeonAval").css("display", "block");
   }else{
+    document.getElementById('tituloDniAval1').style.display = "none";
+    document.getElementById('inputDniAval1').style.display = "none";
+    document.getElementById('tituloDniAval2').style.display = "none";
+    document.getElementById('inputDniAval2').style.display = "none";
     document.getElementById('tituloRecSep').style.display = "block";
     document.getElementById('inputRecSep').style.display = "block";
     $("#acordeonAval").css("display", "none");
@@ -2090,7 +2098,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
@@ -2112,7 +2120,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
@@ -2134,7 +2142,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
@@ -2156,7 +2164,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
@@ -2178,7 +2186,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
@@ -2200,7 +2208,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
@@ -2222,7 +2230,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
@@ -2244,7 +2252,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
@@ -2266,11 +2274,32 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       fileInput.value = ""; // Limpiar el input
     } else {
-      errorMessage.textContent = "";
+      console.log('pasa documento');
     }
   });
 });
 
+//----------------------------------guardar documentos---------------------------------------------
+
+function guardaDocumento(nombreInput,codProspecto,nombre,numLinea,accionDocumentos) {
+
+  var fileInput = document.getElementById(nombreInput);
+  const formData = new FormData();
+  formData.append("file", fileInput.files[0]);
+  formData.append("codProspecto", codProspecto);
+  formData.append("nombre", nombre);
+  formData.append("numLinea", numLinea);
+
+  axios.post('../api/guardaDocumentoAdjunto', formData)
+  .then(response => {
+      console.log(response.data);
+      // Realizar acciones adicionales si es necesario
+  })
+  .catch(error => {
+      console.error(error);
+  });
+  
+}
 
 //-----------------------------------Registrar venta---------------------------------------------------
 
@@ -2284,8 +2313,10 @@ boton.addEventListener("click",function(){
 
     if(cod_prospecto== ""){
         urlGrabar = '../api/guardaProspecto';
+        accionDocumentos = 'guarda';
     }else{
         urlGrabar = '../api/editarProspecto';
+        accionDocumentos = 'actualiza';
     }
 
     var botonApr = document.getElementById("AprobarVenta");
@@ -2397,8 +2428,6 @@ boton.addEventListener("click",function(){
     'imp_cuota': document.getElementById("imp_cuota").value,
   };
 
-  
-
   Swal.fire({
     title: 'Esta seguro que quiere Guardar la venta?',
     text: dscTitular,
@@ -2438,6 +2467,34 @@ boton.addEventListener("click",function(){
               }//error
           });
 
+          if(document.getElementById("DniAdj1").value != ''){
+            guardaDocumento('DniAdj1',cod_prospecto,'DNI_Titular_anverso',1,accionDocumentos);
+          }
+          if(document.getElementById("DniAdj2").value != ''){
+            guardaDocumento('DniAdj2',cod_prospecto,'DNI_Titular_reverso',2,accionDocumentos);
+          }
+          if(document.getElementById("Dni2Adj1").value != ''){
+            guardaDocumento('Dni2Adj1',cod_prospecto,'DNI_Alterno_anverso',3,accionDocumentos);
+          }
+          if(document.getElementById("Dni2Adj2").value != ''){
+            guardaDocumento('Dni2Adj2',cod_prospecto,'DNI_Alterno_reverso',4,accionDocumentos);
+          }
+          if(document.getElementById("DniAvalAdj1").value != ''){
+            guardaDocumento('DniAvalAdj1',cod_prospecto,'DNI_Aval_anverso',5,accionDocumentos);
+          }
+          if(document.getElementById("DniAvalAdj2").value != ''){
+            guardaDocumento('DniAvalAdj2',cod_prospecto,'DNI_Aval_reverso',6,accionDocumentos);
+          }
+          if(document.getElementById("recServAdj").value != ''){
+            guardaDocumento('recServAdj',cod_prospecto,'Recibo_de_servicio',7,accionDocumentos);
+          }
+          if(document.getElementById("comprobanteAdj").value != ''){
+            guardaDocumento('comprobanteAdj',cod_prospecto,'Comprobante',8,accionDocumentos);
+          }
+          if(document.getElementById("RecSepAdj").value != ''){
+            guardaDocumento('RecSepAdj',cod_prospecto,'Recibo_de_separacion',9,accionDocumentos);
+          }
+
           serviciosAgregados.forEach(function (fila) {
 
             fila['cod_prospecto'] = cod_prospecto;
@@ -2464,8 +2521,6 @@ boton.addEventListener("click",function(){
               }//error
             });
           });
-
-
 
           Swal.fire({
             title: 'Guardado',

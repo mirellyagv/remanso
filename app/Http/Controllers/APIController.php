@@ -10,6 +10,7 @@ use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Client\Request as HttpClientRequest;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use Illuminate\Support\Facades\Storage;
 
 
 class APIController extends Controller
@@ -750,6 +751,61 @@ class APIController extends Controller
             $promise->wait();
             //$codProspecto = APIController::obtenerUltimoProspecto();
             //return $codProspecto;
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function guardaDocumentoAdjunto(Request $request)
+    {
+        $client = new Client();
+        $file = $request->file('file');
+        $destinationPath = 'C:/pruebaSubeDocumentos/'.$request['codProspecto'].'/'.$request['nombre'].'.'. $file->getClientOriginalExtension();
+        $fileName = $request['nombre'];
+        var_dump($destinationPath);
+ 
+        $data = [ 
+            "cod_localidad_p"=> "LC001",
+            "cod_prospecto"=> $request['codProspecto'],
+            "num_linea"=> $request['numLinea'],
+            "dsc_documento"=> $fileName,
+            "dsc_nombre_original"=> $file->getClientOriginalName(),
+            "dsc_ruta"=> $destinationPath
+        ];
+        $data = json_encode($data);        
+        // Ruta donde se guardará el archivo
+        $rutaArchivo = $request['codProspecto'] . '/' . $fileName . '.' . $file->getClientOriginalExtension();
+
+        // Guardar el archivo en el nuevo disco, la ruta esta definida en config/filesystems.php
+        Storage::disk('documentosProspectos')->put($rutaArchivo, file_get_contents($file));
+
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+
+        $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoDocumento/20396900719';
+
+        if($request['accionDocumentos'] == 'actualiza'){
+
+            $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoDocumento/20396900719';
+
+        }
+
+        try {
+            $request = new \GuzzleHttp\Psr7\Request('PUT', $url, $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+
+            $promise->wait();
+            return 'Guardado';
+
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);

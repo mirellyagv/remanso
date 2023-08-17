@@ -72,6 +72,7 @@ class VerifyCsrfToken extends Middleware
         'lista/ListarProspectoxAprobar',
         'lista/MuestraNivel',
         'api/EliminarServicio',
+        'api/guardaDocumentoAdjunto',
         
     ];
 }
