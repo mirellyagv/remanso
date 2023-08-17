@@ -2289,6 +2289,7 @@ function guardaDocumento(nombreInput,codProspecto,nombre,numLinea,accionDocument
   formData.append("codProspecto", codProspecto);
   formData.append("nombre", nombre);
   formData.append("numLinea", numLinea);
+  formData.append("accionDocumentos", accionDocumentos);
 
   axios.post('../api/guardaDocumentoAdjunto', formData)
   .then(response => {
