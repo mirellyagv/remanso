@@ -844,7 +844,7 @@
                           <label for="inputText" class="col-form-label">Comprobante: </label>
                         </div>
                         <div class="col-md-4 mb-3">
-                          <input class="form-control form-remanso form-control-sm" id="RecAdj" type="file">
+                          <input class="form-control form-remanso form-control-sm" id="comprobanteAdj" type="file">
                         </div>
                         <div class="col-md-2 mb-3" style="display: none" id="tituloRecSep">
                           <label for="inputText" class="col-form-label">Recibo separación: </label>
@@ -2072,6 +2072,205 @@ $( document ).ready(function () {
   
 });
 
+//--------------------------------validacion de documentos-------------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("DniAdj1");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("DniAdj2");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("Dni2Adj1");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("Dni2Adj2");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("DniAvalAdj1");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("DniAvalAdj2");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("recServAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("comprobanteAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("RecSepAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+});
+
 
 //-----------------------------------Registrar venta---------------------------------------------------
 
@@ -2198,35 +2397,8 @@ boton.addEventListener("click",function(){
     'imp_cuota': document.getElementById("imp_cuota").value,
   };
 
-  // var servicioArray ={
-  //   'cod_localidad_p': 'LC001',
-  //   'cod_prospecto': '',
-  //   'num_linea': 0,
-  //   'cod_servicio': document.getElementById("codServicio").value,
-  //   'num_ctd': document.getElementById("ctdServ").value,
-  //   'imp_precio_lista': document.getElementById("impPrecioLista").value,
-  //   'imp_precio_venta': document.getElementById("impPrecioLista").value,
+  
 
-  //   'imp_dscto': document.getElementById("impDscto").value,
-  //   'imp_total': document.getElementById("impTotal").value,
-  //   'imp_foma': document.getElementById("impFoma").value,
-  //   'imp_cui': document.getElementById("impCuoi").value,
-  //   'imp_saldo': document.getElementById("impSaldo").value,
-
-  //   'cod_localidad_base': '',
-  //   'cod_contrato_base': document.getElementById("cttoBase").value,
-  //   'num_servicio_base': document.getElementById("numServBase").value,
-  //   'cod_cuota_foma': document.getElementById("codCuotaFoma").value,
-  //   'cod_cuota_servicio': document.getElementById("codCuotaServ").value,
-  //   'cod_tasa': document.getElementById("codTasa").value,
-  //   'fch_1er_vencimiento': document.getElementById("fch1erVcto").value,
-    
-  //   'por_descuento': document.getElementById("pordescuento").value,
-  //   'imp_descuento_adicional': document.getElementById("impDsctoAdicional").value, //validar como string
-    
-  //   'imp_cui_minimo':document.getElementById("impMinCuoi").value
-  // };
-  console.log(serviciosAgregados);
   Swal.fire({
     title: 'Esta seguro que quiere Guardar la venta?',
     text: dscTitular,
@@ -2292,6 +2464,8 @@ boton.addEventListener("click",function(){
               }//error
             });
           });
+
+
 
           Swal.fire({
             title: 'Guardado',
