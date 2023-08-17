@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="row">
-                 <div class="col-11 mb-2 d-none d-md-block" style="text-align: center">
+                 <div class="col-11 mb-2 d-md-block" style="text-align: center">
                      <button class="btn btn-secondary form-remanso" id="excelBtn1" onclick="IrRegistro()">Registrar Nuevo Telereporte&nbsp; <span class="bi bi-save"></span></button>
                  </div>
                 </div>
