@@ -186,10 +186,11 @@ $(document).ready(function () {
   flg_nf= '@php echo(session('flg_nf')) @endphp';
   flg_sac= '@php echo(session('flg_sac')) @endphp';
   flg_admin = '@php echo(session('flg_administrador')) @endphp';
+  flg_jefe = '@php echo(session('flg_jefe')) @endphp';
   
   if(flg_ni=='SI' && flg_nf=='SI'){
     cod_tipo_necesidad='%';
-  } else if(flg_ni=='NO' && flg_nf=='NO' && (flg_sac=='SI' || flg_admin == 'SI')){
+  } else if(flg_ni=='NO' && flg_nf=='NO' && (flg_sac=='SI' || flg_admin == 'SI' || flg_jefe == 'SI')){
     cod_tipo_necesidad='%';
     document.getElementById("tituloPag").innerText = "prospectos/ventas";
   } else if(flg_ni=='NO' && flg_nf=='NO' && flg_sac=='NO'){

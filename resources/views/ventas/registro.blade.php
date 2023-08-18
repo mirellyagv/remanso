@@ -2016,6 +2016,7 @@ $( document ).ready(function () {
               resultado['response'].forEach(function(documento){
                 if(documento["num_linea"] == '1'){
                   document.getElementById("DniAdj1").classList.add('is-valid');
+                  $("#DniAdj1").val('Guardado.jpg');
                 }
                 if(documento["num_linea"] == '2'){
                   document.getElementById("DniAdj2").classList.add('is-valid');
