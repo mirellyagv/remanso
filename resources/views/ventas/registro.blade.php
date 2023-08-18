@@ -793,7 +793,7 @@
                       <br>
                       <div class="row">
                         <div class="col-md-2 mb-3">
-                          <label for="inputText" class="col-form-label">DNI Titular anverso: </label>
+                          <label for="inputText" class="col-form-label"> DNI Titular anverso: </label>
                         </div>
                         <div class="col-md-4 mb-3">
                           <div class="custom-file">
@@ -2005,6 +2005,47 @@ $( document ).ready(function () {
               
             }
           });
+
+          $.ajax({         
+            type: "GET",
+            url: '../api/ListarProspectoDocumentos', 
+            dataType: 'json',
+            data:{'codProspecto':cod_prospecto},
+            success: function(resultado){
+              console.log('documentos',resultado);
+              resultado['response'].forEach(function(documento){
+                if(documento["num_linea"] == '1'){
+                  document.getElementById("DniAdj1").classList.add('is-valid');
+                }
+                if(documento["num_linea"] == '2'){
+                  document.getElementById("DniAdj2").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '3'){
+                  document.getElementById("Dni2Adj1").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '4'){
+                  document.getElementById("Dni2Adj2").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '5'){
+                  document.getElementById("DniAvalAdj1").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '6'){
+                  document.getElementById("DniAvalAdj2").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '7'){
+                  document.getElementById("recServAdj").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '8'){
+                  document.getElementById("comprobanteAdj").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '9'){
+                  document.getElementById("RecSepAdj").classList.add('is-valid');
+                }
+                
+              });              
+            }
+          });
+
           setTimeout(function() { 
             //document.getElementById("impTotal").value=result["response"]["imp_total"];
             document.getElementById("impCuoi").value=result["response"]["imp_cui"];
@@ -2089,6 +2130,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
 
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene el anverso del DNI del titular guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({
         title:'Error!',
@@ -2110,6 +2172,27 @@ document.addEventListener("DOMContentLoaded", function () {
   fileInput.addEventListener("change", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene el reverso del DNI del titular guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
 
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({
@@ -2133,6 +2216,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
 
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene el anverso del DNI del segundo titular guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({
         title:'Error!',
@@ -2154,6 +2258,27 @@ document.addEventListener("DOMContentLoaded", function () {
   fileInput.addEventListener("change", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene el reverso del DNI del segundo titular guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
 
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({
@@ -2177,6 +2302,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
 
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene el anverso del DNI del aval guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({
         title:'Error!',
@@ -2198,6 +2344,27 @@ document.addEventListener("DOMContentLoaded", function () {
   fileInput.addEventListener("change", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene el reverso del DNI del aval guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
 
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({
@@ -2221,6 +2388,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
 
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene un Recibo de servicio guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({
         title:'Error!',
@@ -2243,6 +2431,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
 
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene un Comprobante guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({
         title:'Error!',
@@ -2264,6 +2473,27 @@ document.addEventListener("DOMContentLoaded", function () {
   fileInput.addEventListener("change", function () {
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
     const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene un Recibo de separación guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
 
     if (!allowedExtensions.exec(selectedFile.name)) {
       Swal.fire({

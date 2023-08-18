@@ -79,6 +79,8 @@ Route::put('api/ActualizarTelereporte', [APIController::class, 'ActualizarTelere
 Route::get('api/ValidarCoincidenciaDocumento', [APIController::class, 'ValidarCoincidenciaDocumento'])->name('api.ValidarCoincidenciaDocumento');
 Route::delete('api/EliminarProspectoContacto', [APIController::class, 'EliminarProspectoContacto'])->name('api.EliminarProspectoContacto');
 Route::post('api/guardaDocumentoAdjunto', [APIController::class, 'guardaDocumentoAdjunto'])->name('api.guardaDocumentoAdjunto');
+Route::get('api/ObtenerDocumentosProspecto', [APIController::class, 'ObtenerDocumentosProspecto'])->name('api.ObtenerDocumentosProspecto');
+Route::get('api/ListarProspectoDocumentos', [APIController::class, 'ListarProspectoDocumentos'])->name('api.ListarProspectoDocumentos');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');

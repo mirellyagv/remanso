@@ -8,11 +8,14 @@
         </a>
       </li>
       <br><br>
+
+      @if (session('flg_firmante')!='SI')
       <li class="nav-item">
         <a href="{{route('home')}}">
           <span class="item-menu">Prospectos por caducar</span>
         </a>
-    </li><br>
+      </li><br>
+      @endif
       
       @if (session('flg_administrador')==='SI')
       <li class="nav-item">
