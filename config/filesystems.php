@@ -59,7 +59,7 @@ return [
         'documentosProspectos' => [
             'driver' => 'local',
             //'root' => 'D:\CPE\OneDrive - SEGURINDUSTRIA SA\Documentos_SG5\Prospectos',
-            'root' => 'D:/Prueba_SG5/Prospectos',
+            'root' => 'D:/UmayuxSoftwareSrv/Prospectos_SG5/Documentos',
         ],
 
     ],
