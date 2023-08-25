@@ -761,7 +761,7 @@ class APIController extends Controller
     {
         $client = new Client();
         $file = $request->file('file');
-        $destinationPath = 'D:/UmayuxSoftwareSrv/Prospectos_SG5/Documentos/'.$request['codProspecto'].'/'.$request['nombre'].'.'. $file->getClientOriginalExtension();
+        $destinationPath = '//192.168.50.30/UmayuxSoftwareSrv/Prospectos_SG5/Documentos/'.$request['codProspecto'].'/'.$request['nombre'].'.'. $file->getClientOriginalExtension();
         $fileName = $request['nombre'];
         var_dump($destinationPath);
  
