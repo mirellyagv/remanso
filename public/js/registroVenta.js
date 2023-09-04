@@ -487,6 +487,14 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("tipoServicio").setAttribute('disabled', 'disabled');
         document.getElementById("subtipoServ").value = '';
         document.getElementById("subtipoServ").setAttribute('disabled', 'disabled');
+        document.getElementById("camposanto").removeAttribute('disabled');
+        document.getElementById("tipoPlat").removeAttribute('disabled');
+        document.getElementById("nombrePlat").removeAttribute('disabled');
+        document.getElementById("nombreArea").removeAttribute('disabled');
+        document.getElementById("ejeX").removeAttribute('disabled');
+        document.getElementById("ejeY").removeAttribute('disabled');
+        document.getElementById("espacio").removeAttribute('disabled');
+        document.getElementById("tipoEspacio").removeAttribute('disabled');
 
     }else{
 
