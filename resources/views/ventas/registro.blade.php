@@ -820,6 +820,13 @@
                   </h2>
                   <div id="collapseDocumentos" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-5 offset-7">
+                          <div style="border: solid 1px">
+                             &nbsp;&nbsp; Info: <span class="bi bi-check" style="color: green; font-size:2em;"></span> Ya tiene un documento guardado.
+                          </div>
+                        </div>
+                      </div>
                       <br>
                       <div class="row">
                         <div class="col-md-2 mb-3">

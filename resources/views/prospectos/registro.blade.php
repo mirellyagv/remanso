@@ -799,38 +799,6 @@ numDocProsInput.addEventListener("blur", function(event) {
 
                 document.getElementById("obsvProsp").value=respuesta["response"]["dsc_observaciones"];
                 document.getElementById("impProsp").value=respuesta["response"]["imp_monto"];
-                document.getElementById("apelP2tit").value=respuesta["response"]["dsc_apellido_paterno_2do"];
-                document.getElementById("apelM2tit").value=respuesta["response"]["dsc_apellido_materno_2do"];
-                document.getElementById("nombre2Tit").value=respuesta["response"]["dsc_nombre_2do"];
-
-                var tipoDoc2tit=document.getElementById("tipoDoc2tit") ;
-                tipoDoc2tit.value=respuesta["response"]["cod_tipo_documento_2do"];
-
-                document.getElementById("numDoc2tit").value=respuesta["response"]["dsc_documento_2do"];
-
-                var pais2Tit=document.getElementById("pais2Tit") ;
-                pais2Tit.value=respuesta["response"]["cod_pais_2do"];
-                pais2Tit.dispatchEvent(changeEvent); 
-
-                var dpto2Tit=document.getElementById("dpto2Tit") ;
-                dpto2Tit.value=respuesta["response"]["cod_departamento_2do"];
-                dpto2Tit.dispatchEvent(changeEvent);
-
-                var prov2Tit=document.getElementById("prov2Tit");
-                var dtto2Tit=document.getElementById("dtto2Tit");
-                setTimeout(function() {
-                  prov2Tit.value=respuesta["response"]["cod_provincia_2do"];
-                  prov2Tit.dispatchEvent(changeEvent);
-                  setTimeout(function() {
-                    dtto2Tit.value=respuesta["response"]["cod_distrito_2do"];
-                    dtto2Tit.dispatchEvent(changeEvent);
-                  }, 2000);
-                }, 2000);
-
-                document.getElementById("dir2Tit").value=respuesta["response"]["dsc_direccion_2do"];
-                document.getElementById("telf1_2Tit").value=respuesta["response"]["dsc_telefono_1_2do"];
-                document.getElementById("telf2_2Tit").value=respuesta["response"]["dsc_telefono_2_2do"];
-                document.getElementById("correo2Tit").value=respuesta["response"]["dsc_correo_2do"];
                 
               }
             })//then
@@ -1182,7 +1150,7 @@ boton.addEventListener("click",function(){
   obsvContacto = document.getElementById('obsvContacto').value;
   califContacto = document.getElementById('califContacto').value;
 
-  var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
+  var nombres  = (document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value).toUpperCase();
     flgJuridico = '';
     flgJuridico2 = '';
   if(document.getElementById("tipoDocProsp").value == 'DI004'){
