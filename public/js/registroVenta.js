@@ -119,10 +119,14 @@ window.onload=function() {
         success: function(respuesta){
             $("#edoCivilAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             $("#edoCivilRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');
+            $("#edoCivil2doRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');
+            $("#edoCivilAval").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#edoCivilAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
                 $("#edoCivilRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                $("#edoCivil2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                $("#edoCivilAval").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){

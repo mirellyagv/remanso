@@ -1307,6 +1307,8 @@ numDoc2titInput.addEventListener("blur", function(event) {
         document.getElementById("telf12doRegVta").value = respuesta['response']['dsc_telefono_1'];
         document.getElementById("telf22doRegVta").value = respuesta['response']['dsc_telefono_2'];
         document.getElementById("correo2doRegVta").value = respuesta['response']['dsc_correo'];
+        document.getElementById("edoCivil2doRegVta").value = respuesta['response']['cod_edo_civil_2do'];
+        document.getElementById("fchNac2doRegVta").value = respuesta['response']['fch_nacimiento_2do'];
         
         var changeEvent = new Event('change');
         var paisProspecto=document.getElementById("pais2doRegVta") ;
@@ -1389,6 +1391,8 @@ numDocAvalInput.addEventListener("blur", function(event) {
         document.getElementById("telef1Aval").value = respuesta['response']['dsc_telefono_1'];
         document.getElementById("telef2Aval").value = respuesta['response']['dsc_telefono_2'];
         document.getElementById("correoAval").value = respuesta['response']['dsc_correo'];
+        document.getElementById("edoCivilAval").value = respuesta['response']['cod_edo_civil_aval'];
+        document.getElementById("fchNacAval").value = respuesta['response']['fch_nacimiento_aval'];
         
         var changeEvent = new Event('change');
         var paisProspecto=document.getElementById("paisAval") ;
@@ -1942,9 +1946,9 @@ $( document ).ready(function () {
           document.getElementById("telf22doRegVta").value=result["response"]["dsc_telefono_2_2do"];
           document.getElementById("correo2doRegVta").value=result["response"]["dsc_correo_2do"];
             //-------------------------campos nuevos---------------------
-          document.getElementById("edoCivil2doRegVta").value=result["response"]["cod_estado_civil"];
-          auxFechaNac2do = result["response"]["fch_nacimiento"].split('T');
-          if(result['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
+          document.getElementById("edoCivil2doRegVta").value=result["response"]["cod_estado_civil_2do"];
+          auxFechaNac2do = result["response"]["fch_nacimiento_2do"].split('T');
+          if(result['response']['fch_nacimiento_2do'] != '1900-01-01T00:00:00'){
             document.getElementById("fchNac2doRegVta").value=auxFechaNac2do[0];
           }
 
@@ -1983,9 +1987,9 @@ $( document ).ready(function () {
           document.getElementById("telef2Aval").value=result["response"]["dsc_telefono_2_aval"];
           document.getElementById("correoAval").value=result["response"]["dsc_correo_aval"];
               //----------------campos nuevos----------------
-          document.getElementById("edoCivilAval").value=result["response"]["cod_estado_civil"];
-          auxFechaNacAval = result["response"]["fch_nacimiento"].split('T');
-          if(result['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
+          document.getElementById("edoCivilAval").value=result["response"]["cod_estado_civil_aval"];
+          auxFechaNacAval = result["response"]["fch_nacimiento_aval"].split('T');
+          if(result['response']['fch_nacimiento_aval'] != '1900-01-01T00:00:00'){
             document.getElementById("fchNacAval").value=auxFechaNacAval[0];
           }
 
