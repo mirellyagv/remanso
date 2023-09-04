@@ -368,6 +368,21 @@
                           <input type="text" class="form-control form-remanso" name="correo2doRegVta" id="correo2doRegVta" required>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-2">
+                          <label for="inputText" class="col-form-label">(*) Estado civil:</label>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <select name="edoCivil2doRegVta" id="edoCivil2doRegVta" class="form-select form-remanso" required>
+                          </select>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <label for="inputText" class="col-form-label">(*) Fch Nacimiento: </label>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <input type="text" class="form-control form-remanso align-right" name="fchNac2doRegVta" id="fchNac2doRegVta" required>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -488,6 +503,21 @@
                         </div>
                         <div class="col-md-9 mb-3">
                           <input type="text" class="form-control form-remanso" name="correoAval" id="correoAval">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 mb-2">
+                          <label for="inputText" class="col-form-label">(*) Estado civil:</label>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <select name="edoCivilAval" id="edoCivilAval" class="form-select form-remanso" required>
+                          </select>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <label for="inputText" class="col-form-label">(*) Fch Nacimiento: </label>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                          <input type="text" class="form-control form-remanso align-right" name="fchNacAval" id="fchNacAval" required>
                         </div>
                       </div>
                     </div>
@@ -1705,6 +1735,16 @@ flatpickr("#fchNacRegVta",{
   dateFormat: "Y-m-d"
 });
 
+flatpickr("#fchNac2doRegVta",{
+  locale:"es",
+  dateFormat: "Y-m-d"
+});
+
+flatpickr("#fchNacAval",{
+  locale:"es",
+  dateFormat: "Y-m-d"
+});
+
 
 document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
     ele.bootstrapToggle();
@@ -1894,6 +1934,12 @@ $( document ).ready(function () {
           document.getElementById("telf12doRegVta").value=result["response"]["dsc_telefono_1_2do"];
           document.getElementById("telf22doRegVta").value=result["response"]["dsc_telefono_2_2do"];
           document.getElementById("correo2doRegVta").value=result["response"]["dsc_correo_2do"];
+            //-------------------------campos nuevos---------------------
+          document.getElementById("edoCivil2doRegVta").value=result["response"]["cod_estado_civil"];
+          auxFechaNac2do = result["response"]["fch_nacimiento"].split('T');
+          if(result['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
+            document.getElementById("fchNac2doRegVta").value=auxFechaNac2do[0];
+          }
 
           //------------------------------------------Aval-----------------------------------------------------
 
@@ -1929,6 +1975,12 @@ $( document ).ready(function () {
           document.getElementById("telef1Aval").value=result["response"]["dsc_telefono_1_aval"];
           document.getElementById("telef2Aval").value=result["response"]["dsc_telefono_2_aval"];
           document.getElementById("correoAval").value=result["response"]["dsc_correo_aval"];
+              //----------------campos nuevos----------------
+          document.getElementById("edoCivilAval").value=result["response"]["cod_estado_civil"];
+          auxFechaNacAval = result["response"]["fch_nacimiento"].split('T');
+          if(result['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
+            document.getElementById("fchNacAval").value=auxFechaNacAval[0];
+          }
 
           //-------------------------------------------Servicios---------------------------------------------------------
 
@@ -2633,6 +2685,8 @@ boton.addEventListener("click",function(){
     'dsc_telefono_1_2do': document.getElementById("telf12doRegVta").value,
     'dsc_telefono_2_2do': document.getElementById("telf22doRegVta").value,
     'dsc_correo_2do': document.getElementById("correo2doRegVta").value.toUpperCase(),
+    'cod_estado_civil_2do': document.getElementById("edoCivil2doRegVta").value,
+    'fch_nacimiento_2do': document.getElementById("fchNac2doRegVta").value,
     'dsc_apellido_paterno_aval': document.getElementById("apellPAval").value.toUpperCase(),
     'dsc_apellido_materno_aval': document.getElementById("apellMAval").value.toUpperCase(),
     'dsc_nombre_aval': document.getElementById("nombresAval").value.toUpperCase(),
@@ -2647,6 +2701,8 @@ boton.addEventListener("click",function(){
     'dsc_telefono_1_aval': document.getElementById("telef1Aval").value,
     'dsc_telefono_2_aval': document.getElementById("telef2Aval").value,
     'dsc_correo_aval': document.getElementById("correoAval").value.toUpperCase(),
+    'cod_estado_civil_aval': document.getElementById("edoCivilAval").value,
+    'fch_nacimiento_aval': document.getElementById("fchNacAval").value,
     'cod_camposanto': document.getElementById("camposanto").value,
     'cod_plataforma': document.getElementById("nombrePlat").value,
     'cod_area_plataforma': document.getElementById("nombreArea").value,
@@ -2843,6 +2899,8 @@ function ModoVista() {
     document.getElementById("telef1Aval").disabled = true;
     document.getElementById("telef2Aval").disabled = true;
     document.getElementById("correoAval").disabled = true;
+    document.getElementById("edoCivilAval").disabled = true;
+    document.getElementById("fchNacAval").disabled = true;
     document.getElementById("camposanto").disabled = true;
     document.getElementById("nombrePlat").disabled = true;
     document.getElementById("nombreArea").disabled = true;
@@ -2880,6 +2938,8 @@ function ModoVista() {
     document.getElementById("telf12doRegVta").disabled = true;
     document.getElementById("telf22doRegVta").disabled = true;
     document.getElementById("correo2doRegVta").disabled = true;
+    document.getElementById("edoCivil2doRegVta").disabled = true;
+    document.getElementById("fchNac2doRegVta").disabled = true;
     document.getElementById("tipoPrograma").disabled = true;
     document.getElementById("subtipoServ").disabled = true;
     document.getElementById("tipoPlat").disabled = true;
