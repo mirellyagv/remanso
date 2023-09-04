@@ -478,6 +478,8 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById('impFoma').value = 0;
         document.getElementById("impFoma").setAttribute('disabled', 'disabled');
         document.getElementById("codCuotaFoma").setAttribute('disabled', 'disabled');
+        document.getElementById("tipoServicio").removeAttribute('disabled');
+        document.getElementById("subtipoServ").removeAttribute('disabled');
         
     }else if(valor == 'TR015' || valor == 'TR016'){ 
 

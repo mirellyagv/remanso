@@ -245,7 +245,7 @@ $(document).ready(function () {
     method: "GET",
     crossDomain: true,
     dataType: 'json',
-    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad,'dscVendedor':'%'},
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad,'dscVendedor':$('#buscaVendedor').val()},
     success: function(respuesta){
        //console.log('parado',respuesta)
         fila='';
