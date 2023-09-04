@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remanso - Login</title>
     <meta name="description" content="Default meta description" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{asset('images/logoPeqFav.png')}}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
