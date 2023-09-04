@@ -72,7 +72,7 @@
         
         <div class="m-auto d-block d-md-none" style="width: 80%;">
             <div class="row">
-                <div class="mb-3">
+                <div class="col-7 mb-3">
                     <img src="images/logoFondoAzul.png" class="img-fluid" alt="...">
                 </div>
                 <div class="mb-3">
