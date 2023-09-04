@@ -140,7 +140,7 @@ window.onload=function() {
             $("#tipoPrograma").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
-                $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+' compar="'+word['desvar3']+'" integral="'+word['desvar4']+'" >'+ word['desvar1'] +'</option>'); 
+                $("#tipoPrograma").append('<option value="'+ word['codvar'] +'" '+seleccion+' compar="'+word['desvar3']+'" integral="'+word['desvar4']+'" validaEsp="'+word['desvar2']+'"  >'+ word['desvar1'] +'</option>'); 
             });
         },//success
         error(e){
@@ -453,11 +453,14 @@ codcampo.addEventListener("change",function(){
     });
 });
 
-//-----------------bloquea espacios CREMACION-----------
+//-----------------bloquea espacios VALIDA ESPACIO Y TIPO DE SERVICIO -----------
 var codTipoProg = document.getElementById("tipoPrograma");
 codTipoProg.addEventListener("change",function(){
     var valor = codTipoProg.value;
-    if (valor == 'TR004' || valor == 'TR008') {
+    var validaEsp = $('option:selected', codTipoProg).attr('validaesp');
+    var flgIntg = $('option:selected', codTipoProg).attr('integral');
+
+    if (validaEsp == 'NO') {
         
         document.getElementById("camposanto").value = '';
         document.getElementById("camposanto").setAttribute('disabled', 'disabled');
@@ -478,36 +481,43 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById('impFoma').value = 0;
         document.getElementById("impFoma").setAttribute('disabled', 'disabled');
         document.getElementById("codCuotaFoma").setAttribute('disabled', 'disabled');
-        document.getElementById("tipoServicio").removeAttribute('disabled');
-        document.getElementById("subtipoServ").removeAttribute('disabled');
         
-    }else if(valor == 'TR015' || valor == 'TR016'){ 
+    }else{
+
+        document.getElementById("camposanto").removeAttribute('disabled');
+        document.getElementById("tipoPlat").removeAttribute('disabled');
+        document.getElementById("nombrePlat").removeAttribute('disabled');
+        document.getElementById("nombreArea").removeAttribute('disabled');
+        document.getElementById("ejeX").removeAttribute('disabled');
+        document.getElementById("ejeY").removeAttribute('disabled');
+        document.getElementById("espacio").removeAttribute('disabled');
+        document.getElementById("tipoEspacio").removeAttribute('disabled');
+
+        //------------------muestra Nivel----------------------------------------------
+
+        var esCompart = $('option:selected', codTipoProg).attr('compar');
+        console.log('esCompart',esCompart)
+        if(esCompart == 'SI'){
+            document.getElementById("nivelRegVnta").removeAttribute('disabled');
+        }else{
+            document.getElementById("nivelRegVnta").setAttribute('disabled', 'disabled');
+            var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
+            optionsNivel.forEach(o => o.remove());
+        }
+
+    }
+
+    if(flgIntg == 'SI'){ 
 
         document.getElementById("tipoServicio").value = '';
         document.getElementById("tipoServicio").setAttribute('disabled', 'disabled');
         document.getElementById("subtipoServ").value = '';
         document.getElementById("subtipoServ").setAttribute('disabled', 'disabled');
-        document.getElementById("camposanto").removeAttribute('disabled');
-        document.getElementById("tipoPlat").removeAttribute('disabled');
-        document.getElementById("nombrePlat").removeAttribute('disabled');
-        document.getElementById("nombreArea").removeAttribute('disabled');
-        document.getElementById("ejeX").removeAttribute('disabled');
-        document.getElementById("ejeY").removeAttribute('disabled');
-        document.getElementById("espacio").removeAttribute('disabled');
-        document.getElementById("tipoEspacio").removeAttribute('disabled');
 
     }else{
 
         document.getElementById("tipoServicio").removeAttribute('disabled');
         document.getElementById("subtipoServ").removeAttribute('disabled');
-        document.getElementById("camposanto").removeAttribute('disabled');
-        document.getElementById("tipoPlat").removeAttribute('disabled');
-        document.getElementById("nombrePlat").removeAttribute('disabled');
-        document.getElementById("nombreArea").removeAttribute('disabled');
-        document.getElementById("ejeX").removeAttribute('disabled');
-        document.getElementById("ejeY").removeAttribute('disabled');
-        document.getElementById("espacio").removeAttribute('disabled');
-        document.getElementById("tipoEspacio").removeAttribute('disabled');
 
     }
 
@@ -532,18 +542,6 @@ codTipoProg.addEventListener("change",function(){
             console.log(e.message);
         }//error
     });
-
-    //------------------muestra Nivel----------------------------------------------
-
-    var esCompart = $('option:selected', codTipoProg).attr('compar');
-    console.log('esCompart',esCompart)
-    if(esCompart == 'SI'){
-        document.getElementById("nivelRegVnta").removeAttribute('disabled');
-    }else{
-        document.getElementById("nivelRegVnta").setAttribute('disabled', 'disabled');
-        var optionsNivel = document.querySelectorAll('#nivelRegVnta option');
-        optionsNivel.forEach(o => o.remove());
-    }
 
 });
 

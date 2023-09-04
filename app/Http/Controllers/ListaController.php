@@ -26,8 +26,9 @@ class ListaController extends Controller
         $cod_tipo_necesidad = $request['cod_tipo_necesidad'];
         $dscVendedor = ($request['dscVendedor'] != '') ? $request['dscVendedor'] : '%';
 
-        if($dsc_documento==null || $dsc_documento==''){$dsc_documento='0';}
-        if($dsc_prospecto==null || $dsc_prospecto==''){$dsc_prospecto='0';}
+        if($dsc_documento==null || $dsc_documento==''){$dsc_documento='%';}
+        if($dsc_prospecto==null || $dsc_prospecto==''){$dsc_prospecto='%';}
+
 
         try {
                           
