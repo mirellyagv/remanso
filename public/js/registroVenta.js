@@ -496,7 +496,7 @@ codTipoProg.addEventListener("change",function(){
         //------------------muestra Nivel----------------------------------------------
 
         var esCompart = $('option:selected', codTipoProg).attr('compar');
-        console.log('esCompart',esCompart)
+        //console.log('esCompart',esCompart)
         if(esCompart == 'SI'){
             document.getElementById("nivelRegVnta").removeAttribute('disabled');
         }else{
@@ -1086,7 +1086,7 @@ function muestraserviciosFormulario(datos) {
     //document.getElementById("impCuoi").value=Number(datos['imp_precio_cuoi']).toFixed(2);
     //console.log('fomaTotal',fomaTotal);
     fomaTotal = parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma'])
-    document.getElementById("impFoma").value=parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma']);  
+    document.getElementById("impFoma").value=fomaTotal.toFixed(2);  
     //console.log('fomaTcalculootal',parseInt(fomaTotal)+parseFloat(datos['imp_precio_foma']));  
     document.getElementById("codServicio").value=datos['cod_servicio'];
     document.getElementById("esCompartido").value=datos['flg_ds_compartido'];
@@ -1213,6 +1213,7 @@ function recalcularSuma() {
 }
 
 function eliminarFilaServicios(index) {
+
     Swal.fire({
     title: 'Esta seguro que quiere Eliminar el servicio?',
     icon: 'warning',
@@ -1226,6 +1227,11 @@ function eliminarFilaServicios(index) {
             if (serviciosAgregados[index-1]['num_linea'] != 0) {
                 codProsp = serviciosAgregados[index-1]['cod_prospecto'];
                 numlinea = serviciosAgregados[index-1]['num_linea'];
+                fomaLinea = serviciosAgregados[index-1]['imp_foma'];
+
+                fomaTotal = fomaTotal-parseFloat(fomaLinea);
+                document.getElementById("impFoma").value = fomaTotal.toFixed(2);
+                
                 $.ajax({
                     url: '../api/EliminarServicio', 
                     method: "DELETE",
@@ -1245,6 +1251,11 @@ function eliminarFilaServicios(index) {
             const tbody = table.getElementsByTagName('tbody')[0];
             var fila = tbody.rows[index-1];
             tbody.removeChild(fila);
+
+            fomaLinea = serviciosAgregados[index-1]['imp_foma'];
+            fomaTotal = fomaTotal-parseFloat(fomaLinea);
+            document.getElementById("impFoma").value = fomaTotal.toFixed(2);
+
             serviciosAgregados.splice(index-1, 1); // Eliminar el valor del array en la posición index
 
             var inputIntegral = document.getElementById("tieneDS");
@@ -1402,7 +1413,7 @@ addBeneficiario.addEventListener("click",function (){
     };
     
     filasArray.push(filaData); // Agregar la fila al array
-    console.log(filasArray);
+   // console.log(filasArray);
 
 });
 
@@ -1412,7 +1423,7 @@ function eliminarFila(index,bd,dni) {
   var fila = tbody.rows[index-1];
   tbody.removeChild(fila);
   filasArray.splice(index-1, 1); // Eliminar el valor del array en la posición index
-  console.log(filasArray);
+  //console.log(filasArray);
   if(bd === 'SI'){
     $.ajax({         
         type: "DELETE",
