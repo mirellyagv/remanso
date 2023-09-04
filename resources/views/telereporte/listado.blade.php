@@ -13,6 +13,11 @@
     
     <div class="section dashboard">
       <div class="card">
+        <div class="row">
+          <div class="col-11 mb-2 d-md-block" style="text-align: center">
+              <button class="btn btn-secondary form-remanso" id="excelBtn1" onclick="IrRegistro()">Registrar Nuevo Telereporte&nbsp; <span class="bi bi-save"></span></button>
+          </div>
+         </div>
         <div class="accordion accordion-flush modified-accordion" id="accordionFlushExample">
           <div class="accordion-item">
             <h2 class="accordion-header d-md-none d-block">
@@ -93,14 +98,7 @@
                     <button class="btn btn-success BtnverdeRemanso form-remanso" onclick="descargarTablaExcel()" id="btnExportar"><img
                         src="{{asset('images/icon-excel.svg')}}" alt="Bootstrap" width="20" height="20"></button>
                   </div>
-                </div>
-
-                <div class="row">
-                 <div class="col-11 mb-2 d-md-block" style="text-align: center">
-                     <button class="btn btn-secondary form-remanso" id="excelBtn1" onclick="IrRegistro()">Registrar Nuevo Telereporte&nbsp; <span class="bi bi-save"></span></button>
-                 </div>
-                </div>
-                 
+                </div>                 
               </div>
             </div>
           </div>
