@@ -198,6 +198,7 @@ window.onload= function () {
                     { className: "derecha", "targets": [ 5 ] }
                 ],
                 dom: 'trip',
+                "order": [ 1, 'asc' ],
                 processing: true,
             });
             
@@ -315,6 +316,7 @@ function firmaCtto(codCtto){
                         data:{'codCtto':codCtto,'numServicio':numServ},
                         success: function(respuesta){
                             console.log(respuesta['response']);   
+                            location.reload();
                         },//success
                         error(e){
                             console.log(e.message);

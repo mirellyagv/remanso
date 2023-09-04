@@ -479,8 +479,17 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("impFoma").setAttribute('disabled', 'disabled');
         document.getElementById("codCuotaFoma").setAttribute('disabled', 'disabled');
         
+    }else if(valor == 'TR015' || valor == 'TR016'){ 
+
+        document.getElementById("tipoServicio").value = '';
+        document.getElementById("tipoServicio").setAttribute('disabled', 'disabled');
+        document.getElementById("subtipoServ").value = '';
+        document.getElementById("subtipoServ").setAttribute('disabled', 'disabled');
+
     }else{
 
+        document.getElementById("tipoServicio").removeAttribute('disabled');
+        document.getElementById("subtipoServ").removeAttribute('disabled');
         document.getElementById("camposanto").removeAttribute('disabled');
         document.getElementById("tipoPlat").removeAttribute('disabled');
         document.getElementById("nombrePlat").removeAttribute('disabled');

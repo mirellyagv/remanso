@@ -2536,6 +2536,14 @@ function guardaDocumento(nombreInput,codProspecto,nombre,numLinea,accionDocument
 
 var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
+  telf1ProspValue = document.getElementById("telf1RegVta").value;
+  var collapseOne = document.getElementById("collapseTitular");
+  if (telf1ProspValue === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("telf1RegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
   boton.setAttribute('disabled','disabled');
     
     var tipo_nec="";
