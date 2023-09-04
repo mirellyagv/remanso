@@ -1184,7 +1184,7 @@ numDocProsInput.addEventListener("blur", function(event) {
       dataType: 'json',
       data:{'tipoDoc':document.getElementById("tipoDocRegVta").value,'dscDocumento':document.getElementById("numDocRegVta").value},
       success: function(respuesta){
-        console.log('@php echo(session('cod_trabajador')) @endphp');
+        //console.log('@php echo(session('cod_trabajador')) @endphp');
         if (respuesta['response']['cod_prospecto'] != null) {
           if (respuesta['response']['cod_consejero'] == '@php echo(session('cod_trabajador')) @endphp') {
             Swal.fire({
@@ -1474,8 +1474,8 @@ CuotaInicial.addEventListener("input", function(event) {
   {
     num_cuota=1;
   }
-  console.log('num_cuota',num_cuota);
-  console.log('num_interes',num_interes);
+  //console.log('num_cuota',num_cuota);
+  //console.log('num_interes',num_interes);
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
@@ -1500,10 +1500,8 @@ tipoCuota.addEventListener("change", function(event) {
 
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
-  console.log(num_cuota);
-  console.log(num_interes);
+
   interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 ) - 1);
-  console.log()
 
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
@@ -1534,10 +1532,8 @@ tipoTasa.addEventListener("change", function(event) {
   {
     num_cuota=1;
   }
-  console.log('num_cuota',num_cuota);
-  console.log('num_interes',num_interes);
+
   interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;
-  console.log('interes',interes)
 
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
@@ -1545,7 +1541,6 @@ tipoTasa.addEventListener("change", function(event) {
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }else
   {
-    console.log('calculo',((1 + interes) ** num_cuota) - 1);
     imp_cuota = imp_saldo * ((interes * ( 1  + interes) ** num_cuota) / (((1 + interes) ** num_cuota) - 1));
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }
@@ -1807,13 +1802,13 @@ $( document ).ready(function () {
   }else{
     document.getElementById("tipoNec").bootstrapToggle('off');
   }
-  console.log('flg_ni',flg_ni);
   
   setTimeout(function() { 
     //console.log('cod_prospecto',cod_prospecto);
 
    
     if (cod_prospecto !== '') {
+      
       var botonGraba = document.getElementById("registrarVenta");
       botonGraba.setAttribute('disabled','disabled');
       $("#labelCodProspecto").css("display","block");
@@ -2044,7 +2039,7 @@ $( document ).ready(function () {
             dataType: 'json',
             data:{'cod_localidad':'LC001','cod_prospecto':cod_prospecto},
             success: function(resultado){
-              console.log(resultado["response"]);
+              //console.log(resultado["response"]);
               resultado['response'].forEach(function(servicio){
                 var datos = {
                   "cod_prospecto":servicio["cod_prospecto"],
@@ -2075,7 +2070,7 @@ $( document ).ready(function () {
             dataType: 'json',
             data:{'codProspecto':cod_prospecto},
             success: function(resultado){
-              console.log('documentos',resultado);
+              //console.log('documentos',resultado);
               resultado['response'].forEach(function(documento){
                 if(documento["num_linea"] == '1'){
                   document.getElementById("DniAdj1").classList.add('is-valid');
@@ -2646,7 +2641,7 @@ boton.addEventListener("click",function(){
     }
     var inputReg = document.getElementById("nivelRegVnta").value;
     var numNivel = (!inputReg) ? 0 :  inputReg;
-    console.log('numNivel',inputReg);
+    //console.log('numNivel',inputReg);
     var prospecto = {
     'cod_prospecto': cod_prospecto,
     'dsc_prospecto': dscTitular.toUpperCase(),
@@ -2811,7 +2806,7 @@ boton.addEventListener("click",function(){
             fila['cod_tasa'] = document.getElementById("codTasa").value;
             fila['fch_1er_vencimiento'] = document.getElementById("fch1erVcto").value;
             
-            console.log(serviciosAgregados);
+            //console.log(serviciosAgregados);
 
             $.ajax({
               url: '../api/InsertarProspectoServicio', 
@@ -2870,7 +2865,7 @@ function ObtenerImporteCuota() {
 
  document.getElementById("imp_cuota").value= tam;
 
-  console.log(tam);
+  //console.log(tam);
 }  
 
 
