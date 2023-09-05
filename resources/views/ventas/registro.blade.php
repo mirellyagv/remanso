@@ -2596,6 +2596,29 @@ var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
   telf1ProspValue = document.getElementById("telf1RegVta").value;
   var collapseOne = document.getElementById("collapseTitular");
+
+  if(document.getElementById("prov2doRegVta").value == '' || document.getElementById("prov2doRegVta").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'La provincia del segundo titular debe estar completa.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    boton.removeAttribute('disabled');
+    return;
+  }
+
+  if(document.getElementById("dtto2doRegVta").value == '' || document.getElementById("dtto2doRegVta").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El distrito del segundo titular debe estar completa.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    boton.removeAttribute('disabled');
+    return;
+  }
+
   if (telf1ProspValue === "") {
     collapseOne.classList.add("show");
     document.getElementById("telf1RegVta").focus();
