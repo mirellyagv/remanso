@@ -2039,7 +2039,7 @@ $( document ).ready(function () {
             dataType: 'json',
             data:{'cod_localidad':'LC001','cod_prospecto':cod_prospecto},
             success: function(resultado){
-              //console.log(resultado["response"]);
+              console.log('servicio',resultado["response"]);
               resultado['response'].forEach(function(servicio){
                 var datos = {
                   "cod_prospecto":servicio["cod_prospecto"],
@@ -2617,6 +2617,41 @@ boton.addEventListener("click",function(){
       confirmButtonColor: '#35B44A',
     }) 
     document.getElementById("dtto2doRegVta").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
+
+  if(document.getElementById("tipoDocRegVta").value == '' || document.getElementById("tipoDocRegVta").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El tipo de documento del titular debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("tipoDocRegVta").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
+
+  if(document.getElementById("tipoDoc2doRegVta").value == '' || document.getElementById("tipoDoc2doRegVta").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El tipo de documento del 2do titular debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("tipoDoc2doRegVta").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
+  if(document.getElementById("tipoDocAval").value == '' || document.getElementById("tipoDocAval").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El tipo de documento del aval debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("tipoDocAval").focus;
     boton.removeAttribute('disabled');
     return;
   }

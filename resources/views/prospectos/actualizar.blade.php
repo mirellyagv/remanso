@@ -979,10 +979,16 @@ window.onload= function () {
       document.getElementById("correoProsp").value=result["response"]["dsc_correo"];
 
       var canalProsp=document.getElementById("canalProsp") ;
-      canalProsp.value=result["response"]["cod_origen"];
-
+      setTimeout(function() { 
+        canalProsp.value=result["response"]["cod_origen"];
+        canalProsp.dispatchEvent(changeEvent);
+      }, 2500);
+      
       var califProsp=document.getElementById("califProsp") ;
-      califProsp.value=result["response"]["cod_calificacion"];
+      setTimeout(function() { 
+        califProsp.value=result["response"]["cod_calificacion"];
+        califProsp.dispatchEvent(changeEvent);
+      }, 2500);
 
       document.getElementById("obsvProsp").value=result["response"]["dsc_observaciones"];
       document.getElementById("impProsp").value=result["response"]["imp_monto"];
@@ -1170,6 +1176,31 @@ function eliminarFilaContacto(num_linea) {
 //--------------Guardar Prospecto--------------
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
+
+  if(document.getElementById("tipoDocProsp").value == '' || document.getElementById("tipoDocProsp").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El tipo de documento del titular debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("tipoDocProsp").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
+
+  if(document.getElementById("tipoDoc2tit").value == '' || document.getElementById("tipoDoc2tit").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El tipo de documento del 2do titular debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("tipoDoc2tit").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
+
   boton.setAttribute('disabled','disabled');
 
   var numDocInput = document.getElementById("numDocPros");
