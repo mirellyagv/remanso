@@ -1411,8 +1411,8 @@ numDocAvalInput.addEventListener("blur", function(event) {
           setTimeout(function() { 
             dttoProsp.value=respuesta["response"]["cod_distrito"];
             dttoProsp.dispatchEvent(changeEvent);
-          }, 2000);
-        }, 2000); 
+          }, 2500);
+        }, 2500); 
       }
       numDocAvalInput.blur();  
     },//success

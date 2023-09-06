@@ -1011,8 +1011,8 @@ window.onload= function () {
         setTimeout(function() {
           dtto2Tit.value=result["response"]["cod_distrito_2do"];
           dtto2Tit.dispatchEvent(changeEvent);
-        }, 2000);
-      }, 2000);
+        }, 2500);
+      }, 2500);
 
       document.getElementById("dir2Tit").value=result["response"]["dsc_direccion_2do"];
       document.getElementById("telf1_2Tit").value=result["response"]["dsc_telefono_1_2do"];
@@ -1046,7 +1046,7 @@ window.onload= function () {
           '<td>'+word['dsc_parentesco']+'</td>'+
           '<td>'+word['cod_sexo']+'</td>'+
           '<td>'+word['dsc_estado_civil']+'</td>'+
-          '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')"><span class="bi bi-pencil"></span></button><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+          '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
         '</tr>';
 
         var filaData = {
