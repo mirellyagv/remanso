@@ -923,6 +923,8 @@ phoneInput4.addEventListener("input", function(event) {
 
 
 var cod_prospecto="";
+var filasArrayBenef = []; // Array para almacenar las filas
+var filasArrayContacto = [];
 
 window.onload= function () {
   var fechaActual = new Date();

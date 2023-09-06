@@ -377,8 +377,6 @@ $( document ).ready(function() {
   });
 
 //-----------------Añade Beneficiarios--------------------
-var filasArrayBenef = []; // Array para almacenar las filas
-var filasArrayContacto = [];
 
 var addBeneficiario = document.getElementById("agregaBeneficiario");
 addBeneficiario.addEventListener("click",function (){
