@@ -374,7 +374,7 @@
                               <th style="text-align: center;" width="15%"></th>
                             </tr>
                           </thead>
-                          <tbody style="text-align: center;">
+                          <tbody style="text-align: center;" id="bodyListadoBen">
                           </tbody>
                         </table>
                       </div>
@@ -557,8 +557,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso"
-            data-bs-dismiss="modal">Aceptar</button>
+          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-dismiss="modal">Aceptar</button>
+          <button type="button" id="btnUpdBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-dismiss="modal" hidden>Modificar</button>
         </div>
       </div>
     </div>
@@ -627,7 +627,6 @@ form.addEventListener("submit", function(event) {
 
 var fechaActual = new Date();
 //console.log(fechaActual);
-document.getElementById("fechaContacto").value = fechaActual;
 flatpickr("#fchNacAddBenef",{
   locale:"es",
   dateFormat: "Y-m-d"
@@ -637,6 +636,7 @@ flatpickr("#fechaContacto",{
   dateFormat: "Y-m-d"
 });
 
+document.getElementById("fechaContacto").value = fechaActual;
 //------------------------valida letras-------------------------------
 var inputs = document.getElementsByClassName("letras-only");
 
