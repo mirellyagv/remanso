@@ -972,7 +972,7 @@ actualizarBeneficiario.addEventListener("click", function () {
   };
 
   // Actualiza la fila en la tabla
-  var tabla = document.getElementById("tablaBeneficiarios");
+  var tabla = document.getElementById("bodyListadoBen");
   var fila = tabla.rows[rowIndex];
   fila.cells[0].textContent = document.getElementById("tipoDocAddBenef").options[document.getElementById("tipoDocAddBenef").selectedIndex].text + "-" + document.getElementById("numDocAddBenef").value;
   fila.cells[1].textContent = document.getElementById("nombresAddBenef").value.toUpperCase() + " " + document.getElementById("apellPAddBenef").value.toUpperCase() + " " + document.getElementById("apellMAddBenef").value.toUpperCase();
