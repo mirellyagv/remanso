@@ -973,7 +973,7 @@ actualizarBeneficiario.addEventListener("click", function () {
 
   // Actualiza la fila en la tabla
   var tabla = document.getElementById("tablaBeneficiarios");
-  var fila = tabla.rows[rowIndex+1];
+  var fila = tabla.rows[rowIndex];
   fila.cells[0].textContent = document.getElementById("tipoDocAddBenef").options[document.getElementById("tipoDocAddBenef").selectedIndex].text + "-" + document.getElementById("numDocAddBenef").value;
   fila.cells[1].textContent = document.getElementById("nombresAddBenef").value.toUpperCase() + " " + document.getElementById("apellPAddBenef").value.toUpperCase() + " " + document.getElementById("apellMAddBenef").value.toUpperCase();
   fila.cells[2].textContent = new Date(document.getElementById("fchNacAddBenef").value).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/ /g, "-");
