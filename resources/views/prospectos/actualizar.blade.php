@@ -928,7 +928,7 @@ var filasArrayContacto = [];
 
 function editarFilaBenef(index) {
   // Obtén la fila existente que deseas editar
-  var fila = filasArrayBenef[index-1];
+  var fila = filasArrayBenef[index];
   //console.log(filasArrayBenef);
   // Llena el formulario en el modal con los datos de la fila
   document.getElementById("tipoDocAddBenef").value = fila.cod_tipo_documento;
