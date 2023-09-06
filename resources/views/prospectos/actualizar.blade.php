@@ -495,8 +495,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso"
-            data-bs-dismiss="modal">Aceptar</button>
+          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-dismiss="modal">Aceptar</button>
+          <button type="button" id="btnUpdBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-dismiss="modal" hidden>Modificar</button>
         </div>
       </div>
     </div>
@@ -923,8 +923,6 @@ phoneInput4.addEventListener("input", function(event) {
 
 
 var cod_prospecto="";
-var filasArrayBenef = []; // Array para almacenar las filas
-var filasArrayContacto = [];
 
 window.onload= function () {
   var fechaActual = new Date();
@@ -1048,7 +1046,7 @@ window.onload= function () {
           '<td>'+word['dsc_parentesco']+'</td>'+
           '<td>'+word['cod_sexo']+'</td>'+
           '<td>'+word['dsc_estado_civil']+'</td>'+
-          '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+          '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')"><span class="bi bi-pencil"></span></button><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
         '</tr>';
 
         var filaData = {

@@ -995,8 +995,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso"
-            data-bs-dismiss="modal">Aceptar</button>
+          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-dismiss="modal">Aceptar</button>
+          <button type="button" id="btnUpdBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-dismiss="modal" hidden>Modificar</button>
         </div>
       </div>
     </div>
@@ -1933,8 +1933,8 @@ $( document ).ready(function () {
             setTimeout(function() { 
               dtto2Tit.value=result["response"]["cod_distrito_2do"];
               dtto2Tit.dispatchEvent(changeEvent);
-            }, 2000);
-          }, 2000);   
+            }, 2500);
+          }, 2500);   
 
           document.getElementById("direcc2doRegVta").value=result["response"]["dsc_direccion_2do"];
           document.getElementById("telf12doRegVta").value=result["response"]["dsc_telefono_1_2do"];
@@ -2153,7 +2153,7 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
               index++;
             });
@@ -2604,6 +2604,7 @@ boton.addEventListener("click",function(){
       icon:'warning',
       confirmButtonColor: '#35B44A',
     }) 
+    document.getElementById("prov2doRegVta").focus;
     boton.removeAttribute('disabled');
     return;
   }
@@ -2615,6 +2616,7 @@ boton.addEventListener("click",function(){
       icon:'warning',
       confirmButtonColor: '#35B44A',
     }) 
+    document.getElementById("dtto2doRegVta").focus;
     boton.removeAttribute('disabled');
     return;
   }
