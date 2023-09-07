@@ -1085,7 +1085,7 @@ actualizarBeneficiario.addEventListener("click", function () {
   var rowIndex = this.dataset.rowIndex;
 
   // Actualiza la fila en el arreglo `filasArrayBenef`
-  filasArrayBenef[rowIndex-1] = {
+  filasArrayBenef[rowIndex] = {
     cod_localidad_p: 'LC001',
     cod_prospecto: '',
     cod_tipo_documento: document.getElementById("tipoDocAddBenef").value,

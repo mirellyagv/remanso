@@ -2796,7 +2796,7 @@ botonGuarda.addEventListener("click",function(){
   telf1ProspValue = document.getElementById("telf1RegVta").value;
   var collapseOne = document.getElementById("collapseTitular");
   console.log(document.getElementById("pais2doRegVta").value);
-  if (document.getElementById("pais2doRegVta").value == '00001') {
+  if (document.getElementById("pais2doRegVta").value == '00001' && document.getElementById("numDoc2doRegVta").value != '') {
     if(document.getElementById("prov2doRegVta").value == '' || document.getElementById("prov2doRegVta").value == null){
       Swal.fire({
         title:'Error!',
@@ -2834,7 +2834,7 @@ botonGuarda.addEventListener("click",function(){
     return;
   }
 
-  if(document.getElementById("tipoDoc2doRegVta").value == '' || document.getElementById("tipoDoc2doRegVta").value == null){
+  if(document.getElementById("numDoc2doRegVta").value != '' && (document.getElementById("tipoDoc2doRegVta").value == '' || document.getElementById("tipoDoc2doRegVta")).value == null){
     Swal.fire({
       title:'Error!',
       text:'El tipo de documento del 2do titular debe estar completo.',
