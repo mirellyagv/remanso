@@ -2643,17 +2643,6 @@ boton.addEventListener("click",function(){
     boton.removeAttribute('disabled');
     return;
   }
-  if(document.getElementById("tipoDocAval").value == '' || document.getElementById("tipoDocAval").value == null){
-    Swal.fire({
-      title:'Error!',
-      text:'El tipo de documento del aval debe estar completo.',
-      icon:'warning',
-      confirmButtonColor: '#35B44A',
-    }) 
-    document.getElementById("tipoDocAval").focus;
-    boton.removeAttribute('disabled');
-    return;
-  }
 
   if (telf1ProspValue === "") {
     collapseOne.classList.add("show");
@@ -2666,6 +2655,18 @@ boton.addEventListener("click",function(){
     var tipo_nec="";
     var botonTNec= document.getElementById("tipoNec");
     tipo_nec = (botonTNec.checked) ? "NI" : "NF";
+
+    if(tipo_nec == 'NI' && (document.getElementById("tipoDocAval").value == '' || document.getElementById("tipoDocAval").value == null)){
+      Swal.fire({
+        title:'Error!',
+        text:'El tipo de documento del aval debe estar completo.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      }) 
+      document.getElementById("tipoDocAval").focus;
+      boton.removeAttribute('disabled');
+      return;
+    }
 
     if(cod_prospecto== ""){
         urlGrabar = '../api/guardaProspecto';
