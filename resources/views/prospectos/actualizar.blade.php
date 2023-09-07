@@ -1126,7 +1126,7 @@ window.onload= function () {
           '<td>'+word['dsc_parentesco']+'</td>'+
           '<td>'+word['cod_sexo']+'</td>'+
           '<td>'+word['dsc_estado_civil']+'</td>'+
-          '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+          '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
         '</tr>';
 
         var filaData = {
@@ -1502,13 +1502,16 @@ var btnActualizaContacto = document.getElementById("btnAddContacto");
           confirmButtonColor: '#35B44A',
          })
      }//error
- });
- });
+  });
+});
 
 
 
 var btnAbreModalBenef = document.getElementById("abreModalBenef");
 btnAbreModalBenef.addEventListener("click",function (){
+  
+    document.getElementById("btnUpdBeneficiario").setAttribute("hidden", "true");
+    document.getElementById("agregaBeneficiario").removeAttribute("hidden");
     document.getElementById("tipoDocAddBenef").value = '';
     document.getElementById("numDocAddBenef").value = '';
     document.getElementById("nombresAddBenef").value = '';
@@ -1545,7 +1548,7 @@ function ListarContacto(num_linea) {
           '<td>'+fch_contacto1+'</td>'+
           '<td>'+word['dsc_calificacion']+'</td>'+
           '<td>'+word['dsc_observaciones']+'</td>'+
-          '<td><div class="acciones"><button class="btn btn-danger" type="button" onClick="eliminarFilaContacto('+word['num_linea']+');"><span class="bi bi-x-lg"></span></button></div></td>'+
+          '<td><div class="acciones"><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFilaContacto('+word['num_linea']+');"><span class="bi bi-x-lg"></span></button></div></td>'+
           //'<td><button class="btn btn-success BtnverdeRemanso bi-pencil" id="botonEditar'+word['num_linea']+'"></button></td>'+
         '</tr>';
 

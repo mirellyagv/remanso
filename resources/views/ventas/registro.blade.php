@@ -1393,11 +1393,11 @@ numDocAvalInput.addEventListener("blur", function(event) {
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
 numDocAddBenefInput.addEventListener("input", function(event) {
   var inputValue = numDocAddBenefInput.value;
-  var tipoDoc = document.getElementById('tipoDocBenef');
+  var tipoDoc = document.getElementById('tipoDocAddBenef');
   var tam = $('option:selected', tipoDoc).attr('data');
 
   // Eliminar caracteres no numéricos
-  if(document.getElementById("tipoDocBenef").value == 'DI005' )
+  if(document.getElementById("tipoDocAddBenef").value == 'DI005' )
    {
      inputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g,'');
    }else
@@ -2128,7 +2128,7 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
               index++;
 
@@ -2584,6 +2584,79 @@ function guardaDocumento(nombreInput,codProspecto,nombre,numLinea,accionDocument
   });
   
 }
+
+//------------------------edita beneficiario----------------------
+function editarFilaBenef(index) {
+    // Obtén la fila existente que deseas editar
+    var fila = filasArray[index];
+    
+    // Llena el formulario en el modal con los datos de la fila
+    document.getElementById("tipoDocAddBenef").value = fila.cod_tipo_documento;
+    document.getElementById("numDocAddBenef").value = fila.dsc_documento;
+    document.getElementById("nombresAddBenef").value = fila.dsc_nombres;
+    document.getElementById("apellPAddBenef").value = fila.dsc_apellido_paterno;
+    document.getElementById("apellMAddBenef").value = fila.dsc_apellido_materno;
+    document.getElementById("fchNacAddBenef").value = fila.fch_nacimiento;
+    document.getElementById("parentescoAddBenef").value = fila.cod_parentesco;
+    document.getElementById("sexoAddBenef").value = fila.cod_sexo;
+    document.getElementById("edoCivilAddBenef").value = fila.cod_estado_civil;
+    document.getElementById("flg_fallecido").checked = fila.flg_fallecido === 'SI';
+    
+    // Muestra el botón de actualización y oculta el botón de agregar
+    document.getElementById("agregaBeneficiario").setAttribute("hidden", "true");
+    document.getElementById("btnUpdBeneficiario").removeAttribute("hidden");
+    
+    // Puedes almacenar el índice de la fila que se está editando para su posterior actualización
+    document.getElementById("btnUpdBeneficiario").dataset.rowIndex = index;
+}
+  
+var actualizarBeneficiario = document.getElementById("btnUpdBeneficiario");
+actualizarBeneficiario.addEventListener("click", function () {
+    // Obtén el índice de la fila que se está editando
+    var rowIndex = this.dataset.rowIndex;
+  
+    // Actualiza la fila en el arreglo `filasArray`
+    filasArray[rowIndex] = {
+      cod_localidad_p: 'LC001',
+      cod_prospecto: '',
+      cod_tipo_documento: document.getElementById("tipoDocAddBenef").value,
+      dsc_documento: document.getElementById("numDocAddBenef").value,
+      dsc_apellido_paterno: document.getElementById("apellPAddBenef").value.toUpperCase(),
+      dsc_apellido_materno: document.getElementById("apellMAddBenef").value.toUpperCase(),
+      dsc_nombres: document.getElementById("nombresAddBenef").value.toUpperCase(),
+      fch_nacimiento: document.getElementById("fchNacAddBenef").value,
+      cod_estado_civil: document.getElementById("edoCivilAddBenef").value,
+      cod_sexo: document.getElementById("sexoAddBenef").value,
+      cod_parentesco: document.getElementById("parentescoAddBenef").value,
+      flg_fallecido: document.getElementById("flg_fallecido").checked ? 'SI' : 'NO'
+    };
+  
+    // Actualiza la fila en la tabla
+    var tabla = document.getElementById("bodyTablaBenef");
+    var fila = tabla.rows[rowIndex];
+    fila.cells[0].textContent = document.getElementById("tipoDocAddBenef").options[document.getElementById("tipoDocAddBenef").selectedIndex].text + "-" + document.getElementById("numDocAddBenef").value;
+    fila.cells[1].textContent = document.getElementById("nombresAddBenef").value.toUpperCase() + " " + document.getElementById("apellPAddBenef").value.toUpperCase() + " " + document.getElementById("apellMAddBenef").value.toUpperCase();
+    fila.cells[2].textContent = new Date(document.getElementById("fchNacAddBenef").value).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/ /g, "-");
+    fila.cells[3].textContent = document.getElementById("parentescoAddBenef").options[document.getElementById("parentescoAddBenef").selectedIndex].text;
+    fila.cells[4].textContent = document.getElementById("sexoAddBenef").value;
+    fila.cells[5].textContent = document.getElementById("edoCivilAddBenef").options[document.getElementById("edoCivilAddBenef").selectedIndex].text;
+  
+    // Oculta el botón de actualización y muestra el botón de agregar
+    this.setAttribute("hidden", "true");
+    document.getElementById("agregaBeneficiario").removeAttribute("hidden");
+  
+    // Limpia el formulario en el modal
+    document.getElementById("tipoDocAddBenef").value = "";
+    document.getElementById("numDocAddBenef").value = "";
+    document.getElementById("nombresAddBenef").value = "";
+    document.getElementById("apellPAddBenef").value = "";
+    document.getElementById("apellMAddBenef").value = "";
+    document.getElementById("fchNacAddBenef").value = "";
+    document.getElementById("parentescoAddBenef").value = "";
+    document.getElementById("sexoAddBenef").value = "";
+    document.getElementById("edoCivilAddBenef").value = "";
+    document.getElementById("flg_fallecido").checked = false;
+});
 
 //-----------------------------------Registrar venta---------------------------------------------------
 

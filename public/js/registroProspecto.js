@@ -432,6 +432,7 @@ addBeneficiario.addEventListener("click",function (){
     editarBoton.classList.add('btn');
     editarBoton.classList.add('btn-success');
     editarBoton.classList.add('BtnverdeRemanso');
+    editarBoton.classList.add('form-remanso');
     editarBoton.innerHTML  = '<span class="bi bi-pencil"></span>';
     editarBoton.setAttribute('data-bs-toggle','modal');
     editarBoton.setAttribute('data-bs-target','#ModalBeneficiarios');
@@ -440,6 +441,7 @@ addBeneficiario.addEventListener("click",function (){
     var eliminarBoton = document.createElement('button');
     eliminarBoton.classList.add('btn');
     eliminarBoton.classList.add('btn-danger');
+    eliminarBoton.classList.add('form-remanso');
     eliminarBoton.innerHTML  = '<span class="bi bi-x-lg"></span>';
     eliminarBoton.id = 'botonEliminar' + nuevaFila.rowIndex;
 
@@ -581,6 +583,7 @@ addContacto.addEventListener("click",function (){
     editarBoton.classList.add('btn');
     editarBoton.classList.add('btn-success');
     editarBoton.classList.add('BtnverdeRemanso');
+    editarBoton.classList.add('form-remanso');
     editarBoton.classList.add('bi-pencil');
     editarBoton.id = 'botonEditarO' + nuevaFilaO.rowIndex;
 
@@ -600,6 +603,9 @@ addContacto.addEventListener("click",function (){
 
 var btnAbreModalBenef = document.getElementById("abreModalBenef");
 btnAbreModalBenef.addEventListener("click",function (){
+
+    document.getElementById("btnUpdBeneficiario").setAttribute("hidden", "true");
+    document.getElementById("agregaBeneficiario").removeAttribute("hidden");
     document.getElementById("tipoDocAddBenef").value = '';
     document.getElementById("numDocAddBenef").value = '';
     document.getElementById("nombresAddBenef").value = '';
