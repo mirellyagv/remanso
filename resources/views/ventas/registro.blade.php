@@ -1022,9 +1022,6 @@
 
 //---------------------formato dinero
 
-
-
-
 window.addEventListener('load', function() {
   var loader = document.querySelector('.loader');
   setTimeout(function() {
@@ -2595,29 +2592,31 @@ var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
   telf1ProspValue = document.getElementById("telf1RegVta").value;
   var collapseOne = document.getElementById("collapseTitular");
-
-  if(document.getElementById("prov2doRegVta").value == '' || document.getElementById("prov2doRegVta").value == null){
-    Swal.fire({
-      title:'Error!',
-      text:'La provincia del segundo titular debe estar completa.',
-      icon:'warning',
-      confirmButtonColor: '#35B44A',
-    }) 
-    document.getElementById("prov2doRegVta").focus;
-    boton.removeAttribute('disabled');
-    return;
-  }
-
-  if(document.getElementById("dtto2doRegVta").value == '' || document.getElementById("dtto2doRegVta").value == null){
-    Swal.fire({
-      title:'Error!',
-      text:'El distrito del segundo titular debe estar completa.',
-      icon:'warning',
-      confirmButtonColor: '#35B44A',
-    }) 
-    document.getElementById("dtto2doRegVta").focus;
-    boton.removeAttribute('disabled');
-    return;
+  
+  if (document.getElementById("pais2doRegVta").value == '00001') {
+    if(document.getElementById("prov2doRegVta").value == '' || document.getElementById("prov2doRegVta").value == null){
+      Swal.fire({
+        title:'Error!',
+        text:'La provincia del segundo titular debe estar completa.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      }) 
+      document.getElementById("prov2doRegVta").focus;
+      boton.removeAttribute('disabled');
+      return;
+    }
+    
+    if(document.getElementById("dtto2doRegVta").value == '' || document.getElementById("dtto2doRegVta").value == null){
+      Swal.fire({
+        title:'Error!',
+        text:'El distrito del segundo titular debe estar completa.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      }) 
+      document.getElementById("dtto2doRegVta").focus;
+      boton.removeAttribute('disabled');
+      return;
+    }
   }
 
   if(document.getElementById("tipoDocRegVta").value == '' || document.getElementById("tipoDocRegVta").value == null){
@@ -2656,7 +2655,7 @@ boton.addEventListener("click",function(){
     var botonTNec= document.getElementById("tipoNec");
     tipo_nec = (botonTNec.checked) ? "NI" : "NF";
 
-    if(tipo_nec == 'NI' && (document.getElementById("tipoDocAval").value == '' || document.getElementById("tipoDocAval").value == null)){
+    if(tipo_nec == 'NI' && document.getElementById("numDoc2doRegVta").value != '' &&(document.getElementById("tipoDocAval").value == '' || document.getElementById("tipoDocAval").value == null)){
       Swal.fire({
         title:'Error!',
         text:'El tipo de documento del aval debe estar completo.',
