@@ -1379,6 +1379,7 @@ addBeneficiario.addEventListener("click",function (){
     editarBoton.classList.add('btn');
     editarBoton.classList.add('btn-success');
     editarBoton.classList.add('BtnverdeRemanso');
+    editarBoton.classList.add('form-remanso');
     editarBoton.innerHTML  = '<span class="bi bi-pencil"></span>';
     editarBoton.id = 'botonEditar' + nuevaFila.rowIndex;
     
@@ -1464,10 +1465,10 @@ function editarFilaBenef(index) {
     
     // Puedes almacenar el índice de la fila que se está editando para su posterior actualización
     document.getElementById("btnUpdBeneficiario").dataset.rowIndex = index;
-  }
+}
   
-  var actualizarBeneficiario = document.getElementById("btnUpdBeneficiario");
-  actualizarBeneficiario.addEventListener("click", function () {
+var actualizarBeneficiario = document.getElementById("btnUpdBeneficiario");
+actualizarBeneficiario.addEventListener("click", function () {
     // Obtén el índice de la fila que se está editando
     var rowIndex = this.dataset.rowIndex;
   
@@ -1512,7 +1513,7 @@ function editarFilaBenef(index) {
     document.getElementById("sexoAddBenef").value = "";
     document.getElementById("edoCivilAddBenef").value = "";
     document.getElementById("flg_fallecido").checked = false;
-  });
+});
 
 var btnAbreModalBenef = document.getElementById("abreModalBenef");
 btnAbreModalBenef.addEventListener("click",function (){
