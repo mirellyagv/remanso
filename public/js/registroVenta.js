@@ -291,7 +291,7 @@ verifPaisA.addEventListener("change",function (){
 var coddptto2 = document.getElementById("dpto2doRegVta");
 coddptto2.addEventListener("change",function (){
     codPais2 = document.getElementById("pais2doRegVta").value;
-    var valor = document.getElementById("dpto2doRegVta").value;
+    var valor2 = document.getElementById("dpto2doRegVta").value;
     var options = document.querySelectorAll('#prov2doRegVta option');
     options.forEach(o => o.remove());
   
@@ -300,7 +300,7 @@ coddptto2.addEventListener("change",function (){
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'cod_pais':codPais2,'cod_departamento':valor},
+        data:{'cod_pais':codPais2,'cod_departamento':valor2},
         success: function(respuesta){     
             $("#prov2doRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');  
             respuesta['response'].forEach(function(word){
@@ -316,7 +316,7 @@ coddptto2.addEventListener("change",function (){
 var coddptto2 = document.getElementById("dptoAval");
 coddptto2.addEventListener("change",function (){
     codPais2 = document.getElementById("paisAval").value;
-    var valor = document.getElementById("dptoAval").value;
+    var valor3 = document.getElementById("dptoAval").value;
     var options = document.querySelectorAll('#provAval option');
     options.forEach(o => o.remove());
   
@@ -325,7 +325,7 @@ coddptto2.addEventListener("change",function (){
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'cod_pais':codPais2,'cod_departamento':valor},
+        data:{'cod_pais':codPais2,'cod_departamento':valor3},
         success: function(respuesta){     
             $("#provAval").append('<option value="" selected disabled>SELECCIONE...</option>');  
             respuesta['response'].forEach(function(word){

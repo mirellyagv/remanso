@@ -1,30 +1,8 @@
 <x-layouts.app title="Registro" meta-description="Registro de ventas meta description">
-  <style>
-    .align-right {
-      text-align: right;
-    }
-    /* .loader {
-      display: block;
-      position: fixed;
-      z-index: 9999;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.8);
-    }
-    
-    .loader img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    } */
-  </style>
 
-{{-- <div class="loader">
+<div class="loader">
   <img src="{{asset('images/7.gif')}}" alt="Cargando...">
-</div> --}}
+</div>
 
   <main class="main" id="main">
     <div class="pagetitle">
@@ -1047,12 +1025,12 @@
 
 
 
-// window.addEventListener('load', function() {
-//       var loader = document.querySelector('.loader');
-//       setTimeout(function() {
-//         loader.style.display = 'none';
-//       }, 2000);
-//     });
+window.addEventListener('load', function() {
+  var loader = document.querySelector('.loader');
+  setTimeout(function() {
+    loader.style.display = 'none';
+  }, 18000);
+});
 
 var botonNece = document.getElementById("tipoNec");
 botonNece.addEventListener("change",function(){
@@ -1932,7 +1910,7 @@ $( document ).ready(function () {
             prov2Tit.dispatchEvent(changeEvent);
             setTimeout(function() { 
               dtto2Tit.value=result["response"]["cod_distrito_2do"];
-              dtto2Tit.dispatchEvent(changeEvent);
+
             }, 2500);
           }, 2500);   
 
