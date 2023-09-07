@@ -735,9 +735,9 @@ numDoc2titInput.addEventListener("blur", function(event) {
     data:{'tipoDoc':document.getElementById("tipoDoc2tit").value,'dscDocumento':document.getElementById("numDoc2tit").value},
     success: function(respuesta){
       if (respuesta) {
-        document.getElementById("apelP2tit").value = respuesta['response']['dsc_nombre'];
-        document.getElementById("apelM2tit").value = respuesta['response']['dsc_apellido_paterno'];
-        document.getElementById("nombre2Tit").value = respuesta['response']['dsc_apellido_materno'];
+        document.getElementById("apelP2tit").value = respuesta['response']['dsc_apellido_paterno'];
+        document.getElementById("apelM2tit").value = respuesta['response']['dsc_apellido_materno'];
+        document.getElementById("nombre2Tit").value = respuesta['response']['dsc_nombre'];
         document.getElementById("ruc2Tit").value = respuesta['response']['dsc_razon_social'];
         document.getElementById("dir2Tit").value = respuesta['response']['dsc_direccion'];
         document.getElementById("telf1_2Tit").value = respuesta['response']['dsc_telefono_1'];
