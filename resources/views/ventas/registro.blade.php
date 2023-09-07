@@ -1392,30 +1392,30 @@ numDocAvalInput.addEventListener("blur", function(event) {
 
 var numDocAddBenefInput = document.getElementById("numDocAddBenef");
 numDocAddBenefInput.addEventListener("input", function(event) {
-  var inputValue = numDocAddBenefInput.value;
-  var tipoDoc = document.getElementById('tipoDocAddBenef');
-  var tam = $('option:selected', tipoDoc).attr('data');
+  var inputValueBenef = numDocAddBenefInput.value;
+  var tipoDocBenef = document.getElementById('tipoDocAddBenef');
+  var tam = $('option:selected', tipoDocBenef).attr('data');
 
   // Eliminar caracteres no numéricos
   if(document.getElementById("tipoDocAddBenef").value == 'DI005' )
    {
-     inputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g,'');
+     inputValueBenef = inputValueBenef.replace(/[^a-zA-Z0-9\s]/g,'');
    }else
    {
-    inputValue = inputValue.replace(/\D/g, '');
+    inputValueBenef = inputValueBenef.replace(/\D/g, '');
    }
   // Limitar la longitud del valor a 9 caracteres
-  if (inputValue.length > tam) {
-    inputValue = inputValue.slice(0, tam);
+  if (inputValueBenef.length > tam) {
+    inputValueBenef = inputValueBenef.slice(0, tam);
   }
 
   // Actualizar el valor del campo
-  numDocAddBenefInput.value = inputValue;
+  numDocAddBenefInput.value = inputValueBenef;
 
-  if (inputValue.length !=='') {
+  if (inputValueBenef.length !=='') {
     if (tam < 12) {
       // Verificar si se ingresaron 9 dígitos
-      if (inputValue.length != tam) {
+      if (inputValueBenef.length != tam) {
         numDocAddBenefInput.setCustomValidity("Debe ingresar "+tam+" dígitos"); // Mostrar mensaje de error
         numDocAddBenefInput.reportValidity(); // Mostrar el mensaje de error
       } else {
@@ -2128,7 +2128,7 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
               index++;
 
@@ -2585,10 +2585,140 @@ function guardaDocumento(nombreInput,codProspecto,nombre,numLinea,accionDocument
   
 }
 
+//-----------------Añade Beneficiarios--------------------
+
+var addBeneficiario = document.getElementById("agregaBeneficiario");
+addBeneficiario.addEventListener("click",function (){
+  
+  var codtipoDoc = document.getElementById("tipoDocAddBenef").value;
+  var doc = document.getElementById("tipoDocAddBenef");
+  var tipoDoc = doc.options[doc.selectedIndex].text;
+  var dscDoc = document.getElementById("numDocAddBenef").value;
+  var nombre = document.getElementById("nombresAddBenef").value;
+  var apellP = document.getElementById("apellPAddBenef").value;
+  var apellM = document.getElementById("apellMAddBenef").value;
+  var fechNac = document.getElementById("fchNacAddBenef").value;
+  var parent = document.getElementById("parentescoAddBenef");
+  var parentesco = parent.options[parent.selectedIndex].text;
+  var codParentesco = document.getElementById("parentescoAddBenef").value;
+  var sexo = document.getElementById("sexoAddBenef").value;
+  var civil = document.getElementById("edoCivilAddBenef");
+  var edoCivil = civil.options[civil.selectedIndex].text;
+  var codEdoCivil = document.getElementById("edoCivilAddBenef").value;
+
+    var tabla = document.getElementById('tablaBeneficiarios');
+    var tbody = tabla.getElementsByTagName('tbody')[0];
+    
+    var nuevaFila = tbody.insertRow();
+    
+    var dniCelda = nuevaFila.insertCell();
+    dniCelda.textContent = tipoDoc+'-'+dscDoc;
+    
+    var nombreCelda = nuevaFila.insertCell();
+    nombreCelda.textContent = nombre+' '+apellP+' '+apellM;
+
+    var fchNacCelda = nuevaFila.insertCell();
+    var fch1 = new Date(fechNac);
+    var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+    fchNacCelda.textContent = fch_nacimiento1;
+
+    var parentescoCelda = nuevaFila.insertCell();
+    parentescoCelda.textContent = parentesco;
+
+    var sexoCelda = nuevaFila.insertCell();
+    sexoCelda.textContent = sexo;
+
+    var edoCivilCelda = nuevaFila.insertCell();
+    edoCivilCelda.textContent = edoCivil;
+
+    var accionesCelda = nuevaFila.insertCell();
+    
+    var accionesDiv = document.createElement('div'); // Contenedor para los botones
+    accionesDiv.classList.add('acciones'); // Clase CSS opcional para estilizar el contenedor
+    
+    var eliminarBoton = document.createElement('button');
+    eliminarBoton.setAttribute("type","button");
+    eliminarBoton.classList.add('btn');
+    eliminarBoton.classList.add('btn-danger');
+    eliminarBoton.classList.add('form-remanso');
+    eliminarBoton.innerHTML  = '<span class="bi bi-x-lg"></span>';
+    eliminarBoton.id = 'botonEliminar' + nuevaFila.rowIndex;
+
+    var editarBoton = document.createElement('button');
+    editarBoton.setAttribute("type","button");
+    editarBoton.classList.add('btn');
+    editarBoton.classList.add('btn-success');
+    editarBoton.classList.add('BtnverdeRemanso');
+    editarBoton.classList.add('form-remanso');
+    editarBoton.innerHTML  = '<span class="bi bi-pencil"></span>';
+    editarBoton.setAttribute('data-bs-toggle','modal');
+    editarBoton.setAttribute('data-bs-target','#ModalBeneficiarios');
+    editarBoton.id = 'botonEditar' + nuevaFila.rowIndex;
+    
+    accionesDiv.appendChild(editarBoton);
+    accionesDiv.appendChild(eliminarBoton);
+    
+    accionesCelda.appendChild(accionesDiv);
+
+    editarBoton.addEventListener('click', function() {
+      var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
+      editarFilaBenef(filaIndex-1);
+    });
+    
+    eliminarBoton.addEventListener('click', function() {
+      var filaIndex = this.id.replace('botonEliminar', ''); // Obtiene el índice de la fila desde el ID del botón
+      eliminarFila(filaIndex,'NO','');
+    });
+
+    var today = new Date();
+    // obtener la fecha de hoy en formato `MM/DD/YYYY`
+    var dia = today.toLocaleDateString('en-US');
+
+    var filaData = {
+      cod_localidad_p: 'LC001',
+      cod_prospecto: '',
+    //   num_linea: '0', 
+      cod_tipo_documento: codtipoDoc,
+      dsc_documento: dscDoc,
+      dsc_apellido_paterno: apellP,
+      dsc_apellido_materno: apellM,
+      dsc_nombres: nombre,
+      fch_nacimiento: fechNac,
+      cod_estado_civil: codEdoCivil,
+      cod_sexo: sexo,
+      cod_parentesco: codParentesco
+    };
+    
+    filasArray.push(filaData); // Agregar la fila al array
+   // console.log(filasArray);
+
+});
+
+function eliminarFila(index,bd,dni) {
+  var tabla = document.getElementById('tablaBeneficiarios');
+  var tbody = tabla.getElementsByTagName('tbody')[0];
+  var fila = tbody.rows[index-1];
+  tbody.removeChild(fila);
+  filasArray.splice(index-1, 1); // Eliminar el valor del array en la posición index
+  //console.log(filasArray);
+  if(bd === 'SI'){
+    $.ajax({         
+        type: "DELETE",
+        url: '../api/EliminarProspectoBeneficiario', 
+        dataType: 'json',
+        data:{'cod_prospecto':cod_prospecto,'dsc_dpocumento':dni},
+        success: function(resultBenef){
+          console.log(resultBenef['response']);
+        }
+    });
+  }
+}
+
 //------------------------edita beneficiario----------------------
 function editarFilaBenef(index) {
     // Obtén la fila existente que deseas editar
     var fila = filasArray[index];
+    console.log(index);
     
     // Llena el formulario en el modal con los datos de la fila
     document.getElementById("tipoDocAddBenef").value = fila.cod_tipo_documento;
@@ -2614,6 +2744,7 @@ var actualizarBeneficiario = document.getElementById("btnUpdBeneficiario");
 actualizarBeneficiario.addEventListener("click", function () {
     // Obtén el índice de la fila que se está editando
     var rowIndex = this.dataset.rowIndex;
+    console.log('rowIndex',rowIndex);
   
     // Actualiza la fila en el arreglo `filasArray`
     filasArray[rowIndex] = {
@@ -2660,8 +2791,8 @@ actualizarBeneficiario.addEventListener("click", function () {
 
 //-----------------------------------Registrar venta---------------------------------------------------
 
-var boton = document.getElementById("registrarVenta");
-boton.addEventListener("click",function(){
+var botonGuarda = document.getElementById("registrarVenta");
+botonGuarda.addEventListener("click",function(){
   telf1ProspValue = document.getElementById("telf1RegVta").value;
   var collapseOne = document.getElementById("collapseTitular");
   console.log(document.getElementById("pais2doRegVta").value);
@@ -2674,7 +2805,7 @@ boton.addEventListener("click",function(){
         confirmButtonColor: '#35B44A',
       }) 
       document.getElementById("prov2doRegVta").focus;
-      boton.removeAttribute('disabled');
+      botonGuarda.removeAttribute('disabled');
       return;
     }
     
@@ -2686,7 +2817,7 @@ boton.addEventListener("click",function(){
         confirmButtonColor: '#35B44A',
       }) 
       document.getElementById("dtto2doRegVta").focus;
-      boton.removeAttribute('disabled');
+      botonGuarda.removeAttribute('disabled');
       return;
     }
   }
@@ -2699,7 +2830,7 @@ boton.addEventListener("click",function(){
       confirmButtonColor: '#35B44A',
     }) 
     document.getElementById("tipoDocRegVta").focus;
-    boton.removeAttribute('disabled');
+    botonGuarda.removeAttribute('disabled');
     return;
   }
 
@@ -2711,7 +2842,7 @@ boton.addEventListener("click",function(){
       confirmButtonColor: '#35B44A',
     }) 
     document.getElementById("tipoDoc2doRegVta").focus;
-    boton.removeAttribute('disabled');
+    botonGuarda.removeAttribute('disabled');
     return;
   }
 
@@ -2721,7 +2852,7 @@ boton.addEventListener("click",function(){
     //invalidFeedbackTelf1Prosp.style.display = "block";
     return;
   }
-  boton.setAttribute('disabled','disabled');
+  botonGuarda.setAttribute('disabled','disabled');
     
     var tipo_nec="";
     var botonTNec= document.getElementById("tipoNec");
@@ -2735,7 +2866,7 @@ boton.addEventListener("click",function(){
         confirmButtonColor: '#35B44A',
       }) 
       document.getElementById("tipoDocAval").focus;
-      boton.removeAttribute('disabled');
+      botonGuarda.removeAttribute('disabled');
       return;
     }
 
@@ -2976,11 +3107,11 @@ boton.addEventListener("click",function(){
               icon:'warning',
               confirmButtonColor: '#35B44A',
             }) 
-            boton.removeAttribute('disabled');
+            botonGuarda.removeAttribute('disabled');
         }//error
       });
     }else if (result.isDenied) {
-      boton.removeAttribute('disabled');
+      botonGuarda.removeAttribute('disabled');
     }
   })//then
 });
