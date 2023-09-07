@@ -1748,6 +1748,7 @@ $("#tipoDoc").change(function(){
 //-----------------------------------------------------------recuperar prospecto------------------------------------------------------
 
 var cod_prospecto = ''; // Variable para almacenar el valor de cod_prospecto
+var filasArray = []; // Array para almacenar las filas
 
 // Verificar si se envió CodProspecto por GET
 if (window.location.search) {
@@ -2119,12 +2120,12 @@ $( document ).ready(function () {
           //console.log(resultBenef['response']);
             var fila='';
             resultBenef['response'].forEach(function(word){
-                fecha = word['fch_nacimiento'].split("T");
-                var fch1 = new Date(word['fch_nacimiento']);
-                var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+              fecha = word['fch_nacimiento'].split("T");
+              var fch1 = new Date(word['fch_nacimiento']);
+              var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
 
-                index = 0;
-                fila += '<tr>'+
+              index = 0;
+              fila += '<tr>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
                 '<td>'+fch_nacimiento1+'</td>'+
@@ -2134,8 +2135,28 @@ $( document ).ready(function () {
                 '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
               index++;
+
+              var filaData = {
+                'cod_localidad_p': 'LC001',
+                'cod_prospecto': cod_prospecto,
+                'num_linea': word['num_linea'].toString(),
+                'cod_tipo_documento': word['cod_tipo_documento'],
+                'dsc_documento': word['dsc_documento'],
+                'dsc_apellido_paterno': word['dsc_apellido_paterno'],
+                'dsc_apellido_materno': word['dsc_apellido_materno'],
+                'dsc_nombres': word['dsc_nombres'],
+                'fch_nacimiento': fecha[0],
+                'cod_estado_civil': word['cod_estado_civil'],
+                'cod_sexo': word['cod_sexo'],
+                'cod_parentesco': word['cod_parentesco'],
+                'flg_fallecido':word['flg_fallecido']
+              };
+
+              filasArray.push(filaData); // Agregar la fila al array
+              
             });
           $('#bodyTablaBenef').html(fila); 
+
         }
       });
 

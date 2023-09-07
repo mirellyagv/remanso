@@ -1317,7 +1317,7 @@ campoCuoi.addEventListener("change",function(){
   
 //-----------------Añade Beneficiarios--------------------
 
-var filasArray = []; // Array para almacenar las filas
+
 
 var addBeneficiario = document.getElementById("agregaBeneficiario");
 addBeneficiario.addEventListener("click",function (){
@@ -1472,7 +1472,7 @@ function editarFilaBenef(index) {
     var rowIndex = this.dataset.rowIndex;
   
     // Actualiza la fila en el arreglo `filasArray`
-    filasArray[rowIndex-1] = {
+    filasArray[rowIndex] = {
       cod_localidad_p: 'LC001',
       cod_prospecto: '',
       cod_tipo_documento: document.getElementById("tipoDocAddBenef").value,
@@ -1488,7 +1488,7 @@ function editarFilaBenef(index) {
     };
   
     // Actualiza la fila en la tabla
-    var tabla = document.getElementById("tablaBeneficiarios");
+    var tabla = document.getElementById("bodyTablaBenef");
     var fila = tabla.rows[rowIndex];
     fila.cells[0].textContent = document.getElementById("tipoDocAddBenef").options[document.getElementById("tipoDocAddBenef").selectedIndex].text + "-" + document.getElementById("numDocAddBenef").value;
     fila.cells[1].textContent = document.getElementById("nombresAddBenef").value.toUpperCase() + " " + document.getElementById("apellPAddBenef").value.toUpperCase() + " " + document.getElementById("apellMAddBenef").value.toUpperCase();
