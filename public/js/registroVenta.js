@@ -1444,7 +1444,7 @@ function eliminarFila(index,bd,dni) {
 
 function editarFilaBenef(index) {
     // Obtén la fila existente que deseas editar
-    var fila = filasArrayBenef[index-1];
+    var fila = filasArray[index];
     
     // Llena el formulario en el modal con los datos de la fila
     document.getElementById("tipoDocAddBenef").value = fila.cod_tipo_documento;
@@ -1471,8 +1471,8 @@ function editarFilaBenef(index) {
     // Obtén el índice de la fila que se está editando
     var rowIndex = this.dataset.rowIndex;
   
-    // Actualiza la fila en el arreglo `filasArrayBenef`
-    filasArrayBenef[rowIndex-1] = {
+    // Actualiza la fila en el arreglo `filasArray`
+    filasArray[rowIndex-1] = {
       cod_localidad_p: 'LC001',
       cod_prospecto: '',
       cod_tipo_documento: document.getElementById("tipoDocAddBenef").value,
