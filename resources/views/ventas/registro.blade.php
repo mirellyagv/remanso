@@ -1,6 +1,6 @@
 <x-layouts.app title="Registro" meta-description="Registro de ventas meta description">
 
-<div class="loader">
+<div class="loader" style="display: none;">
   <img src="{{asset('images/7.gif')}}" alt="Cargando...">
 </div>
 
@@ -1022,13 +1022,6 @@
 
 //---------------------formato dinero
 
-window.addEventListener('load', function() {
-  var loader = document.querySelector('.loader');
-  setTimeout(function() {
-    loader.style.display = 'none';
-  }, 18000);
-});
-
 var botonNece = document.getElementById("tipoNec");
 botonNece.addEventListener("change",function(){
   //console.log(this.checked);
@@ -1750,8 +1743,14 @@ var filasArray = []; // Array para almacenar las filas
 // Verificar si se envió CodProspecto por GET
 if (window.location.search) {
     var params = new URLSearchParams(window.location.search);
+    console.log(params);
+    var loader = document.querySelector('.loader');
+    loader.style.display = 'block';
     if (params.has('CodProspecto')) {
         cod_prospecto = params.get('CodProspecto');
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 18000);
     }
 }
 
@@ -2592,7 +2591,7 @@ var boton = document.getElementById("registrarVenta");
 boton.addEventListener("click",function(){
   telf1ProspValue = document.getElementById("telf1RegVta").value;
   var collapseOne = document.getElementById("collapseTitular");
-  
+  console.log(document.getElementById("pais2doRegVta").value);
   if (document.getElementById("pais2doRegVta").value == '00001') {
     if(document.getElementById("prov2doRegVta").value == '' || document.getElementById("prov2doRegVta").value == null){
       Swal.fire({
@@ -2655,7 +2654,7 @@ boton.addEventListener("click",function(){
     var botonTNec= document.getElementById("tipoNec");
     tipo_nec = (botonTNec.checked) ? "NI" : "NF";
 
-    if(tipo_nec == 'NI' && document.getElementById("numDoc2doRegVta").value != '' &&(document.getElementById("tipoDocAval").value == '' || document.getElementById("tipoDocAval").value == null)){
+    if(tipo_nec == 'NI' && document.getElementById("numDocAval").value != '' &&(document.getElementById("tipoDocAval").value == '' || document.getElementById("tipoDocAval").value == null)){
       Swal.fire({
         title:'Error!',
         text:'El tipo de documento del aval debe estar completo.',
