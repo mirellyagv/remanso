@@ -903,11 +903,6 @@
             </div>
             <div class="col-md-3 mb-3">
               <select name="tipoDocAddBenef" id="tipoDocAddBenef" class="form-select form-remanso">
-                <option value="" selected="" disabled="">SELECCIONE...</option>
-                <option value="DI002">C.E</option>
-                <option value="DI001">DNI</option>
-                <option value="DI005">OTROS</option>
-                <option value="DI003">PASAPORTE</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">

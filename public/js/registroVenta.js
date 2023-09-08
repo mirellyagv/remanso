@@ -58,13 +58,13 @@ window.onload=function() {
             $("#tipoDocRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');
             $("#tipoDoc2doRegVta").append('<option value="" selected disabled>SELECCIONE...</option>');
             $("#tipoDocAval").append('<option value="" selected disabled>SELECCIONE...</option>');
-            $("#tipoDocBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
+            $("#tipoDocAddBenef").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#tipoDocRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
                 $("#tipoDoc2doRegVta").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
                 $("#tipoDocAval").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
-                $("#tipoDocBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
+                $("#tipoDocAddBenef").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>');
             });
         },//success
         error(e){
