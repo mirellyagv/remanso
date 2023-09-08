@@ -2903,6 +2903,20 @@ botonGuarda.addEventListener("click",function(){
     }
     var inputReg = document.getElementById("nivelRegVnta").value;
     var numNivel = (!inputReg) ? 0 :  inputReg;
+
+    if(serviciosAgregados.length == 0){
+      impTotal = 0;
+      impCOUI = 0;
+      impSaldo = 0;
+      foma = 0;
+      cuota = 0;
+    }else{
+      impTotal = document.getElementById("impTotal").value;
+      impCOUI = document.getElementById("impCuoi").value;
+      impSaldo = document.getElementById("impSaldo").value;
+      foma = document.getElementById("impFoma").value;
+      cuota = document.getElementById("imp_cuota").value;
+    }
     //console.log('numNivel',inputReg);
     var prospecto = {
     'cod_prospecto': cod_prospecto,
@@ -2984,11 +2998,11 @@ botonGuarda.addEventListener("click",function(){
     'cod_tipo_comprobante':document.getElementById("compVtaRegVta").value,
     'dsc_ruc':document.getElementById("rucCompVtaRegVta").value,
     'dsc_razon_social_comprobante':document.getElementById("razSocCompVtaRegVta").value,
-    'imp_total': document.getElementById("impTotal").value,
-    'imp_cui': document.getElementById("impCuoi").value,
-    'imp_saldo_financiar': document.getElementById("impSaldo").value,
-    'imp_foma': document.getElementById("impFoma").value,
-    'imp_cuota': document.getElementById("imp_cuota").value,
+    'imp_total': impTotal,
+    'imp_cui': impCOUI,
+    'imp_saldo_financiar': impSaldo,
+    'imp_foma': foma,
+    'imp_cuota': cuota
   };
 
   Swal.fire({
