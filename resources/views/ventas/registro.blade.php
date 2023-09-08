@@ -3163,6 +3163,7 @@ function ModoVista() {
     document.getElementById("edoCivilRegVta").disabled = true;
     document.getElementById("sexoRegVta").disabled = true;
     document.getElementById("fchNacRegVta").disabled = true;
+    document.getElementById("tipoDocAval").disabled = true;
     document.getElementById("numDocAval").disabled = true;
     document.getElementById("nombresAval").disabled = true;
     document.getElementById("apellPAval").disabled = true;
@@ -3210,7 +3211,16 @@ function ModoVista() {
     document.getElementById("obsvRegVentas").disabled = true;
     document.getElementsByClassName("btn btn-danger").disabled = true;
     //document.getElementById("impMinCuoi").disabled = true;
-
+    document.getElementById("tipoDoc2doRegVta").disabled = true;
+    document.getElementById("numDoc2doRegVta").disabled = true;
+    document.getElementById("nombres2doRegVta").disabled = true;
+    document.getElementById("apellP2doRegVta").disabled = true;
+    document.getElementById("apellM2doRegVta").disabled = true;
+    document.getElementById("razonSoc2doRegVta").disabled = true;
+    document.getElementById("direcc2doRegVta").disabled = true;
+    document.getElementById("pais2doRegVta").disabled = true;
+    document.getElementById("prov2doRegVta").disabled = true;
+    document.getElementById("dpto2doRegVta").disabled = true;
     document.getElementById("dtto2doRegVta").disabled = true;
     document.getElementById("telf12doRegVta").disabled = true;
     document.getElementById("telf22doRegVta").disabled = true;
@@ -3232,22 +3242,7 @@ function ModoVista() {
     document.getElementById("DniAdj2").disabled = true;
     document.getElementById("DniAdj1").disabled = true;
     document.getElementById("RecSepAdj").disabled = true;
-    document.getElementById("tipoDoc2doRegVta").disabled = true;
-    document.getElementById("numDoc2doRegVta").disabled = true;
-    document.getElementById("nombres2doRegVta").disabled = true;
-    document.getElementById("apellP2doRegVta").disabled = true;
-    document.getElementById("apellM2doRegVta").disabled = true;
-    document.getElementById("razonSoc2doRegVta").disabled = true;
-    document.getElementById("direcc2doRegVta").disabled = true;
-    document.getElementById("pais2doRegVta").disabled = true;
-   
-    document.getElementById("prov2doRegVta").disabled = true;
-    document.getElementById("dpto2doRegVta").disabled = true;
     document.getElementById("tipoServicio").disabled = true;
-    document.getElementById("pais2doRegVta").disabled = true;
-    document.getElementById("dpto2doRegVta").disabled = true;
-    document.getElementById("prov2doRegVta").disabled = true;
-    document.getElementById("dtto2doRegVta").disabled = true;
   }
   
 }  
