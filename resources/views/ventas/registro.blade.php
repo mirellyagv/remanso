@@ -350,14 +350,14 @@
                         <div class="col-md-3 mb-2">
                           <label for="inputText" class="col-form-label">(*) Estado civil:</label>
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-3 mb-2">
                           <select name="edoCivil2doRegVta" id="edoCivil2doRegVta" class="form-select form-remanso" required>
                           </select>
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-3 mb-2">
                           <label for="inputText" class="col-form-label">(*) Fch Nacimiento: </label>
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-3 mb-2">
                           <input type="text" class="form-control form-remanso align-right" name="fchNac2doRegVta" id="fchNac2doRegVta" required>
                         </div>
                       </div>
@@ -487,14 +487,14 @@
                         <div class="col-md-3 mb-2">
                           <label for="inputText" class="col-form-label">(*) Estado civil:</label>
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-3 mb-2">
                           <select name="edoCivilAval" id="edoCivilAval" class="form-select form-remanso" required>
                           </select>
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-3 mb-2">
                           <label for="inputText" class="col-form-label">(*) Fch Nacimiento: </label>
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-3 mb-2">
                           <input type="text" class="form-control form-remanso align-right" name="fchNacAval" id="fchNacAval" required>
                         </div>
                       </div>
