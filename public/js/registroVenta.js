@@ -1181,6 +1181,7 @@ function muestraserviciosFormulario(datos) {
         'imp_descuento_adicional': (datos['imp_descuento_adicional']) ? datos['imp_descuento_adicional'] : 0, //validar como string
         'imp_cui_minimo':datos['imp_min_cuoi']
     };
+    inputInteres.dispatchEvent(changeEvent2);
     serviciosAgregados.push(datosXserv);
 
 }

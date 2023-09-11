@@ -1428,7 +1428,7 @@ CuotaInicial.addEventListener("input", function(event) {
   var num_cuota = $('option:selected', tipoCuota).attr('data');
 
   var tipoInteres = document.getElementById('codTasa');
-  var num_interes = ($('option:selected', tipoInteres).attr('data')) ? $('option:selected', tipoInteres).attr('data') : 0;
+  var num_interes = ($('option:selected', tipoInteres).attr('data') != 'undefined') ? $('option:selected', tipoInteres).attr('data') : 0;
 
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
@@ -1437,15 +1437,16 @@ CuotaInicial.addEventListener("input", function(event) {
   {
     num_cuota=1;
   }
-  //console.log('num_cuota',num_cuota);
-  //console.log('num_interes',num_interes);
+
+  interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;  
+
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
     imp_cuota=imp_saldo/num_cuota;
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }else
   {
-    imp_cuota=imp_saldo * ((num_interes * ( 1  + num_interes) ** num_cuota) / ((1 + num_interes) ** num_cuota - 1));
+    imp_cuota = imp_saldo * ((interes * ( 1  + interes) ** num_cuota) / (((1 + interes) ** num_cuota) - 1));
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }
  
@@ -1464,7 +1465,7 @@ tipoCuota.addEventListener("change", function(event) {
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
 
-  interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 ) - 1);
+  interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;
 
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
@@ -1472,7 +1473,7 @@ tipoCuota.addEventListener("change", function(event) {
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }else
   {
-    imp_cuota=imp_saldo * ((interes * ( 1  + interes) ** num_cuota) / ((1 + interes) ** num_cuota - 1));
+    imp_cuota = imp_saldo * ((interes * ( 1  + interes) ** num_cuota) / (((1 + interes) ** num_cuota) - 1));
     document.getElementById("imp_cuota").value= Number(imp_cuota).toFixed(2);
   }
  
@@ -3124,21 +3125,6 @@ botonGuarda.addEventListener("click",function(){
     }
   })//then
 });
-
-
-function ObtenerImporteCuota() {
-  var codCuotaServ = document.getElementById('codCuotaServ');
-  var ctd_cuota = $('option:selected', codCuotaServ).attr('data');
-
-  var tipoDoc = document.getElementById('tipoDocRegVta');
-  var tam = $('option:selected', tipoDoc).attr('data');
-
-
- document.getElementById("imp_cuota").value= tam;
-
-  //console.log(tam);
-}  
-
 
 function ModoVista() {
   var flg_firmante ='@php echo(session('flg_firmante')) @endphp';  
