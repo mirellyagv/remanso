@@ -928,7 +928,7 @@ var filasArrayContacto = [];
 
 function editarFilaBenef(index) {
   // Obtén la fila existente que deseas editar
-  var fila = filasArrayBenef[index];
+  var fila = filasArrayBenef[index-1];
   //console.log(filasArrayBenef);
   // Llena el formulario en el modal con los datos de la fila
   document.getElementById("tipoDocAddBenef").value = fila.cod_tipo_documento;
@@ -956,7 +956,7 @@ actualizarBeneficiario.addEventListener("click", function () {
   var rowIndex = this.dataset.rowIndex;
 
   // Actualiza la fila en el arreglo `filasArrayBenef`
-  filasArrayBenef[rowIndex] = {
+  filasArrayBenef[rowIndex-1] = {
     cod_localidad_p: 'LC001',
     cod_prospecto: '',
     cod_tipo_documento: document.getElementById("tipoDocAddBenef").value,
@@ -971,9 +971,11 @@ actualizarBeneficiario.addEventListener("click", function () {
     flg_fallecido: document.getElementById("flg_fallecido").checked ? 'SI' : 'NO'
   };
 
+  console.log('filasArrayBenef',filasArrayBenef);
+
   // Actualiza la fila en la tabla
   var tabla = document.getElementById("bodyListadoBen");
-  var fila = tabla.rows[rowIndex];
+  var fila = tabla.rows[rowIndex-1];
   fila.cells[0].textContent = document.getElementById("tipoDocAddBenef").options[document.getElementById("tipoDocAddBenef").selectedIndex].text + "-" + document.getElementById("numDocAddBenef").value;
   fila.cells[1].textContent = document.getElementById("nombresAddBenef").value.toUpperCase() + " " + document.getElementById("apellPAddBenef").value.toUpperCase() + " " + document.getElementById("apellMAddBenef").value.toUpperCase();
   fila.cells[2].textContent = new Date(document.getElementById("fchNacAddBenef").value).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/ /g, "-");
@@ -1126,7 +1128,7 @@ window.onload= function () {
           '<td>'+word['dsc_parentesco']+'</td>'+
           '<td>'+word['cod_sexo']+'</td>'+
           '<td>'+word['dsc_estado_civil']+'</td>'+
-          '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+          '<td><div class="acciones"><button class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+(index+1)+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFilaBenef('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
         '</tr>';
 
         var filaData = {
