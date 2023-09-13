@@ -1143,7 +1143,7 @@ boton.addEventListener("click",function(){
     return;
   }
 
-  if(document.getElementById("tipoDoc2tit").value == '' || document.getElementById("tipoDoc2tit").value == null){
+  if(document.getElementById("numDoc2tit").value != '' && (document.getElementById("tipoDoc2tit").value == '' || document.getElementById("tipoDoc2tit").value == null)){ 
     Swal.fire({
       title:'Error!',
       text:'El tipo de documento del 2do titular debe estar completo.',
