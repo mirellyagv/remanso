@@ -25,9 +25,8 @@
                     <thead style="background-color: #35B44A; color: white;">
                         <tr>
                             <th style="text-align: center;" width="15%">Acciones</th>
-                            <th style="text-align: center;" width="5%">Firmado</th>
                             <th style="text-align: center;" width="10%">Contrato</th>
-                            <th style="text-align: center;" width="5%">Integral</th>
+                            <th style="text-align: center;" width="10%">Integral</th>
                             <th style="text-align: center;" width="10%">Documento</th>
                             <th style="text-align: center;" width="20%">Titular</th>
                             <th style="text-align: center;" width="15%">Consejero</th>
@@ -184,18 +183,14 @@ function listarContratosFirmados(firmado) {
             respuesta['response'].forEach(element => {
                 var codCtto = "'"+element['cod_contrato']+"-"+element['num_servicio']+"'";
                 var botonFirma = '';
-                var flgFirmado = '';
                 if(element['flg_firmado'] == 'NO'){
                     botonFirma = '<button class="btn btn-primary BtnAzulORemanso form-remanso"  id="btnFirmar" onclick="firmaCtto('+codCtto+')" name="btnFirmar" type="button" title="Enviar a firmar"><span class="bi bi-vector-pen"></span></button>';
-                    flgFirmado = 'NO FIRMADO';
                 }else{
                     botonFirma = '';
-                    flgFirmado = 'FIRMADO';
                 }
                 var filaData = [
                     '<button class="btn btn-success BtnverdeRemanso form-remanso" id="btnVer" onclick="verDocumentos('+codCtto+')" name="btnVer" type="button" title="Ver Documentos"><span class="bi bi-file-pdf"></span></button>'+
                     '<button class="btn btn-secondary form-remanso" id="btnVer" onclick="verComprobante('+codCtto+')" name="btnVer" type="button" title="Ver Comprobante"><span class="bi bi-receipt"></span></button>'+botonFirma,
-                    flgFirmado,
                     element['cod_contrato']+'-'+element['num_servicio'],
                     element['flg_integral'],
                     element['dsc_tipo_documento_cliente']+'-'+element['dsc_documento_cliente'],
@@ -218,7 +213,6 @@ function listarContratosFirmados(firmado) {
                 data: filasArray,
                 columns: [
                     { title: 'ACCION' },
-                    { title: 'FIRMADO'},
                     { title: 'CONTRATO' },
                     { title: 'INTEGRAL' },
                     { title: 'DOCUMENTO' },
