@@ -9,8 +9,8 @@
             <br>
             <p><b>AUTORIZADOR:</b> {{session('dsc_usuario')}}</p>
             <div class="row">
-                <div class="col-md-2 offset-md-8">
-                    <p><label for="filtroFirmado">Firmado: </label></p>
+                <div class="col-md-1 offset-md-9">
+                    <p><label for="filtroFirmado">Estado: </label></p>
                 </div>
                 <div class="col-md-2">
                     <select name="filtroFirmado" id="filtroFirmado" class="form-select form-remanso" onchange="listarContratosFirmados(this.value);">
