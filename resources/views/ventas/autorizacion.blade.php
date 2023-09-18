@@ -30,7 +30,7 @@
                             <th style="text-align: center;" width="10%">Documento</th>
                             <th style="text-align: center;" width="20%">Titular</th>
                             <th style="text-align: center;" width="15%">Consejero</th>
-                            <th style="text-align: center;" width="10%">Precio Venta</th> 
+                            <th style="text-align: center;" width="10%">Precio Neta</th> 
                             <th style="text-align: center;" width="10%">Cuota Inicial</th>    
                         </tr>
                     </thead>
@@ -218,11 +218,12 @@ function listarContratosFirmados(firmado) {
                     { title: 'DOCUMENTO' },
                     { title: 'TITULAR' },
                     { title: 'CONSEJERO'},
-                    { title: 'PRECIO VENTA' },
+                    { title: 'PRECIO NETO' },
                     { title: 'CUOTA INICIAL' },
                 ],
                 "columnDefs": [
-                    { className: "derecha", "targets": [ 5 ] }
+                    { className: "derecha", "targets": [ 6,7 ] },
+                    { className: "centro", "targets": [2]}
                 ],
                 dom: 'trip',
                 "order": [ 1, 'asc' ],
@@ -364,7 +365,7 @@ function firmaCtto(codCtto){
 }
 
 function formatearNumero(numero) {
-    return numero.toLocaleString('es', {
+    return numero.toLocaleString('en', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });

@@ -74,6 +74,9 @@
 .derecha{
   text-align: right;
 }
+.centro{
+  text-align: center;
+}
 
 /*------------------------------Loader-------------------------*/
 .align-right {
