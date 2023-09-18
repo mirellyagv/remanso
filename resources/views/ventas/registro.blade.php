@@ -866,7 +866,44 @@
                         </div>
                         <div class="col-md-4 mb-3"  style="display: none" id="inputRecSep">
                           <input class="form-control form-remanso form-control-sm" id="RecSepAdj" type="file">
-                        </div>    
+                        </div>
+                        
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloActaDefAdj">
+                          <label for="inputText" class="col-form-label">Acta de defunción: </label>
+                        </div>
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputActaDefAdj">
+                          <input class="form-control form-remanso form-control-sm" id="ActaDefAdj" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloCertDefAdj">
+                          <label for="inputText" class="col-form-label">Certif. de defunción: </label>
+                        </div>
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputCertDefAdj">
+                          <input class="form-control form-remanso form-control-sm" id="CertDefAdj" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloNecroAdj">
+                          <label for="inputText" class="col-form-label">Necropsia: </label>
+                        </div>
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputNecroAdj">
+                          <input class="form-control form-remanso form-control-sm" id="NecroAdj" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloConstInhuAdj">
+                          <label for="inputText" class="col-form-label">Const. de inhumación: </label>
+                        </div>
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputConstInhuAdj">
+                          <input class="form-control form-remanso form-control-sm" id="ConstInhuAdj" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloAutSanitAdj">
+                          <label for="inputText" class="col-form-label">Autorización sanitaria: </label>
+                        </div>
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputAutSanitAdj">
+                          <input class="form-control form-remanso form-control-sm" id="AutSanitAdj" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloOtrosAdj">
+                          <label for="inputText" class="col-form-label">Otros: </label>
+                        </div>
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputOtrosAdj">
+                          <input class="form-control form-remanso form-control-sm" id="OtrosAdj" type="file">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1026,6 +1063,18 @@ botonNece.addEventListener("change",function(){
     document.getElementById('inputDniAval1').style.display = "block";
     document.getElementById('tituloDniAval2').style.display = "block";
     document.getElementById('inputDniAval2').style.display = "block";
+    document.getElementById('tituloActaDefAdj').style.display = "block";
+    document.getElementById('inputActaDefAdj').style.display = "block";
+    document.getElementById('tituloCertDefAdj').style.display = "block";
+    document.getElementById('inputCertDefAdj').style.display = "block";
+    document.getElementById('tituloNecroAdj').style.display = "block";
+    document.getElementById('inputNecroAdj').style.display = "block";
+    document.getElementById('tituloConstInhuAdj').style.display = "block";
+    document.getElementById('inputConstInhuAdj').style.display = "block";
+    document.getElementById('tituloAutSanitAdj').style.display = "block";
+    document.getElementById('inputAutSanitAdj').style.display = "block";
+    document.getElementById('tituloOtrosAdj').style.display = "block";
+    document.getElementById('inputOtrosAdj').style.display = "block";
     document.getElementById('tituloRecSep').style.display = "none";
     document.getElementById('inputRecSep').style.display = "none";
     $("#acordeonAval").css("display", "block");
@@ -1034,6 +1083,18 @@ botonNece.addEventListener("change",function(){
     document.getElementById('inputDniAval1').style.display = "none";
     document.getElementById('tituloDniAval2').style.display = "none";
     document.getElementById('inputDniAval2').style.display = "none";
+    document.getElementById('tituloActaDefAdj').style.display = "none";
+    document.getElementById('inputActaDefAdj').style.display = "none";
+    document.getElementById('tituloCertDefAdj').style.display = "none";
+    document.getElementById('inputCertDefAdj').style.display = "none";
+    document.getElementById('tituloNecroAdj').style.display = "none";
+    document.getElementById('inputNecroAdj').style.display = "none";
+    document.getElementById('tituloConstInhuAdj').style.display = "none";
+    document.getElementById('inputConstInhuAdj').style.display = "none";
+    document.getElementById('tituloAutSanitAdj').style.display = "none";
+    document.getElementById('inputAutSanitAdj').style.display = "none";
+    document.getElementById('tituloOtrosAdj').style.display = "none";
+    document.getElementById('inputOtrosAdj').style.display = "none";
     document.getElementById('tituloRecSep').style.display = "block";
     document.getElementById('inputRecSep').style.display = "block";
     $("#acordeonAval").css("display", "none");
@@ -2558,6 +2619,264 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("ActaDefAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene un Acta de defunción guardada, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      console.log('pasa documento');
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("CertDefAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene un Certificado de defunción guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      console.log('pasa documento');
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("NecroAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene una Necropsia guardada, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      console.log('pasa documento');
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("ConstInhuAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene una Constacia de inhumación guardada, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      console.log('pasa documento');
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("AutSanitAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene una Autorización sanitaria guardada, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      console.log('pasa documento');
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("OtrosAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene un documento guardado en Otros, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      console.log('pasa documento');
+    }
+  });
+});
+
 //----------------------------------guardar documentos---------------------------------------------
 
 function guardaDocumento(nombreInput,codProspecto,nombre,numLinea,accionDocumentos) {
@@ -3064,8 +3383,26 @@ botonGuarda.addEventListener("click",function(){
           if(document.getElementById("comprobanteAdj").value != ''){
             guardaDocumento('comprobanteAdj',cod_prospecto,'Comprobante',8,accionDocumentos);
           }
-          if(document.getElementById("RecSepAdj").value != ''){
+          if(document.getElementById("RecSepAdj").value != ''){ z
             guardaDocumento('RecSepAdj',cod_prospecto,'Recibo_de_separacion',9,accionDocumentos);
+          }
+          if(document.getElementById("ActaDefAdj").value != ''){ z
+            guardaDocumento('ActaDefAdj',cod_prospecto,'Acta_de_defuncion',9,accionDocumentos);
+          }
+          if(document.getElementById("CertDefAdj").value != ''){ z
+            guardaDocumento('CertDefAdj',cod_prospecto,'Certificado_de_defuncion',9,accionDocumentos);
+          }
+          if(document.getElementById("NecroAdj").value != ''){ z
+            guardaDocumento('NecroAdj',cod_prospecto,'Necropsia',9,accionDocumentos);
+          }
+          if(document.getElementById("ConstInhuAdj").value != ''){ z
+            guardaDocumento('ConstInhuAdj',cod_prospecto,'Constancia_de_inhumacion',9,accionDocumentos);
+          }
+          if(document.getElementById("AutSanitAdj").value != ''){ z
+            guardaDocumento('AutSanitAdj',cod_prospecto,'Autorizacion_sanitaria',9,accionDocumentos);
+          }
+          if(document.getElementById("OtrosAdj").value != ''){ z
+            guardaDocumento('OtrosAdj',cod_prospecto,'Otro',9,accionDocumentos);
           }
 
           serviciosAgregados.forEach(function (fila) {

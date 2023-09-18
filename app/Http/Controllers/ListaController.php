@@ -659,9 +659,10 @@ class ListaController extends Controller
     {   
         $client = new Client();
         $codFirmante = $request['codFirmante']; 
+        $firmado = $request['firmado'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ListarContratoNoFirmado/20396900719/LC001/'.$codFirmante);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ListarContratoNoFirmado/20396900719/LC001/'.$codFirmante.'/'.$firmado);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

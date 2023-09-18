@@ -8,17 +8,31 @@
         <div class="card">  
             <br>
             <p><b>AUTORIZADOR:</b> {{session('dsc_usuario')}}</p>
+            <div class="row">
+                <div class="col-md-2 offset-md-8">
+                    <p><label for="filtroFirmado">Firmado: </label></p>
+                </div>
+                <div class="col-md-2">
+                    <select name="filtroFirmado" id="filtroFirmado" class="form-select form-remanso" onchange="listarContratosFirmados(this.value);">
+                        <option value="SI">FIRMADO</option>
+                        <option value="NO" selected>POR FIRMAR</option>
+                      </select>
+                </div>
+            </div>
+            <br>
             <div class="table-responsive">
                 <table class="table table-striped" id="tablaAutoriza" style="width:100%">
                     <thead style="background-color: #35B44A; color: white;">
                         <tr>
                             <th style="text-align: center;" width="15%">Acciones</th>
+                            <th style="text-align: center;" width="5%">Firmado</th>
                             <th style="text-align: center;" width="10%">Contrato</th>
-                            <th style="text-align: center;" width="10%">Integral</th>
-                            <th style="text-align: center;" width="15%">Documento</th>
-                            <th style="text-align: center;" width="25%">Titular</th>
+                            <th style="text-align: center;" width="5%">Integral</th>
+                            <th style="text-align: center;" width="10%">Documento</th>
+                            <th style="text-align: center;" width="20%">Titular</th>
                             <th style="text-align: center;" width="15%">Consejero</th>
-                            <th style="text-align: center;" width="15%">Precio Venta</th>    
+                            <th style="text-align: center;" width="10%">Precio Venta</th> 
+                            <th style="text-align: center;" width="10%">Cuota Inicial</th>    
                         </tr>
                     </thead>
                     <tbody id="bodyAutoriza">
@@ -152,26 +166,43 @@
 
 window.onload= function () {
 
+    listarContratosFirmados('NO')
+
+//-----------------Muestra modal
+
+}//onload
+
+function listarContratosFirmados(firmado) {
     $.ajax({
         url: '../lista/MuestraListaContratoFirmante', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codFirmante':'{{session('cod_trabajador')}}'},
+        data:{'codFirmante':'{{session('cod_trabajador')}}','firmado':firmado},
         success: function(respuesta){
           var filasArray = [];
             respuesta['response'].forEach(element => {
                 var codCtto = "'"+element['cod_contrato']+"-"+element['num_servicio']+"'";
+                var botonFirma = '';
+                var flgFirmado = '';
+                if(element['flg_firmado'] == 'NO'){
+                    botonFirma = '<button class="btn btn-primary BtnAzulORemanso form-remanso"  id="btnFirmar" onclick="firmaCtto('+codCtto+')" name="btnFirmar" type="button" title="Enviar a firmar"><span class="bi bi-vector-pen"></span></button>';
+                    flgFirmado = 'NO FIRMADO';
+                }else{
+                    botonFirma = '';
+                    flgFirmado = 'FIRMADO';
+                }
                 var filaData = [
                     '<button class="btn btn-success BtnverdeRemanso form-remanso" id="btnVer" onclick="verDocumentos('+codCtto+')" name="btnVer" type="button" title="Ver Documentos"><span class="bi bi-file-pdf"></span></button>'+
-                    '<button class="btn btn-secondary form-remanso" id="btnVer" onclick="verComprobante('+codCtto+')" name="btnVer" type="button" title="Ver Comprobante"><span class="bi bi-receipt"></span></button>'+
-                    '<button class="btn btn-primary BtnAzulORemanso form-remanso"  id="btnFirmar" onclick="firmaCtto('+codCtto+')" name="btnFirmar" type="button" title="Enviar a firmar"><span class="bi bi-vector-pen"></span></button>',
+                    '<button class="btn btn-secondary form-remanso" id="btnVer" onclick="verComprobante('+codCtto+')" name="btnVer" type="button" title="Ver Comprobante"><span class="bi bi-receipt"></span></button>'+botonFirma,
+                    flgFirmado,
                     element['cod_contrato']+'-'+element['num_servicio'],
                     element['flg_integral'],
                     element['dsc_tipo_documento_cliente']+'-'+element['dsc_documento_cliente'],
                     element['dsc_cliente'],
                     element['dsc_vendedor'],
-                    formatearNumero(element['imp_precio_venta'])
+                    formatearNumero(element['imp_precio_venta']),
+                    formatearNumero(element['imp_cuota_inicial']),
                 ];
                 filasArray.push(filaData);
             });
@@ -187,12 +218,14 @@ window.onload= function () {
                 data: filasArray,
                 columns: [
                     { title: 'ACCION' },
+                    { title: 'FIRMADO'},
                     { title: 'CONTRATO' },
                     { title: 'INTEGRAL' },
                     { title: 'DOCUMENTO' },
                     { title: 'TITULAR' },
                     { title: 'CONSEJERO'},
                     { title: 'PRECIO VENTA' },
+                    { title: 'CUOTA INICIAL' },
                 ],
                 "columnDefs": [
                     { className: "derecha", "targets": [ 5 ] }
@@ -207,10 +240,7 @@ window.onload= function () {
             console.log(e.message);
         }//error
     });//end ajax
-
-//-----------------Muestra modal
-
-}//onload
+}
 
 //-----------------------------llena informacion contrato-----------------------------
 
