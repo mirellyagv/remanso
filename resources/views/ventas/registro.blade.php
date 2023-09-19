@@ -3173,12 +3173,67 @@ botonGuarda.addEventListener("click",function(){
     return;
   }
 
+  if (document.getElementById("nombresRegVta").value === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("nombresRegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+  if (document.getElementById("apellPRegVta").value  === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("apellPRegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+  if (document.getElementById("apellMRegVta").value  === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("apellMRegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+  
+  if (document.getElementById("direccRegVta").value  === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("direccRegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
   if (telf1ProspValue === "") {
     collapseOne.classList.add("show");
     document.getElementById("telf1RegVta").focus();
     //invalidFeedbackTelf1Prosp.style.display = "block";
     return;
   }
+
+  
+  if (document.getElementById("correoRegVta").value  === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("correoRegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+  
+  if (document.getElementById("edoCivilRegVta").value  === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("edoCivilRegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+  
+  if (document.getElementById("sexoRegVta").value  === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("sexoRegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+  if (document.getElementById("fchNacRegVta").value  === "") {
+    collapseOne.classList.add("show");
+    document.getElementById("fchNacRegVta").focus();
+    //invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+
+
   botonGuarda.setAttribute('disabled','disabled');
     
     var tipo_nec="";
