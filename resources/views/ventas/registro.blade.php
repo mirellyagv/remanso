@@ -3149,6 +3149,18 @@ botonGuarda.addEventListener("click",function(){
     return;
   }
 
+  if(document.getElementById("numDocRegVta").value == '' || document.getElementById("numDocRegVta").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El número de documento del titular debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("numDocRegVta").focus;
+    botonGuarda.removeAttribute('disabled');
+    return;
+  }
+
   if(document.getElementById("numDoc2doRegVta").value != '' && (document.getElementById("tipoDoc2doRegVta").value == '' || document.getElementById("tipoDoc2doRegVta")).value == null){
     Swal.fire({
       title:'Error!',
