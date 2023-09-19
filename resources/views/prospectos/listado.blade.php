@@ -97,7 +97,7 @@
                   </div>
                   @endif
                   <div class="col-1 mb-3 d-md-none d-block">
-                    <button class="btn btn-secondary form-remanso" id="excelBtn1">Buscar &nbsp;<span
+                    <button class="btn btn-secondary form-remanso" id="excelBtn1" onclick="BuscarProspecto()">Buscar &nbsp;<span
                         class="bi bi-search"></span></button>
                   </div>
                   <div class="col-md-2 mb-3 d-none d-md-block" style="text-align: end">
