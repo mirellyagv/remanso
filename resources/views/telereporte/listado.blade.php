@@ -275,7 +275,7 @@ function BuscarTelereporte() {
               '<td>'+word['num_reporte']+'</td>'+
               '<td>'+fch_registro1+'</td>'+
               '<td>'+word['dsc_canal_venta']+'</td>'+
-              '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_nombres']+'</td>'+
+              '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
               '<td>'+word['dsc_agencia']+'</td>'+
               '<td>'+word['dsc_resultado']+'</td>'+
               '<td>'+word['dsc_vendedor']+'</td>'+
