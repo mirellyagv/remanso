@@ -2131,6 +2131,24 @@ $( document ).ready(function () {
                 if( documento["num_linea"] == '9'){
                   document.getElementById("RecSepAdj").classList.add('is-valid');
                 }
+                if( documento["num_linea"] == '10'){
+                  document.getElementById("ActaDefAdj").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '11'){
+                  document.getElementById("CertDefAdj").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '12'){
+                  document.getElementById("NecroAdj").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '13'){
+                  document.getElementById("ConstInhuAdj").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '14'){
+                  document.getElementById("AutSanitAdj").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '15'){
+                  document.getElementById("OtrosAdj").classList.add('is-valid');
+                }
                 
               });              
             }
@@ -3426,52 +3444,6 @@ botonGuarda.addEventListener("click",function(){
               }//error
           });
 
-          if(document.getElementById("DniAdj1").value != ''){
-            guardaDocumento('DniAdj1',cod_prospecto,'DNI_Titular_anverso',1,accionDocumentos);
-          }
-          if(document.getElementById("DniAdj2").value != ''){
-            guardaDocumento('DniAdj2',cod_prospecto,'DNI_Titular_reverso',2,accionDocumentos);
-          }
-          if(document.getElementById("Dni2Adj1").value != ''){
-            guardaDocumento('Dni2Adj1',cod_prospecto,'DNI_Alterno_anverso',3,accionDocumentos);
-          }
-          if(document.getElementById("Dni2Adj2").value != ''){
-            guardaDocumento('Dni2Adj2',cod_prospecto,'DNI_Alterno_reverso',4,accionDocumentos);
-          }
-          if(document.getElementById("DniAvalAdj1").value != ''){
-            guardaDocumento('DniAvalAdj1',cod_prospecto,'DNI_Aval_anverso',5,accionDocumentos);
-          }
-          if(document.getElementById("DniAvalAdj2").value != ''){
-            guardaDocumento('DniAvalAdj2',cod_prospecto,'DNI_Aval_reverso',6,accionDocumentos);
-          }
-          if(document.getElementById("recServAdj").value != ''){
-            guardaDocumento('recServAdj',cod_prospecto,'Recibo_de_servicio',7,accionDocumentos);
-          }
-          if(document.getElementById("comprobanteAdj").value != ''){
-            guardaDocumento('comprobanteAdj',cod_prospecto,'Comprobante',8,accionDocumentos);
-          }
-          if(document.getElementById("RecSepAdj").value != ''){ z
-            guardaDocumento('RecSepAdj',cod_prospecto,'Recibo_de_separacion',9,accionDocumentos);
-          }
-          if(document.getElementById("ActaDefAdj").value != ''){ z
-            guardaDocumento('ActaDefAdj',cod_prospecto,'Acta_de_defuncion',9,accionDocumentos);
-          }
-          if(document.getElementById("CertDefAdj").value != ''){ z
-            guardaDocumento('CertDefAdj',cod_prospecto,'Certificado_de_defuncion',9,accionDocumentos);
-          }
-          if(document.getElementById("NecroAdj").value != ''){ z
-            guardaDocumento('NecroAdj',cod_prospecto,'Necropsia',9,accionDocumentos);
-          }
-          if(document.getElementById("ConstInhuAdj").value != ''){ z
-            guardaDocumento('ConstInhuAdj',cod_prospecto,'Constancia_de_inhumacion',9,accionDocumentos);
-          }
-          if(document.getElementById("AutSanitAdj").value != ''){ z
-            guardaDocumento('AutSanitAdj',cod_prospecto,'Autorizacion_sanitaria',9,accionDocumentos);
-          }
-          if(document.getElementById("OtrosAdj").value != ''){ z
-            guardaDocumento('OtrosAdj',cod_prospecto,'Otro',9,accionDocumentos);
-          }
-
           serviciosAgregados.forEach(function (fila) {
 
             fila['cod_prospecto'] = cod_prospecto;
@@ -3498,6 +3470,52 @@ botonGuarda.addEventListener("click",function(){
               }//error
             });
           });
+
+          if(document.getElementById("DniAdj1").value != ''){
+            guardaDocumento('DniAdj1',cod_prospecto,'DNI_Titular_anverso',1,accionDocumentos);
+          }
+          if(document.getElementById("DniAdj2").value != ''){
+            guardaDocumento('DniAdj2',cod_prospecto,'DNI_Titular_reverso',2,accionDocumentos);
+          }
+          if(document.getElementById("Dni2Adj1").value != ''){
+            guardaDocumento('Dni2Adj1',cod_prospecto,'DNI_Alterno_anverso',3,accionDocumentos);
+          }
+          if(document.getElementById("Dni2Adj2").value != ''){
+            guardaDocumento('Dni2Adj2',cod_prospecto,'DNI_Alterno_reverso',4,accionDocumentos);
+          }
+          if(document.getElementById("DniAvalAdj1").value != ''){
+            guardaDocumento('DniAvalAdj1',cod_prospecto,'DNI_Aval_anverso',5,accionDocumentos);
+          }
+          if(document.getElementById("DniAvalAdj2").value != ''){
+            guardaDocumento('DniAvalAdj2',cod_prospecto,'DNI_Aval_reverso',6,accionDocumentos);
+          }
+          if(document.getElementById("recServAdj").value != ''){
+            guardaDocumento('recServAdj',cod_prospecto,'Recibo_de_servicio',7,accionDocumentos);
+          }
+          if(document.getElementById("comprobanteAdj").value != ''){
+            guardaDocumento('comprobanteAdj',cod_prospecto,'Comprobante',8,accionDocumentos);
+          }
+          if(document.getElementById("RecSepAdj").value != ''){ 
+            guardaDocumento('RecSepAdj',cod_prospecto,'Recibo_de_separacion',9,accionDocumentos);
+          }
+          if(document.getElementById("ActaDefAdj").value != ''){ 
+            guardaDocumento('ActaDefAdj',cod_prospecto,'Acta_de_defuncion',10,accionDocumentos);
+          }
+          if(document.getElementById("CertDefAdj").value != ''){ 
+            guardaDocumento('CertDefAdj',cod_prospecto,'Certificado_de_defuncion',11,accionDocumentos);
+          }
+          if(document.getElementById("NecroAdj").value != ''){ 
+            guardaDocumento('NecroAdj',cod_prospecto,'Necropsia',12,accionDocumentos);
+          }
+          if(document.getElementById("ConstInhuAdj").value != ''){ 
+            guardaDocumento('ConstInhuAdj',cod_prospecto,'Constancia_de_inhumacion',13,accionDocumentos);
+          }
+          if(document.getElementById("AutSanitAdj").value != ''){ 
+            guardaDocumento('AutSanitAdj',cod_prospecto,'Autorizacion_sanitaria',14,accionDocumentos);
+          }
+          if(document.getElementById("OtrosAdj").value != ''){ 
+            guardaDocumento('OtrosAdj',cod_prospecto,'Otro',15,accionDocumentos);
+          }
 
           Swal.fire({
             title: 'Guardado',
@@ -3633,6 +3651,13 @@ function ModoVista() {
     document.getElementById("DniAdj1").disabled = true;
     document.getElementById("RecSepAdj").disabled = true;
     document.getElementById("tipoServicio").disabled = true;
+    document.getElementById("ActaDefAdj").disabled = true;
+    document.getElementById("CertDefAdj").disabled = true;
+    document.getElementById("NecroAdj").disabled = true;
+    document.getElementById("ConstInhuAdj").disabled = true;
+    document.getElementById("AutSanitAdj").disabled = true;
+    document.getElementById("OtrosAdj").disabled = true;
+
   }
   
 }  
