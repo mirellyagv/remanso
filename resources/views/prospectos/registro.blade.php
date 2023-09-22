@@ -1131,6 +1131,7 @@ actualizarBeneficiario.addEventListener("click", function () {
 var boton = document.getElementById("btnGuarda");
 boton.addEventListener("click",function(){
 
+
   if(document.getElementById("tipoDocProsp").value == '' || document.getElementById("tipoDocProsp").value == null){
     Swal.fire({
       title:'Error!',
@@ -1154,18 +1155,17 @@ boton.addEventListener("click",function(){
     boton.removeAttribute('disabled');
     return;
   }
-  boton.setAttribute('disabled','disabled');
-
+  
   var numDocInput = document.getElementById("numDocPros");
   var numDocValue = numDocInput.value.trim();
   var collapseOne = document.getElementById("collapseOne");
-
+  
   var nombreProspInput = document.getElementById("nombreProsp");
   var nombreProspValue = nombreProspInput.value.trim();
-
+  
   var apellPProspInput = document.getElementById("apellPProsp");
   var apellPProspValue = apellPProspInput.value.trim();
-
+  
   var apellMProspInput = document.getElementById("apellMProsp");
   var apellMProspValue = apellMProspInput.value.trim();
 
@@ -1175,7 +1175,7 @@ boton.addEventListener("click",function(){
   var telf1ProspInput = document.getElementById("telf1Prosp");
   var telf1ProspValue = telf1ProspInput.value.trim();
 
-  // // Validación para el campo "Núm. de Documento"
+  // Validación para el campo "Núm. de Documento"
   // var numDocRegex = /^\d{9}$/; // Expresión regular para 9 dígitos numéricos
   // if (!numDocRegex.test(numDocValue)) {
   //   var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");
@@ -1185,82 +1185,84 @@ boton.addEventListener("click",function(){
   //   return;
   // }
   // if (numDocRegex.test(numDocValue)){var invalidFeedbackNumDoc = document.querySelector("#collapseOne .a.invalid-feedback");invalidFeedbackNumDoc.style.display = "none";}
-  // // Validación para el campo "nombreProsp"
-  // if (nombreProspValue === "") {
-  //   var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   nombreProspInput.focus();
-  //   invalidFeedbackNombreProsp.style.display = "block";
-  //   return;
-  // }
-  // if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
+  // Validación para el campo "nombreProsp"
+  if (nombreProspValue === "") {
+    var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");
+    collapseOne.classList.add("show");
+    nombreProspInput.focus();
+    invalidFeedbackNombreProsp.style.display = "block";
+    return;
+  }
+  if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
 
-  // // Validación para el campo "apellPProsp"
-  // if (apellPProspValue === "") {
-  //   var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   apellPProspInput.focus();
-  //   invalidFeedbackapellPProsp.style.display = "block";
-  //   return;
-  // }
-  // if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
-
-  // // Validación para el campo "apellMProsp"
-  // if (apellMProspValue === "") {
-  //   var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   apellMProspInput.focus();
-  //   invalidFeedbackapellMProsp.style.display = "block";
-  //   return;
-  // }
-  // if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
-
-  // // Validación para el campo "direccPros"
-  // if (direccProsValue === "") {
-  //   var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
-  //   collapseOne.classList.add("show");
-  //   direccProsInput.focus();
-  //   invalidFeedbackdireccPros.style.display = "block";
-  //   return;
-  // }
-  // if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
-
-  // // Validación para el campo "telf1Prosp"
-  // if (telf1ProspValue === "") {
-  //   collapseTelf1Prosp.classList.add("show");
-  //   telf1ProspInput.focus();
-  //   invalidFeedbackTelf1Prosp.style.display = "block";
-  //   return;
-  // }
-
-  // // Validación de longitud y formato
-  // if (telf1ProspValue.length !== 9 || !/^\d{9}$/.test(telf1ProspValue)) {
-  //   collapseTelf1Prosp.classList.add("show");
-  //   telf1ProspInput.focus();
-  //   invalidFeedbackTelf1Prosp.style.display = "block";
-  //   return;
-  // }
-  // if (telf1ProspValue.length === 9 || /^\d{9}$/.test(telf1ProspValue)){var invalidFeedbacktelf1Prosp = document.querySelector("#collapseOne .f.invalid-feedback");invalidFeedbacktelf1Prosp.style.display = "none";}
-
+  // Validación para el campo "apellPProsp"
+  if (apellPProspValue === "") {
+    var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");
+    collapseOne.classList.add("show");
+    apellPProspInput.focus();
+    invalidFeedbackapellPProsp.style.display = "block";
+    return;
+  }
+  if (apellPProspValue !== ""){var invalidFeedbackapellPProsp = document.querySelector("#collapseOne .c.invalid-feedback");invalidFeedbackapellPProsp.style.display = "none";}
+  
+  // Validación para el campo "apellMProsp"
+  if (apellMProspValue === "") {
+    var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");
+    collapseOne.classList.add("show");
+    apellMProspInput.focus();
+    invalidFeedbackapellMProsp.style.display = "block";
+    return;
+  }
+  if (apellMProspValue !== ""){var invalidFeedbackapellMProsp = document.querySelector("#collapseOne .d.invalid-feedback");invalidFeedbackapellMProsp.style.display = "none";}
+  
+  // Validación para el campo "direccPros"
+  if (direccProsValue === "") {
+    var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");
+    collapseOne.classList.add("show");
+    direccProsInput.focus();
+    invalidFeedbackdireccPros.style.display = "block";
+    return;
+  }
+  if (direccProsValue !== ""){var invalidFeedbackdireccPros = document.querySelector("#collapseOne .e.invalid-feedback");invalidFeedbackdireccPros.style.display = "none";}
+  
+  // Validación para el campo "telf1Prosp"
+  if (telf1ProspValue === "") {
+    collapseTelf1Prosp.classList.add("show");
+    telf1ProspInput.focus();
+    invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+  
+  // Validación de longitud y formato
+  if (telf1ProspValue.length !== 9 || !/^\d{9}$/.test(telf1ProspValue)) {
+    collapseTelf1Prosp.classList.add("show");
+    telf1ProspInput.focus();
+    invalidFeedbackTelf1Prosp.style.display = "block";
+    return;
+  }
+  if (telf1ProspValue.length === 9 || /^\d{9}$/.test(telf1ProspValue)){var invalidFeedbacktelf1Prosp = document.querySelector("#collapseOne .f.invalid-feedback");invalidFeedbacktelf1Prosp.style.display = "none";}
+  
   fchContacto = document.getElementById('fchContacto').value;
   obsvContacto = document.getElementById('obsvContacto').value;
   califContacto = document.getElementById('califContacto').value;
-
+  
   var nombres  = (document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value+', '+document.getElementById("nombreProsp").value).toUpperCase();
-    flgJuridico = '';
-    flgJuridico2 = '';
+  flgJuridico = '';
+  flgJuridico2 = '';
   if(document.getElementById("tipoDocProsp").value == 'DI004'){
     flgJuridico = 'SI';
-
+    
   }else{
     flgJuridico = 'NO';
   }
   if(document.getElementById("tipoDoc2tit").value ==  'DI004'){
     flgJuridico2 = 'SI';
-
+    
   }else{
     flgJuridico2 = 'NO';
   }
+  boton.setAttribute('disabled','disabled');
+  
   var prospecto = {
     'cod_prospecto': '',
     'dsc_prospecto': nombres,
