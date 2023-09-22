@@ -202,6 +202,8 @@ $(document).ready(function () {
   } else if(flg_ni=='NO' && flg_nf=='SI'){
     cod_tipo_necesidad='NF';
     document.getElementById("tituloPag").innerText = "prospectos";
+  }else{
+    document.getElementById("tituloPag").innerText = "prospectos/ventas";
   }
 
   var currentDate = new Date();

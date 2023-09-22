@@ -19,7 +19,7 @@
               <th style="text-align: center;" width="30%" class="vendedor">Vendedor</th>
             </tr>
           </thead>
-          <tbody style="text-align: center;">           
+          <tbody style="text-align: center;font-size:0.7em;">           
           </tbody>
         </table>
       </div>
@@ -91,7 +91,7 @@ $(document).ready(function () {
                   { title: 'Canal' },
                   { title: 'Vendedor' },
               ],
-              dom: 'trip',
+              dom: 'ftrip',
               processing: true,
           });
         },//success
@@ -144,7 +144,7 @@ $(document).ready(function () {
                   { title: 'Días' },
                   { title: 'Canal' }
               ],
-              dom: 'trip',
+              dom: 'ftrip',
               processing: true,
           });
         },//success
