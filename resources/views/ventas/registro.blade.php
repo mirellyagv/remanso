@@ -1499,7 +1499,8 @@ CuotaInicial.addEventListener("input", function(event) {
     num_cuota=1;
   }
 
-  interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;  
+  //interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1; 
+  interes = ((num_interes / 100) / 12); 
 
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
@@ -1526,7 +1527,8 @@ tipoCuota.addEventListener("change", function(event) {
   var imp_saldo=  document.getElementById('impSaldo').value;
   var imp_cuota= 0;
 
-  interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;
+  //interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;
+  interes = ((num_interes / 100) / 12);
 
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
@@ -1558,7 +1560,8 @@ tipoTasa.addEventListener("change", function(event) {
     num_cuota=1;
   }
 
-  interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;
+  //interes = ( 1 + ( num_interes / 100 )) ** (( 1 / 12 )) - 1;
+  interes = ((num_interes / 100) / 12);
 
   if(document.getElementById("codTasa").value == '' || document.getElementById("codTasa").value == '000' )
   {
