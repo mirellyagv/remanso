@@ -1246,7 +1246,7 @@ boton.addEventListener("click",function(){
   obsvContacto = document.getElementById('obsvContacto').value;
   califContacto = document.getElementById('califContacto').value;
 
-  var nombres  = (document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value).toUpperCase();
+  var nombres  = (document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value+', '+document.getElementById("nombreProsp").value).toUpperCase();
     flgJuridico = '';
     flgJuridico2 = '';
   if(document.getElementById("tipoDocProsp").value == 'DI004'){

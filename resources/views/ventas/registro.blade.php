@@ -3296,7 +3296,7 @@ botonGuarda.addEventListener("click",function(){
       dscTitular = document.getElementById("razonSocRegVta").value.toUpperCase();
     }else{
       flgJuridico = 'NO';
-      dscTitular = document.getElementById("nombresRegVta").value.toUpperCase()+' '+document.getElementById("apellPRegVta").value.toUpperCase()+' '+document.getElementById("apellMRegVta").value.toUpperCase();
+      dscTitular = document.getElementById("apellPRegVta").value.toUpperCase()+' '+document.getElementById("apellMRegVta").value.toUpperCase()+', '+document.getElementById("nombresRegVta").value.toUpperCase();
     }
     if(document.getElementById("tipoDoc2doRegVta").value ==  'DI004'){
       flgJuridico2 = 'SI';

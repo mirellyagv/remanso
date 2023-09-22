@@ -1298,7 +1298,7 @@ boton.addEventListener("click",function(){
   var telf1ProspInput = document.getElementById("telf1Prosp");
   var telf1ProspValue = telf1ProspInput.value.trim();
 
- var nombres  = document.getElementById("nombreProsp").value+' '+document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value;
+ var nombres  = document.getElementById("apellPProsp").value+' '+document.getElementById("apellMProsp").value+', '+document.getElementById("nombreProsp").value;
     flgJuridico = '';
     flgJuridico2 = '';
   if(document.getElementById("tipoDocProsp").value == 'DI004'){
