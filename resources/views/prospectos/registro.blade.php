@@ -1193,7 +1193,7 @@ boton.addEventListener("click",function(){
     invalidFeedbackNombreProsp.style.display = "block";
     return;
   }
-  if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
+  //if (nombreProspValue !== ""){var invalidFeedbackNombreProsp = document.querySelector("#collapseOne .b.invalid-feedback");invalidFeedbackNombreProsp.style.display = "none";}
 
   // Validación para el campo "apellPProsp"
   if (apellPProspValue === "") {
