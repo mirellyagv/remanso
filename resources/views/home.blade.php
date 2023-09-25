@@ -16,7 +16,8 @@
               <th style="text-align: center;" width="10%">Fecha</th>
               <th style="text-align: center;" width="5%">Días</th>
               <th style="text-align: center;" width="10%" >Canal</th>
-              <th style="text-align: center;" width="30%" class="vendedor">Vendedor</th>
+              <th style="text-align: center;" width="20%" class="vendedor">Vendedor</th>
+              <th style="text-align: center;" width="10%">N° contactos</th>
             </tr>
           </thead>
           <tbody style="text-align: center;font-size:0.7em;">           
@@ -71,6 +72,7 @@ $(document).ready(function () {
                 element['num_dias'],
                 element['dsc_origen'],
                 element['dsc_consejero'],
+                '0'
             ];
 
             filasArray.push(filaData);
@@ -86,12 +88,13 @@ $(document).ready(function () {
                   { title: 'Código' },
                   { title: 'Documento' },
                   { title: 'Prospecto' },
-                  { title: 'Fecha' },
+                  { title: 'Fecha registro' },
                   { title: 'Días' },
                   { title: 'Canal' },
                   { title: 'Vendedor' },
+                  { title: 'N° contactos'}
               ],
-              dom: 'ftrip',
+              dom: 'lftrip',
               processing: true,
           });
         },//success
@@ -124,7 +127,8 @@ $(document).ready(function () {
                 element['dsc_prospecto'],
                 fch_registro1,
                 element['num_dias'],
-                element['dsc_origen']
+                element['dsc_origen'],
+                '0'
             ];
 
             filasArray.push(filaData);
@@ -140,11 +144,12 @@ $(document).ready(function () {
                   { title: 'Código' },
                   { title: 'Documento' },
                   { title: 'Prospecto' },
-                  { title: 'Fecha' },
+                  { title: 'Fecha registro' },
                   { title: 'Días' },
-                  { title: 'Canal' }
+                  { title: 'Canal' },
+                  { title: 'N° contactos'}
               ],
-              dom: 'ftrip',
+              dom: 'lftrip',
               processing: true,
           });
         },//success
