@@ -2150,19 +2150,19 @@ $( document ).ready(function () {
                 if( documento["num_linea"] == '11'){
                   document.getElementById("CertDefAAdj").classList.add('is-valid');
                 }
-                if( documento["num_linea"] == '12'){
+                if( documento["num_linea"] == '16'){
                   document.getElementById("CertDefBAdj").classList.add('is-valid');
                 }
-                if( documento["num_linea"] == '13'){
+                if( documento["num_linea"] == '12'){
                   document.getElementById("NecroAdj").classList.add('is-valid');
                 }
-                if( documento["num_linea"] == '14'){
+                if( documento["num_linea"] == '13'){
                   document.getElementById("ConstInhuAdj").classList.add('is-valid');
                 }
-                if( documento["num_linea"] == '15'){
+                if( documento["num_linea"] == '14'){
                   document.getElementById("AutSanitAdj").classList.add('is-valid');
                 }
-                if( documento["num_linea"] == '16'){
+                if( documento["num_linea"] == '15'){
                   document.getElementById("OtrosAdj").classList.add('is-valid');
                 }
                 
@@ -3564,19 +3564,19 @@ botonGuarda.addEventListener("click",function(){
             guardaDocumento('CertDefAAdj',cod_prospecto,'Certificado_de_defuncion_A',11,accionDocumentos);
           }
           if(document.getElementById("CertDefBAdj").value != ''){ 
-            guardaDocumento('CertDefBAdj',cod_prospecto,'Certificado_de_defuncion_B',12,accionDocumentos);
+            guardaDocumento('CertDefBAdj',cod_prospecto,'Certificado_de_defuncion_B',16,accionDocumentos);
           }
           if(document.getElementById("NecroAdj").value != ''){ 
-            guardaDocumento('NecroAdj',cod_prospecto,'Necropsia',13,accionDocumentos);
+            guardaDocumento('NecroAdj',cod_prospecto,'Necropsia',12,accionDocumentos);
           }
           if(document.getElementById("ConstInhuAdj").value != ''){ 
-            guardaDocumento('ConstInhuAdj',cod_prospecto,'Constancia_de_inhumacion',14,accionDocumentos);
+            guardaDocumento('ConstInhuAdj',cod_prospecto,'Constancia_de_inhumacion',13,accionDocumentos);
           }
           if(document.getElementById("AutSanitAdj").value != ''){ 
-            guardaDocumento('AutSanitAdj',cod_prospecto,'Autorizacion_sanitaria',15,accionDocumentos);
+            guardaDocumento('AutSanitAdj',cod_prospecto,'Autorizacion_sanitaria',14,accionDocumentos);
           }
           if(document.getElementById("OtrosAdj").value != ''){ 
-            guardaDocumento('OtrosAdj',cod_prospecto,'Otro',16,accionDocumentos);
+            guardaDocumento('OtrosAdj',cod_prospecto,'Otro',15,accionDocumentos);
           }
 
           Swal.fire({
