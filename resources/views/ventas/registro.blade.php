@@ -874,11 +874,17 @@
                         <div class="col-md-4 mb-3"  style="display: none" id="inputActaDefAdj">
                           <input class="form-control form-remanso form-control-sm" id="ActaDefAdj" type="file">
                         </div>
-                        <div class="col-md-2 mb-3" style="display: none" id="tituloCertDefAdj">
-                          <label for="inputText" class="col-form-label">Certif. de defunción: </label>
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloCertDefAAdj">
+                          <label for="inputText" class="col-form-label">Certif. de defunción A: </label>
                         </div>
-                        <div class="col-md-4 mb-3"  style="display: none" id="inputCertDefAdj">
-                          <input class="form-control form-remanso form-control-sm" id="CertDefAdj" type="file">
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputCertDefAAdj">
+                          <input class="form-control form-remanso form-control-sm" id="CertDefAAdj" type="file">
+                        </div>
+                        <div class="col-md-2 mb-3" style="display: none" id="tituloCertDefBAdj">
+                          <label for="inputText" class="col-form-label">Certif. de defunción B: </label>
+                        </div>
+                        <div class="col-md-4 mb-3"  style="display: none" id="inputCertDefBAdj">
+                          <input class="form-control form-remanso form-control-sm" id="CertDefBAdj" type="file">
                         </div>
                         <div class="col-md-2 mb-3" style="display: none" id="tituloNecroAdj">
                           <label for="inputText" class="col-form-label">Necropsia: </label>
@@ -1065,8 +1071,10 @@ botonNece.addEventListener("change",function(){
     document.getElementById('inputDniAval2').style.display = "block";
     document.getElementById('tituloActaDefAdj').style.display = "block";
     document.getElementById('inputActaDefAdj').style.display = "block";
-    document.getElementById('tituloCertDefAdj').style.display = "block";
-    document.getElementById('inputCertDefAdj').style.display = "block";
+    document.getElementById('tituloCertDefAAdj').style.display = "block";
+    document.getElementById('inputCertDefAAdj').style.display = "block";
+    document.getElementById('tituloCertDefBAdj').style.display = "block";
+    document.getElementById('inputCertDefBAdj').style.display = "block";
     document.getElementById('tituloNecroAdj').style.display = "block";
     document.getElementById('inputNecroAdj').style.display = "block";
     document.getElementById('tituloConstInhuAdj').style.display = "block";
@@ -1085,8 +1093,10 @@ botonNece.addEventListener("change",function(){
     document.getElementById('inputDniAval2').style.display = "none";
     document.getElementById('tituloActaDefAdj').style.display = "none";
     document.getElementById('inputActaDefAdj').style.display = "none";
-    document.getElementById('tituloCertDefAdj').style.display = "none";
-    document.getElementById('inputCertDefAdj').style.display = "none";
+    document.getElementById('tituloCertDefAAdj').style.display = "none";
+    document.getElementById('inputCertDefAAdj').style.display = "none";
+    document.getElementById('tituloCertDefBAdj').style.display = "none";
+    document.getElementById('inputCertDefBAdj').style.display = "none";
     document.getElementById('tituloNecroAdj').style.display = "none";
     document.getElementById('inputNecroAdj').style.display = "none";
     document.getElementById('tituloConstInhuAdj').style.display = "none";
@@ -2138,18 +2148,21 @@ $( document ).ready(function () {
                   document.getElementById("ActaDefAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '11'){
-                  document.getElementById("CertDefAdj").classList.add('is-valid');
+                  document.getElementById("CertDefAAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '12'){
-                  document.getElementById("NecroAdj").classList.add('is-valid');
+                  document.getElementById("CertDefBAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '13'){
-                  document.getElementById("ConstInhuAdj").classList.add('is-valid');
+                  document.getElementById("NecroAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '14'){
-                  document.getElementById("AutSanitAdj").classList.add('is-valid');
+                  document.getElementById("ConstInhuAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '15'){
+                  document.getElementById("AutSanitAdj").classList.add('is-valid');
+                }
+                if( documento["num_linea"] == '16'){
                   document.getElementById("OtrosAdj").classList.add('is-valid');
                 }
                 
@@ -2684,7 +2697,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const fileInput = document.getElementById("CertDefAdj");
+  const fileInput = document.getElementById("CertDefAAdj");
   const errorMessage = document.getElementById("error-message");
 
   fileInput.addEventListener("change", function () {
@@ -2698,7 +2711,50 @@ document.addEventListener("DOMContentLoaded", function () {
     if (clases.contains("is-valid")) {
       Swal.fire({
         title:'Info!',
-        text:'Ya tiene un Certificado de defunción guardado, desea sobreescribirlo?',
+        text:'Ya tiene un Certificado de defunción A guardado, desea sobreescribirlo?',
+        icon:'info',
+        showDenyButton: true,
+        confirmButtonColor: '#35B44A',
+        denyButtonColor: '#d33',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isDenied) {
+          fileInput.value = ""; // Limpiar el input
+        }
+      })//then
+    }
+
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      Swal.fire({
+        title:'Error!',
+        text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
+        icon:'warning',
+        confirmButtonColor: '#35B44A',
+      })
+      fileInput.value = ""; // Limpiar el input
+    } else {
+      console.log('pasa documento');
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("CertDefBAdj");
+  const errorMessage = document.getElementById("error-message");
+
+  fileInput.addEventListener("change", function () {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx)$/i;
+    const selectedFile = this.files[0];
+
+    // Obtener las clases del elemento
+    const clases = fileInput.classList;
+
+    // Verificar si contiene una clase específica
+    if (clases.contains("is-valid")) {
+      Swal.fire({
+        title:'Info!',
+        text:'Ya tiene un Certificado de defunción B guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
         confirmButtonColor: '#35B44A',
@@ -3504,20 +3560,23 @@ botonGuarda.addEventListener("click",function(){
           if(document.getElementById("ActaDefAdj").value != ''){ 
             guardaDocumento('ActaDefAdj',cod_prospecto,'Acta_de_defuncion',10,accionDocumentos);
           }
-          if(document.getElementById("CertDefAdj").value != ''){ 
-            guardaDocumento('CertDefAdj',cod_prospecto,'Certificado_de_defuncion',11,accionDocumentos);
+          if(document.getElementById("CertDefAAdj").value != ''){ 
+            guardaDocumento('CertDefAAdj',cod_prospecto,'Certificado_de_defuncion_A',11,accionDocumentos);
+          }
+          if(document.getElementById("CertDefBAdj").value != ''){ 
+            guardaDocumento('CertDefBAdj',cod_prospecto,'Certificado_de_defuncion_B',12,accionDocumentos);
           }
           if(document.getElementById("NecroAdj").value != ''){ 
-            guardaDocumento('NecroAdj',cod_prospecto,'Necropsia',12,accionDocumentos);
+            guardaDocumento('NecroAdj',cod_prospecto,'Necropsia',13,accionDocumentos);
           }
           if(document.getElementById("ConstInhuAdj").value != ''){ 
-            guardaDocumento('ConstInhuAdj',cod_prospecto,'Constancia_de_inhumacion',13,accionDocumentos);
+            guardaDocumento('ConstInhuAdj',cod_prospecto,'Constancia_de_inhumacion',14,accionDocumentos);
           }
           if(document.getElementById("AutSanitAdj").value != ''){ 
-            guardaDocumento('AutSanitAdj',cod_prospecto,'Autorizacion_sanitaria',14,accionDocumentos);
+            guardaDocumento('AutSanitAdj',cod_prospecto,'Autorizacion_sanitaria',15,accionDocumentos);
           }
           if(document.getElementById("OtrosAdj").value != ''){ 
-            guardaDocumento('OtrosAdj',cod_prospecto,'Otro',15,accionDocumentos);
+            guardaDocumento('OtrosAdj',cod_prospecto,'Otro',16,accionDocumentos);
           }
 
           Swal.fire({
@@ -3655,7 +3714,8 @@ function ModoVista() {
     document.getElementById("RecSepAdj").disabled = true;
     document.getElementById("tipoServicio").disabled = true;
     document.getElementById("ActaDefAdj").disabled = true;
-    document.getElementById("CertDefAdj").disabled = true;
+    document.getElementById("CertDefAAdj").disabled = true;
+    document.getElementById("CertDefBAdj").disabled = true;
     document.getElementById("NecroAdj").disabled = true;
     document.getElementById("ConstInhuAdj").disabled = true;
     document.getElementById("AutSanitAdj").disabled = true;
