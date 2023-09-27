@@ -1058,6 +1058,44 @@
 <script src="{{asset('js/registroVenta.js')}}"></script>
 <script type="text/javascript">
 
+//-------------------------cajas fechas-----------------
+
+flatpickr("#fchNacAddBenef",{
+  locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
+  dateFormat: "Y-m-d"
+});
+
+flatpickr("#fch1erVcto",{
+  locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
+  dateFormat: "Y-m-d",
+  defaultDate:fechaMasUnMes
+});
+
+flatpickr("#fchNacRegVta",{
+  locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
+  dateFormat: "Y-m-d"
+});
+
+flatpickr("#fchNac2doRegVta",{
+  locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
+  dateFormat: "Y-m-d"
+});
+
+flatpickr("#fchNacAval",{
+  locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
+  dateFormat: "Y-m-d"
+});
+
 //---------------------formato dinero
 
 var botonNece = document.getElementById("tipoNec");
@@ -1246,6 +1284,12 @@ numDocProsInput.addEventListener("blur", function(event) {
                 if(respuesta['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
                   document.getElementById("fchNacRegVta").value = respuesta['response']['fch_nacimiento'];
                 }
+                flatpickr("#fchNacRegVta",{
+                  locale:"es",
+                  altInput: true,
+                  altFormat: "d/m/Y",
+                  dateFormat: "Y-m-d"
+                });
                 
                 var changeEvent = new Event('change');
                 var paisProspecto=document.getElementById("paisRegVta") ;
@@ -1343,7 +1387,13 @@ numDoc2titInput.addEventListener("blur", function(event) {
         document.getElementById("correo2doRegVta").value = respuesta['response']['dsc_correo'];
         document.getElementById("edoCivil2doRegVta").value = respuesta['response']['cod_edo_civil_2do'];
         document.getElementById("fchNac2doRegVta").value = respuesta['response']['fch_nacimiento_2do'];
-        
+        flatpickr("#fchNac2doRegVta",{
+          locale:"es",
+          altInput: true,
+          altFormat: "d/m/Y",
+          dateFormat: "Y-m-d"
+        });
+
         var changeEvent = new Event('change');
         var paisProspecto=document.getElementById("pais2doRegVta") ;
         paisProspecto.value=respuesta["response"]["cod_pais"];
@@ -1427,6 +1477,12 @@ numDocAvalInput.addEventListener("blur", function(event) {
         document.getElementById("correoAval").value = respuesta['response']['dsc_correo'];
         document.getElementById("edoCivilAval").value = respuesta['response']['cod_edo_civil_aval'];
         document.getElementById("fchNacAval").value = respuesta['response']['fch_nacimiento_aval'];
+        flatpickr("#fchNacAval",{
+          locale:"es",
+          altInput: true,
+          altFormat: "d/m/Y",
+          dateFormat: "Y-m-d"
+        });
         
         var changeEvent = new Event('change');
         var paisProspecto=document.getElementById("paisAval") ;
@@ -1763,42 +1819,6 @@ impFomaInput.addEventListener("input", function(event) {
 var fechaActual = new Date();
 var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
 
-flatpickr("#fchNacAddBenef",{
-  locale:"es",
-  altInput: true,
-  altFormat: "d/m/Y",
-  dateFormat: "Y-m-d"
-});
-
-flatpickr("#fch1erVcto",{
-  locale:"es",
-  altInput: true,
-  altFormat: "d/m/Y",
-  dateFormat: "Y-m-d",
-  defaultDate:fechaMasUnMes
-});
-
-flatpickr("#fchNacRegVta",{
-  locale:"es",
-  altInput: true,
-  altFormat: "d/m/Y",
-  dateFormat: "Y-m-d"
-});
-
-flatpickr("#fchNac2doRegVta",{
-  locale:"es",
-  altInput: true,
-  altFormat: "d/m/Y",
-  dateFormat: "Y-m-d"
-});
-
-flatpickr("#fchNacAval",{
-  locale:"es",
-  altInput: true,
-  altFormat: "d/m/Y",
-  dateFormat: "Y-m-d"
-});
-
 
 document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
     ele.bootstrapToggle();
@@ -1958,8 +1978,14 @@ $( document ).ready(function () {
           document.getElementById("edoCivilRegVta").value=result["response"]["cod_estado_civil"];
           auxFechaNac = result["response"]["fch_nacimiento"].split('T');
           if(result['response']['fch_nacimiento'] != '1900-01-01T00:00:00'){
-            document.getElementById("fchNacRegVta").value=auxFechaNac[0];
+            document.getElementById("fchNacRegVta").value = auxFechaNac[0];
           }
+          flatpickr("#fchNacRegVta",{
+            locale:"es",
+            altInput: true,
+            altFormat: "d/m/Y",
+            dateFormat: "Y-m-d"
+          });
 
           //------------------------------------------2do titular-----------------------------------------------------
 
@@ -2001,6 +2027,12 @@ $( document ).ready(function () {
           if(result['response']['fch_nacimiento_2do'] != '1900-01-01T00:00:00'){
             document.getElementById("fchNac2doRegVta").value=auxFechaNac2do[0];
           }
+          flatpickr("#fchNac2doRegVta",{
+            locale:"es",
+            altInput: true,
+            altFormat: "d/m/Y",
+            dateFormat: "Y-m-d"
+          });
 
           //------------------------------------------Aval-----------------------------------------------------
 
@@ -2042,6 +2074,12 @@ $( document ).ready(function () {
           if(result['response']['fch_nacimiento_aval'] != '1900-01-01T00:00:00'){
             document.getElementById("fchNacAval").value=auxFechaNacAval[0];
           }
+          flatpickr("#fchNacAval",{
+            locale:"es",
+            altInput: true,
+            altFormat: "d/m/Y",
+            dateFormat: "Y-m-d"
+          });
 
           //-------------------------------------------Servicios---------------------------------------------------------
 
@@ -2199,6 +2237,12 @@ $( document ).ready(function () {
             document.getElementById("fch1erVcto").value=auxFecha[0];
             document.getElementById("obsvRegVentas").value = result["response"]["dsc_observaciones"];
             if( document.getElementById("fch1erVcto").value=='1900-01-01'){document.getElementById("fch1erVcto").value=lastDayOfMonthStr;}
+            flatpickr("#fch1erVcto",{
+              locale:"es",
+              altInput: true,
+              altFormat: "d/m/Y",
+              dateFormat: "Y-m-d"
+            });
               
           }, 2500);
 

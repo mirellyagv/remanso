@@ -84,11 +84,7 @@
       </li><br>
       <li class="nav-item">
         <a href="{{route('prospectos.listado')}}">
-          @if(session('flg_sac') == 'SI')
             <span class="item-menu">Listado de prospectos / venta</span>
-          @else
-            <span class="item-menu">Consulta de prospectos</span>
-          @endif
         </a>
       </li><br>
       <li class="nav-item">

@@ -190,7 +190,8 @@ $(document).ready(function () {
   
   if(flg_ni=='SI' && flg_nf=='SI'){
     cod_tipo_necesidad='%';
-  } else if(flg_ni=='NO' && flg_nf=='NO' && (flg_sac=='SI' || flg_admin == 'SI' || flg_jefe == 'SI')){
+    document.getElementById("tituloPag").innerText = "prospectos/ventas";
+  } else if(flg_ni=='NO' && flg_nf=='NO' && (flg_sac=='SI' || flg_admin == 'SI')){
     cod_tipo_necesidad='%';
     document.getElementById("tituloPag").innerText = "prospectos/ventas";
   } else if(flg_ni=='NO' && flg_nf=='NO' && flg_sac=='NO'){
@@ -217,6 +218,8 @@ $(document).ready(function () {
   // Configurar Flatpickr para fchIni
   flatpickr("#fchIni", {
     locale: "es",
+    altInput: true,
+    altFormat: "d/m/Y",
     defaultDate: firstDayOfMonthStr,
     onChange: function(selectedDates, dateStr) {
       // Habilitar fchFin cuando se seleccione una fecha en fchIni
@@ -225,6 +228,8 @@ $(document).ready(function () {
       // Actualizar la opción de deshabilitar en fchFin
       flatpickr("#fchFin", {
         locale: "es",
+        altInput: true,
+        altFormat: "d/m/Y",
         defaultDate: lastDayOfMonthStr,
         disable: [
           {
@@ -239,6 +244,8 @@ $(document).ready(function () {
   // Configurar Flatpickr para fchFin
   flatpickr("#fchFin", {
     locale: "es",
+    altInput: true,
+    altFormat: "d/m/Y",
     defaultDate: lastDayOfMonthStr
   });
 
