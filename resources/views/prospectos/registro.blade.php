@@ -629,14 +629,19 @@ var fechaActual = new Date();
 //console.log(fechaActual);
 flatpickr("#fchNacAddBenef",{
   locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
   dateFormat: "Y-m-d"
 });
-flatpickr("#fechaContacto",{
+flatpickr("#fchContacto",{
   locale:"es",
-  dateFormat: "Y-m-d"
+  altInput: true,
+  altFormat: "d/m/Y",
+  dateFormat: "Y-m-d",
+  defaultDate: "today"
 });
 
-document.getElementById("fechaContacto").value = fechaActual;
+//document.getElementById("fechaContacto").value = fechaActual;
 //------------------------valida letras-------------------------------
 var inputs = document.getElementsByClassName("letras-only");
 

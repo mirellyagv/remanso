@@ -558,10 +558,14 @@ var fechaActual = new Date();
 document.getElementById("fchContacto").value = fechaActual;
 flatpickr("#fchNacAddBenef",{
   locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
   dateFormat: "Y-m-d"
 });
 flatpickr("#fchContacto",{
   locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
   dateFormat: "Y-m-d"
 });
 

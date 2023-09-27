@@ -388,7 +388,7 @@ addBeneficiario.addEventListener("click",function (){
   var nombre = document.getElementById("nombresAddBenef").value.toUpperCase();
   var apellP = document.getElementById("apellPAddBenef").value.toUpperCase();
   var apellM = document.getElementById("apellMAddBenef").value.toUpperCase();
-  var fechNac = document.getElementById("fchNacAddBenef").value;
+  var fechNac = fecha4BD(document.getElementById("fchNacAddBenef").value);
   var parent = document.getElementById("parentescoAddBenef");
   var parentesco = parent.options[parent.selectedIndex].text;
   var codParentesco = document.getElementById("parentescoAddBenef").value;
@@ -483,6 +483,8 @@ addBeneficiario.addEventListener("click",function (){
 
     filasArrayBenef.push(filaData); // Agregar la fila al array
 
+    console.log('filasArrayBenef',filasArrayBenef);
+
 });
 
 function editarFila(filaIndex) {
@@ -558,7 +560,7 @@ addContacto.addEventListener("click",function (){
   var month = String(today.getMonth() + 1).padStart(2, '0');
   var day = String(today.getDate()).padStart(2, '0');
 
-  var dia = year + '-' + month + '-' + day;
+  var dia = day+'/'+month+'/'+year;
 
     var tabla = document.getElementById('tablaObsv');
     var tbody = tabla.getElementsByTagName('tbody')[0];

@@ -318,3 +318,11 @@
     }
   
   })();
+
+function fecha4BD (fecha){
+  var fecha = fecha.split('/');
+  var day = fecha[0];
+  var month = fecha[1];
+  var year = fecha[2];
+  return year + "-" + month + "-" + day;
+}

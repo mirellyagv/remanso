@@ -1765,27 +1765,37 @@ var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() +
 
 flatpickr("#fchNacAddBenef",{
   locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
   dateFormat: "Y-m-d"
 });
 
 flatpickr("#fch1erVcto",{
   locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
   dateFormat: "Y-m-d",
   defaultDate:fechaMasUnMes
 });
 
 flatpickr("#fchNacRegVta",{
   locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
   dateFormat: "Y-m-d"
 });
 
 flatpickr("#fchNac2doRegVta",{
   locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
   dateFormat: "Y-m-d"
 });
 
 flatpickr("#fchNacAval",{
   locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
   dateFormat: "Y-m-d"
 });
 
