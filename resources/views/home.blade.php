@@ -94,7 +94,7 @@ $(document).ready(function () {
                   { title: 'Vendedor' },
                   { title: 'N° contactos'}
               ],
-              dom: 'lftrip',
+              dom: 'lfrtip',
               processing: true,
           });
         },//success
@@ -149,7 +149,7 @@ $(document).ready(function () {
                   { title: 'Canal' },
                   { title: 'N° contactos'}
               ],
-              dom: 'lftrip',
+              dom: 'lfrtip',
               processing: true,
           });
         },//success
