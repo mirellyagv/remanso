@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Auth;
 // });
 Route::view('/', 'index')->name('login');
 Route::view('home', 'home')->name('home');
+Route::view('visorServicios', 'visorServicios')->name('visorServicios');
 Route::get('/adios', function (Request $request): RedirectResponse {
     Auth::logout();
  
@@ -81,6 +82,7 @@ Route::delete('api/EliminarProspectoContacto', [APIController::class, 'EliminarP
 Route::post('api/guardaDocumentoAdjunto', [APIController::class, 'guardaDocumentoAdjunto'])->name('api.guardaDocumentoAdjunto');
 Route::get('api/ObtenerDocumentosProspecto', [APIController::class, 'ObtenerDocumentosProspecto'])->name('api.ObtenerDocumentosProspecto');
 Route::get('api/ListarProspectoDocumentos', [APIController::class, 'ListarProspectoDocumentos'])->name('api.ListarProspectoDocumentos');
+Route::get('lista/ListarUsoServicio', [ListaController::class, 'ListarUsoServicio'])->name('lista.ListarUsoServicio');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');

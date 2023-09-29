@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class ListaController extends Controller
 {
@@ -939,6 +940,33 @@ class ListaController extends Controller
         try {
                           
             $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicio/20396900719/'.$codLocalidad.'/'.$codProspecto);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ListarUsoServicio(Request $request)
+    {   
+        $client = new Client();
+        Carbon::setLocale('en');
+        $fchInicio = Carbon::now()->subMonths(6);
+        $fchFin = Carbon::now()->addMonths(6);
+
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicio/20396900719/'.$fchInicio.'/'.$fchFin);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
