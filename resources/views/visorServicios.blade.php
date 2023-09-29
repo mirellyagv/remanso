@@ -59,7 +59,7 @@ function muestraCalendario() {
     var eventos = [];
 
     $.ajax({
-        url: '../lista/ListarUsoServicio',
+        url: 'lista/ListarUsoServicio',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
