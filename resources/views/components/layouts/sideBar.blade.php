@@ -123,6 +123,11 @@
         </li><br>
        
       @endif
+      <li class="nav-item">
+        <a href="{{route('visorServicios')}}">
+          <span class="item-menu">Visor de servicios</span>
+        </a>
+      </li>
 
       <br>
       <li class="nav-item">
