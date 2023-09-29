@@ -961,8 +961,8 @@ class ListaController extends Controller
     {   
         $client = new Client();
         Carbon::setLocale('en');
-        $fchInicio = Carbon::now()->subMonths(6);
-        $fchFin = Carbon::now()->addMonths(6);
+        $fchInicio = Carbon::now()->subMonths(2);
+        $fchFin = Carbon::now()->addMonths(2);
 
         try {
                           
