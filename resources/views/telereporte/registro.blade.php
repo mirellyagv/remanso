@@ -255,7 +255,7 @@
                           <label for="inputText" class="col-form-label">Canal Venta: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="cod_canal_venta" id="cod_canal_venta" class="form-select form-remanso">
+                          <select name="cod_canal_venta" id="cod_canal_venta" class="form-select form-remanso" required>
 
                           </select>
                         </div>
@@ -267,7 +267,7 @@
                           <label for="inputText" class="col-form-label">Agencia: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="cod_agencia" id="cod_agencia" class="form-select form-remanso">
+                          <select name="cod_agencia" id="cod_agencia" class="form-select form-remanso" required>
 
                           </select>
                         </div>
@@ -552,7 +552,29 @@ function GuardarTelereporte()
      return;
     }
 
+    if(document.getElementById("cod_canal_venta").value == '' || document.getElementById("cod_canal_venta").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El canal de venta debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("cod_canal_venta").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
 
+  if(document.getElementById("cod_agencia").value == '' || document.getElementById("cod_agencia").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'La agencia debe estar completa.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("cod_agencia").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
 
 
     var telereporte = {
