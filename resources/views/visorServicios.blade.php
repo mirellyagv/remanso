@@ -223,7 +223,7 @@ function muestraCalendario() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 locale: 'es-PE',
-                initialView: 'dayGridMonth',
+                initialView: 'timeGridWeek',
                 firstDay: 1,
                 allDaySlot: false,
                 slotMinTime: "06:00:00",
