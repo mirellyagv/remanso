@@ -7,7 +7,7 @@
     <div class="section dashboard">
         <div class="card">  
             <br>
-            <p><b>AUTORIZADOR:</b> {{session('dsc_usuario')}}</p>
+            <p id="tituloAutorizador"><b>AUTORIZADOR:</b> {{session('dsc_usuario')}}</p>
             <div class="row">
                 <div class="col-md-1 offset-md-9">
                     <p><label for="filtroFirmado">Estado: </label></p>
@@ -172,18 +172,28 @@ window.onload= function () {
 }//onload
 
 function listarContratosFirmados(firmado) {
+    var cod_trabajador = '%';
+    var tituloAutorizador = document.getElementById("tituloAutorizador");
+    if ('{{session('flg_firmante')}}' == 'SI') {
+        cod_trabajador = '{{session('cod_trabajador')}}';
+        tituloAutorizador.setAttribute('style','display:block');
+    }else{
+        cod_trabajador = '%';
+        tituloAutorizador.setAttribute('style','display:none');
+
+    }
     $.ajax({
         url: '../lista/MuestraListaContratoFirmante', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codFirmante':'{{session('cod_trabajador')}}','firmado':firmado},
+        data:{'codFirmante':cod_trabajador,'firmado':firmado},
         success: function(respuesta){
           var filasArray = [];
             respuesta['response'].forEach(element => {
                 var codCtto = "'"+element['cod_contrato']+"-"+element['num_servicio']+"'";
                 var botonFirma = '';
-                if(element['flg_firmado'] == 'NO'){
+                if(element['flg_firmado'] == 'NO' && cod_trabajador != '%'){
                     botonFirma = '<button class="btn btn-primary BtnAzulORemanso form-remanso"  id="btnFirmar" onclick="firmaCtto('+codCtto+')" name="btnFirmar" type="button" title="Enviar a firmar"><span class="bi bi-vector-pen"></span></button>';
                 }else{
                     botonFirma = '';

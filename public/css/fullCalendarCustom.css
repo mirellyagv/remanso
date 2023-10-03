@@ -126,6 +126,6 @@
     margin-right: 0;
   }
 
-  .tableVisor{
-    width: "-webkit-fill-available";
+  .fc-event-title .fc-sticky{
+    font-size: 0.8em !important;
   }

@@ -111,7 +111,7 @@ function muestraCalendario() {
 
                     descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
-                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+'</b></td>'+
+                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['cod_contrato']+'</b></td>'+
                     '</tr>'+
                     '<tr>'+
                         '<td style="text-align: left;"><b>Fecha:</b></td>'+
@@ -132,22 +132,38 @@ function muestraCalendario() {
                         '<td style="text-align: left;" colspan = "3">'+muestra['dsc_sacerdote']+'</td>'+
                     '</tr>'+
                     '<tr>'+
-                        '<td style="text-align: left;"><b>Cantante:</b></td>'+
-                        '<td style="text-align: left;" colspan = "3">'+muestra['dsc_cantante']+'</td>'+
-                    '</tr>'+
-                    '<tr>'+
                         '<td style="text-align: left;"><b>Motivo:</b></td>'+
                         '<td style="text-align: left;" colspan = "3">'+muestra['dsc_motivo_conmemoracion']+'</td>'+
                     '</tr>'+
+                    '</table>';
+                }else if (muestra['dsc_prefijo'] == 'CRE'){
+                    descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
-                        '<td style="text-align: left;"><b>Contrato:</b></td>'+
-                        '<td style="text-align: left;" colspan = "3">'+muestra['cod_contrato']+'</td>'+
+                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['cod_contrato']+'</b></td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Fecha:</b></td>'+
+                      '<td style="text-align: left;">'+fecha4vista(auxFecha[0])+'</td>'+
+                      '<td><b>Hora:</b></td>'+
+                      '<td style="text-align: left;">'+auxFecha[1]+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Nombre:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+dscNombres+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>DNI:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+tipoDoc+"-"+muestra['dsc_documento']+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Observaciones:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+plat+'</td>'+
                     '</tr>'+
                     '</table>';
                 }else{
                     descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
-                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+'</b></td>'+
+                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['cod_contrato']+'</b></td>'+
                     '</tr>'+
                     '<tr>'+
                       '<td style="text-align: left;"><b>Fecha:</b></td>'+
@@ -172,11 +188,12 @@ function muestraCalendario() {
                       '<td style="text-align: left;" colspan = "3">'+area+'</td>'+
                     '</tr>'+
                     '<tr>'+
-                      '<td style="text-align: left;"><b>Eje horiz.:</b></td>'+
-                      '<td style="text-align: left;">'+ejex+'</td>'+
-                      '<td style="text-align: left;"><b>Eje ver.:</b></td>'+
-                      '<td style="text-align: left;">'+ejey+'</td>'+
-                    '</tr>';
+                      '<td style="text-align: left;"><b>Espacio:</b></td>'+
+                      '<td style="text-align: left;">'+ejex+' - '+ejey+' - '+espc+'</td>'+
+                      '<td style="text-align: left;"><b>Nivel:</b></td>'+
+                      '<td style="text-align: left;">'+nivel+'</td>'+
+                    '</tr>'+
+                    '</table>';
                 }
 
                 if (muestra['dsc_prefijo'] == 'INH' || muestra['dsc_prefijo'] == 'DEP') {

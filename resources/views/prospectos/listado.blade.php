@@ -5,6 +5,9 @@
     }
 
   </style>
+  <div class="loader" style="display: none;">
+    <img src="{{asset('images/7.gif')}}" alt="Cargando...">
+  </div>
   <main class="main" id="main">
     <div class="pagetitle">
       <h1>Listado de <span id="tituloPag"></span></h1>
@@ -182,6 +185,8 @@ var flg_nf= '';
 var cod_tipo_necesidad= '';
 
 $(document).ready(function () {
+  var loader = document.querySelector('.loader');
+  loader.style.display = 'block';
   flg_ni= '@php echo(session('flg_ni')) @endphp';
   flg_nf= '@php echo(session('flg_nf')) @endphp';
   flg_sac= '@php echo(session('flg_sac')) @endphp';
@@ -335,8 +340,8 @@ $(document).ready(function () {
             },
             dom: 'rtip',
             processing: true,
-          });
-
+      });
+      loader.style.display = 'none';
     },//success
     error(e){
         console.log(e.message);

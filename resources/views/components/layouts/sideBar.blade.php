@@ -38,6 +38,13 @@
           <span class="item-menu">Telereportes</span>
         </a>
       </li><br>
+      <li class="nav-item">
+        <a href="{{route('ventas.autorizacion')}}">
+          <span class="item-menu">Firmar contrato</span>
+        </a>
+      </li>
+      </li><br>
+     
       @endif
 
       @if (session('flg_nf')==='SI' && session('flg_vendedor')==='SI' && session('flg_jefe')==='NO' && session('flg_firmante')==='NO')
