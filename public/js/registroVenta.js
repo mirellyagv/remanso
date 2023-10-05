@@ -495,7 +495,6 @@ codTipoProg.addEventListener("change",function(){
         document.getElementById("ejeX").removeAttribute('disabled');
         document.getElementById("ejeY").removeAttribute('disabled');
         document.getElementById("espacio").removeAttribute('disabled');
-        document.getElementById("tipoEspacio").removeAttribute('disabled');
 
         //------------------muestra Nivel----------------------------------------------
 

@@ -641,7 +641,7 @@
                           <label for="inputText" class="col-form-label" >Tipo espacio: </label>
                         </div>
                         <div class="col-md-3 mb-3">
-                          <select name="tipoEspacio"  id="tipoEspacio" class="form-control form-remanso" dissabled>
+                          <select name="tipoEspacio"  id="tipoEspacio" class="form-control form-remanso" disabled>
                           </select>
                         </div>
                         
