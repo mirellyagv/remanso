@@ -3281,7 +3281,7 @@ botonGuarda.addEventListener("click",function(){
     return;
   }
 
-  if(document.getElementById("numDocRegVta").value == '' || document.getElementById("numDocRegVta").value == null){
+  if(document.getElementById("numDocRegVta").value.trim() == '' || document.getElementById("numDocRegVta").value == null){
     Swal.fire({
       title:'Error!',
       text:'El número de documento del titular debe estar completo.',

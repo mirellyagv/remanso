@@ -677,7 +677,7 @@ window.onload= function() {
             var fch3 = new Date(result["response"]["fch_modificacion"]);
             fch_modificacion = fch3.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric',hour:'2-digit',minute:'2-digit'}).replace(/ /g, '-').replace(',-','     Hora: ');
           }
-          if(result["response"]["fch_modificacion"].trim ='01/01/1900HORA:00:00'.trim )
+          if(result["response"]["fch_modificacion"].trim() ='01/01/1900HORA:00:00'.trim() )
           {
             fch_modificacion='';
           }

@@ -1149,6 +1149,18 @@ boton.addEventListener("click",function(){
     return;
   }
 
+  if(document.getElementById("numDocPros").value == '' || document.getElementById("numDocPros").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El número de documento del titular debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#35B44A',
+    }) 
+    document.getElementById("numDocPros").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
+
   if(document.getElementById("canalProsp").value == '' || document.getElementById("canalProsp").value == null){
     Swal.fire({
       title:'Error!',
