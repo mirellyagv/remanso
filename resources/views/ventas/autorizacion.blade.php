@@ -237,9 +237,6 @@ function listarContratosFirmados(firmado,fchInicio,fchFin) {
         tituloAutorizador.setAttribute('style','display:none');
 
     }
-    console.log('firmado',firmado);
-    console.log('fchInicio',fchInicio);
-    console.log('fchFin',fchFin);
     $.ajax({
         url: '../lista/MuestraListaContratoFirmante', 
         method: "GET",
