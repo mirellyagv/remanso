@@ -141,15 +141,17 @@
                 }else{
                     console.log('no',respuesta);
                     alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
-                    window.location.href = "/";
+                    //window.location.href = "/";
+                    location.reload();
                     //document.getElementById('message2').style.display = "block";
                 }
                
             },//success
             error(e){
                 console.log('error',e);
-                alert("area de error");
+                alert("Error ",e.message);
                 console.log(e.message);
+                location.reload();
             }//error
         });
     });
@@ -183,7 +185,8 @@
                 }else{
                     console.log('no',respuesta);
                     alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
-                    window.location.href = "/";
+                    //window.location.href = "/";
+                    location.reload();
                     //document.getElementById('message2').style.display = "block";
                 }
                
@@ -192,6 +195,7 @@
                 console.log('error',e);
                 alert(e.message);
                 console.log(e.message);
+                location.reload();
             }//error
         });
     });

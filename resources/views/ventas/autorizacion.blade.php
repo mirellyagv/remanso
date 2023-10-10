@@ -9,14 +9,26 @@
             <br>
             <p id="tituloAutorizador"><b>AUTORIZADOR:</b> {{session('dsc_usuario')}}</p>
             <div class="row">
-                <div class="col-md-1 offset-md-9">
+                <div class="col-md-1">
+                    <p><label for="filtroFirmado">Inicio: </label></p>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-remanso align-right" name="fchInicio" id="fchInicio">
+                </div>
+                <div class="col-md-1">
+                    <p><label for="filtroFirmado">Fin: </label></p>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-remanso align-right" name="fchFin" id="fchFin">
+                </div>
+                <div class="col-md-1 offset-md-3">
                     <p><label for="filtroFirmado">Estado: </label></p>
                 </div>
                 <div class="col-md-2">
-                    <select name="filtroFirmado" id="filtroFirmado" class="form-select form-remanso" onchange="listarContratosFirmados(this.value);">
+                    <select name="filtroFirmado" id="filtroFirmado" class="form-select form-remanso">
                         <option value="SI">FIRMADO</option>
                         <option value="NO" selected>POR FIRMAR</option>
-                      </select>
+                    </select>
                 </div>
             </div>
             <br>
@@ -163,15 +175,58 @@
 
 <script type="text/javascript">
 
+var date = new Date();
+var primerDia = new Date(date.getFullYear(), date.getMonth(), 1);
+var ultimoDia = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
 window.onload= function () {
 
-    listarContratosFirmados('NO')
+    var fchInicio = document.getElementById("fchInicio").value;
+    var fchFin = document.getElementById("fchFin").value;
+    listarContratosFirmados('NO',fchInicio,fchFin);
 
 //-----------------Muestra modal
-
 }//onload
 
-function listarContratosFirmados(firmado) {
+
+
+flatpickr("#fchInicio",{
+    locale:"es",
+    altInput: true,
+    altFormat: "d/m/Y",
+    dateFormat: "Y-m-d",
+    defaultDate:primerDia,
+    onChange: function(selectedDates, dateStr) {
+        var firmado = document.getElementById("filtroFirmado").value;
+        var fchFin = document.getElementById("fchFin").value;
+        listarContratosFirmados(firmado,dateStr,fchFin);
+    }
+});
+
+flatpickr("#fchFin",{
+    locale:"es",
+    altInput: true,
+    altFormat: "d/m/Y",
+    dateFormat: "Y-m-d",
+    defaultDate:ultimoDia,
+    onChange: function(selectedDates, dateStr) {
+        var firmado = document.getElementById("filtroFirmado").value;
+        var fchInicio = document.getElementById("fchInicio").value;
+        listarContratosFirmados(firmado,fchInicio,dateStr);
+    }
+});
+
+var firmado = document.getElementById('filtroFirmado');
+firmado.addEventListener('change', function() {
+
+    var firmado = document.getElementById("filtroFirmado").value;
+    var fchInicio = document.getElementById("fchInicio").value;
+    var fchFin = document.getElementById("fchFin").value;
+    listarContratosFirmados(firmado,fchInicio,fchFin);
+
+});
+
+function listarContratosFirmados(firmado,fchInicio,fchFin) {
     var cod_trabajador = '%';
     var tituloAutorizador = document.getElementById("tituloAutorizador");
     if ('{{session('flg_firmante')}}' == 'SI') {
@@ -182,12 +237,15 @@ function listarContratosFirmados(firmado) {
         tituloAutorizador.setAttribute('style','display:none');
 
     }
+    console.log('firmado',firmado);
+    console.log('fchInicio',fchInicio);
+    console.log('fchFin',fchFin);
     $.ajax({
         url: '../lista/MuestraListaContratoFirmante', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codFirmante':cod_trabajador,'firmado':firmado},
+        data:{'codFirmante':cod_trabajador,'firmado':firmado,'fchInicio':fchInicio,'fchFin':fchFin},
         success: function(respuesta){
           var filasArray = [];
             respuesta['response'].forEach(element => {
