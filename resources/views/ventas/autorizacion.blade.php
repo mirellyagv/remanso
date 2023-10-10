@@ -1,5 +1,7 @@
 <x-layouts.app title="Registro" meta-description="Registro de ventas meta description">
-
+<div class="loader" style="display: none;">
+    <img src="{{asset('images/7.gif')}}" alt="Cargando...">
+</div>
 <main class="main" id="main">
     <div class="pagetitle">
         <h1>Firma de contrato</h1>
@@ -39,7 +41,7 @@
                             <th style="text-align: center;" width="15%">Acciones</th>
                             <th style="text-align: center;" width="10%">Contrato</th>
                             <th style="text-align: center;" width="10%">Integral</th>
-                            <th style="text-align: center;" width="10%">Documento</th>
+                            <th style="text-align: center;" width="10%">Fecha emisión</th>
                             <th style="text-align: center;" width="20%">Titular</th>
                             <th style="text-align: center;" width="15%">Consejero</th>
                             <th style="text-align: center;" width="10%">Precio Neta</th> 
@@ -227,6 +229,8 @@ firmado.addEventListener('change', function() {
 });
 
 function listarContratosFirmados(firmado,fchInicio,fchFin) {
+    var loader = document.querySelector('.loader');
+    loader.style.display = 'block';
     var cod_trabajador = '%';
     var tituloAutorizador = document.getElementById("tituloAutorizador");
     if ('{{session('flg_firmante')}}' == 'SI') {
@@ -253,12 +257,14 @@ function listarContratosFirmados(firmado,fchInicio,fchFin) {
                 }else{
                     botonFirma = '';
                 }
+                var fchAux = element['fch_emision'].split('T');
+                var fechaFormateada = fecha4vista(fchAux[0]);
                 var filaData = [
                     '<button class="btn btn-success BtnverdeRemanso form-remanso" id="btnVer" onclick="verDocumentos('+codCtto+')" name="btnVer" type="button" title="Ver Documentos"><span class="bi bi-file-pdf"></span></button>'+
                     '<button class="btn btn-secondary form-remanso" id="btnVer" onclick="verComprobante('+codCtto+')" name="btnVer" type="button" title="Ver Comprobante"><span class="bi bi-receipt"></span></button>'+botonFirma,
                     element['cod_contrato']+'-'+element['num_servicio'],
                     element['flg_integral'],
-                    element['dsc_tipo_documento_cliente']+'-'+element['dsc_documento_cliente'],
+                    fechaFormateada,
                     element['dsc_cliente'],
                     element['dsc_vendedor'],
                     formatearNumero(element['imp_precio_venta']),
@@ -280,7 +286,7 @@ function listarContratosFirmados(firmado,fchInicio,fchFin) {
                     { title: 'ACCION' },
                     { title: 'CONTRATO' },
                     { title: 'INTEGRAL' },
-                    { title: 'DOCUMENTO' },
+                    { title: 'FECHA EMISIÓN' },
                     { title: 'TITULAR' },
                     { title: 'CONSEJERO'},
                     { title: 'PRECIO NETO' },
@@ -294,7 +300,7 @@ function listarContratosFirmados(firmado,fchInicio,fchFin) {
                 "order": [ 1, 'asc' ],
                 processing: true,
             });
-            
+            loader.style.display = 'none';
         },//success
         error(e){
             console.log(e.message);
