@@ -294,7 +294,7 @@ function listarContratosFirmados(firmado,fchInicio,fchFin) {
                 ],
                 "columnDefs": [
                     { className: "derecha", "targets": [ 6,7 ] },
-                    { className: "centro", "targets": [2]}
+                    { className: "centro", "targets": [2,3]}
                 ],
                 dom: 'trip',
                 "order": [ 1, 'asc' ],
