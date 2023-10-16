@@ -52,16 +52,8 @@
 var loader = document.querySelector('.loader');
 loader.style.display = 'block';
 $(document).ready(function () {
-    muestraCalendario(); 
-    $('.fc-toolbar.fc-header-toolbar').addClass('row');
-    $('.fc-toolbar-title.fc-toolbar.fc-header-toolbar').addClass('col-12');   
-    $('.fc-button-group.fc-toolbar.fc-header-toolbar').addClass('col-6');    
+    muestraCalendario();    
 });//end ready
-
-// add the responsive classes after page initialization
-window.onload = function () {
-    
-};
 
 // add the responsive classes when navigating with calendar buttons
 $(document).on('click', '.fc-button', function(e) {
@@ -373,7 +365,11 @@ function muestraCalendario() {
             calendar.addEventSource(JSON.parse(eventosJSON));
             calendarEl.style.height = '100%';
             calendar.render();
+            $('.fc-toolbar.fc-header-toolbar').addClass('row');
+            $('.fc-toolbar-title.fc-toolbar.fc-header-toolbar').addClass('col-12');
+            $('.fc-button-group.fc-toolbar.fc-header-toolbar').addClass('col-6');
             loader.style.display = 'none';
+
         },
         error: function(e) {
             console.log(e.message);
