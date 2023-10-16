@@ -535,7 +535,7 @@ function ActualizarTelereporte(){
         text: 'Registro actualizado exitosamente !!!',
         icon: 'success',
         confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         }).then((result) => {
           if (result.isConfirmed) {
               window.location.href = "listado";

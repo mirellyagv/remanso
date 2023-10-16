@@ -1,9 +1,9 @@
 .verdeRemanso {
-    color :#35B44A;
+    color :#6ea63b;
 }
 
 .BtnverdeRemanso {
-    background-color :#35B44A;    
+    background-color :#6ea63b;    
 }
 
 .azulRemanso{
@@ -12,11 +12,11 @@
 }
 
 .azulORemanso{
-    color:#181C35;
+    color:#081d31;
 }
 
 .BtnAzulORemanso{
-  background-color :#181C35; 
+  background-color :#081d31; 
 }
 
 .iconoUsuario{
@@ -114,7 +114,7 @@ Acordions
 }
 
 .accordion-header{
-  background-color: #35B44A;
+  background-color: #6ea63b;
   padding: 0 1rem;
 
 }
@@ -146,7 +146,7 @@ Acordions
   }
   
   a {
-    color: #181C35;
+    color: #081d31;
     text-decoration: none;
   }
   
@@ -190,7 +190,7 @@ Acordions
     font-size: 24px;
     margin-bottom: 0;
     font-weight: 600;
-    color: #181C35;
+    color: #081d31;
   }
   
   /*--------------------------------------------------------------
@@ -203,7 +203,7 @@ Acordions
     right: 15px;
     bottom: 15px;
     z-index: 99999;
-    background: #181C35;
+    background: #081d31;
     width: 40px;
     height: 40px;
     border-radius: 0px;
@@ -217,7 +217,7 @@ Acordions
   }
   
   .back-to-top:hover {
-    background: #181C35;
+    background: #081d31;
     color: #fff;
   }
   
@@ -380,7 +380,7 @@ Acordions
     padding: 20px 0 15px 0;
     font-size: 18px;
     font-weight: 500;
-    color: #181C35;
+    color: #081d31;
     font-family: "Poppins", sans-serif;
   }
   
@@ -426,7 +426,7 @@ Acordions
   }
   
   .accordion-button:not(.collapsed) {
-    color: #181C35;
+    color: #081d31;
     background-color: #F6F4EF;
   }
   
@@ -438,7 +438,7 @@ Acordions
   
   .accordion-flush .accordion-button:not(.collapsed) {
     box-shadow: none;
-    color: #181C35;
+    color: #081d31;
   }
   
   .accordion-flush .accordion-body {
@@ -486,13 +486,13 @@ Acordions
   
   .nav-tabs-bordered .nav-link:hover,
   .nav-tabs-bordered .nav-link:focus {
-    color: #181C35;
+    color: #081d31;
   }
   
   .nav-tabs-bordered .nav-link.active {
     background-color: #fff;
-    color: #181C35;
-    border-bottom: 2px solid #181C35;
+    color: #081d31;
+    border-bottom: 2px solid #081d31;
   }
   
   /*--------------------------------------------------------------
@@ -519,7 +519,7 @@ Acordions
   .logo span {
     font-size: 26px;
     font-weight: 700;
-    color: #181C35;
+    color: #081d31;
     font-family: "Nunito", sans-serif;
   }
   
@@ -528,7 +528,7 @@ Acordions
     z-index: 990;
     height: 90px;
     box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-    background-color: #35B44A;
+    background-color: #6ea63b;
     padding-left: 20px;
     /* Toggle Sidebar Button */
     /* Search Bar */
@@ -576,7 +576,7 @@ Acordions
   .header .search-form input {
     border: 0;
     font-size: 14px;
-    color: #181C35;
+    color: #081d31;
     border: 1px solid rgba(1, 41, 112, 0.2);
     padding: 7px 38px 7px 8px;
     border-radius: 3px;
@@ -599,7 +599,7 @@ Acordions
   }
   
   .header .search-form button i {
-    color: #181C35;
+    color: #081d31;
   }
   
   /*--------------------------------------------------------------
@@ -616,13 +616,13 @@ Acordions
   
   .header-nav .nav-icon {
     font-size: 22px;
-    color: #181C35;
+    color: #081d31;
     margin-right: 25px;
     position: relative;
   }
   
   .header-nav .nav-profile {
-    color: #181C35;
+    color: #081d31;
   }
   
   .header-nav .nav-profile img {
@@ -758,7 +758,7 @@ Acordions
     scrollbar-width: thin;
     scrollbar-color: #aab7cf transparent;
     box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-    background-color: #181C35;
+    background-color: #081d31;
   }
   
   @media (max-width: 1199px) {
@@ -933,7 +933,7 @@ Acordions
   
   .dashboard .filter .icon:hover,
   .dashboard .filter .icon:focus {
-    color: #181C35;
+    color: #081d31;
   }
   
   .dashboard .filter .dropdown-header {
@@ -961,7 +961,7 @@ Acordions
   
   .dashboard .info-card h6 {
     font-size: 28px;
-    color: #181C35;
+    color: #081d31;
     font-weight: 700;
     margin: 0;
     padding: 0;
@@ -977,7 +977,7 @@ Acordions
   }
   
   .dashboard .sales-card .card-icon {
-    color: #181C35;
+    color: #081d31;
     background: #f6f6fe;
   }
   
@@ -1057,12 +1057,12 @@ Acordions
   }
   
   .dashboard .news h4 a {
-    color: #181C35;
+    color: #081d31;
     transition: 0.3s;
   }
   
   .dashboard .news h4 a:hover {
-    color: #181C35;
+    color: #081d31;
   }
   
   .dashboard .news p {
@@ -1129,7 +1129,7 @@ Acordions
     background-color: #fff;
     border-radius: 0.25rem;
     text-align: center;
-    color: #181C35;
+    color: #081d31;
     padding: 15px 0;
   }
   
@@ -1178,7 +1178,7 @@ Acordions
   }
   
   .profile .profile-card .social-links a:hover {
-    color: #181C35;
+    color: #081d31;
   }
   
   .profile .profile-overview .row {
@@ -1187,7 +1187,7 @@ Acordions
   }
   
   .profile .profile-overview .card-title {
-    color: #181C35;
+    color: #081d31;
   }
   
   .profile .profile-overview .label {
@@ -1210,7 +1210,7 @@ Acordions
   .faq .basic h6 {
     font-size: 18px;
     font-weight: 600;
-    color: #181C35;
+    color: #081d31;
   }
   
   .faq .basic p {
@@ -1228,12 +1228,12 @@ Acordions
   .contact .info-box i {
     font-size: 50px;
     line-height: 0;
-    color: #181C35;
+    color: #081d31;
   }
   
   .contact .info-box h3 {
     font-size: 20px;
-    color: #181C35;
+    color: #081d31;
     font-weight: 700;
     margin: 20px 0 10px 0;
   }
@@ -1296,7 +1296,7 @@ Acordions
   
   .contact .php-email-form input:focus,
   .contact .php-email-form textarea:focus {
-    border-color: #181C35;
+    border-color: #081d31;
   }
   
   .contact .php-email-form input {
@@ -1308,7 +1308,7 @@ Acordions
   }
   
   .contact .php-email-form button[type=submit] {
-    background: #181C35;
+    background: #081d31;
     border: 0;
     padding: 10px 30px;
     color: #fff;
@@ -1350,7 +1350,7 @@ Acordions
   .error-404 h1 {
     font-size: 180px;
     font-weight: 700;
-    color: #181C35;
+    color: #081d31;
     margin-bottom: 0;
     line-height: 150px;
   }
@@ -1358,7 +1358,7 @@ Acordions
   .error-404 h2 {
     font-size: 24px;
     font-weight: 700;
-    color: #181C35;
+    color: #081d31;
     margin-bottom: 30px;
   }
   
@@ -1390,14 +1390,14 @@ Acordions
   
   .footer .copyright {
     text-align: center;
-    color: #181C35;
+    color: #081d31;
   }
   
   .footer .credits {
     padding-top: 5px;
     text-align: center;
     font-size: 13px;
-    color: #181C35;
+    color: #081d31;
   }
   
   /*-------------------------------------------------------------
@@ -1418,7 +1418,7 @@ Acordions
   Boton esconder contraseña
   --------------------------------------------------------------*/
   a .hidePass, .hidePass:hover{
-    color: #181C35;
+    color: #081d31;
   }
   
   .btnCamPass{
@@ -1471,13 +1471,13 @@ Acordions
   
   .titulo-home span{
     font-size: 25px;
-    color: #181C35;
+    color: #081d31;
     font-weight: 500;
   }
   
   .tarjetas-home{
     text-align: center;
-    color: #181C35;
+    color: #081d31;
   }
   
   .tarjeta-foco{
@@ -1497,8 +1497,8 @@ Acordions
     width: -webkit-fill-available;
   }
   .btnDorado, .btnDorado:hover{
-    background-color: #181C35 !important;
-    border-color: #181C35 !important;
+    background-color: #081d31 !important;
+    border-color: #081d31 !important;
     color: white;
   }
   
@@ -1510,9 +1510,9 @@ Acordions
     color: gray;
   }
   .navDatPer .nav-item{
-    color: #181C35;
+    color: #081d31;
     font-size: 18px;
-    border-bottom: #181C35 solid 2px;
+    border-bottom: #081d31 solid 2px;
   }
   .nav-item-left{
     border-top-left-radius: 5px !important;
@@ -1530,7 +1530,7 @@ Acordions
     border-bottom-right-radius: 0 !important;
   }
   .navDatPer .nav-item.active{
-    background-color:  #181C35 !important;
+    background-color:  #081d31 !important;
     color: white;
   }
   
@@ -1539,7 +1539,7 @@ Acordions
   --------------------------------------------------------------*/
   
   .login-btn {
-    background-color: #181C35;
+    background-color: #081d31;
     border-radius: 4px;
     color: #fff;
     margin-bottom: 24px; 
@@ -1547,7 +1547,7 @@ Acordions
   }
   .login-btn:hover {
       border: 1px solid white;
-      background-color: #181C35;
+      background-color: #081d31;
       color: #fff; 
   }
   .selectForm:focus{
@@ -1560,12 +1560,12 @@ Acordions
   
   .checkDorado{
     font-size: 20px;
-    border-color: #181C35 !important;
+    border-color: #081d31 !important;
     color: white;
   }
   .checkDorado:checked{
-    background-color: #181C35 !important;
-    border-color: #181C35 !important;
+    background-color: #081d31 !important;
+    border-color: #081d31 !important;
     color: white;
   }
   .checkDorado:focus{
@@ -1591,7 +1591,7 @@ Acordions
     font-size: 30px;
     text-align: center;
     margin-bottom: 0;
-    color: #181C35;
+    color: #081d31;
     font-family: "Poppins", sans-serif;
   }
 

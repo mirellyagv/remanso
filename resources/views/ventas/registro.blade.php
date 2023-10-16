@@ -520,7 +520,7 @@
                       </div>
                       <div class="table-responsive">
                         <table class="table table-striped" id="tablaBeneficiarios" style="width:100%">
-                          <thead style="background-color: #181C35; color: white;">
+                          <thead style="background-color: #081d31; color: white;">
                             <tr>
                               <th style="text-align: center;" width="15%">Tipo Documento</th>
                               <th style="text-align: center;" width="30%">Beneficiario</th>
@@ -678,7 +678,7 @@
                         <div class="col-md-12">
                           <div class="table-responsive">
                             <table class="table table-striped " id="tablaServiciosAdded" style="width:100%">
-                              <thead style="background-color: #181C35;; color: white;">
+                              <thead style="background-color: #081d31;; color: white;">
                                 <tr>
                                   <th style="text-align: center;" width="30%">Servicio</th>
                                   <th style="text-align: center;" width="5%">Cantidad</th>
@@ -1031,7 +1031,7 @@
           <div class="row">
             <div class="table-responsive">
               <table class="table table-striped" id="tablaServicios" style="width:100%">
-                <thead style="background-color: #35B44A; color: white;">
+                <thead style="background-color: #6ea63b; color: white;">
                   <tr>
                     <th style="text-align: center;" width="5%">Código</th>
                     <th style="text-align: center;" width="45%">Descripción de Servicio</th>
@@ -1264,7 +1264,7 @@ numDocProsInput.addEventListener("blur", function(event) {
               text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ¿Desea generar otra venta?.',
               icon:'info',
               showCancelButton: true,
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
               cancelButtonColor: '#d33',
               confirmButtonText: 'Aceptar'
             }).then((result) => {
@@ -1318,7 +1318,7 @@ numDocProsInput.addEventListener("blur", function(event) {
               title:'Error!',
               text:'El numero de documento '+respuesta['response']['dsc_documento']+' pertenece a un prospecto registrado por otro consejero.',
               icon:'warning',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
             }) 
             document.getElementById("formRegVenta").reset();
           }
@@ -2338,7 +2338,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene el anverso del DNI del titular guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2354,7 +2354,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2381,7 +2381,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene el reverso del DNI del titular guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2397,7 +2397,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2424,7 +2424,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene el anverso del DNI del segundo titular guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2440,7 +2440,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2467,7 +2467,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene el reverso del DNI del segundo titular guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2483,7 +2483,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2510,7 +2510,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene el anverso del DNI del aval guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2526,7 +2526,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2553,7 +2553,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene el reverso del DNI del aval guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2569,7 +2569,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2596,7 +2596,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene un Recibo de servicio guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2612,7 +2612,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2639,7 +2639,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene un Comprobante guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2655,7 +2655,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2682,7 +2682,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene un Recibo de separación guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2698,7 +2698,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2725,7 +2725,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene un Acta de defunción guardada, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2741,7 +2741,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2768,7 +2768,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene un Certificado de defunción A guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2784,7 +2784,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2811,7 +2811,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene un Certificado de defunción B guardado, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2827,7 +2827,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2854,7 +2854,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene una Necropsia guardada, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2870,7 +2870,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2897,7 +2897,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene una Constacia de inhumación guardada, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2913,7 +2913,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2940,7 +2940,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene una Autorización sanitaria guardada, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2956,7 +2956,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -2983,7 +2983,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text:'Ya tiene un documento guardado en Otros, desea sobreescribirlo?',
         icon:'info',
         showDenyButton: true,
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
         denyButtonColor: '#d33',
         denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar'
@@ -2999,7 +2999,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title:'Error!',
         text:'Solo puede subir archivos con extensiones, .PDF, .JPEG, .JPG, .PNG, .DOC y .DOCX.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       })
       fileInput.value = ""; // Limpiar el input
     } else {
@@ -3249,7 +3249,7 @@ botonGuarda.addEventListener("click",function(){
         title:'Error!',
         text:'La provincia del segundo titular debe estar completa.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       }) 
       document.getElementById("prov2doRegVta").focus;
       botonGuarda.removeAttribute('disabled');
@@ -3261,7 +3261,7 @@ botonGuarda.addEventListener("click",function(){
         title:'Error!',
         text:'El distrito del segundo titular debe estar completa.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       }) 
       document.getElementById("dtto2doRegVta").focus;
       botonGuarda.removeAttribute('disabled');
@@ -3274,7 +3274,7 @@ botonGuarda.addEventListener("click",function(){
       title:'Error!',
       text:'El tipo de documento del titular debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("tipoDocRegVta").focus;
     botonGuarda.removeAttribute('disabled');
@@ -3286,7 +3286,7 @@ botonGuarda.addEventListener("click",function(){
       title:'Error!',
       text:'El número de documento del titular debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("numDocRegVta").focus;
     botonGuarda.removeAttribute('disabled');
@@ -3298,7 +3298,7 @@ botonGuarda.addEventListener("click",function(){
       title:'Error!',
       text:'El tipo de documento del 2do titular debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("tipoDoc2doRegVta").focus;
     botonGuarda.removeAttribute('disabled');
@@ -3377,7 +3377,7 @@ botonGuarda.addEventListener("click",function(){
         title:'Error!',
         text:'El tipo de documento del aval debe estar completo.',
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       }) 
       document.getElementById("tipoDocAval").focus;
       botonGuarda.removeAttribute('disabled');
@@ -3524,7 +3524,7 @@ botonGuarda.addEventListener("click",function(){
     text: dscTitular,
     icon: 'warning',
     showDenyButton: true,
-    confirmButtonColor: '#35B44A',
+    confirmButtonColor: '#6ea63b',
     denyButtonColor: '#d33',
     denyButtonText: 'Cancelar',
     confirmButtonText: 'Aceptar'
@@ -3639,7 +3639,7 @@ botonGuarda.addEventListener("click",function(){
             text: cod_prospecto,
             icon: 'success',
             confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#35B44A',
+            confirmButtonColor: '#6ea63b',
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
@@ -3654,7 +3654,7 @@ botonGuarda.addEventListener("click",function(){
               title:'Error!',
               text:'Ha ocurrido un error de conexión con la base de datos, por favor intentelo mas tarde.',
               icon:'warning',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
             }) 
             botonGuarda.removeAttribute('disabled');
         }//error

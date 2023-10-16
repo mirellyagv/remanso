@@ -7,7 +7,7 @@
     <div class="section dashboard">
       <div class="card table-responsive">
         <table class="table table-striped" id="homeListado" style="width:100%">
-          <thead style="background-color: #35B44A; color: white;">
+          <thead style="background-color: #6ea63b; color: white;">
             <tr>
               <th style="text-align: center;" width="5%"></th>
               <th style="text-align: center;" width="10%">Código</th>

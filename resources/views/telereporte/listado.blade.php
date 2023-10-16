@@ -107,7 +107,7 @@
 
         <div class="table-responsive">
           <table class="table table-striped" id="listaTelereporte" style="width:100%">
-            <thead style="background-color: #35B44A; color: white;">
+            <thead style="background-color: #6ea63b; color: white;">
               <tr>
                 <th style="text-align: center;">Acciones</th>
                 <th style="text-align: center;" width="5%">Nro</th>
@@ -338,7 +338,7 @@ function AnularTelereporte(num_reporte) {
       text: 'Código : '+num_reporte,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar'
     }).then((result) => {
@@ -358,7 +358,7 @@ function AnularTelereporte(num_reporte) {
               title:'Exito!',
               text:'Se ha anulado el telereporte.',
               icon:'success',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
             }) ;
 
             BuscarTelereporte();
@@ -369,13 +369,13 @@ function AnularTelereporte(num_reporte) {
               //   title:'Error!',
               //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
               //   icon:'warning',
-              //   confirmButtonColor: '#35B44A',
+              //   confirmButtonColor: '#6ea63b',
               // }) 
               Swal.fire({
               title:'Exito!',
               text:'Se ha anulado el telereporte.',
               icon:'success',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
               
             }) 
             BuscarTelereporte();
@@ -403,7 +403,7 @@ function ActivarTelereporte(num_reporte) {
       text: 'Código : '+num_reporte,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar'
     }).then((result) => {
@@ -423,7 +423,7 @@ function ActivarTelereporte(num_reporte) {
               title:'Exito!',
               text:'Se ha activado el telereporte.',
               icon:'success',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
             }) ;
 
             BuscarTelereporte();
@@ -434,13 +434,13 @@ function ActivarTelereporte(num_reporte) {
               //   title:'Error!',
               //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
               //   icon:'warning',
-              //   confirmButtonColor: '#35B44A',
+              //   confirmButtonColor: '#6ea63b',
               // }) 
               Swal.fire({
               title:'Exito!',
               text:'Se ha activado el telereporte.',
               icon:'success',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
               
             }) 
             BuscarTelereporte();

@@ -116,7 +116,7 @@
 
         <div class="table-responsive">
           <table class="table table-striped" id="listaProsp" style="width:100%">
-            <thead style="background-color: #35B44A; color: white;">
+            <thead style="background-color: #6ea63b; color: white;">
               <tr>
                 <th style="text-align: center;" width="12%">Acciones</th>
                 <th style="text-align: center;" width="10%">Código</th>
@@ -370,7 +370,7 @@ function alertaObservacion(cod_prospecto) {
         title:'Observación',
         text: mensajeObsv,
         icon:'warning',
-        confirmButtonColor: '#35B44A',
+        confirmButtonColor: '#6ea63b',
       }) 
     }
   });
@@ -383,7 +383,7 @@ function cambiarEdoP(codigo,nombre,estado) {
       text: codigo+' '+nombre,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar'
     }).then((result) => {
@@ -404,7 +404,7 @@ function cambiarEdoP(codigo,nombre,estado) {
               title:'Exito!',
               text:'Se ha activado el prospecto.',
               icon:'success',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
             }) 
           },//success
           error(e){
@@ -413,13 +413,13 @@ function cambiarEdoP(codigo,nombre,estado) {
               //   title:'Error!',
               //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
               //   icon:'warning',
-              //   confirmButtonColor: '#35B44A',
+              //   confirmButtonColor: '#6ea63b',
               // }) 
               Swal.fire({
               title:'Exito!',
               text:'Se ha activado el prospecto.',
               icon:'success',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
             }) 
           }//error
         });
@@ -429,7 +429,7 @@ function cambiarEdoP(codigo,nombre,estado) {
     Swal.fire({
       text:'Solo se puede activar un prospecto en estado TRUNCO o CADUCO.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
   }
 }//funcion

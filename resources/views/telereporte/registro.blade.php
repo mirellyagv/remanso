@@ -557,7 +557,7 @@ function GuardarTelereporte()
       title:'Error!',
       text:'El canal de venta debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("cod_canal_venta").focus;
     boton.removeAttribute('disabled');
@@ -569,7 +569,7 @@ function GuardarTelereporte()
       title:'Error!',
       text:'La agencia debe estar completa.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("cod_agencia").focus;
     boton.removeAttribute('disabled');
@@ -615,7 +615,7 @@ function GuardarTelereporte()
           text: 'Nuevo registro ingresado exitosamente !!!',
           icon: 'success',
           confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#35B44A',
+          confirmButtonColor: '#6ea63b',
             }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = "listado";

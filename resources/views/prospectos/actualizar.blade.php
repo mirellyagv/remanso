@@ -336,7 +336,7 @@
                     </div>
                     <div class="table-responsive">
                       <table class="table table-striped" id="tablaBeneficiarios" style="width:100%">
-                        <thead style="background-color: #181C35; color: white;">
+                        <thead style="background-color: #081d31; color: white;">
                           <tr>
                             <th style="text-align: center;" width="15%">Tipo Documento</th>
                             <th style="text-align: center;" width="30%">Beneficiario</th>
@@ -379,7 +379,7 @@
                         </div>
                         <div class="table-responsive">
                           <table class="table table-striped" id="tablaObsv" style="width:100%">
-                            <thead style="background-color: #181C35; color: white;">
+                            <thead style="background-color: #081d31; color: white;">
                               <tr>
                                 <th style="text-align: center;" width="15%">Fec. Contacto</th>
                                 <th style="text-align: center;" width="10%">Calificación</th>
@@ -683,7 +683,7 @@ numDocProsInput.addEventListener("blur", function(event) {
           title:'Error!',
           text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ingrese uno diferente.',
           icon:'warning',
-          confirmButtonColor: '#35B44A',
+          confirmButtonColor: '#6ea63b',
         }) 
         numDocProsInput.blur();
       }
@@ -1232,7 +1232,7 @@ function eliminarFilaContacto(num_linea) {
     text: cod_prospecto,
     icon: 'question',
     showCancelButton: true,
-    confirmButtonColor: '#35B44A',
+    confirmButtonColor: '#6ea63b',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Aceptar'
   }).then((result) => {
@@ -1262,7 +1262,7 @@ boton.addEventListener("click",function(){
       title:'Error!',
       text:'El tipo de documento del titular debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("tipoDocProsp").focus;
     boton.removeAttribute('disabled');
@@ -1274,7 +1274,7 @@ boton.addEventListener("click",function(){
       title:'Error!',
       text:'El tipo de documento del 2do titular debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("tipoDoc2tit").focus;
     boton.removeAttribute('disabled');
@@ -1406,7 +1406,7 @@ boton.addEventListener("click",function(){
     text: cod_prospecto+' '+nombres,
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#35B44A',
+    confirmButtonColor: '#6ea63b',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Aceptar'
   }).then((result) => {
@@ -1437,7 +1437,7 @@ boton.addEventListener("click",function(){
                   text: cod_prospecto,
                   icon: 'success',
                   confirmButtonText: 'Aceptar',
-                  confirmButtonColor: '#35B44A',
+                  confirmButtonColor: '#6ea63b',
                 }).then((result) => {
                   if (result.isConfirmed) {
                     window.location.href = "listado";
@@ -1454,7 +1454,7 @@ boton.addEventListener("click",function(){
               text: cod_prospecto,
               icon: 'success',
               confirmButtonText: 'Aceptar',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
             }).then((result) => {
               if (result.isConfirmed) {
                 window.location.href = "listado";
@@ -1469,7 +1469,7 @@ boton.addEventListener("click",function(){
             title:'Error!',
             text:'Ha ocurrido un error, por favor intentelo mas tarde.',
             icon:'warning',
-            confirmButtonColor: '#35B44A',
+            confirmButtonColor: '#6ea63b',
           })
           boton.removeAttribute('disabled');
         }//error
@@ -1505,7 +1505,7 @@ var btnActualizaContacto = document.getElementById("btnAddContacto");
            title:'Error!',
            text:'Ha ocurrido un error, por favor intentelo mas tarde.',
            icon:'warning',
-          confirmButtonColor: '#35B44A',
+          confirmButtonColor: '#6ea63b',
          })
      }//error
   });

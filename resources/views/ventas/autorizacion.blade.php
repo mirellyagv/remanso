@@ -36,7 +36,7 @@
             <br>
             <div class="table-responsive">
                 <table class="table table-striped" id="tablaAutoriza" style="width:100%">
-                    <thead style="background-color: #35B44A; color: white;">
+                    <thead style="background-color: #6ea63b; color: white;">
                         <tr>
                             <th style="text-align: center;" width="15%">Acciones</th>
                             <th style="text-align: center;" width="10%">Contrato</th>
@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="table-responsive">
                         <table class="table table-striped" id="tablaDatos" style="width:100%">
-                            <thead style="background-color: #35B44A; color: white;">
+                            <thead style="background-color: #6ea63b; color: white;">
                                 <tr>
                                     <th style="text-align: center;">Titular del contrato</th>   
                                 </tr>
@@ -107,7 +107,7 @@
                 <div class="row">
                     <div class="table-responsive">
                         <table class="table table-striped" id="tablaServicio" style="width:100%">
-                            <thead style="background-color: #35B44A; color: white;">
+                            <thead style="background-color: #6ea63b; color: white;">
                                 <tr>
                                     <th style="text-align: center;" colspan="3">Servicio adquirido:</th>   
                                 </tr>
@@ -144,7 +144,7 @@
                 <div class="row">
                     <div class="table-responsive">
                         <table class="table table-striped" id="tablaEspacio" style="width:100%">
-                            <thead style="background-color: #35B44A; color: white;">
+                            <thead style="background-color: #6ea63b; color: white;">
                                 <tr>
                                     <th style="text-align: center;" colspan="3">Espacio</th>   
                                 </tr>
@@ -401,7 +401,7 @@ function firmaCtto(codCtto){
                 title: 'Firmado',
                 icon: 'success',
                 confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#35B44A',
+                confirmButtonColor: '#6ea63b',
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -429,7 +429,7 @@ function firmaCtto(codCtto){
                 text: 'Ha ocurrido un error, intentelo mas tarde',
                 icon: 'error',
                 confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#35B44A',
+                confirmButtonColor: '#6ea63b',
             })
         }//error
     });
@@ -463,7 +463,7 @@ function verDocumentos(codCtto) {
                     text: 'No existen documentos a retornar.',
                     icon: 'error',
                     confirmButtonText: 'Aceptar',
-                    confirmButtonColor: '#35B44A',
+                    confirmButtonColor: '#6ea63b',
                 })
             }              
         },//success
@@ -494,7 +494,7 @@ function verComprobante(codCtto) {
                     text: 'No existen documentos a retornar.',
                     icon: 'error',
                     confirmButtonText: 'Aceptar',
-                    confirmButtonColor: '#35B44A',
+                    confirmButtonColor: '#6ea63b',
                 })
             }              
         },//success

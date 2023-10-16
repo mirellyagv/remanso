@@ -363,7 +363,7 @@
                       </div>
                       <div class="table-responsive">
                         <table class="table table-striped" id="tablaBeneficiarios" style="width:100%">
-                          <thead style="background-color: #181C35; color: white;">
+                          <thead style="background-color: #081d31; color: white;">
                             <tr>
                               <th style="text-align: center;" width="15%">Tipo Documento</th>
                               <th style="text-align: center;" width="30%">Beneficiario</th>
@@ -406,7 +406,7 @@
                           </div>
                           <div class="table-responsive">
                             <table class="table table-striped" id="tablaObsv" style="width:100%">
-                              <thead style="background-color: #181C35; color: white;">
+                              <thead style="background-color: #081d31; color: white;">
                                 <tr>
                                   <th style="text-align: center;" width="15%">Fec. Contacto</th>
                                   <th style="text-align: center;" width="15%">Calificación</th>
@@ -754,7 +754,7 @@ numDocProsInput.addEventListener("blur", function(event) {
               text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ¿Desea generar otra venta?.',
               icon:'info',
               showCancelButton: true,
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
               cancelButtonColor: '#d33',
               confirmButtonText: 'Aceptar'
             }).then((result) => {
@@ -813,7 +813,7 @@ numDocProsInput.addEventListener("blur", function(event) {
               title:'Error!',
               text:'El numero de documento '+respuesta['response']['dsc_documento']+' pertenece a un prospecto registrado por otro consejero.',
               icon:'warning',
-              confirmButtonColor: '#35B44A',
+              confirmButtonColor: '#6ea63b',
             }) 
             document.getElementById("myForm").reset();
           }
@@ -1142,7 +1142,7 @@ boton.addEventListener("click",function(){
       title:'Error!',
       text:'El tipo de documento del titular debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("tipoDocProsp").focus;
     boton.removeAttribute('disabled');
@@ -1154,7 +1154,7 @@ boton.addEventListener("click",function(){
       title:'Error!',
       text:'El número de documento del titular debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("numDocPros").focus;
     boton.removeAttribute('disabled');
@@ -1166,7 +1166,7 @@ boton.addEventListener("click",function(){
       title:'Error!',
       text:'El Canal de venta debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("canalProsp").focus;
     boton.removeAttribute('disabled');
@@ -1178,7 +1178,7 @@ boton.addEventListener("click",function(){
       title:'Error!',
       text:'La calificación debe estar completa.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("califProsp").focus;
     boton.removeAttribute('disabled');
@@ -1190,7 +1190,7 @@ boton.addEventListener("click",function(){
       title:'Error!',
       text:'El importe debe estar completa.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("impProsp").focus;
     boton.removeAttribute('disabled');
@@ -1202,7 +1202,7 @@ boton.addEventListener("click",function(){
       title:'Error!',
       text:'El tipo de documento del 2do titular debe estar completo.',
       icon:'warning',
-      confirmButtonColor: '#35B44A',
+      confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("tipoDoc2tit").focus;
     boton.removeAttribute('disabled');
@@ -1451,7 +1451,7 @@ boton.addEventListener("click",function(){
           text: codProspecto,
           icon: 'success',
           confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#35B44A',
+          confirmButtonColor: '#6ea63b',
         }).then((result) => {
           if (result.isConfirmed) {
             window.location.href = "listado";

@@ -10,7 +10,7 @@
       </div>
       <div class="section dashboard">
         <div class=" table-responsive" style="width:100%">
-            <div id='calendar' style="height: 28rem;"></div>
+            <div id='calendar' class="calendarioVisor"></div>
         </div>
       </div>
   
@@ -52,8 +52,23 @@
 var loader = document.querySelector('.loader');
 loader.style.display = 'block';
 $(document).ready(function () {
-    muestraCalendario();     
+    muestraCalendario(); 
+    $('.fc-toolbar.fc-header-toolbar').addClass('row');
+    $('.fc-toolbar-title.fc-toolbar.fc-header-toolbar').addClass('col-12');   
+    $('.fc-button-group.fc-toolbar.fc-header-toolbar').addClass('col-6');    
 });//end ready
+
+// add the responsive classes after page initialization
+window.onload = function () {
+    
+};
+
+// add the responsive classes when navigating with calendar buttons
+$(document).on('click', '.fc-button', function(e) {
+    $('.fc-toolbar.fc-header-toolbar').addClass('row');
+    $('.fc-toolbar-title.fc-toolbar.fc-header-toolbar').addClass('col-12');
+    $('.fc-button-group.fc-toolbar.fc-header-toolbar').addClass('col-6');
+}); 
   
 function muestraCalendario() {
     var eventos = [];
@@ -111,7 +126,7 @@ function muestraCalendario() {
 
                     descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
-                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['cod_contrato']+'</b></td>'+
+                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['num_uso_servicio']+'</b></td>'+
                     '</tr>'+
                     '<tr>'+
                         '<td style="text-align: left;"><b>Fecha:</b></td>'+
@@ -120,13 +135,17 @@ function muestraCalendario() {
                         '<td style="text-align: left;">'+auxFecha[1]+'</td>'+
                     '</tr>'+
                     '<tr>'+
+                        '<td style="text-align: left;"><b>Contrato:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['cod_contrato']+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
                         '<td style="text-align: left;"><b>Nombre:</b></td>'+
                         '<td style="text-align: left;" colspan = "3">'+dscNombres+'</td>'+
                     '</tr>'+
-                    '<tr>'+
-                        '<td style="text-align: left;"><b>DNI:</b></td>'+
-                        '<td style="text-align: left;" colspan = "3">'+tipoDoc+"-"+muestra['dsc_documento']+'</td>'+
-                    '</tr>'+
+                    // '<tr>'+
+                    //     '<td style="text-align: left;"><b>DNI:</b></td>'+
+                    //     '<td style="text-align: left;" colspan = "3">'+tipoDoc+"-"+muestra['dsc_documento']+'</td>'+
+                    // '</tr>'+
                     '<tr>'+
                         '<td style="text-align: left;"><b>Sacerdote:</b></td>'+
                         '<td style="text-align: left;" colspan = "3">'+muestra['dsc_sacerdote']+'</td>'+
@@ -135,11 +154,15 @@ function muestraCalendario() {
                         '<td style="text-align: left;"><b>Motivo:</b></td>'+
                         '<td style="text-align: left;" colspan = "3">'+muestra['dsc_motivo_conmemoracion']+'</td>'+
                     '</tr>'+
+                    '<tr>'+
+                        '<td style="text-align: left;"><b>Observación:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['dsc_observacion']+'</td>'+
+                    '</tr>'+
                     '</table>';
                 }else if (muestra['dsc_prefijo'] == 'CRE'){
                     descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
-                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['cod_contrato']+'</b></td>'+
+                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['num_uso_servicio']+'</b></td>'+
                     '</tr>'+
                     '<tr>'+
                       '<td style="text-align: left;"><b>Fecha:</b></td>'+
@@ -148,22 +171,26 @@ function muestraCalendario() {
                       '<td style="text-align: left;">'+auxFecha[1]+'</td>'+
                     '</tr>'+
                     '<tr>'+
+                        '<td style="text-align: left;"><b>Contrato:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['cod_contrato']+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
                       '<td style="text-align: left;"><b>Nombre:</b></td>'+
                       '<td style="text-align: left;" colspan = "3">'+dscNombres+'</td>'+
                     '</tr>'+
+                    // '<tr>'+
+                    //   '<td style="text-align: left;"><b>DNI:</b></td>'+
+                    //   '<td style="text-align: left;" colspan = "3">'+tipoDoc+"-"+muestra['dsc_documento']+'</td>'+
+                    // '</tr>'+
                     '<tr>'+
-                      '<td style="text-align: left;"><b>DNI:</b></td>'+
-                      '<td style="text-align: left;" colspan = "3">'+tipoDoc+"-"+muestra['dsc_documento']+'</td>'+
-                    '</tr>'+
-                    '<tr>'+
-                      '<td style="text-align: left;"><b>Observaciones:</b></td>'+
-                      '<td style="text-align: left;" colspan = "3">'+plat+'</td>'+
+                        '<td style="text-align: left;"><b>Observación:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['dsc_observacion']+'</td>'+
                     '</tr>'+
                     '</table>';
-                }else{
+                }else if(muestra['dsc_prefijo'] == 'INH' || muestra['dsc_prefijo'] == 'DEP'){
                     descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
-                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['cod_contrato']+'</b></td>'+
+                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['num_uso_servicio']+'</b></td>'+
                     '</tr>'+
                     '<tr>'+
                       '<td style="text-align: left;"><b>Fecha:</b></td>'+
@@ -172,13 +199,17 @@ function muestraCalendario() {
                       '<td style="text-align: left;">'+auxFecha[1]+'</td>'+
                     '</tr>'+
                     '<tr>'+
+                        '<td style="text-align: left;"><b>Contrato:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['cod_contrato']+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
                       '<td style="text-align: left;"><b>Nombre:</b></td>'+
                       '<td style="text-align: left;" colspan = "3">'+dscNombres+'</td>'+
                     '</tr>'+
-                    '<tr>'+
-                      '<td style="text-align: left;"><b>DNI:</b></td>'+
-                      '<td style="text-align: left;" colspan = "3">'+tipoDoc+"-"+muestra['dsc_documento']+'</td>'+
-                    '</tr>'+
+                    // '<tr>'+
+                    //   '<td style="text-align: left;"><b>DNI:</b></td>'+
+                    //   '<td style="text-align: left;" colspan = "3">'+tipoDoc+"-"+muestra['dsc_documento']+'</td>'+
+                    // '</tr>'+
                     '<tr>'+
                       '<td style="text-align: left;"><b>Plataforma:</b></td>'+
                       '<td style="text-align: left;" colspan = "3">'+plat+'</td>'+
@@ -193,11 +224,68 @@ function muestraCalendario() {
                       '<td style="text-align: left;"><b>Nivel:</b></td>'+
                       '<td style="text-align: left;">'+nivel+'</td>'+
                     '</tr>'+
+                    '<tr>'+
+                        '<td style="text-align: left;"><b>Misa cuerpo presente:</b></td>'+
+                        '<td style="text-align: left;" >'+muestra['flg_misa_cuerpo_presente']+'</td>'+
+                        '<td style="text-align: left;"><b>Num. Ingr.:</b></td>'+
+                        '<td style="text-align: left;" >'+muestra['dsc_nro_ingreso']+'</td>'+
+                    '</tr>'+
+                    '<tr>'+  
+                        '<td style="text-align: left;"><b>Funeraria:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['dsc_funeraria']+'</td>'+                        
+                    '</tr>'+
+                    '<tr>'+
+                        '<td style="text-align: left;"><b>Observación:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['dsc_observacion']+'</td>'+
+                    '</tr>'+
+                    '</table>';
+                }else{
+                    descripcion = '<table class="table tableVisor">'+
+                    '<tr>'+
+                        '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['cod_contrato']+'</b></td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Fecha:</b></td>'+
+                      '<td style="text-align: left;">'+fecha4vista(auxFecha[0])+'</td>'+
+                      '<td><b>Hora:</b></td>'+
+                      '<td style="text-align: left;">'+auxFecha[1]+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                        '<td style="text-align: left;"><b>Contrato:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['cod_contrato']+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Nombre:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+dscNombres+'</td>'+
+                    '</tr>'+
+                    // '<tr>'+
+                    //   '<td style="text-align: left;"><b>DNI:</b></td>'+
+                    //   '<td style="text-align: left;" colspan = "3">'+tipoDoc+"-"+muestra['dsc_documento']+'</td>'+
+                    // '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Plataforma:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+plat+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Area de plataforma:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+area+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Espacio:</b></td>'+
+                      '<td style="text-align: left;">'+ejex+' - '+ejey+' - '+espc+'</td>'+
+                      '<td style="text-align: left;"><b>Nivel:</b></td>'+
+                      '<td style="text-align: left;">'+nivel+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                        '<td style="text-align: left;"><b>Observación:</b></td>'+
+                        '<td style="text-align: left;" colspan = "3">'+muestra['dsc_observacion']+'</td>'+
+                    '</tr>'+
                     '</table>';
                 }
 
                 if (muestra['dsc_prefijo'] == 'INH' || muestra['dsc_prefijo'] == 'DEP') {
                     evento = {
+                        display:'list-item',
                         title: muestra['dsc_beneficiario_lapida'],
                         description: descripcion,
                         start: start,
@@ -205,6 +293,7 @@ function muestraCalendario() {
                     };
                 } else if (muestra['dsc_prefijo'] == 'MIS') {
                     evento = {
+                        display:'list-item',
                         title: dscNombres,
                         description: descripcion,
                         start: start,
@@ -212,6 +301,7 @@ function muestraCalendario() {
                     };
                 }else if (muestra['dsc_prefijo'] == 'FLO') {
                     evento = {
+                        display:'list-item',
                         title: muestra['dsc_beneficiario_lapida'],
                         description: descripcion,
                         start: start,
@@ -219,6 +309,7 @@ function muestraCalendario() {
                     };
                 }else if (muestra['dsc_prefijo'] == 'TRI' || muestra['dsc_prefijo'] == 'TRE'){
                     evento = {
+                        display:'list-item',
                         title: muestra['dsc_apellido_paterno'] + ' ' + muestra['dsc_apellido_materno'] + ', ' + muestra['dsc_nombres'],
                         description: descripcion,
                         start: start,
@@ -226,6 +317,7 @@ function muestraCalendario() {
                     };
                 }else if (muestra['dsc_prefijo'] == 'CRE'){
                     evento = {
+                        display:'list-item',
                         title: dscNombres,
                         description: descripcion,
                         start: start,
@@ -247,8 +339,16 @@ function muestraCalendario() {
                 slotMaxTime: "22:00:00",
                 //scrollTime: false,
                 //dayMaxEvents: true,
+                // customButtons: {
+                //     myCustomButton: {
+                //     text: 'Cartelera',
+                //     click: function() {
+                //             alert('Excel Tumbas');
+                //         }
+                //     }
+                // },
                 headerToolbar: {
-                    start: '',
+                    start: '',//'myCustomButton',
                     center: 'title',
                     end: 'dayGridMonth,timeGridWeek,timeGridDay prev,next'
                 },
@@ -262,7 +362,7 @@ function muestraCalendario() {
                 eventDidMount: function(info) {
                     var tooltip = new Tooltip(info.el, {
                         title: info.event.extendedProps.description,
-                        placement: 'top',
+                        placement: 'right',
                         trigger: 'hover',
                         container: 'body',
                         html: true
