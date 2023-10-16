@@ -13,7 +13,7 @@
   @media (max-width: 768px) {
     #calendar {
       height: 100vh !important; /* Ajusta el alto del calendario al 100% de la altura de la ventana */
-      width: 40vh !important;
+      width: 45vh !important;
       overflow: hidden !important; /* Oculta la barra de desplazamiento */
     }
   }
