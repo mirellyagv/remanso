@@ -58,7 +58,12 @@
                     <input type="text" class="form-control form-remanso" id="user" placeholder="Usuario">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control form-remanso" id="password" placeholder="Contraseña">
+                    <div class="input-group" id="show_hide_password">
+                        <input type="password" class="form-control form-remanso" id="password" placeholder="Contraseña">
+                        <div class="input-group-append form-remanso">
+                            <span class="input-group-text form-remanso"><a class="hidePass" href=""><i class="bi bi-eye-slash-fill" aria-hidden="true"></i></a></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnIngresar" style="width: -webkit-fill-available;">Ingresar</a>
@@ -82,7 +87,12 @@
                     <input type="text" class="form-control form-remanso" id="userM" placeholder="Usuario">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control form-remanso" id="passwordM" placeholder="Contraseña">
+                    <div class="input-group" id="show_hide_password">
+                        <input type="password" class="form-control form-remanso" id="passwordM" placeholder="Contraseña">
+                        <div class="input-group-append form-remanso">
+                            <span class="input-group-text form-remanso"><a class="hidePass" href=""><i class="bi bi-eye-slash-fill" aria-hidden="true"></i></a></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" style="width: -webkit-fill-available;" id="loginBtn1">Ingresar</a>
@@ -112,6 +122,25 @@
 
 <script type="text/javascript">
     
+    // ---------------Ocultar/mostrar contraseña
+
+    $(document).ready(function() {
+        $("#show_hide_password a").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password input').attr("type") == "text"){
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass( "bi-eye-slash-fill" );
+                $('#show_hide_password i').removeClass( "bi-eye-fill" );
+            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass( "bi-eye-slash-fill" );
+                $('#show_hide_password i').addClass( "bi-eye-fill" );
+            }
+        });
+    });
+
+    // ---------------Fin ocultar/mostrar contraseña
+
     var boton = document.getElementById("btnIngresar");
     
     boton.addEventListener("click",function(){
