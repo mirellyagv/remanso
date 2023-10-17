@@ -97,7 +97,7 @@
                 <div class="mb-3">
                     <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" style="width: -webkit-fill-available;" id="loginBtn1">Ingresar</a>
                 </div>
-                <div class="mb-3" style="text-align: end">
+                <div class="mb-3" >
                     <a class="verdeRemanso" href="#"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Comuniquese con su area de soporte técnico">Olvide mi contraseña</a>
                 </div>
             </div>
