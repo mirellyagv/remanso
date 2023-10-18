@@ -3293,7 +3293,7 @@ botonGuarda.addEventListener("click",function(){
     return;
   }
 
-  if(document.getElementById("numDoc2doRegVta").value != '' && (document.getElementById("tipoDoc2doRegVta").value == '' || document.getElementById("tipoDoc2doRegVta")).value == null){
+  if((document.getElementById("numDoc2doRegVta").value != '' || document.getElementById("nombres2doRegVta").value != '' || document.getElementById("apellP2doRegVta").value != '') && (document.getElementById("tipoDoc2doRegVta").value == '' || document.getElementById("tipoDoc2doRegVta")).value == null){
     Swal.fire({
       title:'Error!',
       text:'El tipo de documento del 2do titular debe estar completo.',
@@ -3301,6 +3301,18 @@ botonGuarda.addEventListener("click",function(){
       confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("tipoDoc2doRegVta").focus;
+    botonGuarda.removeAttribute('disabled');
+    return;
+  }
+
+  if((document.getElementById("tipoDoc2doRegVta").value != '' || document.getElementById("nombres2doRegVta").value != '' || document.getElementById("apellP2doRegVta").value != '') && (document.getElementById("numDoc2doRegVta").value == '' || document.getElementById("numDoc2doRegVta")).value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El número de documento del 2do titular debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("numDoc2doRegVta").focus;
     botonGuarda.removeAttribute('disabled');
     return;
   }
@@ -3431,6 +3443,7 @@ botonGuarda.addEventListener("click",function(){
       foma = document.getElementById("impFoma").value;
       cuota = document.getElementById("imp_cuota").value;
     }
+    return;
     //console.log('numNivel',inputReg);
     var prospecto = {
     'cod_prospecto': cod_prospecto,
