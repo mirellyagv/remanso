@@ -334,3 +334,25 @@ function fecha4vista (fecha){
   var day = fecha[2];
   return day + "/" + month + "/" + year;
 }
+
+function nombreMesANumero(nombreMes) {
+  var meses = {
+    enero: 1,
+    febrero: 2,
+    marzo: 3,
+    abril: 4,
+    mayo: 5,
+    junio: 6,
+    julio: 7,
+    agosto: 8,
+    septiembre: 9,
+    octubre: 10,
+    noviembre: 11,
+    diciembre: 12
+  };
+  
+  // Convertir el nombre del mes a minúsculas para evitar problemas de mayúsculas
+  var mes = nombreMes.toLowerCase();
+  
+  return meses[mes] || null;
+}

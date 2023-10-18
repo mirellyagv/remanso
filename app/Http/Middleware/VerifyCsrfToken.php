@@ -75,6 +75,8 @@ class VerifyCsrfToken extends Middleware
         'api/guardaDocumentoAdjunto',
         'api/ObtenerDocumentosProspecto',
         'api/ListarProspectoDocumentos',
+        'lista/ListarUsoServicio',
+        'lista/ListarUsoServicioExcel',
         
     ];
 }

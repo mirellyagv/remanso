@@ -58,8 +58,9 @@ $(document).ready(function () {
 // add the responsive classes when navigating with calendar buttons
 $(document).on('click', '.fc-button', function(e) {
     $('.fc-toolbar.fc-header-toolbar').addClass('row');
-    $('.fc-toolbar-title.fc-toolbar.fc-header-toolbar').addClass('col-12');
-    $('.fc-button-group.fc-toolbar.fc-header-toolbar').addClass('col-6');
+    $('.fc-toolbar-chunk').addClass('centro');
+    $('.fc-toolbar-chunk').addClass('col-12');
+    $('.fc-toolbar-chunk').addClass('col-md-4');
 }); 
   
 function muestraCalendario() {
@@ -331,16 +332,22 @@ function muestraCalendario() {
                 slotMaxTime: "22:00:00",
                 //scrollTime: false,
                 //dayMaxEvents: true,
-                // customButtons: {
-                //     myCustomButton: {
-                //     text: 'Cartelera',
-                //     click: function() {
-                //             alert('Excel Tumbas');
-                //         }
-                //     }
-                // },
+                customButtons: {
+                    myCustomButton: {
+                    text: 'Programacion',
+                    click: function() {
+                        descargaReporte('programacion');
+                        }
+                    },
+                    myCustomButton2: {
+                    text: 'Cartelera',
+                    click: function() {
+                        descargaReporte('cartelera');
+                        }
+                    }
+                },
                 headerToolbar: {
-                    start: '',//'myCustomButton',
+                    start: 'myCustomButton',
                     center: 'title',
                     end: 'dayGridMonth,timeGridWeek,timeGridDay prev,next'
                 },
@@ -366,8 +373,9 @@ function muestraCalendario() {
             calendarEl.style.height = '100%';
             calendar.render();
             $('.fc-toolbar.fc-header-toolbar').addClass('row');
-            $('.fc-toolbar-title.fc-toolbar.fc-header-toolbar').addClass('col-12');
-            $('.fc-button-group.fc-toolbar.fc-header-toolbar').addClass('col-6');
+            $('.fc-toolbar-chunk').addClass('centro');
+            $('.fc-toolbar-chunk').addClass('col-12');
+            $('.fc-toolbar-chunk').addClass('col-md-4');
             loader.style.display = 'none';
 
         },
@@ -377,6 +385,143 @@ function muestraCalendario() {
     });
 }
 
-  
+function descargaReporte(accion) {
+
+    $.ajax({
+        url: 'lista/ListarUsoServicioExcel',
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'accion':'reporteVisor'},
+        success: function(respuesta){
+           //console.log(respuesta['response']);
+            if (respuesta['response'].length > 0) {
+                if (accion == 'programacion') {
+                    
+                    var header = ['FECHA','HORA','FUNERARIA','EJECUTIVO','PLATAFORMA','LET','N°','USO','FALLECIDO','FECHA DEF.','CREDO','MEDIDAS ATAUD','MISA'];
+                    var filasArray = [];
+                    
+                    respuesta['response'].forEach(element => {
+                        var auxFecha = element['fch_servicio'].split('T');
+                        var fecha = auxFecha[0].split('-');
+                        var year = fecha[0];
+                        var month = fecha[1];
+                        var day = fecha[2];
+                        var fecha2 = day + "/" + month + "/" + year;
+                        
+                        filaData = [
+                            fecha2,
+                            auxFecha[1],
+                        element['dsc_agencia'],
+                        element['dsc_ejecutivo'],
+                        element['dsc_plataforma'],
+                        element['cod_eje_horizontal_esp'],
+                        element['dsc_espacio'],
+                        element['num_ctd'],
+                        element['dsc_beneficiario'],
+                        element['dsc_fecha'],
+                        element['dsc_religion'],
+                        element['dsc_observacion'],
+                        ''
+                    ]
+                        filasArray.push(filaData);
+                    });
+                    // Crear un libro de trabajo (workbook)
+                    var workbook = XLSX.utils.book_new();
+                    var worksheet = XLSX.utils.json_to_sheet(filasArray);
+
+                    // Crear una hoja de cálculo (worksheet)
+                    XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
+                    
+                    // Agregar la hoja de cálculo al libro de trabajo
+                    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+                    // Cambia los tamaños de las columnas
+                    console.log(workbook);
+                    workbook["Sheets"]["Sheet1"]["!cols"] = [{wpx : 80},{wpx : 60},{wpx : 300},{wpx : 200},{wpx : 220},{wpx : 40},{wpx : 40},{wpx : 40},{wpx : 350},{wpx : 80},{wpx : 160},{wpx : 100},{wpx : 55}];
+                    
+                    // Convertir el libro de trabajo a un archivo binario
+                    var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+                    // Crear un blob a partir del archivo binario
+                    var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                    
+                    // Crear una URL para el blob
+                    var url = URL.createObjectURL(blob);
+
+                    // Crear un enlace de descarga
+                    var link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'programacion.xlsx';
+
+                    // Simular un clic en el enlace para iniciar la descarga
+                    link.click();
+                }else if(accion == 'cartelera'){
+
+                    var doc = new jsPDF({
+                        orientation: 'landscape'
+                    });
+
+                    respuesta['response'].forEach(element => {
+                        var auxFecha = element['fch_servicio'].split('T');
+                        var fecha = auxFecha[0].split('-');
+                        var year = fecha[0];
+                        var month = fecha[1];
+                        var day = fecha[2];
+                        
+                        var fecha2 = day + "/" + month + "/" + year;
+
+                        hoja = '<div id="tumbas" class="container">'+
+                                    '<div class="row"><h1>'+element['dsc_beneficiario']+'</h1></div>'
+                                    '<br><br>'+
+                                    '<div class="row">'+
+                                        '<div class="col-md-2 offset-md-3">PLATAFORMA:</div>'+
+                                        '<div class="col-md-4">'+element['dsc_plataforma']+'</div>'+
+                                    '</div>'+
+                                    '<div class="row">'+
+                                        '<div class="col-md-2 offset-md-3">UBICACIÓN:</div>'+
+                                       ' <div class="col-md-4">'+element['cod_eje_horizontal_esp']+' '+element['dsc_espacio']+'</div>'+
+                                    '</div>'+
+                                    '<div class="row">'+
+                                        '<div class="col-md-2 offset-md-3">DÍA:</div>'+
+                                        '<div class="col-md-4">'+fechaFormateada+'</div>'+
+                                    '</div>'+
+                                    '<div class="row">'+
+                                        '<div class="col-md-2 offset-md-3">HORA:</div>'+
+                                        '<div class="col-md-4">'+auxFecha[1]+'</div>'+
+                                    '</div>'+
+                                    '<div>'+
+                                        '<div class="col-md-2 offset-md-8">'+
+                                            '<img src="{{asset('images/logo.png')}}" style="width: 30%" alt="Cargando...">'+
+                                        '</div>'+
+                                    '</div><hr>'+                                    
+                                    '<div class="row">'+
+                                        '<div class="col-md-4 offset-md-4">'+element['dsc_observacion']+'</div>'+
+                                    '</div></div>';
+
+                    });
+
+                    doc.fromHTML(hoja, 15, 15, {
+                        'width': 170
+                    });
+
+                    // Save the PDF
+                    doc.save('cartelera.pdf');
+                }
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'No existen registros a retornar para el día de hoy.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#6ea63b',
+                });
+            }
+
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error    
+    });
+}  
 </script>
   

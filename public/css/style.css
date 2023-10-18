@@ -1599,3 +1599,33 @@ Acordions
     pointer-events: none;
     cursor: default;
   }
+
+/*-------------------------------------------------------------
+  Login
+  --------------------------------------------------------------*/
+
+/*-------------------------------------------------------------
+  Visor de servicios
+  --------------------------------------------------------------*/
+
+
+  @media (min-width: 1200px) {
+  
+    #calendarioVisor {
+      margin-left: 300px;
+    }
+  }
+  
+  @media (max-width: 1199px) {
+    .toggle-sidebar .sidebar {
+      left: 0;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+  
+    .toggle-sidebar #main,
+    .toggle-sidebar #footer {
+      margin-left: 0;
+    }
+  }

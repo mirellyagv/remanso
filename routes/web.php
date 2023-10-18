@@ -83,6 +83,7 @@ Route::post('api/guardaDocumentoAdjunto', [APIController::class, 'guardaDocument
 Route::get('api/ObtenerDocumentosProspecto', [APIController::class, 'ObtenerDocumentosProspecto'])->name('api.ObtenerDocumentosProspecto');
 Route::get('api/ListarProspectoDocumentos', [APIController::class, 'ListarProspectoDocumentos'])->name('api.ListarProspectoDocumentos');
 Route::get('lista/ListarUsoServicio', [ListaController::class, 'ListarUsoServicio'])->name('lista.ListarUsoServicio');
+Route::get('lista/ListarUsoServicioExcel', [ListaController::class, 'ListarUsoServicioExcel'])->name('lista.ListarUsoServicioExcel');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');
