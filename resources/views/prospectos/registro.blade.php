@@ -1197,7 +1197,7 @@ boton.addEventListener("click",function(){
     return;
   }
 
-  if(document.getElementById("numDoc2tit").value != '' && (document.getElementById("tipoDoc2tit").value == '' || document.getElementById("tipoDoc2tit").value == null)){ 
+  if((document.getElementById("numDoc2tit").value != '' || document.getElementById("nombre2Tit").value != ''  ||document.getElementById("apelP2tit").value != '' ) && (document.getElementById("tipoDoc2tit").value == '' || document.getElementById("tipoDoc2tit").value == null)){ 
     Swal.fire({
       title:'Error!',
       text:'El tipo de documento del 2do titular debe estar completo.',
@@ -1205,6 +1205,18 @@ boton.addEventListener("click",function(){
       confirmButtonColor: '#6ea63b',
     }) 
     document.getElementById("tipoDoc2tit").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
+
+  if((document.getElementById("tipoDoc2tit").value != '' || document.getElementById("nombre2Tit").value != ''  ||document.getElementById("apelP2tit").value != '' ) && (document.getElementById("numDoc2tit").value == '' || document.getElementById("numDoc2tit").value == null)){ 
+    Swal.fire({
+      title:'Error!',
+      text:'El número de documento del 2do titular debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("numDoc2tit").focus;
     boton.removeAttribute('disabled');
     return;
   }
@@ -1398,7 +1410,7 @@ boton.addEventListener("click",function(){
     'imp_cuota': 0,
   };
   //console.log(filasArrayBenef);
-
+  //return;
   $.ajax({
     url: '../api/guardaProspecto',
     method: "PUT",
