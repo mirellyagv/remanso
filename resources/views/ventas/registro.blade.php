@@ -3443,7 +3443,6 @@ botonGuarda.addEventListener("click",function(){
       foma = document.getElementById("impFoma").value;
       cuota = document.getElementById("imp_cuota").value;
     }
-    return;
     //console.log('numNivel',inputReg);
     var prospecto = {
     'cod_prospecto': cod_prospecto,
