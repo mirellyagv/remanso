@@ -3,9 +3,15 @@
     <html>
     <head>
         <style>
+            @page {
+                margin-right: 0;
+                margin-bottom: 0;
+                margin-top: 0;
+            }
             .cuerpo{
                 padding: 4rem;
                 z-index: 999;
+                font-family: Arial, Helvetica, sans-serif;
             }
             p{
                 text-align: justify;
@@ -16,6 +22,12 @@
             .derecha{
                 text-align: right;
             }
+            .lmediana{
+                font-size: 36px
+            }
+            .lgrande{
+                font-size: 45px
+            }
         </style>
     </head>
     <header>
@@ -23,32 +35,55 @@
     </header>
     <body>
         <div class="cuerpo"> 
-            <div id="tumbas" class="container">
-                <div class="row"><h1>{{$item['dsc_beneficiario']}}</h1></div>'
+            <div id="tumbas" class="container centro">
+                <div class="lgrande" ><b>{{$item['dsc_beneficiario']}}</b></div>
                 <br><br>
-                <div class="row">
-                    <div class="col-md-2 offset-md-3">PLATAFORMA:</div>
-                    <div class="col-md-4">{{$item['dsc_plataforma']}}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 offset-md-3">UBICACIÓN:</div>
-                <div class="col-md-4">{{$item['cod_eje_horizontal_esp']}} {{$item['dsc_espacio']}}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 offset-md-3">DÍA:</div>
-                    <div class="col-md-4">{{$item['fecha']}}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 offset-md-3">HORA:</div>
-                    <div class="col-md-4">{{$item['hora']}}</div>
-                </div>
+                <div class="centro" style="padding-left: 7rem">
+                    <table >
+                        <tr>
+                            <td>
+                                <div class="lmediana">PLATAFORMA</div>
+                            </td>
+                            <td>&nbsp;:&nbsp;</td>
+                            <td>
+                                <div class="lmediana centro">{{$item['dsc_plataforma']}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="lmediana">UBICACIÓN</div>
+                            </td>
+                            <td>&nbsp;:&nbsp;</td>
+                            <td>
+                                <div class="lmediana centro">{{$item['cod_eje_horizontal_esp']}} {{$item['dsc_espacio']}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="lmediana">DÍA</div>
+                            </td>
+                            <td>&nbsp;:&nbsp;</td>
+                            <td>
+                                <div class="lmediana centro">{{$item['fecha']}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="lmediana">HORA</div>
+                            </td>
+                            <td>&nbsp;:&nbsp;</td>
+                            <td>
+                                <div class="lmediana centro"><b>{{$item['hora']}}</b></div>
+                            </td>
+                        </tr>
+                    </table>
                 <div>
-                    <div class="col-md-2 offset-md-8 derecha">
-                        <img src="{{asset('images/logo.png')}}" style="width: 30%" alt="">
+                    <div class="derecha">
+                        <img src="{{asset('images/logo.png')}}" style="width: 25%" alt="">
                     </div>
                 </div><hr>                                    
                 <div class="row centro">
-                    <div class="col-md-4 offset-md-4">{{$item['dsc_observacion']}}</div>
+                    <div class=""><h1>{{$item['dsc_observacion']}}</h1></div>
                 </div>
             </div>
         </div>

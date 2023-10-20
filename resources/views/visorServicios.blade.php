@@ -369,7 +369,7 @@ function muestraCalendario() {
                 },
             });
             
-            console.log(JSON.parse(eventosJSON));
+            //console.log(JSON.parse(eventosJSON));
             calendar.addEventSource(JSON.parse(eventosJSON));
             calendarEl.style.height = '100%';
             calendar.render();
@@ -496,17 +496,16 @@ function descargaCartelera() {
                     url: 'pdf/generarPDF',
                     method: "GET",
                     crossDomain: true,
-                    responseType: 'arraybuffer',
+                    dataType: 'json',
                     data:{'data': respuesta['response']},
                     success: function(documento){
-                        //console.log(documento);
-                        var blob = new Blob([documento], { type: 'application/pdf' });
-                        var objectUrl = URL.createObjectURL(blob);
-                        
-                        // Crear un enlace temporal para abrir el PDF en una nueva ventana
+                        console.log(documento.pdf_url)
+                        // var blob = new Blob([documento], { type: 'application/pdf' });
+                        // var objectURL = URL.createObjectURL(blob);
+
                         var link = document.createElement('a');
-                        link.href = objectUrl;
-                        link.target = '_blank';
+                        link.href = documento.pdf_url;
+                        link.target = '_blank'; 
                         link.click();
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
