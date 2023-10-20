@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\prospectoController;
+use App\Http\Controllers\CreaPDFController;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -130,4 +131,8 @@ Route::get('api/ListarProspectoContacto', [APIController::class, 'ListarProspect
 Route::get('api/ObtenerContratoServicioPrincipal', [APIController::class, 'ObtenerContratoServicioPrincipal'])->name('api.ObtenerContratoServicioPrincipal');
 Route::get('api/ObtenerProspectoxDocumento', [APIController::class, 'ObtenerProspectoxDocumento'])->name('api.ObtenerProspectoxDocumento');
 Route::delete('api/EliminarServicio', [APIController::class, 'EliminarServicio'])->name('api.EliminarServicio');
+
+//-----------------------Vistas PDF-----------------------------//
+Route::get('pdf/generarPDF', [CreaPDFController::class, 'generarPDF'])->name('api.generarPDF');
+Route::view('/cartelera','cartelera')->name('cartelera');
 

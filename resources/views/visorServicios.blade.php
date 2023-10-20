@@ -30,10 +30,10 @@
                         <span class="bi bi-circle-fill" style="color: #fd7e14;"></span>&nbsp;<label for="recipient-name" class="col-form-label">Cremaciones</label>
                     </div>
                     <div >
-                        <span class="bi bi-circle-fill" style="color: #052c65;"></span>&nbsp;<label for="recipient-name" class="col-form-label">Traslados</label>
+                        <span class="bi bi-circle-fill" style="color: #198754;"></span>&nbsp;<label for="recipient-name" class="col-form-label">Traslados</label>
                     </div>
                     <div >
-                        <span class="bi bi-circle-fill" style="color: #198754;"></span>&nbsp;<label for="recipient-name" class="col-form-label">Misas</label>
+                        <span class="bi bi-circle-fill" style="color: #522d74;"></span>&nbsp;<label for="recipient-name" class="col-form-label">Misas</label>
                     </div>
                     <div >
                         <span class="bi bi-circle-fill" style="color: #d63384;"></span>&nbsp;<label for="recipient-name" class="col-form-label">Florería</label>
@@ -50,7 +50,7 @@
 <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
 <script type="text/javascript">
 var loader = document.querySelector('.loader');
-loader.style.display = 'block';
+//loader.style.display = 'block';
 $(document).ready(function () {
     muestraCalendario();    
 });//end ready
@@ -115,7 +115,7 @@ function muestraCalendario() {
                 }
 
                 var evento;
-                if(muestra['dsc_prefijo'] == 'MIS'){
+                if(muestra['dsc_prefijo'] == 'MIS' || muestra['dsc_prefijo'] == 'RES'){
 
                     descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
@@ -284,13 +284,13 @@ function muestraCalendario() {
                         start: start,
                         color: '#dc3545'
                     };
-                } else if (muestra['dsc_prefijo'] == 'MIS') {
+                } else if (muestra['dsc_prefijo'] == 'MIS' || muestra['dsc_prefijo'] == 'RES') {
                     evento = {
                         display:'list-item',
                         title: dscNombres,
                         description: descripcion,
                         start: start,
-                        color: '#198754'
+                        color: '#522d74'
                     };
                 }else if (muestra['dsc_prefijo'] == 'FLO') {
                     evento = {
@@ -306,7 +306,7 @@ function muestraCalendario() {
                         title: muestra['dsc_apellido_paterno'] + ' ' + muestra['dsc_apellido_materno'] + ', ' + muestra['dsc_nombres'],
                         description: descripcion,
                         start: start,
-                        color: '#052c65'
+                        color: '#198754'
                     };
                 }else if (muestra['dsc_prefijo'] == 'CRE'){
                     evento = {
@@ -342,12 +342,12 @@ function muestraCalendario() {
                     myCustomButton2: {
                     text: 'Cartelera',
                     click: function() {
-                        descargaReporte('cartelera');
+                        descargaCartelera();
                         }
                     }
                 },
                 headerToolbar: {
-                    start: 'myCustomButton',
+                    start: 'myCustomButton myCustomButton2',
                     center: 'title',
                     end: 'dayGridMonth,timeGridWeek,timeGridDay prev,next'
                 },
@@ -368,7 +368,8 @@ function muestraCalendario() {
                     });
                 },
             });
-
+            
+            console.log(JSON.parse(eventosJSON));
             calendar.addEventSource(JSON.parse(eventosJSON));
             calendarEl.style.height = '100%';
             calendar.render();
@@ -458,55 +459,7 @@ function descargaReporte(accion) {
                     link.click();
                 }else if(accion == 'cartelera'){
 
-                    var doc = new jsPDF({
-                        orientation: 'landscape'
-                    });
-
-                    respuesta['response'].forEach(element => {
-                        var auxFecha = element['fch_servicio'].split('T');
-                        var fecha = auxFecha[0].split('-');
-                        var year = fecha[0];
-                        var month = fecha[1];
-                        var day = fecha[2];
-                        
-                        var fecha2 = day + "/" + month + "/" + year;
-
-                        hoja = '<div id="tumbas" class="container">'+
-                                    '<div class="row"><h1>'+element['dsc_beneficiario']+'</h1></div>'
-                                    '<br><br>'+
-                                    '<div class="row">'+
-                                        '<div class="col-md-2 offset-md-3">PLATAFORMA:</div>'+
-                                        '<div class="col-md-4">'+element['dsc_plataforma']+'</div>'+
-                                    '</div>'+
-                                    '<div class="row">'+
-                                        '<div class="col-md-2 offset-md-3">UBICACIÓN:</div>'+
-                                       ' <div class="col-md-4">'+element['cod_eje_horizontal_esp']+' '+element['dsc_espacio']+'</div>'+
-                                    '</div>'+
-                                    '<div class="row">'+
-                                        '<div class="col-md-2 offset-md-3">DÍA:</div>'+
-                                        '<div class="col-md-4">'+fechaFormateada+'</div>'+
-                                    '</div>'+
-                                    '<div class="row">'+
-                                        '<div class="col-md-2 offset-md-3">HORA:</div>'+
-                                        '<div class="col-md-4">'+auxFecha[1]+'</div>'+
-                                    '</div>'+
-                                    '<div>'+
-                                        '<div class="col-md-2 offset-md-8">'+
-                                            '<img src="{{asset('images/logo.png')}}" style="width: 30%" alt="Cargando...">'+
-                                        '</div>'+
-                                    '</div><hr>'+                                    
-                                    '<div class="row">'+
-                                        '<div class="col-md-4 offset-md-4">'+element['dsc_observacion']+'</div>'+
-                                    '</div></div>';
-
-                    });
-
-                    doc.fromHTML(hoja, 15, 15, {
-                        'width': 170
-                    });
-
-                    // Save the PDF
-                    doc.save('cartelera.pdf');
+                   
                 }
             }else{
                 Swal.fire({
@@ -523,5 +476,58 @@ function descargaReporte(accion) {
         }//error    
     });
 }  
+
+
+
+
+function descargaCartelera() {
+
+    $.ajax({
+        url: 'lista/ListarUsoServicioExcel',
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'accion':'reporteVisor'},
+        success: function(respuesta){
+        //console.log(respuesta['response']);
+            if (respuesta['response'].length > 0) {
+                
+                $.ajax({
+                    url: 'pdf/generarPDF',
+                    method: "GET",
+                    crossDomain: true,
+                    responseType: 'arraybuffer',
+                    data:{'data': respuesta['response']},
+                    success: function(documento){
+                        //console.log(documento);
+                        var blob = new Blob([documento], { type: 'application/pdf' });
+                        var objectUrl = URL.createObjectURL(blob);
+                        
+                        // Crear un enlace temporal para abrir el PDF en una nueva ventana
+                        var link = document.createElement('a');
+                        link.href = objectUrl;
+                        link.target = '_blank';
+                        link.click();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus); // Mostrar el mensaje de error
+                    }  
+                });         
+
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'No existen registros a retornar para el día de hoy.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#6ea63b',
+                });
+            }
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error  
+    });//ajax
+
+}
 </script>
   
