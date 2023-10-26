@@ -499,17 +499,32 @@ function descargaCartelera() {
                     dataType: 'json',
                     data:{'data': respuesta['response']},
                     success: function(documento){
-                        console.log(documento.pdf_url)
                         // var blob = new Blob([documento], { type: 'application/pdf' });
                         // var objectURL = URL.createObjectURL(blob);
-
+                        
                         var link = document.createElement('a');
                         link.href = documento.pdf_url;
                         link.target = '_blank'; 
                         link.click();
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        console.log(textStatus); // Mostrar el mensaje de error
+                        console.log(errorThrown); // Mostrar el mensaje de error
+                        if (jqXHR.responseText == 'vacio') {   
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'No existen inhumaciones a retornar para el día de hoy.',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#6ea63b',
+                            });
+                        }else{
+                            Swal.fire({
+                                icon: 'warning',
+                                text: errorThrown,
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#6ea63b',
+                            });
+                        }
+
                     }  
                 });         
 

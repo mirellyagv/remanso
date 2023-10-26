@@ -21,30 +21,35 @@ class CreaPDFController extends Controller
         $anio = $fecha->format('Y');
         $datos[] = '';
         foreach ($request['data'] as $key => $value) {
-            $hora1 = explode('T',$value['fch_servicio']);
-            $hora = explode(':',$hora1[1]);
-            $datos[$key] = [
-                'fecha' => $dia.' de '.$mes.' del '.$anio,
-                'hora' => $hora[0].':'.$hora[1],
-                'dsc_beneficiario' => $value['dsc_beneficiario'],
-                'dsc_plataforma' => $value['dsc_plataforma'],
-                'cod_eje_horizontal_esp' => $value['cod_eje_horizontal_esp'],
-                'dsc_espacio' => $value['dsc_espacio'],
-                'dsc_observacion' => $value['dsc_observacion']
-            ];
+            if($value['dsc_prefijo'] == 'INH' || $value['dsc_prefijo'] == 'DEP'){  
+                $hora1 = explode('T',$value['fch_servicio']);
+                $hora = explode(':',$hora1[1]);
+                $datos[$key] = [
+                    'fecha' => $dia.' de '.$mes.' del '.$anio,
+                    'hora' => $hora[0].':'.$hora[1],
+                    'dsc_beneficiario' => $value['dsc_beneficiario'],
+                    'dsc_plataforma' => $value['dsc_plataforma'],
+                    'cod_eje_horizontal_esp' => $value['cod_eje_horizontal_esp'],
+                    'dsc_espacio' => $value['dsc_espacio'],
+                    'dsc_observacion' => $value['dsc_observacion']
+                ];
+            }
         }
-
-        $nombreArchivo = 'cartelera.pdf';
-
-        $data = $datos; // Tu arreglo de datos
-
-        $pdf = PDF::loadView('cartelera', compact('data'))->setPaper('a4', 'landscape');
-        $pdf->save(public_path('cartelera.pdf'));
-
-        // Devolver la URL al cliente
-        $pdfUrl = asset('cartelera.pdf');
-        return response()->json(['pdf_url' => $pdfUrl]);
-        //return $pdf->download('cartelera.pdf');
+        if ($datos != '') {
+            return 'vacio';
+        }else{
+            $nombreArchivo = 'cartelera.pdf';
+            
+            $data = $datos; // Tu arreglo de datos
+            
+            $pdf = PDF::loadView('cartelera', compact('data'))->setPaper('a4', 'landscape');
+            $pdf->save(public_path('cartelera.pdf'));
+            
+            // Devolver la URL al cliente
+            $pdfUrl = asset('cartelera.pdf');
+            return response()->json(['pdf_url' => $pdfUrl]);
+            //return $pdf->download('cartelera.pdf');
+        }
     
 
     }
