@@ -1308,8 +1308,8 @@ numDocProsInput.addEventListener("blur", function(event) {
                   setTimeout(function() { 
                     dttoProsp.value=respuesta["response"]["cod_distrito"];
                     dttoProsp.dispatchEvent(changeEvent);
-                  }, 2000);
-                }, 2000); 
+                  }, 3000);
+                }, 3000); 
               }
             })//then
             numDocProsInput.blur();  
@@ -1411,8 +1411,8 @@ numDoc2titInput.addEventListener("blur", function(event) {
           setTimeout(function() { 
             dttoProsp.value=respuesta["response"]["cod_distrito"];
             dttoProsp.dispatchEvent(changeEvent);
-          }, 2000);
-        }, 2000); 
+          }, 3000);
+        }, 3000); 
       }
       numDoc2titInput.blur();  
     },//success
@@ -1850,7 +1850,7 @@ if (window.location.search) {
         cod_prospecto = params.get('CodProspecto');
           setTimeout(function() {
             loader.style.display = 'none';
-          }, 18000);
+          }, 25000);
     }
 }
 
