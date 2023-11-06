@@ -3770,7 +3770,7 @@ function ModoVista() {
     document.getElementById("abreModalBenef").disabled = true;
     document.getElementById("btnAddServicio").disabled = true;
     document.getElementById("ModalBeneficiariosLabel").disabled = true;
-    document.getElementById("RecAdj").disabled = true;
+    // document.getElementById("RecAdj").disabled = true;
     document.getElementById("recServAdj").disabled = true;
     document.getElementById("DniAvalAdj2").disabled = true;
     document.getElementById("DniAvalAdj1").disabled = true;
@@ -3787,6 +3787,7 @@ function ModoVista() {
     document.getElementById("ConstInhuAdj").disabled = true;
     document.getElementById("AutSanitAdj").disabled = true;
     document.getElementById("OtrosAdj").disabled = true;
+    document.getElementById("registrarVenta").disabled = true;
 
   }
   
