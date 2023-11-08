@@ -1258,7 +1258,7 @@ numDocProsInput.addEventListener("blur", function(event) {
       success: function(respuesta){
         //console.log('@php echo(session('cod_trabajador')) @endphp');
         if (respuesta['response']['cod_prospecto'] != null) {
-          if (respuesta['response']['cod_consejero'] == '@php echo(session('cod_trabajador')) @endphp') {
+          if (respuesta['response']['cod_consejero'] == '@php echo(session('cod_trabajador')) @endphp' || botonNece.checked == true) {
             Swal.fire({
               title:'Advertencia!',
               text:'Ya existe un prospecto con número de documento '+respuesta['response']['dsc_documento']+', ¿Desea generar otra venta?.',

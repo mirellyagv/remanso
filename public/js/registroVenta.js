@@ -1149,6 +1149,12 @@ function muestraserviciosFormulario(datos) {
         document.getElementById("codTasa").setAttribute('disabled','disabled');
         document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
         document.getElementById("fch1erVcto").value = '';
+        flatpickr("#fch1erVcto",{
+            locale:"es",
+            altInput: true,
+            altFormat: "d/m/Y",
+            dateFormat: "Y-m-d"
+        });
     }else{
         document.getElementById("codCuotaServ").removeAttribute('disabled');
         document.getElementById("codTasa").removeAttribute('disabled');
@@ -1297,6 +1303,12 @@ campoCuoi.addEventListener("input",function(){
         document.getElementById("codTasa").setAttribute('disabled','disabled');
         document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
         document.getElementById("fch1erVcto").value = '';
+        flatpickr("#fch1erVcto",{
+            locale:"es",
+            altInput: true,
+            altFormat: "d/m/Y",
+            dateFormat: "Y-m-d"
+        });
     }else{
         document.getElementById("codCuotaServ").removeAttribute('disabled');
         document.getElementById("codTasa").removeAttribute('disabled');
