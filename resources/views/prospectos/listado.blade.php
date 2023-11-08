@@ -543,9 +543,75 @@ function BuscarProspecto() {
 };
 
 function descargarTablaExcel() {
-  var tabla = document.getElementById('listaProsp');
-  var libro = XLSX.utils.table_to_book(tabla);
-  XLSX.writeFile(libro, 'tabla.xlsx');
+
+  $.ajax({
+    url: '../lista/ListaProspectos', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_estado':$('#EstDoc').val(), 'dsc_documento':$('#numDoc').val(), 'dsc_prospecto':$('#nombreProspecto').val(),'cod_tipo_necesidad':cod_tipo_necesidad,'dscVendedor':$('#buscaVendedor').val()},
+    success: function(respuesta){
+      // console.log(respuesta['response'].length);
+      if (respuesta['response'].length > 0) {
+        data = [];
+        var header = ['CODIGO','DOCUMENTO','NOMBRES Y APELLIDOS DEL PROSPECTO','TIPO NECESIDAD','FECHA DE REGISTRO','DIAS','CANAL','VENDEDOR','ESTADO'];
+        respuesta['response'].forEach(element => {
+
+          var fch1 = new Date(element['fch_registro']);
+          var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+          filaData = [
+            element['cod_prospecto'],
+            element['dsc_tipo_documento']+'-'+element['dsc_documento'],
+            element['dsc_prospecto'],
+            element['cod_tipo_necesidad'],
+            fch_registro1,
+            element['num_dias'],
+            element['dsc_origen'],
+            element['dsc_consejero'],
+            element['dsc_estado']              
+          ]
+          data.push(filaData);
+      });
+      
+      // Crear un libro de trabajo (workbook)
+      var workbook = XLSX.utils.book_new();
+      var worksheet = XLSX.utils.json_to_sheet(data);
+
+      // Crear una hoja de cálculo (worksheet)
+      XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
+
+      // Agregar la hoja de cálculo al libro de trabajo
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+      // Convertir el libro de trabajo a un archivo binario
+      var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+      // Crear un blob a partir del archivo binario
+      var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+      // Crear una URL para el blob
+      var url = URL.createObjectURL(blob);
+
+      // Crear un enlace de descarga
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'listadoProspectos.xlsx';
+
+      // Simular un clic en el enlace para iniciar la descarga
+      link.click();
+      }else{
+        Swal.fire({
+          icon: 'warning',
+          text: 'No existen registros a retornar para los filtros seleccionado.',
+          confirmButtonText: 'Continuar',
+          confirmButtonColor: '#6ea63b',
+        });
+      }
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error    
+  });
 }
 
 </script>
