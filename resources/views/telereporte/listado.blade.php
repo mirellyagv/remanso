@@ -186,8 +186,6 @@ flatpickr("#fchFin", {
   defaultDate: lastDayOfMonthStr
 });
 
-
-
     $.ajax({
         url: '../lista/MuestraAgenciaFiltro', 
         method: "GET",
@@ -238,8 +236,7 @@ function BuscarTelereporte() {
     data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_agencia':$('#cod_agencia').val(), 'dsc_beneficiario':$('#dsc_beneficiario').val(), 'flg_anulado':$('#flg_anulado').val(), 'cod_resultado':$('#cod_resultado').val() },
     success: function(respuesta){
       // console.log('de funcion',respuesta)
-        fila='';
-        
+        fila='';       
 
         respuesta['response'].forEach(function(word){          
        
@@ -286,10 +283,7 @@ function BuscarTelereporte() {
         $('#bodyListadoTelereporte').html(fila);
         var totalRegistros = respuesta['response'].length;
         $('#totalRegistros').text(totalRegistros); // Actualiza el contador de totales en la tabla
-
-
-
-       
+   
         // Inicializar DataTable dentro del bloque success
               $('#listaTelereporte').DataTable({
                 paging: true,
@@ -331,64 +325,57 @@ function BuscarTelereporte() {
 
 
 function AnularTelereporte(num_reporte) {
-    var cod_trabajador = "'"+'@php echo(session('cod_trabajador')) @endphp'+"'";
+  var cod_trabajador = "'"+'@php echo(session('cod_trabajador')) @endphp'+"'";
 
-    Swal.fire({
-      title: '¿Esta seguro que quiere Anular este telereporte?',
-      text: 'Código : '+num_reporte,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#6ea63b',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var telereporte={
-          'num_reporte': num_reporte,
-          'cod_trabajador': cod_trabajador
-        }
-        $.ajax({
-          type : 'PUT',
-          url:'../api/AnularTelereporte',
-          dataType: 'json',
-          data:{'telereporte':telereporte},
-          success: function(respuesta){
-            console.log(respuesta);  
-            Swal.fire({
-              title:'Exito!',
-              text:'Se ha anulado el telereporte.',
-              icon:'success',
-              confirmButtonColor: '#6ea63b',
-            }) ;
-
-            BuscarTelereporte();
-          },//success
-          error(e){
-              console.log(e.message);
-              // Swal.fire({
-              //   title:'Error!',
-              //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
-              //   icon:'warning',
-              //   confirmButtonColor: '#6ea63b',
-              // }) 
-              Swal.fire({
-              title:'Exito!',
-              text:'Se ha anulado el telereporte.',
-              icon:'success',
-              confirmButtonColor: '#6ea63b',
-              
-            }) 
-            BuscarTelereporte();
-          },//error
-
-        
-
-        });
-
-        
+  Swal.fire({
+    title: '¿Esta seguro que quiere Anular este telereporte?',
+    text: 'Código : '+num_reporte,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#6ea63b',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      var telereporte={
+        'num_reporte': num_reporte,
+        'cod_trabajador': cod_trabajador
       }
-    })//then
- 
+      $.ajax({
+        type : 'PUT',
+        url:'../api/AnularTelereporte',
+        dataType: 'json',
+        data:{'telereporte':telereporte},
+        success: function(respuesta){
+          console.log(respuesta);  
+          Swal.fire({
+            title:'Exito!',
+            text:'Se ha anulado el telereporte.',
+            icon:'success',
+            confirmButtonColor: '#6ea63b',
+          }) ;
+          BuscarTelereporte();
+        },//success
+        error(e){
+          console.log(e.message);
+            // Swal.fire({
+            //   title:'Error!',
+            //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+            //   icon:'warning',
+            //   confirmButtonColor: '#6ea63b',
+            // }) 
+          Swal.fire({
+            title:'Exito!',
+            text:'Se ha anulado el telereporte.',
+            icon:'success',
+            confirmButtonColor: '#6ea63b',
+            
+          }) 
+          BuscarTelereporte();
+        },//error
+      });
+    }
+  })//then
 }
 
 
@@ -396,68 +383,59 @@ function AnularTelereporte(num_reporte) {
 
 
 function ActivarTelereporte(num_reporte) {
-    var cod_trabajador = "'"+'@php echo(session('cod_trabajador')) @endphp'+"'";
+  var cod_trabajador = "'"+'@php echo(session('cod_trabajador')) @endphp'+"'";
 
-    Swal.fire({
-      title: '¿Esta seguro que quiere Activar este telereporte?',
-      text: 'Código : '+num_reporte,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#6ea63b',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        var telereporte={
-          'num_reporte': num_reporte,
-          'cod_trabajador': cod_trabajador
-        }
-        $.ajax({
-          type : 'PUT',
-          url:'../api/ActivarTelereporte',
-          dataType: 'json',
-          data:{'telereporte':telereporte},
-          success: function(respuesta){
-            console.log(respuesta);  
-            Swal.fire({
-              title:'Exito!',
-              text:'Se ha activado el telereporte.',
-              icon:'success',
-              confirmButtonColor: '#6ea63b',
-            }) ;
-
-            BuscarTelereporte();
-          },//success
-          error(e){
-              console.log(e.message);
-              // Swal.fire({
-              //   title:'Error!',
-              //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
-              //   icon:'warning',
-              //   confirmButtonColor: '#6ea63b',
-              // }) 
-              Swal.fire({
-              title:'Exito!',
-              text:'Se ha activado el telereporte.',
-              icon:'success',
-              confirmButtonColor: '#6ea63b',
-              
-            }) 
-            BuscarTelereporte();
-          },//error
-
-        
-
-        });
-
-        
+  Swal.fire({
+    title: '¿Esta seguro que quiere Activar este telereporte?',
+    text: 'Código : '+num_reporte,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#6ea63b',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      var telereporte={
+        'num_reporte': num_reporte,
+        'cod_trabajador': cod_trabajador
       }
-    })//then
- 
+      $.ajax({
+        type : 'PUT',
+        url:'../api/ActivarTelereporte',
+        dataType: 'json',
+        data:{'telereporte':telereporte},
+        success: function(respuesta){
+          console.log(respuesta);  
+          Swal.fire({
+            title:'Exito!',
+            text:'Se ha activado el telereporte.',
+            icon:'success',
+            confirmButtonColor: '#6ea63b',
+          }) ;
+
+          BuscarTelereporte();
+        },//success
+        error(e){
+          console.log(e.message);
+            // Swal.fire({
+            //   title:'Error!',
+            //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+            //   icon:'warning',
+            //   confirmButtonColor: '#6ea63b',
+            // }) 
+          Swal.fire({
+            title:'Exito!',
+            text:'Se ha activado el telereporte.',
+            icon:'success',
+            confirmButtonColor: '#6ea63b',
+            
+          }) 
+          BuscarTelereporte();
+        },//error
+      });
+    }
+  })//then
 }
-
-
-
 
 function IrRegistro() 
 {
@@ -465,12 +443,74 @@ function IrRegistro()
     window.location.href = "registro";
 }
 
-
 function descargarTablaExcel() {
-  var tabla = document.getElementById('listaTelereporte');
-  var libro = XLSX.utils.table_to_book(tabla);
-  XLSX.writeFile(libro, 'tabla.xlsx');
-}
 
+  $.ajax({
+    url: '../lista/ListaTelereporte', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'fch_inicio': $('#fchIni').val() , 'fch_fin':$('#fchFin').val(), 'cod_agencia':$('#cod_agencia').val(), 'dsc_beneficiario':$('#dsc_beneficiario').val(), 'flg_anulado':$('#flg_anulado').val(), 'cod_resultado':$('#cod_resultado').val() },
+    success: function(respuesta){
+      // console.log(respuesta['response'].length);
+      if (respuesta['response'].length > 0) {
+        data = [];
+        var header = ['N°','FECHA','CANAL DE VENTA','BENEFICIARIO','AGENCIA','RESULTADO','EJECUTIVO'];
+        respuesta['response'].forEach(element => {
+
+          var fch1 = new Date(element['fch_registro']);
+          var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+          filaData = [
+            element['num_reporte'],
+            fch_registro1,
+            element['dsc_canal_venta'],
+            element['dsc_nombres']+' '+element['dsc_apellido_paterno']+' '+element['dsc_apellido_materno'],
+            element['dsc_agencia'],
+            element['dsc_resultado'],
+            element['dsc_vendedor']    
+          ]
+          data.push(filaData);
+        });
+      
+        // Crear un libro de trabajo (workbook)
+        var workbook = XLSX.utils.book_new();
+        var worksheet = XLSX.utils.json_to_sheet(data);
+
+        // Crear una hoja de cálculo (worksheet)
+        XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
+
+        // Agregar la hoja de cálculo al libro de trabajo
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+        // Convertir el libro de trabajo a un archivo binario
+        var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+        // Crear un blob a partir del archivo binario
+        var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+        // Crear una URL para el blob
+        var url = URL.createObjectURL(blob);
+
+        // Crear un enlace de descarga
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'listadoTelereporte.xlsx';
+
+        // Simular un clic en el enlace para iniciar la descarga
+        link.click();
+      }else{
+        Swal.fire({
+          icon: 'warning',
+          text: 'No existen registros a retornar para los filtros seleccionado.',
+          confirmButtonText: 'Continuar',
+          confirmButtonColor: '#6ea63b',
+        });
+      }
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error    
+  });
+}
 
 </script>

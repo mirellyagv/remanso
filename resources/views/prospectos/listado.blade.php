@@ -571,34 +571,34 @@ function descargarTablaExcel() {
             element['dsc_estado']              
           ]
           data.push(filaData);
-      });
+        });
       
-      // Crear un libro de trabajo (workbook)
-      var workbook = XLSX.utils.book_new();
-      var worksheet = XLSX.utils.json_to_sheet(data);
+        // Crear un libro de trabajo (workbook)
+        var workbook = XLSX.utils.book_new();
+        var worksheet = XLSX.utils.json_to_sheet(data);
 
-      // Crear una hoja de cálculo (worksheet)
-      XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
+        // Crear una hoja de cálculo (worksheet)
+        XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
 
-      // Agregar la hoja de cálculo al libro de trabajo
-      XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+        // Agregar la hoja de cálculo al libro de trabajo
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
-      // Convertir el libro de trabajo a un archivo binario
-      var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        // Convertir el libro de trabajo a un archivo binario
+        var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-      // Crear un blob a partir del archivo binario
-      var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        // Crear un blob a partir del archivo binario
+        var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
-      // Crear una URL para el blob
-      var url = URL.createObjectURL(blob);
+        // Crear una URL para el blob
+        var url = URL.createObjectURL(blob);
 
-      // Crear un enlace de descarga
-      var link = document.createElement('a');
-      link.href = url;
-      link.download = 'listadoProspectos.xlsx';
+        // Crear un enlace de descarga
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'listadoProspectos.xlsx';
 
-      // Simular un clic en el enlace para iniciar la descarga
-      link.click();
+        // Simular un clic en el enlace para iniciar la descarga
+        link.click();
       }else{
         Swal.fire({
           icon: 'warning',
