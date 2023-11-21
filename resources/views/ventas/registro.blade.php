@@ -1850,7 +1850,7 @@ if (window.location.search) {
         cod_prospecto = params.get('CodProspecto');
           setTimeout(function() {
             loader.style.display = 'none';
-          }, 25000);
+          }, 35000);
     }
 }
 
@@ -1966,8 +1966,8 @@ $( document ).ready(function () {
             setTimeout(function() { 
               dttoProsp.value=result["response"]["cod_distrito"];
               dttoProsp.dispatchEvent(changeEvent);
-            }, 2000);
-          }, 2000);       
+            }, 2500);
+          }, 2500);       
           
           document.getElementById("direccRegVta").value=result["response"]["dsc_direccion"];
           document.getElementById("direccRefRegVta").value=result["response"]["dsc_direccion_referencia"];
@@ -2061,8 +2061,8 @@ $( document ).ready(function () {
             setTimeout(function() { 
               dttoAval.value=result["response"]["cod_distrito_aval"];
               dttoAval.dispatchEvent(changeEvent);
-            }, 2000);
-          }, 2000);   
+            }, 2500);
+          }, 2500);   
 
           document.getElementById("direccAval").value=result["response"]["dsc_direccion_aval"];
           document.getElementById("telef1Aval").value=result["response"]["dsc_telefono_1_aval"];
@@ -2118,13 +2118,13 @@ $( document ).ready(function () {
                         nivel.value=result["response"]["num_nivel"];
                         botonGraba.removeAttribute('disabled');
                         ModoVista();
-                      }, 2000);
-                    }, 2000);
-                  }, 2000);
-                }, 2000);
-              }, 2000);
-            }, 2000);
-          }, 2000);
+                      }, 2500);
+                    }, 2500);
+                  }, 2500);
+                }, 2500);
+              }, 2500);
+            }, 2500);
+          }, 2500);
 
           $.ajax({         
             type: "GET",
