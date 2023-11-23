@@ -356,3 +356,16 @@ function nombreMesANumero(nombreMes) {
   
   return meses[mes] || null;
 }
+
+
+function reiniciarTemporizador() {
+    clearTimeout(temporizadorInactividad);
+    alertaMostrada = false;
+    iniciarTemporizador();
+}
+// Eventos que reinician el temporizador
+document.addEventListener('mousemove', reiniciarTemporizador);
+document.addEventListener('keypress', reiniciarTemporizador);
+
+// Iniciar el temporizador cuando la página se carga
+window.onload = iniciarTemporizador;

@@ -1147,7 +1147,7 @@ function muestraserviciosFormulario(datos) {
     if(Number(saldo-cuoi) == 0){
         document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
         document.getElementById("codTasa").setAttribute('disabled','disabled');
-        document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
+        // document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
         document.getElementById("fch1erVcto").value = '';
         flatpickr("#fch1erVcto",{
             locale:"es",
@@ -1301,7 +1301,7 @@ campoCuoi.addEventListener("input",function(){
     if(saldo == 0){
         document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
         document.getElementById("codTasa").setAttribute('disabled','disabled');
-        document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
+        // document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
         document.getElementById("fch1erVcto").value = '';
         flatpickr("#fch1erVcto",{
             locale:"es",

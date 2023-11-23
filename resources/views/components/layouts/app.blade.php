@@ -79,6 +79,28 @@
   <!-- Template Main JS File -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/es.js"></script>
+  <script type="text/javascript">
+    var temporizadorInactividad;
+    var alertaMostrada = false;
+
+    function iniciarTemporizador() {
+      temporizadorInactividad = setTimeout(function() {
+        if (!alertaMostrada) {
+          Swal.fire({
+            text: 'Su sesión ha caducado. Ingrese nuevamente.',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#6ea63b',
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('logout') }}";
+            } 
+        })
+          alertaMostrada = true;
+        }
+      }, 600000); // 600000 milisegundos = 10 minutos
+    }
+  </script>
   <script src="{{asset('js/main.js')}}"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
