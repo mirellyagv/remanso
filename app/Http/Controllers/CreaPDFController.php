@@ -35,7 +35,7 @@ class CreaPDFController extends Controller
                 ];
             }
         }
-        if ($datos != '') {
+        if ($datos == '') {
             return 'vacio';
         }else{
             $nombreArchivo = 'cartelera.pdf';
