@@ -52,14 +52,20 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <input type="text" class="form-control form-remanso" name="fchCartelera" id="fchCartelera" placeholder="seleccione..">
+                    <div class="col-md-6 offset-md-3 flatpickr">
+                        <div class="input-group" id="show_hide_password">
+                            <input type="text" class="form-control form-remanso" name="fchCartelera" id="fchCartelera" placeholder="seleccione..">
+                            <div class="input-group-append form-remanso">
+                                <span class="input-group-text form-remanso"><span class="bi bi-calendar-week" aria-hidden="true" style="font-size: 1.5rem;"></span></span>
+                            </div>
+                        </div>
+                    
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary form-remanso" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso" onclick="descargaCartelera();">Descargar</button>
+                <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso" onclick="descargaCartelera();">Descargar</button>
+                <button type="button" class="btn btn-secondary form-remanso" data-bs-dismiss="modal">Cerrar</button>
             </div>
           </div>
         </div>
