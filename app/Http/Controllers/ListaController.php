@@ -1018,10 +1018,11 @@ class ListaController extends Controller
     public function ListarUsoServicioExcel(Request $request)
     {   
         $client = new Client();
+        $fecha = $request['fecha'];
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicioExcel/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicioExcel/20396900719/'.$fecha);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

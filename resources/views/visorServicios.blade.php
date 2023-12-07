@@ -42,6 +42,28 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalFechaCartelera" tabindex="-1" aria-labelledby="modalFechaCarteleraLabel" aria-hidden="true" data-bs-focus="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Seleccione la fecha:</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <input type="text" class="form-control form-remanso" name="fchCartelera" id="fchCartelera" placeholder="seleccione..">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary form-remanso" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso" onclick="descargaCartelera();">Descargar</button>
+            </div>
+          </div>
+        </div>
+      </div>
   
   </x-layouts.app>
   
@@ -54,6 +76,14 @@ var loader = document.querySelector('.loader');
 $(document).ready(function () {
     muestraCalendario();    
 });//end ready
+
+flatpickr("#fchCartelera",{
+  locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
+  dateFormat: "Y-m-d",
+  defaultDate:"today"
+});
 
 // add the responsive classes when navigating with calendar buttons
 $(document).on('click', '.fc-button', function(e) {
@@ -342,7 +372,8 @@ function muestraCalendario() {
                     myCustomButton2: {
                     text: 'Cartelera',
                     click: function() {
-                        descargaCartelera();
+                            // descargaCartelera();
+                            $('#modalFechaCartelera').modal('show'); // abrir
                         }
                     }
                 },
@@ -477,19 +508,17 @@ function descargaReporte(accion) {
     });
 }  
 
-
-
-
 function descargaCartelera() {
+    var fecha = document.getElementById("fchCartelera").value;
 
     $.ajax({
         url: 'lista/ListarUsoServicioExcel',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'accion':'reporteVisor'},
+        data:{'accion':'reporteVisor','fecha':fecha},
         success: function(respuesta){
-        //console.log(respuesta['response']);
+        console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {
                 
                 $.ajax({
@@ -508,18 +537,18 @@ function descargaCartelera() {
                         link.click();
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        console.log(errorThrown); // Mostrar el mensaje de error
+                        console.log(textStatus); // Mostrar el mensaje de error
                         if (jqXHR.responseText == 'vacio') {   
                             Swal.fire({
                                 icon: 'warning',
-                                text: 'No existen inhumaciones a retornar para el día de hoy.',
+                                text: 'No existen inhumaciones a retornar para el día '+fecha4vista(fecha),
                                 confirmButtonText: 'Continuar',
                                 confirmButtonColor: '#6ea63b',
                             });
                         }else{
                             Swal.fire({
                                 icon: 'warning',
-                                text: errorThrown,
+                                text: 'No existen inhumaciones a retornar para el día '+fecha4vista(fecha),
                                 confirmButtonText: 'Continuar',
                                 confirmButtonColor: '#6ea63b',
                             });
