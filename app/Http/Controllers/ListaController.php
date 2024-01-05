@@ -1040,4 +1040,29 @@ class ListaController extends Controller
         }
     }
 
+    public function ListarUsoServicioCartelera(Request $request)
+    {   
+        $client = new Client();
+        $fecha = $request['fecha'];
+
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicioPDF/20396900719/'.$fecha);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

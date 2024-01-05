@@ -85,6 +85,7 @@ Route::get('api/ObtenerDocumentosProspecto', [APIController::class, 'ObtenerDocu
 Route::get('api/ListarProspectoDocumentos', [APIController::class, 'ListarProspectoDocumentos'])->name('api.ListarProspectoDocumentos');
 Route::get('lista/ListarUsoServicio', [ListaController::class, 'ListarUsoServicio'])->name('lista.ListarUsoServicio');
 Route::get('lista/ListarUsoServicioExcel', [ListaController::class, 'ListarUsoServicioExcel'])->name('lista.ListarUsoServicioExcel');
+Route::get('lista/ListarUsoServicioCartelera', [ListaController::class, 'ListarUsoServicioCartelera'])->name('lista.ListarUsoServicioCartelera');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');

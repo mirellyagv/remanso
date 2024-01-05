@@ -518,7 +518,7 @@ function descargaCartelera() {
     var fecha = document.getElementById("fchCartelera").value;
 
     $.ajax({
-        url: 'lista/ListarUsoServicioExcel',
+        url: 'lista/ListarUsoServicioCartelera',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
