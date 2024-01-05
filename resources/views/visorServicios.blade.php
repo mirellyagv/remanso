@@ -188,7 +188,7 @@ function muestraCalendario() {
                         '<td style="text-align: left;" colspan = "3">'+muestra['dsc_observacion']+'</td>'+
                     '</tr>'+
                     '</table>';
-                }else if (muestra['dsc_prefijo'] == 'CRE'){
+                }else if (muestra['dsc_prefijo'] == 'CRE' || muestra['dsc_prefijo'] == 'SFF'){
                     descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
                         '<td style="text-align: center;" colspan = "4"><b>'+muestra['dsc_tipo_autorizacion']+' - '+muestra['num_uso_servicio']+'</b></td>'+
@@ -312,7 +312,7 @@ function muestraCalendario() {
                     '</table>';
                 }
 
-                if (muestra['dsc_prefijo'] == 'INH' || muestra['dsc_prefijo'] == 'DEP') {
+                if (muestra['dsc_prefijo'] == 'INH' || muestra['dsc_prefijo'] == 'DEP' ) {
                     evento = {
                         display:'list-item',
                         title: muestra['dsc_beneficiario_lapida'],
@@ -320,7 +320,7 @@ function muestraCalendario() {
                         start: start,
                         color: '#dc3545'
                     };
-                } else if (muestra['dsc_prefijo'] == 'MIS' || muestra['dsc_prefijo'] == 'RES') {
+                } else if (muestra['dsc_prefijo'] == 'MIS' || muestra['dsc_prefijo'] == 'RES' || muestra['dsc_prefijo'] == 'SFF') {
                     evento = {
                         display:'list-item',
                         title: dscNombres,
@@ -406,7 +406,7 @@ function muestraCalendario() {
                 },
             });
             
-            //console.log(JSON.parse(eventosJSON));
+            console.log(JSON.parse(eventosJSON));
             calendar.addEventSource(JSON.parse(eventosJSON));
             calendarEl.style.height = '100%';
             calendar.render();
