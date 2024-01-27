@@ -45,31 +45,59 @@
 
     <div class="modal fade" id="modalFechaCartelera" tabindex="-1" aria-labelledby="modalFechaCarteleraLabel" aria-hidden="true" data-bs-focus="false">
         <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Seleccione la fecha:</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 offset-md-3 flatpickr">
-                        <div class="input-group" id="show_hide_password">
-                            <input type="text" class="form-control form-remanso" name="fchCartelera" id="fchCartelera" placeholder="seleccione..">
-                            <div class="input-group-append form-remanso">
-                                <span class="input-group-text form-remanso"><span class="bi bi-calendar-week" aria-hidden="true" style="font-size: 1.5rem;"></span></span>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccione la fecha:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3 flatpickr">
+                            <div class="input-group" id="show_hide_password">
+                                <input type="text" class="form-control form-remanso" name="fchCartelera" id="fchCartelera" placeholder="seleccione..">
+                                <div class="input-group-append form-remanso">
+                                    <span class="input-group-text form-remanso"><span class="bi bi-calendar-week" aria-hidden="true" style="font-size: 1.5rem;"></span></span>
+                                </div>
                             </div>
+                        
                         </div>
-                    
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso" onclick="descargaCartelera();">Descargar</button>
+                    <button type="button" class="btn btn-secondary form-remanso" data-bs-dismiss="modal">Cerrar</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso" onclick="descargaCartelera();">Descargar</button>
-                <button type="button" class="btn btn-secondary form-remanso" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+
+    <div class="modal fade" id="modalFechaProgramacion" tabindex="-1" aria-labelledby="modalFechaProgramacionLabel" aria-hidden="true" data-bs-focus="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccione la fecha:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3 flatpickr">
+                            <div class="input-group" id="show_hide_password">
+                                <input type="text" class="form-control form-remanso" name="fchProgramacion" id="fchProgramacion" placeholder="seleccione..">
+                                <div class="input-group-append form-remanso">
+                                    <span class="input-group-text form-remanso"><span class="bi bi-calendar-week" aria-hidden="true" style="font-size: 1.5rem;"></span></span>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary BtnAzulORemanso form-remanso" onclick="descargaReporte('programacion');">Descargar</button>
+                    <button type="button" class="btn btn-secondary form-remanso" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
   
   </x-layouts.app>
   
@@ -84,6 +112,14 @@ $(document).ready(function () {
 });//end ready
 
 flatpickr("#fchCartelera",{
+  locale:"es",
+  altInput: true,
+  altFormat: "d/m/Y",
+  dateFormat: "Y-m-d",
+  defaultDate:"today"
+});
+
+flatpickr("#fchProgramacion",{
   locale:"es",
   altInput: true,
   altFormat: "d/m/Y",
@@ -372,7 +408,8 @@ function muestraCalendario() {
                     myCustomButton: {
                     text: 'Programacion',
                     click: function() {
-                        descargaReporte('programacion');
+                        // descargaReporte('programacion');
+                        $('#modalFechaProgramacion').modal('show');
                         }
                     },
                     myCustomButton2: {
@@ -424,13 +461,14 @@ function muestraCalendario() {
 }
 
 function descargaReporte(accion) {
+    var fecha = document.getElementById("fchProgramacion").value;
 
     $.ajax({
         url: 'lista/ListarUsoServicioExcel',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'accion':'reporteVisor'},
+        data:{'accion':'reporteVisor', 'fecha':fecha},
         success: function(respuesta){
            //console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {
