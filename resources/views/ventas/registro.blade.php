@@ -2273,8 +2273,9 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+index+')" data-bs-toggle="modal" data-bs-target="#ModalBeneficiarios"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+word['num_linea']+')"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
+
               index++;
 
               var filaData = {
@@ -3109,7 +3110,7 @@ addBeneficiario.addEventListener("click",function (){
 
     editarBoton.addEventListener('click', function() {
       var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
-      editarFilaBenef(filaIndex-1);
+      editarFilaBenef(filaIndex);
     });
     
     eliminarBoton.addEventListener('click', function() {
@@ -3142,14 +3143,24 @@ addBeneficiario.addEventListener("click",function (){
 });
 
 function eliminarFila(index,bd,dni) {
-  var tabla = document.getElementById('tablaBeneficiarios');
-  var tbody = tabla.getElementsByTagName('tbody')[0];
-  var fila = tbody.rows[index-1];
-  tbody.removeChild(fila);
-  filasArray.splice(index-1, 1); // Eliminar el valor del array en la posición index
-  //console.log(filasArray);
-  if(bd === 'SI'){
-    $.ajax({         
+
+  if(document.getElementById("tituloEstado").innerHTML == 'CIERRE'){
+    Swal.fire({
+      title:'Error!',
+      text:'El prospecto está en estado CIERRE, ya no puede hacer modificaciones.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    })
+    return;
+  }else{
+    var tabla = document.getElementById('tablaBeneficiarios');
+    var tbody = tabla.getElementsByTagName('tbody')[0];
+    var fila = tbody.rows[index];
+    tbody.removeChild(fila);
+    filasArray.splice(index, 1); // Eliminar el valor del array en la posición index
+    //console.log(filasArray);
+    if(bd === 'SI'){
+      $.ajax({         
         type: "DELETE",
         url: '../api/EliminarProspectoBeneficiario', 
         dataType: 'json',
@@ -3157,15 +3168,25 @@ function eliminarFila(index,bd,dni) {
         success: function(resultBenef){
           console.log(resultBenef['response']);
         }
-    });
+      });
+    }
   }
 }
 
 //------------------------edita beneficiario----------------------
 function editarFilaBenef(index) {
+  if(document.getElementById("tituloEstado").innerHTML == 'CIERRE'){
+    Swal.fire({
+      title:'Error!',
+      text:'El prospecto está en estado CIERRE, ya no puede hacer modificaciones.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    })
+    return;
+  }else{
+    $('#ModalBeneficiarios').modal('show');
     // Obtén la fila existente que deseas editar
-    var fila = filasArray[index];
-    console.log(index);
+    var fila = filasArray[index-1];
     
     // Llena el formulario en el modal con los datos de la fila
     document.getElementById("tipoDocAddBenef").value = fila.cod_tipo_documento;
@@ -3185,6 +3206,7 @@ function editarFilaBenef(index) {
     
     // Puedes almacenar el índice de la fila que se está editando para su posterior actualización
     document.getElementById("btnUpdBeneficiario").dataset.rowIndex = index;
+  }
 }
   
 var actualizarBeneficiario = document.getElementById("btnUpdBeneficiario");
