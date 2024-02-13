@@ -3418,7 +3418,7 @@ botonGuarda.addEventListener("click",function(){
       return;
     }
 
-    if(cod_prospecto== ""){
+    if(cod_prospecto== "" || tipo_nec == 'NI'){
         urlGrabar = '../api/guardaProspecto';
         accionDocumentos = 'guarda';
     }else{
