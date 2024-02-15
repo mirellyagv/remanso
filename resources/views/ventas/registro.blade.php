@@ -1843,7 +1843,7 @@ var filasArray = []; // Array para almacenar las filas
 // Verificar si se envió CodProspecto por GET
 if (window.location.search) {
     var params = new URLSearchParams(window.location.search);
-    console.log(params);
+    // console.log(params);
     var loader = document.querySelector('.loader');
     loader.style.display = 'block';
     if (params.has('CodProspecto')) {
@@ -2132,7 +2132,7 @@ $( document ).ready(function () {
             dataType: 'json',
             data:{'cod_localidad':'LC001','cod_prospecto':cod_prospecto},
             success: function(resultado){
-              console.log('servicio',resultado["response"]);
+              // console.log('servicio',resultado["response"]);
               resultado['response'].forEach(function(servicio){
                 var datos = {
                   "cod_prospecto":servicio["cod_prospecto"],
@@ -2261,7 +2261,7 @@ $( document ).ready(function () {
           //console.log(resultBenef['response']);
             var fila='';
             resultBenef['response'].forEach(function(word){
-              fecha = word['fch_nacimiento'].split("T");
+              fecha = word['fch_nacimiento'].split(" ");
               var fch1 = new Date(word['fch_nacimiento']);
               var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
 
@@ -2273,7 +2273,7 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+word['num_linea']+')"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+word['num_linea']+')"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+','+word['num_linea']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
 
               index++;
@@ -3115,7 +3115,7 @@ addBeneficiario.addEventListener("click",function (){
     
     eliminarBoton.addEventListener('click', function() {
       var filaIndex = this.id.replace('botonEliminar', ''); // Obtiene el índice de la fila desde el ID del botón
-      eliminarFila(filaIndex,'NO','');
+      eliminarFila(filaIndex,'NO','','');
     });
 
     var today = new Date();
@@ -3131,18 +3131,18 @@ addBeneficiario.addEventListener("click",function (){
       dsc_apellido_paterno: apellP.toUpperCase(),
       dsc_apellido_materno: apellM.toUpperCase(),
       dsc_nombres: nombre.toUpperCase(),
-      fch_nacimiento: fechNac,
+      fch_nacimiento: fch_nacimiento1,
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
       cod_parentesco: codParentesco
     };
     
     filasArray.push(filaData); // Agregar la fila al array
-   // console.log(filasArray);
+    // console.log(filasArray);
 
 });
 
-function eliminarFila(index,bd,dni) {
+function eliminarFila(index,bd,dni,num_linea) {
 
   if(document.getElementById("tituloEstado").innerHTML == 'CIERRE'){
     Swal.fire({
@@ -3153,23 +3153,35 @@ function eliminarFila(index,bd,dni) {
     })
     return;
   }else{
-    var tabla = document.getElementById('tablaBeneficiarios');
-    var tbody = tabla.getElementsByTagName('tbody')[0];
-    var fila = tbody.rows[index];
-    tbody.removeChild(fila);
-    filasArray.splice(index, 1); // Eliminar el valor del array en la posición index
-    //console.log(filasArray);
-    if(bd === 'SI'){
-      $.ajax({         
-        type: "DELETE",
-        url: '../api/EliminarProspectoBeneficiario', 
-        dataType: 'json',
-        data:{'cod_prospecto':cod_prospecto,'dsc_dpocumento':dni},
-        success: function(resultBenef){
-          console.log(resultBenef['response']);
+    Swal.fire({
+      title: 'Esta seguro que quiere ELIMINAR este beneficiario?',
+      icon: 'warning',
+      showDenyButton: true,
+      confirmButtonColor: '#6ea63b',
+      denyButtonColor: '#d33',
+      denyButtonText: 'Cancelar',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var tabla = document.getElementById('tablaBeneficiarios');
+        var tbody = tabla.getElementsByTagName('tbody')[0];
+        var fila = tbody.rows[index];
+        tbody.removeChild(fila);
+        filasArray.splice(index, 1); // Eliminar el valor del array en la posición index
+        //console.log(filasArray);
+        if(bd === 'SI'){
+          $.ajax({         
+            type: "DELETE",
+            url: '../api/EliminarProspectoBeneficiario', 
+            dataType: 'json',
+            data:{'cod_prospecto':cod_prospecto,'dsc_dpocumento':dni,'num_linea':num_linea},
+            success: function(resultBenef){
+              console.log(resultBenef['response']);
+            }
+          });
         }
-      });
-    }
+      }
+    })//then
   }
 }
 
@@ -3212,8 +3224,8 @@ function editarFilaBenef(index) {
 var actualizarBeneficiario = document.getElementById("btnUpdBeneficiario");
 actualizarBeneficiario.addEventListener("click", function () {
     // Obtén el índice de la fila que se está editando
-    var rowIndex = this.dataset.rowIndex;
-    console.log('rowIndex',rowIndex);
+    var rowIndex = this.dataset.rowIndex - 1;
+    // console.log('rowIndex',rowIndex);
   
     // Actualiza la fila en el arreglo `filasArray`
     filasArray[rowIndex] = {
@@ -3264,7 +3276,7 @@ var botonGuarda = document.getElementById("registrarVenta");
 botonGuarda.addEventListener("click",function(){
   telf1ProspValue = document.getElementById("telf1RegVta").value;
   var collapseOne = document.getElementById("collapseTitular");
-  console.log(document.getElementById("pais2doRegVta").value);
+  // console.log(document.getElementById("pais2doRegVta").value);
   if (document.getElementById("pais2doRegVta").value == '00001' && document.getElementById("numDoc2doRegVta").value != '') {
     if(document.getElementById("prov2doRegVta").value == '' || document.getElementById("prov2doRegVta").value == null){
       Swal.fire({
@@ -3576,6 +3588,7 @@ botonGuarda.addEventListener("click",function(){
           }
           filasArray.forEach(function (fila) {
             fila['cod_prospecto'] = cod_prospecto;
+            fila['fch_nacimiento'] = fecha4BDBenef(fila['fch_nacimiento']);
             
           });
           $.ajax({

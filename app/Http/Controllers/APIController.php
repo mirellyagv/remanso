@@ -377,7 +377,7 @@ class APIController extends Controller
     {
         $client = new Client();
         $cod_prospecto = $request['cod_prospecto'];
-        $num_linea = $request['num_linea'];
+        $num_linea = $request['dsc_dpocumento'];
 
         try {
 
