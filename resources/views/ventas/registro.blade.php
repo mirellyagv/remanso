@@ -3588,7 +3588,7 @@ botonGuarda.addEventListener("click",function(){
           }
           filasArray.forEach(function (fila) {
             fila['cod_prospecto'] = cod_prospecto;
-            fila['fch_nacimiento'] = fecha4BDBenef(fila['fch_nacimiento']);
+            fila['fch_nacimiento'] = fecha4BD(fila['fch_nacimiento']);
             
           });
           $.ajax({
