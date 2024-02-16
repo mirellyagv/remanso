@@ -321,8 +321,8 @@
 
 function fecha4BD (fecha){
   var fecha = fecha.split('/');
-  var day = (parseInt(fecha[0]) > 10) ? fecha[0] : '0' + fecha[0];
-  var month = (parseInt(fecha[1]) > 10) ? fecha[1] : '0' + fecha[1];
+  var day = (fecha[0] .length < 2) ? '0' + fecha[0] : fecha[0];
+  var month = (fecha[1] .length < 2) ? '0' + fecha[1] : fecha[1];
   var year = fecha[2];
   return year + "-" + month + "-" + day;
 }
