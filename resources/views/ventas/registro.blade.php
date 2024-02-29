@@ -778,6 +778,14 @@
                           <input type="text" class="form-control form-remanso align-right" name="imp_cuota" id="imp_cuota" disabled>
                         </div>
                         <div class="col-md-2 mb-3">
+                          <label for="inputText" class="col-form-label">Imp. separación: </label><br>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                          <input type="text" class="form-control form-remanso align-right" name="imp_separacion" id="imp_separacion" disabled>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Observaciones: </label>
                         </div>
                         <div class="col-md-10 mb-3">
@@ -2233,6 +2241,7 @@ $( document ).ready(function () {
             //document.getElementById("codCuotaFoma").value=result["response"]["cod_cuota_foma"];
             document.getElementById("numOpeRegVta").value=result["response"]["num_operacion"];
             document.getElementById("imp_cuota").value=result["response"]["imp_cuota"];
+            document.getElementById("imp_separacion").value= Number(result["response"]["imp_separacion"]).toFixed(2);
             var auxFecha = result["response"]["fch_1er_vencimiento"].split('T');
             document.getElementById("fch1erVcto").value=auxFecha[0];
             document.getElementById("obsvRegVentas").value = result["response"]["dsc_observaciones"];
@@ -3562,7 +3571,8 @@ botonGuarda.addEventListener("click",function(){
     'imp_cui': impCOUI,
     'imp_saldo_financiar': impSaldo,
     'imp_foma': foma,
-    'imp_cuota': cuota
+    'imp_cuota': cuota,
+    'imp_separacion': (document.getElementById("imp_separacion").value == '') ? 0 : document.getElementById("imp_separacion").value;
   };
 
   Swal.fire({

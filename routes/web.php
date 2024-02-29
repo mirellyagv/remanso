@@ -123,6 +123,8 @@ Route::get('lista/MuestraResultado', [ListaController::class, 'MuestraResultado'
 Route::get('lista/MuestraAgenciaFiltro', [ListaController::class, 'MuestraAgenciaFiltro'])->name('lista.MuestraAgenciaFiltro');
 Route::get('lista/ObtenerTelereporte', [ListaController::class, 'ObtenerTelereporte'])->name('lista.ObtenerTelereporte');
 Route::get('lista/ListarProspectoServicio', [ListaController::class, 'ListarProspectoServicio'])->name('lista.ListarProspectoServicio');
+Route::get('lista/ValidaEspacio', [ListaController::class, 'ValidaEspacio'])->name('lista.ValidaEspacio');
+
 
 //-------------------------MOSTRAR DATOS--------------------------------------------
 
