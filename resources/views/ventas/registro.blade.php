@@ -3586,6 +3586,7 @@ botonGuarda.addEventListener("click",function(){
     confirmButtonText: 'Aceptar'
   }).then((result) => {
     if (result.isConfirmed) {
+      loader.style.display = 'block';
       $.ajax({
         url: urlGrabar, 
         method: "PUT",
@@ -3691,19 +3692,22 @@ botonGuarda.addEventListener("click",function(){
             guardaDocumento('OtrosAdj',cod_prospecto,'Otro',15,accionDocumentos);
           }
 
-          Swal.fire({
-            title: 'Guardado',
-            text: cod_prospecto,
-            icon: 'success',
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#6ea63b',
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              window.location.href = "../prospectos/listado";
-            }  
-          })
-  
+          setTimeout(function() { 
+            loader.style.display = 'none';
+            Swal.fire({
+              title: 'Guardado',
+              text: cod_prospecto,
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#6ea63b',
+            }).then((result) => {
+              /* Read more about isConfirmed, isDenied below */
+              if (result.isConfirmed) {
+                window.location.href = "../prospectos/listado";
+              }  
+            })
+          }, 3500);
+
         },//success
         error(e){
             console.log(e.message);
