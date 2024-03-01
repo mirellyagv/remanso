@@ -3572,7 +3572,7 @@ botonGuarda.addEventListener("click",function(){
     'imp_saldo_financiar': impSaldo,
     'imp_foma': foma,
     'imp_cuota': cuota,
-    'imp_separacion': (document.getElementById("imp_separacion").value == '') ? 0 : document.getElementById("imp_separacion").value;
+    'imp_separacion': (document.getElementById("imp_separacion").value == '') ? 0 : document.getElementById("imp_separacion").value
   };
 
   Swal.fire({
