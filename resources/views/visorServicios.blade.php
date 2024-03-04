@@ -144,6 +144,7 @@ function muestraCalendario() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta) {
+            console.log(respuesta);
             respuesta['response'].forEach(muestra => {
                 var start = muestra['fch_servicio'];
                 var startDate = new Date(start);
@@ -187,7 +188,7 @@ function muestraCalendario() {
                 }
 
                 var evento;
-                if(muestra['dsc_prefijo'] == 'MIS' || muestra['dsc_prefijo'] == 'RES'){
+                if(muestra['dsc_prefijo'] == 'MIS' || muestra['dsc_prefijo'] == 'RES' || muestra['dsc_prefijo'] == 'REM'){
 
                     descripcion = '<table class="table tableVisor">'+
                     '<tr>'+
@@ -356,7 +357,7 @@ function muestraCalendario() {
                         start: start,
                         color: '#dc3545'
                     };
-                } else if (muestra['dsc_prefijo'] == 'MIS' || muestra['dsc_prefijo'] == 'RES' || muestra['dsc_prefijo'] == 'SFF') {
+                } else if (muestra['dsc_prefijo'] == 'MIS' || muestra['dsc_prefijo'] == 'RES' || muestra['dsc_prefijo'] == 'REM' || muestra['dsc_prefijo'] == 'SFF') {
                     evento = {
                         display:'list-item',
                         title: dscNombres,
