@@ -365,7 +365,7 @@ function muestraCalendario() {
                         start: start,
                         color: '#522d74'
                     };
-                }else if (muestra['dsc_prefijo'] == 'FLO') {
+                }else if (muestra['dsc_prefijo'] == 'FLO' || muestra['dsc_prefijo'] == 'ALQ') {
                     evento = {
                         display:'list-item',
                         title: muestra['dsc_beneficiario_lapida'],
