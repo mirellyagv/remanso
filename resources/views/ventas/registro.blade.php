@@ -3706,7 +3706,7 @@ botonGuarda.addEventListener("click",function(){
                 window.location.href = "../prospectos/listado";
               }  
             })
-          }, 3500);
+          }, 4000);
 
         },//success
         error(e){
