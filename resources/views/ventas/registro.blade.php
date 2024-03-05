@@ -3426,6 +3426,7 @@ botonGuarda.addEventListener("click",function(){
     var tipo_nec="";
     var botonTNec= document.getElementById("tipoNec");
     tipo_nec = (botonTNec.checked) ? "NI" : "NF";
+    var loader = document.querySelector('.loader');
 
     if(tipo_nec == 'NI' && document.getElementById("numDocAval").value != '' &&(document.getElementById("tipoDocAval").value == '' || document.getElementById("tipoDocAval").value == null)){
       Swal.fire({
