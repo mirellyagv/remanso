@@ -178,7 +178,7 @@ window.onload=function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){
-            $("#codCuotaServ").append('<option value="068" selected disabled>SELECCIONE...</option>');
+            $("#codCuotaServ").append('<option value="000" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
                 seleccion = '';
                 $("#codCuotaServ").append('<option value="'+ word['codvar'] +'" '+seleccion+' data ="'+ word['desvar2'] +'">'+ word['desvar1'] +'</option>'); 
