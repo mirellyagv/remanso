@@ -1043,7 +1043,7 @@ function muestraserviciosFormulario(datos) {
 
     var descuentoCelda = nuevaFilaServ.insertCell();
     var desCalculado = (valorPorc*parseFloat(datos['imp_precio']))/100;
-    descuentoCelda.textContent = desCalculado;
+    descuentoCelda.textContent = desCalculado.toFixed(2);
     descuentoCelda.setAttribute('style', 'border-right: 1px solid;');
 
     var dsctoLibreCelda = nuevaFilaServ.insertCell();
@@ -1068,7 +1068,7 @@ function muestraserviciosFormulario(datos) {
     //descuentoCelda.appendChild(nombreInput);
 
     var precioFinalCelda = nuevaFilaServ.insertCell();
-    precioFinalCelda.textContent = saldo;
+    precioFinalCelda.textContent = saldo.toFixed(2);
 
     var cuoIniCelda = nuevaFilaServ.insertCell();
     var cuoIniInput = document.createElement('input');
@@ -1088,7 +1088,7 @@ function muestraserviciosFormulario(datos) {
 
     
     var precioFinal1Celda = nuevaFilaServ.insertCell();
-    precioFinal1Celda.textContent = saldo-valorCUOI;
+    precioFinal1Celda.textContent = (saldo-valorCUOI).toFixed(2);
 
     var btnEliminarCelda = nuevaFilaServ.insertCell();
     var btnEliminarInput = document.createElement('button');
@@ -1164,7 +1164,7 @@ function muestraserviciosFormulario(datos) {
     
     cuoIniInput.addEventListener('input', function() {
         var nvoSaldo = saldo-cuoIniInput.value;
-        precioFinal1Celda.textContent = nvoSaldo;
+        precioFinal1Celda.textContent = nvoSaldo.toFixed(2);
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_cui'] = cuoIniInput.value;
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_saldo'] = nvoSaldo;
         recalcularSuma();
@@ -1196,8 +1196,8 @@ function muestraserviciosFormulario(datos) {
             saldo = (ctd*precio)-porc;
         }
 
-        precioFinalCelda.textContent = saldo;
-        descuentoCelda.textContent = porc;
+        precioFinalCelda.textContent = saldo.toFixed(2);
+        descuentoCelda.textContent = porc.toFixed(2);
        // document.getElementById("impDscto").value=Number(dscto-dsctoLibre).toFixed(2);
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_dscto'] = dscto-dsctoLibre;
         serviciosAgregados[(nuevaFilaServ.rowIndex)-1]['imp_cui'] = cuoIniInput.value;
@@ -1213,18 +1213,28 @@ function muestraserviciosFormulario(datos) {
     if(Number(saldo-cuoi) == 0){
         document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
         document.getElementById("codTasa").setAttribute('disabled','disabled');
-        // document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
-        document.getElementById("fch1erVcto").value = '';
+        document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
+        // document.getElementById("fch1erVcto").value = today;
+        var today = new Date();
         flatpickr("#fch1erVcto",{
             locale:"es",
             altInput: true,
             altFormat: "d/m/Y",
-            dateFormat: "Y-m-d"
+            dateFormat: "Y-m-d",
+            defaultDate:today
         });
     }else{
         document.getElementById("codCuotaServ").removeAttribute('disabled');
         document.getElementById("codTasa").removeAttribute('disabled');
         document.getElementById("fch1erVcto").removeAttribute('disabled');
+        flatpickr("#fch1erVcto",{
+            locale:"es",
+            altInput: true,
+            altFormat: "d/m/Y",
+            dateFormat: "Y-m-d",
+            defaultDate:fechaMasUnMes
+        });
+        document.getElementById("fch1erVcto").removeAttribute('readonly');
     }
 
     recalcularSuma();
@@ -1367,18 +1377,28 @@ campoCuoi.addEventListener("input",function(){
     if(saldo == 0){
         document.getElementById("codCuotaServ").setAttribute('disabled','disabled');
         document.getElementById("codTasa").setAttribute('disabled','disabled');
-        // document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
-        document.getElementById("fch1erVcto").value = '';
+        document.getElementById("fch1erVcto").setAttribute('disabled','disabled');
+        // document.getElementById("fch1erVcto").value = today;
+        var today = new Date();
         flatpickr("#fch1erVcto",{
             locale:"es",
             altInput: true,
             altFormat: "d/m/Y",
-            dateFormat: "Y-m-d"
+            dateFormat: "Y-m-d",
+            defaultDate:today
         });
     }else{
         document.getElementById("codCuotaServ").removeAttribute('disabled');
         document.getElementById("codTasa").removeAttribute('disabled');
         document.getElementById("fch1erVcto").removeAttribute('disabled');
+        flatpickr("#fch1erVcto",{
+            locale:"es",
+            altInput: true,
+            altFormat: "d/m/Y",
+            dateFormat: "Y-m-d",
+            defaultDate:fechaMasUnMes
+        });
+        document.getElementById("fch1erVcto").setAttribute('enabled','enabled');
     }
 });
 
