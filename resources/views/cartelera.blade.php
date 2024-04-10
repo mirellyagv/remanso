@@ -7,6 +7,7 @@
                 margin-right: 0;
                 margin-bottom: 0;
                 margin-top: 0;
+                margin-left: 0;
             }
             .cuerpo{
                 padding: 4rem;
@@ -81,7 +82,8 @@
                     <div class="derecha">
                         <img src="{{asset('images/logo.png')}}" style="width: 25%" alt="">
                     </div>
-                </div><hr>                                    
+                </div>
+                <hr style="margin-left: -7rem">                                    
                 <div class="row centro">
                     <div class=""><h1>{{$item['dsc_observacion']}}</h1></div>
                 </div>
