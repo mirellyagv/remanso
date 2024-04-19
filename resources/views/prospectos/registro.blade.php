@@ -434,7 +434,7 @@
                           <input type="text" class="form-control form-remanso" readonly value="" name="fchContacto" id="fchContacto">
                         </div>
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Calificación: </label>
+                          <label for="inputText" class="col-form-label">(*) Calificación: </label>
                         </div>
                         <div class="col-md-3 mb-3">
                           <select name="califContacto" id="califContacto" class="form-select form-remanso">

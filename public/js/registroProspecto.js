@@ -344,8 +344,8 @@ $( document ).ready(function() {
           dataType: 'json',
           success: function(respuesta){
               $("#califProsp").append('<option value="" selected disabled>SELECCIONE...</option>');
-              $("#califAddContacto").append('<option value="" selected disabled>SELECCIONE...</option>');
-              $("#califContacto").append('<option value="" selected disabled>SELECCIONE...</option>');
+              // $("#califAddContacto").append('<option value="" selected disabled>SELECCIONE...</option>');
+              // $("#califContacto").append('<option value="" selected disabled>SELECCIONE...</option>');
             respuesta['response'].forEach(function(word){
               seleccion = '';
               $("#califProsp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
@@ -550,6 +550,18 @@ var codCalif = '';
 var obsvContacto = '';
 var addContacto = document.getElementById("btnAddContacto");
 addContacto.addEventListener("click",function (){
+  if(document.getElementById("califAddContacto").value == '' || document.getElementById("califAddContacto").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'Debe elegir la Calificación del contacto.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("califAddContacto").focus;
+    boton.removeAttribute('disabled');
+    return;
+  }
+
   document.getElementById('btnUpdContacto').setAttribute('hidden','true');
   codCalif = document.getElementById("califAddContacto").value;
   var calificacion = document.getElementById("califAddContacto");

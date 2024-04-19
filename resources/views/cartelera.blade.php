@@ -24,10 +24,10 @@
                 text-align: right;
             }
             .lmediana{
-                font-size: 36px
+                font-size: 42px
             }
             .lgrande{
-                font-size: 45px
+                font-size: 58px
             }
         </style>
     </head>
@@ -38,7 +38,7 @@
         <div class="cuerpo"> 
             <div id="tumbas" class="container centro">
                 <div class="lgrande" ><b>{{$item['dsc_beneficiario']}}</b></div>
-                <br><br>
+                <br><br><br>
                 <div class="centro" style="padding-left: 7rem">
                     <table >
                         <tr>
@@ -80,13 +80,11 @@
                     </table>
                 <div>
                     <div class="derecha">
-                        <img src="{{asset('images/logo.png')}}" style="width: 25%" alt="">
+                        <img src="{{asset('images/logo.png')}}" style="width: 32.5%" alt="">
                     </div>
                 </div>
+                <br>
                 <hr style="margin-left: -7rem">                                    
-                <div class="row centro">
-                    <div class=""><h1>{{$item['dsc_observacion']}}</h1></div>
-                </div>
             </div>
         </div>
     </body>
