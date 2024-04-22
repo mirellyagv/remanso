@@ -42,6 +42,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
 Route::name('prospectos.')->prefix('/prospectos')->group(function(){
     Route::view('registro', 'prospectos.registro')->name('registro');
     Route::get('actualizar' ,[prospectoController::class,'editaProspecto'] , 'prospectos.actualizar')->name('actualizar');
+    Route::put('guardaActividad' ,[prospectoController::class,'guardaActividad'] , 'prospectos.guardaActividad')->name('guardaActividad');
     Route::view('listado', 'prospectos.listado')->name('listado');
     Route::view('actualizar', 'prospectos.actualizar')->name('actualizar');
 });

@@ -1419,7 +1419,7 @@ boton.addEventListener("click",function(){
     data:{'prospecto':prospecto},
     success: function(respuesta){
       var codProspecto = respuesta['response']['cod_prospecto'];
-      var fchContacto = document.getElementById("fch_contacto");
+      var fchContacto = document.getElementById("fchContacto");
       filasArrayBenef.forEach(function (fila) {
         fila['cod_prospecto'] = codProspecto;
       });
@@ -1440,13 +1440,30 @@ boton.addEventListener("click",function(){
         });
         promesas.push(promesa);
       }
+      var dscActividad = 'Contacto Inicial';
       if (obsvContacto != '') {
-        var promesa = $.ajax({
-          url: '../api/guardaObservacion',
+        dscActividad = obsvContacto;
+        // var promesa = $.ajax({
+        //   url: '../api/guardaObservacion',
+        //   method: "PUT",
+        //   crossDomain: true,
+        //   dataType: 'json',
+        //   data:{'cod_prospecto':codProspecto,'cod_calificacion': califContacto,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+        //   success: function(respuesta){
+        //     console.log(respuesta);
+        //   },//success
+        //   error(e){
+        //     console.log(e.message);
+        //   }//error
+        // });
+        // promesas.push(promesa);
+      }
+      var promesaA = $.ajax({
+          url: '../guardaActividad',
           method: "PUT",
           crossDomain: true,
           dataType: 'json',
-          data:{'cod_prospecto':codProspecto,'cod_calificacion': califContacto,'dsc_observacion':obsvContacto,'fch_contacto':fchContacto},
+          data:{'cod_prospecto':codProspecto,'dsc_detalle':obsvContacto,'fch_limite':fchContacto},
           success: function(respuesta){
             console.log(respuesta);
           },//success
@@ -1454,8 +1471,8 @@ boton.addEventListener("click",function(){
             console.log(e.message);
           }//error
         });
-        promesas.push(promesa);
-      }
+      promesas.push(promesaA);
+
       Promise.all(promesas)
       .then(function() {
         Swal.fire({
