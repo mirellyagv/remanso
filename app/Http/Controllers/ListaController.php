@@ -1097,4 +1097,34 @@ class ListaController extends Controller
         }
     }
 
+    public function ListarEspacioLaterales(Request $request)
+    {   
+        $client = new Client();
+        $as_camposanto = $request['cod_camposanto'];
+        $as_plataforma = $request['cod_plataforma'];
+        $as_area = $request['cod_area'];
+        $as_eje_h = $request['ejeX'];
+        $as_eje_v = $request['ejeY'];
+        $as_espacio = $request['espacio'];
+
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Espacio/ListarEspacioLaterales/20396900719/'.$as_camposanto.'/'.$as_plataforma.'/'.$as_area.'/'.$as_eje_h.'/'.$as_eje_v.'/'.$as_espacio);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

@@ -134,6 +134,12 @@
         <a href="{{route('visorServicios')}}">
           <span class="item-menu">Visor de servicios</span>
         </a>
+      </li><br>
+
+      <li class="nav-item">
+        <a href="{{route('visorUbicaciones')}}">
+          <span class="item-menu">Visor de ubicaciones</span>
+        </a>
       </li>
 
       <br>

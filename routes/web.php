@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 Route::view('/', 'index')->name('login');
 Route::view('home', 'home')->name('home');
 Route::view('visorServicios', 'visorServicios')->name('visorServicios');
+Route::view('visorUbicaciones', 'visorUbicaciones')->name('visorUbicaciones');
 Route::get('/adios', function (Request $request): RedirectResponse {
     Auth::logout();
  
@@ -87,6 +88,7 @@ Route::get('api/ListarProspectoDocumentos', [APIController::class, 'ListarProspe
 Route::get('lista/ListarUsoServicio', [ListaController::class, 'ListarUsoServicio'])->name('lista.ListarUsoServicio');
 Route::get('lista/ListarUsoServicioExcel', [ListaController::class, 'ListarUsoServicioExcel'])->name('lista.ListarUsoServicioExcel');
 Route::get('lista/ListarUsoServicioCartelera', [ListaController::class, 'ListarUsoServicioCartelera'])->name('lista.ListarUsoServicioCartelera');
+Route::get('lista/ListarEspacioLaterales', [ListaController::class, 'ListarEspacioLaterales'])->name('lista.ListarEspacioLaterales');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');
