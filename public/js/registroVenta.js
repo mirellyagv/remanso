@@ -797,6 +797,7 @@ codEspacio.addEventListener("change",function(){
     ejeY = document.getElementById("ejeY").value;
     espacio = document.getElementById("espacio").value;
     tipoEspacio = document.getElementById("tipoEspacio").value;
+    var codConsejero = document.getElementById("codConsejeroVend").value;
 
      //----------valida si esta separado por otro vendedor----------
     // if (cod_prospecto == ''){
@@ -805,7 +806,7 @@ codEspacio.addEventListener("change",function(){
             method: "GET",
             crossDomain: true,
             dataType: 'json',
-            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY,'espacio':espacio,'tipo':tipoEspacio},
+            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY,'espacio':espacio,'tipo':tipoEspacio,'cod_trabajador': codConsejero},
             success: function(respuesta){ 
      
                 if(respuesta['response']['flg_acceso'] == 'SI' || (respuesta['response']['flg_acceso'] == 'NO' && (flg_supervisor == 'SI' || flg_jefe == 'SI' || flg_firmante == 'SI' || flg_administrador == 'SI'))){

@@ -735,6 +735,7 @@
                           <input type="hidden" name="ctdServ" id="ctdServ">
                           <input type="hidden" name="tieneDS" id="tieneDS" value='NO'>
                           <input type="hidden" name="esCompartido" id="esCompartido" value = 'NO'>
+                          <input type="hidden" name="codConsejeroVend" id="codConsejeroVend">
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
@@ -1907,6 +1908,7 @@ $( document ).ready(function () {
           //console.log(result);
           cod_estado=result["response"]["cod_estado"];
           dsc_estado = result["response"]["dsc_estado"];
+          document.getElementById("codConsejeroVend").value = result["response"]["cod_consejero"];
           document.getElementById("tituloEstado").innerHTML = dsc_estado;
           var changeEvent = new Event('change');   // Crea un evento "change"
           cod_prospecto=result["response"]["cod_prospecto"];
