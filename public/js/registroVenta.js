@@ -799,28 +799,16 @@ codEspacio.addEventListener("change",function(){
     tipoEspacio = document.getElementById("tipoEspacio").value;
 
      //----------valida si esta separado por otro vendedor----------
-    if (cod_prospecto == ''){
+    // if (cod_prospecto == ''){
         $.ajax({
             url: '../lista/ValidaEspacio', 
             method: "GET",
             crossDomain: true,
             dataType: 'json',
             data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY,'espacio':espacio,'tipo':tipoEspacio},
-            success: function(respuesta){
-                console.log(respuesta);
-                validaSepa = 'NO';
-                if(respuesta['response']['flg_acceso'] == 'NO'){
-                    validaSepa = 'NO';
-                    document.getElementById("espacio").value = '';
-                    document.getElementById("registrarVenta").setAttribute('disabled','disabled')
-                    document.getElementById("imp_separacion").value = Number(respuesta['response']['imp_valor']).toFixed(2);
-                    Swal.fire({
-                        title:'Error!',
-                        text:'El espacio está bloqueado por otro consejero. Por favor elija otro espacio',
-                        icon:'warning',
-                        confirmButtonColor: '#6ea63b',
-                    })
-                }else if(respuesta['response']['flg_acceso'] == 'SI'){
+            success: function(respuesta){ 
+     
+                if(respuesta['response']['flg_acceso'] == 'SI' || (respuesta['response']['flg_acceso'] == 'NO' && (flg_supervisor == 'SI' || flg_jefe == 'SI' || flg_firmante == 'SI' || flg_administrador == 'SI'))){
                     validaSepa = 'SI';
                     document.getElementById("registrarVenta").removeAttribute('disabled');
                     document.getElementById("imp_separacion").value = Number(respuesta['response']['imp_valor']).toFixed(2);
@@ -843,6 +831,17 @@ codEspacio.addEventListener("change",function(){
                         }//error
                     });
                     
+                }else if(respuesta['response']['flg_acceso'] == 'NO' && (flg_supervisor == 'NO' || flg_jefe == 'NO' || flg_firmante == 'NO' || flg_administrador == 'NO')){
+                    validaSepa = 'NO';
+                    document.getElementById("espacio").value = '';
+                    document.getElementById("registrarVenta").setAttribute('disabled','disabled')
+                    document.getElementById("imp_separacion").value = Number(respuesta['response']['imp_valor']).toFixed(2);
+                    Swal.fire({
+                        title:'Error!',
+                        text:'El espacio está bloqueado por otro consejero. Por favor elija otro espacio',
+                        icon:'warning',
+                        confirmButtonColor: '#6ea63b',
+                    })
                 }else{
                     validaSepa = 'NO';
                     document.getElementById("registrarVenta").setAttribute('disabled','disabled')
@@ -860,25 +859,25 @@ codEspacio.addEventListener("change",function(){
                 console.log(e.message);
             }//error
         });
-    }else{
-        $.ajax({
-            url: '../lista/MuestraNivel', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY,'espacio':espacio},
-            success: function(respuesta){
-                $("#nivelRegVnta").append('<option value="" selected disabled>SELECCIONE...</option>');
-                respuesta['response'].forEach(function(word){
-                    seleccion = '';
-                    $("#nivelRegVnta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
-                });
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
-    }
+    // }else{
+    //     $.ajax({
+    //         url: '../lista/MuestraNivel', 
+    //         method: "GET",
+    //         crossDomain: true,
+    //         dataType: 'json',
+    //         data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY,'espacio':espacio},
+    //         success: function(respuesta){
+    //             $("#nivelRegVnta").append('<option value="" selected disabled>SELECCIONE...</option>');
+    //             respuesta['response'].forEach(function(word){
+    //                 seleccion = '';
+    //                 $("#nivelRegVnta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+    //             });
+    //         },//success
+    //         error(e){
+    //             console.log(e.message);
+    //         }//error
+    //     });
+    // }
 });
 
 //-----------------muestra select Subtipo servicio-----------

@@ -1862,6 +1862,12 @@ if (window.location.search) {
     }
 }
 
+var flg_supervisor ='@php echo(session('flg_supervisor')) @endphp';
+var flg_jefe ='@php echo(session('flg_jefe')) @endphp';
+var flg_ni ='@php echo(session('flg_ni')) @endphp';
+var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
+var flg_administrador ='@php echo(session('flg_administrador')) @endphp';
+
 var cod_estado='';
 var dsc_estado = '';
 
@@ -1872,12 +1878,6 @@ $( document ).ready(function () {
   var lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDay());
  // Formatear las fechas como cadenas en formato "YYYY-MM-DD"
   var lastDayOfMonthStr = lastDayOfMonth.toISOString().split('T')[0];
-
-  var flg_supervisor ='@php echo(session('flg_supervisor')) @endphp';
-  var flg_jefe ='@php echo(session('flg_jefe')) @endphp';
-  var flg_ni ='@php echo(session('flg_ni')) @endphp';
-  var flg_firmante ='@php echo(session('flg_firmante')) @endphp';
-  var flg_administrador ='@php echo(session('flg_administrador')) @endphp';
 
   if(flg_ni == 'SI'){ 
       document.getElementById("tipoNec").bootstrapToggle('on'); 
