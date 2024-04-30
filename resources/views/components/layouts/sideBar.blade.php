@@ -136,11 +136,11 @@
         </a>
       </li><br>
 
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a href="{{route('visorUbicaciones')}}">
           <span class="item-menu">Visor de ubicaciones</span>
         </a>
-      </li>
+      </li> --}}
 
       <br>
       <li class="nav-item">
