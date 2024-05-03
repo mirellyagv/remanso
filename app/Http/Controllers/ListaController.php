@@ -1068,7 +1068,7 @@ class ListaController extends Controller
     public function ValidaEspacio(Request $request)
     {   
         $client = new Client();
-        $cod_trabajador = $request['cod_trabajador'];
+        $cod_trabajador = (!$request['cod_trabajador']) ? session('cod_trabajador') : $request['cod_trabajador'];
         $as_camposanto = $request['cod_camposanto'];
         $as_plataforma = $request['cod_plataforma'];
         $as_area = $request['cod_area'];
