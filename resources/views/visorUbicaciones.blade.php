@@ -416,7 +416,7 @@ window.onload=function() {
         ejeY = document.getElementById("ejeY").value;
 
         $.ajax({
-            url: 'lista/MuestraEspacio', 
+            url: 'lista/MuestraEspacio02', 
             method: "GET",
             crossDomain: true,
             dataType: 'json',

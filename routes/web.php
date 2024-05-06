@@ -111,6 +111,7 @@ Route::get('lista/MuestraArea', [ListaController::class, 'MuestraArea'])->name('
 Route::get('lista/MuestraEjeX', [ListaController::class, 'MuestraEjeX'])->name('lista.MuestraEjeX');
 Route::get('lista/MuestraEjeY', [ListaController::class, 'MuestraEjeY'])->name('lista.MuestraEjeY');
 Route::get('lista/MuestraEspacio', [ListaController::class, 'MuestraEspacio'])->name('lista.MuestraEspacio');
+Route::get('lista/MuestraEspacio02', [ListaController::class, 'MuestraEspacio02'])->name('lista.MuestraEspacio02');
 Route::get('lista/MuestraTipoEspacio', [ListaController::class, 'MuestraTipoEspacio'])->name('lista.MuestraTipoEspacio');
 Route::get('lista/MuestraNivel', [ListaController::class, 'MuestraNivel'])->name('lista.MuestraNivel');
 Route::get('lista/MuestraServicio', [ListaController::class, 'MuestraServicio'])->name('lista.MuestraServicio');
