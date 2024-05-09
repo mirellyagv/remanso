@@ -455,6 +455,7 @@ function BuscarProspecto() {
         var fch_registro1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
         var dscObservado = '';
         var estado = word['dsc_estado'];
+        var info='';
         estado1 = "'"+estado+"'";
         color = '';
         if(estado == 'ACTIVO'){
