@@ -1458,8 +1458,8 @@ boton.addEventListener("click",function(){
         // });
         // promesas.push(promesa);
       }
-      var promesaA = $.ajax({
-          url: '../guardaActividad',
+      var promesa = $.ajax({
+          url: '{{route('prospectos.guardaActividad')}}',
           method: "PUT",
           crossDomain: true,
           dataType: 'json',
@@ -1471,7 +1471,7 @@ boton.addEventListener("click",function(){
             console.log(e.message);
           }//error
         });
-      promesas.push(promesaA);
+      promesas.push(promesa);
 
       Promise.all(promesas)
       .then(function() {
