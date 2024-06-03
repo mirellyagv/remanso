@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Carbon\Carbon; 
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -859,6 +860,59 @@ class APIController extends Controller
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function guardaActividad(Request $request)
+    {
+        $client = new Client();
+        Carbon::setLocale('en');
+        $fechActual = Carbon::now();
+        // $fecha = $fechActual->format('Y-m-d');
+        $detalle = ($request->input('dsc_detalle') != null) ? $request->input('dsc_detalle') : 'Ingresado desde AC';
+        $fechaLimite = $request->input('fch_limite');
+        // Obtén los datos del formulario utilizando el objeto Request
+        $data = [
+            'cod_usuario' => session('cod_usuario'),
+            'cod_trabajador' => session('cod_trabajador'),
+            'cod_prospecto' => $request->input('cod_prospecto'),
+            'cod_actividad' => '00001',
+            'flg_actividad' => 'NO',
+            'flg_reprogramar' => 'NO',
+            'fecha_limite' =>  $fechaLimite,
+            'dsc_detalle' => $detalle,
+            'ai_cantidad' => 0,
+            'usuario' => session('cod_usuario'),
+            'fecha' => $fechaLimite,
+            'ai_horario' => 0
+        ];
+        $data = json_encode($data); 
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcrm.azurewebsites.net/api/Prospecto/InsertarActividadProspecto/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            
+            $promise->wait();
+            //$codProspecto = APIController::obtenerUltimoProspecto();
+            //return $codProspecto;
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+        // return $data;
+        // Realiza la solicitud PUT al servicio web
+        // $response = Http::put("https://webapiportalcrm.azurewebsites.net/api/Prospecto/InsertarActividadProspecto/20396900719", $data);
+
+        // echo $response;
+
     }
 
 }

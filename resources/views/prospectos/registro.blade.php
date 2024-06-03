@@ -637,7 +637,7 @@ flatpickr("#fchContacto",{
   locale:"es",
   altInput: true,
   altFormat: "d/m/Y",
-  dateFormat: "Y-m-d",
+  // dateFormat: "Y-m-d",
   defaultDate: "today"
 });
 
@@ -1419,7 +1419,13 @@ boton.addEventListener("click",function(){
     data:{'prospecto':prospecto},
     success: function(respuesta){
       var codProspecto = respuesta['response']['cod_prospecto'];
-      var fchContacto = document.getElementById("fchContacto");
+      var fchContacto = document.getElementById("fchContacto").value;
+      var fecha = fchContacto.split('-');
+      var day = (fecha[0].length < 2) ? '0' + fecha[1] : fecha[1];
+      var month = (fecha[1].length < 2) ? '0' + fecha[0] : fecha[0];
+      var year = fecha[2];
+      fchContacto = year + "-" + month + "-" + day;
+      // console.log(fchContacto);
       filasArrayBenef.forEach(function (fila) {
         fila['cod_prospecto'] = codProspecto;
       });
@@ -1459,7 +1465,7 @@ boton.addEventListener("click",function(){
         // promesas.push(promesa);
       }
       var promesa = $.ajax({
-          url: '{{route('prospectos.guardaActividad')}}',
+          url: '../api/guardaActividad',
           method: "PUT",
           crossDomain: true,
           dataType: 'json',

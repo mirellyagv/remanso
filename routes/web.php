@@ -43,7 +43,6 @@ Route::get('/adios', function (Request $request): RedirectResponse {
 Route::name('prospectos.')->prefix('/prospectos')->group(function(){
     Route::view('registro', 'prospectos.registro')->name('registro');
     Route::get('actualizar' ,[prospectoController::class,'editaProspecto'] , 'prospectos.actualizar')->name('actualizar');
-    Route::put('guardaActividad' ,[prospectoController::class,'guardaActividad'] , 'prospectos.guardaActividad')->name('guardaActividad');
     Route::view('listado', 'prospectos.listado')->name('listado');
     Route::view('actualizar', 'prospectos.actualizar')->name('actualizar');
 });
@@ -89,6 +88,7 @@ Route::get('lista/ListarUsoServicio', [ListaController::class, 'ListarUsoServici
 Route::get('lista/ListarUsoServicioExcel', [ListaController::class, 'ListarUsoServicioExcel'])->name('lista.ListarUsoServicioExcel');
 Route::get('lista/ListarUsoServicioCartelera', [ListaController::class, 'ListarUsoServicioCartelera'])->name('lista.ListarUsoServicioCartelera');
 Route::get('lista/ListarEspacioLaterales', [ListaController::class, 'ListarEspacioLaterales'])->name('lista.ListarEspacioLaterales');
+Route::put('api/guardaActividad' ,[APIController::class,'guardaActividad'] , 'api.guardaActividad')->name('guardaActividad');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');
