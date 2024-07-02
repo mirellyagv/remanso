@@ -1020,7 +1020,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-dismiss="modal">Aceptar</button>
+          <button type="button" id="agregaBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" >Aceptar</button>
           <button type="button" id="btnUpdBeneficiario" class="btn btn-primary BtnAzulORemanso form-remanso" data-bs-dismiss="modal" hidden>Modificar</button>
         </div>
       </div>
@@ -3049,18 +3049,117 @@ var addBeneficiario = document.getElementById("agregaBeneficiario");
 addBeneficiario.addEventListener("click",function (){
   
   var codtipoDoc = document.getElementById("tipoDocAddBenef").value;
+  if(document.getElementById("tipoDocAddBenef").value == '' || document.getElementById("tipoDocAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El tipo de documento del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("tipoDocAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var doc = document.getElementById("tipoDocAddBenef");
   var tipoDoc = doc.options[doc.selectedIndex].text;
   var dscDoc = document.getElementById("numDocAddBenef").value;
+  if(document.getElementById("numDocAddBenef").value == '' || document.getElementById("numDocAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El número de documento del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("numDocAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var nombre = document.getElementById("nombresAddBenef").value;
+  if(document.getElementById("nombresAddBenef").value == '' || document.getElementById("nombresAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El nombre del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("nombresAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var apellP = document.getElementById("apellPAddBenef").value;
+  if(document.getElementById("apellPAddBenef").value == '' || document.getElementById("apellPAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El apellido paterno del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("apellPAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var apellM = document.getElementById("apellMAddBenef").value;
+  if(document.getElementById("apellMAddBenef").value == '' || document.getElementById("apellMAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El apellido materno del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("apellMAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var fechNac = document.getElementById("fchNacAddBenef").value;
+  if(document.getElementById("fchNacAddBenef").value == '' || document.getElementById("fchNacAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'La fecha de nacimiento del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("fchNacAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var parent = document.getElementById("parentescoAddBenef");
   var parentesco = parent.options[parent.selectedIndex].text;
   var codParentesco = document.getElementById("parentescoAddBenef").value;
+  if(document.getElementById("parentescoAddBenef").value == '' || document.getElementById("parentescoAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El parentesco del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("parentescoAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var sexo = document.getElementById("sexoAddBenef").value;
+  if(document.getElementById("sexoAddBenef").value == '' || document.getElementById("sexoAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El sexo del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("sexoAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var civil = document.getElementById("edoCivilAddBenef");
+  if(document.getElementById("edoCivilAddBenef").value == '' || document.getElementById("edoCivilAddBenef").value == null){
+    Swal.fire({
+      title:'Error!',
+      text:'El estado civil del beneficiario debe estar completo.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("edoCivilAddBenef").focus;
+    addBeneficiario.removeAttribute('disabled');
+    return;
+  }
   var edoCivil = civil.options[civil.selectedIndex].text;
   var codEdoCivil = document.getElementById("edoCivilAddBenef").value;
 
@@ -3151,6 +3250,8 @@ addBeneficiario.addEventListener("click",function (){
     filasArray.push(filaData); // Agregar la fila al array
     // console.log(filasArray);
 
+    $('#ModalBeneficiarios').modal('hide');
+
 });
 
 function eliminarFila(index,bd,dni,num_linea) {
@@ -3210,6 +3311,7 @@ function editarFilaBenef(index) {
     $('#ModalBeneficiarios').modal('show');
     // Obtén la fila existente que deseas editar
     var fila = filasArray[index-1];
+    console.log(fila);
     
     // Llena el formulario en el modal con los datos de la fila
     document.getElementById("tipoDocAddBenef").value = fila.cod_tipo_documento;
@@ -3259,7 +3361,8 @@ actualizarBeneficiario.addEventListener("click", function () {
     var fila = tabla.rows[rowIndex];
     fila.cells[0].textContent = document.getElementById("tipoDocAddBenef").options[document.getElementById("tipoDocAddBenef").selectedIndex].text + "-" + document.getElementById("numDocAddBenef").value;
     fila.cells[1].textContent = document.getElementById("nombresAddBenef").value.toUpperCase() + " " + document.getElementById("apellPAddBenef").value.toUpperCase() + " " + document.getElementById("apellMAddBenef").value.toUpperCase();
-    fila.cells[2].textContent = new Date(document.getElementById("fchNacAddBenef").value).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/ /g, "-");
+    // fila.cells[2].textContent = new Date(document.getElementById("fchNacAddBenef").value).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/ /g, "-");
+    fila.cells[2].textContent = fecha4vista(document.getElementById("fchNacAddBenef").value);
     fila.cells[3].textContent = document.getElementById("parentescoAddBenef").options[document.getElementById("parentescoAddBenef").selectedIndex].text;
     fila.cells[4].textContent = document.getElementById("sexoAddBenef").value;
     fila.cells[5].textContent = document.getElementById("edoCivilAddBenef").options[document.getElementById("edoCivilAddBenef").selectedIndex].text;

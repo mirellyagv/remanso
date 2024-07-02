@@ -336,7 +336,7 @@ $(document).ready(function () {
       $('#listaProsp').DataTable({
             paging: true,
             language: {
-                url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                url: '{{asset('js/datatableSpanish.json')}}'
             },
             dom: 'rtip',
             processing: true,
