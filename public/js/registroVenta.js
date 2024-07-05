@@ -1015,7 +1015,9 @@ function muestraserviciosFormulario(datos) {
     cantInput.setAttribute('style', 'width: 3em;');
     cantInput.type = 'number';
     cantInput.setAttribute('min', '1');
-    cantInput.setAttribute('disabled','disabled');
+    if(flgAdicional != 'SI'){
+        cantInput.setAttribute('disabled','disabled');
+    }
     var valorCant = (datos['num_ctd']) ? datos['num_ctd'] : 1;
     cantInput.value = valorCant;
 
