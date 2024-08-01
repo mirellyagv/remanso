@@ -2125,6 +2125,9 @@ $( document ).ready(function () {
                       espacio.value=result["response"]["cod_espacio"];
                       espacio.dispatchEvent(changeEvent);
                       setTimeout(function() { 
+                        if(result["response"]["num_nivel"] != '' || result["response"]["num_nivel"] != null){
+                          nivel.removeAttribute('disabled');
+                        }
                         nivel.value=result["response"]["num_nivel"];
                         botonGraba.removeAttribute('disabled');
                         ModoVista();
@@ -3241,7 +3244,7 @@ addBeneficiario.addEventListener("click",function (){
       dsc_apellido_paterno: apellP.toUpperCase(),
       dsc_apellido_materno: apellM.toUpperCase(),
       dsc_nombres: nombre.toUpperCase(),
-      fch_nacimiento: fch_nacimiento1,
+      fch_nacimiento: fecha4BD(fch_nacimiento1),
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
       cod_parentesco: codParentesco
