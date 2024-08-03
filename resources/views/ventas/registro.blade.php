@@ -3244,7 +3244,7 @@ addBeneficiario.addEventListener("click",function (){
       dsc_apellido_paterno: apellP.toUpperCase(),
       dsc_apellido_materno: apellM.toUpperCase(),
       dsc_nombres: nombre.toUpperCase(),
-      fch_nacimiento: fecha4BD(fch_nacimiento1),
+      fch_nacimiento: fechNac,
       cod_estado_civil: codEdoCivil,
       cod_sexo: sexo,
       cod_parentesco: codParentesco
@@ -3708,7 +3708,6 @@ botonGuarda.addEventListener("click",function(){
           }
           filasArray.forEach(function (fila) {
             fila['cod_prospecto'] = cod_prospecto;
-            fila['fch_nacimiento'] = fecha4BD(fila['fch_nacimiento']);
             
           });
           $.ajax({
