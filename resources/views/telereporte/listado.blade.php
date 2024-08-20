@@ -455,7 +455,7 @@ function descargarTablaExcel() {
       // console.log(respuesta['response'].length);
       if (respuesta['response'].length > 0) {
         data = [];
-        var header = ['N°','FECHA','CANAL DE VENTA','BENEFICIARIO','AGENCIA','RESULTADO','EJECUTIVO'];
+        var header = ['N°','FECHA','CANAL DE VENTA','BENEFICIARIO','AGENCIA','RESULTADO','EJECUTIVO','DIRECCION'];
         respuesta['response'].forEach(element => {
 
           var fch1 = new Date(element['fch_registro']);
@@ -467,7 +467,8 @@ function descargarTablaExcel() {
             element['dsc_nombres']+' '+element['dsc_apellido_paterno']+' '+element['dsc_apellido_materno'],
             element['dsc_agencia'],
             element['dsc_resultado'],
-            element['dsc_vendedor']    
+            element['dsc_vendedor'],
+            element['dsc_direccion_c']    
           ]
           data.push(filaData);
         });
