@@ -1421,8 +1421,8 @@ boton.addEventListener("click",function(){
       var codProspecto = respuesta['response']['cod_prospecto'];
       var fchContacto = document.getElementById("fchContacto").value;
       var fecha = fchContacto.split('-');
-      var day = (fecha[0].length < 2) ? '0' + fecha[1] : fecha[1];
-      var month = (fecha[1].length < 2) ? '0' + fecha[0] : fecha[0];
+      var month = (fecha[0].length < 2) ? '0' + fecha[1] : fecha[1];
+      var day = (fecha[1].length < 2) ? '0' + fecha[0] : fecha[0];
       var year = fecha[2];
       fchContacto = year + "-" + month + "-" + day;
       // console.log(fchContacto);
