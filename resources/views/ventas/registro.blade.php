@@ -477,10 +477,10 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3 mb-3">
-                          <label for="inputText" class="col-form-label">Correo:</label>
+                          <label for="inputText" class="col-form-label">(*) Correo:</label>
                         </div>
                         <div class="col-md-9 mb-3">
-                          <input type="text" class="form-control form-remanso" name="correoAval" id="correoAval">
+                          <input type="text" class="form-control form-remanso" name="correoAval" id="correoAval" required>
                         </div>
                       </div>
                       <div class="row">
@@ -2274,12 +2274,12 @@ $( document ).ready(function () {
         success: function(resultBenef){
           //console.log(resultBenef['response']);
             var fila='';
+            index = 0;
             resultBenef['response'].forEach(function(word){
               fecha = word['fch_nacimiento'].split(" ");
               var fch1 = new Date(word['fch_nacimiento']);
               var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
 
-              index = 0;
               fila += '<tr>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
@@ -2287,7 +2287,7 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+word['num_linea']+')"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+','+word['num_linea']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+word['num_linea']+',´'+fch1+'´)"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+','+word['num_linea']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
 
               index++;
@@ -3223,7 +3223,7 @@ addBeneficiario.addEventListener("click",function (){
 
     editarBoton.addEventListener('click', function() {
       var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
-      editarFilaBenef(filaIndex);
+      editarFilaBenef(filaIndex,"'"+fch1+"'");
     });
     
     eliminarBoton.addEventListener('click', function() {
@@ -3301,7 +3301,7 @@ function eliminarFila(index,bd,dni,num_linea) {
 }
 
 //------------------------edita beneficiario----------------------
-function editarFilaBenef(index) {
+function editarFilaBenef(index,fchNac) {
   if(document.getElementById("tituloEstado").innerHTML == 'CIERRE'){
     Swal.fire({
       title:'Error!',
@@ -3322,7 +3322,13 @@ function editarFilaBenef(index) {
     document.getElementById("nombresAddBenef").value = fila.dsc_nombres;
     document.getElementById("apellPAddBenef").value = fila.dsc_apellido_paterno;
     document.getElementById("apellMAddBenef").value = fila.dsc_apellido_materno;
-    document.getElementById("fchNacAddBenef").value = fila.fch_nacimiento;
+    document.getElementById("fchNacAddBenef").value = fila.fchNac;
+    flatpickr("#fchNacAddBenef",{
+              locale:"es",
+              altInput: true,
+              altFormat: "d/m/Y",
+              dateFormat: "Y-m-d"
+            });
     document.getElementById("parentescoAddBenef").value = fila.cod_parentesco;
     document.getElementById("sexoAddBenef").value = fila.cod_sexo;
     document.getElementById("edoCivilAddBenef").value = fila.cod_estado_civil;
