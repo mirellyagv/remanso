@@ -2287,7 +2287,7 @@ $( document ).ready(function () {
                 '<td>'+word['dsc_parentesco']+'</td>'+
                 '<td>'+word['cod_sexo']+'</td>'+
                 '<td>'+word['dsc_estado_civil']+'</td>'+
-                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+word['num_linea']+',´'+fch1+'´)"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+','+word['num_linea']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
+                '<td><div class="acciones"><button type="button" class="btn btn-success BtnverdeRemanso form-remanso" id="botonEditar'+index+'" onClick="editarFilaBenef('+word['num_linea']+')"><span class="bi bi-pencil"></span></button><button class="btn btn-danger form-remanso" type="button" onClick="eliminarFila('+index+','+"'SI'"+','+word['dsc_documento']+','+word['num_linea']+');" id="botonEliminar'+index+'"><span class="bi bi-x-lg"></span></button></div></td>'+
               '</tr>';
 
               index++;
@@ -3223,7 +3223,7 @@ addBeneficiario.addEventListener("click",function (){
 
     editarBoton.addEventListener('click', function() {
       var filaIndex = this.id.replace('botonEditar', ''); // Obtiene el índice de la fila desde el ID del botón
-      editarFilaBenef(filaIndex,"'"+fch1+"'");
+      editarFilaBenef(filaIndex);
     });
     
     eliminarBoton.addEventListener('click', function() {
@@ -3301,7 +3301,7 @@ function eliminarFila(index,bd,dni,num_linea) {
 }
 
 //------------------------edita beneficiario----------------------
-function editarFilaBenef(index,fchNac) {
+function editarFilaBenef(index) {
   if(document.getElementById("tituloEstado").innerHTML == 'CIERRE'){
     Swal.fire({
       title:'Error!',
@@ -3322,7 +3322,7 @@ function editarFilaBenef(index,fchNac) {
     document.getElementById("nombresAddBenef").value = fila.dsc_nombres;
     document.getElementById("apellPAddBenef").value = fila.dsc_apellido_paterno;
     document.getElementById("apellMAddBenef").value = fila.dsc_apellido_materno;
-    document.getElementById("fchNacAddBenef").value = fila.fchNac;
+    document.getElementById("fchNacAddBenef").value = fila.fch_nacimiento;
     flatpickr("#fchNacAddBenef",{
               locale:"es",
               altInput: true,
