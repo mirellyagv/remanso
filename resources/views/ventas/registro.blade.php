@@ -2055,6 +2055,8 @@ $( document ).ready(function () {
 
           document.getElementById("numDocAval").value=result["response"]["dsc_documento_aval"];
 
+          var changeEvent = new Event('change');
+
           var paisAval=document.getElementById("paisAval") ;
           paisAval.value=result["response"]["cod_pais_aval"];
           paisAval.dispatchEvent(changeEvent); 
@@ -2278,8 +2280,7 @@ $( document ).ready(function () {
             resultBenef['response'].forEach(function(word){
               fecha = word['fch_nacimiento'].split(" ");
               var fch1 = new Date(word['fch_nacimiento']);
-              var fch_nacimiento1 = fch1.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
-
+              var fch_nacimiento1 = fch1.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
               fila += '<tr>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
@@ -3179,7 +3180,7 @@ addBeneficiario.addEventListener("click",function (){
 
     var fchNacCelda = nuevaFila.insertCell();
     var fch1 = fecha4vista(fechNac);//new Date(fechNac);
-    var fch_nacimiento1 = fch1;//.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+    var fch_nacimiento1 = fch1;//.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
 
     fchNacCelda.textContent = fch_nacimiento1;
 
@@ -3322,13 +3323,32 @@ function editarFilaBenef(index) {
     document.getElementById("nombresAddBenef").value = fila.dsc_nombres;
     document.getElementById("apellPAddBenef").value = fila.dsc_apellido_paterno;
     document.getElementById("apellMAddBenef").value = fila.dsc_apellido_materno;
-    document.getElementById("fchNacAddBenef").value = fila.fch_nacimiento;
-    flatpickr("#fchNacAddBenef",{
+    let fecha = fila.fch_nacimiento;
+    fechaArray = '';
+    if (fecha.includes('-')) {
+      let partes = fecha.split('-');
+      let fechaFormateada = `${partes[0]}-${partes[1].padStart(2, '0')}-${partes[2].padStart(2, '0')}`;
+      flatpickr("#fchNacAddBenef",{
               locale:"es",
               altInput: true,
               altFormat: "d/m/Y",
-              dateFormat: "Y-m-d"
-            });
+              dateFormat: "Y-m-d",
+              defaultDate: fechaFormateada
+      });
+      fechaArray = fecha4vista(fecha);
+    } else if (fecha.includes('/')) {
+      let partes = fecha.split('/');
+      let fechaFormateada = `${partes[2]}-${partes[1].padStart(2, '0')}-${partes[0].padStart(2, '0')}`;
+      flatpickr("#fchNacAddBenef",{
+              locale:"es",
+              altInput: true,
+              altFormat: "d/m/Y",
+              dateFormat: "Y-m-d",
+              defaultDate: fechaFormateada
+        });
+      fechaArray = fecha;
+    }
+
     document.getElementById("parentescoAddBenef").value = fila.cod_parentesco;
     document.getElementById("sexoAddBenef").value = fila.cod_sexo;
     document.getElementById("edoCivilAddBenef").value = fila.cod_estado_civil;
@@ -3358,7 +3378,7 @@ actualizarBeneficiario.addEventListener("click", function () {
       dsc_apellido_paterno: document.getElementById("apellPAddBenef").value.toUpperCase(),
       dsc_apellido_materno: document.getElementById("apellMAddBenef").value.toUpperCase(),
       dsc_nombres: document.getElementById("nombresAddBenef").value.toUpperCase(),
-      fch_nacimiento: document.getElementById("fchNacAddBenef").value,
+      fch_nacimiento: fechaArray,
       cod_estado_civil: document.getElementById("edoCivilAddBenef").value,
       cod_sexo: document.getElementById("sexoAddBenef").value,
       cod_parentesco: document.getElementById("parentescoAddBenef").value,
@@ -3370,7 +3390,7 @@ actualizarBeneficiario.addEventListener("click", function () {
     var fila = tabla.rows[rowIndex];
     fila.cells[0].textContent = document.getElementById("tipoDocAddBenef").options[document.getElementById("tipoDocAddBenef").selectedIndex].text + "-" + document.getElementById("numDocAddBenef").value;
     fila.cells[1].textContent = document.getElementById("nombresAddBenef").value.toUpperCase() + " " + document.getElementById("apellPAddBenef").value.toUpperCase() + " " + document.getElementById("apellMAddBenef").value.toUpperCase();
-    // fila.cells[2].textContent = new Date(document.getElementById("fchNacAddBenef").value).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/ /g, "-");
+    // fila.cells[2].textContent = new Date(document.getElementById("fchNacAddBenef").value).toLocaleDateString("en-US", { day: "2-digit", month: "2-digit", year: "numeric" }).replace(/ /g, "-");
     fila.cells[2].textContent = fecha4vista(document.getElementById("fchNacAddBenef").value);
     fila.cells[3].textContent = document.getElementById("parentescoAddBenef").options[document.getElementById("parentescoAddBenef").selectedIndex].text;
     fila.cells[4].textContent = document.getElementById("sexoAddBenef").value;
