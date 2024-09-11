@@ -1107,6 +1107,8 @@ flatpickr("#fchNacAval",{
 
 //---------------------formato dinero
 
+var datosPVT = [];
+
 var botonNece = document.getElementById("tipoNec");
 botonNece.addEventListener("change",function(){
   //console.log(this.checked);
@@ -1203,7 +1205,7 @@ emailInput2.addEventListener("input", function(event) {
     emailInput2.setCustomValidity("");
   }
 });
-// -----------------------------------------------------------valida documento de identidad--------------------------------------------
+// ---------------------------------------------------valida documento de identidad--------------------------------------------
 
 var tipoDoc = document.getElementById("tipoDocRegVta");
 tipoDoc.addEventListener("change", function(event) {
@@ -1905,7 +1907,8 @@ $( document ).ready(function () {
         dataType: 'json',
         data:{'cod_prospecto':cod_prospecto},
         success: function(result) {
-          //console.log(result);
+          console.log(result["response"]);
+          datosPVT = result["response"];
           cod_estado=result["response"]["cod_estado"];
           dsc_estado = result["response"]["dsc_estado"];
           document.getElementById("codConsejeroVend").value = result["response"]["cod_consejero"];
@@ -3622,6 +3625,19 @@ botonGuarda.addEventListener("click",function(){
       cuota = document.getElementById("imp_cuota").value;
     }
     //console.log('numNivel',inputReg);
+    //--------------validar si tiene datos de direccion-------
+    var dptoTitular = (document.getElementById("dptoRegVta").value == '' && datosPVT["cod_departamento"] != '') ? datosPVT["cod_departamento"] : document.getElementById("dptoRegVta").value;
+    var provTitular = (document.getElementById("provRegVta").value == '' && datosPVT["cod_provincia"] != '') ? datosPVT["cod_provincia"] : document.getElementById("provRegVta").value;
+    var dttoTitular = (document.getElementById("dttoRegVta").value == '' && datosPVT["cod_distrito"] != '') ? datosPVT["cod_distrito"] : document.getElementById("dttoRegVta").value;
+
+    var dpto2do = (document.getElementById("dpto2doRegVta").value == '' && datosPVT["cod_departamento_2do"] != '') ? datosPVT["cod_departamento_2do"] : document.getElementById("dpto2doRegVta").value;
+    var prov2do = (document.getElementById("prov2doRegVta").value == '' && datosPVT["cod_provincia_2do"] != '') ? datosPVT["cod_provincia_2do"] : document.getElementById("prov2doRegVta").value;
+    var dtto2do = (document.getElementById("dtto2doRegVta").value == '' && datosPVT["cod_distrito_2do"] != '') ? datosPVT["cod_distrito_2do"] : document.getElementById("dtto2doRegVta").value;
+
+    var dptoAval = (document.getElementById("dptoAval").value == '' && datosPVT["cod_departamento_aval"] != '') ? datosPVT["cod_departamento_aval"] : document.getElementById("dptoAval").value;
+    var provAval = (document.getElementById("provAval").value == '' && datosPVT["cod_provincia_aval"] != '') ? datosPVT["cod_provincia_aval"] : document.getElementById("provAval").value;
+    var dttoAval = (document.getElementById("dttoAval").value == '' && datosPVT["cod_distrito_aval"] != '') ? datosPVT["cod_distrito_aval"] : document.getElementById("dttoAval").value;
+
     var prospecto = {
     'cod_prospecto': cod_prospecto,
     'dsc_prospecto': dscTitular.toUpperCase(),
@@ -3633,9 +3649,9 @@ botonGuarda.addEventListener("click",function(){
     'cod_tipo_documento': document.getElementById("tipoDocRegVta").value,
     'dsc_documento': document.getElementById("numDocRegVta").value,
     'cod_pais': document.getElementById("paisRegVta").value,
-    'cod_departamento': document.getElementById("dptoRegVta").value,
-    'cod_provincia': document.getElementById("provRegVta").value,
-    'cod_distrito': document.getElementById("dttoRegVta").value,
+    'cod_departamento': dptoTitular,
+    'cod_provincia': provTitular,
+    'cod_distrito': dttoTitular,
     'dsc_direccion_referencia':document.getElementById("direccRefRegVta").value.toUpperCase(),
     'dsc_direccion':  document.getElementById("direccRegVta").value.toUpperCase(),
     'dsc_telefono_1': document.getElementById("telf1RegVta").value,
@@ -3664,9 +3680,9 @@ botonGuarda.addEventListener("click",function(){
     'dsc_documento_2do': document.getElementById("numDoc2doRegVta").value,
     'dsc_prospecto_2do': document.getElementById("nombres2doRegVta").value.toUpperCase()+' '+document.getElementById("apellP2doRegVta").value.toUpperCase()+' '+document.getElementById("apellM2doRegVta").value.toUpperCase(),
     'cod_pais_2do': document.getElementById("pais2doRegVta").value,
-    'cod_departamento_2do': document.getElementById("dpto2doRegVta").value,
-    'cod_provincia_2do': document.getElementById("prov2doRegVta").value,
-    'cod_distrito_2do': document.getElementById("dtto2doRegVta").value,
+    'cod_departamento_2do': dpto2do,
+    'cod_provincia_2do': prov2do,
+    'cod_distrito_2do': dtto2do,
     'dsc_direccion_2do': document.getElementById("direcc2doRegVta").value.toUpperCase(),
     'dsc_telefono_1_2do': document.getElementById("telf12doRegVta").value,
     'dsc_telefono_2_2do': document.getElementById("telf22doRegVta").value,
