@@ -2281,9 +2281,9 @@ $( document ).ready(function () {
             var fila='';
             index = 0;
             resultBenef['response'].forEach(function(word){
-              fecha = word['fch_nacimiento'].split(" ");
+              fecha = word['fch_nacimiento'].split("T");
               var fch1 = new Date(word['fch_nacimiento']);
-              var fch_nacimiento1 = fch1.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
+              var fch_nacimiento1 = fch1.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/ /g, '-');
               fila += '<tr>'+
                 '<td>'+word['dsc_tipo_documento']+'-'+word['dsc_documento']+'</td>'+
                 '<td>'+word['dsc_nombres']+' '+word['dsc_apellido_paterno']+' '+word['dsc_apellido_materno']+'</td>'+
