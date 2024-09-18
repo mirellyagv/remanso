@@ -1234,7 +1234,7 @@ function muestraserviciosFormulario(datos) {
             altInput: true,
             altFormat: "d/m/Y",
             dateFormat: "Y-m-d",
-            defaultDate:fechaMasUnMes
+            // defaultDate:fechaMasUnMes
         });
         document.getElementById("fch1erVcto").removeAttribute('readonly');
     }
@@ -1398,7 +1398,7 @@ campoCuoi.addEventListener("input",function(){
             altInput: true,
             altFormat: "d/m/Y",
             dateFormat: "Y-m-d",
-            defaultDate:fechaMasUnMes
+            // defaultDate:fechaMasUnMes
         });
         document.getElementById("fch1erVcto").setAttribute('enabled','enabled');
     }

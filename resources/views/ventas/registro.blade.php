@@ -1069,6 +1069,9 @@
 
 //-------------------------cajas fechas-----------------
 
+var fechaActual = new Date();
+var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
+
 flatpickr("#fchNacAddBenef",{
   locale:"es",
   altInput: true,
@@ -1825,11 +1828,6 @@ impFomaInput.addEventListener("input", function(event) {
   // Actualizar el valor del campo
   impFomaInput.value = Number(inputValue).toFixed(2);
 });
-
-
-var fechaActual = new Date();
-var fechaMasUnMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, fechaActual.getDate());// Sumar un mes a la fecha actual
-
 
 document.querySelectorAll('input[type=checkbox][data-toggle="toggle"]').forEach(function(ele) {
     ele.bootstrapToggle();
