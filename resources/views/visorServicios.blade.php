@@ -171,7 +171,7 @@ function muestraCalendario() {
                 }
 
 
-                if(!muestra['cod_plataforma_esp'] || muestra['cod_plataforma_esp'] == null){
+                if(!muestra['dsc_plataforma'] || muestra['dsc_plataforma'] == null){
                     plat = 'N/A';
                     area = 'N/A';
                     ejex = 'N/A';
@@ -219,6 +219,18 @@ function muestraCalendario() {
                     '<tr>'+
                         '<td style="text-align: left;"><b>Motivo:</b></td>'+
                         '<td style="text-align: left;" colspan = "3">'+muestra['dsc_motivo_conmemoracion']+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Plataforma:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+plat+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Area de plataforma:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+area+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                      '<td style="text-align: left;"><b>Espacio:</b></td>'+
+                      '<td style="text-align: left;" colspan = "3">'+ejex+' - '+ejey+' - '+espc+'</td>'+
                     '</tr>'+
                     '<tr>'+
                         '<td style="text-align: left;"><b>Observación:</b></td>'+
