@@ -71,6 +71,11 @@
                 <div class="mb-3" style="text-align: end">
                     <a class="verdeRemanso" href="#"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Comuniquese con su area de soporte técnico">Olvide mi contraseña</a>
                 </div>
+                @if ($errors->has('error'))
+                    <div class="alert alert-danger small">
+                        {{ $errors->first('error') }}
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -100,6 +105,11 @@
                 <div class="mb-3" >
                     <a class="verdeRemanso" href="#"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Comuniquese con su area de soporte técnico">Olvide mi contraseña</a>
                 </div>
+                @if ($errors->has('error'))
+                    <div class="alert alert-danger small">
+                        {{ $errors->first('error') }}
+                    </div>
+                @endif
                 
             </div>
         </div>
@@ -173,18 +183,18 @@
                     
                 }else{
                     console.log('no',respuesta);
-                    alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
+                    alert("Usuario no tiene acceso a la web.");
                     //window.location.href = "/";
-                    location.reload();
+                    // location.reload();
                     //document.getElementById('message2').style.display = "block";
                 }
                
             },//success
             error(e){
-                console.log('error',e);
+                console.log('error',e.error);
                 alert("Error ",e.message);
                 console.log(e.message);
-                location.reload();
+                // location.reload();
             }//error
         });
     });
@@ -217,7 +227,7 @@
                     
                 }else{
                     console.log('no',respuesta);
-                    alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
+                    alert("Usuario no tiene acceso a la web.");
                     //window.location.href = "/";
                     location.reload();
                     //document.getElementById('message2').style.display = "block";

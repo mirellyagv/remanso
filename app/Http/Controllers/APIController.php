@@ -35,6 +35,10 @@ class APIController extends Controller
 
                 $responseData = json_decode($response->getBody(), true);
 
+                if ($code == 200 && $responseData['mensaje'] == 'Contraseña incorrecta') {
+                    return redirect()->route('login')->withErrors(['error' => 'La contraseña es incorrecta.']);
+                }
+
                 if ($code == 200 && $responseData['mensaje'] == 'OK') {
                     // Guardar los datos en variables de sesión
                     session(['cod_usuario' => $responseData['response']['cod_usuario']]);
