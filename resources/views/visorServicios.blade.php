@@ -483,37 +483,63 @@ function descargaReporte(accion) {
         dataType: 'json',
         data:{'accion':'reporteVisor', 'fecha':fecha},
         success: function(respuesta){
-           //console.log(respuesta['response']);
+           console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {
                 if (accion == 'programacion') {
                     
-                    var header = ['FECHA','HORA','FUNERARIA','EJECUTIVO','PLATAFORMA','LET','N°','USO','FALLECIDO','FECHA DEF.','CREDO','MEDIDAS ATAUD','MISA'];
+                    var header = ['TIPO DE AUTORIZACION','FECHA','HORA','FUNERARIA','EJECUTIVO','PLATAFORMA','LET','N°','USO','FALLECIDO','FECHA DEF.','CREDO','MEDIDAS ATAUD','MISA'];
+
+                    // Función para convertir la hora en minutos desde medianoche 
+                    function convertirAHora(hora) { 
+                        let partes = hora.split(':'); 
+                        return parseInt(partes[0]) * 60 + parseInt(partes[1]); 
+                    }
+                    // Agrupar los datos por dsc_tipo_autorizacion
+                    const grupos = respuesta['response'].reduce((acc, elemento) => {
+                        const tipo = elemento['dsc_tipo_autorizacion'];
+                        if (!acc[tipo]) acc[tipo] = [];
+                        acc[tipo].push(elemento);
+                        return acc;
+                    }, {});
+
+                    // Ordenar cada grupo por fecha y hora
+                    Object.keys(grupos).forEach(key => {
+                        grupos[key].sort((a, b) => {
+                            let fechaA = new Date(a['fch_servicio']);
+                            let fechaB = new Date(b['fch_servicio']);
+                            return fechaA - fechaB;
+                        });
+                    });
+
                     var filasArray = [];
                     
-                    respuesta['response'].forEach(element => {
-                        var auxFecha = element['fch_servicio'].split('T');
-                        var fecha = auxFecha[0].split('-');
-                        var year = fecha[0];
-                        var month = fecha[1];
-                        var day = fecha[2];
-                        var fecha2 = day + "/" + month + "/" + year;
-                        
-                        filaData = [
-                            fecha2,
-                            auxFecha[1],
-                        element['dsc_agencia'],
-                        element['dsc_ejecutivo'],
-                        element['dsc_plataforma'],
-                        element['cod_eje_horizontal_esp'],
-                        element['dsc_espacio'],
-                        element['num_ctd'],
-                        element['dsc_beneficiario'],
-                        element['dsc_fecha'],
-                        element['dsc_religion'],
-                        element['dsc_observacion'],
-                        ''
-                    ]
-                        filasArray.push(filaData);
+                    Object.keys(grupos).forEach(key => {
+                        grupos[key].forEach(element => {
+                            var auxFecha = element['fch_servicio'].split('T');
+                            var fecha = auxFecha[0].split('-');
+                            var year = fecha[0];
+                            var month = fecha[1];
+                            var day = fecha[2];
+                            var fecha2 = day + "/" + month + "/" + year;
+
+                            filasArray.push([
+                                element['dsc_tipo_autorizacion'],
+                                fecha2,
+                                auxFecha[1],
+                                element['dsc_agencia'],
+                                element['dsc_ejecutivo'],
+                                element['dsc_plataforma'],
+                                element['cod_eje_horizontal_esp'],
+                                element['dsc_espacio'],
+                                element['num_ctd'],
+                                element['dsc_beneficiario'],
+                                element['dsc_fecha'],
+                                element['dsc_religion'],
+                                element['dsc_observacion'],
+                                element['flg_misa_cuerpo_presente']
+                            ]);
+                        });
+                        filasArray.push(Array(header.length).fill(''));
                     });
                     // Crear un libro de trabajo (workbook)
                     var workbook = XLSX.utils.book_new();
@@ -521,13 +547,24 @@ function descargaReporte(accion) {
 
                     // Crear una hoja de cálculo (worksheet)
                     XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
+                    const headerRange = XLSX.utils.decode_range(worksheet['!ref']);
+
+                    // Aplicar estilo negritas al encabezado
+                    for (let C = headerRange.s.c; C <= headerRange.e.c; ++C) {
+                        const cellAddress = XLSX.utils.encode_cell({ r: 0, c: C });
+                        if (!worksheet[cellAddress]) continue;
+                        worksheet[cellAddress].s = {
+                            font: { bold: true },
+                            alignment: { vertical: "center", horizontal: "center" }
+                        };
+                    }
                     
                     // Agregar la hoja de cálculo al libro de trabajo
                     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
                     // Cambia los tamaños de las columnas
                     console.log(workbook);
-                    workbook["Sheets"]["Sheet1"]["!cols"] = [{wpx : 80},{wpx : 60},{wpx : 300},{wpx : 200},{wpx : 220},{wpx : 40},{wpx : 40},{wpx : 40},{wpx : 350},{wpx : 80},{wpx : 160},{wpx : 100},{wpx : 55}];
+                    workbook["Sheets"]["Sheet1"]["!cols"] = [{wpx : 300},{wpx : 80},{wpx : 60},{wpx : 80},{wpx : 200},{wpx : 220},{wpx : 40},{wpx : 40},{wpx : 40},{wpx : 350},{wpx : 80},{wpx : 160},{wpx : 100},{wpx : 55}];
                     
                     // Convertir el libro de trabajo a un archivo binario
                     var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });

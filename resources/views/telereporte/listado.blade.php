@@ -3,6 +3,9 @@
     .align-right {
       text-align: right;
     }
+    .ts-control{
+      border: 0 !important;
+    }
 
   </style>
   <main class="main" id="main">
@@ -142,7 +145,8 @@
 </script>
 @endpush --}}
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 <script type="text/javascript">
 
 var cod_trabajador='';
@@ -197,6 +201,7 @@ flatpickr("#fchFin", {
                 //console.log(word);
                 $("#cod_agencia").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
             });
+            new TomSelect('#cod_agencia', { allowEmptyOption: true });
         },//success
         error(e){
             console.log(e.message);
