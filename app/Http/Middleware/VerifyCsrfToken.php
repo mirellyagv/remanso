@@ -79,6 +79,7 @@ class VerifyCsrfToken extends Middleware
         'lista/ListarUsoServicioExcel',
         'pdf/generarPDF',
         'api/guardaActividad',
+        'api/InsertarProspectoEspacioNicho',
         
     ];
 }

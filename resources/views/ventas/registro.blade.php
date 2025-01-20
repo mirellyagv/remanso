@@ -644,7 +644,23 @@
                           <select name="tipoEspacio"  id="tipoEspacio" class="form-control form-remanso" disabled>
                           </select>
                         </div>
-                        
+                      </div>
+                      <div class="row" id="tablaNichos" style="display: none;">
+                        <div class="col-8 offset-2">
+                          <table class="table table-striped" id="tablaNichosFam">
+                            <thead>
+                              <tr style="background-color: #081d31; color: white;">
+                                <th>Area</th>
+                                <th>Eje Hor.</th>
+                                <th>Eje Vert.</th>
+                                <th>Espacio</th>
+                                <th>Estado</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                       <hr>
                       <br>
@@ -678,7 +694,7 @@
                         <div class="col-md-12">
                           <div class="table-responsive">
                             <table class="table table-striped " id="tablaServiciosAdded" style="width:100%">
-                              <thead style="background-color: #081d31;; color: white;">
+                              <thead style="background-color: #081d31; color: white;">
                                 <tr>
                                   <th style="text-align: center;" width="30%">Servicio</th>
                                   <th style="text-align: center;" width="5%">Cantidad</th>
@@ -736,6 +752,8 @@
                           <input type="hidden" name="tieneDS" id="tieneDS" value='NO'>
                           <input type="hidden" name="esCompartido" id="esCompartido" value = 'NO'>
                           <input type="hidden" name="codConsejeroVend" id="codConsejeroVend">
+                          <input type="hidden" name="nichoOcupado" id="nichoOcupado" value = 'NO'>
+                          <input type="hidden" name="esNichoEsp" id="esNichoEsp" value = 'NO'>
                         </div>
                         <div class="col-md-2 mb-3">
                           <label for="inputText" class="col-form-label">Cuotas servicio: </label>
@@ -2097,6 +2115,7 @@ $( document ).ready(function () {
           //-------------------------------------------Servicios---------------------------------------------------------
 
           document.getElementById("tipoPrograma").value=result["response"]["cod_tipo_programa"];
+          document.getElementById("esNichoEsp").value=result["response"]["flg_nicho_especial"];
 
           var camposanto=document.getElementById("camposanto");
           camposanto.value=result["response"]["cod_camposanto"];
@@ -2127,11 +2146,13 @@ $( document ).ready(function () {
                     setTimeout(function() { 
                       espacio.value=result["response"]["cod_espacio"];
                       espacio.dispatchEvent(changeEvent);
+                      cargarTablaNicho(result["response"]["cod_camposanto"],result["response"]["cod_plataforma"],result["response"]["cod_area_plataforma"],result["response"]["cod_eje_horizontal"],result["response"]["cod_eje_vertical"],result["response"]["cod_espacio"],result["response"]["cod_tipo_espacio"],result["response"]["cod_subtipo_servicio"]);
                       setTimeout(function() { 
                         if(result["response"]["num_nivel"] != '' || result["response"]["num_nivel"] != null){
                           nivel.removeAttribute('disabled');
+                        }else{
+                          nivel.value=result["response"]["num_nivel"];
                         }
-                        nivel.value=result["response"]["num_nivel"];
                         botonGraba.removeAttribute('disabled');
                         ModoVista();
                       }, 2500);
@@ -2182,51 +2203,67 @@ $( document ).ready(function () {
               //console.log('documentos',resultado);
               resultado['response'].forEach(function(documento){
                 if(documento["num_linea"] == '1'){
+                  document.getElementById("DniAdj1").title = documento["dsc_nombre_original"];
                   document.getElementById("DniAdj1").classList.add('is-valid');
                 }
                 if(documento["num_linea"] == '2'){
+                  document.getElementById("DniAdj2").title = documento["dsc_nombre_original"];
                   document.getElementById("DniAdj2").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '3'){
+                  document.getElementById("Dni2Adj1").title = documento["dsc_nombre_original"];
                   document.getElementById("Dni2Adj1").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '4'){
+                  document.getElementById("Dni2Adj2").title = documento["dsc_nombre_original"];
                   document.getElementById("Dni2Adj2").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '5'){
+                  document.getElementById("DniAvalAdj1").title = documento["dsc_nombre_original"];
                   document.getElementById("DniAvalAdj1").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '6'){
+                  document.getElementById("DniAvalAdj2").title = documento["dsc_nombre_original"];
                   document.getElementById("DniAvalAdj2").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '7'){
+                  document.getElementById("recServAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("recServAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '8'){
+                  document.getElementById("comprobanteAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("comprobanteAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '9'){
+                  document.getElementById("RecSepAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("RecSepAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '10'){
+                  document.getElementById("ActaDefAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("ActaDefAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '11'){
+                  document.getElementById("CertDefAAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("CertDefAAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '16'){
+                  document.getElementById("CertDefBAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("CertDefBAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '12'){
+                  document.getElementById("NecroAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("NecroAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '13'){
+                  document.getElementById("ConstInhuAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("ConstInhuAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '14'){
+                  document.getElementById("AutSanitAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("AutSanitAdj").classList.add('is-valid');
                 }
                 if( documento["num_linea"] == '15'){
+                  document.getElementById("OtrosAdj").title = documento["dsc_nombre_original"];
                   document.getElementById("OtrosAdj").classList.add('is-valid');
                 }
                 
@@ -3495,6 +3532,18 @@ botonGuarda.addEventListener("click",function(){
     return;
   }
 
+  if(document.getElementById("nichoOcupado").value == 'SI'){
+    Swal.fire({
+      title:'Error!',
+      text:'Uno de los nichos elegidos esta OCUPADO.',
+      icon:'warning',
+      confirmButtonColor: '#6ea63b',
+    }) 
+    document.getElementById("numDoc2doRegVta").focus;
+    botonGuarda.removeAttribute('disabled');
+    return;
+  }
+
   if (document.getElementById("nombresRegVta").value === "") {
     collapseOne.classList.add("show");
     document.getElementById("nombresRegVta").focus();
@@ -3607,7 +3656,17 @@ botonGuarda.addEventListener("click",function(){
       flgJuridico2 = 'NO';
     }
     var inputReg = document.getElementById("nivelRegVnta").value;
-    var numNivel = (!inputReg) ? 0 :  inputReg;
+    var numNivel = (!inputReg && datosPVT["num_nivel"] == '') ? 0 :  inputReg;
+    numNivel = (!inputReg && datosPVT["num_nivel"] != '') ? datosPVT["num_nivel"] : numNnivel;
+    if(!inputReg && datosPVT["num_nivel"] == ''){
+      numNivel = 0;
+    }else if(inputReg && datosPVT["num_nivel"] == ''){
+      numNivel = inputReg;
+    }else if(!inputReg && datosPVT["num_nivel"] != ''){
+      numNivel = datosPVT["num_nivel"];
+    }else if(inputReg && datosPVT["num_nivel"] != ''){
+      numNivel = inputReg;
+    }
 
     if(serviciosAgregados.length == 0){
       impTotal = 0;
@@ -3721,7 +3780,8 @@ botonGuarda.addEventListener("click",function(){
     'imp_saldo_financiar': impSaldo,
     'imp_foma': foma,
     'imp_cuota': cuota,
-    'imp_separacion': (document.getElementById("imp_separacion").value == '') ? 0 : document.getElementById("imp_separacion").value
+    'imp_separacion': (document.getElementById("imp_separacion").value == '') ? 0 : document.getElementById("imp_separacion").value,
+    'cod_subtipo_servicio': document.getElementById("subtipoServ").value
   };
 
   Swal.fire({
@@ -3789,6 +3849,24 @@ botonGuarda.addEventListener("click",function(){
                 console.log(e.message);
               }//error
             });
+          });
+
+          filasNichos.forEach(function (fila) {
+            fila['cod_prospecto'] = cod_prospecto;
+            fila['cod_camposanto'] = document.getElementById("camposanto").value;
+          });
+          $.ajax({
+            url: '../api/InsertarProspectoEspacioNicho', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'datosNicho':filasNichos},
+            success: function(respuesta){
+              console.log(respuesta);   
+            },//success
+            error(e){
+              console.log(e.message);
+            }//error
           });
 
           if(document.getElementById("DniAdj1").value != ''){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Carbon\Carbon; 
+use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -71,6 +72,72 @@ class APIController extends Controller
         }
     }
 
+    public function codigo(Request $request)
+    {
+        $client = new Client();
+        $codTra = $request['cod_trabajador'];
+        $response = Http::get("https://webapiportalcontratoremanso.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20396900719/$codTra");
+        $datos = $response->json();
+        $correo = $datos['response']['dsc_mail_personal'];
+        $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $codigo = '';
+        $max = strlen($caracteres) - 1; 
+        for ($i = 0; $i < 8; $i++) {
+            $codigo .= $caracteres[rand(0, $max)];
+        }
+    
+        $mensaje = '¡Hola!<br><br>Ahora mismo se está verificando su identidad. Su código de verificación es: '.$codigo.'<br><br>Por favor, complete el proceso de verificación en un tiempo inferior a 30 minutos.<br><br>El Remanso<br><br>Mensaje enviado automáticamente por el sistema. Por favor, no responda a este correo.';
+        try {
+
+            $data = [
+                "dsc_correo" => '',
+                "dsc_correo_copia" => '',
+                "dsc_titulo" => $codigo.' Codigo de verificación',
+                "dsc_mensaje" => $mensaje,
+                "flg_html" => 'SI',
+                "dsc_alias" => '',
+                "dsc_servidor" => '',
+                "dsc_correo_admin" => '',
+                "dsc_clave_admin" => '',
+                "num_puerto" => 4
+            ];
+
+            $client = new Client();
+            $headers = ['Content-Type' => 'application/json'];
+            $contenidoJson = json_encode($data);
+
+            //return $contenidoJson;
+
+            $request = new \GuzzleHttp\Psr7\Request('POST', 'https://webapigeneraleskunaq.azurewebsites.net/api/Correo/EnviarCorreo', $headers, $contenidoJson);
+            $response = $client->send($request);
+
+            $statusCode = $response->getStatusCode();
+            $reasonPhrase = $response->getReasonPhrase();
+
+            if ($statusCode >= 200 && $statusCode < 300) {
+                $result = json_decode($response->getBody(), true);
+                return response()->json($result);
+            } else {
+                $error = ['status' => $statusCode, 'mensaje' => $reasonPhrase];
+                return response()->json($error);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al procesar la solicitud', 'details' => $e->getMessage()], 500);
+        }
+    }
+
+    public function validaCodigo(Request $request)
+    {   
+        $usuario = $request->input('usuario');
+        $password = $request->input('password');
+        $codigo = $request->input('codigo');
+
+        $response = Http::get("https://webapiportalcrm.azurewebsites.net/api/Prospecto/ListarProspectoActividad/20396900719/$usuario/$password/$codigo");
+        $prospectos = $response->json();
+        
+        return  $prospectos['response'];
+    }
+
     public function datosGrupoVenta(Request $request)
     {
         $client = new Client();
@@ -111,7 +178,7 @@ class APIController extends Controller
         $client = new Client();
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerUltimoProspecto/20555348887/00001');
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerUltimoProspecto/20396900719/00001');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 $code = $response->getStatusCode();
                 $responseData = json_decode($response->getBody(), true);
@@ -168,7 +235,6 @@ class APIController extends Controller
         $header = [
             'Content-Type' => 'application/json'
         ];
-
         try {
 
             $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspecto/20396900719', $header, $data);
@@ -917,6 +983,49 @@ class APIController extends Controller
 
         // echo $response;
 
+    }
+
+    public function InsertarProspectoEspacioNicho(Request $request)
+    {
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        try {
+            $filaNichos = $request->input('datosNicho', []);
+
+            $consultas = [];
+
+            foreach ($filaNichos as $nichos) {
+                $consulta = "INSERT INTO #tmp_espacio (cod_prospecto,cod_camposanto,cod_plataforma,cod_area_plataforma,cod_eje_horizontal,cod_eje_vertical,cod_espacio,cod_tipo_espacio,flg_estado) values ('".$nichos['cod_prospecto']."','".$nichos['cod_camposanto']."','".$nichos['cod_plataforma']."','".$nichos['cod_area']."','".$nichos['cod_eje_h']."','".$nichos['cod_eje_v']."','".$nichos['cod_espacio']."','".$nichos['cod_tipo_espacio']."','".$nichos['flg_estado']."')";
+                $consultas[] = $consulta;
+            }
+
+            $data = [
+                'dsc_cadena' => implode(" ", $consultas)
+            ];
+            // return $data;
+            $client = new Client();
+            $headers = ['Content-Type' => 'application/json'];
+            $contenidoJson = json_encode($data);
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoEspacioNicho/20396900719', $headers, $contenidoJson);
+            $response = $client->send($request);
+
+            $statusCode = $response->getStatusCode();
+            $reasonPhrase = $response->getReasonPhrase();
+
+            if ($statusCode >= 200 && $statusCode < 300) {
+                $result = json_decode($response->getBody(), true);
+                return response()->json($result);
+            } else {
+                $error = ['status' => $statusCode, 'mensaje' => $reasonPhrase];
+                return response()->json($error);
+            }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
 }

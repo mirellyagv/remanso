@@ -61,6 +61,8 @@ Route::name('telereporte.')->prefix('/telereporte')->group(function(){
 //----------------APIs--------------------------------------
 
 Route::get('api/logueo', [APIController::class, 'logueo'])->name('api.logueo');
+Route::get('api/codigo', [APIController::class, 'codigo'])->name('api.codigo');
+Route::get('api/validaCodigo', [APIController::class, 'validaCodigo'])->name('api.validaCodigo');
 Route::put('api/guardaProspecto', [APIController::class, 'guardaProspecto'])->name('api.guardaProspecto');
 Route::put('api/editarProspecto', [APIController::class, 'editarProspecto'])->name('api.editarProspecto');
 Route::put('api/guardaBeneficiario', [APIController::class, 'guardaBeneficiario'])->name('api.guardaBeneficiario');
@@ -89,6 +91,7 @@ Route::get('lista/ListarUsoServicioExcel', [ListaController::class, 'ListarUsoSe
 Route::get('lista/ListarUsoServicioCartelera', [ListaController::class, 'ListarUsoServicioCartelera'])->name('lista.ListarUsoServicioCartelera');
 Route::get('lista/ListarEspacioLaterales', [ListaController::class, 'ListarEspacioLaterales'])->name('lista.ListarEspacioLaterales');
 Route::put('api/guardaActividad' ,[APIController::class,'guardaActividad'] , 'api.guardaActividad')->name('guardaActividad');
+Route::put('api/InsertarProspectoEspacioNicho' ,[APIController::class,'InsertarProspectoEspacioNicho'] , 'api.InsertarProspectoEspacioNicho')->name('InsertarProspectoEspacioNicho');
 
 //-------------------select---------------------------------
 Route::get('lista/MuestraPais', [ListaController::class, 'MuestraPais'])->name('lista.MuestraPais');
@@ -128,6 +131,7 @@ Route::get('lista/MuestraAgenciaFiltro', [ListaController::class, 'MuestraAgenci
 Route::get('lista/ObtenerTelereporte', [ListaController::class, 'ObtenerTelereporte'])->name('lista.ObtenerTelereporte');
 Route::get('lista/ListarProspectoServicio', [ListaController::class, 'ListarProspectoServicio'])->name('lista.ListarProspectoServicio');
 Route::get('lista/ValidaEspacio', [ListaController::class, 'ValidaEspacio'])->name('lista.ValidaEspacio');
+Route::get('lista/ConsultarNicho', [ListaController::class, 'ConsultarNicho'])->name('lista.ConsultarNicho');
 
 
 //-------------------------MOSTRAR DATOS--------------------------------------------
