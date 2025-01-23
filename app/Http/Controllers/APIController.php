@@ -116,8 +116,8 @@ class APIController extends Controller
         try {
 
             $data = [
-                "dsc_correo" => '',
-                "dsc_correo_copia" => '',
+                "dsc_correo" => $correo,
+                "dsc_correo_copia" => $correo,
                 "dsc_titulo" => $codigo.' Codigo de verificación',
                 "dsc_mensaje" => $mensaje,
                 "flg_html" => 'SI',
