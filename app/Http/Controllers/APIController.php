@@ -76,6 +76,8 @@ class APIController extends Controller
     {
         $client = new Client();
         $codTra = $request['cod_trabajador'];
+        $usuario = $request['usuario'];
+        $clave = $request['clave'];
         $response = Http::get("https://webapiportalcontratoremanso.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20396900719/$codTra");
         $datos = $response->json();
         $correo = $datos['response']['dsc_mail_personal'];
@@ -84,6 +86,30 @@ class APIController extends Controller
         $max = strlen($caracteres) - 1; 
         for ($i = 0; $i < 8; $i++) {
             $codigo .= $caracteres[rand(0, $max)];
+        }
+
+        $header = [
+            'Content-Type' => 'application/json',
+        ];
+        $data1 = [
+            "as_usuario"=> $usuario,
+            "as_clave"=> $clave,
+            "as_token"=> $codigo
+        ];
+        $data = json_encode($data1);
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('POST', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Logueo/GuardarAutenticacion/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                // echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+                // return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     
         $mensaje = '¡Hola!<br><br>Ahora mismo se está verificando su identidad. Su código de verificación es: '.$codigo.'<br><br>Por favor, complete el proceso de verificación en un tiempo inferior a 30 minutos.<br><br>El Remanso<br><br>Mensaje enviado automáticamente por el sistema. Por favor, no responda a este correo.';
@@ -99,14 +125,12 @@ class APIController extends Controller
                 "dsc_servidor" => '',
                 "dsc_correo_admin" => '',
                 "dsc_clave_admin" => '',
-                "num_puerto" => 4
+                "num_puerto" => 25
             ];
 
             $client = new Client();
             $headers = ['Content-Type' => 'application/json'];
             $contenidoJson = json_encode($data);
-
-            //return $contenidoJson;
 
             $request = new \GuzzleHttp\Psr7\Request('POST', 'https://webapigeneraleskunaq.azurewebsites.net/api/Correo/EnviarCorreo', $headers, $contenidoJson);
             $response = $client->send($request);
@@ -130,12 +154,12 @@ class APIController extends Controller
     {   
         $usuario = $request->input('usuario');
         $password = $request->input('password');
-        $codigo = $request->input('codigo');
+        $codigo = trim($request->input('codigo'));
 
-        $response = Http::get("https://webapiportalcrm.azurewebsites.net/api/Prospecto/ListarProspectoActividad/20396900719/$usuario/$password/$codigo");
-        $prospectos = $response->json();
+        $response = Http::post("https://webapiportalcontratoremanso.azurewebsites.net/api/Logueo/ObtenerAutenticacion/20396900719/$usuario/$password/$codigo");
+        $validacion = $response->json();
         
-        return  $prospectos['response'];
+        return  $validacion['response'];
     }
 
     public function datosGrupoVenta(Request $request)

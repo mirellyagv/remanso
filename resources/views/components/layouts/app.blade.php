@@ -98,7 +98,7 @@
         })
           alertaMostrada = true;
         }
-      }, 300000); // 300000 milisegundos = 5 minutos
+      }, 1800000); // 300000 milisegundos = 5 minutos
     }
   </script>
   <script src="{{asset('js/main.js')}}"></script>
