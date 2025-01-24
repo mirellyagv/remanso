@@ -3657,7 +3657,7 @@ botonGuarda.addEventListener("click",function(){
     }
     var inputReg = document.getElementById("nivelRegVnta").value;
     var numNivel = (!inputReg && datosPVT["num_nivel"] == '') ? 0 :  inputReg;
-    numNivel = (!inputReg && datosPVT["num_nivel"] != '') ? datosPVT["num_nivel"] : numNnivel;
+    numNivel = (!inputReg && datosPVT["num_nivel"] != '') ? datosPVT["num_nivel"] : numNivel;
     if(!inputReg && datosPVT["num_nivel"] == ''){
       numNivel = 0;
     }else if(inputReg && datosPVT["num_nivel"] == ''){
