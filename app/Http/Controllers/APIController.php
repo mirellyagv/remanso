@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use GuzzleHttp\Client;
 use Carbon\Carbon; 
+use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -42,6 +43,10 @@ class APIController extends Controller
 
                 $responseData = json_decode($response->getBody(), true);
 
+                if ($code == 200 && $responseData['mensaje'] == 'Contraseña incorrecta') {
+                    return redirect()->route('login')->withErrors(['error' => 'La contraseña es incorrecta.']);
+                }
+
                 if ($code == 200 && $responseData['mensaje'] == 'OK') {
                     // Guardar los datos en variables de sesión
                     session(['cod_usuario' => $responseData['response']['cod_usuario']]);
@@ -72,6 +77,96 @@ class APIController extends Controller
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function codigo(Request $request)
+    {
+        $client = new Client();
+        $codTra = $request['cod_trabajador'];
+        $usuario = $request['usuario'];
+        $clave = $request['clave'];
+        $response = Http::get("https://webapiportalcontratoremanso.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20396900719/$codTra");
+        $datos = $response->json();
+        $correo = $datos['response']['dsc_mail_personal'];
+        $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $codigo = '';
+        $max = strlen($caracteres) - 1; 
+        for ($i = 0; $i < 8; $i++) {
+            $codigo .= $caracteres[rand(0, $max)];
+        }
+
+        $header = [
+            'Content-Type' => 'application/json',
+        ];
+        $data1 = [
+            "as_usuario"=> $usuario,
+            "as_clave"=> $clave,
+            "as_token"=> $codigo
+        ];
+        $data = json_encode($data1);
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('POST', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Logueo/GuardarAutenticacion/20396900719', $header, $data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                // echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+                // return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    
+        $mensaje = '¡Hola!<br><br>Ahora mismo se está verificando su identidad. Su código de verificación es: '.$codigo.'<br><br>Por favor, complete el proceso de verificación en un tiempo inferior a 30 minutos.<br><br>El Remanso<br><br>Mensaje enviado automáticamente por el sistema. Por favor, no responda a este correo.';
+        try {
+
+            $data = [
+                "dsc_correo" => $correo,
+                "dsc_correo_copia" => $correo,
+                "dsc_titulo" => $codigo.' Codigo de verificación',
+                "dsc_mensaje" => $mensaje,
+                "flg_html" => 'SI',
+                "dsc_alias" => '',
+                "dsc_servidor" => '',
+                "dsc_correo_admin" => '',
+                "dsc_clave_admin" => '',
+                "num_puerto" => 25
+            ];
+
+            $client = new Client();
+            $headers = ['Content-Type' => 'application/json'];
+            $contenidoJson = json_encode($data);
+
+            $request = new \GuzzleHttp\Psr7\Request('POST', 'https://webapigeneraleskunaq.azurewebsites.net/api/Correo/EnviarCorreo', $headers, $contenidoJson);
+            $response = $client->send($request);
+
+            $statusCode = $response->getStatusCode();
+            $reasonPhrase = $response->getReasonPhrase();
+
+            if ($statusCode >= 200 && $statusCode < 300) {
+                $result = json_decode($response->getBody(), true);
+                return response()->json($result);
+            } else {
+                $error = ['status' => $statusCode, 'mensaje' => $reasonPhrase];
+                return response()->json($error);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al procesar la solicitud', 'details' => $e->getMessage()], 500);
+        }
+    }
+
+    public function validaCodigo(Request $request)
+    {   
+        $usuario = $request->input('usuario');
+        $password = $request->input('password');
+        $codigo = trim($request->input('codigo'));
+
+        $response = Http::post("https://webapiportalcontratoremanso.azurewebsites.net/api/Logueo/ObtenerAutenticacion/20396900719/$usuario/$password/$codigo");
+        $validacion = $response->json();
+        
+        return  $validacion['response'];
     }
 
     public function datosGrupoVenta(Request $request)
@@ -171,9 +266,6 @@ class APIController extends Controller
         $header = [
             'Content-Type' => 'application/json'
         ];
-
-        // return $data;
-
         try {
 
             $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoLomas/20445366413', $header, $data);
@@ -1269,6 +1361,49 @@ class APIController extends Controller
 
         // echo $response;
 
+    }
+
+    public function InsertarProspectoEspacioNicho(Request $request)
+    {
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        try {
+            $filaNichos = $request->input('datosNicho', []);
+
+            $consultas = [];
+
+            foreach ($filaNichos as $nichos) {
+                $consulta = "INSERT INTO #tmp_espacio (cod_prospecto,cod_camposanto,cod_plataforma,cod_area_plataforma,cod_eje_horizontal,cod_eje_vertical,cod_espacio,cod_tipo_espacio,flg_estado) values ('".$nichos['cod_prospecto']."','".$nichos['cod_camposanto']."','".$nichos['cod_plataforma']."','".$nichos['cod_area']."','".$nichos['cod_eje_h']."','".$nichos['cod_eje_v']."','".$nichos['cod_espacio']."','".$nichos['cod_tipo_espacio']."','".$nichos['flg_estado']."')";
+                $consultas[] = $consulta;
+            }
+
+            $data = [
+                'dsc_cadena' => implode(" ", $consultas)
+            ];
+            // return $data;
+            $client = new Client();
+            $headers = ['Content-Type' => 'application/json'];
+            $contenidoJson = json_encode($data);
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoEspacioNicho/20396900719', $headers, $contenidoJson);
+            $response = $client->send($request);
+
+            $statusCode = $response->getStatusCode();
+            $reasonPhrase = $response->getReasonPhrase();
+
+            if ($statusCode >= 200 && $statusCode < 300) {
+                $result = json_decode($response->getBody(), true);
+                return response()->json($result);
+            } else {
+                $error = ['status' => $statusCode, 'mensaje' => $reasonPhrase];
+                return response()->json($error);
+            }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
 }

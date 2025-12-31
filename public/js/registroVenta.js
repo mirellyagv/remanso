@@ -746,29 +746,26 @@ codcampo.addEventListener("change", function () {
         url: "../lista/MuestraSubtipoServicio",
         method: "GET",
         crossDomain: true,
-        dataType: "json",
-        data: { tipo_servicio: tipoServicio },
-        success: function (respuesta) {
-            $("#subtipoServ").append(
-                '<option value="" selected disabled>SELECCIONE...</option>'
-            );
-            respuesta["response"].forEach(function (word) {
-                seleccion = "";
-                $("#subtipoServ").append(
-                    '<option value="' +
-                        word["codvar"] +
-                        '" ' +
-                        seleccion +
-                        ">" +
-                        word["desvar1"] +
-                        "</option>"
-                );
+        dataType: 'json',
+        data: {'tipo_servicio': tipoServicio},
+        success: function(respuesta){
+            $("#subtipoServ").append('<option value="" selected disabled>SELECCIONE...</option>');
+            respuesta['response'].forEach(function(word){
+                seleccion = '';
+                var nicho = word['desvar2'] ? word['desvar2'] : 'NO';
+                $("#subtipoServ").append('<option value="'+ word['codvar'] +'" '+seleccion+' esNichoFam = "'+nicho+'">'+ word['desvar1'] +'</option>'); 
             });
         }, //success
         error(e) {
             console.log(e.message);
         }, //error
     });
+});
+
+var subtiposrvinput = document.getElementById("subtipoServ");
+subtiposrvinput.addEventListener("change",function(){
+    var seleccion = $('option:selected', subtiposrvinput).attr('esNichoFam');
+    document.getElementById("esNichoEsp").value = seleccion;
 });
 
 //-----------------bloquea espacios VALIDA ESPACIO Y TIPO DE SERVICIO -----------
@@ -1183,23 +1180,12 @@ codcampo.addEventListener("change", function () {
         url: "../lista/MuestraTipoEspacio",
         method: "GET",
         crossDomain: true,
-        dataType: "json",
-        data: {
-            cod_camposanto: codCamposanto,
-            cod_plataforma: codPlataforma,
-            cod_area: codArea,
-            ejeX: ejeX,
-            ejeY: ejeY,
-        },
-        success: function (respuesta) {
-            respuesta["response"].forEach(function (word) {
-                $("#tipoEspacio").append(
-                    '<option value="' +
-                        word["codvar"] +
-                        '" selected>' +
-                        word["desvar1"] +
-                        "</option>"
-                );
+        dataType: 'json',
+        data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY},
+        success: function(respuesta){
+            console.log(respuesta);
+            respuesta['response'].forEach(function(word){
+                $("#tipoEspacio").append('<option value="'+ word['codvar'] +'" selected>'+ word['desvar1'] +'</option>'); 
             });
         }, //success
         error(e) {
@@ -1257,79 +1243,68 @@ codEspacio.addEventListener("change", function () {
                     respuesta["response"]["imp_valor"]
                 ).toFixed(2);
 
-                $.ajax({
-                    url: "../lista/MuestraNivel",
-                    method: "GET",
-                    crossDomain: true,
-                    dataType: "json",
-                    data: {
-                        cod_camposanto: codCamposanto,
-                        cod_plataforma: codPlataforma,
-                        cod_area: codArea,
-                        ejeX: ejeX,
-                        ejeY: ejeY,
-                        espacio: espacio,
-                    },
-                    success: function (respuesta) {
-                        $("#nivelRegVnta").append(
-                            '<option value="" selected disabled>SELECCIONE...</option>'
-                        );
-                        respuesta["response"].forEach(function (word) {
-                            seleccion = "";
-                            $("#nivelRegVnta").append(
-                                '<option value="' +
-                                    word["codvar"] +
-                                    '" ' +
-                                    seleccion +
-                                    ">" +
-                                    word["desvar1"] +
-                                    "</option>"
-                            );
-                        });
-                    }, //success
-                    error(e) {
-                        console.log(e.message);
-                    }, //error
-                });
-            } else if (
-                respuesta["response"]["flg_acceso"] == "NO" &&
-                (flg_supervisor == "NO" ||
-                    flg_jefe == "NO" ||
-                    flg_firmante == "NO" ||
-                    flg_administrador == "NO")
-            ) {
-                validaSepa = "NO";
-                document.getElementById("espacio").value = "";
-                document
-                    .getElementById("registrarVenta")
-                    .setAttribute("disabled", "disabled");
-                document.getElementById("imp_separacion").value = Number(
-                    respuesta["response"]["imp_valor"]
-                ).toFixed(2);
-                Swal.fire({
-                    title: "Error!",
-                    text: "El espacio está bloqueado por otro consejero. Por favor elija otro espacio",
-                    icon: "warning",
-                    confirmButtonColor: "#6ea63b",
-                });
-            } else {
-                validaSepa = "NO";
-                document
-                    .getElementById("registrarVenta")
-                    .setAttribute("disabled", "disabled");
-                document.getElementById("espacio").value = "";
-                Swal.fire({
-                    title: "Error!",
-                    text: "Ha ocurrido un error: " + respuesta["mensaje"],
-                    icon: "error",
-                    confirmButtonColor: "#6ea63b",
-                });
-            }
-        }, //success
-        error(e) {
-            console.log(e.message);
-        }, //error
-    });
+                    $.ajax({
+                        url: '../lista/MuestraNivel', 
+                        method: "GET",
+                        crossDomain: true,
+                        dataType: 'json',
+                        data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY,'espacio':espacio},
+                        success: function(respuesta){
+                            $("#nivelRegVnta").append('<option value="" selected disabled>SELECCIONE...</option>');
+                            respuesta['response'].forEach(function(word){
+                                seleccion = '';
+                                $("#nivelRegVnta").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>'); 
+                            });
+                        },//success
+                        error(e){
+                            console.log(e.message);
+                        }//error
+                    });
+                    
+                }else if(respuesta['response']['flg_acceso'] == 'NO' && (flg_supervisor == 'NO' || flg_jefe == 'NO' || flg_firmante == 'NO' || flg_administrador == 'NO')){
+                    validaSepa = 'NO';
+                    document.getElementById("espacio").value = '';
+                    document.getElementById("registrarVenta").setAttribute('disabled','disabled')
+                    document.getElementById("imp_separacion").value = Number(respuesta['response']['imp_valor']).toFixed(2);
+                    Swal.fire({
+                        title:'Error!',
+                        text:'El espacio está bloqueado por otro consejero. Por favor elija otro espacio',
+                        icon:'warning',
+                        confirmButtonColor: '#6ea63b',
+                    })
+                }else{
+                    validaSepa = 'NO';
+                    document.getElementById("registrarVenta").setAttribute('disabled','disabled')
+                    document.getElementById("espacio").value = '';
+                    Swal.fire({
+                        title:'Error!',
+                        text:'Ha ocurrido un error: '+respuesta['mensaje'],
+                        icon:'error',
+                        confirmButtonColor: '#6ea63b',
+                    })
+                }
+                
+            },//success
+            error(e){
+                console.log(e.message);
+            }//error
+        });
+    
+    //----------valida si es nicho familiar----------
+
+        // var subtipoServ = document.getElementById('subtipoServ');
+        // var esNichoFam = $('option:selected', subtipoServ).attr('esnichofam');
+        var esNichoFam = document.getElementById('esNichoEsp').value;
+        var subtipo = document.getElementById('subtipoServ').value;
+        // alert(esNichoFam);
+
+        if (esNichoFam == 'SI') {
+            document.getElementById('tablaNichos').style.display = "block";
+            cargarTablaNicho(codCamposanto,codPlataforma,codArea,ejeX,ejeY,espacio,tipoEspacio,subtipo);
+        }else{
+            document.getElementById('tablaNichos').style.display = "none";
+            document.getElementById('nichoOcupado').value = 'NO';
+        }
     // }else{
     //     $.ajax({
     //         url: '../lista/MuestraNivel',
@@ -1350,6 +1325,64 @@ codEspacio.addEventListener("change", function () {
     //     });
     // }
 });
+
+var filasNichos = [];
+
+function cargarTablaNicho(codCamposanto,codPlataforma,codArea,ejeX,ejeY,espacio,tipoEspacio,subtipo) {
+    
+    $.ajax({
+        url: '../lista/ConsultarNicho', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data: {'cod_camposanto': codCamposanto,'cod_plataforma':codPlataforma,'cod_area':codArea,'ejeX':ejeX,'ejeY':ejeY,'espacio':espacio,'tipo':tipoEspacio,'subtipo':subtipo},
+        success: function(respuesta){
+            filasNichos = respuesta['response'];
+            $("#tablaNichosFam tbody").empty();
+            var hayOcupado = 0;
+            if (Array.isArray(respuesta['response'])) {
+                // Itera si es un array
+                respuesta['response'].forEach(function(word) {
+                    var estadoClass = word['dsc_estado'] === 'LIBRE' ? 'text-success' : 'text-danger';
+                    if (word['flg_estado'] !== 'LI') {
+                        hayOcupado++;
+                    }
+                    var nuevaFila = '<tr>'+
+                            '<td>'+word['dsc_area']+'</td>'+
+                            '<td>'+word['cod_eje_h']+'</td>'+
+                            '<td>'+word['cod_eje_v']+'</td>'+
+                            '<td>'+word['cod_espacio']+'</td>'+
+                            '<td class="'+estadoClass+'">'+word['dsc_estado']+'</td>'+
+                        '</tr>';
+                    $("#tablaNichosFam tbody").append(nuevaFila);
+                });
+            } else {
+                // Procesa como un único objeto
+                var estadoClass = respuesta['response']['dsc_estado'] === 'LIBRE' ? 'text-success' : 'text-danger';
+                if (respuesta['response']['flg_estado'] !== 'LI') {
+                    hayOcupado++;
+                }
+                var nuevaFila = '<tr>'+
+                            '<td>'+respuesta['response']['dsc_area']+'</td>'+
+                            '<td>'+respuesta['response']['cod_eje_h']+'</td>'+
+                            '<td>'+respuesta['response']['cod_eje_v']+'</td>'+
+                            '<td>'+respuesta['response']['cod_espacio']+'</td>'+
+                            '<td class="'+estadoClass+'">'+respuesta['response']['dsc_estado']+'</td>'+
+                        '</tr>';
+                $("#tablaNichosFam tbody").append(nuevaFila);
+            }
+            
+            if (hayOcupado > 0) {
+                document.getElementById('nichoOcupado').value = 'SI';
+            }else{
+                document.getElementById('nichoOcupado').value = 'NO';
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('Error al cargar datos:', error);
+        }
+    });
+}
 
 //-----------------muestra select Subtipo servicio-----------
 var codcampo = document.getElementById("btnAddServicio");
@@ -1491,12 +1524,14 @@ function muestraserviciosFormulario(datos) {
     codigoCelda.classList.add("justificado");
 
     var cantidadCelda = nuevaFilaServ.insertCell();
-    var cantInput = document.createElement("input");
-    cantInput.setAttribute("style", "width: 3em;");
-    cantInput.type = "number";
-    cantInput.setAttribute("min", "1");
-    //cantInput.setAttribute('disabled','disabled');
-    var valorCant = datos["num_ctd"] ? datos["num_ctd"] : 1;
+    var cantInput = document.createElement('input');
+    cantInput.setAttribute('style', 'width: 3em;');
+    cantInput.type = 'number';
+    cantInput.setAttribute('min', '1');
+    if(flgAdicional != 'SI'){
+        cantInput.setAttribute('disabled','disabled');
+    }
+    var valorCant = (datos['num_ctd']) ? datos['num_ctd'] : 1;
     cantInput.value = valorCant;
 
     if (datos["flg_dsepultura"] == "SI") {
