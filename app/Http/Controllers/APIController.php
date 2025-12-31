@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use GuzzleHttp\Client;
 use Carbon\Carbon; 
 use GuzzleHttp\Psr7;
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Client\Request as HttpClientRequest;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use Illuminate\Support\Facades\Storage;
+
+use App\Services\GoogleDriveService;
+use Google_Client;
+use Google_Service_Drive;
+use Google_Service_Drive_DriveFile;
+
 
 
 class APIController extends Controller
@@ -24,7 +31,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Logueo/LogueoUsuario/20396900719/' . $cod_usuario . '/' . $dsc_clave);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Logueo/LogueoUsuario/20445366413/' . $cod_usuario . '/' . $dsc_clave);
             // return $request;
             $promise = $client->sendAsync($request)->then(function ($response) {
                 // echo  $response->getBody();
@@ -73,7 +80,7 @@ class APIController extends Controller
         
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20396900719/' . session('cod_usuario'));
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20445366413/' . session('cod_usuario'));
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -107,7 +114,7 @@ class APIController extends Controller
         $client = new Client();
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerUltimoProspecto/20555348887/00001');
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerUltimoProspecto/20445366413/00001');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 $code = $response->getStatusCode();
                 $responseData = json_decode($response->getBody(), true);
@@ -134,7 +141,7 @@ class APIController extends Controller
             foreach ($request->all() as $persona) {
                 foreach ($persona as $key) {
                     try {
-                        $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoBeneficiario/20396900719/';
+                        $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoBeneficiario/20445366413/';
                         $body = json_encode($key);
     
                         $httpRequest = new GuzzleRequest('PUT', $url, $headers, $body);
@@ -165,9 +172,11 @@ class APIController extends Controller
             'Content-Type' => 'application/json'
         ];
 
+        // return $data;
+
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspecto/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoLomas/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -189,13 +198,16 @@ class APIController extends Controller
     {
         $client = new Client();
         $data = json_encode($request['datosServicios']);
+
+        // var_dump($data);
+        
         $header = [
             'Content-Type' => 'application/json'
         ];
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoServicio/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoServicio/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -217,13 +229,14 @@ class APIController extends Controller
     {
         $client = new Client();
         $data = json_encode($request['prospecto']);
+		
         $header = [
             'Content-Type' => 'application/json'
         ];
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspecto/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoLomas/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -266,7 +279,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoContacto/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoContacto/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -308,7 +321,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoContacto/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoContacto/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -331,7 +344,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspecto/20396900719/LC001/'.$cod_prospecto);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspecto/20445366413/LC001/'.$cod_prospecto);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -356,7 +369,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoBeneficiario/20396900719/LC001/'.$cod_prospecto);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoBeneficiario/20445366413/LC001/'.$cod_prospecto);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -382,7 +395,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoBeneficiario/20396900719/LC001/'.$cod_prospecto.'/'.$num_linea);
+            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoBeneficiario/20445366413/LC001/'.$cod_prospecto.'/'.$num_linea);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -407,7 +420,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoContacto/20396900719/LC001/'.$cod_prospecto);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoContacto/20445366413/LC001/'.$cod_prospecto);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -434,7 +447,7 @@ class APIController extends Controller
     //     ];
 
     //     try {
-    //         $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspecto/20396900719', $header, $data);
+    //         $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoLomas/20445366413', $header, $data);
     //         $promise = $client->sendAsync($request)->then(function ($response) {
     //             echo  $response->getBody();
     //             $code = $response->getStatusCode();
@@ -464,7 +477,7 @@ class APIController extends Controller
         ];
 
         try {
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoEstado/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoEstado/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -492,7 +505,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ObtenerContratoServicioPrincipal/20396900719/LC001/'.$cod_contrato);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ObtenerContratoServicioPrincipal/20445366413/LC001/'.$cod_contrato);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -519,7 +532,7 @@ class APIController extends Controller
         ];
 
         try {
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ActualizarContratoFirmado/20396900719/',$header,$data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ActualizarContratoFirmado/20445366413/',$header,$data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -547,7 +560,7 @@ class APIController extends Controller
         ];
 
         try {
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/AnularTelereporte/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/AnularTelereporte/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -577,7 +590,7 @@ class APIController extends Controller
         ];
 
         try {
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ActivarTelereporte/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ActivarTelereporte/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -609,7 +622,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/InsertarTelereporte/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/InsertarTelereporte/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -637,7 +650,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ActualizarTelereporte/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ActualizarTelereporte/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -662,7 +675,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ValidarCoincidenciaDocumento/20396900719/'.$documento);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ValidarCoincidenciaDocumento/20445366413/'.$documento);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -688,7 +701,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoContacto/20396900719/LC001/'.$cod_prospecto.'/'.$num_linea);
+            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoContacto/20445366413/LC001/'.$cod_prospecto.'/'.$num_linea);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -714,7 +727,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoServicio/20396900719/LC001/'.$cod_prospecto.'/'.$num_linea);
+            $request = new \GuzzleHttp\Psr7\Request('DELETE', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/EliminarProspectoServicio/20445366413/LC001/'.$cod_prospecto.'/'.$num_linea);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -740,7 +753,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspectoxDocumento/20396900719/LC001/'.$tipoDoc.'/'.$documento);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspectoxDocumento/20445366413/LC001/'.$tipoDoc.'/'.$documento);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -758,60 +771,403 @@ class APIController extends Controller
         }
     }
 
-    public function guardaDocumentoAdjunto(Request $request)
-    {
-        $client = new Client();
-        $file = $request->file('file');
-        $destinationPath = '//192.168.50.30/UmayuxSoftwareSrv/Prospectos_SG5/Documentos/'.$request['codProspecto'].'/'.$request['nombre'].'.'. $file->getClientOriginalExtension();
-        $fileName = $request['nombre'];
-        var_dump($destinationPath);
+    // public function guardaDocumentoAdjunto(Request $request)
+    // {
+    //     $client = new Client();
+    //     $file = $request->file('file');
+
+        
+    //     $destinationPath = '//192.168.50.30/UmayuxSoftwareSrv/Prospectos_SG5/Documentos/'.$request['codProspecto'].'/'.$request['nombre'].'.'. $file->getClientOriginalExtension();
+    //     $fileName = $request['nombre'];
+    //     var_dump($destinationPath);
  
-        $data = [ 
-            "cod_localidad_p"=> "LC001",
-            "cod_prospecto"=> $request['codProspecto'],
-            "num_linea"=> $request['numLinea'],
-            "dsc_documento"=> $fileName,
-            "dsc_nombre_original"=> $file->getClientOriginalName(),
-            "dsc_ruta"=> $destinationPath
-        ];
-        $data = json_encode($data);        
-        // Ruta donde se guardará el archivo
-        $rutaArchivo = $request['codProspecto'] . '/' . $fileName . '.' . $file->getClientOriginalExtension();
+    //     $data = [ 
+    //         "cod_localidad_p"=> "LC001",
+    //         "cod_prospecto"=> $request['codProspecto'],
+    //         "num_linea"=> $request['numLinea'],
+    //         "dsc_documento"=> $fileName,
+    //         "dsc_nombre_original"=> $file->getClientOriginalName(),
+    //         "dsc_ruta"=> $destinationPath
+    //     ];
 
-        // Guardar el archivo en el nuevo disco, la ruta esta definida en config/filesystems.php
-        Storage::disk('documentosProspectos')->put($rutaArchivo, file_get_contents($file));
+    //     $data = json_encode($data);
+    //     // Ruta donde se guardará el archivo
+    //     $rutaArchivo = $request['codProspecto'] . '/' . $fileName . '.' . $file->getClientOriginalExtension();
 
-        $header = [
-            'Content-Type' => 'application/json'
-        ];
+    //     // Guardar el archivo en el nuevo disco, la ruta esta definida en config/filesystems.php
+    //     Storage::disk('documentosProspectos')->put($rutaArchivo, file_get_contents($file));
 
-        $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoDocumento/20396900719';
+    //     $header = [
+    //         'Content-Type' => 'application/json'
+    //     ];
 
-        if($request['accionDocumentos'] == 'actualiza'){
+    //     $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoDocumento/20445366413';
 
-            $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoDocumento/20396900719';
+    //     if($request['accionDocumentos'] == 'actualiza'){
 
-        }
+    //         $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoDocumento/20445366413';
+
+    //     }
+
+    //     try {
+    //         $request = new \GuzzleHttp\Psr7\Request('PUT', $url, $header, $data);
+    //         $promise = $client->sendAsync($request)->then(function ($response) {
+    //             echo  $response->getBody();
+    //             $code = $response->getStatusCode();
+    //             $reason = $response->getReasonPhrase();
+
+    //             return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+    //         });
+
+
+    //         //cod_prospecto/documentos
+
+    //         $promise->wait();
+    //         return 'Guardado';
+
+    //     } catch (\Exception $e) {
+    //         // Manejo de errores en caso de que la petición falle
+    //         return response()->json(['error' => $e->getMessage()], 500);
+    //     }
+    // }
+
+
+
+    // public function crearCarpetaProspecto(Request $request)
+    // {
+    //     $codProspecto = $request['codProspecto'];
+
+    //     try {
+    //         $googleClient = new \Google_Client();
+    //         $googleClient->setAuthConfig(storage_path('app/lomasdrive-d4c4f9d3583e.json'));
+    //         $googleClient->addScope(\Google_Service_Drive::DRIVE);
+    //         $googleClient->setAccessType('offline');
+
+    //         $driveService = new \Google_Service_Drive($googleClient);
+    //         $parentFolderId = "1ODd0WFQzPZtM90c9eBlYy9_Mi2dBa3Ms"; // carpeta raíz
+
+    //         // Buscar si existe
+    //         $query = sprintf(
+    //             "name='%s' and mimeType='application/vnd.google-apps.folder' and '%s' in parents and trashed=false",
+    //             addslashes($codProspecto),
+    //             $parentFolderId
+    //         );
+
+    //         $response = $driveService->files->listFiles([
+    //             'q' => $query,
+    //             'fields' => 'files(id, name)',
+    //             'supportsAllDrives' => true,
+    //             'includeItemsFromAllDrives' => true,
+    //         ]);
+
+    //         if (count($response->files) > 0) {
+    //             $folderId = $response->files[0]->id;
+    //         } else {
+    //             // No existe: crearla
+    //             $folderMetadata = new \Google_Service_Drive_DriveFile([
+    //                 'name' => $codProspecto,
+    //                 'mimeType' => 'application/vnd.google-apps.folder',
+    //                 'parents' => [$parentFolderId],
+    //             ]);
+
+    //             $folder = $driveService->files->create($folderMetadata, [
+    //                 'fields' => 'id',
+    //                 'supportsAllDrives' => true,
+    //             ]);
+    //             $folderId = $folder->id;
+    //         }
+
+    //         return response()->json(['folderId' => $folderId]);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()], 500);
+    //     }
+    // }
+
+
+
+
+    public function crearCarpetaProspecto(Request $request)
+    {
+        $codProspecto = $request['codProspecto'];
 
         try {
-            $request = new \GuzzleHttp\Psr7\Request('PUT', $url, $header, $data);
-            $promise = $client->sendAsync($request)->then(function ($response) {
-                echo  $response->getBody();
-                $code = $response->getStatusCode();
-                $reason = $response->getReasonPhrase();
+            $googleClient = new \Google_Client();
+            $googleClient->setAuthConfig(storage_path('app/lomasdrive-d4c4f9d3583e.json'));
+            $googleClient->addScope(\Google_Service_Drive::DRIVE);
+            $googleClient->setAccessType('offline');
 
-                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            $driveService = new \Google_Service_Drive($googleClient);
+            $parentFolderId = "1ODd0WFQzPZtM90c9eBlYy9_Mi2dBa3Ms"; // carpeta raíz
 
-            });
+            // Buscar si existe
+            $query = sprintf(
+                "name='%s' and mimeType='application/vnd.google-apps.folder' and '%s' in parents and trashed=false",
+                addslashes($codProspecto),
+                $parentFolderId
+            );
 
-            $promise->wait();
-            return 'Guardado';
+            $response = $driveService->files->listFiles([
+                'q' => $query,
+                'fields' => 'files(id, name)',
+                'supportsAllDrives' => true,
+                'includeItemsFromAllDrives' => true,
+            ]);
 
+            if (count($response->files) > 0) {
+                $folderId = $response->files[0]->id;
+            } else {
+                // Crear carpeta
+                $folderMetadata = new \Google_Service_Drive_DriveFile([
+                    'name' => $codProspecto,
+                    'mimeType' => 'application/vnd.google-apps.folder',
+                    'parents' => [$parentFolderId],
+                ]);
+
+                $folder = $driveService->files->create($folderMetadata, [
+                    'fields' => 'id',
+                    'supportsAllDrives' => true,
+                ]);
+                $folderId = $folder->id;
+            }
+
+            return response()->json(['folderId' => $folderId]);
         } catch (\Exception $e) {
-            // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+
+
+
+    // public function guardaDocumentoAdjunto(Request $request)
+    // {
+    //     $client = new \GuzzleHttp\Client();
+    //     $file = $request->file('file');
+    //     $fileName = $request['nombre'];
+    //     $extension = $file->getClientOriginalExtension();
+    //     $codProspecto = $request['codProspecto'];
+    //     $numLinea = $request['numLinea'];
+    //     $folderId = $request['folderId']; // nuevo
+
+    //     try {
+    //         $googleClient = new \Google_Client();
+    //         $googleClient->setAuthConfig(storage_path('app/lomasdrive-d4c4f9d3583e.json'));
+    //         $googleClient->addScope(\Google_Service_Drive::DRIVE);
+    //         $googleClient->setAccessType('offline');
+
+    //         $driveService = new \Google_Service_Drive($googleClient);
+
+    //         // Subir archivo directo a folderId
+    //         $fileMetadata = new \Google_Service_Drive_DriveFile([
+    //             'name' => $fileName.'.'.$extension,
+    //             'parents' => [$folderId],
+    //         ]);
+
+    //         $uploadedFile = $driveService->files->create($fileMetadata, [
+    //             'data' => file_get_contents($file->getRealPath()),
+    //             'mimeType' => $file->getMimeType(),
+    //             'uploadType' => 'multipart',
+    //             'supportsAllDrives' => true,
+    //             'fields' => 'id',
+    //         ]);
+
+    //         $fileId = $uploadedFile->id;
+
+    //         $rutaArchivo = "https://drive.google.com/file/d/{$fileId}/view";
+
+    //         $data = [
+    //             "cod_localidad_p" => "LC001",
+    //             "cod_prospecto" => $codProspecto,
+    //             "num_linea" => $numLinea,
+    //             "dsc_documento" => $fileName,
+    //             "dsc_nombre_original" => $file->getClientOriginalName(),
+    //             "dsc_ruta" => $rutaArchivo
+    //         ];
+
+    //         $dataJson = json_encode($data);
+    //         $header = ['Content-Type' => 'application/json'];
+
+    //         $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoDocumento/20445366413';
+    //         if ($request['accionDocumentos'] == 'actualiza') {
+    //             $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoDocumento/20445366413';
+    //         }
+
+    //         $req = new \GuzzleHttp\Psr7\Request('PUT', $url, $header, $dataJson);
+    //         $promise = $client->sendAsync($req)->then(function ($response) {
+    //             $code = $response->getStatusCode();
+    //             $reason = $response->getReasonPhrase();
+    //             return response()->json(['status' => $code, 'mensaje' => $reason]);
+    //         });
+
+    //         $promise->wait();
+    //         // return 'Guardado';
+
+    //         return response()->json([
+    //             'status' => 'ok',
+    //             'ruta' => $rutaArchivo,
+    //             'fileId' => $fileId
+    //         ]);
+
+
+
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()], 500);
+    //     }
+    // }
+
+
+    public function guardaDocumentoAdjunto(Request $request)
+    {
+        $client = new \GuzzleHttp\Client();
+        $file = $request->file('file');
+        $fileName = $request['nombre'];
+        $extension = $file->getClientOriginalExtension();
+        $codProspecto = $request['codProspecto'];
+        $numLinea = $request['numLinea'];
+        $folderId = $request['folderId'];
+
+        $flg_titular = 'NO';
+
+        try {
+            $googleClient = new \Google_Client();
+            $googleClient->setAuthConfig(storage_path('app/lomasdrive-d4c4f9d3583e.json'));
+            $googleClient->addScope(\Google_Service_Drive::DRIVE);
+            $googleClient->setAccessType('offline');
+
+            $driveService = new \Google_Service_Drive($googleClient);
+
+            $fileFullName = $fileName.'.'.$extension;
+            $fileContent = file_get_contents($file->getRealPath());
+            $fileContentHash = md5($fileContent);
+
+        
+            $queryFile = sprintf(
+                "name='%s' and '%s' in parents and trashed=false",
+                addslashes($fileFullName),
+                $folderId
+            );
+
+            $response = $driveService->files->listFiles([
+                'q' => $queryFile,
+                'fields' => 'files(id, name, md5Checksum)',
+                'supportsAllDrives' => true,
+                'includeItemsFromAllDrives' => true,
+            ]);
+
+            if (count($response->files) > 0) {
+                $existingFile = $response->files[0];
+                $existingFileHash = $existingFile->md5Checksum ?? null;
+
+                if ($existingFileHash === $fileContentHash) {
+                    
+                    $fileId = $existingFile->id;
+                    $rutaArchivo = "https://drive.google.com/file/d/{$fileId}/view";
+                    $rutaArchivoDescarga = "https://drive.google.com/uc?export=download&id={$fileId}";
+
+
+                    
+                    if ($fileName === 'Firma_Titular') {
+                        $rutaArchivoLocal = $codProspecto.'/'.$fileFullName;
+                        Storage::disk('documentosProspectos')->put($rutaArchivoLocal, $fileContent);
+                    }
+
+                    return response()->json([
+                        'status' => 'exists',
+                        'fileId' => $fileId,
+                        'ruta' => $rutaArchivo
+                    ]);
+                } else {
+                    
+                    $updatedFile = $driveService->files->update($existingFile->id,
+                        new \Google_Service_Drive_DriveFile([
+                            'name' => $fileFullName
+                        ]),
+                        [
+                            'data' => $fileContent,
+                            'mimeType' => $file->getMimeType(),
+                            'uploadType' => 'multipart',
+                            'supportsAllDrives' => true,
+                            'fields' => 'id',
+                        ]
+                    );
+                    $fileId = $updatedFile->id;
+                }
+            } else {
+                
+                $fileMetadata = new \Google_Service_Drive_DriveFile([
+                    'name' => $fileFullName,
+                    'parents' => [$folderId],
+                ]);
+
+                $uploadedFile = $driveService->files->create($fileMetadata, [
+                    'data' => $fileContent,
+                    'mimeType' => $file->getMimeType(),
+                    'uploadType' => 'multipart',
+                    'supportsAllDrives' => true,
+                    'fields' => 'id',
+                ]);
+
+                $fileId = $uploadedFile->id;
+            }
+
+            $rutaArchivo = "https://drive.google.com/file/d/{$fileId}/view";
+            $rutaArchivoDescarga = "https://drive.google.com/uc?export=download&id={$fileId}";
+
+
+            $rutaArchivoLocal ='';
+            
+            if ($fileName === 'Firma_Titular') {
+                $rutaArchivoLocal = $codProspecto.'/'.$fileFullName;
+                Storage::disk('documentosProspectos')->put($rutaArchivoLocal, $fileContent);
+                $flg_titular = 'SI';
+            }
+
+            
+            $data = [
+                "cod_localidad_p" => "00001",
+                "cod_prospecto" => $codProspecto,
+                "num_linea" => $numLinea,
+                "dsc_documento" => $fileName,
+                "dsc_nombre_original" => $file->getClientOriginalName(),
+                "dsc_ruta" => $rutaArchivo,
+                "dsc_ruta_local" => 'D:/UmayuxSoftwareSrv/Prospectos_SG5/'.$rutaArchivoLocal,
+                "dsc_id" => $fileId,
+                "dsc_descarga" => $rutaArchivoDescarga,
+                "flg_titular" => $flg_titular,
+                "flg_2do_titular" => 'NO',
+
+            ];
+
+            $dataJson = json_encode($data);
+            $header = ['Content-Type' => 'application/json'];
+
+            $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/InsertarProspectoDocumentoLomas/20445366413';
+            if ($request['accionDocumentos'] == 'actualiza') {
+                $url = 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ActualizarProspectoDocumentoLomas/20445366413';
+            }
+
+            $req = new \GuzzleHttp\Psr7\Request('PUT', $url, $header, $dataJson);
+            $promise = $client->sendAsync($req)->then(function ($response) {
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+
+            return response()->json([
+                'status' => 'ok',
+                'fileId' => $fileId,
+                'ruta' => $rutaArchivo
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+
 
     public function ObtenerDocumentosProspecto(Request $request)
     {
@@ -821,7 +1177,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspectoDocumento/20396900719/LC001/'.$codProspecto.'/'.$numLinea);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ObtenerProspectoDocumento/20445366413/00001/'.$codProspecto.'/'.$numLinea);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -845,7 +1201,7 @@ class APIController extends Controller
 
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoDocumento/20396900719/LC001/'.$codProspecto);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoDocumentoLomas/20445366413/00001/'.$codProspecto);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -891,7 +1247,7 @@ class APIController extends Controller
         ];
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcrm.azurewebsites.net/api/Prospecto/InsertarActividadProspecto/20396900719', $header, $data);
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalcrm.azurewebsites.net/api/Prospecto/InsertarActividadProspecto/20445366413', $header, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -902,14 +1258,14 @@ class APIController extends Controller
             
             $promise->wait();
             //$codProspecto = APIController::obtenerUltimoProspecto();
-            //return $codProspecto;
+            //return $codProspecto;-
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
         }
         // return $data;
         // Realiza la solicitud PUT al servicio web
-        // $response = Http::put("https://webapiportalcrm.azurewebsites.net/api/Prospecto/InsertarActividadProspecto/20396900719", $data);
+        // $response = Http::put("https://webapiportalcrm.azurewebsites.net/api/Prospecto/InsertarActividadProspecto/20445366413", $data);
 
         // echo $response;
 

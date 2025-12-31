@@ -33,7 +33,7 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspecto/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_estado.'/'.$dsc_documento.'/'.$dsc_prospecto.'/'.$cod_tipo_necesidad.'/'.$dscVendedor);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspecto/20445366413/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_estado.'/'.$dsc_documento.'/'.$dsc_prospecto.'/'.$cod_tipo_necesidad.'/'.$dscVendedor);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -59,7 +59,7 @@ class ListaController extends Controller
         $cod_tipo_necesidad = $request['cod_tipo_necesidad'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoxCaducar/20396900719/'.$cod_trabajador.'/'.$cod_tipo_necesidad);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoxCaducar/20445366413/'.$cod_trabajador.'/'.$cod_tipo_necesidad);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -84,7 +84,7 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoxAprobar/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoxAprobar/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -107,7 +107,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarPais/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarPais/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -131,7 +131,7 @@ class ListaController extends Controller
         $data = $request['cod_pais'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarDepartamento/20396900719/'.$data);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarDepartamento/20445366413/'.$data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -156,7 +156,7 @@ class ListaController extends Controller
         $cod_departamento = $request['cod_departamento'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarProvincia/20396900719/'.$cod_pais.'/'.$cod_departamento);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarProvincia/20445366413/'.$cod_pais.'/'.$cod_departamento);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -182,7 +182,7 @@ class ListaController extends Controller
         $cod_provincia = $request['cod_provincia'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarDistrito/20396900719/'.$cod_pais.'/'.$cod_departamento.'/'.$cod_provincia);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarDistrito/20445366413/'.$cod_pais.'/'.$cod_departamento.'/'.$cod_provincia);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -205,7 +205,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoDocumento/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoDocumento/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -224,7 +224,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCanalVenta/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCanalVenta/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -243,7 +243,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCalificacion/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCalificacion/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -262,7 +262,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarParentesco/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarParentesco/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -281,7 +281,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarSexo/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarSexo/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -300,7 +300,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEstadoCivil/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEstadoCivil/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -313,16 +313,16 @@ class ListaController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
+ 
     public function MuestraTipoRecaudacion(Request $request)
     {   
         $client = new Client();
-        $flg_ni = session('flg_ni');
-        $flg_nf = session('flg_nf');
+        $flg_ni = $request['flg_ni'];//session('flg_ni');
+        $flg_nf = $request['flg_nf'];//session('flg_nf');
         $codTrabajador = session('cod_trabajador');
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoRecaudacion/20396900719/'.$flg_ni.'/'.$flg_nf.'/'.$codTrabajador);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoRecaudacion/20445366413/'.$flg_ni.'/'.$flg_nf.'/'.$codTrabajador);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -342,7 +342,7 @@ class ListaController extends Controller
         $cod_tipo_recaudacion = $request['cod_tipo_recaudacion'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoServicio/20396900719/'.$cod_tipo_recaudacion);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoServicio/20445366413/'.$cod_tipo_recaudacion);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -362,7 +362,7 @@ class ListaController extends Controller
         $tipo_servicio = $request['tipo_servicio'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarSubTipoServicio/20396900719/'.$tipo_servicio);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarSubTipoServicio/20445366413/'.$tipo_servicio);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -381,7 +381,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCamposanto/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCamposanto/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
 
@@ -400,7 +400,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoPlataforma/20396900719/');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoPlataforma/20445366413/');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -425,7 +425,7 @@ class ListaController extends Controller
         $cod_tipo_plataforma = $request['cod_tipo_plataforma'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarPlataforma/20396900719/'.$cod_camposanto.'/'.$cod_tipo_plataforma);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarPlataforma/20445366413/'.$cod_camposanto.'/'.$cod_tipo_plataforma);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -450,7 +450,7 @@ class ListaController extends Controller
         $cod_plataforma = $request['cod_plataforma'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarAreaPlataforma/20396900719/'.$cod_camposanto.'/'.$cod_plataforma);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarAreaPlataforma/20445366413/'.$cod_camposanto.'/'.$cod_plataforma);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -476,7 +476,7 @@ class ListaController extends Controller
         $cod_area = $request['cod_area'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEjeHorizontal/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEjeHorizontal/20445366413/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -503,7 +503,7 @@ class ListaController extends Controller
         $ejeX = $request['ejeX'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEjeVertical/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeX);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEjeVertical/20445366413/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeX);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -531,7 +531,7 @@ class ListaController extends Controller
         $ejeY = $request['ejeY'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEspacio/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEspacio/20445366413/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -559,7 +559,7 @@ class ListaController extends Controller
         $ejeY = $request['ejeY'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEspacio02/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEspacio02/20445366413/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -588,7 +588,7 @@ class ListaController extends Controller
         $espacio = $request['espacio'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarNivel/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX.'/'.$espacio);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarNivel/20445366413/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX.'/'.$espacio);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -616,7 +616,7 @@ class ListaController extends Controller
         $ejeY = $request['ejeY'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEspacioxFiltro/20396900719/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarEspacioxFiltro/20445366413/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$cod_area.'/'.$ejeY.'/'.$ejeX);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -648,7 +648,9 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicioxFiltros/20396900719/LC001/'.$tipo_nec.'/2023-08-07/2023-08-07/'.$cod_tipo_recaudacion.'/'.$cod_subtipo_servicio.'/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$flgIntegral.'/NO');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicioxFiltros/20445366413/00001/'.$tipo_nec.'/2023-08-07/2023-08-07/'.$cod_tipo_recaudacion.'/'.$cod_subtipo_servicio.'/'.$cod_camposanto.'/'.$cod_plataforma.'/'.$flgIntegral.'/NO');
+
+            // dd($request);
 
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
@@ -672,7 +674,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCuota/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarCuota/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -695,7 +697,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarInteres/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarInteres/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -722,7 +724,7 @@ class ListaController extends Controller
         $fchFin = $request['fchFin'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ListarContratoNoFirmado/20396900719/LC001/'.$codFirmante.'/'.$firmado.'/'.$fchInicio.'/'.$fchFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Contrato/ListarContratoNoFirmado/20445366413/LC001/'.$codFirmante.'/'.$firmado.'/'.$fchInicio.'/'.$fchFin);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -745,7 +747,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoDocumento/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarTipoDocumento/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -770,7 +772,7 @@ class ListaController extends Controller
         $numServicio = $request['numServicio'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Documento/ObtenerDocumentoPuente/20396900719/LC001/'.$codCtto.'/'.$numServicio);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Documento/ObtenerDocumentoPuente/20445366413/LC001/'.$codCtto.'/'.$numServicio);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -818,7 +820,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarAgencia/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarAgencia/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -841,7 +843,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarLugarDeceso/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarLugarDeceso/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -864,7 +866,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarOrigenReporte/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarOrigenReporte/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -887,7 +889,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarResultadoReporte/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarResultadoReporte/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -910,7 +912,7 @@ class ListaController extends Controller
         $client = new Client();
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarAgenciaFiltro/20396900719');
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Combos/ListarAgenciaFiltro/20445366413');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -947,7 +949,7 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ListarTelereporte/20396900719/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_agencia.'/'.$dsc_beneficiario.'/'.$flg_anulado.'/'.$cod_resultado);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ListarTelereporte/20445366413/'.$cod_trabajador.'/'.$fchInicio.'/'.$fchFin.'/'.$cod_agencia.'/'.$dsc_beneficiario.'/'.$flg_anulado.'/'.$cod_resultado);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode();
@@ -973,7 +975,7 @@ class ListaController extends Controller
         $num_reporte = $request['num_reporte'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ObtenerTelereporte/20396900719/'.$num_reporte);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Telereporte/ObtenerTelereporte/20445366413/'.$num_reporte);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -998,7 +1000,7 @@ class ListaController extends Controller
         $codProspecto = $request['cod_prospecto'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicio/20396900719/'.$codLocalidad.'/'.$codProspecto);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Prospecto/ListarProspectoServicio/20445366413/'.$codLocalidad.'/'.$codProspecto);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -1025,7 +1027,7 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicio/20396900719/'.$fchInicio.'/'.$fchFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicio/20445366413/'.$fchInicio.'/'.$fchFin);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -1050,7 +1052,7 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicioExcel/20396900719/'.$fecha);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicioExcel/20445366413/'.$fecha);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -1075,7 +1077,7 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicioPDF/20396900719/'.$fecha);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/UsoServicio/ListarUsoServicioPDF/20445366413/'.$fecha);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -1107,7 +1109,7 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Espacio/ValidaEspacio/20396900719/'.$as_camposanto.'/'.$as_plataforma.'/'.$as_area.'/'.$as_eje_h.'/'.$as_eje_v.'/'.$as_espacio.'/'.$as_tipo.'/'.$cod_trabajador);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Espacio/ValidaEspacio/20445366413/'.$as_camposanto.'/'.$as_plataforma.'/'.$as_area.'/'.$as_eje_h.'/'.$as_eje_v.'/'.$as_espacio.'/'.$as_tipo.'/'.$cod_trabajador);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -1137,7 +1139,7 @@ class ListaController extends Controller
 
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Espacio/ListarEspacioLaterales/20396900719/'.$as_camposanto.'/'.$as_plataforma.'/'.$as_area.'/'.$as_eje_h.'/'.$as_eje_v.'/'.$as_espacio);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalcontratoremanso.azurewebsites.net/api/Espacio/ListarEspacioLaterales/20445366413/'.$as_camposanto.'/'.$as_plataforma.'/'.$as_area.'/'.$as_eje_h.'/'.$as_eje_v.'/'.$as_espacio);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

@@ -82,6 +82,7 @@ Route::put('api/ActualizarTelereporte', [APIController::class, 'ActualizarTelere
 Route::get('api/ValidarCoincidenciaDocumento', [APIController::class, 'ValidarCoincidenciaDocumento'])->name('api.ValidarCoincidenciaDocumento');
 Route::delete('api/EliminarProspectoContacto', [APIController::class, 'EliminarProspectoContacto'])->name('api.EliminarProspectoContacto');
 Route::post('api/guardaDocumentoAdjunto', [APIController::class, 'guardaDocumentoAdjunto'])->name('api.guardaDocumentoAdjunto');
+Route::post('api/crearCarpetaProspecto', [APIController::class, 'crearCarpetaProspecto'])->name('api.crearCarpetaProspecto');
 Route::get('api/ObtenerDocumentosProspecto', [APIController::class, 'ObtenerDocumentosProspecto'])->name('api.ObtenerDocumentosProspecto');
 Route::get('api/ListarProspectoDocumentos', [APIController::class, 'ListarProspectoDocumentos'])->name('api.ListarProspectoDocumentos');
 Route::get('lista/ListarUsoServicio', [ListaController::class, 'ListarUsoServicio'])->name('lista.ListarUsoServicio');
@@ -142,4 +143,3 @@ Route::delete('api/EliminarServicio', [APIController::class, 'EliminarServicio']
 //-----------------------Vistas PDF-----------------------------//
 Route::get('pdf/generarPDF', [CreaPDFController::class, 'generarPDF'])->name('api.generarPDF');
 Route::view('/cartelera','cartelera')->name('cartelera');
-

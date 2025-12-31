@@ -14,9 +14,8 @@ class CreaPDFController extends Controller
     public function generarPDF(Request $request)
     {   
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-
         $datos[] = '';
-        foreach ($request['data'] as $key => $value) {
+        foreach ($request['datos'] as $key => $value) {
 
             $fecha = new Carbon($value['fch_servicio']);
             $mes = $meses[($fecha->format('n')) - 1];
@@ -24,7 +23,7 @@ class CreaPDFController extends Controller
             $dia = $fecha->format('d');
             $anio = $fecha->format('Y');
 
-            if($value['dsc_prefijo'] == 'INH' || $value['dsc_prefijo'] == 'DEP'){  
+            if($value['dsc_prefijo'] == 'IN' || $value['dsc_prefijo'] == 'DU'){  
                 $hora1 = explode('T',$value['fch_servicio']);
                 $hora = explode(':',$hora1[1]);
                 $datos[$key] = [

@@ -59,8 +59,21 @@ return [
         'documentosProspectos' => [
             'driver' => 'local',
             //'root' => 'D:\CPE\OneDrive - SEGURINDUSTRIA SA\Documentos_SG5\Prospectos',
-            'root' => 'D:/UmayuxSoftwareSrv/Prospectos_SG5/Documentos',
+            // 'root' => 'D:/UmayuxSoftwareSrv/Prospectos_SG5/Documentos',
+            'root' => 'D:/UmayuxSoftwareSrv/Prospectos_SG5',
+            // 'root' => 'C:/UmayuxSoftwareSrv/Prospectos_SG5/Documentos',
+
         ],
+
+
+        'google' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+            'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
+        ],
+
 
     ],
 

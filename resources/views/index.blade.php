@@ -1,235 +1,175 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
+    <title>Contratos - Lomas de la Paz</title>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remanso - Login</title>
-    <meta name="description" content="Default meta description" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('images/logoPeqFav.png')}}">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-      rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/build.css"
-      integrity="sha512-oXqkIy/+iqrHrpoTwFkSLZJpNwoYn9e77QtCNzBi+Jb6uJgTtcdHVy0C+nEpeUfC3fxSbydPxLG+ndikNVvrdQ=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"
-      integrity="sha512-rxThY3LYIfYsVCWPCW9dB0k+e3RZB39f23ylUYTEuZMDrN/vRqLdaCBo/FbvVT6uC2r0ObfPzotsfKF9Qc5W5g=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
-    <!-- css datatable -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/src_login/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css"
-      href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.3/b-html5-2.3.3/b-print-2.3.3/cr-1.6.1/date-1.2.0/fc-4.2.1/r-2.4.0/rr-1.3.1/sc-2.0.7/sp-2.1.0/sl-1.5.0/sr-1.2.0/datatables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/build.css"
-      integrity="sha512-oXqkIy/+iqrHrpoTwFkSLZJpNwoYn9e77QtCNzBi+Jb6uJgTtcdHVy0C+nEpeUfC3fxSbydPxLG+ndikNVvrdQ=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Template Main CSS File -->
-  <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
-
+        href="{{ asset('css/src_login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('css/src_login/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/src_login/vendor/animate/animate.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/src_login/vendor/css-hamburgers/hamburgers.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('css/src_login/vendor/animsition/css/animsition.min.css') }} ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/src_login/vendor/select2/select2.min.css') }} ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('css/src_login/vendor/daterangepicker/daterangepicker.css') }} ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/src_login/css/util.css') }} ">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/src_login/css/main.css') }} ">
+    <!--===============================================================================================-->
 </head>
+
 <body>
 
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('{{ asset('images/bg_login_1.jpg') }}');">
 
-    <div class="backgroundLogin ">
-        <div class="form-singnin w-100 m-auto d-none d-md-block">
-            <div class="row">
-                <div class="mb-3">
-                    <span style="text-align: center; color:white;"><h2>INGRESAR</h2></span>
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control form-remanso" id="user" placeholder="Usuario">
-                </div>
-                <div class="mb-3">
-                    <div class="input-group" id="show_hide_password">
-                        <input type="password" class="form-control form-remanso" id="password" placeholder="Contraseña">
-                        <div class="input-group-append form-remanso">
-                            <span class="input-group-text form-remanso"><a class="hidePass" href=""><i class="bi bi-eye-slash-fill" aria-hidden="true"></i></a></span>
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+                <form class="login100-form validate-form">
+                    <div class="mb-4">
+                        <img src="{{ asset('images/logotipoWeb.svg') }}" alt="login" class="login-card-img">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-23 mt-5" data-validate = "Username is reauired">
+                        <span class="label-input100">Usuario</span>
+                        <input class="input100" type="text" id="user" placeholder="Escriba su usuario">
+                        <span class="focus-input100" data-symbol="&#xf206;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <span class="label-input100">Contraseña</span>
+                        <input class="input100" type="password" id="password" placeholder="Escriba su contraseña">
+                        <span class="focus-input100" data-symbol="&#xf190;"></span>
+                        <div class="input-icon-eye" id="show_hide_password"
+                            style="position: absolute; right: 15px; top: 65%; transform: translateY(-50%); cursor: pointer;">
+                            <i class="fa fa-eye" id="eyeIcon"></i>
                         </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" id="btnIngresar" style="width: -webkit-fill-available;">Ingresar</a>
-                </div>
-                <div class="mb-3" style="text-align: end">
-                    <a class="verdeRemanso" href="#"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Comuniquese con su area de soporte técnico">Olvide mi contraseña</a>
-                </div>
-            </div>
-        </div>
 
-        
-        <div class="m-auto d-block d-md-none" style="width: 80%;">
-            <div class="row">
-                <div class="col-7 mb-3">
-                    <img src="images/logoFondoAzul.png" class="img-fluid" alt="...">
-                </div>
-                <div class="mb-3">
-                    <span style="text-align: left; color:white;"><h2>INGRESAR</h2></span>
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control form-remanso" id="userM" placeholder="Usuario">
-                </div>
-                <div class="mb-3">
-                    <div class="input-group" id="show_hide_password">
-                        <input type="password" class="form-control form-remanso" id="passwordM" placeholder="Contraseña">
-                        <div class="input-group-append form-remanso">
-                            <span class="input-group-text form-remanso"><a class="hidePass" href=""><i class="bi bi-eye-slash-fill" aria-hidden="true"></i></a></span>
+                    <div class="text-right p-t-8 p-b-31">
+                        <a href="#">
+                            Olvide mi contraseña
+                        </a>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button type="button" id="btnIngresar" class="login100-form-btn">
+                                Ingresar
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <a href="#" class="btn btn-success form-remanso BtnverdeRemanso" style="width: -webkit-fill-available;" id="loginBtn1">Ingresar</a>
-                </div>
-                <div class="mb-3" >
-                    <a class="verdeRemanso" href="#"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Comuniquese con su area de soporte técnico">Olvide mi contraseña</a>
-                </div>
+
+                </form>
             </div>
         </div>
     </div>
 
-  <!-- Vendor JS Files -->
-  <!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"
-  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    {{-- <script src="js/main.js"></script> --}}
 
-  <!-- Template Main JS File -->
-  <script src="{{asset('js/main.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            const toggle = document.getElementById("show_hide_password");
+            const input = document.getElementById("password");
+            const icon = document.getElementById("eyeIcon");
 
-<script type="text/javascript">
-    
-    // ---------------Ocultar/mostrar contraseña
-
-    $(document).ready(function() {
-        $("#show_hide_password a").on('click', function(event) {
-            event.preventDefault();
-            if($('#show_hide_password input').attr("type") == "text"){
-                $('#show_hide_password input').attr('type', 'password');
-                $('#show_hide_password i').addClass( "bi-eye-slash-fill" );
-                $('#show_hide_password i').removeClass( "bi-eye-fill" );
-            }else if($('#show_hide_password input').attr("type") == "password"){
-                $('#show_hide_password input').attr('type', 'text');
-                $('#show_hide_password i').removeClass( "bi-eye-slash-fill" );
-                $('#show_hide_password i').addClass( "bi-eye-fill" );
+            if (toggle && input && icon) {
+                toggle.addEventListener("click", function() {
+                    if (input.type === "password") {
+                        input.type = "text";
+                        icon.classList.remove("fa-eye");
+                        icon.classList.add("fa-eye-slash");
+                    } else {
+                        input.type = "password";
+                        icon.classList.remove("fa-eye-slash");
+                        icon.classList.add("fa-eye");
+                    }
+                });
             }
         });
-    });
 
-    // ---------------Fin ocultar/mostrar contraseña
 
-    var boton = document.getElementById("btnIngresar");
-    
-    boton.addEventListener("click",function(){
-        var usuario = document.getElementById("user").value;
-        var password = document.getElementById("password").value;
-        $.ajax({
-            url: 'api/logueo', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'usuario':usuario,'password':password},
-            success: function(respuesta){
-                console.log(respuesta['data']['mensaje']);
-                
-                if(respuesta['data']['mensaje'] == 'OK' && respuesta['data']['response']['flg_acceso_ventas_web'] == 'SI' ){
-                    // alert("en OKKKKK");
-                    // console.log('ok',respuesta);                    
-                    //document.getElementById('message2').style.display = "none";
-                    if(respuesta['data']['response']['flg_ni'] == 'SI'){
-                        window.location.href = "telereporte/listado";
-                    }else if(respuesta['data']['response']['flg_firmante'] == 'SI'){
-                        window.location.href = "ventas/autorizacion";
-                    }else{
-                        window.location.href = "home";
+        var boton = document.getElementById("btnIngresar");
+
+        boton.addEventListener("click", function() {
+            var usuario = document.getElementById("user").value;
+            var password = document.getElementById("password").value;
+            $.ajax({
+                url: 'api/logueo',
+                method: "GET",
+                crossDomain: true,
+                dataType: 'json',
+                data: {
+                    'usuario': usuario,
+                    'password': password
+                },
+                success: function(respuesta) {
+                    console.log(respuesta['data']['mensaje']);
+
+                    if (respuesta['data']['mensaje'] == 'OK' && respuesta['data']['response'][
+                            'flg_acceso_ventas_web'
+                        ] == 'SI') {
+                        // alert("en OKKKKK");
+                        // console.log('ok',respuesta);                    
+                        //document.getElementById('message2').style.display = "none";
+                        if (respuesta['data']['response']['flg_ni'] == 'SI') {
+                            window.location.href = "telereporte/listado";
+                        } else if (respuesta['data']['response']['flg_firmante'] == 'SI') {
+                            window.location.href = "ventas/autorizacion";
+                        } else {
+                            window.location.href = "home";
+                        }
+
+                    } else {
+                        console.log('no', respuesta);
+                        alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
+                        //window.location.href = "/";
+                        location.reload();
+                        //document.getElementById('message2').style.display = "block";
                     }
-                    
-                }else{
-                    console.log('no',respuesta);
-                    alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
-                    //window.location.href = "/";
-                    location.reload();
-                    //document.getElementById('message2').style.display = "block";
-                }
-               
-            },//success
-            error(e){
-                console.log('error',e);
-                alert("Error ",e.message);
-                console.log(e.message);
-                location.reload();
-            }//error
-        });
-    });
 
-    var boton2 = document.getElementById("loginBtn1");
-    
-    boton2.addEventListener("click",function(){
-        var usuario = document.getElementById("userM").value;
-        var password = document.getElementById("passwordM").value;
-        $.ajax({
-            url: 'api/logueo', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'usuario':usuario,'password':password},
-            success: function(respuesta){
-                console.log(respuesta['data']['mensaje']);
-                
-                if(respuesta['data']['mensaje'] == 'OK' && respuesta['data']['response']['flg_acceso_ventas_web'] == 'SI' ){
-                    // alert("en OKKKKK");
-                    // console.log('ok',respuesta);                    
-                    //document.getElementById('message2').style.display = "none";
-                    if(respuesta['data']['response']['flg_ni'] == 'SI'){
-                        window.location.href = "telereporte/listado";
-                    }else if(respuesta['data']['response']['flg_firmante'] == 'SI'){
-                        window.location.href = "ventas/autorizacion";
-                    }else{
-                        window.location.href = "home";
-                    }
-                    
-                }else{
-                    console.log('no',respuesta);
-                    alert("Usuario no tiene acceso a la web. Usuario o la clave invalido");
-                    //window.location.href = "/";
-                    location.reload();
-                    //document.getElementById('message2').style.display = "block";
-                }
-               
-            },//success
-            error(e){
-                console.log('error',e);
-                alert(e.message);
-                console.log(e.message);
-                location.reload();
-            }//error
+                }, //success
+                error(e) {
+                    console.log('error', e);
+                    alert("Error ", e);
+                    console.log(e.message);
+                    //location.reload();
+                } //error
+            });
         });
-    });
-
-    
-</script>
+    </script>
 </body>
+
 </html>
